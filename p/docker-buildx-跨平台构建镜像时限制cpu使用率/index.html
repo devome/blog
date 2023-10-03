@@ -299,10 +299,10 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ docker buildx create --use \
-</span></span><span class="line"><span class="cl">  --name mybuilder \
-</span></span><span class="line"><span class="cl">  --driver docker-container \
-</span></span><span class="line"><span class="cl">  --config /etc/buildkitd.toml
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ docker buildx create --use <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --name mybuilder <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --driver docker-container <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --config /etc/buildkitd.toml
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里再提供一种不依靠docker本身，而是使用cgroup2的功能来实现：</p>
@@ -327,20 +327,20 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## 创建builder
-</span></span><span class="line"><span class="cl">docker run --privileged --rm tonistiigi/binfmt --install all &amp;&gt;/dev/null
-</span></span><span class="line"><span class="cl">docker buildx create --name builder --use 2&gt;/dev/null || docker buildx use builder
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 创建builder</span>
+</span></span><span class="line"><span class="cl">docker run --privileged --rm tonistiigi/binfmt --install all <span class="p">&amp;</span>&gt;/dev/null
+</span></span><span class="line"><span class="cl">docker buildx create --name builder --use 2&gt;/dev/null <span class="o">||</span> docker buildx use builder
 </span></span><span class="line"><span class="cl">docker buildx inspect --bootstrap
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 限制builder至多使用多少CPU
-</span></span><span class="line"><span class="cl">## 右边的数值指把每个CPU线程时间分为多少份（默认值100000）
-</span></span><span class="line"><span class="cl">## 左边的数值指本程序按照每个线程时间的份数，至多使用全部CPU线程时间的多少份（默认值max，意为最大）
-</span></span><span class="line"><span class="cl">## 针对一台8线程的主机，下面的值指最多使用50%线程时间（差不多就是CPU使用率的50%），可自行根据情况修改
-</span></span><span class="line"><span class="cl">## 而如果是一台16线程的主机，那么下面的值指最多使用25%线程时间
-</span></span><span class="line"><span class="cl">cpu_max=&#34;400000 100000&#34;
+</span></span><span class="line"><span class="cl"><span class="c1">## 限制builder至多使用多少CPU</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 右边的数值指把每个CPU线程时间分为多少份（默认值100000）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 左边的数值指本程序按照每个线程时间的份数，至多使用全部CPU线程时间的多少份（默认值max，意为最大）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 针对一台8线程的主机，下面的值指最多使用50%线程时间（差不多就是CPU使用率的50%），可自行根据情况修改</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 而如果是一台16线程的主机，那么下面的值指最多使用25%线程时间</span>
+</span></span><span class="line"><span class="cl"><span class="nv">cpu_max</span><span class="o">=</span><span class="s2">&#34;400000 100000&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 下面的命令需要安装jq方可正确运行
-</span></span><span class="line"><span class="cl">echo &#34;$cpu_max&#34; &gt; /sys/fs/cgroup/system.slice/docker-$(docker inspect buildx_buildkit_builder0 | jq -r .[0].Id).scope/cpu.max
+</span></span><span class="line"><span class="cl"><span class="c1">## 下面的命令需要安装jq方可正确运行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$cpu_max</span><span class="s2">&#34;</span> &gt; /sys/fs/cgroup/system.slice/docker-<span class="k">$(</span>docker inspect buildx_buildkit_builder0 <span class="p">|</span> jq -r .<span class="o">[</span>0<span class="o">]</span>.Id<span class="k">)</span>.scope/cpu.max
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -362,18 +362,18 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## 创建builder
-</span></span><span class="line"><span class="cl">docker run --privileged --rm tonistiigi/binfmt --install all &amp;&gt;/dev/null
-</span></span><span class="line"><span class="cl">docker buildx create --name builder --use 2&gt;/dev/null || docker buildx use builder
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 创建builder</span>
+</span></span><span class="line"><span class="cl">docker run --privileged --rm tonistiigi/binfmt --install all <span class="p">&amp;</span>&gt;/dev/null
+</span></span><span class="line"><span class="cl">docker buildx create --name builder --use 2&gt;/dev/null <span class="o">||</span> docker buildx use builder
 </span></span><span class="line"><span class="cl">docker buildx inspect --bootstrap
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 限制builder只能使用固定的CPU核心（线程），核心（线程）的编号范围
-</span></span><span class="line"><span class="cl">## 核心（线程）编号从0开始计，所以下面的含义是第4、第6、第13-16个核心（线程）
-</span></span><span class="line"><span class="cl">## nproc 这个命令可以输出总核心（线程）数
-</span></span><span class="line"><span class="cl">cpu_limit=&#34;3,5,12-15&#34; 
+</span></span><span class="line"><span class="cl"><span class="c1">## 限制builder只能使用固定的CPU核心（线程），核心（线程）的编号范围</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 核心（线程）编号从0开始计，所以下面的含义是第4、第6、第13-16个核心（线程）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## nproc 这个命令可以输出总核心（线程）数</span>
+</span></span><span class="line"><span class="cl"><span class="nv">cpu_limit</span><span class="o">=</span><span class="s2">&#34;3,5,12-15&#34;</span> 
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 下面的命令需要安装jq方可正确运行
-</span></span><span class="line"><span class="cl">echo &#34;$cpu_limit&#34; &gt; /sys/fs/cgroup/system.slice/docker-$(docker inspect buildx_buildkit_builder0 | jq -r .[0].Id).scope/cpuset.cpus
+</span></span><span class="line"><span class="cl"><span class="c1">## 下面的命令需要安装jq方可正确运行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$cpu_limit</span><span class="s2">&#34;</span> &gt; /sys/fs/cgroup/system.slice/docker-<span class="k">$(</span>docker inspect buildx_buildkit_builder0 <span class="p">|</span> jq -r .<span class="o">[</span>0<span class="o">]</span>.Id<span class="k">)</span>.scope/cpuset.cpus
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -399,18 +399,6 @@
     </section>
 
 
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
     </footer>
 
 

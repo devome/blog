@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>软路由 on Evine的个人博客</title>
+        <link>https://devome.github.io/blog/categories/gateway/</link>
+        <description>Recent content in 软路由 on Evine的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language><atom:link href="https://devome.github.io/blog/categories/gateway/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
+</rss>

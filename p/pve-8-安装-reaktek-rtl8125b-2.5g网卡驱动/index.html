@@ -415,33 +415,33 @@
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## 更新内核、安装依赖
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 更新内核、安装依赖</span>
 </span></span><span class="line"><span class="cl">$ apt update
 </span></span><span class="line"><span class="cl">$ apt upgrade
-</span></span><span class="line"><span class="cl">$ apt install -y dkms pve-headers #pve 8.0.4+建议将pve-headers替换为proxmox-default-headers
+</span></span><span class="line"><span class="cl">$ apt install -y dkms pve-headers <span class="c1">#pve 8.0.4+建议将pve-headers替换为proxmox-default-headers</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 安装刚刚下载好的deb包
-</span></span><span class="line"><span class="cl">$ dpkg -i realtek-r8125-dkms_*.deb  # 如通配符会匹配多个时亦可指定具体的文件名
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装刚刚下载好的deb包</span>
+</span></span><span class="line"><span class="cl">$ dpkg -i realtek-r8125-dkms_*.deb  <span class="c1"># 如通配符会匹配多个时亦可指定具体的文件名</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 如果有多个内核，为旧内核也安装驱动，如果不会再从旧内核启动，忽略这步也可以
-</span></span><span class="line"><span class="cl">$ headers=$(dpkg -l | grep -P &#34;^ii.+kernel-(\d\.){2}\d+\S+&#34; | awk &#39;{print $2}&#39; | sed &#39;s|kernel|headers|&#39; | perl -pe &#39;s|\n| |&#39;)
-</span></span><span class="line"><span class="cl">$ eval apt install -y $headers
-</span></span><span class="line"><span class="cl">$ dpkg -l | grep -P &#34;^ii.+kernel-(\d\.){2}\d+\S+&#34; | awk &#39;{print $2}&#39; | perl -pe &#39;s|\D+(\d+\.\d+\.\d+\S+)$|\1|&#39;  # 列出全部内核版本kernel_version
-</span></span><span class="line"><span class="cl">$ dkms install realtek-r8125/&lt;driver_version&gt; -k &lt;kernel_version&gt; # 指定驱动版本（在deb文件名中有体现）和内核版本（从上一句命令的输出中依次选择），zsh按tab可自动补全，比如：dkms install realtek-r8125/9.011.01 -k 6.2.16-5-pve
-</span></span><span class="line"><span class="cl">$ eval apt-mark auto $headers
+</span></span><span class="line"><span class="cl"><span class="c1">## 如果有多个内核，为旧内核也安装驱动，如果不会再从旧内核启动，忽略这步也可以</span>
+</span></span><span class="line"><span class="cl">$ <span class="nv">headers</span><span class="o">=</span><span class="k">$(</span>dpkg -l <span class="p">|</span> grep -P <span class="s2">&#34;^ii.+kernel-(\d\.){2}\d+\S+&#34;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s|kernel|headers|&#39;</span> <span class="p">|</span> perl -pe <span class="s1">&#39;s|\n| |&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">eval</span> apt install -y <span class="nv">$headers</span>
+</span></span><span class="line"><span class="cl">$ dpkg -l <span class="p">|</span> grep -P <span class="s2">&#34;^ii.+kernel-(\d\.){2}\d+\S+&#34;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> perl -pe <span class="s1">&#39;s|\D+(\d+\.\d+\.\d+\S+)$|\1|&#39;</span>  <span class="c1"># 列出全部内核版本kernel_version</span>
+</span></span><span class="line"><span class="cl">$ dkms install realtek-r8125/&lt;driver_version&gt; -k &lt;kernel_version&gt; <span class="c1"># 指定驱动版本（在deb文件名中有体现）和内核版本（从上一句命令的输出中依次选择），zsh按tab可自动补全，比如：dkms install realtek-r8125/9.011.01 -k 6.2.16-5-pve</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">eval</span> apt-mark auto <span class="nv">$headers</span>
 </span></span><span class="line"><span class="cl">$ apt autopurge
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 禁用r8169驱动
-</span></span><span class="line"><span class="cl">$ echo &#34;blacklist r8169&#34; &gt;&gt; /etc/modprobe.d/dkms.conf
+</span></span><span class="line"><span class="cl"><span class="c1">## 禁用r8169驱动</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;blacklist r8169&#34;</span> &gt;&gt; /etc/modprobe.d/dkms.conf
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 重启
+</span></span><span class="line"><span class="cl"><span class="c1">## 重启</span>
 </span></span><span class="line"><span class="cl">$ update-grub
 </span></span><span class="line"><span class="cl">$ update-initramfs -u -k all
 </span></span><span class="line"><span class="cl">$ reboot
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 再次查看网卡加载的驱动，现在加载的是r8125了
+</span></span><span class="line"><span class="cl"><span class="c1">## 再次查看网卡加载的驱动，现在加载的是r8125了</span>
 </span></span><span class="line"><span class="cl">$ lspci -s 22:00.0 -k
-</span></span><span class="line"><span class="cl">22:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
+</span></span><span class="line"><span class="cl">22:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller <span class="o">(</span>rev 05<span class="o">)</span>
 </span></span><span class="line"><span class="cl">        Subsystem: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller
 </span></span><span class="line"><span class="cl">        Kernel driver in use: r8125
 </span></span><span class="line"><span class="cl">        Kernel modules: r8169, r8125
@@ -769,18 +769,6 @@
     </section>
 
 
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
     </footer>
 
 

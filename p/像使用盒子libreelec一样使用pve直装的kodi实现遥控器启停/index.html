@@ -394,19 +394,19 @@
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 安装evtest
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 安装evtest</span>
 </span></span><span class="line"><span class="cl">apt install evtest
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 运行evtest
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行evtest</span>
 </span></span><span class="line"><span class="cl">evtest --grab
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># evtest会列出所有可用的输入设备，可以看到我的遥控器有event5-event8共4个设备
-</span></span><span class="line"><span class="cl"># 你可以选择具体的编号来进行测试，找到每个设备分别能控制哪些按键
-</span></span><span class="line"><span class="cl"># 经过测试，我发现我遥控器的电源键在event8，也就是2.4G Composite Devic System Control这个设备
+</span></span><span class="line"><span class="cl"><span class="c1"># evtest会列出所有可用的输入设备，可以看到我的遥控器有event5-event8共4个设备</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 你可以选择具体的编号来进行测试，找到每个设备分别能控制哪些按键</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 经过测试，我发现我遥控器的电源键在event8，也就是2.4G Composite Devic System Control这个设备</span>
 </span></span><span class="line"><span class="cl">No device specified, trying to scan all of /dev/input/event*
 </span></span><span class="line"><span class="cl">Available devices:
 </span></span><span class="line"><span class="cl">/dev/input/event0:      Power Button
-</span></span><span class="line"><span class="cl">/dev/input/event1:      AT Translated Set 2 keyboard
+</span></span><span class="line"><span class="cl">/dev/input/event1:      AT Translated Set <span class="m">2</span> keyboard
 </span></span><span class="line"><span class="cl">/dev/input/event2:      VirtualPS/2 VMware VMMouse
 </span></span><span class="line"><span class="cl">/dev/input/event3:      VirtualPS/2 VMware VMMouse
 </span></span><span class="line"><span class="cl">/dev/input/event4:      QEMU QEMU USB Tablet
@@ -415,26 +415,26 @@
 </span></span><span class="line"><span class="cl">/dev/input/event7:      2.4G Composite Devic Consumer Control
 </span></span><span class="line"><span class="cl">/dev/input/event8:      2.4G Composite Devic System Control
 </span></span><span class="line"><span class="cl">/dev/input/event9:      PC Speaker
-</span></span><span class="line"><span class="cl">Select the device event number [0-9]:8   # 手动输入要测试的设备编号，如果不清楚电源键在什么设备上，你可以一个一个试出来
+</span></span><span class="line"><span class="cl">Select the device event number <span class="o">[</span>0-9<span class="o">]</span>:8   <span class="c1"># 手动输入要测试的设备编号，如果不清楚电源键在什么设备上，你可以一个一个试出来</span>
 </span></span><span class="line"><span class="cl">Input device ID: bus 0x3 vendor 0x627 product 0x697d version 0x110
-</span></span><span class="line"><span class="cl">Input device name: &#34;2.4G Composite Devic System Control&#34;
+</span></span><span class="line"><span class="cl">Input device name: <span class="s2">&#34;2.4G Composite Devic System Control&#34;</span>
 </span></span><span class="line"><span class="cl">Supported events:
-</span></span><span class="line"><span class="cl">  Event type 0 (EV_SYN)
-</span></span><span class="line"><span class="cl">  Event type 1 (EV_KEY)
-</span></span><span class="line"><span class="cl">    Event code 116 (KEY_POWER)
-</span></span><span class="line"><span class="cl">    Event code 142 (KEY_SLEEP)
-</span></span><span class="line"><span class="cl">    Event code 143 (KEY_WAKEUP)
-</span></span><span class="line"><span class="cl">  Event type 4 (EV_MSC)
-</span></span><span class="line"><span class="cl">    Event code 4 (MSC_SCAN)
+</span></span><span class="line"><span class="cl">  Event <span class="nb">type</span> <span class="m">0</span> <span class="o">(</span>EV_SYN<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Event <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">116</span> <span class="o">(</span>KEY_POWER<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">142</span> <span class="o">(</span>KEY_SLEEP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">143</span> <span class="o">(</span>KEY_WAKEUP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Event <span class="nb">type</span> <span class="m">4</span> <span class="o">(</span>EV_MSC<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">4</span> <span class="o">(</span>MSC_SCAN<span class="o">)</span>
 </span></span><span class="line"><span class="cl">Properties:
-</span></span><span class="line"><span class="cl">Testing ... (interrupt to exit)  # 按下电源键，evtest输出以下结果，没有反应表示设备择取不对
-</span></span><span class="line"><span class="cl">Event: time 1669209045.421999, type 4 (EV_MSC), code 4 (MSC_SCAN), value 10081
-</span></span><span class="line"><span class="cl">Event: time 1669209045.421999, type 1 (EV_KEY), code 116 (KEY_POWER), value 1
-</span></span><span class="line"><span class="cl">Event: time 1669209045.421999, -------------- SYN_REPORT ------------
-</span></span><span class="line"><span class="cl">Event: time 1669209045.422021, type 1 (EV_KEY), code 116 (KEY_POWER), value 0
-</span></span><span class="line"><span class="cl">Event: time 1669209045.422021, -------------- SYN_REPORT ------------
+</span></span><span class="line"><span class="cl">Testing ... <span class="o">(</span>interrupt to <span class="nb">exit</span><span class="o">)</span>  <span class="c1"># 按下电源键，evtest输出以下结果，没有反应表示设备择取不对</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.421999, <span class="nb">type</span> <span class="m">4</span> <span class="o">(</span>EV_MSC<span class="o">)</span>, code <span class="m">4</span> <span class="o">(</span>MSC_SCAN<span class="o">)</span>, value <span class="m">10081</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.421999, <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>, code <span class="m">116</span> <span class="o">(</span>KEY_POWER<span class="o">)</span>, value <span class="m">1</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.421999, -------------- SYN_REPORT ------------
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.422021, <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>, code <span class="m">116</span> <span class="o">(</span>KEY_POWER<span class="o">)</span>, value <span class="m">0</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.422021, -------------- SYN_REPORT ------------
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># Ctrl+C退出
+</span></span><span class="line"><span class="cl"><span class="c1"># Ctrl+C退出</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过测试，我知道了我遥控器的电源键的键码为<code>116</code>，键名为<code>KEY_POWER</code>，去掉<code>KEY_</code>，键值转换为小写<code>power</code>这个值在后面会用到。不出意外，一般遥控器的电源键的键值都是<code>power</code>。</p>
@@ -599,17 +599,17 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ls -l /dev/input/by-id
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls -l /dev/input/by-id
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 生成了`usb-0627_2.4G_Composite_Devic-System-Control`这个软连接
-</span></span><span class="line"><span class="cl">total 0
-</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-event-if01 -&gt; ../event7
-</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-event-kbd -&gt; ../event5
-</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-System-Control -&gt; ../event8
-</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-if01-event-mouse -&gt; ../event6
-</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-if01-mouse -&gt; ../mouse3
-</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-event-mouse -&gt; ../event4
-</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-mouse -&gt; ../mouse2
+</span></span><span class="line"><span class="cl"><span class="c1">## 生成了`usb-0627_2.4G_Composite_Devic-System-Control`这个软连接</span>
+</span></span><span class="line"><span class="cl">total <span class="m">0</span>
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-event-if01 -&gt; ../event7
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-event-kbd -&gt; ../event5
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-System-Control -&gt; ../event8
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-if01-event-mouse -&gt; ../event6
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-if01-mouse -&gt; ../mouse3
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-event-mouse -&gt; ../event4
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-mouse -&gt; ../mouse2
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="设置按键胁持">设置按键胁持</h2>
@@ -660,7 +660,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 </span></span><span class="line"><span class="cl">
@@ -708,7 +708,7 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 </span></span><span class="line"><span class="cl">
@@ -805,23 +805,23 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## 设置开机自动启动，并立即运行起来
-</span></span><span class="line"><span class="cl">systemctl enable --now evsieve.service
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 设置开机自动启动，并立即运行起来</span>
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now evsieve.service
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 再看看是不是evsieve.service是不是启动好了
+</span></span><span class="line"><span class="cl"><span class="c1">## 再看看是不是evsieve.service是不是启动好了</span>
 </span></span><span class="line"><span class="cl">systemctl status evsieve.service
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 如果像这样就表示启动好啦
+</span></span><span class="line"><span class="cl"><span class="c1">## 如果像这样就表示启动好啦</span>
 </span></span><span class="line"><span class="cl"> evsieve.service - Run evsieve
-</span></span><span class="line"><span class="cl">     Loaded: loaded (/etc/systemd/system/evsieve.service; enabled; vendor preset: enabled)
-</span></span><span class="line"><span class="cl">     Active: active (running) since Thu 2022-11-24 18:11:27 CST; 36min ago
-</span></span><span class="line"><span class="cl">   Main PID: 1249 (evsieve)
-</span></span><span class="line"><span class="cl">      Tasks: 2 (limit: 72123)
+</span></span><span class="line"><span class="cl">     Loaded: loaded <span class="o">(</span>/etc/systemd/system/evsieve.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+</span></span><span class="line"><span class="cl">     Active: active <span class="o">(</span>running<span class="o">)</span> since Thu 2022-11-24 18:11:27 CST<span class="p">;</span> 36min ago
+</span></span><span class="line"><span class="cl">   Main PID: <span class="m">1249</span> <span class="o">(</span>evsieve<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      Tasks: <span class="m">2</span> <span class="o">(</span>limit: 72123<span class="o">)</span>
 </span></span><span class="line"><span class="cl">     Memory: 1.8M
 </span></span><span class="line"><span class="cl">        CPU: 59ms
 </span></span><span class="line"><span class="cl">     CGroup: /system.slice/evsieve.service
-</span></span><span class="line"><span class="cl">             └─1249 evsieve --input /dev/input/by-id/usb-0627_2.4G_Composite_Devic-System-Control grab persist=reopen --hook key:power exec-shell=/usr/local/bin/kodi-power.sh --block key:power
-</span></span><span class="line"><span class="cl">11月 24 18:11:27 pve systemd[1]: Started Run evsieve.
+</span></span><span class="line"><span class="cl">             └─1249 evsieve --input /dev/input/by-id/usb-0627_2.4G_Composite_Devic-System-Control grab <span class="nv">persist</span><span class="o">=</span>reopen --hook key:power exec-shell<span class="o">=</span>/usr/local/bin/kodi-power.sh --block key:power
+</span></span><span class="line"><span class="cl">11月 <span class="m">24</span> 18:11:27 pve systemd<span class="o">[</span>1<span class="o">]</span>: Started Run evsieve.
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -846,18 +846,6 @@
     </section>
 
 
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
     </footer>
 
 

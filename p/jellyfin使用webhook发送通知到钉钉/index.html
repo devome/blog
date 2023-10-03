@@ -454,96 +454,96 @@
 </span><span class="lnt">89
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{
-</span></span><span class="line"><span class="cl">    &#34;msgtype&#34;: &#34;markdown&#34;,
-</span></span><span class="line"><span class="cl">    &#34;markdown&#34;: {
-</span></span><span class="line"><span class="cl">        {{#if_equals NotificationType &#39;ItemAdded&#39;}} 
-</span></span><span class="line"><span class="cl">        {{#if_equals ItemType &#39;Season&#39;}}
-</span></span><span class="line"><span class="cl">        &#34;title&#34;: &#34;{{{SeriesName}}} {{{Name}}} 已添加到 {{{ServerName}}}&#34;,
-</span></span><span class="line"><span class="cl">        {{else}}
-</span></span><span class="line"><span class="cl">        {{#if_equals ItemType &#39;Episode&#39;}}
-</span></span><span class="line"><span class="cl">        &#34;title&#34;: &#34;{{{SeriesName}}} S{{SeasonNumber00}}E{{EpisodeNumber00}} {{{Name}}} 已添加到 {{{ServerName}}}&#34;,
-</span></span><span class="line"><span class="cl">        {{else}}
-</span></span><span class="line"><span class="cl">        &#34;title&#34;: &#34;{{{Name}}} ({{Year}}) 已添加到 {{{ServerName}}}&#34;,
-</span></span><span class="line"><span class="cl">        {{/if_equals}}
-</span></span><span class="line"><span class="cl">        {{/if_equals}}
-</span></span><span class="line"><span class="cl">        &#34;text&#34;:
-</span></span><span class="line"><span class="cl">&#34;**媒体添加通知** \n\n
-</span></span><span class="line"><span class="cl">{{#if_equals ItemType &#39;Season&#39;}}
-</span></span><span class="line"><span class="cl">名称：{{{SeriesName}}} S{{SeasonNumber00}} {{{Name}}}\n
-</span></span><span class="line"><span class="cl">{{else}}
-</span></span><span class="line"><span class="cl">{{#if_equals ItemType &#39;Episode&#39;}}
-</span></span><span class="line"><span class="cl">名称：{{{SeriesName}}} S{{SeasonNumber00}}E{{EpisodeNumber00}} {{{Name}}}\n
-</span></span><span class="line"><span class="cl">{{else}}
-</span></span><span class="line"><span class="cl">名称：{{{Name}}} ({{Year}})\n
-</span></span><span class="line"><span class="cl">{{/if_equals}}
-</span></span><span class="line"><span class="cl">{{/if_equals}}
-</span></span><span class="line"><span class="cl">链接：
-</span></span><span class="line"><span class="cl">{{~#if_exist Provider_imdb~}}
-</span></span><span class="line"><span class="cl">[IMDb](https://www.imdb.com/title/{{Provider_imdb}}/)\n
-</span></span><span class="line"><span class="cl">{{~/if_exist~}}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">{{~#if_exist Provider_tmdb~}}
-</span></span><span class="line"><span class="cl">{{~#if_equals ItemType &#39;Movie&#39;~}}
-</span></span><span class="line"><span class="cl">[TMDb](https://www.themoviedb.org/movie/{{Provider_tmdb}})\n
-</span></span><span class="line"><span class="cl">{{~else~}}
-</span></span><span class="line"><span class="cl">[TMDb](https://www.themoviedb.org/tv/{{Provider_tmdb}})\n
-</span></span><span class="line"><span class="cl">{{~/if_equals~}}
-</span></span><span class="line"><span class="cl">{{~/if_exist~}}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">{{~#if_exist Provider_opendouban~}}
-</span></span><span class="line"><span class="cl">[豆瓣](https://movie.douban.com/subject/{{Provider_opendouban}}/)\n
-</span></span><span class="line"><span class="cl">{{~/if_exist~}}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">[Jellyfin]({{ServerUrl}}/web/index.html#!/details?id={{ItemId}}&amp;serverId={{ServerId}})\n\n
-</span></span><span class="line"><span class="cl">{{#if_equals ItemType &#39;Episode&#39;}}
-</span></span><span class="line"><span class="cl">时长：{{RunTime}}\n\n
-</span></span><span class="line"><span class="cl">{{else}}
-</span></span><span class="line"><span class="cl">{{#if_equals ItemType &#39;Movie&#39;}}
-</span></span><span class="line"><span class="cl">时长：{{RunTime}}\n\n
-</span></span><span class="line"><span class="cl">{{/if_equals}}
-</span></span><span class="line"><span class="cl">{{/if_equals}}
-</span></span><span class="line"><span class="cl">{{~#if_exist Overview~}}
-</span></span><span class="line"><span class="cl">简介：{{Overview}}
-</span></span><span class="line"><span class="cl">{{~else~}}
-</span></span><span class="line"><span class="cl">简介：(无)
-</span></span><span class="line"><span class="cl">{{~/if_exist~}}&#34;
-</span></span><span class="line"><span class="cl">        {{/if_equals}}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        {{#if_equals NotificationType &#39;PlaybackStart&#39;}}
-</span></span><span class="line"><span class="cl">        &#34;title&#34;: &#34;{{{NotificationUsername}}} 开始播放&#34;,
-</span></span><span class="line"><span class="cl">        &#34;text&#34;:
-</span></span><span class="line"><span class="cl">&#34;**开始播放通知** \n\n
-</span></span><span class="line"><span class="cl">用户：{{{NotificationUsername}}}\n
-</span></span><span class="line"><span class="cl">{{#if_equals ItemType &#39;Episode&#39;}}
-</span></span><span class="line"><span class="cl">剧集：{{{SeriesName}}} ({{Year}}) S{{SeasonNumber00}}E{{EpisodeNumber00}} - {{{Name}}}\n
-</span></span><span class="line"><span class="cl">{{else}}
-</span></span><span class="line"><span class="cl">电影：{{{Name}}} ({{Year}})\n
-</span></span><span class="line"><span class="cl">{{/if_equals}}
-</span></span><span class="line"><span class="cl">起点：{{PlaybackPosition}}\n
-</span></span><span class="line"><span class="cl">设备：{{DeviceName}}\n
-</span></span><span class="line"><span class="cl">终端：{{ClientName}}\n\n
-</span></span><span class="line"><span class="cl">{{~#if_exist Overview~}}
-</span></span><span class="line"><span class="cl">简介：{{Overview}}
-</span></span><span class="line"><span class="cl">{{~/if_exist~}}&#34;
-</span></span><span class="line"><span class="cl">        {{/if_equals}}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        {{#if_equals NotificationType &#39;PlaybackStop&#39;}}    
-</span></span><span class="line"><span class="cl">        &#34;title&#34;: &#34;{{{NotificationUsername}}} 停止播放&#34;,
-</span></span><span class="line"><span class="cl">        &#34;text&#34;:
-</span></span><span class="line"><span class="cl">&#34;**停止播放通知** \n\n
-</span></span><span class="line"><span class="cl">用户：{{{NotificationUsername}}}\n
-</span></span><span class="line"><span class="cl">{{#if_equals ItemType &#39;Episode&#39;}}
-</span></span><span class="line"><span class="cl">剧集：{{{SeriesName}}} ({{Year}}) S{{SeasonNumber00}}E{{EpisodeNumber00}} - {{{Name}}}\n
-</span></span><span class="line"><span class="cl">{{else}}
-</span></span><span class="line"><span class="cl">电影：{{{Name}}} ({{Year}})\n
-</span></span><span class="line"><span class="cl">{{/if_equals}}
-</span></span><span class="line"><span class="cl">设备：{{DeviceName}}\n
-</span></span><span class="line"><span class="cl">终端：{{ClientName}}&#34;
-</span></span><span class="line"><span class="cl">        {{/if_equals}}
-</span></span><span class="line"><span class="cl">    }
-</span></span><span class="line"><span class="cl">}
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="err">{</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">    &#34;msgtype&#34;: &#34;markdown&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="x">    &#34;markdown&#34;: </span><span class="err">{</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">NotificationType</span> <span class="s1">&#39;ItemAdded&#39;</span><span class="cp">}}</span><span class="x"> 
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Season&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        &#34;title&#34;: &#34;</span><span class="cs">{{{</span><span class="nv">SeriesName</span><span class="cs">}}}</span><span class="x"> </span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x"> 已添加到 </span><span class="cs">{{{</span><span class="nv">ServerName</span><span class="cs">}}}</span><span class="x">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Episode&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        &#34;title&#34;: &#34;</span><span class="cs">{{{</span><span class="nv">SeriesName</span><span class="cs">}}}</span><span class="x"> S</span><span class="cp">{{</span><span class="nv">SeasonNumber00</span><span class="cp">}}</span><span class="x">E</span><span class="cp">{{</span><span class="nv">EpisodeNumber00</span><span class="cp">}}</span><span class="x"> </span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x"> 已添加到 </span><span class="cs">{{{</span><span class="nv">ServerName</span><span class="cs">}}}</span><span class="x">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        &#34;title&#34;: &#34;</span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x"> (</span><span class="cp">{{</span><span class="nv">Year</span><span class="cp">}}</span><span class="x">) 已添加到 </span><span class="cs">{{{</span><span class="nv">ServerName</span><span class="cs">}}}</span><span class="x">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        &#34;text&#34;:
+</span></span></span><span class="line"><span class="cl"><span class="x">&#34;**媒体添加通知** \n\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Season&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">名称：</span><span class="cs">{{{</span><span class="nv">SeriesName</span><span class="cs">}}}</span><span class="x"> S</span><span class="cp">{{</span><span class="nv">SeasonNumber00</span><span class="cp">}}</span><span class="x"> </span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Episode&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">名称：</span><span class="cs">{{{</span><span class="nv">SeriesName</span><span class="cs">}}}</span><span class="x"> S</span><span class="cp">{{</span><span class="nv">SeasonNumber00</span><span class="cp">}}</span><span class="x">E</span><span class="cp">{{</span><span class="nv">EpisodeNumber00</span><span class="cp">}}</span><span class="x"> </span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">名称：</span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x"> (</span><span class="cp">{{</span><span class="nv">Year</span><span class="cp">}}</span><span class="x">)\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">链接：
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">#if</span><span class="err">_</span><span class="nv">exist</span> <span class="nv">Provider_imdb</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">[IMDb](https://www.imdb.com/title/</span><span class="cp">{{</span><span class="nv">Provider_imdb</span><span class="cp">}}</span><span class="x">/)\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">/if</span><span class="err">_</span><span class="nv">exist</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">#if</span><span class="err">_</span><span class="nv">exist</span> <span class="nv">Provider_tmdb</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Movie&#39;</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">[TMDb](https://www.themoviedb.org/movie/</span><span class="cp">{{</span><span class="nv">Provider_tmdb</span><span class="cp">}}</span><span class="x">)\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">else</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">[TMDb](https://www.themoviedb.org/tv/</span><span class="cp">{{</span><span class="nv">Provider_tmdb</span><span class="cp">}}</span><span class="x">)\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">/if</span><span class="err">_</span><span class="nv">exist</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">#if</span><span class="err">_</span><span class="nv">exist</span> <span class="nv">Provider_opendouban</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">[豆瓣](https://movie.douban.com/subject/</span><span class="cp">{{</span><span class="nv">Provider_opendouban</span><span class="cp">}}</span><span class="x">/)\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">/if</span><span class="err">_</span><span class="nv">exist</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">[Jellyfin](</span><span class="cp">{{</span><span class="nv">ServerUrl</span><span class="cp">}}</span><span class="x">/web/index.html#!/details?id=</span><span class="cp">{{</span><span class="nv">ItemId</span><span class="cp">}}</span><span class="x">&amp;serverId=</span><span class="cp">{{</span><span class="nv">ServerId</span><span class="cp">}}</span><span class="x">)\n\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Episode&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">时长：</span><span class="cp">{{</span><span class="nv">RunTime</span><span class="cp">}}</span><span class="x">\n\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Movie&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">时长：</span><span class="cp">{{</span><span class="nv">RunTime</span><span class="cp">}}</span><span class="x">\n\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">#if</span><span class="err">_</span><span class="nv">exist</span> <span class="nv">Overview</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">简介：</span><span class="cp">{{</span><span class="nv">Overview</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">else</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">简介：(无)
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">/if</span><span class="err">_</span><span class="nv">exist</span><span class="err">~</span><span class="cp">}}</span><span class="x">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">NotificationType</span> <span class="s1">&#39;PlaybackStart&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        &#34;title&#34;: &#34;</span><span class="cs">{{{</span><span class="nv">NotificationUsername</span><span class="cs">}}}</span><span class="x"> 开始播放&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="x">        &#34;text&#34;:
+</span></span></span><span class="line"><span class="cl"><span class="x">&#34;**开始播放通知** \n\n
+</span></span></span><span class="line"><span class="cl"><span class="x">用户：</span><span class="cs">{{{</span><span class="nv">NotificationUsername</span><span class="cs">}}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Episode&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">剧集：</span><span class="cs">{{{</span><span class="nv">SeriesName</span><span class="cs">}}}</span><span class="x"> (</span><span class="cp">{{</span><span class="nv">Year</span><span class="cp">}}</span><span class="x">) S</span><span class="cp">{{</span><span class="nv">SeasonNumber00</span><span class="cp">}}</span><span class="x">E</span><span class="cp">{{</span><span class="nv">EpisodeNumber00</span><span class="cp">}}</span><span class="x"> - </span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">电影：</span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x"> (</span><span class="cp">{{</span><span class="nv">Year</span><span class="cp">}}</span><span class="x">)\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">起点：</span><span class="cp">{{</span><span class="nv">PlaybackPosition</span><span class="cp">}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x">设备：</span><span class="cp">{{</span><span class="nv">DeviceName</span><span class="cp">}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x">终端：</span><span class="cp">{{</span><span class="nv">ClientName</span><span class="cp">}}</span><span class="x">\n\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">#if</span><span class="err">_</span><span class="nv">exist</span> <span class="nv">Overview</span><span class="err">~</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">简介：</span><span class="cp">{{</span><span class="nv">Overview</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="err">~</span><span class="k">/if</span><span class="err">_</span><span class="nv">exist</span><span class="err">~</span><span class="cp">}}</span><span class="x">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">NotificationType</span> <span class="s1">&#39;PlaybackStop&#39;</span><span class="cp">}}</span><span class="x">    
+</span></span></span><span class="line"><span class="cl"><span class="x">        &#34;title&#34;: &#34;</span><span class="cs">{{{</span><span class="nv">NotificationUsername</span><span class="cs">}}}</span><span class="x"> 停止播放&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="x">        &#34;text&#34;:
+</span></span></span><span class="line"><span class="cl"><span class="x">&#34;**停止播放通知** \n\n
+</span></span></span><span class="line"><span class="cl"><span class="x">用户：</span><span class="cs">{{{</span><span class="nv">NotificationUsername</span><span class="cs">}}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">#if</span><span class="err">_</span><span class="nv">equals</span> <span class="nv">ItemType</span> <span class="s1">&#39;Episode&#39;</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">剧集：</span><span class="cs">{{{</span><span class="nv">SeriesName</span><span class="cs">}}}</span><span class="x"> (</span><span class="cp">{{</span><span class="nv">Year</span><span class="cp">}}</span><span class="x">) S</span><span class="cp">{{</span><span class="nv">SeasonNumber00</span><span class="cp">}}</span><span class="x">E</span><span class="cp">{{</span><span class="nv">EpisodeNumber00</span><span class="cp">}}</span><span class="x"> - </span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">else</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">电影：</span><span class="cs">{{{</span><span class="nv">Name</span><span class="cs">}}}</span><span class="x"> (</span><span class="cp">{{</span><span class="nv">Year</span><span class="cp">}}</span><span class="x">)\n
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">设备：</span><span class="cp">{{</span><span class="nv">DeviceName</span><span class="cp">}}</span><span class="x">\n
+</span></span></span><span class="line"><span class="cl"><span class="x">终端：</span><span class="cp">{{</span><span class="nv">ClientName</span><span class="cp">}}</span><span class="x">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x">        </span><span class="cp">{{</span><span class="k">/if</span><span class="err">_</span><span class="nv">equals</span><span class="cp">}}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">    }
+</span></span></span><span class="line"><span class="cl"><span class="x">}
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>点击<code>Add Request Header</code>，并新增一组：<code>Key</code>: <code>Content-Type</code>, <code>Value</code>: <code>application/json</code></li>
@@ -573,18 +573,6 @@
     </section>
 
 
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
     </footer>
 
 

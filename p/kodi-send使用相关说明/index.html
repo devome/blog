@@ -441,17 +441,17 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 直接调出退出菜单，只能调出，无法切出
-</span></span><span class="line"><span class="cl">kodi-send -a &#34;ActivateWindow(shutdownmenu)&#34;
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 直接调出退出菜单，只能调出，无法切出</span>
+</span></span><span class="line"><span class="cl">kodi-send -a <span class="s2">&#34;ActivateWindow(shutdownmenu)&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 用命令模拟按下sleep/power按键，以下两个命令作用同上，只能调出，无法切出
-</span></span><span class="line"><span class="cl">kodi-send --button=&#34;sleep&#34;
-</span></span><span class="line"><span class="cl">kodi-send --button=&#34;power&#34;
+</span></span><span class="line"><span class="cl"><span class="c1"># 用命令模拟按下sleep/power按键，以下两个命令作用同上，只能调出，无法切出</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;sleep&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;power&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 用命令模拟按下键盘的s键，键盘的s键作用也是调出退出菜单
-</span></span><span class="line"><span class="cl"># 相比上面的几个命令，当退出菜单已经调出时再次运行本命令可以切出退出菜单
-</span></span><span class="line"><span class="cl"># 而若是Kodi正处于输入文字的界面时，此命令只会真的打出“s”，调不出退出菜单
-</span></span><span class="line"><span class="cl">kodi-send --button=&#34;s&#34;
+</span></span><span class="line"><span class="cl"><span class="c1"># 用命令模拟按下键盘的s键，键盘的s键作用也是调出退出菜单</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 相比上面的几个命令，当退出菜单已经调出时再次运行本命令可以切出退出菜单</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 而若是Kodi正处于输入文字的界面时，此命令只会真的打出“s”，调不出退出菜单</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;s&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>注：以上命令均在Kodi的keymaps未作任何调整的情况下运行的。其他指令请见：<a class="link" href="https://kodi.wiki/view/Action_IDs"  target="_blank" rel="noopener"
@@ -482,15 +482,15 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 直接退出
-</span></span><span class="line"><span class="cl">kodi-send --action=&#34;Quit&#34;
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 直接退出</span>
+</span></span><span class="line"><span class="cl">kodi-send --action<span class="o">=</span><span class="s2">&#34;Quit&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 或者只是调出退出菜单，而不是直接退出（根据上一节的说明选其一即可）
-</span></span><span class="line"><span class="cl">kodi-send -a &#34;ActivateWindow(shutdownmenu)&#34;
-</span></span><span class="line"><span class="cl">kodi-send --action=&#34;ActivateWindow(shutdownmenu)&#34;
-</span></span><span class="line"><span class="cl">kodi-send --button=&#34;sleep&#34;
-</span></span><span class="line"><span class="cl">kodi-send --button=&#34;power&#34;
-</span></span><span class="line"><span class="cl">kodi-send --button=&#34;s&#34;
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者只是调出退出菜单，而不是直接退出（根据上一节的说明选其一即可）</span>
+</span></span><span class="line"><span class="cl">kodi-send -a <span class="s2">&#34;ActivateWindow(shutdownmenu)&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --action<span class="o">=</span><span class="s2">&#34;ActivateWindow(shutdownmenu)&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;sleep&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;power&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;s&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
@@ -508,18 +508,6 @@
     </section>
 
 
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
     </footer>
 
 
