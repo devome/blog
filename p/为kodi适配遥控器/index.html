@@ -332,16 +332,16 @@
 <li><a class="link" href="../%e4%b8%bakodi%e9%80%82%e9%85%8d%e9%81%a5%e6%8e%a7%e5%99%a8" >为Kodi适配遥控器</a></li>
 <li><a class="link" href="../%e4%bf%ae%e6%94%b9kodi%e5%ad%97%e5%b9%95%e5%ad%97%e4%bd%93" >修改Kodi字幕字体</a></li>
 <li><a class="link" href="../%e4%bf%ae%e6%94%b9kodi%e7%9a%ae%e8%82%a4%e5%ad%97%e4%bd%93" >修改Kodi皮肤字体</a></li>
-<li><a class="link" href="../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e3%80%81%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae" >屏蔽Kodi的关机、重启按钮</a></li>
+<li><a class="link" href="../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae" >屏蔽Kodi的关机、重启按钮</a></li>
 <li><a class="link" href="../%e8%ae%be%e7%bd%aekodi%e5%90%af%e5%8a%a8%e7%9a%84%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6" >设置Kodi启动的前置条件</a></li>
-<li><a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a></li>
+<li><a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a></li>
 <li><a class="link" href="../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e" >kodi-send使用相关说明</a></li>
 <li><a class="link" href="../%e8%bd%ac%e6%8d%a2%e9%81%a5%e6%8e%a7%e5%99%a8%e7%9a%84%e9%80%80%e5%87%ba%e9%94%ae%e4%b8%ba%e8%bf%94%e5%9b%9e%e9%94%ae" >转换遥控器的退出键为返回键</a></li>
 </ul>
 <h2 id="前言">前言</h2>
 <p>虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。</p>
 <h2 id="注意事项">注意事项</h2>
-<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
+<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
 <h2 id="适配遥控器">适配遥控器</h2>
 <p>当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，<del>经过本人踩坑，我更推荐2.4G无线遥控器</del>（<strong>2023年8月补充说明：Linux内核支持关闭USB设备进入<code>suspend</code>状态的功能，也可以实现蓝牙遥控器永不断连</strong>）。总得说来，二者都可以非常舒服地使用，对比如下：</p>
 <ul>
@@ -538,7 +538,7 @@
 <h4 id="红外遥控器">红外遥控器</h4>
 <p>不好用，教程就不写了。</p>
 <h2 id="再次提醒">再次提醒</h2>
-<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
+<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
 
 </section>
 

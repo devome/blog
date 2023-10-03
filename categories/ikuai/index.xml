@@ -184,7 +184,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;而IPv6不存在端口转发的概念，只要在爱快系统中启用了IPv6，那么内网的设备都有全球唯一的IPv6地址，不需要什么设置就能从公网访问。而爱快默认就没有启用IPv6防火墙，意思就是有IPv6地址的设备是几乎完全暴露在公网环境中的，极不安全。&lt;/p&gt;
 &lt;p&gt;当然，ISP大概率封掉了一些常见的端口。&lt;/p&gt;
 &lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置&lt;/h2&gt;
-&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6SSH%ef%bc%8fWEBUI%ef%bc%8fRDP%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90IP%ef%bc%8c%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
+&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
 &lt;p&gt;注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。&lt;/p&gt;
 &lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -429,7 +429,7 @@ IP。&lt;/p&gt;
 &lt;li&gt;建议允许访问的来源IP都选上&lt;code&gt;未知&lt;/code&gt;的IP分组，尤其是中国移动，除了选择你所在省份，一定要选上&lt;code&gt;未知移动&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;ipv6&#34;&gt;IPv6&lt;/h2&gt;
-&lt;p&gt;IPv6的ACL设置请在 &lt;a class=&#34;link&#34; href=&#34;../%e7%88%b1%e5%bf%ab-IPv4%ef%bc%8fIPv6-ACL%ef%bc%8f%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae&#34; &gt;这里&lt;/a&gt; 查看。&lt;/p&gt;
+&lt;p&gt;IPv6的ACL设置请在 &lt;a class=&#34;link&#34; href=&#34;../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae&#34; &gt;这里&lt;/a&gt; 查看。&lt;/p&gt;
 </description>
         </item>
         

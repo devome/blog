@@ -20,16 +20,16 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%b8%bakodi%e9%80%82%e9%85%8d%e9%81%a5%e6%8e%a7%e5%99%a8&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%bf%ae%e6%94%b9kodi%e5%ad%97%e5%b9%95%e5%ad%97%e4%bd%93&#34; &gt;修改Kodi字幕字体&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%bf%ae%e6%94%b9kodi%e7%9a%ae%e8%82%a4%e5%ad%97%e4%bd%93&#34; &gt;修改Kodi皮肤字体&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e3%80%81%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e8%ae%be%e7%bd%aekodi%e5%90%af%e5%8a%a8%e7%9a%84%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6&#34; &gt;设置Kodi启动的前置条件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e8%bd%ac%e6%8d%a2%e9%81%a5%e6%8e%a7%e5%99%a8%e7%9a%84%e9%80%80%e5%87%ba%e9%94%ae%e4%b8%ba%e8%bf%94%e5%9b%9e%e9%94%ae&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;在上文 《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（&lt;code&gt;backspace&lt;/code&gt;键），而是退出键（&lt;code&gt;esc&lt;/code&gt;键），导致短按它的效果是直接退出到上一级菜单（&lt;code&gt;PreviousMenu&lt;/code&gt;），而不是返回到上一个界面（&lt;code&gt;Back&lt;/code&gt;）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。&lt;/p&gt;
+&lt;p&gt;在上文 《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（&lt;code&gt;backspace&lt;/code&gt;键），而是退出键（&lt;code&gt;esc&lt;/code&gt;键），导致短按它的效果是直接退出到上一级菜单（&lt;code&gt;PreviousMenu&lt;/code&gt;），而不是返回到上一个界面（&lt;code&gt;Back&lt;/code&gt;）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。&lt;/p&gt;
 &lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;p&gt;看到本篇教程这里，我默认你已经按照《&lt;a class=&#34;link&#34; href=&#34;../pve-%e7%9b%b4%e6%8e%a5%e5%ae%89%e8%a3%85%e6%9c%80%e6%96%b0%e7%89%88-kodi&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》《&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。&lt;/p&gt;
+&lt;p&gt;看到本篇教程这里，我默认你已经按照《&lt;a class=&#34;link&#34; href=&#34;../pve-%e7%9b%b4%e6%8e%a5%e5%ae%89%e8%a3%85%e6%9c%80%e6%96%b0%e7%89%88-kodi&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》《&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。&lt;/p&gt;
 &lt;p&gt;2.4G无线遥控器一般被Linux系统识别为键盘设备，所以这种遥控器的按键实际上就是普通键盘上的常规按键，它的按键的作用是通过&lt;code&gt;/usr/share/kodi/system/keymaps/keyboard.xml&lt;/code&gt;来处理的（在未被&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Add-on:Keymap_Editor&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Keymap Editor&lt;/a&gt;映射的前提下）。打开该&lt;code&gt;xml&lt;/code&gt;文件内容可知（见下），大部分界面中&lt;strong&gt;长按&lt;code&gt;esc&lt;/code&gt;键&lt;/strong&gt;的效果等同于&lt;strong&gt;短按&lt;code&gt;backspace&lt;/code&gt;键&lt;/strong&gt;（然而似乎遥控器并不支持长按&amp;hellip;普通键盘才支持&amp;hellip;），如果你习惯短按是&lt;code&gt;PreviousMenu&lt;/code&gt;，也可以不再往下看了。不过对我来说，短按&lt;code&gt;Back&lt;/code&gt;才更符合我的习惯，所以我需要将这个遥控器的&lt;code&gt;esc&lt;/code&gt;键转换为&lt;code&gt;backspace&lt;/code&gt;键。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -189,7 +189,7 @@
 &lt;/div&gt;&lt;p&gt;由上述输出内容可知，这款遥控器的返回键是&lt;code&gt;esc&lt;/code&gt;键，而另外一些遥控器的返回键是&lt;code&gt;backspace&lt;/code&gt;键，这才是返回上一层而非退出的按键。所以我们接下来把这个遥控器的&lt;code&gt;esc&lt;/code&gt;键转换为&lt;code&gt;backspace&lt;/code&gt;键。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;先确认&lt;code&gt;/dev/input/by-id&lt;/code&gt;下已经有&lt;code&gt;/dev/input/event5&lt;/code&gt;（对我而言，event5就是我的2.4G Composite Devic这个遥控器设备）的软连接。一般&lt;code&gt;udev&lt;/code&gt;程序识别这个设备没有问题，不再需要自己编辑相应的udev规则；然后修改在《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》中创建的脚本&lt;code&gt;/usr/local/bin/run-evsieve.sh&lt;/code&gt;如下，并注意按照注释修改为自己的信息。&lt;/p&gt;
+&lt;p&gt;先确认&lt;code&gt;/dev/input/by-id&lt;/code&gt;下已经有&lt;code&gt;/dev/input/event5&lt;/code&gt;（对我而言，event5就是我的2.4G Composite Devic这个遥控器设备）的软连接。一般&lt;code&gt;udev&lt;/code&gt;程序识别这个设备没有问题，不再需要自己编辑相应的udev规则；然后修改在《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》中创建的脚本&lt;code&gt;/usr/local/bin/run-evsieve.sh&lt;/code&gt;如下，并注意按照注释修改为自己的信息。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -274,7 +274,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;然后重启在《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》中创建的服务&lt;code&gt;/etc/systemd/system/evsieve.service&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;然后重启在《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》中创建的服务&lt;code&gt;/etc/systemd/system/evsieve.service&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -342,9 +342,9 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%b8%bakodi%e9%80%82%e9%85%8d%e9%81%a5%e6%8e%a7%e5%99%a8&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%bf%ae%e6%94%b9kodi%e5%ad%97%e5%b9%95%e5%ad%97%e4%bd%93&#34; &gt;修改Kodi字幕字体&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%bf%ae%e6%94%b9kodi%e7%9a%ae%e8%82%a4%e5%ad%97%e4%bd%93&#34; &gt;修改Kodi皮肤字体&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e3%80%81%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e8%ae%be%e7%bd%aekodi%e5%90%af%e5%8a%a8%e7%9a%84%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6&#34; &gt;设置Kodi启动的前置条件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e8%bd%ac%e6%8d%a2%e9%81%a5%e6%8e%a7%e5%99%a8%e7%9a%84%e9%80%80%e5%87%ba%e9%94%ae%e4%b8%ba%e8%bf%94%e5%9b%9e%e9%94%ae&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -869,16 +869,16 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%b8%bakodi%e9%80%82%e9%85%8d%e9%81%a5%e6%8e%a7%e5%99%a8&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%bf%ae%e6%94%b9kodi%e5%ad%97%e5%b9%95%e5%ad%97%e4%bd%93&#34; &gt;修改Kodi字幕字体&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%bf%ae%e6%94%b9kodi%e7%9a%ae%e8%82%a4%e5%ad%97%e4%bd%93&#34; &gt;修改Kodi皮肤字体&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e3%80%81%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e8%ae%be%e7%bd%aekodi%e5%90%af%e5%8a%a8%e7%9a%84%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6&#34; &gt;设置Kodi启动的前置条件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e8%bd%ac%e6%8d%a2%e9%81%a5%e6%8e%a7%e5%99%a8%e7%9a%84%e9%80%80%e5%87%ba%e9%94%ae%e4%b8%ba%e8%bf%94%e5%9b%9e%e9%94%ae&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。&lt;/p&gt;
 &lt;h2 id=&#34;注意事项&#34;&gt;注意事项&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;适配遥控器&#34;&gt;适配遥控器&lt;/h2&gt;
 &lt;p&gt;当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，&lt;del&gt;经过本人踩坑，我更推荐2.4G无线遥控器&lt;/del&gt;（&lt;strong&gt;2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连&lt;/strong&gt;）。总得说来，二者都可以非常舒服地使用，对比如下：&lt;/p&gt;
 &lt;ul&gt;
@@ -1075,7 +1075,7 @@
 &lt;h4 id=&#34;红外遥控器&#34;&gt;红外遥控器&lt;/h4&gt;
 &lt;p&gt;不好用，教程就不写了。&lt;/p&gt;
 &lt;h2 id=&#34;再次提醒&#34;&gt;再次提醒&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90%ef%bc%8flibreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%ef%bc%8c%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
 </description>
         </item>
         
