@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="PVE 直接安装最新版 Kodi">
 <meta name="twitter:description" content="本文为原创教程，转载请注明来源及作者。 更新于2023年8月4日，以当前最新的PVE 8为示例。 按照本教程，可以保持PVE全部套件稳定的同时，又"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://devome.github.io/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic1.png' />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/blog/favicon.ico" />
 
     </head>
     <body class="
@@ -941,6 +941,48 @@
      
     
         
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
     
 
     <footer class="site-footer">
