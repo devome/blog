@@ -12,7 +12,7 @@
         <pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</guid>
-        <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/pve-poster.jpg" alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的驱动是&lt;code&gt;r8169&lt;/code&gt;，它并没有开启网卡多队列等特性。导致一个网卡的软中断只能使用固定的一个核心开接收和发送数据。&lt;/p&gt;
 &lt;p&gt;查看网卡加载的是什么驱动：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -465,7 +465,7 @@
         <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;

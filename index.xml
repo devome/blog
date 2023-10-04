@@ -12,7 +12,7 @@
         <pubDate>Wed, 06 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/docker%E5%9C%A8%E4%B8%80%E5%9D%97%E7%BD%91%E5%8D%A1%E4%B8%8A%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%B8%AAmacvlan%E5%AD%90%E7%BD%91/</guid>
-        <description>&lt;p&gt;docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下：&lt;/p&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/docker%E5%9C%A8%E4%B8%80%E5%9D%97%E7%BD%91%E5%8D%A1%E4%B8%8A%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%B8%AAmacvlan%E5%AD%90%E7%BD%91/docker-poster.jpg" alt="Featured image of post docker在一块网卡上创建多个macvlan子网" /&gt;&lt;p&gt;docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;一个&lt;code&gt;subnet&lt;/code&gt;对应一个&lt;code&gt;gateway&lt;/code&gt;，&lt;code&gt;gateway&lt;/code&gt;必须在&lt;code&gt;subnet&lt;/code&gt;的范围内，直接改为你所使用的真实的&lt;code&gt;gateway&lt;/code&gt;即可。这样可以不同的&lt;code&gt;subnet&lt;/code&gt;设置不同的&lt;code&gt;gateway&lt;/code&gt;，控制不同的容器走不同的线路（比如有的需要代理，有的不能代理）。&lt;/p&gt;
@@ -64,7 +64,7 @@
         <pubDate>Wed, 30 Aug 2023 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/</guid>
-        <description>&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;新建&lt;code&gt;buildkit&lt;/code&gt;配置文件&lt;code&gt;$HOME/.docker/buildx/buildkitd.default.toml&lt;/code&gt;如下：&lt;/p&gt;
@@ -204,7 +204,7 @@
         <pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</guid>
-        <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/pve-poster.jpg" alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的驱动是&lt;code&gt;r8169&lt;/code&gt;，它并没有开启网卡多队列等特性。导致一个网卡的软中断只能使用固定的一个核心开接收和发送数据。&lt;/p&gt;
 &lt;p&gt;查看网卡加载的是什么驱动：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -657,7 +657,7 @@
         <pubDate>Sun, 06 Aug 2023 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E8%BD%AC%E6%8D%A2%E9%81%A5%E6%8E%A7%E5%99%A8%E7%9A%84%E9%80%80%E5%87%BA%E9%94%AE%E4%B8%BA%E8%BF%94%E5%9B%9E%E9%94%AE/</guid>
-        <description>&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E8%BD%AC%E6%8D%A2%E9%81%A5%E6%8E%A7%E5%99%A8%E7%9A%84%E9%80%80%E5%87%BA%E9%94%AE%E4%B8%BA%E8%BF%94%E5%9B%9E%E9%94%AE/kodi-poster.jpg" alt="Featured image of post 转换遥控器的退出键为返回键" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -1758,7 +1758,7 @@ IP。&lt;/p&gt;
         <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/</guid>
-        <description>&lt;p&gt;官方教程中提供了一种&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/build/buildkit/configure/#resource-limiting&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <description>&lt;img src="https://devome.github.io/blog/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/docker-poster.jpg" alt="Featured image of post docker buildx 跨平台构建镜像时限制CPU使用率" /&gt;&lt;p&gt;官方教程中提供了一种&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/build/buildkit/configure/#resource-limiting&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;做法&lt;/a&gt;，也就是提供buildkitd的配置文件后再创建builder：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1868,7 +1868,7 @@ IP。&lt;/p&gt;
         <pubDate>Thu, 24 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E5%83%8F%E4%BD%BF%E7%94%A8%E7%9B%92%E5%AD%90libreelec%E4%B8%80%E6%A0%B7%E4%BD%BF%E7%94%A8pve%E7%9B%B4%E8%A3%85%E7%9A%84kodi%E5%AE%9E%E7%8E%B0%E9%81%A5%E6%8E%A7%E5%99%A8%E5%90%AF%E5%81%9C/</guid>
-        <description>&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E5%83%8F%E4%BD%BF%E7%94%A8%E7%9B%92%E5%AD%90libreelec%E4%B8%80%E6%A0%B7%E4%BD%BF%E7%94%A8pve%E7%9B%B4%E8%A3%85%E7%9A%84kodi%E5%AE%9E%E7%8E%B0%E9%81%A5%E6%8E%A7%E5%99%A8%E5%90%AF%E5%81%9C/kodi-poster.jpg" alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -2395,7 +2395,7 @@ IP。&lt;/p&gt;
         <pubDate>Thu, 24 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</guid>
-        <description>&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -2463,7 +2463,7 @@ IP。&lt;/p&gt;
         <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -3245,7 +3245,7 @@ IP。&lt;/p&gt;
         <pubDate>Sat, 23 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic1.png" alt="Featured image of post 屏蔽Kodi的关机、重启按钮" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5.png" alt="Featured image of post 屏蔽Kodi的关机、重启按钮" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -3393,7 +3393,7 @@ IP。&lt;/p&gt;
         <pubDate>Sat, 23 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/</guid>
-        <description>&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi皮肤字体" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -3456,7 +3456,7 @@ IP。&lt;/p&gt;
         <pubDate>Mon, 18 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</guid>
-        <description>&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -3479,7 +3479,7 @@ IP。&lt;/p&gt;
         <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E4%B8%BAkodi%E9%80%82%E9%85%8D%E9%81%A5%E6%8E%A7%E5%99%A8/</guid>
-        <description>&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E4%B8%BAkodi%E9%80%82%E9%85%8D%E9%81%A5%E6%8E%A7%E5%99%A8/kodi-poster.jpg" alt="Featured image of post 为Kodi适配遥控器" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -3702,7 +3702,7 @@ IP。&lt;/p&gt;
         <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic1.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为原创教程，转载请注明来源及作者。
 更新于2023年8月4日，以当前最新的PVE 8为示例。&lt;/p&gt;
 &lt;/blockquote&gt;
