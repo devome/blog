@@ -232,13 +232,9 @@
     <li><a href="#注意事项">注意事项</a></li>
     <li><a href="#适配遥控器">适配遥控器</a>
       <ol>
-        <li>
-          <ol>
-            <li><a href="#无线遥控器">无线遥控器</a></li>
-            <li><a href="#蓝牙遥控器">蓝牙遥控器</a></li>
-            <li><a href="#红外遥控器">红外遥控器</a></li>
-          </ol>
-        </li>
+        <li><a href="#无线遥控器">无线遥控器</a></li>
+        <li><a href="#蓝牙遥控器">蓝牙遥控器</a></li>
+        <li><a href="#红外遥控器">红外遥控器</a></li>
       </ol>
     </li>
     <li><a href="#再次提醒">再次提醒</a></li>
@@ -374,10 +370,10 @@
 <p>蓝牙设备可以设置永不断连，但似乎不能劫持电源键，2.4G无线遥控器可以正常劫持。</p>
 </li>
 </ul>
-<h4 id="无线遥控器">无线遥控器</h4>
+<h3 id="无线遥控器">无线遥控器</h3>
 <p>谈不上适配，如果是直接在PVE中安装Kodi，插上USB接收器就能用了。如果是直通显卡和声卡给 LibreELEC/CoreELEC 虚拟机的话，就设置下USB接口直通。其他方式安装的Kodi/LibreELEC/CoreELEC，只要该系统能访问USB接口，就可以用这种方式。</p>
 <p>购买关键词：<code>遥控器</code> <code>2.4G</code> <code>飞鼠</code> <code>空中鼠标</code> <code>空中键鼠</code> <code>Air Mouse</code> <code>键鼠</code>，注意要自带接收器的。</p>
-<h4 id="蓝牙遥控器">蓝牙遥控器</h4>
+<h3 id="蓝牙遥控器">蓝牙遥控器</h3>
 <p>注：我购买的是胜为蓝牙适配器5.0和小米蓝牙语音遥控器这两样东西。<del>但我现在不推荐用这种方式，除非你需要连接多个蓝牙设备才考虑。</del>（2023年8月补充说明：Linux内核支持关闭USB设备进入<code>suspend</code>状态的功能，也可以实现蓝牙遥控器永不断连。）</p>
 <p>以下为蓝牙遥控器适配流程：</p>
 <blockquote>
@@ -548,7 +544,7 @@
 </li>
 </ol>
 <p>在这里也简单的提一下 LibreELEC/CoreELEC 如何适配蓝牙遥控器，安装好适配器后，进入LibreELEC/CoreELEC系统设置菜单的蓝牙子菜单后，根据遥控器说明书使遥控器进入待配对状态，然后在LibreELEC/CoreELEC中开始扫描，扫描到后点击配对即可。</p>
-<h4 id="红外遥控器">红外遥控器</h4>
+<h3 id="红外遥控器">红外遥控器</h3>
 <p>不好用，教程就不写了。</p>
 <h2 id="再次提醒">再次提醒</h2>
 <p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
