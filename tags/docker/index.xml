@@ -1022,8 +1022,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;em&gt;有两个星号标记的文件或目录是重要目录，恢复数据必须要有这几个。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;*在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs*&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;这里&lt;/a&gt; 可以查阅所有可用的非官方webui。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt; 可以查阅所有可用的非官方webui。&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;相关问题&#34;&gt;相关问题&lt;/h2&gt;
 &lt;h3 id=&#34;使用此镜像会导致封号吗&#34;&gt;使用此镜像会导致封号吗&lt;/h3&gt;
 &lt;p&gt;此镜像未修改qbittorrent客户端官方任何信息，在和pt站tracker服务器交互时反馈的一切信息均是qbittorrent官方原版反馈的信息，此镜像只是基于qbittorrent额外增加了一些脚本而已。增加的脚本全部代码在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
