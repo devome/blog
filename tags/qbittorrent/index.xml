@@ -12,7 +12,7 @@
         <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E4%B8%80%E6%AC%BE%E6%9B%B4%E6%87%82%E4%BD%A0%E7%9A%84-qbittorrent-docker-%E9%95%9C%E5%83%8F/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/docker-poster.jpg" alt="Featured image of post 一款更懂你的 qbittorrent docker 镜像" /&gt;&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E4%B8%80%E6%AC%BE%E6%9B%B4%E6%87%82%E4%BD%A0%E7%9A%84-qbittorrent-docker-%E9%95%9C%E5%83%8F/notify.png" alt="Featured image of post 一款更懂你的 qbittorrent docker 镜像" /&gt;&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
 &lt;p&gt;为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/101&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;详情&lt;/a&gt;。也因此镜像默认即安装好python，不再需要设置&lt;code&gt;INSTALL_PYTHON&lt;/code&gt;这个环境变量。&lt;/p&gt;
 &lt;h2 id=&#34;声明&#34;&gt;声明&lt;/h2&gt;
