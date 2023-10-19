@@ -1441,19 +1441,13 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 进入容器
 </span></span><span class="line"><span class="cl">docker exec -it qbittorrent bash
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 如果启用了ssl
-</span></span><span class="line"><span class="cl">curl -k -X POST -d &#39;json={&#34;alternative_webui_enabled&#34;:false}&#39; https://127.0.0.1:${WEBUI_PORT}/api/v2/app/setPreferences
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 如果未启用ssl
-</span></span><span class="line"><span class="cl">curl -X POST -d &#39;json={&#34;alternative_webui_enabled&#34;:false}&#39; http://127.0.0.1:${WEBUI_PORT}/api/v2/app/setPreferences
+</span></span><span class="line"><span class="cl"># 关闭备用webui
+</span></span><span class="line"><span class="cl">source /usr/local/bin/share; $cmd_curl_post -d &#39;json={&#34;alternative_webui_enabled&#34;:false}&#39; $api_url_base/app/setPreferences
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="如何自动更新容器">如何自动更新容器</h3>
