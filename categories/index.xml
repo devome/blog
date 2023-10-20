@@ -6,7 +6,15 @@
         <description>Recent content in Categories on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 20 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>软路由</title>
+        <link>https://devome.github.io/blog/categories/gateway/</link>
+        <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/categories/gateway/</guid>
+        <description>&lt;img src="https://devome.github.io/blog/categories/gateway/cover.png" alt="Featured image of post 软路由" /&gt;</description>
+        </item>
+        <item>
         <title>qBittorrent</title>
         <link>https://devome.github.io/blog/categories/qbittorrent/</link>
         <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
@@ -37,14 +45,6 @@
         
         <guid>https://devome.github.io/blog/categories/kodi/</guid>
         <description>&lt;img src="https://devome.github.io/blog/categories/kodi/cover.png" alt="Featured image of post Kodi" /&gt;</description>
-        </item>
-        <item>
-        <title>软路由</title>
-        <link>https://devome.github.io/blog/categories/gateway/</link>
-        <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://devome.github.io/blog/categories/gateway/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/categories/gateway/cover.png" alt="Featured image of post 软路由" /&gt;</description>
         </item>
         <item>
         <title>Jellyfin</title>
