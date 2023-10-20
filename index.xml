@@ -5645,6 +5645,138 @@ IP。&lt;/p&gt;
         <description></description>
         </item>
         <item>
+        <title>qBittorrent 设置教程</title>
+        <link>https://devome.github.io/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/</link>
+        <pubDate>Sat, 07 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/</guid>
+        <description>&lt;img src="https://devome.github.io/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/1%E8%A1%8C%E4%B8%BA.png" alt="Featured image of post qBittorrent 设置教程" /&gt;&lt;p&gt;以下内容以4.3.7为例。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/1%E8%A1%8C%E4%B8%BA.png&#34;
+	width=&#34;781&#34;
+	height=&#34;956&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/1%E8%A1%8C%E4%B8%BA_huc57fee344677a40084e50468e69505e3_58748_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/1%E8%A1%8C%E4%B8%BA_huc57fee344677a40084e50468e69505e3_58748_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1行为.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;81&#34;
+		data-flex-basis=&#34;196px&#34;
+	
+&gt;
+可用的UI主题清单：&lt;a class=&#34;link&#34; href=&#34;https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-qBittorrent-themes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;List-of-known-qBittorrent-themes&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/2%E4%B8%8B%E8%BD%BD.png&#34;
+	width=&#34;1120&#34;
+	height=&#34;1328&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/2%E4%B8%8B%E8%BD%BD_hu34b1dc35fcbff66642f39a75330cc7ec_122784_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/2%E4%B8%8B%E8%BD%BD_hu34b1dc35fcbff66642f39a75330cc7ec_122784_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2下载.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;84&#34;
+		data-flex-basis=&#34;202px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;本人制作的docker镜像：&lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/nevinee/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;nevinee/qbittorrent&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;可实现下载完成通知、宕机通知、tracker出错超出阈值通知、自动分类、tracker出错打标签、批量修改tracker、检测指定文件夹下未在qbittorrent客户端中做种的文件夹/文件、配合IYUUAutoReseed实现自动重新校验和自动恢复做种、指定设备上线时自动限速、多时段限速、导出做种文件清单、导出未做种文件清单等等等等，教程见&lt;a class=&#34;link&#34; href=&#34;../%e4%b8%80%e6%ac%be%e6%9b%b4%e6%87%82%e4%bd%a0%e7%9a%84-qbittorrent-docker-%e9%95%9c%e5%83%8f&#34; &gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/3%E8%BF%9E%E6%8E%A5.png&#34;
+	width=&#34;899&#34;
+	height=&#34;1070&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/3%E8%BF%9E%E6%8E%A5_hufafe2817221b528859561d8472efe75f_125358_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/3%E8%BF%9E%E6%8E%A5_hufafe2817221b528859561d8472efe75f_125358_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;3连接.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;84&#34;
+		data-flex-basis=&#34;201px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/4%E9%80%9F%E5%BA%A6.png&#34;
+	width=&#34;780&#34;
+	height=&#34;600&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/4%E9%80%9F%E5%BA%A6_huef06c73a73cda800ac1c1d26696a15ff_47118_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/4%E9%80%9F%E5%BA%A6_huef06c73a73cda800ac1c1d26696a15ff_47118_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;4速度.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/5BitTorrent.png&#34;
+	width=&#34;899&#34;
+	height=&#34;696&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/5BitTorrent_hu76446466dd9acc56329c7f1cda7916dd_73786_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/5BitTorrent_hu76446466dd9acc56329c7f1cda7916dd_73786_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;5BitTorrent.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;129&#34;
+		data-flex-basis=&#34;310px&#34;
+	
+&gt;
+匿名模式说明：&lt;a class=&#34;link&#34; href=&#34;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Anonymous-Mode&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/6RSS.png&#34;
+	width=&#34;950&#34;
+	height=&#34;1080&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/6RSS_hu149b602a10f6eca56bcbb886b4e0b0af_65616_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/6RSS_hu149b602a10f6eca56bcbb886b4e0b0af_65616_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;6RSS.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;87&#34;
+		data-flex-basis=&#34;211px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;RSS正则表达式教程：&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/54e6137ea4e3&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.jianshu.com/p/54e6137ea4e3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/7WebUI.png&#34;
+	width=&#34;781&#34;
+	height=&#34;998&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/7WebUI_hu11639469ca83e1d68eb4ee29172356ec_70596_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/7WebUI_hu11639469ca83e1d68eb4ee29172356ec_70596_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;7WebUI.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;78&#34;
+		data-flex-basis=&#34;187px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可用的备用WebUI清单见：&lt;a class=&#34;link&#34; href=&#34;https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;List-of-known-alternate-WebUIs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/8%E9%AB%98%E7%BA%A7.png&#34;
+	width=&#34;1080&#34;
+	height=&#34;1960&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/8%E9%AB%98%E7%BA%A7_hu5148b2ec20a89322d5d9e7c0a0aa93fb_241000_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/8%E9%AB%98%E7%BA%A7_hu5148b2ec20a89322d5d9e7c0a0aa93fb_241000_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8高级.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;55&#34;
+		data-flex-basis=&#34;132px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>搜索</title>
         <link>https://devome.github.io/blog/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

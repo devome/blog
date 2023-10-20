@@ -11,13 +11,13 @@
     <loc>https://devome.github.io/blog/tags/docker/</loc>
     <lastmod>2023-10-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://devome.github.io/blog/categories/docker/</loc>
-    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://devome.github.io/blog/post/</loc>
     <lastmod>2023-10-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://devome.github.io/blog/tags/qbittorrent/</loc>
+    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://devome.github.io/blog/categories/qbittorrent/</loc>
     <lastmod>2023-10-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://devome.github.io/blog/tags/</loc>
@@ -25,6 +25,9 @@
   </url><url>
     <loc>https://devome.github.io/blog/p/%E4%B8%80%E6%AC%BE%E6%9B%B4%E6%87%82%E4%BD%A0%E7%9A%84-qbittorrent-docker-%E9%95%9C%E5%83%8F/</loc>
     <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://devome.github.io/blog/categories/docker/</loc>
+    <lastmod>2023-09-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://devome.github.io/blog/p/docker%E5%9C%A8%E4%B8%80%E5%9D%97%E7%BD%91%E5%8D%A1%E4%B8%8A%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%B8%AAmacvlan%E5%AD%90%E7%BD%91/</loc>
     <lastmod>2023-09-06T00:00:00+00:00</lastmod>
@@ -181,6 +184,9 @@
   </url><url>
     <loc>https://devome.github.io/blog/archives/</loc>
     <lastmod>2022-03-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://devome.github.io/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2021-08-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://devome.github.io/blog/search/</loc>
   </url><url>
