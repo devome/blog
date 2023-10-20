@@ -1065,7 +1065,7 @@
 &lt;p&gt;请注意要优雅的关闭旧容器后再处理配置文件。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;进入原来容器的映射目录（或原套件版配置文件保存目录，可能是隐藏的）下，在config下分别找到&lt;code&gt;qBittorrent.conf&lt;/code&gt; &lt;code&gt;qBittorrent-data.conf&lt;/code&gt; &lt;code&gt;rss&lt;/code&gt;，在data下找到&lt;code&gt;BT_backup&lt;/code&gt;，然后将其参考上面的目录树放在新容器的映射目录下，然后在创建容器时，保证新容器中的下载文件的保存路径和旧容器一致，并新建容器即可。&lt;/p&gt;
+&lt;p&gt;进入原来容器的映射目录（或原套件版配置文件保存目录，可能是隐藏的）下，在config下分别找到&lt;code&gt;qBittorrent.conf&lt;/code&gt; &lt;code&gt;qBittorrent-data.conf&lt;/code&gt; &lt;code&gt;rss&lt;/code&gt;，在data下找到&lt;code&gt;BT_backup&lt;/code&gt;或&lt;code&gt;torrents.db&lt;/code&gt;，然后将其参考上面的目录树放在新容器的映射目录下，然后在创建容器时，保证新容器中的下载文件的保存路径和旧容器一致，并新建容器即可。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;举例说明如何保证新容器中的下载文件的保存路径和旧容器一致，比如旧容器中下载了一个 &lt;code&gt;xxx.2020.BluRay.1080p.x264.DTS-XXX&lt;/code&gt;，保存路径为&lt;code&gt;/movies&lt;/code&gt;（宿主机上的真实路径为&lt;code&gt;/volume1/home/id/movies&lt;/code&gt;），那么在新建新容器时，给新容器增加一个路径映射：&lt;code&gt;/volume1/home/id/movies:/movies&lt;/code&gt;　即可。&lt;/p&gt;
