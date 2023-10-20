@@ -1458,8 +1458,8 @@
 		data-flex-grow=&#34;129&#34;
 		data-flex-basis=&#34;310px&#34;
 	
-&gt;
-匿名模式说明：&lt;a class=&#34;link&#34; href=&#34;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&gt;&lt;/p&gt;
+&lt;p&gt;匿名模式说明：&lt;a class=&#34;link&#34; href=&#34;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Anonymous-Mode&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/6RSS.png&#34;
 	width=&#34;950&#34;
