@@ -7,6 +7,199 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Fri, 20 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>我的家庭网络设计思路，开启debian的旁路由之路（二）</title>
+        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/</link>
+        <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/</guid>
+        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（二）" /&gt;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;p&gt;安装Debian的详细过程我就不提了，网上的教程很多，我只提一部分内容。如果对其他安装内容真有需要，可以在本文下方评论区提出。&lt;/p&gt;
+&lt;h3 id=&#34;主机名和域名&#34;&gt;主机名和域名&lt;/h3&gt;
+&lt;p&gt;在配置主机名和域名时，可以考虑设置为你的DDNS域名的三级域名下，详见下面两图，后续就可以使用&lt;code&gt;gate.evine.com&lt;/code&gt;来访问旁路由。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D.png&#34;
+	width=&#34;1922&#34;
+	height=&#34;1200&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu0c0c2e91e1d55caf467953fab7a22376_220206_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu0c0c2e91e1d55caf467953fab7a22376_220206_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Debian主机名&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D.png&#34;
+	width=&#34;1919&#34;
+	height=&#34;1196&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu3a4aa506e95c76067c12b963f9fbc7e6_223164_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu3a4aa506e95c76067c12b963f9fbc7e6_223164_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Debian域名&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;385px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装哪些内容&#34;&gt;安装哪些内容&lt;/h3&gt;
+&lt;p&gt;仅安装核心系统和SSH服务端，不要安装其他东西，连“标准系统工具”都不需要选择。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF.png&#34;
+	width=&#34;1922&#34;
+	height=&#34;1202&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu51b5ad6c5a2ec1deed21180b7a740960_260753_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu51b5ad6c5a2ec1deed21180b7a740960_260753_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;仅安装核心系统和SSH服务端&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;383px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;首次安装后&#34;&gt;首次安装后&lt;/h3&gt;
+&lt;p&gt;首次安装完成后进入系统，系统进程只有这些（请手动安装&lt;code&gt;htop&lt;/code&gt;：&lt;code&gt;apt install htop&lt;/code&gt;），非常清爽。下图是虚拟机安装的，并且创建时启用了&lt;code&gt;qemu-guest-agent&lt;/code&gt;，所以额外有个&lt;code&gt;qemu-ga&lt;/code&gt;进程，物理机安装甚至连这个进程都没有。在我们还没有配置其他服务时，内存也只占用了120M左右，也并没有比OpenWRT多多少。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B.png&#34;
+	width=&#34;1726&#34;
+	height=&#34;902&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hub0fc6a9a37e59d4bf659d1833177268d_778628_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hub0fc6a9a37e59d4bf659d1833177268d_778628_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Debian刚刚安装完成后的进程&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;191&#34;
+		data-flex-basis=&#34;459px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
+&lt;h3 id=&#34;sshd&#34;&gt;SSHD&lt;/h3&gt;
+&lt;p&gt;如果你想以root用户进行ssh登陆，可以将&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;中的&lt;code&gt;#PermitRootLogin prohibit-password&lt;/code&gt;修改为&lt;code&gt;PermitRootLogin yes&lt;/code&gt;，如果要修改ssh端口，可以将&lt;code&gt;#Port 22&lt;/code&gt;修改为&lt;code&gt;Port 2222&lt;/code&gt;（2222端口仅为示例）。最后重启一下sshd服务&lt;code&gt;systemctl restart sshd.service&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;你也可以关闭密码登陆仅允许私钥登陆，将&lt;code&gt;#PasswordAuthentication yes&lt;/code&gt;修改为&lt;code&gt;PasswordAuthentication no&lt;/code&gt;即可，不过在关闭前请先以700权限创建好&lt;code&gt;$HOME/.ssh&lt;/code&gt;文件夹，以600权限上传公钥&lt;code&gt;$HOME/.ssh/authorized_keys&lt;/code&gt;，并在其他地方保存好私钥。&lt;/p&gt;
+&lt;h3 id=&#34;配置网络&#34;&gt;配置网络&lt;/h3&gt;
+&lt;p&gt;输入&lt;code&gt;nano /etc/network/interface&lt;/code&gt;，编辑为以下内容，编辑好后以&lt;code&gt;Ctrl+X&lt;/code&gt;退出。说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;其中的&lt;code&gt;ens18&lt;/code&gt;是我的网卡名，可以输入&lt;code&gt;ip a&lt;/code&gt;这个命令查看到。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IPv4地址进行静态（inet static）配置，设置自身的IP和掩码为&lt;code&gt;10.0.0.2/24&lt;/code&gt;，网关为&lt;code&gt;10.0.0.1&lt;/code&gt;，后续我还将以adguardhome和mosdns在旁路由中自建DNS服务，所以设置默认DNS服务器为&lt;code&gt;127.0.0.1&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IPv6地址采用DHCPv6形式，配置为&lt;code&gt;inet6 dhcp&lt;/code&gt;，这仅仅表示旁路由自身可以从主路由爱快处获取IPv6地址，并不代表它将作为IPv6网关。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# This file describes the network interfaces available on your system
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# and how to activate them. For more information, see interfaces(5).
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;source /etc/network/interfaces.d/*
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# The loopback network interface
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;auto lo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iface lo inet loopback
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# The primary network interface
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# allow-hotplug ens18
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;auto ens18
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iface ens18 inet static
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        address 10.0.0.2/24
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        network 10.0.0.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        broadcast 10.0.0.255
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        gateway 10.0.0.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        dns-nameservers 127.0.0.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iface ens18 inet6 dhcp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;保存好该文件后，输入以下命令重启网络服务：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart networking.service
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后你就会发现系统启动了DHCPv6客户端以获取IPv6地址。不过虽然配置了静态IPv4地址，但需要在重启系统以后，&lt;code&gt;dhclient -4&lt;/code&gt;这个用来获取DHCPv4地址的进程才会消失。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png&#34;
+	width=&#34;1726&#34;
+	height=&#34;910&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;系统启动了DHCPv6客户端&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;189&#34;
+		data-flex-basis=&#34;455px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;配置网关功能&#34;&gt;配置网关功能&lt;/h3&gt;
+&lt;p&gt;由于我仅将旁路由作为IPv4的网关，IPv6网关仍然为主路由爱快，所以只需要配置IPv4的转发。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.ipv4.ip_forward = 1&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl -p
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;截止目前，我们安装好了Debian，并配置了它的基础网络服务，开启了IPv4流量转发，这个时候，它已经可以做一个旁路由了。不过，如果仅仅是这样，我们要这旁路由有何用！！！所以，我将在接下来的 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;软路由系列文章&lt;/a&gt; 继续设置adguardhome、mosdns、clash、nftables、subconverter、unblockneteasemusic、snmpd、cron、nginx等等，让它成为一台合格的旁路由。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>我的家庭网络设计思路，开启debian的旁路由之路（三）</title>
+        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</link>
+        <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</guid>
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文&lt;/a&gt; 中我提及了我的目标是在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个旁路由所在的子网中实现国内网站IPv4/IPv6双栈解析并可正常访问，国外网站仅解析IPv4地址并进行科学上网，那么仅凭Clash很难实现（其他的代理软件我也不介绍了），我们可以借助mosdns来实现（其他的smartdns、coredns我就不介绍了）。又为了能够更加方便的为电视机屏蔽广告、自定义子网中设备解析为私网IPv4地址和公网IPv6地址这种形式的双栈、防止代理有故障需要后备DNS等等功能，我继续在mosdns前加一层adguardhome，以方便的实现。&lt;/p&gt;
+&lt;h2 id=&#34;逻辑图&#34;&gt;逻辑图&lt;/h2&gt;
+&lt;p&gt;待编辑。&lt;/p&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+&lt;p&gt;待编辑。&lt;/p&gt;
+&lt;h2 id=&#34;adguardhome的安装和配置&#34;&gt;AdGuardHome的安装和配置&lt;/h2&gt;
+&lt;p&gt;待编辑。&lt;/p&gt;
+&lt;h2 id=&#34;mosdns的安装和配置&#34;&gt;mosdns的安装和配置&lt;/h2&gt;
+&lt;p&gt;待编辑。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;由于clash不仅仅只涉及DNS服务，还涉及到代理及nftables相关内容，我们将在接下来的单独的一篇文件中详细详解。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（一）</title>
         <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/</link>
         <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
@@ -16,6 +209,7 @@
 &lt;p&gt;之前我用的是爱快作为主路由，OpenWRT作为旁路由，旁路由上会跑一些只有它能跑而主路由上不能跑的服务。尽管OpenWRT还是我自己定制化编译的，抛弃了许多我不使用的功能，但可能因为要用的服务仍然有些多，并且它们之间都会操作netfilter，导致网络经常出问题。所以，用OpenWRT作为旁路由的时候，我从来不敢在爱快上直接指定全部设备的网关和DNS为OpenWRT（网关和DNS仍然是爱快自己），只敢在我自己的设备上手动指定网关和DNS为OpenWRT。但这长久用起来不是个办法，所以干脆下定决心，抛弃OpenWRT，完全启用Debian来作为旁路由。&lt;/p&gt;
 &lt;h2 id=&#34;网络设计思路&#34;&gt;网络设计思路&lt;/h2&gt;
 &lt;p&gt;为什么不直接采用Debian作为主路由呢，毕竟爱快作为专业的路由系统，还是有其便利性的，查看相关数据也比较容易，如果直接采用Debian作为主路由的话，将会有大量的配置工作，并且想要便捷的查看各项数据也不是很方便。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;并且，我还需要旁路由的存在不能影响端口转发，必须由主路由爱快直接将端口转发到NAS及其他服务，不能先转发到旁路由再经旁路由再转发一次。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;那么，基于爱快作为主路由，Debian作为旁路由，我将以下面的拓扑图开展。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg&#34;
 	width=&#34;1117&#34;
@@ -33,7 +227,7 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;上图中仅涉及了爱快中&lt;code&gt;lan1&lt;/code&gt;的设置，如果需要使用IPTV，还可以参考&lt;a class=&#34;link&#34; href=&#34;../%e5%85%89%e7%8c%ab%e6%a1%a5%e6%8e%a5%e7%88%b1%e5%bf%ab%e6%8b%a8%e5%8f%b7%e6%97%b6%e4%b8%8a%e6%b5%b7%e7%94%b5%e4%bf%a1iptv%e7%9b%92%e5%ad%90%e5%a6%82%e4%bd%95%e6%ad%a3%e5%b8%b8%e4%bd%bf%e7%94%a8&#34; &gt;我的这篇文章&lt;/a&gt;来设置一下&lt;code&gt;lan2&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;关于ipv6&#34;&gt;关于IPv6&lt;/h2&gt;
-&lt;p&gt;IPv6是未来的趋势，我的ISP也已经支持IPv6了，并且不管是DDNS还是PT，有IPv6的双栈总归是好的。但又同时，我所使用的科学上网服务并不支持IPv6，所以，我需要在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个科学上网的网段保留国内网站的IPv6解析，屏蔽掉国外网站IPv6的解析。这就得靠我在旁路由&lt;code&gt;10.0.0.2&lt;/code&gt;上自建DNS服务了，与此同时，如果不关闭爱快IPv6的DNS服务，由于我并没有设置旁路由作为为IPv6网关，仍然使用主路由作为IPv6网关，这样的话，终端就不仅仅从我的自建DNS服务来获取解析了，也会从IPv6 DNS服务器来获取，所以还需要关闭爱快IPv6的DNS。&lt;/p&gt;
+&lt;p&gt;IPv6是未来的趋势，我的ISP也已经支持IPv6了，并且不管是DDNS还是PT，有IPv6的双栈总归是好的。但又同时，我所使用的科学上网服务并不支持IPv6，所以，我需要在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个科学上网的网段保留国内网站的IPv6解析，屏蔽掉国外网站IPv6的解析。这就得靠我在旁路由&lt;code&gt;10.0.0.2&lt;/code&gt;上自建DNS服务了，与此同时，如果不关闭爱快IPv6的DNS服务，由于我并没有设置旁路由作为IPv6网关，仍然使用主路由作为IPv6网关，这样的话，终端就不仅仅从我的自建DNS服务来获取解析了，也会从IPv6 DNS服务器来获取，所以还需要关闭爱快IPv6的DNS。自建DNS服务一样可以解析IPv6地址，以IPv6访问国内网站不是问题。&lt;/p&gt;
 &lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
 &lt;h3 id=&#34;网段的划分&#34;&gt;网段的划分&lt;/h3&gt;
 &lt;ul&gt;
@@ -103,17 +297,22 @@
 	
 &gt;&lt;/p&gt;
 &lt;ol start=&#34;5&#34;&gt;
-&lt;li&gt;全部子网内的设备不再单独设置防火墙，全部在主路由爱快中设置，具体的教程可以见这两篇文章：&lt;a class=&#34;link&#34; href=&#34;../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb&#34; &gt;IPv4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae&#34; &gt;IPv6&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;全部子网内的设备不再单独设置防火墙，全部在主路由爱快中设置，具体的教程可以见这两篇文章：&lt;a class=&#34;link&#34; href=&#34;../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb&#34; &gt;IPv4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae&#34; &gt;IPv6&lt;/a&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;网关为旁路由的设备在爱快的终端监控中，全部显示为旁路由的信息，所以我们还需要设置爱快的“高级应用-&amp;gt;跨三层应用”，具体如何设置我将在接下来的 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;软路由系列文章&lt;/a&gt; 中详细讲解。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;交换机&#34;&gt;交换机&lt;/h3&gt;
 &lt;p&gt;如果主路由有足够的网口，交换机可以省略，全部设备都直接接入主路由。有交换机时，即使交换机本身的管理IP处于&lt;code&gt;10.0.0.3/24&lt;/code&gt;，但接入的处于&lt;code&gt;10.0.1.0/24&lt;/code&gt;网段的设备一样是可以正常上网的，毕竟它是交换机。&lt;/p&gt;
 &lt;h3 id=&#34;ap&#34;&gt;AP&lt;/h3&gt;
-&lt;p&gt;如果主路由有无线功能，AP也可以省略。&lt;/p&gt;
+&lt;p&gt;如果主路由或者旁路由有无线功能，AP也可以省略，直接以主路由或者旁路由作为AP即可。&lt;/p&gt;
 &lt;h3 id=&#34;旁路由&#34;&gt;旁路由&lt;/h3&gt;
 &lt;p&gt;旁路由是不是虚拟机都没有关系。我的主路由是物理机，旁路由是虚拟机。其实我的很多设备都是通过虚拟机或者Docker的MacVLAN接入网络中，它们既有&lt;code&gt;10.0.0.0/24&lt;/code&gt;的，也有&lt;code&gt;10.0.1.0/24&lt;/code&gt;的，都按照我上面设置的DHCP服务正常工作着。&lt;/p&gt;
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;p&gt;通过分离为两个子网，将需要科学上网的设备和不需要科学上网的设置分开，同时在前者所在子网下自建DNS服务器，达到国内支持IPv4/IPv6双栈，国外仅通过IPv4科学上网的目的。而在不需要科学上网的子网下，设备都是直接采用公共DNS服务器。&lt;/p&gt;
-&lt;p&gt;不同的服务可以放在不同的子网下分别进行管理，比如我的许多Docker容器就通过创建在两个子网下的MacVLAN网络分别走不同的路线，一块网卡也可以创建多个MacVLAN网络以进行分流，详见我的&lt;a class=&#34;link&#34; href=&#34;../docker%e5%9c%a8%e4%b8%80%e5%9d%97%e7%bd%91%e5%8d%a1%e4%b8%8a%e5%88%9b%e5%bb%ba%e5%a4%9a%e4%b8%aamacvlan%e5%ad%90%e7%bd%91&#34; &gt;这篇文章&lt;/a&gt;。至于虚拟机也是一样，可以将其放入不同的子网来走不同的路线。&lt;/p&gt;
+&lt;p&gt;不同的服务可以放在不同的子网下分别进行管理，比如我的许多Docker容器就通过创建在两个子网下的MacVLAN网络分别走不同的路线，一块网卡也可以创建多个MacVLAN网络以进行分流，详见我的 &lt;a class=&#34;link&#34; href=&#34;../docker%e5%9c%a8%e4%b8%80%e5%9d%97%e7%bd%91%e5%8d%a1%e4%b8%8a%e5%88%9b%e5%bb%ba%e5%a4%9a%e4%b8%aamacvlan%e5%ad%90%e7%bd%91&#34; &gt;这篇文章&lt;/a&gt;，比如 &lt;a class=&#34;link&#34; href=&#34;../%e4%b8%80%e6%ac%be%e6%9b%b4%e6%87%82%e4%bd%a0%e7%9a%84-qbittorrent-docker-%e9%95%9c%e5%83%8f&#34; &gt;我的qBittorrent容器&lt;/a&gt; 就放在&lt;code&gt;10.0.1.0/24&lt;/code&gt;下，完全不用担心流量走了代理（我甚至在Clash中开启了代理PT网站，但这只影响我用PC访问PT网站，对 &lt;a class=&#34;link&#34; href=&#34;../%e4%b8%80%e6%ac%be%e6%9b%b4%e6%87%82%e4%bd%a0%e7%9a%84-qbittorrent-docker-%e9%95%9c%e5%83%8f&#34; &gt;我的qBittorrent容器&lt;/a&gt; 毫无影响）。至于虚拟机也是一样，可以将其放入不同的子网来走不同的路线。&lt;/p&gt;
 &lt;p&gt;接下来，我们将继续设置Debian为旁路由，真正的开启Debian的旁路由之路，这将在我的 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;软路由系列文章&lt;/a&gt; 中逐渐地一篇一篇发出来。&lt;/p&gt;
 </description>
         </item>

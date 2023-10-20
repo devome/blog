@@ -7,6 +7,22 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Fri, 20 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>adguradhome</title>
+        <link>https://devome.github.io/blog/tags/adguradhome/</link>
+        <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/tags/adguradhome/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>clash</title>
+        <link>https://devome.github.io/blog/tags/clash/</link>
+        <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/tags/clash/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>debian</title>
         <link>https://devome.github.io/blog/tags/debian/</link>
         <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
@@ -23,6 +39,14 @@
         <description></description>
         </item>
         <item>
+        <title>mosdns</title>
+        <link>https://devome.github.io/blog/tags/mosdns/</link>
+        <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/tags/mosdns/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>network</title>
         <link>https://devome.github.io/blog/tags/network/</link>
         <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
@@ -31,11 +55,27 @@
         <description></description>
         </item>
         <item>
+        <title>nftables</title>
+        <link>https://devome.github.io/blog/tags/nftables/</link>
+        <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/tags/nftables/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>openwrt</title>
         <link>https://devome.github.io/blog/tags/openwrt/</link>
         <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/tags/openwrt/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>subconverter</title>
+        <link>https://devome.github.io/blog/tags/subconverter/</link>
+        <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/tags/subconverter/</guid>
         <description></description>
         </item>
         <item>
