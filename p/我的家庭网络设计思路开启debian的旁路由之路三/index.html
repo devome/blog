@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。'>
 <title>我的家庭网络设计思路，开启debian的旁路由之路（三）</title>
 
 <link rel='canonical' href='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/'>
 
 <link rel="stylesheet" href="/blog/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（三）'>
-<meta property='og:description' content='本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。'>
+<meta property='og:description' content='本篇主要讲解在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。'>
 <meta property='og:url' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='nftables' /><meta property='article:published_time' content='2023-10-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-21T00:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='nftables' /><meta property='article:published_time' content='2023-10-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-21T00:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（三）">
-<meta name="twitter:description" content="本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="本篇主要讲解在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
     <link rel="shortcut icon" href="/blog/favicon.ico" />
 
@@ -269,8 +269,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_800x0_resize_q75_box.jpg"
-                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_800x0_resize_q75_box.jpg 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_1600x0_resize_q75_box.jpg 1600w"
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_800x0_resize_q75_box.jpg"
+                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_800x0_resize_q75_box.jpg 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_1600x0_resize_q75_box.jpg 1600w"
                         width="800" 
                         height="678" 
                         loading="lazy"
@@ -298,7 +298,7 @@
     
         
         <h3 class="article-subtitle">
-            本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。
+            本篇主要讲解在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。
         </h3>
         
     </div>
@@ -354,15 +354,15 @@
 <h2 id="逻辑图">逻辑图</h2>
 <p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg"
 	width="1079"
-	height="915"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_480x0_resize_q75_box.jpg 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_1024x0_resize_q75_box.jpg 1024w"
+	height="914"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_480x0_resize_q75_box.jpg 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_1024x0_resize_q75_box.jpg 1024w"
 	loading="lazy"
 	
 		alt="DNS逻辑"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="117"
+		data-flex-grow="118"
 		data-flex-basis="283px"
 	
 ></p>
@@ -390,9 +390,9 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 检查最新稳定版的版本号，如果获取不到请检查网络</span>
-</span></span><span class="line"><span class="cl">curl -sS https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -sS https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$remote_ver</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版，请将下方的 ${remote_ver} 替换为上一句命令中获取到的版本号</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版</span>
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
 </span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;AdGuardHome_linux_amd64.tar.gz&#34;</span> <span class="s2">&#34;https://github.com/AdguardTeam/AdGuardHome/releases/download/v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">/AdGuardHome_linux_amd64.tar.gz&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -698,9 +698,9 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 检查最新稳定版的版本号，如果获取不到请检查网络</span>
-</span></span><span class="line"><span class="cl">curl -sS https://api.github.com/repos/IrineSistiana/mosdns/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -sS https://api.github.com/repos/IrineSistiana/mosdns/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$remote_ver</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版，请将下方的 ${remote_ver} 替换为上一句命令中获取到的版本号</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版</span>
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
 </span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;mosdns-linux-amd64.zip&#34;</span> <span class="s2">&#34;https://github.com/IrineSistiana/mosdns/releases/download/v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">/mosdns-linux-amd64.zip&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -880,8 +880,6 @@
         
             <a href="/blog/tags/clash/">clash</a>
         
-            <a href="/blog/tags/subconverter/">subconverter</a>
-        
             <a href="/blog/tags/nftables/">nftables</a>
         
     </section>
@@ -901,6 +899,30 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.b3c4f5a888a68e427bedc772b6e460e3_hu88789eb5a0253449c69e203685dbd166_85259_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）"
+                        
+                        data-hash="md5-s8T1qIimjkJ77cdytuRg4w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（四）</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -993,30 +1015,6 @@
 
         <div class="article-details">
             <h2 class="article-title">爱快 IPv4／IPv6 ACL／防火墙设置</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/">
-        
-        
-            <div class="article-image">
-                <img src="/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1.2e000d656264694e603f8140a74251c0_huc8d9904e0468058665f9639c498c48d6_43079_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击"
-                        
-                        data-hash="md5-LgANZWJkaU5gP4FAp0JRwA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击</h2>
         </div>
     </a>
 </article>
