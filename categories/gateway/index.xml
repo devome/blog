@@ -527,7 +527,7 @@
         <pubDate>Fri, 20 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（二）" /&gt;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（二）" /&gt;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
 &lt;p&gt;安装Debian的详细过程我就不提了，网上的教程很多，我只提一部分内容。如果对其他安装内容真有需要，可以在本文下方评论区提出。&lt;/p&gt;
 &lt;h3 id=&#34;主机名和域名&#34;&gt;主机名和域名&lt;/h3&gt;
 &lt;p&gt;在配置主机名和域名时，可以考虑设置为你的DDNS域名的三级域名下，详见下面两图，后续就可以使用&lt;code&gt;gate.evine.com&lt;/code&gt;来访问旁路由。&lt;/p&gt;
