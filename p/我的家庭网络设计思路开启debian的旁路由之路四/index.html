@@ -402,7 +402,7 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /var/lib/clash
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>创建文件 <code>/etc/systemd/system/clash.service</code>，内容如下。请注意将<code>ens18</code>修改为你的网卡名。这时 <code>clash</code> 的配置文件为 <code>/var/lib/clash/config.yaml</code>。</p>
+</div><p>创建文件 <code>/etc/systemd/system/clash.service</code>，内容如下。请注意将 <code>ens18</code> 修改为你的网卡名。这时 <code>clash</code> 的配置文件为 <code>/var/lib/clash/config.yaml</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -443,7 +443,7 @@
 </span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果你比较讲究Linux哲学，可以把<code>ExecStart</code>改成下面这样，这时 <code>clash</code> 的配置文件为 <code>/etc/clash/config.yaml</code>。</p>
+</div><p>如果你比较讲究Linux哲学，可以把 <code>ExecStart</code> 改成下面这样，这时 <code>clash</code> 的配置文件为 <code>/etc/clash/config.yaml</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -452,7 +452,7 @@
 <pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">ExecStart     </span><span class="o">=</span><span class="s"> clash -d /var/lib/clash -f /etc/clash/config.yaml</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果不想以root用户运行<code>clash</code>，可以自行创建用户 <code>clash</code> 和用户组 <code>clash</code>，然后在 <code>/etc/systemd/system/clash.service</code> 的 <code>[Service]</code> 单元下增加两行：</p>
+</div><p>如果不想以root用户运行 <code>clash</code> ，可以自行创建用户 <code>clash</code> 和用户组 <code>clash</code>，然后在 <code>/etc/systemd/system/clash.service</code> 的 <code>[Service]</code> 单元下增加两行：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -921,7 +921,7 @@
 <p>大致在 <a class="link" href="#mynftablesnft" >mynftables.nft</a> 这个文件的注释也解释过每句的作用了，这里再捊一下。</p>
 <p>对照着题图，局域网中的其他客户端的流量在通过旁路由时，进入 <code>nftables</code> 的 <code>prerouting</code> 链，然后判断第69-76行的规则，如果规则匹配就以 <code>accept</code> 直接收受并发往目的地，不会再转到 <code>clash</code>；如果全都不匹配，会在最后匹配上 <code>goto clash_tproxy</code>，也就是进入 <code>ip protocol { tcp, udp } tproxy to :$tproxy_port meta mark set $default_mark</code> 这句，这句将会把流量转到 <code>clash</code>。需要提一句的是第70行的规则是针对从本机 <code>output</code> 链发过来的流量的，没有第70行，这部分流量同样会在最后匹配到第77行的 <code>goto clash_tproxy</code>。</p>
 <p>经过 <code>clash</code> 代理后，流量会被打上标记 <code>clash_mark</code>，也就是第13行定义的 <code>666</code>，<code>clash</code> 工作在题图中的应用层，经过 <code>clash</code> 处理过的流量会在 <code>output</code> 链中被第89行直接接收并发往目的地，不会再一次进行代理，这样就防止了流量一直在走环路的问题。</p>
-<p>本机产生的流量类似，它们会在 <code>output</code> 链中先匹配第88-94行，如果匹配就直接接收并发往目的地了，不会再转到 <code>clash</code>，而剩余没有匹配到的会在第95行被打上 <code>$default_mark</code>，也就是在第16行定义的 <code>1</code>，这个标记和上方创建的 <code>clash.service</code> 中 <code>fwmark 1</code> 的 <code>1</code> 一致。被打上这个标记的流量在按照 <code>clash.service</code> 定义的 <code>ip route</code> 和 <code>ip rule</code>，进入 <code>prerouting</code> 链，然后根据规则确定是直接接收还是转向 <code>clash</code>。</p>
+<p>本机产生的流量类似，它们会在 <code>output</code> 链中先匹配第88-94行，如果匹配就直接接收并发往目的地了，不会再转到 <code>clash</code>，而剩余没有匹配到的会在第95行被打上 <code>$default_mark</code>，也就是在第16行定义的 <code>1</code>，这个标记和上方创建的 <code>clash.service</code> 中 <code>fwmark 1</code> 的 <code>1</code> 一致。被打上这个标记的流量会按照 <code>clash.service</code> 定义的 <code>ip route</code> 和 <code>ip rule</code>，进入 <code>prerouting</code> 链，然后根据规则确定是直接接收还是转向 <code>clash</code>。</p>
 <p>至于 <code>forward</code> 转发链，我们并没有设置它，那么转发的默认 <code>policy</code> 就是 <code>accept</code>，将直接全部接受。我已经在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >前文（一）</a> 中提及了我只在主路由爱快上设置防火墙：<a class="link" href="../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb" >IPv4</a>、<a class="link" href="../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae" >IPv6</a>，旁路由对这类流量直接转发，不再过滤。所以，针对运行在我NAS <code>10.0.0.11</code> 上的服务以及其他众多运行在 Docker MacVLAN 网络上的容器，我直接从主路由爱快转发端口到它们即可，无需再经过旁路由额外中转。</p>
 <h2 id="参考资料">参考资料</h2>
 <ol>

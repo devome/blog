@@ -334,7 +334,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -413,7 +413,7 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /var/lib/adguardhome
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>创建<code>/etc/systemd/system/adguardhome.service</code>如下，这时配置文件为<code>/var/lib/adguardhome/AdGuardHome.yaml</code>。</p>
+</div><p>创建 <code>/etc/systemd/system/adguardhome.service</code> 如下，这时配置文件为 <code>/var/lib/adguardhome/AdGuardHome.yaml</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -450,13 +450,13 @@
 </span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果你比较讲究Linux哲学，可以把<code>ExecStart</code>改成下面这样，这时配置文件为<code>/etc/adguardhome/config.yaml</code></p>
+</div><p>如果你比较讲究Linux哲学，可以把<code>ExecStart</code>改成下面这样，这时配置文件为 <code>/etc/adguardhome/config.yaml</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ExecStart          = /usr/local/bin/adguardhome -w /var/lib/adguardhome -c /etc/adguardhome/config.yaml
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">ExecStart          </span><span class="o">=</span><span class="s"> /usr/local/bin/adguardhome -w /var/lib/adguardhome -c /etc/adguardhome/config.yaml</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果不想以root用户运行 <code>adguardhome</code> ，可以自行创建用户 <code>adguardhome</code> 和用户组 <code>adguardhome</code> ，然后在 <code>/etc/systemd/system/adguardhome.service</code> 的 <code>[Service]</code> 单元下增加两行：</p>
@@ -466,8 +466,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">User = adguardhome
-</span></span><span class="line"><span class="cl">Group = adguardhome
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">User  </span><span class="o">=</span><span class="s"> adguardhome</span>
+</span></span><span class="line"><span class="cl"><span class="na">Group </span><span class="o">=</span><span class="s"> adguardhome</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>adguardhome</code> 自身的命令行是支持自动创建 <code>/etc/systemd/system/adguardhome.service</code> 的，但个人不是很建议直接使用 <code>adguardhome</code> 本身所支持的命令来完成上述工作，以下仅供参考。</p>
@@ -516,7 +516,7 @@
 ></p>
 <h3 id="配置">配置</h3>
 <p>继续在 <a class="link" href="http://10.0.0.2:3000"  target="_blank" rel="noopener"
-    >http://10.0.0.2:3000</a> 用初始化设置的密码登陆，并按下方配置DNS设置、DNS重写。配置好后，在刚刚输入<code>adguardhome</code>的终端按 <code>Ctrl+C</code> 结束掉，然后编辑 <code>/var/lib/adguardhome/AdGuardHome.yaml</code> 或者 <code>/etc/adguardhome/config.yaml</code> ，找到节点 <code>clients.runtime_sources.hosts</code>，将其置为 <code>false</code>。</p>
+    >http://10.0.0.2:3000</a> 用初始化设置的密码登陆，并按下方配置DNS设置、DNS重写。配置好后，在刚刚输入 <code>adguardhome</code> 的终端按 <code>Ctrl+C</code> 结束掉，然后编辑 <code>/var/lib/adguardhome/AdGuardHome.yaml</code> 或者 <code>/etc/adguardhome/config.yaml</code> ，找到节点 <code>clients.runtime_sources.hosts</code>，将其置为 <code>false</code>。</p>
 <h4 id="dns设置">DNS设置</h4>
 <p>上游DNS服务器设置为mosdns的监听端口。</p>
 <p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1.png"
@@ -722,7 +722,7 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /var/lib/mosdns
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>创建<code>/etc/systemd/system/mosdns.service</code>如下，这时配置文件为<code>/var/lib/mosdns/config.yaml</code>。</p>
+</div><p>创建 <code>/etc/systemd/system/mosdns.service</code> 如下，这时配置文件为 <code>/var/lib/mosdns/config.yaml</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -759,24 +759,24 @@
 </span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果你比较讲究Linux哲学，可以把<code>ExecStart</code>改成下面这样，这时配置文件为<code>/etc/mosdns/config.yaml</code></p>
+</div><p>如果你比较讲究Linux哲学，可以把 <code>ExecStart</code> 改成下面这样，这时配置文件为 <code>/etc/mosdns/config.yaml</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ExecStart          = /usr/local/bin/mosdns start -c /etc/mosdns/config.yaml
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">ExecStart          </span><span class="o">=</span><span class="s"> /usr/local/bin/mosdns start -c /etc/mosdns/config.yaml</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果不想以root用户运行<code>mosdns</code>，可以自行创建用户<code>mosdns</code>和用户组<code>mosdns</code>，然后在<code>/etc/systemd/system/mosdns.service</code>的<code>[Service]</code>单元下增加两行：</p>
+</div><p>如果不想以root用户运行 <code>mosdns</code>，可以自行创建用户 <code>mosdns</code> 和用户组 <code>mosdns</code>，然后在 <code>/etc/systemd/system/mosdns.service</code> 的 <code>[Service]</code> 单元下增加两行：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">User = mosdns
-</span></span><span class="line"><span class="cl">Group = mosdns
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">User </span><span class="o">=</span><span class="s"> mosdns</span>
+</span></span><span class="line"><span class="cl"><span class="na">Group </span><span class="o">=</span><span class="s"> mosdns</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>同样的，<code>mosdns</code> 自身的命令行也支持自动创建 <code>/etc/systemd/system/mosdns.service</code> 的，但个人不是很建议直接使用 <code>mosdns</code> 本身所支持的命令来完成上述工作，以下仅供参考。</p>
