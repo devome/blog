@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解clash的安装和配置，以及涉及到的IP规则和nftables规则。'>
+<title>我的家庭网络设计思路，开启debian的旁路由之路（四）</title>
+
+<link rel='canonical' href='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/'>
+
+<link rel="stylesheet" href="/blog/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（四）'>
+<meta property='og:description' content='本篇主要讲解clash的安装和配置，以及涉及到的IP规则和nftables规则。'>
+<meta property='og:url' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='nftables' /><meta property='article:published_time' content='2023-10-21T14:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-21T14:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png' />
+<meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（四）">
+<meta name="twitter:description" content="本篇主要讲解clash的安装和配置，以及涉及到的IP规则和nftables规则。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png' />
+    <link rel="shortcut icon" href="/blog/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/blog">
+                
+                    
+                    
+                    
+                        
+                        <img src="/blog/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/blog">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#工作流">工作流</a></li>
+    <li><a href="#下载与安装">下载与安装</a></li>
+    <li><a href="#创建服务">创建服务</a>
+      <ol>
+        <li><a href="#clashservice">clash.service</a></li>
+        <li><a href="#mynftablesnft">mynftables.nft</a></li>
+        <li><a href="#clash配置文件">clash配置文件</a></li>
+        <li><a href="#clash其他相关文件">clash其他相关文件</a></li>
+        <li><a href="#启用服务">启用服务</a></li>
+      </ol>
+    </li>
+    <li><a href="#执行逻辑">执行逻辑</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_800x0_resize_box_3.png"
+                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_800x0_resize_box_3.png 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="420" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/blog/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+                软路由
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/">我的家庭网络设计思路，开启debian的旁路由之路（四）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            本篇主要讲解clash的安装和配置，以及涉及到的IP规则和nftables规则。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-21</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 7 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p>使用clash实现透明代理有两种方式，一种是 <code>redirect</code>，仅支持TCP流量，另一种是 <code>tproxy</code>，支持TCP和UDP流量。为了能代理UDP流量，所以我们选用 <code>tproxy</code> 的方式来实现。</p>
+<h2 id="工作流">工作流</h2>
+<p><code>nftables</code> 的工作流详见 <a class="link" href="https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks"  target="_blank" rel="noopener"
+    >Netfilter hooks</a>。具体Netfilter的五个链 <code>prerouting</code> <code>input</code> <code>forward</code> <code>output</code> <code>postrouting</code> 是什么关系，以及流向，请参考该链接来加深理解。全部的文档可以查阅本文下方 <a class="link" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" >参考资料</a> 的1和2。</p>
+<p>注意，在旁路由自身中运行的程序都工作在应用层，而 <code>tproxy</code> 只能工作在 <code>prerouting</code> 链，所以如果我们要想透明代理旁路由自己产生的流量，要通过设置IP规则让这部分流量在进入 <code>output</code> 链时，将需要代理的流量转回到 <code>prerouting</code> 链。这就需要靠IP规则来实现。</p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png"
+	width="1116"
+	height="586"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Netfilter hooks"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="190"
+		data-flex-basis="457px"
+	
+></p>
+<h2 id="下载与安装">下载与安装</h2>
+<p>在 <a class="link" href="https://github.com/Dreamacro/clash"  target="_blank" rel="noopener"
+    >clash</a> 和 <a class="link" href="https://github.com/MetaCubeX/Clash.Meta"  target="_blank" rel="noopener"
+    >clash-meta</a> 中，我选用后者来使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 检查最新稳定版的版本号，如果获取不到请检查网络</span>
+</span></span><span class="line"><span class="cl"><span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -sS https://api.github.com/repos/MetaCubeX/Clash.Meta/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$remote_ver</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;clash.meta-linux-amd64-v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">.gz&#34;</span> <span class="s2">&#34;https://github.com/MetaCubeX/Clash.Meta/releases/download/v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">/clash.meta-linux-amd64-v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">.gz&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 解压</span>
+</span></span><span class="line"><span class="cl">gzip -d <span class="s2">&#34;clash.meta-linux-amd64-v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">.gz&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装</span>
+</span></span><span class="line"><span class="cl">install -ps clash.meta-linux-amd64-v<span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span> /usr/local/bin/clash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="创建服务">创建服务</h2>
+<h3 id="clashservice">clash.service</h3>
+<p>创建工作目录<code>/var/lib/clash</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /var/lib/clash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建文件 <code>/etc/systemd/system/clash.service</code>，内容如下。请注意将 <code>ens18</code> 修改为你的网卡名。这时 <code>clash</code> 的配置文件为 <code>/var/lib/clash/config.yaml</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description </span><span class="o">=</span><span class="s"> Clash-Meta tproxy daemon.</span>
+</span></span><span class="line"><span class="cl"><span class="na">After       </span><span class="o">=</span><span class="s"> network.target</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Environment   </span><span class="o">=</span><span class="s"> PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span>
+</span></span><span class="line"><span class="cl"><span class="na">Type          </span><span class="o">=</span><span class="s"> simple</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart       </span><span class="o">=</span><span class="s"> always</span>
+</span></span><span class="line"><span class="cl"><span class="na">LimitNPROC    </span><span class="o">=</span><span class="s"> 500</span>
+</span></span><span class="line"><span class="cl"><span class="na">LimitNOFILE   </span><span class="o">=</span><span class="s"> 1000000</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStartPre  </span><span class="o">=</span><span class="s"> sleep 1s</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart     </span><span class="o">=</span><span class="s"> clash -d /var/lib/clash</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStartPost </span><span class="o">=</span><span class="s"> ip route add local default dev ens18 table 100; ip rule add fwmark 1 lookup 100; mynftables.nft</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStop      </span><span class="o">=</span><span class="s"> nft flush ruleset; ip route del local default dev ens18 table 100; ip rule del fwmark 1 lookup 100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你比较讲究Linux哲学，可以把 <code>ExecStart</code> 改成下面这样，这时 <code>clash</code> 的配置文件为 <code>/etc/clash/config.yaml</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">ExecStart     </span><span class="o">=</span><span class="s"> clash -d /var/lib/clash -f /etc/clash/config.yaml</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mynftablesnft">mynftables.nft</h3>
+<p>新建 <code>/usr/local/bin/mynftables.nft</code>，内容如下。请注意按照注释修改，创建好后以命令 <code>chmod +x /usr/local/bin/mynftables.nft</code> 为它增加可执行权限。该文件会引用到另外一个文件 <code>/var/lib/clash/geoip4_cn.nft</code>，这个要引用到的文件，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#!/usr/sbin/nft -f
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 清空旧规则
+</span></span><span class="line"><span class="cl">flush ruleset
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 只处理指定网卡的流量，要和ip规则中的接口操持一致
+</span></span><span class="line"><span class="cl">define interface = ens18
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## clash的透明代理端口
+</span></span><span class="line"><span class="cl">define tproxy_port = 7895
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## clash打的标记（routing-mark）
+</span></span><span class="line"><span class="cl">define clash_mark = 666
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 常规流量标记，ip rule中加的标记，要和ip规则中保持一致，对应 &#34;ip rule add fwmark 1 lookup 100&#34; 中的 &#34;1&#34;
+</span></span><span class="line"><span class="cl">define default_mark = 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 本机运行了服务并且需要在公网上访问的tcp端口（本机开放在公网上的端口），仅本地局域网访问的服务端口可不用在此变量中，以半角逗号分隔
+</span></span><span class="line"><span class="cl">define local_tcp_port = {
+</span></span><span class="line"><span class="cl">    2222,      # ssh，按需设置
+</span></span><span class="line"><span class="cl">    8080-8088  # nginx webui，按需设置
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 要绕过的局域网内tcp流量经由本机访问的目标端口，也就是允许局域网内其他主机主动设置DNS服务器为其他服务器，而非旁路由
+</span></span><span class="line"><span class="cl">define lan_2_dport_tcp = {
+</span></span><span class="line"><span class="cl">    53     # dns查询
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 要绕过的局域网内udp流量经由本机访问的目标端口，也就是允许局域网内其他主机主动设置DNS服务器为其他服务器，而非旁路由；另外也允许局域网内其他主机访问远程的NTP服务器
+</span></span><span class="line"><span class="cl">define lan_2_dport_udp = {
+</span></span><span class="line"><span class="cl">    53,    # dns查询
+</span></span><span class="line"><span class="cl">    123    # ntp端口
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 保留ip地址
+</span></span><span class="line"><span class="cl">define private_address = {
+</span></span><span class="line"><span class="cl">    127.0.0.0/8,
+</span></span><span class="line"><span class="cl">    100.64.0.0/10,
+</span></span><span class="line"><span class="cl">    169.254.0.0/16,
+</span></span><span class="line"><span class="cl">    224.0.0.0/4,
+</span></span><span class="line"><span class="cl">    240.0.0.0/4,
+</span></span><span class="line"><span class="cl">    10.0.0.0/8,
+</span></span><span class="line"><span class="cl">    172.16.0.0/12,
+</span></span><span class="line"><span class="cl">    192.168.0.0/16
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 大陆ip地址
+</span></span><span class="line"><span class="cl">include &#34;/var/lib/clash/geoip4_cn.nft&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">table ip clash {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ## 保留ipv4集合
+</span></span><span class="line"><span class="cl">    set private_address_set {
+</span></span><span class="line"><span class="cl">        type ipv4_addr
+</span></span><span class="line"><span class="cl">        flags interval
+</span></span><span class="line"><span class="cl">        elements = $private_address
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ## 大陆ipv4集合
+</span></span><span class="line"><span class="cl">    set geoip4_cn_set {
+</span></span><span class="line"><span class="cl">        type ipv4_addr
+</span></span><span class="line"><span class="cl">        flags interval
+</span></span><span class="line"><span class="cl">        elements = $geoip4_cn
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ## prerouting链
+</span></span><span class="line"><span class="cl">    chain prerouting {
+</span></span><span class="line"><span class="cl">        type filter hook prerouting priority filter; policy accept;
+</span></span><span class="line"><span class="cl">        ip protocol { tcp, udp } socket transparent 1 meta mark set $default_mark accept # 绕过已经建立的连接
+</span></span><span class="line"><span class="cl">        meta mark $default_mark goto clash_tproxy                                        # 已经打上default_mark标记的属于本机流量转过来的，直接进入透明代理
+</span></span><span class="line"><span class="cl">        fib daddr type { local, broadcast, anycast, multicast } accept                   # 绕过本地、单播、组播、多播地址
+</span></span><span class="line"><span class="cl">        tcp dport $lan_2_dport_tcp accept                                                # 绕过经由本机到目标端口的tcp流量
+</span></span><span class="line"><span class="cl">        udp dport $lan_2_dport_udp accept                                                # 绕过经由本地到目标端口的udp流量
+</span></span><span class="line"><span class="cl">        ip daddr @private_address_set accept                                             # 绕过目标地址为保留ip的地址
+</span></span><span class="line"><span class="cl">        ip daddr @geoip4_cn_set accept                                                   # 绕过目标地址为大陆ip的地址
+</span></span><span class="line"><span class="cl">        # ip protocol udp accept                                                         # 绕过全部udp流量（udp不进行透明代理）
+</span></span><span class="line"><span class="cl">        goto clash_tproxy                                                                # 其他流量透明代理到clash
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ## 透明代理
+</span></span><span class="line"><span class="cl">    chain clash_tproxy {
+</span></span><span class="line"><span class="cl">        ip protocol { tcp, udp } tproxy to :$tproxy_port meta mark set $default_mark
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ## output链
+</span></span><span class="line"><span class="cl">    chain output {
+</span></span><span class="line"><span class="cl">        type route hook output priority filter; policy accept;
+</span></span><span class="line"><span class="cl">        oifname != $interface accept                                   # 绕过本机内部通信的流量（接口lo）
+</span></span><span class="line"><span class="cl">        meta mark $clash_mark accept                                   # 绕过本机clash发出的流量
+</span></span><span class="line"><span class="cl">        fib daddr type { local, broadcast, anycast, multicast } accept # 绕过本地、单播、组播、多播地址
+</span></span><span class="line"><span class="cl">        udp dport { 53, 123 } accept                                   # 绕过本机dns查询、NTP流量
+</span></span><span class="line"><span class="cl">        tcp sport $local_tcp_port accept                               # 绕过本地运行了服务的tcp端口，如果并不需要从公网访问这些端口，可以注释掉本行
+</span></span><span class="line"><span class="cl">        ip daddr @private_address_set accept                           # 绕过目标地址为保留ip的地址
+</span></span><span class="line"><span class="cl">        ip daddr @geoip4_cn_set accept                                 # 绕过目标地址为大陆ip的地址
+</span></span><span class="line"><span class="cl">        ip protocol { tcp, udp } meta mark set $default_mark           # 其他流量重路由到prerouting
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="clash配置文件">clash配置文件</h3>
+<p>暂时先按照下面的形式形成 <code>clash</code> 的配置文件 <code>/var/lib/clash/config.yaml</code> 或者 <code>/etc/clash/config.yaml</code>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新订阅。我只对关键信息进行了注释，未注释的内容你都可以自行按照 <a class="link" href="https://wiki.metacubex.one/config/general/"  target="_blank" rel="noopener"
+    >官方WIKI</a> 进行设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">7890</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">socks-port</span><span class="p">:</span><span class="w"> </span><span class="m">7891</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">mixed-port</span><span class="p">:</span><span class="w"> </span><span class="m">7893</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tproxy-port</span><span class="p">:</span><span class="w"> </span><span class="m">7895</span><span class="w">  </span><span class="c"># 和mynftables.nft中的tproxy_port保持一致</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">routing-mark</span><span class="p">:</span><span class="w"> </span><span class="m">666</span><span class="w">  </span><span class="c"># 和mynftables.nft中的clash_mark保持一致</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">allow-lan</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">bind-address</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l">rule</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">log-level</span><span class="p">:</span><span class="w"> </span><span class="l">info</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">        </span><span class="c"># 不进行IPv6流量代理</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">find-process-mode</span><span class="p">:</span><span class="w"> </span><span class="kc">off</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">external-controller</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="p">:</span><span class="m">9090</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">secret</span><span class="p">:</span><span class="w">            </span><span class="c"># 登陆ui的密码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">external-ui</span><span class="p">:</span><span class="w"> </span><span class="l">ui</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">external-ui-name</span><span class="p">:</span><span class="w"> </span><span class="l">xd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">external-ui-url</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">unified-delay</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tcp-concurrent</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">experimental</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sniff-tls-sni</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">geodata-mode</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">geodata-loader</span><span class="p">:</span><span class="w"> </span><span class="l">standard</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">geox-url</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">geoip</span><span class="p">:</span><span class="w"> </span><span class="l">https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">geosite</span><span class="p">:</span><span class="w"> </span><span class="l">https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mmdb</span><span class="p">:</span><span class="w"> </span><span class="l">https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">profile</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tracing</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">store-selected</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">store-fake-ip</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">sniffer</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">parse-pure-ip</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">override-destination</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dns</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">           </span><span class="c"># 禁止DNS解析IPv6</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">listen</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="p">:</span><span class="m">7874</span><span class="w">  </span><span class="c"># DNS监听端口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">use-hosts</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enhanced-mode</span><span class="p">:</span><span class="w"> </span><span class="l">redir-host</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">default-nameserver</span><span class="p">:</span><span class="w"> </span><span class="c"># 建议修改为你最近的DNS服务器</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">10.0.0.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">101.226.4.6</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">114.114.114.114</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">116.228.111.118</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">223.5.5.5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nameserver</span><span class="p">:</span><span class="w">  </span><span class="c"># 建议修改为你最近的DNS服务器</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">10.0.0.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">101.226.4.6</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">114.114.114.114</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">116.228.111.118</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">223.5.5.5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fallback</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://dns.cloudflare.com/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">tls://dns.google:853</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://1.1.1.1/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">tls://1.1.1.1:853</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">tls://8.8.8.8:853</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://public.dns.iij.jp/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://jp.tiar.app/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://jp.tiarap.org/dns-query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">tls://jp.tiar.app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">tls://dot.tiar.app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fallback-filter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">geoip</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">geoip-code</span><span class="p">:</span><span class="w"> </span><span class="l">CN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">geosite</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">gfw</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ipcidr</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">0.0.0.0</span><span class="l">/8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10.0.0.0</span><span class="l">/8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">100.64.0.0</span><span class="l">/10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">127.0.0.0</span><span class="l">/8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">169.254.0.0</span><span class="l">/16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">172.16.0.0</span><span class="l">/12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.0.0.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.0.2.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.88.99.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.168.0.0</span><span class="l">/16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">198.18.0.0</span><span class="l">/15</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">198.51.100.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">203.0.113.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">224.0.0.0</span><span class="l">/4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">240.0.0.0</span><span class="l">/4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">255.255.255.255</span><span class="l">/32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">domain</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">+.google.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">+.facebook.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fake-ip-filter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">+.*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">proxies</span><span class="p">:</span><span class="w"> </span><span class="c"># 以下为你的代理节点、分组及代理规则</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">proxy-groups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="clash其他相关文件">clash其他相关文件</h3>
+<p><code>clash</code> 还需要一些配套文件，在启动前先下载下来。我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新这些文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /var/lib/clash
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O country.mmdb https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O geosite.dat  https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O geoip.dat    https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir -p ui
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ui
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O xd.zip https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
+</span></span><span class="line"><span class="cl">unzip -oqq xd.zip
+</span></span><span class="line"><span class="cl">mv metacubexd-gh-pages xd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启用服务">启用服务</h3>
+<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/clash.service</code> 为开启自动启动，并立即启动起来。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now mclashosdns.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后续如想查看日志，我们直接使用Debian自带的工具来查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">journalctl -efu clash.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想要重启：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl restart clash.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="执行逻辑">执行逻辑</h2>
+<p>大致在 <a class="link" href="#mynftablesnft" >mynftables.nft</a> 这个文件的注释也解释过每句的作用了，这里再捊一下。</p>
+<p>对照着题图，局域网中的其他客户端的流量在通过旁路由时，进入 <code>nftables</code> 的 <code>prerouting</code> 链，然后判断第69-76行的规则，如果规则匹配就以 <code>accept</code> 直接收受并发往目的地，不会再转到 <code>clash</code>；如果全都不匹配，会在最后匹配上 <code>goto clash_tproxy</code>，也就是进入 <code>ip protocol { tcp, udp } tproxy to :$tproxy_port meta mark set $default_mark</code> 这句，这句将会把流量转到 <code>clash</code>。需要提一句的是第70行的规则是针对从本机 <code>output</code> 链发过来的流量的，没有第70行，这部分流量同样会在最后匹配到第77行的 <code>goto clash_tproxy</code>。</p>
+<p>经过 <code>clash</code> 代理后，流量会被打上标记 <code>clash_mark</code>，也就是第13行定义的 <code>666</code>，<code>clash</code> 工作在题图中的应用层，经过 <code>clash</code> 处理过的流量会在 <code>output</code> 链中被第89行直接接收并发往目的地，不会再一次进行代理，这样就防止了流量一直在走环路的问题。</p>
+<p>本机产生的流量类似，它们会在 <code>output</code> 链中先匹配第88-94行，如果匹配就直接接收并发往目的地了，不会再转到 <code>clash</code>，而剩余没有匹配到的会在第95行被打上 <code>$default_mark</code>，也就是在第16行定义的 <code>1</code>，这个标记和上方创建的 <code>clash.service</code> 中 <code>fwmark 1</code> 的 <code>1</code> 一致。被打上这个标记的流量会按照 <code>clash.service</code> 定义的 <code>ip route</code> 和 <code>ip rule</code>，进入 <code>prerouting</code> 链，然后根据规则确定是直接接收还是转向 <code>clash</code>。</p>
+<p>至于 <code>forward</code> 转发链，我们并没有设置它，那么转发的默认 <code>policy</code> 就是 <code>accept</code>，将直接全部接受。我已经在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >前文（一）</a> 中提及了我只在主路由爱快上设置防火墙：<a class="link" href="../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb" >IPv4</a>、<a class="link" href="../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae" >IPv6</a>，旁路由对这类流量直接转发，不再过滤。所以，针对运行在我NAS <code>10.0.0.11</code> 上的服务以及其他众多运行在 Docker MacVLAN 网络上的容器，我直接从主路由爱快转发端口到它们即可，无需再经过旁路由额外中转。</p>
+<h2 id="参考资料">参考资料</h2>
+<ol>
+<li>
+<p><a class="link" href="https://wiki.nftables.org/wiki-nftables/index.php/Main_Page"  target="_blank" rel="noopener"
+    >nftables wiki</a></p>
+</li>
+<li>
+<p><a class="link" href="https://www.mankier.com/8/nft"  target="_blank" rel="noopener"
+    >nft Man Page</a></p>
+</li>
+<li>
+<p><a class="link" href="https://lhy.life/20230411-clash-nftables-tproxy/"  target="_blank" rel="noopener"
+    >clash nftables 透明代理（TPROXY）</a></p>
+</li>
+<li>
+<p><a class="link" href="https://xtls.github.io/document/level-2/tproxy.html"  target="_blank" rel="noopener"
+    >Project X 透明代理（TProxy）配置教程</a></p>
+</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/blog/tags/%E7%88%B1%E5%BF%AB/">爱快</a>
+        
+            <a href="/blog/tags/debian/">debian</a>
+        
+            <a href="/blog/tags/network/">network</a>
+        
+            <a href="/blog/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
+        
+            <a href="/blog/tags/adguradhome/">adguradhome</a>
+        
+            <a href="/blog/tags/mosdns/">mosdns</a>
+        
+            <a href="/blog/tags/clash/">clash</a>
+        
+            <a href="/blog/tags/subconverter/">subconverter</a>
+        
+            <a href="/blog/tags/nftables/">nftables</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.20854af746270e9b4b1e51c4b66b27f3_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）"
+                        
+                        data-hash="md5-IIVK90YnDptLHlHEtmsn8w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（三）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.863cfb7ee1ade69851b0f26f7556a9ba_hu4d3bb5febb14b87d984ab69f868ff292_86542_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）"
+                        
+                        data-hash="md5-hjz7fuGt5phRsPJvdVapug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（一）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.8808752016814a654505f67e4302e387_hu341c4831b38005b757fc546cdf02cd89_805455_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（二）"
+                        
+                        data-hash="md5-iAh1IBaBSmVFBfZ&#43;QwLjhw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（二）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1.97312cdcbeac9eb87c3b85932cc3f436_hu110183bbca19103c650c46f2204413d3_49641_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 光猫桥接爱快拨号时，上海电信IPTV盒子如何正常使用"
+                        
+                        data-hash="md5-lzEs3L6snrh8O4WTLMP0Ng==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">光猫桥接爱快拨号时，上海电信IPTV盒子如何正常使用</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1.b59e92159012b80f8905c7b3d3190529_hucc47260a9bbf21ba621002cdab8a4a01_35548_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置"
+                        
+                        data-hash="md5-tZ6SFZASuA&#43;JBcez0xkFKQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">爱快 IPv4／IPv6 ACL／防火墙设置</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
