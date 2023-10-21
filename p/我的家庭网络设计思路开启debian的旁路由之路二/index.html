@@ -408,16 +408,16 @@
 <p>如果你想以root用户进行ssh登陆，可以将<code>/etc/ssh/sshd_config</code>中的<code>#PermitRootLogin prohibit-password</code>修改为<code>PermitRootLogin yes</code>，如果要修改ssh端口，可以将<code>#Port 22</code>修改为<code>Port 2222</code>（2222端口仅为示例）。最后重启一下sshd服务<code>systemctl restart sshd.service</code>。</p>
 <p>你也可以关闭密码登陆仅允许私钥登陆，将<code>#PasswordAuthentication yes</code>修改为<code>PasswordAuthentication no</code>即可，不过在关闭前请先以700权限创建好<code>$HOME/.ssh</code>文件夹，以600权限上传公钥<code>$HOME/.ssh/authorized_keys</code>，并在其他地方保存好私钥。</p>
 <h3 id="配置网络">配置网络</h3>
-<p>输入<code>nano /etc/network/interface</code>，编辑为以下内容，编辑好后以<code>Ctrl+X</code>退出。说明：</p>
+<p>输入 <code>nano /etc/network/interface</code>，编辑为以下内容，编辑好后以 <code>Ctrl+X</code> 退出。说明：</p>
 <ul>
 <li>
-<p>其中的<code>ens18</code>是我的网卡名，可以输入<code>ip a</code>这个命令查看到。</p>
+<p>其中的 <code>ens18</code> 是我的网卡名，可以输入 <code>ip a</code> 这个命令查看到。</p>
 </li>
 <li>
-<p>IPv4地址进行静态（inet static）配置，设置自身的IP和掩码为<code>10.0.0.2/24</code>，网关为<code>10.0.0.1</code>，后续我还将以adguardhome和mosdns在旁路由中自建DNS服务，所以设置默认DNS服务器为<code>127.0.0.1</code>。</p>
+<p>IPv4地址进行静态配置 <code>inet static</code>，设置自身的IP和掩码为 <code>10.0.0.2/24</code>，网关为 <code>10.0.0.1</code>，后续我还将以adguardhome和mosdns在旁路由中自建DNS服务，所以设置默认DNS服务器为 <code>127.0.0.1</code>。<strong>不过下面的示例是最终的状态，我们在配置旁路由过程中，需要科学上网环境，所以在完全配置好旁路由以前，网关 <code>gateway</code> 和默认DNS服务器 <code>dns-nameservers</code> 建议先暂时设置为局域网中另一台可以实现科学上网的OpenWRT，在完全配置好后再改成下面这样。</strong></p>
 </li>
 <li>
-<p>IPv6地址采用DHCPv6形式，配置为<code>inet6 dhcp</code>，这仅仅表示旁路由自身可以从主路由爱快处获取IPv6地址，并不代表它将作为IPv6网关。</p>
+<p>IPv6地址采用DHCPv6形式，配置为 <code>inet6 dhcp</code>，这仅仅表示旁路由自身可以从主路由爱快处获取IPv6地址，并不代表它将作为IPv6网关。</p>
 </li>
 </ul>
 <div class="highlight"><div class="chroma">
