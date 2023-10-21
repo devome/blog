@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。由于clash不仅仅只涉及DNS服务，还涉及到代理及nftables相关内容，我们将在接下来的单独的一篇文件中详细详解。'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。'>
 <title>我的家庭网络设计思路，开启debian的旁路由之路（三）</title>
 
 <link rel='canonical' href='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/'>
 
 <link rel="stylesheet" href="/blog/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（三）'>
-<meta property='og:description' content='本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。由于clash不仅仅只涉及DNS服务，还涉及到代理及nftables相关内容，我们将在接下来的单独的一篇文件中详细详解。'>
+<meta property='og:description' content='本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。'>
 <meta property='og:url' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='nftables' /><meta property='article:published_time' content='2023-10-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-20T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='nftables' /><meta property='article:published_time' content='2023-10-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-21T00:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（三）">
-<meta name="twitter:description" content="本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。由于clash不仅仅只涉及DNS服务，还涉及到代理及nftables相关内容，我们将在接下来的单独的一篇文件中详细详解。">
+<meta name="twitter:description" content="本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
     <link rel="shortcut icon" href="/blog/favicon.ico" />
 
     </head>
@@ -230,9 +231,29 @@
     <li><a href="#前言">前言</a></li>
     <li><a href="#逻辑图">逻辑图</a></li>
     <li><a href="#说明">说明</a></li>
-    <li><a href="#adguardhome的安装和配置">AdGuardHome的安装和配置</a></li>
-    <li><a href="#mosdns的安装和配置">mosdns的安装和配置</a></li>
-    <li><a href="#总结">总结</a></li>
+    <li><a href="#adguardhome的安装和配置">AdGuardHome的安装和配置</a>
+      <ol>
+        <li><a href="#下载安装">下载安装</a></li>
+        <li><a href="#创建服务">创建服务</a></li>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#配置">配置</a>
+          <ol>
+            <li><a href="#dns设置">DNS设置</a></li>
+            <li><a href="#dns重写">DNS重写</a></li>
+          </ol>
+        </li>
+        <li><a href="#启用服务">启用服务</a></li>
+      </ol>
+    </li>
+    <li><a href="#mosdns的安装和配置">mosdns的安装和配置</a>
+      <ol>
+        <li><a href="#下载安装-1">下载安装</a></li>
+        <li><a href="#创建服务-1">创建服务</a></li>
+        <li><a href="#配置-1">配置</a></li>
+        <li><a href="#启用服务-1">启用服务</a></li>
+      </ol>
+    </li>
+    <li><a href="#clash">clash</a></li>
   </ol>
 </nav>
         </div>
@@ -244,8 +265,20 @@
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_800x0_resize_q75_box.jpg"
+                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_800x0_resize_q75_box.jpg 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="678" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
     
@@ -265,7 +298,7 @@
     
         
         <h3 class="article-subtitle">
-            本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。由于clash不仅仅只涉及DNS服务，还涉及到代理及nftables相关内容，我们将在接下来的单独的一篇文件中详细详解。
+            本篇主要讲述在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。
         </h3>
         
     </div>
@@ -286,7 +319,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2023-10-20</time>
+                <time class="article-time--published">2023-10-21</time>
             </div>
         
 
@@ -301,7 +334,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -317,17 +350,512 @@
     
     
     <h2 id="前言">前言</h2>
-<p>在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >前文</a> 中我提及了我的目标是在<code>10.0.0.0/24</code>这个旁路由所在的子网中实现国内网站IPv4/IPv6双栈解析并可正常访问，国外网站仅解析IPv4地址并进行科学上网，那么仅凭Clash很难实现（其他的代理软件我也不介绍了），我们可以借助mosdns来实现（其他的smartdns、coredns我就不介绍了）。又为了能够更加方便的为电视机屏蔽广告、自定义子网中设备解析为私网IPv4地址和公网IPv6地址这种形式的双栈、防止代理有故障需要后备DNS等等功能，我继续在mosdns前加一层adguardhome，以方便的实现。</p>
+<p>在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >前文（一）</a> 中我提及了我的目标是在<code>10.0.0.0/24</code>这个旁路由所在的子网中实现国内网站IPv4/IPv6双栈解析并可正常访问，国外网站仅解析IPv4地址并进行科学上网，那么仅凭Clash很难实现（其他的代理软件我也不介绍了），我们可以借助mosdns来实现（其他的smartdns、coredns我就不介绍了）。又为了能够<strong>更加方便</strong>的为电视机屏蔽广告、自定义子网中设备解析为私网IPv4地址和公网IPv6地址这种形式的双栈、防止代理有故障需要后备DNS等等功能，我继续在mosdns前加一层adguardhome，以方便的实现。</p>
 <h2 id="逻辑图">逻辑图</h2>
-<p>待编辑。</p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg"
+	width="1079"
+	height="915"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_480x0_resize_q75_box.jpg 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_huaca52922731390c79e6c648affcbb010_103613_1024x0_resize_q75_box.jpg 1024w"
+	loading="lazy"
+	
+		alt="DNS逻辑"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="117"
+		data-flex-basis="283px"
+	
+></p>
 <h2 id="说明">说明</h2>
-<p>待编辑。</p>
+<p>由于我在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 中并没有安装 <code>dnsmasq</code>，<code>53</code> 端口上并没有运行任何服务，所以我可以让 <code>adguardhome</code> 直接监听在 <code>53</code> 端口。在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 中我已经设置了旁路由自身的DNS服务器为 <code>127.0.0.1</code>。在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >前文（一）</a> 中我们也设置好了 <code>10.0.0.0/24</code> 整个网段的DNS服务器为旁路由的IP <code>10.0.0.2</code>。</p>
+<p>当客户端需要解析DNS时，监听在 <code>53</code> 端口上的 <code>adguardhome</code> 会转发给其上游 <code>mosdns</code>，然后 <code>mosdns</code> 根据设置来进行分流，中国大陆部分使用国内的公共DNS服务器进行解析，保留IPv4/IPv6双栈结果，非中国大陆部分继续转发给上游 <code>clash</code> ，由 <code>clash</code> 通过代理向国外公共DNS服务器进行解析，<code>clash</code> 中的DNS模块设置关闭IPv6解析，这样国外部分只会返回IPv4的结果。</p>
+<p>而当 <code>mosdns</code> 出现故障时（mosdns本身也会有一个后备，防止clash出现故障，也就是说会有两层后备），<code>adguardhome</code> 则直接向国内公共DNS服务器请求解析，做到不影响局域网的网络。</p>
 <h2 id="adguardhome的安装和配置">AdGuardHome的安装和配置</h2>
-<p>待编辑。</p>
-<h2 id="mosdns的安装和配置">mosdns的安装和配置</h2>
-<p>待编辑。</p>
-<h2 id="总结">总结</h2>
-<p>由于clash不仅仅只涉及DNS服务，还涉及到代理及nftables相关内容，我们将在接下来的单独的一篇文件中详细详解。</p>
+<h3 id="下载安装">下载安装</h3>
+<p>我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好了必要的软件了。以下为root用户运行的命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 检查最新稳定版的版本号，如果获取不到请检查网络</span>
+</span></span><span class="line"><span class="cl">curl -sS https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版，请将下方的 ${remote_ver} 替换为上一句命令中获取到的版本号</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;AdGuardHome_linux_amd64.tar.gz&#34;</span> <span class="s2">&#34;https://github.com/AdguardTeam/AdGuardHome/releases/download/v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">/AdGuardHome_linux_amd64.tar.gz&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 解压</span>
+</span></span><span class="line"><span class="cl">tar --no-same-owner -xf <span class="s2">&#34;AdGuardHome_linux_amd64.tar.gz&#34;</span> --strip-components <span class="m">2</span> --directory<span class="o">=</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装</span>
+</span></span><span class="line"><span class="cl">install -ps AdGuardHome /usr/local/bin/adguardhome
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建服务">创建服务</h3>
+<p>创建工作目录<code>/var/lib/adguardhome</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /var/lib/adguardhome
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建<code>/etc/systemd/system/adguardhome.service</code>如下，这时配置文件为<code>/var/lib/adguardhome/AdGuardHome.yaml</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[Unit]
+</span></span><span class="line"><span class="cl">Description = Network-wide ads &amp; trackers blocking DNS server.
+</span></span><span class="line"><span class="cl">Requires    = network.target mosdns.service
+</span></span><span class="line"><span class="cl">After       = network.target mosdns.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[Service]
+</span></span><span class="line"><span class="cl">Type               = simple
+</span></span><span class="line"><span class="cl">Restart            = always
+</span></span><span class="line"><span class="cl">StartLimitInterval = 5
+</span></span><span class="line"><span class="cl">StartLimitBurst    = 10
+</span></span><span class="line"><span class="cl">ExecStart          = /usr/local/bin/adguardhome -w /var/lib/adguardhome
+</span></span><span class="line"><span class="cl">RestartSec         = 10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[Install]
+</span></span><span class="line"><span class="cl">WantedBy = multi-user.target
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你比较讲究Linux哲学，可以把<code>ExecStart</code>改成下面这样，这时配置文件为<code>/etc/adguardhome/config.yaml</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ExecStart          = /usr/local/bin/adguardhome -w /var/lib/adguardhome -c /etc/adguardhome/config.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果不想以root用户运行 <code>adguardhome</code> ，可以自行创建用户 <code>adguardhome</code> 和用户组 <code>adguardhome</code> ，然后在 <code>/etc/systemd/system/adguardhome.service</code> 的 <code>[Service]</code> 单元下增加两行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">User = adguardhome
+</span></span><span class="line"><span class="cl">Group = adguardhome
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>adguardhome</code> 自身的命令行是支持自动创建 <code>/etc/systemd/system/adguardhome.service</code> 的，但个人不是很建议直接使用 <code>adguardhome</code> 本身所支持的命令来完成上述工作，以下仅供参考。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">adguardhome -s install -w /var/lib/adguardhome  <span class="c1"># 需要自行创建目录var/lib/adguardhome</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl">adguardhome -s install -w /var/lib/adguardhome -c /etc/adguardhome/config.yaml <span class="c1"># 需要自行创建目录/etc/adguardhome和/var/lib/adguardhome</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="初始化">初始化</h3>
+<p>先开一个终端输入<code>adguardhome</code>，然后浏览器打开 <a class="link" href="http://10.0.0.2:3000"  target="_blank" rel="noopener"
+    >http://10.0.0.2:3000</a> 并按下图设置。</p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1.png"
+	width="621"
+	height="133"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="网页管理监听端口建议改回3000，至于80端口我们留给nginx使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="466"
+		data-flex-basis="1120px"
+	
+></p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2.png"
+	width="617"
+	height="138"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="DNS服务器就监听53端口"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="447"
+		data-flex-basis="1073px"
+	
+></p>
+<h3 id="配置">配置</h3>
+<p>继续在 <a class="link" href="http://10.0.0.2:3000"  target="_blank" rel="noopener"
+    >http://10.0.0.2:3000</a> 用初始化设置的密码登陆，并按下方配置DNS设置、DNS重写。配置好后，在刚刚输入<code>adguardhome</code>的终端按 <code>Ctrl+C</code> 结束掉，然后编辑 <code>/var/lib/adguardhome/AdGuardHome.yaml</code> 或者 <code>/etc/adguardhome/config.yaml</code> ，找到节点 <code>clients.runtime_sources.hosts</code>，将其置为 <code>false</code>。</p>
+<h4 id="dns设置">DNS设置</h4>
+<p>上游DNS服务器设置为mosdns的监听端口。</p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1.png"
+	width="517"
+	height="272"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="上游DNS服务器"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="190"
+		data-flex-basis="456px"
+	
+></p>
+<p>后备DNS服务器填写公共DNS服务器，可以附加上你的ISP当地的DNS服务器，如果主路由设置了DNS的功能，也可以加上，当mosdns出现故障时，adguardhome会转为使用后备DNS服务器来进行解析。这样。即使mosdns或者clash出现故障时，也不影响adguardhome为局域网提供DNS服务。</p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2.png"
+	width="517"
+	height="189"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="后备DNS服务器"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="273"
+		data-flex-basis="656px"
+	
+></p>
+<p>我们只在局域网中使用，所以不限制查询流量。</p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3.png"
+	width="516"
+	height="180"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="DNS服务配置"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="286"
+		data-flex-basis="688px"
+	
+></p>
+<p>开启乐观缓存可以更快的响应，但有些时候可能会导致问题，可以视情况开关。</p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4.png"
+	width="516"
+	height="482"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="DNS缓存配置"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="107"
+		data-flex-basis="256px"
+	
+></p>
+<h4 id="dns重写">DNS重写</h4>
+<p>如果你已经使用DDNS将你的域名解析了IPv4和IPv6，则可以在AdGuardHome的DNS重写模块中按下图这样设置，设置后局域网中的设备在解析时，可以解析私网IPv4地址和公网IPv6地址，做到在局域网中照样使用和公网中一样的域名访问。这样的话，像手机、笔记本电脑这种会频繁进出局域网的设备，可以使用一样的域名去访问各项服务，而不用在公网用域名访问，在局域网得换成IP访问这种形式。</p>
+<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99.png"
+	width="517"
+	height="397"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="DNS重写"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="130"
+		data-flex-basis="312px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## 解析nas的ip，我的nas双网卡，均配置了IP
+</span></span><span class="line"><span class="cl">$ nslookup nas.evine.com
+</span></span><span class="line"><span class="cl">Server:         10.0.0.2
+</span></span><span class="line"><span class="cl">Address:        10.0.0.2#53
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Non-authoritative answer:
+</span></span><span class="line"><span class="cl">Name:   nas.evine.com 
+</span></span><span class="line"><span class="cl">Address: 10.0.0.11
+</span></span><span class="line"><span class="cl">Name:   nas.evine.com 
+</span></span><span class="line"><span class="cl">Address: 10.0.0.12
+</span></span><span class="line"><span class="cl">Name:   nas.evine.com 
+</span></span><span class="line"><span class="cl">Address: 240e:■■■■:■■■■:■■■■:■■■:■■■■:■■■■:1ee
+</span></span><span class="line"><span class="cl">Name:   nas.evine.com 
+</span></span><span class="line"><span class="cl">Address: 240e:■■■■:■■■■:■■■■:■■■:■■■■:■■■■:6c4c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## 解析创建在10.0.1.0/24网段docker macvlan上的qbittorrent容器的ip
+</span></span><span class="line"><span class="cl">$ nslookup qb.evine.com
+</span></span><span class="line"><span class="cl">Server:         10.0.0.2
+</span></span><span class="line"><span class="cl">Address:        10.0.0.2#53
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Non-authoritative answer:
+</span></span><span class="line"><span class="cl">Name:   qb.evine.com
+</span></span><span class="line"><span class="cl">Address: 10.0.1.2
+</span></span><span class="line"><span class="cl">Name:   qb.evine.com
+</span></span><span class="line"><span class="cl">Address: 240e:■■■■:■■■■:■■■■:■■■:■■■■:■■■■:102
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启用服务">启用服务</h3>
+<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/adguardhome.service</code> 为开启自动启动，并立即启动起来（这时上游mosdns尚未配置，会直接跳转到备用DNS服务器去，你可以等后续配置完好以后再来启动它）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now adguardhome.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后续如想查看日志，我们直接使用Debian自带的工具来查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">journalctl -efu adguardhome.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想要重启：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl restart adguardhome.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="mosdns的安装和配置">mosdns的安装和配置</h2>
+<h3 id="下载安装-1">下载安装</h3>
+<p>我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好了必要的软件了。以下为root用户运行的命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 检查最新稳定版的版本号，如果获取不到请检查网络</span>
+</span></span><span class="line"><span class="cl">curl -sS https://api.github.com/repos/IrineSistiana/mosdns/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版，请将下方的 ${remote_ver} 替换为上一句命令中获取到的版本号</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;mosdns-linux-amd64.zip&#34;</span> <span class="s2">&#34;https://github.com/IrineSistiana/mosdns/releases/download/v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">/mosdns-linux-amd64.zip&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 解压</span>
+</span></span><span class="line"><span class="cl">unzip -oqq mosdns-linux-amd64.zip -d .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装</span>
+</span></span><span class="line"><span class="cl">install -ps mosdns /usr/local/bin/mosdns
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建服务-1">创建服务</h3>
+<p>创建工作目录<code>/var/lib/mosdns</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /var/lib/mosdns
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建<code>/etc/systemd/system/mosdns.service</code>如下，这时配置文件为<code>/var/lib/mosdns/config.yaml</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[Unit]
+</span></span><span class="line"><span class="cl">Description = A DNS forwarder.
+</span></span><span class="line"><span class="cl">Requires    = network.target clash.service
+</span></span><span class="line"><span class="cl">After       = network.target clash.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[Service]
+</span></span><span class="line"><span class="cl">StartLimitInterval = 5
+</span></span><span class="line"><span class="cl">StartLimitBurst    = 10
+</span></span><span class="line"><span class="cl">WorkingDirectory   = /var/lib/mosdns
+</span></span><span class="line"><span class="cl">ExecStart          = /usr/local/bin/mosdns start
+</span></span><span class="line"><span class="cl">Restart            = always
+</span></span><span class="line"><span class="cl">RestartSec         = 120
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[Install]
+</span></span><span class="line"><span class="cl">WantedBy = multi-user.target
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你比较讲究Linux哲学，可以把<code>ExecStart</code>改成下面这样，这时配置文件为<code>/etc/mosdns/config.yaml</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ExecStart          = /usr/local/bin/mosdns start -c /etc/mosdns/config.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果不想以root用户运行<code>mosdns</code>，可以自行创建用户<code>mosdns</code>和用户组<code>mosdns</code>，然后在<code>/etc/systemd/system/mosdns.service</code>的<code>[Service]</code>单元下增加两行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">User = mosdns
+</span></span><span class="line"><span class="cl">Group = mosdns
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同样的，<code>mosdns</code> 自身的命令行也支持自动创建 <code>/etc/systemd/system/mosdns.service</code> 的，但个人不是很建议直接使用 <code>mosdns</code> 本身所支持的命令来完成上述工作，以下仅供参考。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mosdns service install -d /var/lib/mosdns  <span class="c1"># 需要自行创建目录var/lib/mosdns</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者指定配置文件为/etc/mosdns/config.yaml</span>
+</span></span><span class="line"><span class="cl">mosdns service install -d /var/lib/mosdns -c /etc/mosdns/config.yaml <span class="c1"># 需要自行创建目录/etc/mosdns和/var/lib/mosdns</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置-1">配置</h3>
+<p><a class="link" href="https://github.com/sbwml/luci-app-mosdns"  target="_blank" rel="noopener"
+    >luci-app-mosdns</a> 提供的 <a class="link" href="https://github.com/sbwml/luci-app-mosdns/blob/v5/luci-app-mosdns/root/usr/share/mosdns/default.yaml"  target="_blank" rel="noopener"
+    >默认配置</a> 已经是一份非常好的配置了，我们稍微改改就能用了。考虑到我已经使用 <code>adguardhome</code> 来屏蔽广告，以及用来解析本地局域网内的私有IP了，所以在 <code>mosdns</code> 中我们这可舍弃这一部分配置内容。</p>
+<p>稍加修改后的配置文件见 <a class="link" href="mosdns.yaml" >mosdns配置</a>，在该文件中，会引用到以下文件。其中 <code>rule</code> 文件夹下的几份文件可以参考 <a class="link" href="https://github.com/sbwml/luci-app-mosdns/tree/v5/luci-app-mosdns/root/etc/mosdns/rule"  target="_blank" rel="noopener"
+    >luci-app-mosdns的配置</a>。至于 <code>geodata</code> 下面的文件，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务系统来定时生成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/var/lib/mosdns
+</span></span><span class="line"><span class="cl">├── geodata
+</span></span><span class="line"><span class="cl">│   ├── geoip_cn.txt                # 中国大陆IP
+</span></span><span class="line"><span class="cl">│   ├── geosite_cn.txt              # 中国大陆网址
+</span></span><span class="line"><span class="cl">│   └── geosite_geolocation-!cn.txt # 非中国大陆网址
+</span></span><span class="line"><span class="cl">└── rule
+</span></span><span class="line"><span class="cl">    ├── ddnslist.txt  # 你的DDNS主域名
+</span></span><span class="line"><span class="cl">    ├── greylist.txt  # 优先通过clash代理获取DNS解析的域名
+</span></span><span class="line"><span class="cl">    ├── local-ptr.txt # ptr记录
+</span></span><span class="line"><span class="cl">    └── whitelist.txt # 优先通过中国大陆DNS服务器获取解析的域名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在配置中，由于 <code>fallback</code> 这个后备 <code>tag</code> 的存在，也能保障clash在出现故障时，使用国内DNS服务器进行解析。这一点，再加上 <code>adguardhome</code> 本身也设置了后备节点，两层保障不因clash服务故障而影响DNS的解析。</p>
+<p>你也可以参考 <a class="link" href="https://irine-sistiana.gitbook.io/mosdns-wiki/mosdns-v5"  target="_blank" rel="noopener"
+    >mosdns wiki</a> 来进行更加定制化的配置。</p>
+<h3 id="启用服务-1">启用服务</h3>
+<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/mosdns.service</code> 为开启自动启动，并立即启动起来（这时上游clash尚未配置，你可以等后续配置完好以后再来启动它）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now mosdns.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后续如想查看日志，我们直接使用Debian自带的工具来查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">journalctl -efu mosdns.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想要重启：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl restart mosdns.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="clash">clash</h2>
+<p>由于clash不仅仅只涉及DNS服务，还涉及到代理、nftables、IP规则相关内容，我们将在接下来的单篇 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >本系列第（四）篇</a> 中详细详解。</p>
 
 </section>
 
