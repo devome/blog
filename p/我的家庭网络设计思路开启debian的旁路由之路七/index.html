@@ -239,6 +239,7 @@
     </li>
     <li><a href="#工具准备">工具准备</a></li>
     <li><a href="#自动脚本">自动脚本</a></li>
+    <li><a href="#最后">最后</a></li>
   </ol>
 </nav>
         </div>
@@ -319,7 +320,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 21 分钟
+                    阅读时长: 22 分钟
                 </time>
             </div>
         
@@ -953,19 +954,19 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="工具准备">工具准备</h2>
-<p>后面的脚本中还要用到两个工具。下载 <a class="link" href="v2dat" >v2dat</a> 保存到 <code>/usr/local/bin/v2dat</code>，下载 <a class="link" href="https://github.com/zhanhb/cidr-merger/releases/download/v1.1.3/cidr-merger-linux-amd64"  target="_blank" rel="noopener"
-    >cidr-merger</a> 保存到 <code>/usr/local/bin/cidr-merger</code>。</p>
+<p>后面的脚本中还要用到两个工具。下载 <a class="link" href="v2dat" >v2dat</a> 保存为 <code>/usr/local/bin/v2dat</code>，下载 <a class="link" href="https://github.com/zhanhb/cidr-merger/releases/download/v1.1.3/cidr-merger-linux-amd64"  target="_blank" rel="noopener"
+    >cidr-merger</a> 保存为 <code>/usr/local/bin/cidr-merger</code>。</p>
 <p>然后为它们增加可执行权限：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/v2dat /usr/local/bin/cidr-merger
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/<span class="o">{</span>v2dat,cidr-merger<span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="自动脚本">自动脚本</h2>
-<p>为了自动备份旧的订阅文件，防止出错，我们使用将 <code>/var/lib/clash/config.yaml</code> 软连接到 <code>/var/lib/clash/config/subscribes_name1.yaml</code>（ <code>subscribes_name1</code> 由你自行定义）。后续脚本中会自动删除超过30天的旧订阅。</p>
+<p>为了自动备份旧的订阅文件，防止出错，我们使用将 <code>/var/lib/clash/config.yaml</code> 软连接到 <code>/var/lib/clash/config/subscribes_name1.yaml</code>（ <code>subscribes_name1</code> 由你自行定义，请和下文的脚本中的命名保持一致）。后续脚本中会自动删除超过30天的旧订阅。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1258,11 +1259,26 @@
 </span><span class="lnt">262
 </span><span class="lnt">263
 </span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 订阅相关信息，subscribes_name和subscribes_url一一对应，如果想要合并多个订阅，使用 | 分隔，比如示例中第3个。同时这三个数组的元素个数必须一致。</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 订阅相关信息，subscribes_name和subscribes_url一一对应，如果想要合并多个订阅为一份，使用 | 分隔，比如示例中第3个。同时这两个数组的元素个数必须一致。</span>
 </span></span><span class="line"><span class="cl"><span class="nv">subscribes_name</span><span class="o">=(</span>
 </span></span><span class="line"><span class="cl">    subscribes_name1.yaml
 </span></span><span class="line"><span class="cl">    subscribes_name2.yaml
@@ -1273,22 +1289,17 @@
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://v3.clashsubscribes.xyz/api/v1/client/subscribe?token=abcdefjagadfqaer456&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://api.clashsubscribes.icu/clashudp/1111/125adfqeradf/|https://v3.clashsubscribes.xyz/api/v1/client/subscribe?token=abcdefjagadfqaer456&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">subscribes_tmpconfig</span><span class="o">=(</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;</span><span class="k">$(</span>mktemp /tmp/XXXXXX.yaml<span class="k">)</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;</span><span class="k">$(</span>mktemp /tmp/XXXXXX.yaml<span class="k">)</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;</span><span class="k">$(</span>mktemp /tmp/XXXXXX.yaml<span class="k">)</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## 订阅设置</span>
-</span></span><span class="line"><span class="cl"><span class="nv">subconverter_target</span><span class="o">=</span><span class="s2">&#34;clash&#34;</span>                             <span class="c1"># 转换目标</span>
-</span></span><span class="line"><span class="cl"><span class="nv">subconverter_url</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2:25500/sub&#34;</span>            <span class="c1"># subconverer的api接口</span>
-</span></span><span class="line"><span class="cl"><span class="nv">subconverter_nem</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2/neteasemusic.yaml&#34;</span>    <span class="c1"># 前面生成的neteasemusic.yaml</span>
-</span></span><span class="line"><span class="cl"><span class="nv">config_template_url</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2/convert_rule.ini&#34;</span>  <span class="c1"># 前面生成的convert_rule.ini</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_target</span><span class="o">=</span><span class="s2">&#34;clash&#34;</span>                           <span class="c1"># 转换目标</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_url</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2:25500/sub&#34;</span>          <span class="c1"># subconverer的api接口</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_nem</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2/neteasemusic.yaml&#34;</span>  <span class="c1"># 前面生成的neteasemusic.yaml的下载网址</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_rule</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2/convert_rule.ini&#34;</span>  <span class="c1"># 前面生成的convert_rule.ini的下载网址</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## 路径</span>
-</span></span><span class="line"><span class="cl"><span class="nv">dir_clash_work</span><span class="o">=</span><span class="s2">&#34;/var/lib/clash&#34;</span>              <span class="c1"># mosdns用到的geodata相关数据，在mosdns配置文件中定义的</span>
-</span></span><span class="line"><span class="cl"><span class="nv">dir_mosdns_geodata</span><span class="o">=</span><span class="s2">&#34;/var/lib/mosdns/geodata&#34;</span> <span class="c1"># mosdns用到的geodata相关数据，在mosdns配置文件中定义的</span>
-</span></span><span class="line"><span class="cl"><span class="nv">dir_xd</span><span class="o">=</span><span class="nv">$dir_clash_work</span>/ui/xd                 <span class="c1"># clash的XD面板相关文件</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dir_clash_work</span><span class="o">=</span><span class="s2">&#34;/var/lib/clash&#34;</span>              <span class="c1"># clash的工作路径</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dir_xd</span><span class="o">=</span><span class="nv">$dir_clash_work</span>/ui/xd                 <span class="c1"># clash的XD面板相关文件的保存目录</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dir_mosdns_geodata</span><span class="o">=</span><span class="s2">&#34;/var/lib/mosdns/geodata&#34;</span> <span class="c1"># mosdns用到的geodata相关数据的保存目录，在mosdns配置文件中定义的</span>
 </span></span><span class="line"><span class="cl"><span class="nv">list_nem</span><span class="o">=</span><span class="s2">&#34;/var/www/html/neteasemusic.list&#34;</span>   <span class="c1"># neteasemusic.list的路径</span>
 </span></span><span class="line"><span class="cl"><span class="nv">nem_address</span><span class="o">=</span>nem_address.nft                  <span class="c1"># 前文中在/var/lib/clash下的clash需要用到的网易云音乐IP地址，服务clash的nftables规则用</span>
 </span></span><span class="line"><span class="cl"><span class="nv">geoip4_cn</span><span class="o">=</span>geoip4_cn.nft                      <span class="c1"># 前文中在/var/lib/clash下的clash需要用到的中国大陆IP地址，服务clash的nftables规则用</span>
@@ -1311,7 +1322,7 @@
 </span></span><span class="line"><span class="cl"><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## 订阅相关信息</span>
-</span></span><span class="line"><span class="cl"><span class="nv">subscribes_current</span><span class="o">=</span><span class="k">$(</span>readlink config.yaml<span class="k">)</span> <span class="c1"># 当前所使用的配置，是个软连接</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subscribes_current</span><span class="o">=</span><span class="k">$(</span>readlink <span class="nv">$dir_clash_work</span>/config.yaml<span class="k">)</span> <span class="c1"># 当前所使用的配置，是个软连接</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## 是否重启的标记</span>
 </span></span><span class="line"><span class="cl"><span class="nv">mark_mosdns_restart</span><span class="o">=</span>no
@@ -1382,13 +1393,13 @@
 </span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 失败...&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 没有变化...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 无变化...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    <span class="k">done</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">## 解包geodata</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$mark_clash_restart</span> <span class="o">==</span> yes <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;geo数据有变化，开始重新生成相关文件...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;geo 数据有变化，开始重新生成相关文件...&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">## 为mosdns重新生成geoip_cn.txt，geosite_cn.txt，geosite_geolocation-!cn.txt</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;开始解包 geoip.dat 到临时目录 </span><span class="nv">$tmp_geodir</span><span class="s2">...&#34;</span> 
@@ -1413,6 +1424,8 @@
 </span></span><span class="line"><span class="cl">            cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$geoip4_cn</span> <span class="nv">$geoip4_cn</span>
 </span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$geoip4_cn</span><span class="s2"> 成功...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;geo 数据无变化，无需解包 </span><span class="si">${</span><span class="nv">geodata_txt</span><span class="p">[@]</span><span class="si">}</span><span class="s2">，无需更新 </span><span class="nv">$geoip4_cn</span><span class="s2"> ...&#34;</span> 
 </span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="c1">## 为clash重新生成nem_address.nft和neteasemusic.list</span>
@@ -1427,14 +1440,18 @@
 </span></span><span class="line"><span class="cl">            cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$nem_address</span> <span class="nv">$nem_address</span>
 </span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$nem_address</span><span class="s2"> 成功...&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="nv">mark_clash_restart</span><span class="o">=</span>yes <span class="c1"># 重启clash</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nem_address</span><span class="s2"> 无变化，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    <span class="k">fi</span>
-</span></span><span class="line"><span class="cl">    cp -f <span class="nv">$list_nem</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/neteasemusic.list&#34;</span>
-</span></span><span class="line"><span class="cl">    sed -i <span class="s2">&#34;/IP-CIDR/d&#34;</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/neteasemusic.list&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nemip</span><span class="s2">&#34;</span> <span class="p">|</span> cidr-merger -s <span class="p">|</span> perl -pe <span class="s2">&#34;{s|^|IP-CIDR,|; s|</span>$<span class="s2">|,no-resolve|}&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/neteasemusic.list&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/neteasemusic.list&#34;</span><span class="k">)</span> !<span class="o">=</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$list_nem</span><span class="s2">&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/neteasemusic.list&#34;</span> <span class="nv">$list_nem</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;更新数据 neteasemusic.list 成功...&#34;</span>
+</span></span><span class="line"><span class="cl">    cp -f <span class="nv">$list_nem</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    sed -i <span class="s2">&#34;/IP-CIDR/d&#34;</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nemip</span><span class="s2">&#34;</span> <span class="p">|</span> cidr-merger -s <span class="p">|</span> perl -pe <span class="s2">&#34;{s|^|IP-CIDR,|; s|</span>$<span class="s2">|,no-resolve|}&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span> !<span class="o">=</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$list_nem</span><span class="s2">&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span> <span class="nv">$list_nem</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2"> 成功...&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2"> 无变化，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
@@ -1455,20 +1472,35 @@
 </span></span><span class="line"><span class="cl">update_subscribes<span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">## 更新订阅</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">local</span> i sha256sum_old sha256sum_new url config
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">dir_tmpsubscribes</span><span class="o">=</span>/tmp/clash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> ! -d <span class="nv">$dir_tmpsubscribes</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        mkdir <span class="nv">$dir_tmpsubscribes</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span> i&lt;<span class="si">${#</span><span class="nv">subscribes_name</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;开始更新订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> ...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="nv">url</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subscribes_url</span><span class="p">[i]</span><span class="si">}</span><span class="s2">|</span><span class="si">${</span><span class="nv">subconverter_nem</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> urlencode<span class="k">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">config</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="si">${</span><span class="nv">config_template_url</span><span class="si">}</span> <span class="p">|</span> urlencode<span class="k">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> wget -q -O <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subscribes_tmpconfig</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subconverter_url</span><span class="si">}</span><span class="s2">?target=</span><span class="si">${</span><span class="nv">subconverter_target</span><span class="si">}</span><span class="s2">&amp;url=</span><span class="si">${</span><span class="nv">url</span><span class="si">}</span><span class="s2">&amp;config=</span><span class="si">${</span><span class="nv">config</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">config</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="si">${</span><span class="nv">subconverter_rule</span><span class="si">}</span> <span class="p">|</span> urlencode<span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">subscribes_tmpconfig</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$dir_tmpsubscribes</span><span class="s2">/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> wget -q -O <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subconverter_url</span><span class="si">}</span><span class="s2">?target=</span><span class="si">${</span><span class="nv">subconverter_target</span><span class="si">}</span><span class="s2">&amp;url=</span><span class="si">${</span><span class="nv">url</span><span class="si">}</span><span class="s2">&amp;config=</span><span class="si">${</span><span class="nv">config</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">            <span class="nv">sha256sum_old</span><span class="o">=</span><span class="k">$(</span>gen_sha256sum <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">            <span class="nv">sha256sum_new</span><span class="o">=</span><span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subscribes_tmpconfig</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>diff_detect <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subscribes_tmpconfig</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span> -gt <span class="m">2</span> <span class="o">&amp;&amp;</span> <span class="nv">$sha256sum_old</span> !<span class="o">=</span> <span class="nv">$sha256sum_new</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> clash -t -d . -f <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subscribes_tmpconfig</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">                cp -a <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">.</span><span class="k">$(</span>date +<span class="s1">&#39;%s&#39;</span><span class="k">)</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">                cp -f <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subscribes_tmpconfig</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;更新订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 成功...&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="nv">$subscribes_current</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">                    <span class="nv">mark_clash_restart</span><span class="o">=</span>yes <span class="c1"># 重启clash</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sha256sum_new</span><span class="o">=</span><span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>diff_detect <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span><span class="k">)</span> -gt <span class="m">2</span> <span class="o">&amp;&amp;</span> <span class="nv">$sha256sum_old</span> !<span class="o">=</span> <span class="nv">$sha256sum_new</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> clash -t -d . -f <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    cp -a <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">.</span><span class="k">$(</span>date +<span class="s1">&#39;%s&#39;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                    cp -f <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">echo</span> <span class="s2">&#34;更新订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 成功...&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="nv">$subscribes_current</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                        <span class="nv">mark_clash_restart</span><span class="o">=</span>yes <span class="c1"># 重启clash</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">echo</span> <span class="s2">&#34;订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 校验失败，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">                <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 无变化，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 下载失败...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    <span class="k">done</span>
 </span></span><span class="line"><span class="cl">
@@ -1486,6 +1518,7 @@
 </span></span><span class="line"><span class="cl">        mkdir -p <span class="si">${</span><span class="nv">dir_xd</span><span class="si">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">cd</span> <span class="si">${</span><span class="nv">dir_xd</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;开始更新 clash 面板 XD ...&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -n <span class="k">$(</span>ls<span class="k">)</span> <span class="o">&amp;&amp;</span> ! -d .git <span class="o">]]</span> <span class="o">||</span> <span class="o">[[</span> -z <span class="k">$(</span>ls<span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">        rm -rf * .* <span class="p">&amp;</span>&gt;/dev/null
 </span></span><span class="line"><span class="cl">        git clone -b gh-pages --depth <span class="m">1</span> https://github.com/MetaCubeX/metacubexd .
@@ -1510,9 +1543,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## 中止时删除临时文件</span>
 </span></span><span class="line"><span class="cl">finish<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span> i&lt;<span class="si">${#</span><span class="nv">subscribes_tmpconfig</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
-</span></span><span class="line"><span class="cl">        rm <span class="si">${</span><span class="nv">subscribes_tmpconfig</span><span class="p">[i]</span><span class="si">}</span> <span class="p">&amp;</span>&gt;/dev/null
-</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl">    rm -rf /tmp/<span class="o">{</span>clash,geodata<span class="o">}</span> <span class="p">&amp;</span>&gt;/dev/null
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## 调用和函数</span>
@@ -1526,7 +1557,28 @@
 </span></span><span class="line"><span class="cl">main <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><p>为其增加可执行权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/update-config.sh
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>然后运行一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">update-config.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果有报错，请在报错前行添加 <code>set +x</code>，在后行添加 <code>set -x</code> 后，再次运行，根据输出信息自行排故。这需要你有一点点的 <code>shell</code> 知识。</p>
+<h2 id="最后">最后</h2>
+<p>脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 <a class="link" href="../../categories/gateway/" >本系列</a> 接下来的文章中，将继续配置其他服务。</p>
+
 </section>
 
 

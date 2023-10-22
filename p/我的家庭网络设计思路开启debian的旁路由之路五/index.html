@@ -925,7 +925,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">DIRECT</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>rules:</code> 部分新增（各地IP可能是不一样的，后续用定时任务来自动检测并更新）：</p>
+</div><p><code>rules:</code> 部分新增（各地IP可能是不一样的，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成它）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -983,7 +983,7 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="启用服务">启用服务</h3>
-<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/unblocknem.service</code> 为开启自动启动，并立即启动起来。但这个时候由于 <code>clash</code> 还缺少几份 <code>nft</code> 文件，并没有启动起来，所以这个时候 <code>unblocknem</code> 服务还不可用。</p>
+<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/unblocknem.service</code> 为开启自动启动，并立即启动起来。但这个时候由于 <code>clash</code> 还缺少几份 <code>nft</code> 文件，并没有启动起来，所以这个时候 <code>unblocknem</code> 服务还不可用。如果启动好后，<code>unblocknem</code> 将会监听在 <code>8080</code> 和 <code>8081</code> 端口上。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
