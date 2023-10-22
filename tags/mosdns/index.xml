@@ -642,7 +642,22 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x /usr/local/bin/&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;v2dat,cidr-merger&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;自动脚本&#34;&gt;自动脚本&lt;/h2&gt;
+&lt;/div&gt;&lt;p&gt;感谢以下仓库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/urlesistiana/v2dat&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/urlesistiana/v2dat&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/zhanhb/cidr-merger&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/zhanhb/cidr-merger&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/sbwml/luci-app-mosdns&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/sbwml/luci-app-mosdns&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;自动脚本&#34;&gt;自动脚本&lt;/h2&gt;
 &lt;p&gt;为了自动备份旧的订阅文件，防止出错，我们使用将 &lt;code&gt;/var/lib/clash/config.yaml&lt;/code&gt; 软连接到 &lt;code&gt;/var/lib/clash/config/subscribes_name1.yaml&lt;/code&gt;（ &lt;code&gt;subscribes_name1&lt;/code&gt; 由你自行定义，请和下文的脚本中的命名保持一致）。后续脚本中会自动删除超过30天的旧订阅。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1255,7 +1270,16 @@
 &lt;/div&gt;&lt;p&gt;如果有报错，请在报错前行添加 &lt;code&gt;set +x&lt;/code&gt;，在后行添加 &lt;code&gt;set -x&lt;/code&gt; 后，再次运行，根据输出信息自行排故。这需要你有一点点的 &lt;code&gt;shell&lt;/code&gt; 知识。&lt;/p&gt;
 &lt;h2 id=&#34;最后&#34;&gt;最后&lt;/h2&gt;
 &lt;p&gt;脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;本系列&lt;/a&gt; 接下来的文章中，将继续配置其他服务。&lt;/p&gt;
-</description>
+&lt;p&gt;建议将 &lt;code&gt;update-config.sh&lt;/code&gt; 加入定时任务：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;19 1 * * * update-config.sh &amp;gt;/dev/null&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; crontab -
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（四）</title>

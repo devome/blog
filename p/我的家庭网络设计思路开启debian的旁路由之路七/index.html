@@ -965,7 +965,22 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/<span class="o">{</span>v2dat,cidr-merger<span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="自动脚本">自动脚本</h2>
+</div><p>感谢以下仓库：</p>
+<ul>
+<li>
+<p><a class="link" href="https://github.com/urlesistiana/v2dat"  target="_blank" rel="noopener"
+    >https://github.com/urlesistiana/v2dat</a></p>
+</li>
+<li>
+<p><a class="link" href="https://github.com/zhanhb/cidr-merger"  target="_blank" rel="noopener"
+    >https://github.com/zhanhb/cidr-merger</a></p>
+</li>
+<li>
+<p><a class="link" href="https://github.com/sbwml/luci-app-mosdns"  target="_blank" rel="noopener"
+    >https://github.com/sbwml/luci-app-mosdns</a></p>
+</li>
+</ul>
+<h2 id="自动脚本">自动脚本</h2>
 <p>为了自动备份旧的订阅文件，防止出错，我们使用将 <code>/var/lib/clash/config.yaml</code> 软连接到 <code>/var/lib/clash/config/subscribes_name1.yaml</code>（ <code>subscribes_name1</code> 由你自行定义，请和下文的脚本中的命名保持一致）。后续脚本中会自动删除超过30天的旧订阅。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1578,7 +1593,16 @@
 </div><p>如果有报错，请在报错前行添加 <code>set +x</code>，在后行添加 <code>set -x</code> 后，再次运行，根据输出信息自行排故。这需要你有一点点的 <code>shell</code> 知识。</p>
 <h2 id="最后">最后</h2>
 <p>脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 <a class="link" href="../../categories/gateway/" >本系列</a> 接下来的文章中，将继续配置其他服务。</p>
-
+<p>建议将 <code>update-config.sh</code> 加入定时任务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;19 1 * * * update-config.sh &gt;/dev/null&#34;</span> <span class="p">|</span> crontab -
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -1720,23 +1744,23 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.863cfb7ee1ade69851b0f26f7556a9ba_hu4d3bb5febb14b87d984ab69f868ff292_86542_250x150_fill_q75_box_smart1.jpg" 
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.ab3c360faeeff41c3faa05a6a34d1643_hu51d4af1eeefa67a1188add7d16f39c36_65107_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）"
                         
-                        data-hash="md5-hjz7fuGt5phRsPJvdVapug==">
+                        data-hash="md5-qzw2D67v9Bw/qgWmo00WQw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（一）</h2>
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（八）</h2>
         </div>
     </a>
 </article>

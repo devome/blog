@@ -10,7 +10,7 @@
 <meta property='og:description' content='本篇主要讲解在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。'>
 <meta property='og:url' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:published_time' content='2023-10-21T13:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-21T13:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-21T13:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-21T13:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（三）">
 <meta name="twitter:description" content="本篇主要讲解在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
@@ -881,6 +881,8 @@
         
             <a href="/blog/tags/clash/">clash</a>
         
+            <a href="/blog/tags/shell/">shell</a>
+        
     </section>
 
 
@@ -997,23 +999,23 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.863cfb7ee1ade69851b0f26f7556a9ba_hu4d3bb5febb14b87d984ab69f868ff292_86542_250x150_fill_q75_box_smart1.jpg" 
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.ab3c360faeeff41c3faa05a6a34d1643_hu51d4af1eeefa67a1188add7d16f39c36_65107_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）"
                         
-                        data-hash="md5-hjz7fuGt5phRsPJvdVapug==">
+                        data-hash="md5-qzw2D67v9Bw/qgWmo00WQw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（一）</h2>
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（八）</h2>
         </div>
     </a>
 </article>
