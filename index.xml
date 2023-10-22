@@ -6,7 +6,33 @@
         <description>Recent content on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 22 Oct 2023 06:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 22 Oct 2023 07:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>我的家庭网络设计思路，开启debian的旁路由之路（十一）</title>
+        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/</link>
+        <pubDate>Sun, 22 Oct 2023 07:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/</guid>
+        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" /&gt;&lt;p&gt;安装完这一系列内容，实际上内存使用并没有增加多少，才 &lt;code&gt;340MiB&lt;/code&gt; 左右。注意缓存 &lt;code&gt;cache&lt;/code&gt; 是可以调整参数降低的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png&#34;
+	width=&#34;1116&#34;
+	height=&#34;621&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu9c8001f1215fd2e018648aad78db48e8_176466_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu9c8001f1215fd2e018648aad78db48e8_176466_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;内存使用也才340MiB&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;179&#34;
+		data-flex-basis=&#34;431px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果想要进一步降低内存使用，可以自行动态编译前面所使用到的全部软件包，再进一步使用 &lt;a class=&#34;link&#34; href=&#34;https://github.com/upx/upx&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;upx&lt;/a&gt; 来深度压缩，这样处理后能让内存消耗再小一些。&lt;/p&gt;
+&lt;p&gt;使用Debian作为旁路由的其他的一些优势，等后面有时间再总结吧。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（十）</title>
         <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/</link>
         <pubDate>Sun, 22 Oct 2023 06:00:00 +0000</pubDate>
