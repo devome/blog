@@ -12,7 +12,7 @@
         <pubDate>Sun, 22 Oct 2023 07:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" /&gt;&lt;p&gt;安装完这一系列内容，实际上内存使用并没有增加多少，才 &lt;code&gt;340MiB&lt;/code&gt; 左右。注意缓存 &lt;code&gt;cache&lt;/code&gt; 是可以调整参数降低的。&lt;/p&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" /&gt;&lt;p&gt;安装完这一系列内容，实际上内存使用并没有增加多少，才 &lt;code&gt;330MiB&lt;/code&gt; 左右。注意 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 是可以调整参数降低的，这个占用不算真正的占用。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png&#34;
 	width=&#34;1116&#34;
 	height=&#34;621&#34;
