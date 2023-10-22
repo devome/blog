@@ -1414,7 +1414,7 @@
         <pubDate>Sun, 22 Oct 2023 01:00:00 +0000</pubDate>
         
         <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;我们继续趁热打铁，将UnblockNeteaseMusic也一起部署了，因为它也要用到 &lt;code&gt;nftables&lt;/code&gt; 来实现。&lt;/p&gt;
 &lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;unblockneteasemusic&lt;/code&gt; 这个名称太长了，我们把它更名为 &lt;code&gt;unblocknem&lt;/code&gt;。我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
@@ -1963,6 +1963,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;一拆为三后，新的 &lt;code&gt;divert&lt;/code&gt; 链的优先级为 &lt;code&gt;mangle&lt;/code&gt; （-150），新的&lt;code&gt;neteasemusic&lt;/code&gt; 链的优先级为 &lt;code&gt;dstnat&lt;/code&gt; (-100)，而新的 &lt;code&gt;prerouting&lt;/code&gt; 链则仍是 &lt;code&gt;filter&lt;/code&gt; （0），数值越小，优先级越高，所以 &lt;code&gt;ip daddr @nem_address_set goto clash_tproxy&lt;/code&gt; 这条规则仍然早于 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 执行。这样也可以让网易云音乐IP在被直接接收前就转到透明代理去。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;unblocknem&lt;/code&gt; 工作在应用层，&lt;code&gt;clash&lt;/code&gt; 转给它后，它出来的流量会经由 &lt;code&gt;output&lt;/code&gt; 链中的 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 直接出去，不会形成环路（&lt;code&gt;output&lt;/code&gt; 链并没有再劫持这部分流量）。这也就意味着上述规则只能代理局域网中除旁路由以外其他设备（以旁路由为网关的）的网易云音乐流量，不能代理旁路由自己的网易云音乐流量。&lt;/p&gt;
 &lt;h3 id=&#34;调整-clash-配置文件&#34;&gt;调整 clash 配置文件&lt;/h3&gt;
 &lt;p&gt;我们后续将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动在 &lt;code&gt;clash&lt;/code&gt; 的配置中自动插入下面这些内容。&lt;/p&gt;
 &lt;p&gt;在 &lt;code&gt;clash&lt;/code&gt; 的配置文件中 &lt;code&gt;proxies:&lt;/code&gt; 部分新增：&lt;/p&gt;
@@ -2158,6 +2159,39 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在启动命令行后面添加 &lt;code&gt; --ignore-certificate-errors&lt;/code&gt;，然后启动即可。&lt;/p&gt;
+&lt;h2 id=&#34;最后&#34;&gt;最后&lt;/h2&gt;
+&lt;p&gt;打开 &lt;code&gt;clash&lt;/code&gt; 的 &lt;code&gt;webui&lt;/code&gt;：&lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:9090/ui/xd/#/proxies&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://10.0.0.2:9090/ui/xd/#/proxies&lt;/a&gt; ，选择 &lt;code&gt;网易音乐&lt;/code&gt; 为 &lt;code&gt;网易代理&lt;/code&gt;；你再打开网易云音乐客户端后，在 &lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:9090/ui/xd/#/conns&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://10.0.0.2:9090/ui/xd/#/conns&lt;/a&gt; 就能看到许多连接都接管到 &lt;code&gt;UnblockNeteaseMusic&lt;/code&gt; 了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png&#34;
+	width=&#34;1117&#34;
+	height=&#34;890&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hu5fa54466e5deb1977b7df409cbf94323_216891_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hu5fa54466e5deb1977b7df409cbf94323_216891_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;clash将网易云音乐的流量透明代理到了unblocknem&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;125&#34;
+		data-flex-basis=&#34;301px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;从 &lt;code&gt;unblocknem.service&lt;/code&gt; 的日志中也能看到它的作用，这些灰色歌曲都被接管了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3.png&#34;
+	width=&#34;1151&#34;
+	height=&#34;659&#34;
+	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;unblocknem的日志&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;174&#34;
+		data-flex-basis=&#34;419px&#34;
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
