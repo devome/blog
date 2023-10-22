@@ -6,7 +6,614 @@
         <description>Recent content in Posts on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 22 Oct 2023 05:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 22 Oct 2023 06:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>我的家庭网络设计思路，开启debian的旁路由之路（十）</title>
+        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/</link>
+        <pubDate>Sun, 22 Oct 2023 06:00:00 +0000</pubDate>
+        
+        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/</guid>
+        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;这已经是 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;这个系列&lt;/a&gt; 的第十篇了，我们将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。&lt;/p&gt;
+&lt;h2 id=&#34;脚本&#34;&gt;脚本&lt;/h2&gt;
+&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好各种必要的软件包了。新建 &lt;code&gt;/usr/local/bin/update-pkgs.sh&lt;/code&gt; 内容如下。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 80
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 81
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 82
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 83
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 84
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 85
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 86
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 87
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 88
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 89
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 90
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 91
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 92
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 93
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 94
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 95
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 96
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 97
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 98
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 99
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;100
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;101
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;102
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;103
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;104
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;105
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;106
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;107
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;108
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;109
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;110
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;111
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;112
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;113
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;114
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;115
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;116
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;117
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;118
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;119
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;120
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;121
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;122
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;123
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;124
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;125
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;126
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;127
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;128
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;129
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;130
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;131
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;132
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;133
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;134
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;135
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;136
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;137
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;138
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;139
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;140
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;141
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;142
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;143
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;144
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;145
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;146
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;147
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;148
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;149
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;150
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;151
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;152
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;153
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;154
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;155
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;156
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;157
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;158
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;159
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;160
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/usr/bin/env bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;pkgs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    adguardhome
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    cidr_merger
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    clash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    mosdns
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    nali
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    subconverter
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    trzsz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    unblocknem
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A adguardhome
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adguardhome&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;adguardhome&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adguardhome&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;AdguardTeam/AdGuardHome&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adguardhome&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;AdGuardHome_linux_amd64.tar.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adguardhome&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --strip-components 2 --directory=.&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adguardhome&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps AdGuardHome /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adguardhome&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adguardhome&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} --version 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A cidr_merger
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;cidr-merger&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;zhanhb/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-linux-amd64&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps &amp;#34;${dlname}&amp;#34; /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;&amp;amp;1 | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A clash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;clash&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;MetaCubeX/Clash.Meta&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}.meta-linux-amd64-v${remote_ver}.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gzip -d $dlname&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps clash.meta-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34; | head -1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A mosdns
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mosdns&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;mosdns&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mosdns&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;IrineSistiana/$cmd&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mosdns&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-linux-amd64.zip&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mosdns&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;unzip -oqq $dlname -d .&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mosdns&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps ${cmd} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mosdns&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mosdns&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} version 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A nali
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;nali&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;zu1k/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-linux-amd64-v${remote_ver}.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gzip -d $dlname&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps ${cmd}-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A subconverter
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;subconverter&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;subconverter&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;subconverter&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tindy2013/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;subconverter&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}_linux64.tar.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;subconverter&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --strip-components 1 --directory=.&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;subconverter&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps ${cmd} /usr/local/bin/${cmd}; rm -rf $cmd $dlname; cp -afr * /var/lib/$cmd/&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;subconverter&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;subconverter&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;curl -sS http://127.0.0.1:25500/version 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A trzsz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;trzsz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}/${cmd}-go&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}_${remote_ver}_linux_x86_64.tar.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --strip-components 1 --directory=.&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps trz /usr/local/bin/trz; install -ps tsz /usr/local/bin/tsz; install -ps $cmd /usr/local/bin/$cmd&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A unblocknem
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unblocknem&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;unblocknem&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unblocknem&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;UnblockNeteaseMusic/server&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unblocknem&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;unblockneteasemusic-linux-x64&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unblocknem&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -p $dlname /usr/local/bin/$cmd&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unblocknem&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unblocknem&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 安装软件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;update_pkgs&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; pkg in &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;pkgs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[@]&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;cmd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;reponame_ori&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;reponame&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$reponame_ori&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;dlname_ori&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;dlurl_ori&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlurl&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;decomp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;install&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;install_post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;local_ver_ori&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;======== 更新 &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; ========&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;workdir&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/software/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$pkg&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; ! -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; mkdir -p &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        rm -rf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;/* &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;remote_ver&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl -H &lt;span class=&#34;s2&#34;&gt;&amp;#34;Authorization: Bearer &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$GITHUB_ACTION_DOWNLOAD&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; -sS https://api.github.com/repos/&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;reponame&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;/releases/latest 2&amp;gt;/dev/null &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; jq -r .tag_name &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sed &lt;span class=&#34;s1&#34;&gt;&amp;#39;s|v||&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v &lt;span class=&#34;s2&#34;&gt;&amp;#34;null&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;local_ver&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$local_ver_ori&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; -n &lt;span class=&#34;nv&#34;&gt;$remote_ver&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$remote_ver&lt;/span&gt; !&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$local_ver&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;dlname&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$dlname_ori&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;dlurl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$dlurl_ori&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; -z &lt;span class=&#34;nv&#34;&gt;$dlurl&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nv&#34;&gt;dlurl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://github.com/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;reponame&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/releases/download/v&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;remote_ver&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;dlname&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; -n &lt;span class=&#34;nv&#34;&gt;$local_ver&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 即将从 &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$local_ver&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 升级至 &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$remote_ver&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; ...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 未检测到本地版本，即将安装 &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$remote_ver&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 版本...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 开始下载：&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$dlurl&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; ...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 临时保存至：&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;dlname&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; ...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; -n &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 下载进度：&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; wget -q --progress&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bar:dot --show-progress -O &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;dlname&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$dlurl&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; -n &lt;span class=&#34;nv&#34;&gt;$decomp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 临时解压至：&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; ...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$decomp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 执行安装命令：&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$install&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; ...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$install&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; -n &lt;span class=&#34;nv&#34;&gt;$install_post&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 执行安装后钩子：&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$install_post&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; ...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; ! &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$install_post&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                            &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 安装后钩子钩子执行失败，请检查命令是否正确...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 安装失败，请检查命令是否正确...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 下载失败：&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$dlurl&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;elif&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; -n &lt;span class=&#34;nv&#34;&gt;$remote_ver&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$remote_ver&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$local_ver&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 本地版本已经是最新版本 &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$remote_ver&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; ，无需更新...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 未获取到最新版本，无法更新，请检查网络原因...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; -n &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;ls &lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;gt;&amp;gt; 删除临时文件：&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/* ...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            rm -rf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$workdir&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;/* &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 中止时删除临时文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;finish&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    rm -rf /tmp/software &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 执行主函数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;main&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;trap&lt;/span&gt; finish EXIT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; -n &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;pkgs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=(&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    update_pkgs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;main &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;为它增加可执行权限：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x /usr/local/bin/update-pkgs.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;update-pkgs.sh            &lt;span class=&#34;c1&#34;&gt;# 更新或安装 pkgs 数组中的全部软件包&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;update-pkgs.sh clash nali &lt;span class=&#34;c1&#34;&gt;# 指定更新或安装所输入的软件包&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;建议还是不要将其加入定时任务来自动更新。&lt;/p&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;全部的软件包需要定义在数组 &lt;code&gt;pkgs&lt;/code&gt; 中，并以每个软件包定义一组数组。数组中的键名（不能使用 &lt;code&gt;-&lt;/code&gt; ）&lt;strong&gt;依次&lt;/strong&gt;含义为：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cmd&lt;/code&gt;：如果后面的变量要用到，就需要定义，软件包的命令名。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;reponame&lt;/code&gt;：Github上的仓库名。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;remote_ver&lt;/code&gt;：这个键无需你来定义，而是由脚本根据 &lt;code&gt;reponame&lt;/code&gt; 去获取的Github上的最新稳定版本号。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dlname&lt;/code&gt;：要下载的软件包在Github上Release的名称，可引用前面的键。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dlurl&lt;/code&gt;：如果不定义这个键，就采用 &lt;code&gt;https://github.com/${reponame}/releases/download/v${remote_ver}/${dlname}&lt;/code&gt;，如果定义了就用所定义的。可引用前面的键。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;decomp&lt;/code&gt;：如果下载的文件是压缩包，如何解压它，可以引用前面的变量，如不需要解压可不定义。可引用前面的键。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;install&lt;/code&gt;：如何安装软件包。可引用前面的键。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;intall_post&lt;/code&gt;：安装后如果需要重启什么服务，可以定义它如何重启。可不定义。可引用前面的键。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;local_ver&lt;/code&gt;：如何获取本地软件包的版本号。可引用前面的键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;数组中和键的值如果需要使用变量引用，如果最外层用单引用，在 &lt;code&gt;$&lt;/code&gt; 前面可转义，如果最外层要用双引号，在 &lt;code&gt;$&lt;/code&gt; 前面请添加 &lt;code&gt;\&lt;/code&gt; 转义。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果后面的引用了前面的，那么前面的必须定义。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其他Github上的软件包，你可以用同样的方式定义在脚本中，以实现自动安装或更新。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;p&gt;比如我还用到另外一组软件包，就是这样子的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 80
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 81
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 82
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 83
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 84
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 85
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 86
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 87
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 88
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 89
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 90
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 91
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 92
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 93
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 94
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 95
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 96
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 97
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 98
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 99
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;100
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;101
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;102
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;103
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;104
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;105
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;106
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;107
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;pkgs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    aliyunpan
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    baidupcs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    cidr_merger
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ctop
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    gogs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    influx_cli
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    nali
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    realtek_r8125_dkms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    tokei
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    timemachine
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    trzsz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A aliyunpan
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;aliyunpan&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;aliyunpan&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;aliyunpan&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tickstep/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;aliyunpan&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-v${remote_ver}-linux-amd64.zip&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;aliyunpan&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;unzip -oqq ${dlname} -d .&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;aliyunpan&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps &amp;#34;${cmd}-v${remote_ver}-linux-amd64/${cmd}&amp;#34; /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;aliyunpan&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A baidupcs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;baidupcs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baidupcs&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;baidupcs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;qjfoidnh/BaiduPCS-Go&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;baidupcs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;BaiduPCS-Go-v${remote_ver}-linux-amd64.zip&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;baidupcs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;unzip -oqq ${dlname} -d .&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;baidupcs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps &amp;#34;${cmd}-v${remote_ver}-linux-amd64/BaiduPCS-Go&amp;#34; /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;baidupcs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A cidr_merger
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;cidr-merger&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;zhanhb/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-linux-amd64&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps &amp;#34;${dlname}&amp;#34; /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cidr_merger&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;&amp;amp;1 | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A ctop
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ctop&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;ctop&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ctop&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;bcicen/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ctop&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-${remote_ver}-linux-amd64&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ctop&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps &amp;#34;${dlname}&amp;#34; /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ctop&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34; | head -1&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A evsieve
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;evsieve&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;KarsMulder/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlurl&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;https://raw.githubusercontent.com/devome/files/master/${cmd}/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps &amp;#34;${dlname}&amp;#34; /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} --version 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A gogs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gogs&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}_${remote_ver}_linux_amd64.tar.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --strip-components 1 --directory=.&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps ${cmd} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A influx_cli
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;influx_cli&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;influxdata/influx-cli&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;influx_cli&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;influxdb2-client-${remote_ver}-amd64.deb&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;influx_cli&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlurl&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;https://dl.influxdata.com/influxdb/releases/${dlname}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;influx_cli&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo dpkg -i &amp;#34;${dlname}&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;influx_cli&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;LC_ALL=C apt list --installed 2&amp;gt;/dev/null | grep -P &amp;#34;influxdb2-cli/.+installed,local&amp;#34; | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A nali
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;nali&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;zu1k/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-linux-amd64-v${remote_ver}.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gzip -d $dlname&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps ${cmd}-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nali&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A realtek_r8125_dkms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;realtek_r8125_dkms&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;devome/realtek-r8125-dkms&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;realtek_r8125_dkms&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;realtek-r8125-dkms_${remote_ver}_amd64.deb&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;realtek_r8125_dkms&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo dpkg -i &amp;#34;${dlname}&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;realtek_r8125_dkms&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;LC_ALL=C apt list --installed 2&amp;gt;/dev/null | grep -P &amp;#39;realtek-r8125-dkms/.+installed,local&amp;#39; | awk &amp;#39;{print \$2}&amp;#39;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A tokei
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tokei&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tokei&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tokei&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;XAMPPRocky/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tokei&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-x86_64-unknown-linux-gnu.tar.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tokei&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --directory=.&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tokei&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps ${cmd} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tokei&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;\${cmd} -V 2&amp;gt;/dev/null | awk &amp;#39;{print \$2}&amp;#39;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A timemachine
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timemachine&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;timemachine&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timemachine&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;cytopia/linux-${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timemachine&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;v${remote_ver}.tar.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timemachine&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlurl&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;https://github.com/${reponame}/archive/refs/tags/${dlname}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timemachine&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --strip-components 1 --directory=.&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timemachine&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo make install&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timemachine&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -V 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A trzsz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;trzsz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}/${cmd}-go&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}_${remote_ver}_linux_x86_64.tar.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --strip-components 1 --directory=.&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;sudo install -ps trz /usr/local/bin/trz; sudo install tsz -ps /usr/local/bin/tsz; sudo install -ps $cmd /usr/local/bin/$cmd&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（九）</title>
         <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/</link>
         <pubDate>Sun, 22 Oct 2023 05:00:00 +0000</pubDate>

@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。'>
+<title>我的家庭网络设计思路，开启debian的旁路由之路（十）</title>
+
+<link rel='canonical' href='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/'>
+
+<link rel="stylesheet" href="/blog/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（十）'>
+<meta property='og:description' content='本篇主要将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。'>
+<meta property='og:url' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T06:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-22T06:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.png' />
+<meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（十）">
+<meta name="twitter:description" content="本篇主要将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.png' />
+    <link rel="shortcut icon" href="/blog/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/blog">
+                
+                    
+                    
+                    
+                        
+                        <img src="/blog/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/blog">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#脚本">脚本</a></li>
+    <li><a href="#使用">使用</a></li>
+    <li><a href="#说明">说明</a></li>
+    <li><a href="#其他">其他</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_800x0_resize_box_3.png"
+                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_800x0_resize_box_3.png 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="480" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/blog/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+                软路由
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">我的家庭网络设计思路，开启debian的旁路由之路（十）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            本篇主要将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p>这已经是 <a class="link" href="../../categories/gateway/" >这个系列</a> 的第十篇了，我们将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。</p>
+<h2 id="脚本">脚本</h2>
+<p>我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好各种必要的软件包了。新建 <code>/usr/local/bin/update-pkgs.sh</code> 内容如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">pkgs</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    adguardhome
+</span></span><span class="line"><span class="cl">    cidr_merger
+</span></span><span class="line"><span class="cl">    clash
+</span></span><span class="line"><span class="cl">    mosdns
+</span></span><span class="line"><span class="cl">    nali
+</span></span><span class="line"><span class="cl">    subconverter
+</span></span><span class="line"><span class="cl">    trzsz
+</span></span><span class="line"><span class="cl">    unblocknem
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A adguardhome
+</span></span><span class="line"><span class="cl">adguardhome<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;adguardhome&#39;</span>
+</span></span><span class="line"><span class="cl">adguardhome<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;AdguardTeam/AdGuardHome&#39;</span>
+</span></span><span class="line"><span class="cl">adguardhome<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;AdGuardHome_linux_amd64.tar.gz&#39;</span>
+</span></span><span class="line"><span class="cl">adguardhome<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 2 --directory=.&#39;</span>
+</span></span><span class="line"><span class="cl">adguardhome<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps AdGuardHome /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">adguardhome<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
+</span></span><span class="line"><span class="cl">adguardhome<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} --version 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A cidr_merger
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;cidr-merger&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;zhanhb/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-linux-amd64&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;&amp;1 | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A clash
+</span></span><span class="line"><span class="cl">clash<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;clash&#39;</span>
+</span></span><span class="line"><span class="cl">clash<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;MetaCubeX/Clash.Meta&#39;</span>
+</span></span><span class="line"><span class="cl">clash<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}.meta-linux-amd64-v${remote_ver}.gz&#39;</span>
+</span></span><span class="line"><span class="cl">clash<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;gzip -d $dlname&#39;</span>
+</span></span><span class="line"><span class="cl">clash<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps clash.meta-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">clash<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
+</span></span><span class="line"><span class="cl">clash<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34; | head -1&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A mosdns
+</span></span><span class="line"><span class="cl">mosdns<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;mosdns&#39;</span>
+</span></span><span class="line"><span class="cl">mosdns<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;IrineSistiana/$cmd&#39;</span>
+</span></span><span class="line"><span class="cl">mosdns<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-linux-amd64.zip&#39;</span>
+</span></span><span class="line"><span class="cl">mosdns<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;unzip -oqq $dlname -d .&#39;</span>
+</span></span><span class="line"><span class="cl">mosdns<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">mosdns<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
+</span></span><span class="line"><span class="cl">mosdns<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} version 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A nali
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;nali&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;zu1k/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-linux-amd64-v${remote_ver}.gz&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;gzip -d $dlname&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd}-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A subconverter
+</span></span><span class="line"><span class="cl">subconverter<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;subconverter&#39;</span>
+</span></span><span class="line"><span class="cl">subconverter<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;tindy2013/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">subconverter<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}_linux64.tar.gz&#39;</span>
+</span></span><span class="line"><span class="cl">subconverter<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
+</span></span><span class="line"><span class="cl">subconverter<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd} /usr/local/bin/${cmd}; rm -rf $cmd $dlname; cp -afr * /var/lib/$cmd/&#39;</span>
+</span></span><span class="line"><span class="cl">subconverter<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
+</span></span><span class="line"><span class="cl">subconverter<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;curl -sS http://127.0.0.1:25500/version 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A trzsz
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;trzsz&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;${cmd}/${cmd}-go&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}_${remote_ver}_linux_x86_64.tar.gz&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps trz /usr/local/bin/trz; install -ps tsz /usr/local/bin/tsz; install -ps $cmd /usr/local/bin/$cmd&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A unblocknem
+</span></span><span class="line"><span class="cl">unblocknem<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;unblocknem&#39;</span>
+</span></span><span class="line"><span class="cl">unblocknem<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;UnblockNeteaseMusic/server&#39;</span>
+</span></span><span class="line"><span class="cl">unblocknem<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;unblockneteasemusic-linux-x64&#39;</span>
+</span></span><span class="line"><span class="cl">unblocknem<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -p $dlname /usr/local/bin/$cmd&#39;</span>
+</span></span><span class="line"><span class="cl">unblocknem<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
+</span></span><span class="line"><span class="cl">unblocknem<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装软件</span>
+</span></span><span class="line"><span class="cl">update_pkgs<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> pkg in <span class="si">${</span><span class="nv">pkgs</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">cmd</span><span class="o">=</span><span class="se">\$</span><span class="o">{</span><span class="nv">$pkg</span><span class="o">[</span>cmd<span class="o">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">reponame_ori</span><span class="o">=</span><span class="se">\$</span><span class="o">{</span><span class="nv">$pkg</span><span class="o">[</span>reponame<span class="o">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">reponame</span><span class="o">=</span><span class="nv">$reponame_ori</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">dlname_ori</span><span class="o">=</span><span class="se">\$</span><span class="o">{</span><span class="nv">$pkg</span><span class="o">[</span>dlname<span class="o">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">dlurl_ori</span><span class="o">=</span><span class="se">\$</span><span class="o">{</span><span class="nv">$pkg</span><span class="o">[</span>dlurl<span class="o">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">decomp</span><span class="o">=</span><span class="se">\$</span><span class="o">{</span><span class="nv">$pkg</span><span class="o">[</span>decomp<span class="o">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">install</span><span class="o">=</span><span class="se">\$</span><span class="o">{</span><span class="nv">$pkg</span><span class="o">[</span>install<span class="o">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">install_post</span><span class="o">=</span><span class="se">\$</span><span class="o">{</span><span class="nv">$pkg</span><span class="o">[</span>install_post<span class="o">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">eval</span> <span class="nv">local_ver_ori</span><span class="o">=</span><span class="se">\$</span><span class="o">{</span><span class="nv">$pkg</span><span class="o">[</span>local_ver<span class="o">]}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;======== 更新 </span><span class="nv">$pkg</span><span class="s2"> ========&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">workdir</span><span class="o">=</span><span class="s2">&#34;/tmp/software/</span><span class="nv">$pkg</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">[[</span> ! -d <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> mkdir -p <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        rm -rf <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span>/* <span class="p">&amp;</span>&gt;/dev/null
+</span></span><span class="line"><span class="cl">        <span class="nb">cd</span> <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -H <span class="s2">&#34;Authorization: Bearer </span><span class="nv">$GITHUB_ACTION_DOWNLOAD</span><span class="s2">&#34;</span> -sS https://api.github.com/repos/<span class="si">${</span><span class="nv">reponame</span><span class="si">}</span>/releases/latest 2&gt;/dev/null <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">local_ver</span><span class="o">=</span><span class="k">$(</span><span class="nb">eval</span> <span class="nv">$local_ver_ori</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[[</span> -n <span class="nv">$remote_ver</span> <span class="o">&amp;&amp;</span> <span class="nv">$remote_ver</span> !<span class="o">=</span> <span class="nv">$local_ver</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">eval</span> <span class="nv">dlname</span><span class="o">=</span><span class="nv">$dlname_ori</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">eval</span> <span class="nv">dlurl</span><span class="o">=</span><span class="nv">$dlurl_ori</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[[</span> -z <span class="nv">$dlurl</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">dlurl</span><span class="o">=</span><span class="s2">&#34;https://github.com/</span><span class="si">${</span><span class="nv">reponame</span><span class="si">}</span><span class="s2">/releases/download/v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">dlname</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[[</span> -n <span class="nv">$local_ver</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 即将从 </span><span class="nv">$local_ver</span><span class="s2"> 升级至 </span><span class="nv">$remote_ver</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 未检测到本地版本，即将安装 </span><span class="nv">$remote_ver</span><span class="s2"> 版本...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 开始下载：</span><span class="nv">$dlurl</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 临时保存至：</span><span class="nv">$workdir</span><span class="s2">/</span><span class="si">${</span><span class="nv">dlname</span><span class="si">}</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> -n <span class="s2">&#34;&gt;&gt; 下载进度：&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;</span><span class="si">${</span><span class="nv">dlname</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dlurl</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">[[</span> -n <span class="nv">$decomp</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 临时解压至：</span><span class="nv">$workdir</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">eval</span> <span class="nv">$decomp</span>
+</span></span><span class="line"><span class="cl">                <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 执行安装命令：</span><span class="nv">$install</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="nb">eval</span> <span class="nv">$install</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="o">[[</span> -n <span class="nv">$install_post</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 执行安装后钩子：</span><span class="nv">$install_post</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> ! <span class="nb">eval</span> <span class="nv">$install_post</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                            <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 安装后钩子钩子执行失败，请检查命令是否正确...&#34;</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 安装失败，请检查命令是否正确...&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 下载失败：</span><span class="nv">$dlurl</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="o">[[</span> -n <span class="nv">$remote_ver</span> <span class="o">&amp;&amp;</span> <span class="nv">$remote_ver</span> <span class="o">==</span> <span class="nv">$local_ver</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 本地版本已经是最新版本 </span><span class="nv">$remote_ver</span><span class="s2"> ，无需更新...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 未获取到最新版本，无法更新，请检查网络原因...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[[</span> -n <span class="k">$(</span>ls <span class="nv">$workdir</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;&gt;&gt; 删除临时文件：</span><span class="nv">$workdir</span><span class="s2">/* ...&#34;</span>
+</span></span><span class="line"><span class="cl">            rm -rf <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span>/* <span class="p">&amp;</span>&gt;/dev/null
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 中止时删除临时文件</span>
+</span></span><span class="line"><span class="cl">finish<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    rm -rf /tmp/software <span class="p">&amp;</span>&gt;/dev/null
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 执行主函数</span>
+</span></span><span class="line"><span class="cl">main<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">trap</span> finish EXIT
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -n <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">pkgs</span><span class="o">=(</span> <span class="nv">$@</span> <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    update_pkgs
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">main <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为它增加可执行权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/update-pkgs.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用">使用</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">update-pkgs.sh            <span class="c1"># 更新或安装 pkgs 数组中的全部软件包</span>
+</span></span><span class="line"><span class="cl">update-pkgs.sh clash nali <span class="c1"># 指定更新或安装所输入的软件包</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建议还是不要将其加入定时任务来自动更新。</p>
+<h2 id="说明">说明</h2>
+<ol>
+<li>全部的软件包需要定义在数组 <code>pkgs</code> 中，并以每个软件包定义一组数组。数组中的键名（不能使用 <code>-</code> ）<strong>依次</strong>含义为：</li>
+</ol>
+<ul>
+<li><code>cmd</code>：如果后面的变量要用到，就需要定义，软件包的命令名。</li>
+<li><code>reponame</code>：Github上的仓库名。</li>
+<li><code>remote_ver</code>：这个键无需你来定义，而是由脚本根据 <code>reponame</code> 去获取的Github上的最新稳定版本号。</li>
+<li><code>dlname</code>：要下载的软件包在Github上Release的名称，可引用前面的键。</li>
+<li><code>dlurl</code>：如果不定义这个键，就采用 <code>https://github.com/${reponame}/releases/download/v${remote_ver}/${dlname}</code>，如果定义了就用所定义的。可引用前面的键。</li>
+<li><code>decomp</code>：如果下载的文件是压缩包，如何解压它，可以引用前面的变量，如不需要解压可不定义。可引用前面的键。</li>
+<li><code>install</code>：如何安装软件包。可引用前面的键。</li>
+<li><code>intall_post</code>：安装后如果需要重启什么服务，可以定义它如何重启。可不定义。可引用前面的键。</li>
+<li><code>local_ver</code>：如何获取本地软件包的版本号。可引用前面的键。</li>
+</ul>
+<ol start="2">
+<li>
+<p>数组中和键的值如果需要使用变量引用，如果最外层用单引用，在 <code>$</code> 前面可转义，如果最外层要用双引号，在 <code>$</code> 前面请添加 <code>\</code> 转义。</p>
+</li>
+<li>
+<p>如果后面的引用了前面的，那么前面的必须定义。</p>
+</li>
+<li>
+<p>其他Github上的软件包，你可以用同样的方式定义在脚本中，以实现自动安装或更新。</p>
+</li>
+</ol>
+<h2 id="其他">其他</h2>
+<p>比如我还用到另外一组软件包，就是这样子的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">pkgs</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    aliyunpan
+</span></span><span class="line"><span class="cl">    baidupcs
+</span></span><span class="line"><span class="cl">    cidr_merger
+</span></span><span class="line"><span class="cl">    ctop
+</span></span><span class="line"><span class="cl">    gogs
+</span></span><span class="line"><span class="cl">    influx_cli
+</span></span><span class="line"><span class="cl">    nali
+</span></span><span class="line"><span class="cl">    realtek_r8125_dkms
+</span></span><span class="line"><span class="cl">    tokei
+</span></span><span class="line"><span class="cl">    timemachine
+</span></span><span class="line"><span class="cl">    trzsz
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A aliyunpan
+</span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;aliyunpan&#39;</span>
+</span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;tickstep/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-v${remote_ver}-linux-amd64.zip&#39;</span>
+</span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;unzip -oqq ${dlname} -d .&#39;</span>
+</span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${cmd}-v${remote_ver}-linux-amd64/${cmd}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A baidupcs
+</span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;baidupcs&#39;</span>
+</span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;qjfoidnh/BaiduPCS-Go&#39;</span>
+</span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;BaiduPCS-Go-v${remote_ver}-linux-amd64.zip&#39;</span>
+</span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;unzip -oqq ${dlname} -d .&#39;</span>
+</span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${cmd}-v${remote_ver}-linux-amd64/BaiduPCS-Go&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A cidr_merger
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;cidr-merger&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;zhanhb/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-linux-amd64&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;&amp;1 | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A ctop
+</span></span><span class="line"><span class="cl">ctop<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;ctop&#39;</span>
+</span></span><span class="line"><span class="cl">ctop<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;bcicen/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">ctop<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-${remote_ver}-linux-amd64&#39;</span>
+</span></span><span class="line"><span class="cl">ctop<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">ctop<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34; | head -1&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A evsieve
+</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;evsieve&#39;</span>
+</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;KarsMulder/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>dlurl<span class="o">]=</span><span class="s1">&#39;https://raw.githubusercontent.com/devome/files/master/${cmd}/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
+</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} --version 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A gogs
+</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;gogs&#39;</span>
+</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;${cmd}/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}_${remote_ver}_linux_amd64.tar.gz&#39;</span>
+</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
+</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
+</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A influx_cli
+</span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;influxdata/influx-cli&#39;</span>
+</span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;influxdb2-client-${remote_ver}-amd64.deb&#39;</span>
+</span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>dlurl<span class="o">]=</span><span class="s1">&#39;https://dl.influxdata.com/influxdb/releases/${dlname}&#39;</span>
+</span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo dpkg -i &#34;${dlname}&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;LC_ALL=C apt list --installed 2&gt;/dev/null | grep -P &#34;influxdb2-cli/.+installed,local&#34; | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A nali
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;nali&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;zu1k/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-linux-amd64-v${remote_ver}.gz&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;gzip -d $dlname&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps ${cmd}-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A realtek_r8125_dkms
+</span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;devome/realtek-r8125-dkms&#39;</span>
+</span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;realtek-r8125-dkms_${remote_ver}_amd64.deb&#39;</span>
+</span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo dpkg -i &#34;${dlname}&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>local_ver<span class="o">]=</span><span class="s2">&#34;LC_ALL=C apt list --installed 2&gt;/dev/null | grep -P &#39;realtek-r8125-dkms/.+installed,local&#39; | awk &#39;{print \$2}&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A tokei
+</span></span><span class="line"><span class="cl">tokei<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;tokei&#39;</span>
+</span></span><span class="line"><span class="cl">tokei<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;XAMPPRocky/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">tokei<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-x86_64-unknown-linux-gnu.tar.gz&#39;</span>
+</span></span><span class="line"><span class="cl">tokei<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --directory=.&#39;</span>
+</span></span><span class="line"><span class="cl">tokei<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">tokei<span class="o">[</span>local_ver<span class="o">]=</span><span class="s2">&#34;\${cmd} -V 2&gt;/dev/null | awk &#39;{print \$2}&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A timemachine
+</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;timemachine&#39;</span>
+</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;cytopia/linux-${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;v${remote_ver}.tar.gz&#39;</span>
+</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>dlurl<span class="o">]=</span><span class="s1">&#39;https://github.com/${reponame}/archive/refs/tags/${dlname}&#39;</span>
+</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
+</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo make install&#39;</span>
+</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -V 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A trzsz
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;trzsz&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;${cmd}/${cmd}-go&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}_${remote_ver}_linux_x86_64.tar.gz&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps trz /usr/local/bin/trz; sudo install tsz -ps /usr/local/bin/tsz; sudo install -ps $cmd /usr/local/bin/$cmd&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/blog/tags/%E7%88%B1%E5%BF%AB/">爱快</a>
+        
+            <a href="/blog/tags/debian/">debian</a>
+        
+            <a href="/blog/tags/network/">network</a>
+        
+            <a href="/blog/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
+        
+            <a href="/blog/tags/shell/">shell</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（九）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.ab3c360faeeff41c3faa05a6a34d1643_hu51d4af1eeefa67a1188add7d16f39c36_65107_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）"
+                        
+                        data-hash="md5-qzw2D67v9Bw/qgWmo00WQw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（八）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（七）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（六）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（六）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.7910163617c67d8740e3d358ccf1ad86_hudbd0785a8fc8def520a70d64a275a085_16666_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）"
+                        
+                        data-hash="md5-eRAWNhfGfYdA49NYzPGthg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（五）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
