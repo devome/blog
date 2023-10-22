@@ -336,7 +336,7 @@
     >luci-app-serverchan</a>、<a class="link" href="https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-pushbot"  target="_blank" rel="noopener"
     >luci-app-pushbot</a>，可以监测陌生设备上线。当然它们还有些其他功能，但我们只关心“监测陌生设备上线”这一点，那么这两个插件就太臃肿了。并且它们还不能监测非旁路由所在网段，而我却将陌生设备放在了 <code>10.0.1.0/24</code> 中，和旁路由不在同一网段。所以我们简单的改造一下。</p>
 <h2 id="安装和配置">安装和配置</h2>
-<p>我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好了 <code>arp-scan</code> 了。新建 <code>/usr/local/bin/arp.sh</code> 内容如下，请自行在爱快中限制陌生设备所能使用的IP，并填入下面的 <code>arplist</code> 变量中。</p>
+<p>我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好了 <code>arp-scan</code> 了。新建 <code>/usr/local/bin/arp.sh</code> 内容如下，请自行在爱快中限制陌生设备所能使用的IP（参见 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80#%e7%88%b1%e5%bf%ab%e4%b8%ad%e7%9a%84%e8%ae%be%e7%bd%ae" >前文（一）</a>，用假MAC预留好可信任设备的IP位置），并填入下面的 <code>arplist</code> 变量中。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
