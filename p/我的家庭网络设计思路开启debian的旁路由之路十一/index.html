@@ -213,10 +213,10 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu9c8001f1215fd2e018648aad78db48e8_176466_800x0_resize_box_3.png"
-                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu9c8001f1215fd2e018648aad78db48e8_176466_800x0_resize_box_3.png 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu9c8001f1215fd2e018648aad78db48e8_176466_1600x0_resize_box_3.png 1600w"
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_800x0_resize_box_3.png"
+                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_800x0_resize_box_3.png 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_1600x0_resize_box_3.png 1600w"
                         width="800" 
-                        height="445" 
+                        height="458" 
                         loading="lazy"
                         alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" />
                 
@@ -293,23 +293,25 @@
     <section class="article-content">
     
     
-    <p>安装完这一系列内容，实际上内存使用并没有增加多少，才 <code>330MiB</code> 左右。注意 <code>buffer</code> 和 <code>cache</code> 是可以调整参数降低的，这个占用不算真正的占用。</p>
+    <p>安装完这一系列内容，实际上内存使用并没有增加多少，才 <code>340MiB</code> 左右。注意 <code>buffer</code> 和 <code>cache</code> 是可以通过调整参数降低的，这个占用不算真正的占用。 <code>buffer</code> 和 <code>cache</code> 反而是对系统运行有好处的，在内存足够的前提下，不建议清除它们。如果内存真的不够，你可以按照 <a class="link" href="https://unix.stackexchange.com/questions/253816/restrict-size-of-buffer-cache-in-linux"  target="_blank" rel="noopener"
+    >这个链接</a> 来限制它们。</p>
 <p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png"
-	width="1116"
-	height="621"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu9c8001f1215fd2e018648aad78db48e8_176466_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu9c8001f1215fd2e018648aad78db48e8_176466_1024x0_resize_box_3.png 1024w"
+	width="1151"
+	height="659"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="内存使用也才340MiB"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="179"
-		data-flex-basis="431px"
+		data-flex-grow="174"
+		data-flex-basis="419px"
 	
 ></p>
-<p>如果想要进一步降低内存使用，可以自行动态编译前面所使用到的全部软件包，再进一步使用 <a class="link" href="https://github.com/upx/upx"  target="_blank" rel="noopener"
-    >upx</a> 来深度压缩，这样处理后能让内存消耗再小一些。</p>
+<p>如果想要进一步降低内存使用，可以自行动态编译前面所使用到的全部软件包，再使用 <a class="link" href="https://github.com/upx/upx"  target="_blank" rel="noopener"
+    >upx</a> 来深度压缩，这样处理后能让内存消耗再小一些，能缩减到 <code>300MiB</code> 以下。不过注意 <code>unblocknem</code> 不能这样操作，如果想要减小它的内存占用，请按照 <a class="link" href="https://github.com/UnblockNeteaseMusic/server"  target="_blank" rel="noopener"
+    >官方仓库</a> 安装 <code>nodejs</code> 后使用源码运行，并调整 <code>unblocknem.service</code> 中的 <code>ExecStart</code>。</p>
 <p>使用Debian作为旁路由的其他的一些优势，等后面有时间再总结吧。</p>
 
 </section>
@@ -375,13 +377,13 @@
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.95a7d0a1598b03129be9364b247dcf64_hu8bb73b4e4c0a14ff3bd765bdc97fd20e_172179_250x150_fill_box_smart1_3.png" 
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.b7046b9f264a6935792612610be51e8f_hu574dba91de5fa709b097f092f38ffb07_437319_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
                         alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）"
                         
-                        data-hash="md5-lafQoVmLAxKb6TZLJH3PZA==">
+                        data-hash="md5-twRrnyZKaTV5JhJhC&#43;Uejw==">
                 
             </div>
         
