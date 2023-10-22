@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解如何监测陌生设备接入，记录下来并发送通知。'>
+<title>我的家庭网络设计思路，开启debian的旁路由之路（九）</title>
+
+<link rel='canonical' href='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/'>
+
+<link rel="stylesheet" href="/blog/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（九）'>
+<meta property='og:description' content='本篇主要讲解如何监测陌生设备接入，记录下来并发送通知。'>
+<meta property='og:url' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='arp' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T05:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-22T05:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/cover.png' />
+<meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（九）">
+<meta name="twitter:description" content="本篇主要讲解如何监测陌生设备接入，记录下来并发送通知。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/cover.png' />
+    <link rel="shortcut icon" href="/blog/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/blog">
+                
+                    
+                    
+                    
+                        
+                        <img src="/blog/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/blog">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/blog/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#安装和配置">安装和配置</a></li>
+    <li><a href="#运行">运行</a>
+      <ol>
+        <li><a href="#方式一定时任务">方式一：定时任务</a></li>
+        <li><a href="#方式二systemd">方式二：systemd</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_800x0_resize_box_3.png"
+                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_800x0_resize_box_3.png 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="480" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/blog/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+                软路由
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/">我的家庭网络设计思路，开启debian的旁路由之路（九）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            本篇主要讲解如何监测陌生设备接入，记录下来并发送通知。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p><code>OpenWRT</code> 有两个插件：<a class="link" href="https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-serverchan"  target="_blank" rel="noopener"
+    >luci-app-serverchan</a>、<a class="link" href="https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-pushbot"  target="_blank" rel="noopener"
+    >luci-app-pushbot</a>，可以监测陌生设备上线。当然它们还有些其他功能，但我们只关心“监测陌生设备上线”这一点，那么这两个插件就太臃肿了。并且它们还不能监测非旁路由所在网段，而我却将陌生设备放在了 <code>10.0.1.0/24</code> 中，和旁路由不在同一网段。所以我们简单的改造一下。</p>
+<h2 id="安装和配置">安装和配置</h2>
+<p>我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好了 <code>arp-scan</code> 了。新建 <code>/usr/local/bin/arp.sh</code> 内容如下，请自行在爱快中限制陌生设备所能使用的IP，并填入下面的 <code>arplist</code> 变量中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 要监测的网段，可以写成下面这样，也可以写成 10.0.0.0/24这样，请在爱快中为陌生设备指定网段，可信任设备不要使用该网段的IP</span>
+</span></span><span class="line"><span class="cl"><span class="nv">arplist</span><span class="o">=</span><span class="s2">&#34;10.0.1.101-10.0.1.110&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">arpinfo</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$arplist</span><span class="s2">&#34;</span> <span class="p">|</span> arp-scan -gxf-<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -n <span class="s2">&#34;</span><span class="nv">$arpinfo</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="s2">&#34;</span><span class="nv">$arpinfo</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;</span><span class="k">$(</span>cat <span class="nv">$dir_shell</span>/arp.txt 2&gt;/dev/null<span class="k">)</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">content</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$arpinfo</span><span class="s2">&#34;</span> <span class="p">|</span> perl -pe <span class="s1">&#39;{s|^|- |; s|\t| |g; s|\n|\\n\\n|g}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;有新的终端连接到了网络：&#34;</span><span class="nv">$arpinfo</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># notify.sh &#34;有新的终端连接到了网络&#34; &#34;$content&#34; &amp;&gt;/dev/null # 如果需要发送通知请解除注释</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$arpinfo</span><span class="s2">&#34;</span> &gt; <span class="nv">$dir_shell</span>/arp.txt
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">[[</span> -z <span class="s2">&#34;</span><span class="nv">$arpinfo</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> -f <span class="nv">$dir_shell</span>/arp.txt <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    rm <span class="nv">$dir_shell</span>/arp.txt
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为其增加可执行权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/arp.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你需要发送通知，解除上述脚本第10行注释的同时，在第4行之后根据下表选用通知渠道的变量并赋值。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">变量名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">TG_USER_ID</td>
+<td>通知渠道telegram，如需使用需要和 TG_BOT_TOKEN 同时赋值，私聊 @getuseridbot 获取。</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">TG_BOT_TOKEN</td>
+<td>通知渠道telegram，如需使用需要和 TG_USER_ID 同时赋值，私聊 @BotFather 获取。</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">TG_PROXY_ADDRESS</td>
+<td>给TG机器人发送消息的代理地址，当设置了<code>TG_USER_ID</code>和<code>TG_BOT_TOKEN</code>后可以设置此值，形如：<code>http://192.168.1.1:7890</code>，也可以不设置。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">TG_PROXY_USER</td>
+<td>给TG机器人发送消息的代理的用户名和密码，当设置了<code>TG_PROXY_ADDRESS</code>后可以设置此值，格式为：<code>&lt;用户名&gt;:&lt;密码&gt;</code>，形如：<code>admin:password</code>，如没有可不设置。</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">DD_BOT_TOKEN</td>
+<td>通知渠道钉钉，如需使用需要和 DD_BOT_SECRET 同时赋值，机器人设置中webhook链接<code>access_token=</code>后面的字符串（不含<code>=</code>以及<code>=</code>之前的字符）。</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">DD_BOT_SECRET</td>
+<td>通知渠道钉钉，如需使用需要和 DD_BOT_TOKEN 同时赋值，机器人设置中<strong>只启用</strong><code>加签</code>，加签的秘钥，形如：<code>SEC1234567890abcdefg</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">IYUU_TOKEN</td>
+<td>通知渠道爱语飞飞，通过 <a class="link" href="http://iyuu.cn"  target="_blank" rel="noopener"
+    >这里</a> 获取，爱语飞飞的TOKEN。</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">SCKEY</td>
+<td>通知渠道ServerChan，通过 <a class="link" href="http://sc.ftqq.com/3.version"  target="_blank" rel="noopener"
+    >这里</a> 获取。</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">PUSHPLUS_TOKEN</td>
+<td>通知渠道PUSH PLUS，填入其token，详见 <a class="link" href="http://www.pushplus.plus"  target="_blank" rel="noopener"
+    >这里</a>。</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">WORK_WECHAT_BOT_KEY</td>
+<td>通知渠道企业微信群机器人，填入机器人设置webhook链接中<code>key=</code>后面的字符串，不含<code>key=</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">GOTIFY_URL</td>
+<td>通知渠道Gotify，填入其通知网址，需要和<code>GOTIFY_APP_TOKEN</code>同时赋值。</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">GOTIFY_APP_TOKEN</td>
+<td>通知渠道Gotify，填入其TOKEN，需要和<code>GOTIFY_URL</code>同时赋值。</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">GOTIFY_PRIORITY</td>
+<td>通知渠道Gotify，发送消息的优先级。</td>
+</tr>
+</tbody>
+</table></div>
+<p>同时下载 <a class="link" href="notify.sh" >notify.sh</a> 保存为 <code>/usr/local/bin/notify.sh</code> ，并为其增加可执行权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/notify.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="运行">运行</h2>
+<h3 id="方式一定时任务">方式一：定时任务</h3>
+<p>输入 <code>crontab -e</code> ，在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >前文（七）</a> 创建的定时任务之后加入一条：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">* * * * * arp.sh &gt;/dev/null
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>未来想查看有哪些陌生设备接入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">journalctl -u cron.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方式二systemd">方式二：systemd</h3>
+<p>新建脚本 <code>/usr/local/bin/run-arp.sh</code>，内容如下，并增加可执行权限 <code>chmod +x /usr/local/bin/run-arp.sh</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="k">while</span> :<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    arp.sh
+</span></span><span class="line"><span class="cl">    sleep <span class="m">60</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>新建 <code>/etc/systemd/system/arp.service</code>，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description </span><span class="o">=</span><span class="s"> Detect unknown clients.</span>
+</span></span><span class="line"><span class="cl"><span class="na">After       </span><span class="o">=</span><span class="s"> network.target</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Environment        </span><span class="o">=</span><span class="s"> PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span>
+</span></span><span class="line"><span class="cl"><span class="na">Type               </span><span class="o">=</span><span class="s"> simple</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart            </span><span class="o">=</span><span class="s"> always</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart          </span><span class="o">=</span><span class="s"> run-arp.sh</span>
+</span></span><span class="line"><span class="cl"><span class="na">RestartSec         </span><span class="o">=</span><span class="s"> 60</span>
+</span></span><span class="line"><span class="cl"><span class="na">StartLimitInterval </span><span class="o">=</span><span class="s"> 0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后启用它即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now arp.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>未来想查看有哪些陌生设备接入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">journalctl -u arp.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/blog/tags/%E7%88%B1%E5%BF%AB/">爱快</a>
+        
+            <a href="/blog/tags/debian/">debian</a>
+        
+            <a href="/blog/tags/network/">network</a>
+        
+            <a href="/blog/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
+        
+            <a href="/blog/tags/openwrt/">openwrt</a>
+        
+            <a href="/blog/tags/arp/">arp</a>
+        
+            <a href="/blog/tags/shell/">shell</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.20854af746270e9b4b1e51c4b66b27f3_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）"
+                        
+                        data-hash="md5-IIVK90YnDptLHlHEtmsn8w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（三）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.ab3c360faeeff41c3faa05a6a34d1643_hu51d4af1eeefa67a1188add7d16f39c36_65107_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）"
+                        
+                        data-hash="md5-qzw2D67v9Bw/qgWmo00WQw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（八）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（七）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（六）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（六）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">
+        
+        
+            <div class="article-image">
+                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.7910163617c67d8740e3d358ccf1ad86_hudbd0785a8fc8def520a70d64a275a085_16666_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）"
+                        
+                        data-hash="md5-eRAWNhfGfYdA49NYzPGthg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（五）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
