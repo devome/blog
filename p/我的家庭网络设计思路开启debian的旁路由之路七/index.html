@@ -1387,7 +1387,7 @@
 </span></span><span class="line"><span class="cl">            cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$mmdb</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$mmdb</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$mmdb</span><span class="s2"> 成功...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$mmdb</span><span class="s2"> 无变化...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$mmdb</span><span class="s2"> 无变化，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$mmdb</span><span class="s2"> 失败...&#34;</span>
@@ -1408,7 +1408,7 @@
 </span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 失败...&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 无变化...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 无变化，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    <span class="k">done</span>
 </span></span><span class="line"><span class="cl">
@@ -1427,7 +1427,7 @@
 </span></span><span class="line"><span class="cl">                cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$txt</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir_mosdns_geodata</span><span class="s2">/</span><span class="nv">$txt</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">                <span class="nv">mark_mosdns_restart</span><span class="o">=</span>yes
 </span></span><span class="line"><span class="cl">            <span class="k">else</span>
-</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$txt</span><span class="s2"> 内容无变化...&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$txt</span><span class="s2"> 内容无变化，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">        <span class="k">done</span>
 </span></span><span class="line"><span class="cl">
@@ -1456,7 +1456,7 @@
 </span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$nem_address</span><span class="s2"> 成功...&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="nv">mark_clash_restart</span><span class="o">=</span>yes <span class="c1"># 重启clash</span>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nem_address</span><span class="s2"> 无变化，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nem_address</span><span class="s2"> 内容无变化，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">    cp -f <span class="nv">$list_nem</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span>
@@ -1466,7 +1466,7 @@
 </span></span><span class="line"><span class="cl">        cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span> <span class="nv">$list_nem</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2"> 成功...&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2"> 无变化，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2"> 内容无变化，不更新...&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
