@@ -654,8 +654,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;网易云音乐ip只允许解析ipv4&#34;&gt;网易云音乐IP只允许解析IPv4&lt;/h3&gt;
-&lt;p&gt;因为我们的透明代理只代理 &lt;code&gt;IPv4&lt;/code&gt; 流量，所以我们不能让网易云音乐客户端解析出 &lt;code&gt;IPv6&lt;/code&gt; 地址。有好几种方式可以实现，既可以在 &lt;code&gt;mosdns&lt;/code&gt; 中实现，也可以在 &lt;code&gt;adguardhome&lt;/code&gt; 中实现，但后者有 &lt;code&gt;webui&lt;/code&gt; 要方便些，我们就选后者吧。&lt;/p&gt;
-&lt;p&gt;在 &lt;code&gt;adguardhome&lt;/code&gt; 中实现也有两种方式，其一是将 “设置 -&amp;gt; DNS设置 -&amp;gt; 上游DNS服务器” 设置为下面这样，直接将网易云音乐的解析发到 &lt;code&gt;clash&lt;/code&gt; 去解析，因为我们关闭了 &lt;code&gt;clash&lt;/code&gt; 的DNS模块的 &lt;code&gt;IPv6&lt;/code&gt; 解析。&lt;/p&gt;
+&lt;p&gt;因为我们的透明代理只代理 &lt;code&gt;IPv4&lt;/code&gt; 流量，所以我们不能让网易云音乐客户端解析出 &lt;code&gt;IPv6&lt;/code&gt; 地址。有好几种方式可以实现，既可以在 &lt;code&gt;mosdns&lt;/code&gt; 中实现，也可以在 &lt;code&gt;adguardhome&lt;/code&gt; 中实现，但后者有 &lt;code&gt;webui&lt;/code&gt; 要方便些，并且 &lt;code&gt;adguardhome&lt;/code&gt; 是第一级，它有可能会切换到后备服务器而不向 &lt;code&gt;mosdns&lt;/code&gt; 发起请求，所以我们就选后者吧。&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;adguardhome&lt;/code&gt; 中实现也有两种方式，其一是将 “设置 -&amp;gt; DNS设置 -&amp;gt; 上游DNS服务器” 设置为下面这样（这种方式不会计入“被拦截域名”中，但是如若 &lt;code&gt;adguardhome&lt;/code&gt; 在 &lt;code&gt;clash&lt;/code&gt; 遇到故障会切换到后备，对后备是不生效的），直接将网易云音乐的解析发到 &lt;code&gt;clash&lt;/code&gt; 去解析，因为我们关闭了 &lt;code&gt;clash&lt;/code&gt; 的DNS模块的 &lt;code&gt;IPv6&lt;/code&gt; 解析。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -666,7 +666,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[/music.163.com/music.126.net/music.ntes53.netease.com/music.163.com.163jiasu.com/music.126.net.163jiasu.com/music.163.com.bsclink.cn/music.126.net.mygslb.cn/uz99.v.bsclink.cn/v6.wddy.mygslb.cn/]127.0.0.1:7874
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;其二是在 “过滤器 -&amp;gt; 自定义过滤规则” 中添加规则如下（这种方式会计入“被拦截域名”中），两种方式选择一种即可。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;其二是在 “过滤器 -&amp;gt; 自定义过滤规则” 中添加规则如下（这种方式会计入“被拦截域名”中，但是对包括后备在内的全部上游DNS服务器都有效）。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -680,16 +680,18 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.163.com^$dnstype=AAAA
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.ntes53.netease.com^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.163.com.163jiasu.com^$dnstype=AAAA
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.ntes53.netease.com^$dnstype=AAAA
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.163.com.bsclink.cn^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||uz99.v.bsclink.cn^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.126.net.163jiasu.com^$dnstype=AAAA
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.163.com.bsclink.cn^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.126.net.mygslb.cn^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||v6.wddy.mygslb.cn^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;启用服务&#34;&gt;启用服务&lt;/h3&gt;
+&lt;/div&gt;&lt;p&gt;只能保证目前有效。上述两种方式，都由于CNAME的存在，光处理 &lt;code&gt;music.163.com&lt;/code&gt; 和 &lt;code&gt;music.163.com.163jiasu.com&lt;/code&gt; 不行，而是要处理一堆网址。可能有望在未来得以改进，详见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#dnstype&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hosts-Blocklists#dnstype&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;启用服务&#34;&gt;启用服务&lt;/h3&gt;
 &lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/unblocknem.service&lt;/code&gt; 为开启自动启动，并立即启动起来。但这个时候由于 &lt;code&gt;clash&lt;/code&gt; 还缺少几份 &lt;code&gt;nft&lt;/code&gt; 文件，并没有启动起来，所以这个时候 &lt;code&gt;unblocknem&lt;/code&gt; 服务还不可用。如果启动好后，&lt;code&gt;unblocknem&lt;/code&gt; 将会监听在 &lt;code&gt;8080&lt;/code&gt; 和 &lt;code&gt;8081&lt;/code&gt; 端口上。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

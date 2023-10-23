@@ -986,8 +986,8 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="网易云音乐ip只允许解析ipv4">网易云音乐IP只允许解析IPv4</h3>
-<p>因为我们的透明代理只代理 <code>IPv4</code> 流量，所以我们不能让网易云音乐客户端解析出 <code>IPv6</code> 地址。有好几种方式可以实现，既可以在 <code>mosdns</code> 中实现，也可以在 <code>adguardhome</code> 中实现，但后者有 <code>webui</code> 要方便些，我们就选后者吧。</p>
-<p>在 <code>adguardhome</code> 中实现也有两种方式，其一是将 “设置 -&gt; DNS设置 -&gt; 上游DNS服务器” 设置为下面这样，直接将网易云音乐的解析发到 <code>clash</code> 去解析，因为我们关闭了 <code>clash</code> 的DNS模块的 <code>IPv6</code> 解析。</p>
+<p>因为我们的透明代理只代理 <code>IPv4</code> 流量，所以我们不能让网易云音乐客户端解析出 <code>IPv6</code> 地址。有好几种方式可以实现，既可以在 <code>mosdns</code> 中实现，也可以在 <code>adguardhome</code> 中实现，但后者有 <code>webui</code> 要方便些，并且 <code>adguardhome</code> 是第一级，它有可能会切换到后备服务器而不向 <code>mosdns</code> 发起请求，所以我们就选后者吧。</p>
+<p>在 <code>adguardhome</code> 中实现也有两种方式，其一是将 “设置 -&gt; DNS设置 -&gt; 上游DNS服务器” 设置为下面这样（这种方式不会计入“被拦截域名”中，但是如若 <code>adguardhome</code> 在 <code>clash</code> 遇到故障会切换到后备，对后备是不生效的），直接将网易云音乐的解析发到 <code>clash</code> 去解析，因为我们关闭了 <code>clash</code> 的DNS模块的 <code>IPv6</code> 解析。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -998,7 +998,7 @@
 </span></span><span class="line"><span class="cl">[/music.163.com/music.126.net/music.ntes53.netease.com/music.163.com.163jiasu.com/music.126.net.163jiasu.com/music.163.com.bsclink.cn/music.126.net.mygslb.cn/uz99.v.bsclink.cn/v6.wddy.mygslb.cn/]127.0.0.1:7874
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>其二是在 “过滤器 -&gt; 自定义过滤规则” 中添加规则如下（这种方式会计入“被拦截域名”中），两种方式选择一种即可。</p>
+</div><p>其二是在 “过滤器 -&gt; 自定义过滤规则” 中添加规则如下（这种方式会计入“被拦截域名”中，但是对包括后备在内的全部上游DNS服务器都有效）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1012,16 +1012,18 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">||music.163.com^$dnstype=AAAA
-</span></span><span class="line"><span class="cl">||music.ntes53.netease.com^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||music.163.com.163jiasu.com^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||music.ntes53.netease.com^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||music.163.com.bsclink.cn^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||uz99.v.bsclink.cn^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||music.126.net.163jiasu.com^$dnstype=AAAA
-</span></span><span class="line"><span class="cl">||music.163.com.bsclink.cn^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||music.126.net.mygslb.cn^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||v6.wddy.mygslb.cn^$dnstype=AAAA
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="启用服务">启用服务</h3>
+</div><p>只能保证目前有效。上述两种方式，都由于CNAME的存在，光处理 <code>music.163.com</code> 和 <code>music.163.com.163jiasu.com</code> 不行，而是要处理一堆网址。可能有望在未来得以改进，详见 <a class="link" href="https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#dnstype"  target="_blank" rel="noopener"
+    >Hosts-Blocklists#dnstype</a>。</p>
+<h3 id="启用服务">启用服务</h3>
 <p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/unblocknem.service</code> 为开启自动启动，并立即启动起来。但这个时候由于 <code>clash</code> 还缺少几份 <code>nft</code> 文件，并没有启动起来，所以这个时候 <code>unblocknem</code> 服务还不可用。如果启动好后，<code>unblocknem</code> 将会监听在 <code>8080</code> 和 <code>8081</code> 端口上。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
