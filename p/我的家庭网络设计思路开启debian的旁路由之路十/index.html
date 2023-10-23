@@ -594,7 +594,7 @@
 </span></span><span class="line"><span class="cl">        <span class="o">[[</span> ! -d <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> mkdir -p <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">        rm -rf <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span>/* <span class="p">&amp;</span>&gt;/dev/null
 </span></span><span class="line"><span class="cl">        <span class="nb">cd</span> <span class="s2">&#34;</span><span class="nv">$workdir</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -H <span class="s2">&#34;Authorization: Bearer </span><span class="nv">$GITHUB_ACTION_DOWNLOAD</span><span class="s2">&#34;</span> -sS https://api.github.com/repos/<span class="si">${</span><span class="nv">reponame</span><span class="si">}</span>/releases/latest 2&gt;/dev/null <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -sS https://api.github.com/repos/<span class="si">${</span><span class="nv">reponame</span><span class="si">}</span>/releases/latest 2&gt;/dev/null <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span>
 </span></span><span class="line"><span class="cl">        <span class="nv">local_ver</span><span class="o">=</span><span class="k">$(</span><span class="nb">eval</span> <span class="nv">$local_ver_ori</span><span class="k">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[[</span> -n <span class="nv">$remote_ver</span> <span class="o">&amp;&amp;</span> <span class="nv">$remote_ver</span> !<span class="o">=</span> <span class="nv">$local_ver</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">            <span class="nb">eval</span> <span class="nv">dlname</span><span class="o">=</span><span class="nv">$dlname_ori</span>
@@ -679,7 +679,17 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>建议还是不要将其加入定时任务来自动更新。</p>
-<h2 id="说明">说明</h2>
+<p>如果老是获取不到 Github 上的最新版本号，可以尝试将获取版本号那一行改成下面这样，其中的 <code>$GITHUB_TOKEN</code> 为你自己申请的 Github Token（<a class="link" href="https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens"  target="_blank" rel="noopener"
+    >官方说明</a>）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">        <span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -H <span class="s2">&#34;Authorization: Bearer </span><span class="nv">$GITHUB_TOKEN</span><span class="s2">&#34;</span> -sS https://api.github.com/repos/<span class="si">${</span><span class="nv">reponame</span><span class="si">}</span>/releases/latest 2&gt;/dev/null <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="说明">说明</h2>
 <ol>
 <li>全部的软件包需要定义在数组 <code>pkgs</code> 中，并以每个软件包定义一组数组。数组中的键名（不能使用 <code>-</code> ）<strong>依次</strong>含义为：</li>
 </ol>
