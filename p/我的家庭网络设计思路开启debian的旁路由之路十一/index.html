@@ -228,10 +228,12 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
+    <li><a href="#关于systemd">关于systemd</a></li>
     <li><a href="#关于内存">关于内存</a></li>
     <li><a href="#关于dns">关于DNS</a></li>
     <li><a href="#关于网络故障">关于网络故障</a></li>
     <li><a href="#关于软件包">关于软件包</a></li>
+    <li><a href="#关于本系列提供的脚本">关于本系列提供的脚本</a></li>
   </ol>
 </nav>
         </div>
@@ -312,7 +314,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -327,7 +329,10 @@
     <section class="article-content">
     
     
-    <h2 id="关于内存">关于内存</h2>
+    <h2 id="关于systemd">关于systemd</h2>
+<p>本系列全部服务都使用 <code>systemd</code> 来启动和管理，在系列中并未过多的说明这些服务如何启动、开启自启、重启、重载、停止、查看日志、筛选日志等等。关于 <code>systemd</code>，阮一峰大佬有详细的教程：<a class="link" href="https://ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html"  target="_blank" rel="noopener"
+    >Systemd 入门教程</a>，该文详细的介绍了 <code>systemctl</code> 及 <code>journalctl</code> 相关命令的使用方法。</p>
+<h2 id="关于内存">关于内存</h2>
 <p>安装完这一系列内容，实际上内存使用并没有增加多少，才 <code>340MiB</code> 左右。注意 <code>buffer</code> 和 <code>cache</code> 是可以通过调整参数降低的，这个占用不算真正的占用。 <code>buffer</code> 和 <code>cache</code> 反而是对系统运行有好处的，在内存足够的前提下，不建议清除它们。如果内存真的不够，你可以按照 <a class="link" href="https://unix.stackexchange.com/questions/253816/restrict-size-of-buffer-cache-in-linux"  target="_blank" rel="noopener"
     >这个链接</a> 来限制它们。</p>
 <p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png"
@@ -356,6 +361,8 @@
 <h2 id="关于软件包">关于软件包</h2>
 <p>国内的用户使用 <code>OpenWRT</code> 一般是使用 <code>LEDE</code>，如果是自己编译的话，面对繁多的选项无从下手，用别人的 高大全 又老是配置不好，而且还面临不太好升级的问题。一些旧的软件包想要更新，都要先更新固件的编译依赖仓库。</p>
 <p>而使用 <code>Debian</code> 的话，它自带的仓库是极度稳定的，自己想要额外安装的一些软件包，基于这个稳定的环境，运行也更稳定，而且额外安装的软件包可以保持追新。这样基础环境稳定，部分特殊软件追新，让体验更加完美。</p>
+<h2 id="关于本系列提供的脚本">关于本系列提供的脚本</h2>
+<p>如果你相对于我的改动较多，你就可能不能直接使用本系列提供的 <code>shell</code> 脚本。如涉及到改动，可能需要你自行修改相关脚本内容，以适应你的环境。若因此。脚本出现错误，本人无法提供过多的建议，可能需要你自行排故。</p>
 
 </section>
 
