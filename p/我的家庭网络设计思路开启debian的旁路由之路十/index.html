@@ -233,6 +233,7 @@
     <li><a href="#使用">使用</a></li>
     <li><a href="#说明">说明</a></li>
     <li><a href="#其他">其他</a></li>
+    <li><a href="#系列">系列</a></li>
   </ol>
 </nav>
         </div>
@@ -716,7 +717,7 @@
 </li>
 </ol>
 <h2 id="其他">其他</h2>
-<p>比如我还用到另外一组软件包，就是这样子的：</p>
+<p>比如我还用到另外一组软件包，就是这样子的，你可能注意到不同软件包定义的键不太一样。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
@@ -847,7 +848,7 @@
 </span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;tickstep/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-v${remote_ver}-linux-amd64.zip&#39;</span>
 </span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;unzip -oqq ${dlname} -d .&#39;</span>
-</span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${cmd}-v${remote_ver}-linux-amd64/${cmd}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps &#34;${cmd}-v${remote_ver}-linux-amd64/${cmd}&#34; /usr/local/bin/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A baidupcs
@@ -855,21 +856,21 @@
 </span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;qjfoidnh/BaiduPCS-Go&#39;</span>
 </span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;BaiduPCS-Go-v${remote_ver}-linux-amd64.zip&#39;</span>
 </span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;unzip -oqq ${dlname} -d .&#39;</span>
-</span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${cmd}-v${remote_ver}-linux-amd64/BaiduPCS-Go&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps &#34;${cmd}-v${remote_ver}-linux-amd64/BaiduPCS-Go&#34; /usr/local/bin/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">baidupcs<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A cidr_merger
 </span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;cidr-merger&#39;</span>
 </span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;zhanhb/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-linux-amd64&#39;</span>
-</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">cidr_merger<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;&amp;1 | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A ctop
 </span></span><span class="line"><span class="cl">ctop<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;ctop&#39;</span>
 </span></span><span class="line"><span class="cl">ctop<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;bcicen/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">ctop<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-${remote_ver}-linux-amd64&#39;</span>
-</span></span><span class="line"><span class="cl">ctop<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">ctop<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">ctop<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34; | head -1&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A evsieve
@@ -877,7 +878,7 @@
 </span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;KarsMulder/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>dlurl<span class="o">]=</span><span class="s1">&#39;https://raw.githubusercontent.com/devome/files/master/${cmd}/${cmd}&#39;</span>
-</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps &#34;${dlname}&#34; /usr/local/bin/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
 </span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} --version 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -886,7 +887,7 @@
 </span></span><span class="line"><span class="cl">gogs<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;${cmd}/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">gogs<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}_${remote_ver}_linux_amd64.tar.gz&#39;</span>
 </span></span><span class="line"><span class="cl">gogs<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
-</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">gogs<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
 </span></span><span class="line"><span class="cl">gogs<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -894,7 +895,7 @@
 </span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;influxdata/influx-cli&#39;</span>
 </span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;influxdb2-client-${remote_ver}-amd64.deb&#39;</span>
 </span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>dlurl<span class="o">]=</span><span class="s1">&#39;https://dl.influxdata.com/influxdb/releases/${dlname}&#39;</span>
-</span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo dpkg -i &#34;${dlname}&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;dpkg -i &#34;${dlname}&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;LC_ALL=C apt list --installed 2&gt;/dev/null | grep -P &#34;influxdb2-cli/.+installed,local&#34; | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A nali
@@ -902,13 +903,13 @@
 </span></span><span class="line"><span class="cl">nali<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;zu1k/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">nali<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-linux-amd64-v${remote_ver}.gz&#39;</span>
 </span></span><span class="line"><span class="cl">nali<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;gzip -d $dlname&#39;</span>
-</span></span><span class="line"><span class="cl">nali<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps ${cmd}-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">nali<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd}-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">nali<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A realtek_r8125_dkms
 </span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;devome/realtek-r8125-dkms&#39;</span>
 </span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;realtek-r8125-dkms_${remote_ver}_amd64.deb&#39;</span>
-</span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo dpkg -i &#34;${dlname}&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;dpkg -i &#34;${dlname}&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">realtek_r8125_dkms<span class="o">[</span>local_ver<span class="o">]=</span><span class="s2">&#34;LC_ALL=C apt list --installed 2&gt;/dev/null | grep -P &#39;realtek-r8125-dkms/.+installed,local&#39; | awk &#39;{print \$2}&#39;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A tokei
@@ -916,7 +917,7 @@
 </span></span><span class="line"><span class="cl">tokei<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;XAMPPRocky/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">tokei<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-x86_64-unknown-linux-gnu.tar.gz&#39;</span>
 </span></span><span class="line"><span class="cl">tokei<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --directory=.&#39;</span>
-</span></span><span class="line"><span class="cl">tokei<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">tokei<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
 </span></span><span class="line"><span class="cl">tokei<span class="o">[</span>local_ver<span class="o">]=</span><span class="s2">&#34;\${cmd} -V 2&gt;/dev/null | awk &#39;{print \$2}&#39;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A timemachine
@@ -925,7 +926,7 @@
 </span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;v${remote_ver}.tar.gz&#39;</span>
 </span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>dlurl<span class="o">]=</span><span class="s1">&#39;https://github.com/${reponame}/archive/refs/tags/${dlname}&#39;</span>
 </span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
-</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo make install&#39;</span>
+</span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;make install&#39;</span>
 </span></span><span class="line"><span class="cl">timemachine<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -V 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A trzsz
@@ -933,11 +934,23 @@
 </span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;${cmd}/${cmd}-go&#39;</span>
 </span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}_${remote_ver}_linux_x86_64.tar.gz&#39;</span>
 </span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
-</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;sudo install -ps trz /usr/local/bin/trz; sudo install tsz -ps /usr/local/bin/tsz; sudo install -ps $cmd /usr/local/bin/$cmd&#39;</span>
+</span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps trz /usr/local/bin/trz; install tsz -ps /usr/local/bin/tsz; install -ps $cmd /usr/local/bin/$cmd&#39;</span>
 </span></span><span class="line"><span class="cl">trzsz<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><h2 id="系列">系列</h2>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >二、安装Debian、初始网络配置、必要软件安装</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89" >三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >四、clash的安装和配置、相关的IP规则和nftables规则</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad" >六、subconverter的安装和配置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab" >八、配置旁路由的SNMPD服务、配置主路由的跨三层应用</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d" >九、监测陌生设备</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81" >十、快速简单的安装和更新软件包</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80" >十一、DNS、网络故障等的总结，以及一些注意事项</a></p>
+
 </section>
 
 

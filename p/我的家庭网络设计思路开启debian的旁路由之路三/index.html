@@ -254,6 +254,7 @@
       </ol>
     </li>
     <li><a href="#clash">clash</a></li>
+    <li><a href="#系列">系列</a></li>
   </ol>
 </nav>
         </div>
@@ -334,7 +335,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 9 分钟
                 </time>
             </div>
         
@@ -459,7 +460,7 @@
 <pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">ExecStart          </span><span class="o">=</span><span class="s"> /usr/local/bin/adguardhome -w /var/lib/adguardhome -c /etc/adguardhome/config.yaml</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果不想以root用户运行 <code>adguardhome</code> ，可以自行创建用户 <code>adguardhome</code> 和用户组 <code>adguardhome</code> ，然后在 <code>/etc/systemd/system/adguardhome.service</code> 的 <code>[Service]</code> 单元下增加下面两行，同时修改 <code>/var/lib/adguardhome</code> 为该普通用户所有。</p>
+</div><p>如果不想以root用户运行 <code>adguardhome</code> ，可以自行创建用户 <code>adguardhome</code> 和用户组 <code>adguardhome</code> ，然后在 <code>/etc/systemd/system/adguardhome.service</code> 的 <code>[Service]</code> 单元下增加下面两行，同时修改 <code>/var/lib/adguardhome</code> 为该普通用户所有（后续的脚本都是以root用户为运行用户进行的）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -771,7 +772,7 @@
 <pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">ExecStart          </span><span class="o">=</span><span class="s"> /usr/local/bin/mosdns start -c /etc/mosdns/config.yaml</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果不想以root用户运行 <code>mosdns</code>，可以自行创建用户 <code>mosdns</code> 和用户组 <code>mosdns</code>，然后在 <code>/etc/systemd/system/mosdns.service</code> 的 <code>[Service]</code> 单元下增加两行，同时修改 <code>/var/lib/mosdns</code> 为该普通用户所有。</p>
+</div><p>如果不想以root用户运行 <code>mosdns</code>，可以自行创建用户 <code>mosdns</code> 和用户组 <code>mosdns</code>，然后在 <code>/etc/systemd/system/mosdns.service</code> 的 <code>[Service]</code> 单元下增加两行，同时修改 <code>/var/lib/mosdns</code> 为该普通用户所有（后续的脚本都是以root用户为运行用户的）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -831,7 +832,7 @@
 <p>你也可以参考 <a class="link" href="https://irine-sistiana.gitbook.io/mosdns-wiki/mosdns-v5"  target="_blank" rel="noopener"
     >mosdns wiki</a> 来进行更加定制化的配置。</p>
 <h3 id="启用服务-1">启用服务</h3>
-<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/mosdns.service</code> 为开启自动启动，并立即启动起来（这时上游clash尚未配置，你可以等后续配置完好以后再来启动它）。但会由于缺少 <code>/var/lib/mosdns/geodata</code> 下面的几个文件，会导致启动失败。我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成这些文件。</p>
+<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/mosdns.service</code> 为开启自动启动，并立即启动起来（这时上游clash尚未配置，你可以等后续配置完好以后再来启动它）。但会由于缺少 <code>/var/lib/mosdns/geodata</code> 下面的几个文件，会导致启动失败。你可以先下载这几个并非是最新的文件，先保存到上文指定的位置让服务启动起来：<a class="link" href="geoip_cn.txt" >geoip_cn.txt</a>、<a class="link" href="geosite_cn.txt" >geosite_cn.txt</a>、<a class="link" href="geosite_geolocation-!cn.txt" >geosite_geolocation-!cn.txt</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成这些文件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -860,6 +861,18 @@
 </div>
 </div><h2 id="clash">clash</h2>
 <p>由于clash不仅仅只涉及DNS服务，还涉及到代理、nftables、IP规则相关内容，我们将在接下来的单篇 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >本系列第（四）篇</a> 中详细详解。</p>
+<h2 id="系列">系列</h2>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >二、安装Debian、初始网络配置、必要软件安装</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89" >三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >四、clash的安装和配置、相关的IP规则和nftables规则</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad" >六、subconverter的安装和配置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab" >八、配置旁路由的SNMPD服务、配置主路由的跨三层应用</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d" >九、监测陌生设备</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81" >十、快速简单的安装和更新软件包</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80" >十一、DNS、网络故障等的总结，以及一些注意事项</a></p>
 
 </section>
 

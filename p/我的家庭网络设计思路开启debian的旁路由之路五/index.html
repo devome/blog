@@ -249,6 +249,7 @@
       </ol>
     </li>
     <li><a href="#最后">最后</a></li>
+    <li><a href="#系列">系列</a></li>
   </ol>
 </nav>
         </div>
@@ -329,7 +330,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -837,7 +838,7 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>注意到我们在第51行多引用了一个文件 <code>/var/lib/clash/nem_address.nft</code> （我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成这个文件），在第63-67行多形成了一个集合 <code>geoip4_cn_set</code>，在第85行插入了一行规则 <code>ip daddr @nem_address_set goto clash_tproxy</code>，这条规则插入在 <code>ip daddr @geoip4_cn_set accept</code> 之前，表示虽然网易云音乐IP是中国大陆IP，但要在直接接收前转到透明代理并停止后续规则。现在的 <code>prerouting</code> 链内容有点多，其实可以一拆为三。</p>
+</div><p>注意到我们在第51行多引用了一个文件 <code>/var/lib/clash/nem_address.nft</code> （可先下载这个并非最新的文件到指定位置来将就一下：<a class="link" href="nem_address.nft" >nem_address.nft</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成这个文件），在第63-67行多形成了一个集合 <code>geoip4_cn_set</code>，在第85行插入了一行规则 <code>ip daddr @nem_address_set goto clash_tproxy</code>，这条规则插入在 <code>ip daddr @geoip4_cn_set accept</code> 之前，表示虽然网易云音乐IP是中国大陆IP，但要在直接接收前转到透明代理并停止后续规则。现在的 <code>prerouting</code> 链内容有点多，其实可以一拆为三。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1016,7 +1017,7 @@
 </div><p>只能保证目前有效。上述两种方式，都由于 <code>CNAME</code> 域名的存在，光处理 <code>music.163.com</code> 和 <code>music.163.com.163jiasu.com</code> 不行，还要处理它们背后的 <code>CNAME</code> 域名。可能有望在未来得以改进，详见 <a class="link" href="https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#dnstype"  target="_blank" rel="noopener"
     >Hosts-Blocklists#dnstype</a>。</p>
 <h3 id="启用服务">启用服务</h3>
-<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/unblocknem.service</code> 为开启自动启动，并立即启动起来。但这个时候由于 <code>clash</code> 还缺少几份 <code>nft</code> 文件，并没有启动起来，所以这个时候 <code>unblocknem</code> 服务还不可用。如果启动好后，<code>unblocknem</code> 将会监听在 <code>8080</code> 和 <code>8081</code> 端口上。</p>
+<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/unblocknem.service</code> 为开启自动启动，并立即启动起来。如果这个时候 <code>clash</code> 还没有启动起来，那么 <code>unblocknem</code> 服务就还不可用。都启动好后，<code>unblocknem</code> 将会监听在 <code>8080</code> 和 <code>8081</code> 端口上。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1048,17 +1049,17 @@
 <h3 id="windows">Windows</h3>
 <p>安装网易云音乐客户端后，创建一个快捷方式，然后在该快捷方式的属性中的“目标”增加 <code> --ignore-certificate-errors</code>，注意有个空格。</p>
 <p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png"
-	width="421"
-	height="673"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_1024x0_resize_box_3.png 1024w"
+	width="1156"
+	height="307"
+	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hua626112c0e4470a9588945448e9e4001_62327_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hua626112c0e4470a9588945448e9e4001_62327_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="网易云音乐"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="62"
-		data-flex-basis="150px"
+		data-flex-grow="376"
+		data-flex-basis="903px"
 	
 ></p>
 <h3 id="archlinux系">ArchLinux系</h3>
@@ -1116,6 +1117,18 @@
 		data-flex-basis="419px"
 	
 ></p>
+<h2 id="系列">系列</h2>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >二、安装Debian、初始网络配置、必要软件安装</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89" >三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >四、clash的安装和配置、相关的IP规则和nftables规则</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad" >六、subconverter的安装和配置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab" >八、配置旁路由的SNMPD服务、配置主路由的跨三层应用</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d" >九、监测陌生设备</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81" >十、快速简单的安装和更新软件包</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80" >十一、DNS、网络故障等的总结，以及一些注意事项</a></p>
 
 </section>
 

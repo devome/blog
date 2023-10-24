@@ -232,8 +232,10 @@
     <li><a href="#关于内存">关于内存</a></li>
     <li><a href="#关于dns">关于DNS</a></li>
     <li><a href="#关于网络故障">关于网络故障</a></li>
+    <li><a href="#关于ipv6">关于IPv6</a></li>
     <li><a href="#关于软件包">关于软件包</a></li>
     <li><a href="#关于本系列提供的脚本">关于本系列提供的脚本</a></li>
+    <li><a href="#系列">系列</a></li>
   </ol>
 </nav>
         </div>
@@ -314,7 +316,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -358,11 +360,25 @@
 <h2 id="关于网络故障">关于网络故障</h2>
 <p>我们将 <code>nftables</code> 规则绑定到 <code>clash</code> 启动之后才执行，在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >本系列第（四）篇</a> 我们是以 <code>ExecStartPost</code> 来让 <code>nftables</code> 规则在 <code>clash</code> 启动之后才执行的。如果 <code>clash</code> 没启动好， <code>nftables</code> 规则也就不会执行，假如这个时候 <code>adguardhome</code> 和 <code>mosdns</code> 都启动好了，由于 <code>mosdns</code> 无法使用 <code>clash</code> 的DNS服务，它会全部切换到后备也就是国内公共DNS服务器去解析，这不会影响家人的上网体验。另一方面，假如 <code>clash</code> 启动好了， <code>nftables</code> 规则也创建好了，可是 <code>clash</code> 的代理节点全部故障了，这个时候，由于我们有绕过中国大陆IP的 <code>nftables</code> 规则，仍然不会影响我们使用境内服务。即使再极端一点，连 <code>nftables</code> 也坏了，因为我们是使用 <code>nftables</code> 脚本来生成的，只会全在或者全空，那么全空就意味着没有任何 <code>nftables</code> 规则，旁路由这时除了DNS，就是一个纯粹的 <code>IPv4</code> 转发器，更不会干扰网络的运行。</p>
 <p>在 <code>OpenWRT</code> 中许多包都会操作 <code>iptbales</code> 或者 <code>nftables</code>，它们之间可能并没有很好的协调与配合，毕竟分属不同的人开发。并且多数都是以一句一句的 <code>shell</code> 命令来增加的规则，很有可能有些语句生效了，有些语句没有生效，然后导致网络故障。现在我们全部自写 <code>nftables</code> 规则，逻辑清楚，并且只会随着 <code>clash</code> 的启动而启动，而不是脱离 <code>clash</code> 自己单独启动，这样就能避免一些网络故障问题。</p>
+<h2 id="关于ipv6">关于IPv6</h2>
+<p>所配置的旁路由只作为了IPv4的网关，不作为IPv6的网关主要有两个原因，一是IPv6代理并未普及，二是想要旁路由成为IPv6网关异常复杂。不过，仍然保留了中国大陆网址的IPv6访问的能力。局域网中对公网转发的服务也是可以提供IPv6访问的，这点并不影响。在非旁路由所在的子网中，IPv4/IPv6双栈都是默认可用的状态。</p>
 <h2 id="关于软件包">关于软件包</h2>
 <p>国内的用户使用 <code>OpenWRT</code> 一般是使用 <code>LEDE</code>，如果是自己编译的话，面对繁多的选项无从下手，用别人的 高大全 又老是配置不好，而且还面临不太好升级的问题。一些旧的软件包想要更新，都要先更新固件的编译依赖仓库。</p>
 <p>而使用 <code>Debian</code> 的话，它自带的仓库是极度稳定的，自己想要额外安装的一些软件包，基于这个稳定的环境，运行也更稳定，而且额外安装的软件包可以保持追新。这样基础环境稳定，部分特殊软件追新，让体验更加完美。</p>
 <h2 id="关于本系列提供的脚本">关于本系列提供的脚本</h2>
 <p>如果你相对于我的改动较多，你就可能不能直接使用本系列提供的 <code>shell</code> 脚本。如涉及到改动，可能需要你自行修改相关脚本内容，以适应你的环境。若因此脚本出现错误，本人无法提供过多的建议，可能需要你自行排故。</p>
+<h2 id="系列">系列</h2>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >二、安装Debian、初始网络配置、必要软件安装</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89" >三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >四、clash的安装和配置、相关的IP规则和nftables规则</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad" >六、subconverter的安装和配置</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab" >八、配置旁路由的SNMPD服务、配置主路由的跨三层应用</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d" >九、监测陌生设备</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81" >十、快速简单的安装和更新软件包</a>
+<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80" >十一、DNS、网络故障等的总结，以及一些注意事项</a></p>
 
 </section>
 
