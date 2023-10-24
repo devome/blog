@@ -955,11 +955,9 @@
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
-</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">DOMAIN-SUFFIX,music.126.com,🎶 网易音乐</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">DOMAIN-SUFFIX,music.163.com,🎶 网易音乐</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">DOMAIN-SUFFIX,music.163.com,🎶 网易音乐</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">DOMAIN-SUFFIX,music.163.com.163jiasu.com,🎶 网易音乐</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,39.105.63.80/32,🎶 网易音乐,no-resolve</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,39.105.175.128/32,🎶 网易音乐,no-resolve</span><span class="w">
@@ -995,7 +993,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">127.0.0.1:5335
-</span></span><span class="line"><span class="cl">[/music.163.com/music.126.net/music.ntes53.netease.com/music.163.com.163jiasu.com/music.126.net.163jiasu.com/music.163.com.bsclink.cn/music.126.net.mygslb.cn/uz99.v.bsclink.cn/v6.wddy.mygslb.cn/]127.0.0.1:7874
+</span></span><span class="line"><span class="cl">[/music.163.com/music.ntes53.netease.com/music.163.com.163jiasu.com/music.163.com.bsclink.cn/uz99.v.bsclink.cn/]127.0.0.1:7874
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>其二是在 “过滤器 -&gt; 自定义过滤规则” 中添加规则如下（这种方式会计入“被拦截域名”中，但是对包括后备在内的全部上游DNS服务器都有效）。</p>
@@ -1006,22 +1004,16 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">||music.163.com^$dnstype=AAAA
-</span></span><span class="line"><span class="cl">||music.163.com.163jiasu.com^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||music.ntes53.netease.com^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||music.163.com.163jiasu.com^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||music.163.com.bsclink.cn^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||uz99.v.bsclink.cn^$dnstype=AAAA
-</span></span><span class="line"><span class="cl">||music.126.net.163jiasu.com^$dnstype=AAAA
-</span></span><span class="line"><span class="cl">||music.126.net.mygslb.cn^$dnstype=AAAA
-</span></span><span class="line"><span class="cl">||v6.wddy.mygslb.cn^$dnstype=AAAA
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>只能保证目前有效。上述两种方式，都由于CNAME的存在，光处理 <code>music.163.com</code> 和 <code>music.163.com.163jiasu.com</code> 不行，而是要处理一堆网址。可能有望在未来得以改进，详见 <a class="link" href="https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#dnstype"  target="_blank" rel="noopener"
+</div><p>只能保证目前有效。上述两种方式，都由于 <code>CNAME</code> 域名的存在，光处理 <code>music.163.com</code> 和 <code>music.163.com.163jiasu.com</code> 不行，还要处理它们背后的 <code>CNAME</code> 域名。可能有望在未来得以改进，详见 <a class="link" href="https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#dnstype"  target="_blank" rel="noopener"
     >Hosts-Blocklists#dnstype</a>。</p>
 <h3 id="启用服务">启用服务</h3>
 <p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/unblocknem.service</code> 为开启自动启动，并立即启动起来。但这个时候由于 <code>clash</code> 还缺少几份 <code>nft</code> 文件，并没有启动起来，所以这个时候 <code>unblocknem</code> 服务还不可用。如果启动好后，<code>unblocknem</code> 将会监听在 <code>8080</code> 和 <code>8081</code> 端口上。</p>
