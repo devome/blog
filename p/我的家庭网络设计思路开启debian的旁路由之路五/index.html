@@ -838,7 +838,7 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>注意到我们在第51行多引用了一个文件 <code>/var/lib/clash/nem_address.nft</code> （可先下载这个并非最新的文件到指定位置来将就一下：<a class="link" href="nem_address.nft" >nem_address.nft</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成这个文件），在第63-67行多形成了一个集合 <code>geoip4_cn_set</code>，在第85行插入了一行规则 <code>ip daddr @nem_address_set goto clash_tproxy</code>，这条规则插入在 <code>ip daddr @geoip4_cn_set accept</code> 之前，表示虽然网易云音乐IP是中国大陆IP，但要在直接接收前转到透明代理并停止后续规则。现在的 <code>prerouting</code> 链内容有点多，其实可以一拆为三。</p>
+</div><p>注意到我们在第51行多引用了一个文件 <code>/var/lib/clash/nem_address.nft</code> （可先下载这个并非最新的文件到指定位置来将就一下：<a class="link" href="nem_address.nft" >nem_address.nft</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成这个文件），在第63-67行多形成了一个集合 <code>nem_address_set</code>，在第85行插入了一行规则 <code>ip daddr @nem_address_set goto clash_tproxy</code>，这条规则插入在 <code>ip daddr @geoip4_cn_set accept</code> 之前，表示虽然网易云音乐IP是中国大陆IP，但要在直接接收前转到透明代理并停止后续规则。现在的 <code>prerouting</code> 链内容有点多，其实可以一拆为三。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
