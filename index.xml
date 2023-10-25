@@ -593,14 +593,23 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;105
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;106
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;107
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;108
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;109
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;110
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;111
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;112
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;113
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;114
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;115
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;pkgs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    act
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    aliyunpan
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    baidupcs
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    cidr_merger
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ctop
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    gogs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    gitea
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    influx_cli
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    nali
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    realtek_r8125_dkms
@@ -608,6 +617,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    timemachine
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    trzsz
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A act
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;act&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;act&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;act&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;nektos/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;act&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}_Linux_x86_64.tar.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;act&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --directory=.&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;act&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps ${cmd} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;act&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} --version 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A aliyunpan
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;aliyunpan&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;aliyunpan&amp;#39;&lt;/span&gt;
@@ -648,14 +665,13 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;evsieve&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} --version 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A gogs
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gogs&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}/${cmd}&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}_${remote_ver}_linux_amd64.tar.gz&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tar --no-same-owner -xf &amp;#34;$dlname&amp;#34; --strip-components 1 --directory=.&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps ${cmd} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gogs&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A gitea
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gitea&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gitea&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gitea&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;go-${cmd}/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gitea&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}-${remote_ver}-linux-amd64&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gitea&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps ${cmd}-${remote_ver}-linux-amd64 /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gitea&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gitea&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34; | head -1&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A influx_cli
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;influx_cli&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;influxdata/influx-cli&amp;#39;&lt;/span&gt;

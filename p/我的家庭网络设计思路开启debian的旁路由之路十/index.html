@@ -827,14 +827,23 @@
 </span><span class="lnt">105
 </span><span class="lnt">106
 </span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">pkgs</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    act
 </span></span><span class="line"><span class="cl">    aliyunpan
 </span></span><span class="line"><span class="cl">    baidupcs
 </span></span><span class="line"><span class="cl">    cidr_merger
 </span></span><span class="line"><span class="cl">    ctop
-</span></span><span class="line"><span class="cl">    gogs
+</span></span><span class="line"><span class="cl">    gitea
 </span></span><span class="line"><span class="cl">    influx_cli
 </span></span><span class="line"><span class="cl">    nali
 </span></span><span class="line"><span class="cl">    realtek_r8125_dkms
@@ -842,6 +851,14 @@
 </span></span><span class="line"><span class="cl">    timemachine
 </span></span><span class="line"><span class="cl">    trzsz
 </span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A act
+</span></span><span class="line"><span class="cl">act<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;act&#39;</span>
+</span></span><span class="line"><span class="cl">act<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;nektos/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">act<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}_Linux_x86_64.tar.gz&#39;</span>
+</span></span><span class="line"><span class="cl">act<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --directory=.&#39;</span>
+</span></span><span class="line"><span class="cl">act<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">act<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} --version 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A aliyunpan
 </span></span><span class="line"><span class="cl">aliyunpan<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;aliyunpan&#39;</span>
@@ -882,14 +899,13 @@
 </span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
 </span></span><span class="line"><span class="cl">evsieve<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} --version 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A gogs
-</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;gogs&#39;</span>
-</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;${cmd}/${cmd}&#39;</span>
-</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}_${remote_ver}_linux_amd64.tar.gz&#39;</span>
-</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>decomp<span class="o">]=</span><span class="s1">&#39;tar --no-same-owner -xf &#34;$dlname&#34; --strip-components 1 --directory=.&#39;</span>
-</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd} /usr/local/bin/${cmd}&#39;</span>
-</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
-</span></span><span class="line"><span class="cl">gogs<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A gitea
+</span></span><span class="line"><span class="cl">gitea<span class="o">[</span>cmd<span class="o">]=</span><span class="s1">&#39;gitea&#39;</span>
+</span></span><span class="line"><span class="cl">gitea<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;go-${cmd}/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">gitea<span class="o">[</span>dlname<span class="o">]=</span><span class="s1">&#39;${cmd}-${remote_ver}-linux-amd64&#39;</span>
+</span></span><span class="line"><span class="cl">gitea<span class="o">[</span>install<span class="o">]=</span><span class="s1">&#39;install -ps ${cmd}-${remote_ver}-linux-amd64 /usr/local/bin/${cmd}&#39;</span>
+</span></span><span class="line"><span class="cl">gitea<span class="o">[</span>install_post<span class="o">]=</span><span class="s1">&#39;systemctl restart ${cmd}.service&#39;</span>
+</span></span><span class="line"><span class="cl">gitea<span class="o">[</span>local_ver<span class="o">]=</span><span class="s1">&#39;${cmd} -v 2&gt;/dev/null | grep -oP &#34;(\d+\.){2}\d+&#34; | head -1&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A influx_cli
 </span></span><span class="line"><span class="cl">influx_cli<span class="o">[</span>reponame<span class="o">]=</span><span class="s1">&#39;influxdata/influx-cli&#39;</span>
