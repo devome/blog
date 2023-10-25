@@ -455,7 +455,7 @@
 </div>
 </div><p>因为需要操作 <code>nftables</code>，所以 <code>clash</code> 需要以root用户运行。</p>
 <h3 id="mynftablesnft">mynftables.nft</h3>
-<p>注意到我们在 <code>/etc/systemd/system/clash.service</code> 的 <code>ExecStartPost</code> 行有执行 <code>mynftables.nft</code>。现在，新建 <code>/usr/local/bin/mynftables.nft</code>，内容如下。请注意按照注释修改，创建好后以命令 <code>chmod +x /usr/local/bin/mynftables.nft</code> 为它增加可执行权限。该文件会引用到另外一个文件 <code>/var/lib/clash/geoip4_cn.nft</code>，这个要引用到的文件，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成。</p>
+<p>注意到我们在 <code>/etc/systemd/system/clash.service</code> 的 <code>ExecStartPost</code> 行有执行 <code>mynftables.nft</code>。现在，新建 <code>/usr/local/bin/mynftables.nft</code>，内容如下。请注意按照注释修改，创建好后以命令 <code>chmod +x /usr/local/bin/mynftables.nft</code> 为它增加可执行权限。该文件会引用到另外一个文件 <code>/var/lib/clash/geoip4_cn.nft</code>，你可以先下载这并非是最新的文件，先保存到该位置：<a class="link" href="geoip4_cn.nft" >geoip4_cn.nft</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新。</p>
 <p>如果你的代理不支持代理 <code>UDP</code> 流量，可以选择解除 <code>ip protocol udp accept</code> 行的注释。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -881,7 +881,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="启用服务">启用服务</h3>
-<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/clash.service</code> 为开启自动启动，并立即启动起来。但会由于缺少文件 <code>/var/lib/clash/geoip4_cn.nft</code>，导致启动失败。你可以先下载这并非是最新的文件，先保存到该位置让服务启动起来：<a class="link" href="geoip4_cn.nft" >geoip4_cn.nft</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成这个文件。</p>
+<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/clash.service</code> 为开启自动启动，并立即启动起来。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -934,17 +934,41 @@
 </li>
 </ol>
 <h2 id="系列">系列</h2>
+<ul>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >二、安装Debian、初始网络配置、必要软件安装</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89" >三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >四、clash的安装和配置、相关的IP规则和nftables规则</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad" >六、subconverter的安装和配置</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab" >八、配置旁路由的SNMPD服务、配置主路由的跨三层应用</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d" >九、监测陌生设备</a></p>
-<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81" >十、快速简单的安装和更新软件包</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81" >十、快速简单的安装和更新软件包</a></p>
+</li>
+<li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80" >十一、DNS、网络故障等的总结，以及一些注意事项</a></p>
+</li>
+</ul>
 
 </section>
 

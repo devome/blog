@@ -15,6 +15,8 @@
         <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" /&gt;&lt;h2 id=&#34;关于systemd&#34;&gt;关于systemd&lt;/h2&gt;
 &lt;p&gt;本系列全部服务都使用 &lt;code&gt;systemd&lt;/code&gt; 来启动和管理，在系列中并未过多的说明这些服务如何启动、开启自启、重启、重载、停止、查看日志、筛选日志等等。关于 &lt;code&gt;systemd&lt;/code&gt;，阮一峰大佬有详细的教程：&lt;a class=&#34;link&#34; href=&#34;https://ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Systemd 入门教程&lt;/a&gt;，该文详细的介绍了 &lt;code&gt;systemctl&lt;/code&gt; 及 &lt;code&gt;journalctl&lt;/code&gt; 相关命令的使用方法。&lt;/p&gt;
+&lt;h2 id=&#34;关于磁盘占用&#34;&gt;关于磁盘占用&lt;/h2&gt;
+&lt;p&gt;整套系统配置下来，初始的磁盘占用不到2G。从长远来看，只要不会有需要占用大量磁盘空间的应用程序，16应该是绰绰有余。&lt;/p&gt;
 &lt;h2 id=&#34;关于内存&#34;&gt;关于内存&lt;/h2&gt;
 &lt;p&gt;安装完这一系列内容，实际上内存使用并没有增加多少，才 &lt;code&gt;340MiB&lt;/code&gt; 左右。注意 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 是可以通过调整参数降低的，这个占用不算真正的占用。 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 反而是对系统运行有好处的，在内存足够的前提下，不建议清除它们。如果内存真的不够，你可以按照 &lt;a class=&#34;link&#34; href=&#34;https://unix.stackexchange.com/questions/253816/restrict-size-of-buffer-cache-in-linux&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这个链接&lt;/a&gt; 来限制它们。&lt;/p&gt;
@@ -39,27 +41,52 @@
 &lt;p&gt;我们在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;本系列第（三）篇&lt;/a&gt; 使用了 &lt;code&gt;adguardhome&lt;/code&gt; &lt;code&gt;mosdns&lt;/code&gt; 和 &lt;code&gt;clash&lt;/code&gt; 来实现自建DNS服务，在 &lt;code&gt;adguardhome&lt;/code&gt; 和 &lt;code&gt;mosdns&lt;/code&gt; 中都存在后备，两级后备保证局域网中的设备访问中国大陆的服务不会因为 &lt;code&gt;clash&lt;/code&gt; 的代理节点出问题，而导致无法访问。我想这点对家人的使用比较重要，他们大多数都只需要能够访问中国大陆有服务就可以了，他们不会再闹着说“又上不了网了，你咋搞的嘛”。&lt;/p&gt;
 &lt;p&gt;在 &lt;code&gt;OpenWRT&lt;/code&gt; 中默认是会安装 &lt;code&gt;dnsmasq&lt;/code&gt; 的，许多包都会操作 &lt;code&gt;dnsmasq&lt;/code&gt; ，这可能也是导致解析不到DNS的原因。 使用 &lt;code&gt;Debian&lt;/code&gt; 没有此烦恼，因为压根没有安装 &lt;code&gt;dnsmasq&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;关于网络故障&#34;&gt;关于网络故障&lt;/h2&gt;
-&lt;p&gt;我们将 &lt;code&gt;nftables&lt;/code&gt; 规则绑定到 &lt;code&gt;clash&lt;/code&gt; 启动之后才执行，在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;本系列第（四）篇&lt;/a&gt; 我们是以 &lt;code&gt;ExecStartPost&lt;/code&gt; 来让 &lt;code&gt;nftables&lt;/code&gt; 规则在 &lt;code&gt;clash&lt;/code&gt; 启动之后才执行的。如果 &lt;code&gt;clash&lt;/code&gt; 没启动好， &lt;code&gt;nftables&lt;/code&gt; 规则也就不会执行，假如这个时候 &lt;code&gt;adguardhome&lt;/code&gt; 和 &lt;code&gt;mosdns&lt;/code&gt; 都启动好了，由于 &lt;code&gt;mosdns&lt;/code&gt; 无法使用 &lt;code&gt;clash&lt;/code&gt; 的DNS服务，它会全部切换到后备也就是国内公共DNS服务器去解析，这不会影响家人的上网体验。另一方面，假如 &lt;code&gt;clash&lt;/code&gt; 启动好了， &lt;code&gt;nftables&lt;/code&gt; 规则也创建好了，可是 &lt;code&gt;clash&lt;/code&gt; 的代理节点全部故障了，这个时候，由于我们有绕过中国大陆IP的 &lt;code&gt;nftables&lt;/code&gt; 规则，仍然不会影响我们使用境内服务。即使再极端一点，连 &lt;code&gt;nftables&lt;/code&gt; 也坏了，因为我们是使用 &lt;code&gt;nftables&lt;/code&gt; 脚本来生成的，只会全在或者全空，那么全空就意味着没有任何 &lt;code&gt;nftables&lt;/code&gt; 规则，旁路由这时除了DNS，就是一个纯粹的 &lt;code&gt;IPv4&lt;/code&gt; 转发器，更不会干扰网络的运行。&lt;/p&gt;
-&lt;p&gt;在 &lt;code&gt;OpenWRT&lt;/code&gt; 中许多包都会操作 &lt;code&gt;iptbales&lt;/code&gt; 或者 &lt;code&gt;nftables&lt;/code&gt;，它们之间可能并没有很好的协调与配合，毕竟分属不同的人开发。并且多数都是以一句一句的 &lt;code&gt;shell&lt;/code&gt; 命令来增加的规则，很有可能有些语句生效了，有些语句没有生效，然后导致网络故障。现在我们全部自写 &lt;code&gt;nftables&lt;/code&gt; 规则，逻辑清楚，并且只会随着 &lt;code&gt;clash&lt;/code&gt; 的启动而启动，而不是脱离 &lt;code&gt;clash&lt;/code&gt; 自己单独启动，这样就能避免一些网络故障问题。&lt;/p&gt;
+&lt;p&gt;我们将 &lt;code&gt;nftables&lt;/code&gt; 规则绑定到 &lt;code&gt;clash&lt;/code&gt; 启动之后才执行，在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;本系列第（四）篇&lt;/a&gt; 我们是以 &lt;code&gt;ExecStartPost&lt;/code&gt; 来让 &lt;code&gt;nftables&lt;/code&gt; 规则在 &lt;code&gt;clash&lt;/code&gt; 启动之后才执行的。如果 &lt;code&gt;clash&lt;/code&gt; 没启动好， &lt;code&gt;nftables&lt;/code&gt; 规则也就不会执行，假如这个时候 &lt;code&gt;adguardhome&lt;/code&gt; 和 &lt;code&gt;mosdns&lt;/code&gt; 都启动好了，由于 &lt;code&gt;mosdns&lt;/code&gt; 无法使用 &lt;code&gt;clash&lt;/code&gt; 的DNS服务，它会全部切换到后备也就是国内公共DNS服务器去解析，这不会影响家人的上网体验。另一方面，假如 &lt;code&gt;clash&lt;/code&gt; 启动好了， &lt;code&gt;nftables&lt;/code&gt; 规则也创建好了，可是 &lt;code&gt;clash&lt;/code&gt; 的代理节点全部故障了，这个时候，由于我们有绕过中国大陆IP的 &lt;code&gt;nftables&lt;/code&gt; 规则，仍然不会影响我们使用境内服务。即使再极端一点，连 &lt;code&gt;nftables&lt;/code&gt; 也坏了，因为我们是使用 &lt;code&gt;nftables&lt;/code&gt; 脚本来生成的，而不是使用 &lt;code&gt;shell&lt;/code&gt; 命令一句一句输入的，所以只会整个 &lt;code&gt;mynftables.nft&lt;/code&gt; 脚本中的规则全在或者全不在（有任何一句出错就会全不在），那么全不在就意味着没有任何 &lt;code&gt;nftables&lt;/code&gt; 规则，旁路由这时除了DNS，就是一个纯粹的 &lt;code&gt;IPv4&lt;/code&gt; 转发器，更不会干扰网络的运行（只会影响特殊服务而已）。&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;OpenWRT&lt;/code&gt; 中许多包都会操作 &lt;code&gt;iptbales&lt;/code&gt; 或者 &lt;code&gt;nftables&lt;/code&gt;，它们之间可能并没有很好的协调与配合，毕竟分属不同的人开发。并且多数都是以一句一句的 &lt;code&gt;shell&lt;/code&gt; 命令来增加的规则，很有可能有些语句生效了，有些语句没有生效，然后导致网络故障。现在我们全部自写 &lt;code&gt;nftables&lt;/code&gt; 规则，逻辑清楚，并且只会随着 &lt;code&gt;clash&lt;/code&gt; 的启动而启动，而不是脱离 &lt;code&gt;clash&lt;/code&gt; 自己单独启动，并且直接采用 &lt;code&gt;nftables&lt;/code&gt; 脚本而非 &lt;code&gt;shell&lt;/code&gt; 脚本，这样就能避免一些网络故障问题。&lt;/p&gt;
 &lt;h2 id=&#34;关于ipv6&#34;&gt;关于IPv6&lt;/h2&gt;
 &lt;p&gt;所配置的旁路由只作为了IPv4的网关，不作为IPv6的网关主要有两个原因，一是IPv6代理并未普及，二是想要旁路由成为IPv6网关异常复杂。不过，仍然保留了中国大陆网址的IPv6访问的能力。局域网中对公网转发的服务也是可以提供IPv6访问的，这点并不影响。在非旁路由所在的子网中，IPv4/IPv6双栈都是默认可用的状态。&lt;/p&gt;
 &lt;h2 id=&#34;关于软件包&#34;&gt;关于软件包&lt;/h2&gt;
 &lt;p&gt;国内的用户使用 &lt;code&gt;OpenWRT&lt;/code&gt; 一般是使用 &lt;code&gt;LEDE&lt;/code&gt;，如果是自己编译的话，面对繁多的选项无从下手，用别人的 高大全 又老是配置不好，而且还面临不太好升级的问题。一些旧的软件包想要更新，都要先更新固件的编译依赖仓库。&lt;/p&gt;
 &lt;p&gt;而使用 &lt;code&gt;Debian&lt;/code&gt; 的话，它自带的仓库是极度稳定的，自己想要额外安装的一些软件包，基于这个稳定的环境，运行也更稳定，而且额外安装的软件包可以保持追新。这样基础环境稳定，部分特殊软件追新，让体验更加完美。&lt;/p&gt;
+&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 中还提及了一些其他的软件包，这些都是简单地应用，如有需要可自行搜索其帮助文档。&lt;/p&gt;
 &lt;h2 id=&#34;关于本系列提供的脚本&#34;&gt;关于本系列提供的脚本&lt;/h2&gt;
 &lt;p&gt;如果你相对于我的改动较多，你就可能不能直接使用本系列提供的 &lt;code&gt;shell&lt;/code&gt; 脚本。如涉及到改动，可能需要你自行修改相关脚本内容，以适应你的环境。若因此脚本出现错误，本人无法提供过多的建议，可能需要你自行排故。&lt;/p&gt;
 &lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -678,17 +705,41 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -901,7 +952,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* * * * * arp.sh &amp;gt; /tmp/arp.log
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* * * * * arp.sh &amp;gt;&amp;gt; /tmp/arp.log
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;未来想查看有哪些陌生设备接入，注意重启后该文件会消失，请及时查看。&lt;/p&gt;
@@ -983,17 +1034,41 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -1070,17 +1145,41 @@
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -2355,17 +2454,41 @@
 &lt;/div&gt;&lt;h2 id=&#34;最后&#34;&gt;最后&lt;/h2&gt;
 &lt;p&gt;脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;本系列&lt;/a&gt; 接下来的文章中，将继续配置其他服务。&lt;/p&gt;
 &lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -2494,17 +2617,41 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -3006,7 +3153,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;注意到我们在第51行多引用了一个文件 &lt;code&gt;/var/lib/clash/nem_address.nft&lt;/code&gt; （可先下载这个并非最新的文件到指定位置来将就一下：&lt;a class=&#34;link&#34; href=&#34;nem_address.nft&#34; &gt;nem_address.nft&lt;/a&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动生成这个文件），在第63-67行多形成了一个集合 &lt;code&gt;nem_address_set&lt;/code&gt;，在第85行插入了一行规则 &lt;code&gt;ip daddr @nem_address_set goto clash_tproxy&lt;/code&gt;，这条规则插入在 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 之前，表示虽然网易云音乐IP是中国大陆IP，但要在直接接收前转到透明代理并停止后续规则。现在的 &lt;code&gt;prerouting&lt;/code&gt; 链内容有点多，其实可以一拆为三。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;注意到我们在第51行多引用了一个文件 &lt;code&gt;/var/lib/clash/nem_address.nft&lt;/code&gt; （可先下载这个并非最新的文件到指定位置来将就一下：&lt;a class=&#34;link&#34; href=&#34;nem_address.nft&#34; &gt;nem_address.nft&lt;/a&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动更新这个文件），在第63-67行多形成了一个集合 &lt;code&gt;nem_address_set&lt;/code&gt;，在第85行插入了一行规则 &lt;code&gt;ip daddr @nem_address_set goto clash_tproxy&lt;/code&gt;，这条规则插入在 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 之前，表示虽然网易云音乐IP是中国大陆IP，但要在直接接收前转到透明代理并停止后续规则。现在的 &lt;code&gt;prerouting&lt;/code&gt; 链内容有点多，其实可以一拆为三。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -3286,17 +3433,41 @@
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -3422,7 +3593,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;因为需要操作 &lt;code&gt;nftables&lt;/code&gt;，所以 &lt;code&gt;clash&lt;/code&gt; 需要以root用户运行。&lt;/p&gt;
 &lt;h3 id=&#34;mynftablesnft&#34;&gt;mynftables.nft&lt;/h3&gt;
-&lt;p&gt;注意到我们在 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 的 &lt;code&gt;ExecStartPost&lt;/code&gt; 行有执行 &lt;code&gt;mynftables.nft&lt;/code&gt;。现在，新建 &lt;code&gt;/usr/local/bin/mynftables.nft&lt;/code&gt;，内容如下。请注意按照注释修改，创建好后以命令 &lt;code&gt;chmod +x /usr/local/bin/mynftables.nft&lt;/code&gt; 为它增加可执行权限。该文件会引用到另外一个文件 &lt;code&gt;/var/lib/clash/geoip4_cn.nft&lt;/code&gt;，这个要引用到的文件，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动生成。&lt;/p&gt;
+&lt;p&gt;注意到我们在 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 的 &lt;code&gt;ExecStartPost&lt;/code&gt; 行有执行 &lt;code&gt;mynftables.nft&lt;/code&gt;。现在，新建 &lt;code&gt;/usr/local/bin/mynftables.nft&lt;/code&gt;，内容如下。请注意按照注释修改，创建好后以命令 &lt;code&gt;chmod +x /usr/local/bin/mynftables.nft&lt;/code&gt; 为它增加可执行权限。该文件会引用到另外一个文件 &lt;code&gt;/var/lib/clash/geoip4_cn.nft&lt;/code&gt;，你可以先下载这并非是最新的文件，先保存到该位置：&lt;a class=&#34;link&#34; href=&#34;geoip4_cn.nft&#34; &gt;geoip4_cn.nft&lt;/a&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动更新。&lt;/p&gt;
 &lt;p&gt;如果你的代理不支持代理 &lt;code&gt;UDP&lt;/code&gt; 流量，可以选择解除 &lt;code&gt;ip protocol udp accept&lt;/code&gt; 行的注释。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3848,7 +4019,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;启用服务&#34;&gt;启用服务&lt;/h3&gt;
-&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 为开启自动启动，并立即启动起来。但会由于缺少文件 &lt;code&gt;/var/lib/clash/geoip4_cn.nft&lt;/code&gt;，导致启动失败。你可以先下载这并非是最新的文件，先保存到该位置让服务启动起来：&lt;a class=&#34;link&#34; href=&#34;geoip4_cn.nft&#34; &gt;geoip4_cn.nft&lt;/a&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动生成这个文件。&lt;/p&gt;
+&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 为开启自动启动，并立即启动起来。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3901,17 +4072,41 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -4371,7 +4566,7 @@
     &gt;luci-app-mosdns&lt;/a&gt; 提供的 &lt;a class=&#34;link&#34; href=&#34;https://github.com/sbwml/luci-app-mosdns/blob/v5/luci-app-mosdns/root/usr/share/mosdns/default.yaml&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;默认配置&lt;/a&gt; 已经是一份非常好的配置了，我们稍微改改就能用了。考虑到我已经使用 &lt;code&gt;adguardhome&lt;/code&gt; 来屏蔽广告，以及用来解析本地局域网内的私有IP了，所以在 &lt;code&gt;mosdns&lt;/code&gt; 中我们这可舍弃这一部分配置内容。&lt;/p&gt;
 &lt;p&gt;稍加修改后的配置文件见 &lt;a class=&#34;link&#34; href=&#34;mosdns.yaml&#34; &gt;mosdns配置&lt;/a&gt;，在该文件中，会引用到以下文件。其中 &lt;code&gt;rule&lt;/code&gt; 文件夹下的几份文件可以参考 &lt;a class=&#34;link&#34; href=&#34;https://github.com/sbwml/luci-app-mosdns/tree/v5/luci-app-mosdns/root/etc/mosdns/rule&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;luci-app-mosdns的配置&lt;/a&gt;。至于 &lt;code&gt;geodata&lt;/code&gt; 下面的文件，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务系统来定时生成。&lt;/p&gt;
+    &gt;luci-app-mosdns的配置&lt;/a&gt;。至于 &lt;code&gt;geodata&lt;/code&gt; 下面的文件，你可以先下载这几个并非是最新的文件，先保存到该目录下：&lt;a class=&#34;link&#34; href=&#34;geoip_cn.txt&#34; &gt;geoip_cn.txt&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;geosite_cn.txt&#34; &gt;geosite_cn.txt&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;geosite_geolocation-!cn.txt&#34; &gt;geosite_geolocation-!cn.txt&lt;/a&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务系统来定时更新。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -4402,7 +4597,7 @@
 &lt;p&gt;你也可以参考 &lt;a class=&#34;link&#34; href=&#34;https://irine-sistiana.gitbook.io/mosdns-wiki/mosdns-v5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;mosdns wiki&lt;/a&gt; 来进行更加定制化的配置。&lt;/p&gt;
 &lt;h3 id=&#34;启用服务-1&#34;&gt;启用服务&lt;/h3&gt;
-&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/mosdns.service&lt;/code&gt; 为开启自动启动，并立即启动起来（这时上游clash尚未配置，你可以等后续配置完好以后再来启动它）。但会由于缺少 &lt;code&gt;/var/lib/mosdns/geodata&lt;/code&gt; 下面的几个文件，会导致启动失败。你可以先下载这几个并非是最新的文件，先保存到上文指定的位置让服务启动起来：&lt;a class=&#34;link&#34; href=&#34;geoip_cn.txt&#34; &gt;geoip_cn.txt&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;geosite_cn.txt&#34; &gt;geosite_cn.txt&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;geosite_geolocation-!cn.txt&#34; &gt;geosite_geolocation-!cn.txt&lt;/a&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动生成这些文件。&lt;/p&gt;
+&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/mosdns.service&lt;/code&gt; 为开启自动启动，并立即启动起来（这时上游clash尚未配置，你可以等后续配置完好以后再来启动它）。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4432,17 +4627,41 @@
 &lt;/div&gt;&lt;h2 id=&#34;clash&#34;&gt;clash&lt;/h2&gt;
 &lt;p&gt;由于clash不仅仅只涉及DNS服务，还涉及到代理、nftables、IP规则相关内容，我们将在接下来的单篇 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;本系列第（四）篇&lt;/a&gt; 中详细详解。&lt;/p&gt;
 &lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
@@ -4561,17 +4780,41 @@
 &lt;p&gt;不同的服务可以放在不同的子网下分别进行管理，比如我的许多Docker容器就通过创建在两个子网下的MacVLAN网络分别走不同的路线，一块网卡也可以创建多个MacVLAN网络以进行分流，详见我的 &lt;a class=&#34;link&#34; href=&#34;../docker%e5%9c%a8%e4%b8%80%e5%9d%97%e7%bd%91%e5%8d%a1%e4%b8%8a%e5%88%9b%e5%bb%ba%e5%a4%9a%e4%b8%aamacvlan%e5%ad%90%e7%bd%91&#34; &gt;这篇文章&lt;/a&gt;，比如 &lt;a class=&#34;link&#34; href=&#34;../%e4%b8%80%e6%ac%be%e6%9b%b4%e6%87%82%e4%bd%a0%e7%9a%84-qbittorrent-docker-%e9%95%9c%e5%83%8f&#34; &gt;我的qBittorrent容器&lt;/a&gt; 就放在&lt;code&gt;10.0.1.0/24&lt;/code&gt;下，完全不用担心流量走了代理（我甚至在Clash中开启了代理PT网站，但这只影响我用PC访问PT网站，对 &lt;a class=&#34;link&#34; href=&#34;../%e4%b8%80%e6%ac%be%e6%9b%b4%e6%87%82%e4%bd%a0%e7%9a%84-qbittorrent-docker-%e9%95%9c%e5%83%8f&#34; &gt;我的qBittorrent容器&lt;/a&gt; 毫无影响）。至于虚拟机也是一样，可以将其放入不同的子网来走不同的路线。&lt;/p&gt;
 &lt;p&gt;接下来，我们将继续设置Debian为旁路由，真正的开启Debian的旁路由之路，这将在我的 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;软路由系列文章&lt;/a&gt; 中逐渐地一篇一篇发出来。这个系列虽然比较长，看起来比较复杂，但你可以根据你的需要进行选择性的使用，并且，配置好后是一劳永逸的，不用担心刷机，不用担心哪天服务故障，这套配置比OpenWRT稳定多了，即使未来升级系统也是分分钟的事。&lt;/p&gt;
 &lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;二、安装Debian、初始网络配置、必要软件安装&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;四、clash的安装和配置、相关的IP规则和nftables规则&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad&#34; &gt;六、subconverter的安装和配置&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;八、配置旁路由的SNMPD服务、配置主路由的跨三层应用&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d&#34; &gt;九、监测陌生设备&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81&#34; &gt;十、快速简单的安装和更新软件包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80&#34; &gt;十一、DNS、网络故障等的总结，以及一些注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
