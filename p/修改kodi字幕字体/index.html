@@ -10,7 +10,7 @@
 <meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
 <meta property='og:url' content='https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='字体' /><meta property='article:tag' content='字幕' /><meta property='article:published_time' content='2022-07-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-07-18T00:00:00&#43;00:00'/><meta property='og:image' content='https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='systemd' /><meta property='article:published_time' content='2022-11-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-11-24T00:00:00&#43;00:00'/><meta property='og:image' content='https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg' />
 <meta name="twitter:title" content="修改Kodi字幕字体">
 <meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg' />
@@ -303,8 +303,53 @@
 <li><a class="link" href="../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e" >kodi-send使用相关说明</a></li>
 <li><a class="link" href="../%e8%bd%ac%e6%8d%a2%e9%81%a5%e6%8e%a7%e5%99%a8%e7%9a%84%e9%80%80%e5%87%ba%e9%94%ae%e4%b8%ba%e8%bf%94%e5%9b%9e%e9%94%ae" >转换遥控器的退出键为返回键</a></li>
 </ul>
-<p>如需要修改字幕字体，将你的ttf字体文件放在<code>~/.kodi/media/Fonts</code>之下（如果是非root用户，注意修改字体文件所有者），然后在Kodi设置中 <code>播放器 -&gt; 语言 -&gt; 文本字幕字体</code> 中选择即可，注意该字体仅对文本类字幕有效，即<code>ass/ssa/srt</code>后缀，其他字幕格式是无效的。</p>
-
+<p>如果Kodi依赖其他服务，比如需要访问smb共享等等，可以在前文设置的<code>/etc/systemd/system/kodi.service</code>中<code>ExecStart</code>这一行前面添加一行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ExecStartPre = /usr/local/bin/kodi-pre.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>/usr/local/bin/kodi-pre.sh</code>需要可执行权限，内容提供一个参考（下面的示例是先判断和Kodi处于同一主机下的Jellyfin容器是否已经处于<code>running</code>状态、健康状态是否是<code>healthy</code>，并且远端10.0.0.13的名为multimedia的samba共享是否已经可以挂载了），请根据你所需要的前置条件进行修改（<strong>请直接在Linux环境中创建<code>nano /usr/local/bin/kodi-pre.sh</code>，不要在Windows环境中创建</strong>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> :<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">jellyfin_state</span><span class="o">=</span><span class="k">$(</span>/usr/bin/docker inspect jellyfin <span class="p">|</span> /usr/bin/jq .<span class="o">[]</span>.State<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">jellyfin_status</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$jellyfin_state</span><span class="s2">&#34;</span> <span class="p">|</span> /usr/bin/jq -r .Status<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">jellyfin_health</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$jellyfin_state</span><span class="s2">&#34;</span> <span class="p">|</span> /usr/bin/jq -r .Health.Status<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">smb_status</span><span class="o">=</span><span class="k">$(</span>/usr/bin/smbclient -N -L //10.0.0.13 <span class="p">|</span> /usr/bin/grep <span class="s1">&#39;multimedia&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$jellyfin_status</span> <span class="o">==</span> running <span class="o">&amp;&amp;</span> <span class="nv">$jellyfin_health</span> <span class="o">==</span> healthy <span class="o">&amp;&amp;</span> -n <span class="nv">$smb_status</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;Jellyfin is ready, samba is ready.&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;Jellyfin or samba is not ready, wait 30 second.&#34;</span>
+</span></span><span class="line"><span class="cl">        /usr/bin/sleep <span class="m">30</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -314,9 +359,7 @@
         
             <a href="/tags/kodi/">kodi</a>
         
-            <a href="/tags/%E5%AD%97%E4%BD%93/">字体</a>
-        
-            <a href="/tags/%E5%AD%97%E5%B9%95/">字幕</a>
+            <a href="/tags/systemd/">systemd</a>
         
     </section>
 
@@ -335,54 +378,6 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/">
-        
-        
-            <div class="article-image">
-                <img src="/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5.da7b421407727b53ac9802b43a74930c_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 屏蔽Kodi的关机、重启按钮"
-                        
-                        data-hash="md5-2ntCFAdye1OsmAK0OnSTDA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">屏蔽Kodi的关机、重启按钮</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/">
-        
-        
-            <div class="article-image">
-                <img src="/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 修改Kodi皮肤字体"
-                        
-                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">修改Kodi皮肤字体</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -434,15 +429,15 @@
             
                 
 <article class="has-image">
-    <a href="/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/">
+    <a href="/p/%E5%83%8F%E4%BD%BF%E7%94%A8%E7%9B%92%E5%AD%90libreelec%E4%B8%80%E6%A0%B7%E4%BD%BF%E7%94%A8pve%E7%9B%B4%E8%A3%85%E7%9A%84kodi%E5%AE%9E%E7%8E%B0%E9%81%A5%E6%8E%A7%E5%99%A8%E5%90%AF%E5%81%9C/">
         
         
             <div class="article-image">
-                <img src="/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                <img src="/p/%E5%83%8F%E4%BD%BF%E7%94%A8%E7%9B%92%E5%AD%90libreelec%E4%B8%80%E6%A0%B7%E4%BD%BF%E7%94%A8pve%E7%9B%B4%E8%A3%85%E7%9A%84kodi%E5%AE%9E%E7%8E%B0%E9%81%A5%E6%8E%A7%E5%99%A8%E5%90%AF%E5%81%9C/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 修改Kodi字幕字体"
+                        alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停"
                         
                         data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
                 
@@ -450,7 +445,55 @@
         
 
         <div class="article-details">
-            <h2 class="article-title">修改Kodi字幕字体</h2>
+            <h2 class="article-title">像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 修改Kodi皮肤字体"
+                        
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">修改Kodi皮肤字体</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5.da7b421407727b53ac9802b43a74930c_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 屏蔽Kodi的关机、重启按钮"
+                        
+                        data-hash="md5-2ntCFAdye1OsmAK0OnSTDA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">屏蔽Kodi的关机、重启按钮</h2>
         </div>
     </a>
 </article>
@@ -476,142 +519,6 @@
         clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
         repo: "blog",
         owner: "devome",
-        admin: ["devome"],
-        distractionFreeMode: false, 
-        id: md5(location.pathname), 
-    });
-    (function () {
-        if (
-            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
-        ) {
-            document.getElementById("gitalk-container").innerHTML =
-                "Gitalk comments not available by default when the website is previewed locally.";
-            return;
-        }
-        gitalk.render("gitalk-container");
-    })();
-</script>
-
-
-
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2020 - 
-        
-        2023 Evine的个人博客
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
-
-            </main>
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
-devome",
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
