@@ -437,8 +437,8 @@
 </span></span><span class="line"><span class="cl"><span class="na">LimitNOFILE   </span><span class="o">=</span><span class="s"> 1000000</span>
 </span></span><span class="line"><span class="cl"><span class="na">ExecStartPre  </span><span class="o">=</span><span class="s"> sleep 1s</span>
 </span></span><span class="line"><span class="cl"><span class="na">ExecStart     </span><span class="o">=</span><span class="s"> clash -d /var/lib/clash</span>
-</span></span><span class="line"><span class="cl"><span class="na">ExecStartPost </span><span class="o">=</span><span class="s"> ip route add local default dev ens18 table 100; ip rule add fwmark 1 lookup 100; mynftables.nft</span>
-</span></span><span class="line"><span class="cl"><span class="na">ExecStop      </span><span class="o">=</span><span class="s"> nft flush ruleset; ip route del local default dev ens18 table 100; ip rule del fwmark 1 lookup 100</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStartPost </span><span class="o">=</span><span class="s"> ip route add local default dev ens18 table 100 ; ip rule add fwmark 1 lookup 100 ; mynftables.nft</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStop      </span><span class="o">=</span><span class="s"> nft flush ruleset ; ip route del local default dev ens18 table 100 ; ip rule del fwmark 1 lookup 100</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
 </span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
