@@ -8,11 +8,11 @@
         <language>zh-cn</language>
         <lastBuildDate>Wed, 30 Aug 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/cache/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）</title>
-        <link>https://evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/</link>
+        <link>https://evine.win/p/docker-buildx-set-cache-gcpolicy/</link>
         <pubDate>Wed, 30 Aug 2023 00:00:00 +0800</pubDate>
         
-        <guid>https://evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/</guid>
-        <description>&lt;img src="https://evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/docker-buildx-set-cache-gcpolicy/</guid>
+        <description>&lt;img src="https://evine.win/p/docker-buildx-set-cache-gcpolicy/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;新建&lt;code&gt;buildkit&lt;/code&gt;配置文件&lt;code&gt;$HOME/.docker/buildx/buildkitd.default.toml&lt;/code&gt;如下：&lt;/p&gt;

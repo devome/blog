@@ -8,11 +8,11 @@
         <language>zh-cn</language>
         <lastBuildDate>Sat, 26 Nov 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/resource-limiting/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>docker buildx 跨平台构建镜像时限制CPU使用率</title>
-        <link>https://evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/</link>
+        <link>https://evine.win/p/docker-buildx-limit-cpu-usage/</link>
         <pubDate>Sat, 26 Nov 2022 00:00:00 +0800</pubDate>
         
-        <guid>https://evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/</guid>
-        <description>&lt;img src="https://evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/docker-poster.jpg" alt="Featured image of post docker buildx 跨平台构建镜像时限制CPU使用率" /&gt;&lt;p&gt;官方教程中提供了一种&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/build/buildkit/configure/#resource-limiting&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>https://evine.win/p/docker-buildx-limit-cpu-usage/</guid>
+        <description>&lt;img src="https://evine.win/p/docker-buildx-limit-cpu-usage/docker-poster.jpg" alt="Featured image of post docker buildx 跨平台构建镜像时限制CPU使用率" /&gt;&lt;p&gt;官方教程中提供了一种&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/build/buildkit/configure/#resource-limiting&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;做法&lt;/a&gt;，也就是提供buildkitd的配置文件后再创建builder：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

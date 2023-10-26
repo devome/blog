@@ -8,11 +8,11 @@
         <language>zh-cn</language>
         <lastBuildDate>Sat, 08 Apr 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/acl/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>爱快 IPv4／IPv6 ACL／防火墙设置</title>
-        <link>https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/</link>
+        <link>https://evine.win/p/ikuai-set-ipv6-acl/</link>
         <pubDate>Sat, 08 Apr 2023 00:00:00 +0800</pubDate>
         
-        <guid>https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/</guid>
-        <description>&lt;img src="https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1.png" alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/ikuai-set-ipv6-acl/</guid>
+        <description>&lt;img src="https://evine.win/p/ikuai-set-ipv6-acl/pic1.png" alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;相关概念&#34;&gt;相关概念&lt;/h2&gt;
@@ -53,10 +53,10 @@
 &lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。由于默认IPv6环境是几乎完全暴露在公网的。所以开启IPv6后，先加入两条规则，不允许公网通过IPv6访问本地，但允许本地通过IPv6访问公网：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;181&#34;
-	srcset=&#34;https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_480x0_resize_box_3.png 480w, https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_480x0_resize_box_3.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv6默认ACL规则&#34;
@@ -84,10 +84,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;那么可以这样设置：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic2.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;221&#34;
-	srcset=&#34;https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2_hu39ed452c9f26703f4009fa49f498a68f_49112_480x0_resize_box_3.png 480w, https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2_hu39ed452c9f26703f4009fa49f498a68f_49112_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic2_hu39ed452c9f26703f4009fa49f498a68f_49112_480x0_resize_box_3.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic2_hu39ed452c9f26703f4009fa49f498a68f_49112_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;允许通过IPv6访问指定设备的指定端口&#34;
@@ -135,10 +135,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;可以如下设置：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic3.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;182&#34;
-	srcset=&#34;https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3_hu584795d4bb9cf1bb1bd6b35a306fc693_39098_480x0_resize_box_3.png 480w, https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3_hu584795d4bb9cf1bb1bd6b35a306fc693_39098_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic3_hu584795d4bb9cf1bb1bd6b35a306fc693_39098_480x0_resize_box_3.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic3_hu584795d4bb9cf1bb1bd6b35a306fc693_39098_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;BT/PT监听不作限制&#34;
@@ -154,10 +154,10 @@
 &lt;li&gt;
 &lt;p&gt;完全暴露某台设备&lt;/p&gt;
 &lt;p&gt;因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以这样设置：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic4.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;105&#34;
-	srcset=&#34;https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4_hud452aacf12229a1a6c533014143efcec_25874_480x0_resize_box_3.png 480w, https://evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4_hud452aacf12229a1a6c533014143efcec_25874_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic4_hud452aacf12229a1a6c533014143efcec_25874_480x0_resize_box_3.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic4_hud452aacf12229a1a6c533014143efcec_25874_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;完全暴露指定IPv6&#34;
@@ -230,11 +230,11 @@
         </item>
         <item>
         <title>使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击</title>
-        <link>https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/</link>
+        <link>https://evine.win/p/ikuai-set-ipv4-acl/</link>
         <pubDate>Fri, 08 Jul 2022 00:00:00 +0800</pubDate>
         
-        <guid>https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/</guid>
-        <description>&lt;img src="https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1.png" alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/ikuai-set-ipv4-acl/</guid>
+        <description>&lt;img src="https://evine.win/p/ikuai-set-ipv4-acl/pic1.png" alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本教程为原创教程，转载需注明来源及作者。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;关键词&#34;&gt;关键词&lt;/h2&gt;
@@ -252,10 +252,10 @@
 &lt;li&gt;
 &lt;p&gt;限制访问来源&lt;/p&gt;
 &lt;p&gt;方式1：使用&lt;code&gt;安全设置 -&amp;gt; ACL规则&lt;/code&gt;（需要先设置好端口转发，使用ACL时，端口转发可以不限制任何来源），参考下面的方式，允许你所在地区的对应的运营商的IP转发到你所使用的端口（&lt;code&gt;目的地址&lt;/code&gt;可以不填，如果要填可以填端口转发对应的目标设备IP，也可以填整个本地网络，如&lt;code&gt;10.0.0.0/8&lt;/code&gt;、&lt;code&gt;172.16.0.0/16&lt;/code&gt;或&lt;code&gt;192.168.0.0/24&lt;/code&gt;，&lt;code&gt;连接方向匹配&lt;/code&gt;为&lt;code&gt;原始方向&lt;/code&gt;），而阻断其他所有IP访问对应的端口。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;180&#34;
-	srcset=&#34;https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1_huc8d9904e0468058665f9639c498c48d6_43079_480x0_resize_box_3.png 480w, https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1_huc8d9904e0468058665f9639c498c48d6_43079_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic1_huc8d9904e0468058665f9639c498c48d6_43079_480x0_resize_box_3.png 480w, https://evine.win/p/ikuai-set-ipv4-acl/pic1_huc8d9904e0468058665f9639c498c48d6_43079_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv4设置ACL&#34;
@@ -267,10 +267,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;方式2：某些旧版本爱快的ACL功能可能是失效的（你可以自行测试，比如阻断你所在省份后手机使用蜂窝网访问），这时只能在&lt;code&gt;网络设置 -&amp;gt; 端口映射 -&amp;gt; 端口映射&lt;/code&gt;处，给每一条需要限制访问来源IP的条目选择对应的IP分组。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;170&#34;
-	srcset=&#34;https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2_hu879b3ba3f2f059d3487513572343df2f_11278_480x0_resize_box_3.png 480w, https://evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2_hu879b3ba3f2f059d3487513572343df2f_11278_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic2_hu879b3ba3f2f059d3487513572343df2f_11278_480x0_resize_box_3.png 480w, https://evine.win/p/ikuai-set-ipv4-acl/pic2_hu879b3ba3f2f059d3487513572343df2f_11278_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv4设置端口转发限制来源&#34;
