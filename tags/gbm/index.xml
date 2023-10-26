@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>GBM on Evine的个人博客</title>
+        <title>gbm on Evine的个人博客</title>
         <link>https://evine.win/tags/gbm/</link>
-        <description>Recent content in GBM on Evine的个人博客</description>
+        <description>Recent content in gbm on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Tue, 12 Jul 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/gbm/index.xml" rel="self" type="application/rss+xml" /><item>
@@ -464,15 +464,15 @@
 &lt;h2 id=&#34;pve安装kodi系列文章&#34;&gt;《PVE安装Kodi》系列文章&lt;/h2&gt;
 &lt;p&gt;如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../pve-%e7%9b%b4%e6%8e%a5%e5%ae%89%e8%a3%85%e6%9c%80%e6%96%b0%e7%89%88-kodi&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%b8%bakodi%e9%80%82%e9%85%8d%e9%81%a5%e6%8e%a7%e5%99%a8&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%bf%ae%e6%94%b9kodi%e5%ad%97%e5%b9%95%e5%ad%97%e4%bd%93&#34; &gt;修改Kodi字幕字体&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e4%bf%ae%e6%94%b9kodi%e7%9a%ae%e8%82%a4%e5%ad%97%e4%bd%93&#34; &gt;修改Kodi皮肤字体&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%b1%8f%e8%94%bdkodi%e7%9a%84%e5%85%b3%e6%9c%ba%e9%87%8d%e5%90%af%e6%8c%89%e9%92%ae&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e8%ae%be%e7%bd%aekodi%e5%90%af%e5%8a%a8%e7%9a%84%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6&#34; &gt;设置Kodi启动的前置条件&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../%e8%bd%ac%e6%8d%a2%e9%81%a5%e6%8e%a7%e5%99%a8%e7%9a%84%e9%80%80%e5%87%ba%e9%94%ae%e4%b8%ba%e8%bf%94%e5%9b%9e%e9%94%ae&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-subtitle-font&#34; &gt;修改Kodi字幕字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-interface-font&#34; &gt;修改Kodi皮肤字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-disable-shutdown&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-set-pre-condition&#34; &gt;设置Kodi启动的前置条件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 &lt;p&gt;按上述流程，只主动安装了很少的软件包，根据&lt;code&gt;dpkg-query -L kodi&lt;/code&gt;的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：&lt;/p&gt;
