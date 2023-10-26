@@ -5,11 +5,10 @@
         <link>https://evine.win/categories/qbittorrent/</link>
         <description>Recent content in qBittorrent on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://evine.win/categories/qbittorrent/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>zh-cn</language><atom:link href="https://evine.win/categories/qbittorrent/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>一款更懂你的 qbittorrent docker 镜像</title>
         <link>https://evine.win/p/%E4%B8%80%E6%AC%BE%E6%9B%B4%E6%87%82%E4%BD%A0%E7%9A%84-qbittorrent-docker-%E9%95%9C%E5%83%8F/</link>
-        <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 18 Oct 2023 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E4%B8%80%E6%AC%BE%E6%9B%B4%E6%87%82%E4%BD%A0%E7%9A%84-qbittorrent-docker-%E9%95%9C%E5%83%8F/</guid>
         <description>&lt;img src="https://evine.win/p/%E4%B8%80%E6%AC%BE%E6%9B%B4%E6%87%82%E4%BD%A0%E7%9A%84-qbittorrent-docker-%E9%95%9C%E5%83%8F/notify.png" alt="Featured image of post 一款更懂你的 qbittorrent docker 镜像" /&gt;&lt;blockquote&gt;
@@ -1387,7 +1386,7 @@
         <item>
         <title>qBittorrent 设置教程</title>
         <link>https://evine.win/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/</link>
-        <pubDate>Sat, 07 Aug 2021 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 07 Aug 2021 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/</guid>
         <description>&lt;img src="https://evine.win/p/qbittorrent-%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/1%E8%A1%8C%E4%B8%BA.png" alt="Featured image of post qBittorrent 设置教程" /&gt;&lt;p&gt;以下内容以4.3.7为例。&lt;/p&gt;
