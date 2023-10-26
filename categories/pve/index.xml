@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Promox VE on Evine的个人博客</title>
-        <link>https://devome.github.io/blog/categories/pve/</link>
+        <link>https://www.evine.win/categories/pve/</link>
         <description>Recent content in Promox VE on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 15 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/categories/pve/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 15 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/categories/pve/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动</title>
-        <link>https://devome.github.io/blog/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</link>
+        <link>https://www.evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</link>
         <pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/pve-poster.jpg" alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</guid>
+        <description>&lt;img src="https://www.evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/pve-poster.jpg" alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的驱动是&lt;code&gt;r8169&lt;/code&gt;，它并没有开启网卡多队列等特性。导致一个网卡的软中断只能使用固定的一个核心开接收和发送数据。&lt;/p&gt;
 &lt;p&gt;查看网卡加载的是什么驱动：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -461,11 +461,11 @@
         </item>
         <item>
         <title>PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池</title>
-        <link>https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/</link>
+        <link>https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/</link>
         <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
+        <guid>https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/</guid>
+        <description>&lt;img src="https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -1182,10 +1182,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;添加存储&#34;&gt;添加存储&lt;/h2&gt;
 &lt;p&gt;把创建好的LVM-thin存储添加到PVE，就大功告成了：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;686&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;添加LVM-thin存储，ID自己取&#34;
@@ -1196,10 +1196,10 @@
 		data-flex-basis=&#34;524px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;723&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1000进制看起来就是4T&#34;
@@ -1211,10 +1211,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;顺便再看看磁盘空间有没有100%利用完全：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;632&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;4块磁盘都100%利用了&#34;
@@ -1243,11 +1243,11 @@
         </item>
         <item>
         <title>为Kodi适配遥控器</title>
-        <link>https://devome.github.io/blog/p/%E4%B8%BAkodi%E9%80%82%E9%85%8D%E9%81%A5%E6%8E%A7%E5%99%A8/</link>
+        <link>https://www.evine.win/p/%E4%B8%BAkodi%E9%80%82%E9%85%8D%E9%81%A5%E6%8E%A7%E5%99%A8/</link>
         <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E4%B8%BAkodi%E9%80%82%E9%85%8D%E9%81%A5%E6%8E%A7%E5%99%A8/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E4%B8%BAkodi%E9%80%82%E9%85%8D%E9%81%A5%E6%8E%A7%E5%99%A8/kodi-poster.jpg" alt="Featured image of post 为Kodi适配遥控器" /&gt;&lt;blockquote&gt;
+        <guid>https://www.evine.win/p/%E4%B8%BAkodi%E9%80%82%E9%85%8D%E9%81%A5%E6%8E%A7%E5%99%A8/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E4%B8%BAkodi%E9%80%82%E9%85%8D%E9%81%A5%E6%8E%A7%E5%99%A8/kodi-poster.jpg" alt="Featured image of post 为Kodi适配遥控器" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -1466,11 +1466,11 @@
         </item>
         <item>
         <title>PVE 直接安装最新版 Kodi</title>
-        <link>https://devome.github.io/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/</link>
+        <link>https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/</link>
         <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
+        <guid>https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/</guid>
+        <description>&lt;img src="https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为原创教程，转载请注明来源及作者。
 更新于2023年8月4日，以当前最新的PVE 8为示例。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1636,10 +1636,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;从系统信息中可以看到内核、分辨率、GPU、OPENGL、视窗系统等信息，可以看到视窗系统直接使用GBM，而非X11（下图是在PVE 8上安装的Kodi 20.2的截图，已经明确支持HDR了）：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic1.png&#34;
 	width=&#34;1200&#34;
 	height=&#34;675&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic1_hu0c056bdaf0f775ecb2a66e0a563e4114_62070_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic1_hu0c056bdaf0f775ecb2a66e0a563e4114_62070_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic1_hu0c056bdaf0f775ecb2a66e0a563e4114_62070_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic1_hu0c056bdaf0f775ecb2a66e0a563e4114_62070_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;核心数量超过一行的宽度了，字有点重&#34;
@@ -1650,10 +1650,10 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic2.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;698&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic2_hu20d62b7608d6181aeadc2a23ef683e95_1073957_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic2_hu20d62b7608d6181aeadc2a23ef683e95_1073957_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic2_hu20d62b7608d6181aeadc2a23ef683e95_1073957_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic2_hu20d62b7608d6181aeadc2a23ef683e95_1073957_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Kodi 20也支持开关HDR&#34;
@@ -1830,10 +1830,10 @@
 &lt;p&gt;通过HDMI/DP直通的音频，在&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Player_process_info#Player_Process_Info&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;解码信息&lt;/a&gt;（按键盘的o键，如想在遥控器上按出来，需要在Kodi中安装&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Add-on:Keymap_Editor&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Keymap Editor&lt;/a&gt;插件来将某个按钮映射为此功能）上所有音频频道将显示&lt;code&gt;RAW&lt;/code&gt;，而未直通的音频将显示正常的轨道信息。如下面图片所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic3_huebf779db08b12f146b665a829f0bbe97_39584_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic3_huebf779db08b12f146b665a829f0bbe97_39584_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic3_huebf779db08b12f146b665a829f0bbe97_39584_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic3_huebf779db08b12f146b665a829f0bbe97_39584_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;AAC未直通&#34;
@@ -1844,10 +1844,10 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic4.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic4_hu1470d81160dd56017c0075ee14d2742c_49434_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic4_hu1470d81160dd56017c0075ee14d2742c_49434_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic4_hu1470d81160dd56017c0075ee14d2742c_49434_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic4_hu1470d81160dd56017c0075ee14d2742c_49434_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;TrueHD直通&#34;
@@ -1858,10 +1858,10 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DTS-HD直通&#34;
@@ -1891,10 +1891,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;成功硬解的视频，在解码信息上的&lt;code&gt;硬件解码&lt;/code&gt;将显示&lt;code&gt;活动&lt;/code&gt;，并且解码器使用的是&lt;code&gt;vaapi&lt;/code&gt;系列解码器，如下面图片所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic6.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic6.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic6_hu10858b5370910b272dffda905e8a3741_47452_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic6_hu10858b5370910b272dffda905e8a3741_47452_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic6_hu10858b5370910b272dffda905e8a3741_47452_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic6_hu10858b5370910b272dffda905e8a3741_47452_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;HEVC/x265硬解&#34;
@@ -1905,10 +1905,10 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic7.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic7.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic7_hu8660be8c2f4b96b0caf16cec61c841d0_55536_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic7_hu8660be8c2f4b96b0caf16cec61c841d0_55536_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic7_hu8660be8c2f4b96b0caf16cec61c841d0_55536_480x0_resize_box_3.png 480w, https://www.evine.win/p/pve-%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88-kodi/pic7_hu8660be8c2f4b96b0caf16cec61c841d0_55536_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;x264硬解&#34;

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>kodi-send on Evine的个人博客</title>
-        <link>https://devome.github.io/blog/tags/kodi-send/</link>
+        <link>https://www.evine.win/tags/kodi-send/</link>
         <description>Recent content in kodi-send on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 21 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/tags/kodi-send/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 21 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/tags/kodi-send/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>kodi-send使用相关说明</title>
-        <link>https://devome.github.io/blog/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/</link>
+        <link>https://www.evine.win/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/</link>
         <pubDate>Wed, 21 Dec 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/pic1.png" alt="Featured image of post kodi-send使用相关说明" /&gt;&lt;blockquote&gt;
+        <guid>https://www.evine.win/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/</guid>
+        <description>&lt;img src="https://www.evine.win/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/pic1.png" alt="Featured image of post kodi-send使用相关说明" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -54,10 +54,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;设置&#34;&gt;设置&lt;/h2&gt;
 &lt;p&gt;如需要使用&lt;code&gt;kodi-send&lt;/code&gt;命令，需要在“Kodi设置-&amp;gt;服务-&amp;gt;控制”处勾选“允许通过本机应用远程控制”。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/pic1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_480x0_resize_box_3.png 480w, https://www.evine.win/p/kodi-send%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;允许通过本机应用远程控制&#34;

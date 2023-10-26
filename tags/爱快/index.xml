@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>爱快 on Evine的个人博客</title>
-        <link>https://devome.github.io/blog/tags/%E7%88%B1%E5%BF%AB/</link>
+        <link>https://www.evine.win/tags/%E7%88%B1%E5%BF%AB/</link>
         <description>Recent content in 爱快 on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 22 Oct 2023 07:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/tags/%E7%88%B1%E5%BF%AB/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 22 Oct 2023 07:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/tags/%E7%88%B1%E5%BF%AB/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（十一）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/</link>
         <pubDate>Sun, 22 Oct 2023 07:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" /&gt;&lt;h2 id=&#34;关于systemd&#34;&gt;关于systemd&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" /&gt;&lt;h2 id=&#34;关于systemd&#34;&gt;关于systemd&lt;/h2&gt;
 &lt;p&gt;本系列全部服务都使用 &lt;code&gt;systemd&lt;/code&gt; 来启动和管理，在系列中并未过多的说明这些服务如何启动、开启自启、重启、重载、停止、查看日志、筛选日志等等。关于 &lt;code&gt;systemd&lt;/code&gt;，阮一峰大佬有详细的教程：&lt;a class=&#34;link&#34; href=&#34;https://ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Systemd 入门教程&lt;/a&gt;，该文详细的介绍了 &lt;code&gt;systemctl&lt;/code&gt; 及 &lt;code&gt;journalctl&lt;/code&gt; 相关命令的使用方法。&lt;/p&gt;
 &lt;h2 id=&#34;关于磁盘占用&#34;&gt;关于磁盘占用&lt;/h2&gt;
@@ -20,10 +20,10 @@
 &lt;h2 id=&#34;关于内存&#34;&gt;关于内存&lt;/h2&gt;
 &lt;p&gt;安装完这一系列内容，实际上内存使用并没有增加多少，才 &lt;code&gt;340MiB&lt;/code&gt; 左右。注意 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 是可以通过调整参数降低的，这个占用不算真正的占用。 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 反而是对系统运行有好处的，在内存足够的前提下，不建议清除它们。如果内存真的不够，你可以按照 &lt;a class=&#34;link&#34; href=&#34;https://unix.stackexchange.com/questions/253816/restrict-size-of-buffer-cache-in-linux&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这个链接&lt;/a&gt; 来限制它们。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png&#34;
 	width=&#34;1151&#34;
 	height=&#34;659&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_huef3c692eae64eb585ab4ff7890b397a3_413344_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;内存使用也才340MiB&#34;
@@ -91,11 +91,11 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（十）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/</link>
         <pubDate>Sun, 22 Oct 2023 06:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;这已经是 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;这个系列&lt;/a&gt; 的第十篇了，我们将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。&lt;/p&gt;
 &lt;h2 id=&#34;脚本&#34;&gt;脚本&lt;/h2&gt;
 &lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好各种必要的软件包了。新建 &lt;code&gt;/usr/local/bin/update-pkgs.sh&lt;/code&gt; 内容如下。&lt;/p&gt;
@@ -760,11 +760,11 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（九）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/</link>
         <pubDate>Sun, 22 Oct 2023 05:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;OpenWRT&lt;/code&gt; 有两个插件：&lt;a class=&#34;link&#34; href=&#34;https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-serverchan&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;luci-app-serverchan&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-pushbot&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;luci-app-pushbot&lt;/a&gt;，可以监测陌生设备上线。当然它们还有些其他功能，但我们只关心“监测陌生设备上线”这一点，那么这两个插件就太臃肿了。并且它们还不能监测非旁路由所在网段，而我却将陌生设备放在了 &lt;code&gt;10.0.1.0/24&lt;/code&gt; 中，和旁路由不在同一网段。所以我们简单的改造一下。&lt;/p&gt;
@@ -946,10 +946,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;然后你再运行 &lt;code&gt;echo &amp;quot;10.0.0.0/22&amp;quot; | arp-scan -xgf-&lt;/code&gt; 就可以识别出来了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png&#34;
 	width=&#34;1151&#34;
 	height=&#34;659&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan_hu574dba91de5fa709b097f092f38ffb07_437319_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan_hu574dba91de5fa709b097f092f38ffb07_437319_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan_hu574dba91de5fa709b097f092f38ffb07_437319_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan_hu574dba91de5fa709b097f092f38ffb07_437319_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ARP扫描&#34;
@@ -1089,11 +1089,11 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（八）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/</link>
         <pubDate>Sun, 22 Oct 2023 04:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我们提到了会存在 “网关为旁路由的设备在爱快的终端监控中全部显示为旁路由” 这个问题，所以我们需要借助跨三层应用来解决这个问题。&lt;/p&gt;
 &lt;h2 id=&#34;debian旁路由安装和配置&#34;&gt;Debian旁路由安装和配置&lt;/h2&gt;
 &lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;snmpd&lt;/code&gt; 了。打开 &lt;code&gt;/etc/snmp/snmpd.conf&lt;/code&gt;，进行以下内容的修改。&lt;/p&gt;
@@ -1146,10 +1146,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;爱快主路由配置&#34;&gt;爱快主路由配置&lt;/h2&gt;
 &lt;p&gt;进入爱快管理界面中的 “高级应用 -&amp;gt; 跨三层应用”，然后添加一条信息如下，保存后以旁路由为网关的设备信息就正常显示了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.png&#34;
 	width=&#34;854&#34;
 	height=&#34;486&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client_hu51d4af1eeefa67a1188add7d16f39c36_65107_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client_hu51d4af1eeefa67a1188add7d16f39c36_65107_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client_hu51d4af1eeefa67a1188add7d16f39c36_65107_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client_hu51d4af1eeefa67a1188add7d16f39c36_65107_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;跨三层应用&#34;
@@ -1200,11 +1200,11 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（七）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/</link>
         <pubDate>Sun, 22 Oct 2023 03:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）" /&gt;&lt;h2 id=&#34;文件准备&#34;&gt;文件准备&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）" /&gt;&lt;h2 id=&#34;文件准备&#34;&gt;文件准备&lt;/h2&gt;
 &lt;h3 id=&#34;nginx&#34;&gt;nginx&lt;/h3&gt;
 &lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;nginx&lt;/code&gt; 了。新建 &lt;code&gt;/etc/nginx/conf.d/private.conf&lt;/code&gt;，内容如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2509,11 +2509,11 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（六）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/</link>
         <pubDate>Sun, 22 Oct 2023 02:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（六）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（六）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;clash&lt;/code&gt; 需要用到订阅转换，直接用网上的服务肯定不太安全，并且我们还需要自动在配置文件中插入本地自建的 &lt;code&gt;UnblockNeteaseMusic&lt;/code&gt; 代理服务，所以我们采取自建格式转换服务。&lt;/p&gt;
 &lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装&lt;/h2&gt;
 &lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
@@ -2672,11 +2672,11 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（五）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/</link>
         <pubDate>Sun, 22 Oct 2023 01:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;我们继续趁热打铁，将UnblockNeteaseMusic也一起部署了，因为它也要用到 &lt;code&gt;nftables&lt;/code&gt; 来实现。&lt;/p&gt;
 &lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;unblockneteasemusic&lt;/code&gt; 这个名称太长了，我们把它更名为 &lt;code&gt;unblocknem&lt;/code&gt;。我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
@@ -3379,10 +3379,10 @@
 &lt;p&gt;安卓系统不支持。&lt;/p&gt;
 &lt;h3 id=&#34;windows&#34;&gt;Windows&lt;/h3&gt;
 &lt;p&gt;安装网易云音乐客户端后，创建一个快捷方式，然后在该快捷方式的属性中的“目标”增加 &lt;code&gt; --ignore-certificate-errors&lt;/code&gt;，注意有个空格。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png&#34;
 	width=&#34;421&#34;
 	height=&#34;673&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;网易云音乐&#34;
@@ -3419,10 +3419,10 @@
 &lt;p&gt;打开 &lt;code&gt;clash&lt;/code&gt; 的 &lt;code&gt;webui&lt;/code&gt;：&lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:9090/ui/xd/#/proxies&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://10.0.0.2:9090/ui/xd/#/proxies&lt;/a&gt; ，选择 &lt;code&gt;网易音乐&lt;/code&gt; 为 &lt;code&gt;网易代理&lt;/code&gt;；你再打开网易云音乐客户端后，在 &lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:9090/ui/xd/#/conns&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://10.0.0.2:9090/ui/xd/#/conns&lt;/a&gt; 就能看到许多连接都接管到 &lt;code&gt;UnblockNeteaseMusic&lt;/code&gt; 了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png&#34;
 	width=&#34;1156&#34;
 	height=&#34;307&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;clash将网易云音乐的流量透明代理到了unblocknem&#34;
@@ -3434,10 +3434,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;从 &lt;code&gt;unblocknem.service&lt;/code&gt; 的日志中也能看到它的作用，这些灰色歌曲都被接管了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3.png&#34;
 	width=&#34;1151&#34;
 	height=&#34;659&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;unblocknem的日志&#34;
@@ -3488,20 +3488,20 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（四）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</link>
         <pubDate>Sat, 21 Oct 2023 14:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;使用clash实现透明代理有两种方式，一种是 &lt;code&gt;redirect&lt;/code&gt;，仅支持TCP流量，另一种是 &lt;code&gt;tproxy&lt;/code&gt;，支持TCP和UDP流量。为了能代理UDP流量，所以我们选用 &lt;code&gt;tproxy&lt;/code&gt; 的方式来实现。&lt;/p&gt;
 &lt;h2 id=&#34;工作流&#34;&gt;工作流&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;nftables&lt;/code&gt; 的工作流详见 &lt;a class=&#34;link&#34; href=&#34;https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Netfilter hooks&lt;/a&gt;。具体Netfilter的五个链 &lt;code&gt;prerouting&lt;/code&gt; &lt;code&gt;input&lt;/code&gt; &lt;code&gt;forward&lt;/code&gt; &lt;code&gt;output&lt;/code&gt; &lt;code&gt;postrouting&lt;/code&gt; 是什么关系，以及流向，请参考该链接来加深理解。全部的文档可以查阅本文下方 &lt;a class=&#34;link&#34; href=&#34;#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99&#34; &gt;参考资料&lt;/a&gt; 的1和2。&lt;/p&gt;
 &lt;p&gt;注意，在旁路由自身中运行的程序都工作在应用层，而 &lt;code&gt;tproxy&lt;/code&gt; 只能工作在 &lt;code&gt;prerouting&lt;/code&gt; 链，所以如果我们要想透明代理旁路由自己产生的流量，要通过设置IP规则让这部分流量在进入 &lt;code&gt;output&lt;/code&gt; 链时，将需要代理的流量转回到 &lt;code&gt;prerouting&lt;/code&gt; 链。这就需要靠IP规则来实现。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png&#34;
 	width=&#34;1116&#34;
 	height=&#34;586&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Netfilter hooks&#34;
@@ -4127,17 +4127,17 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（三）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</link>
         <pubDate>Sat, 21 Oct 2023 13:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我提及了我的目标是在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个旁路由所在的子网中实现国内网站IPv4/IPv6双栈解析并可正常访问，国外网站仅解析IPv4地址并进行科学上网，那么仅凭Clash很难实现（其他的代理软件我也不介绍了），我们可以借助mosdns来实现（其他的smartdns、coredns我就不介绍了）。又为了能够&lt;strong&gt;更加方便&lt;/strong&gt;的为电视机屏蔽广告、自定义子网中设备解析为私网IPv4地址和公网IPv6地址这种形式的双栈、防止代理有故障需要后备DNS等等功能，我继续在mosdns前加一层adguardhome，以方便的实现。&lt;/p&gt;
 &lt;h2 id=&#34;逻辑图&#34;&gt;逻辑图&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg&#34;
 	width=&#34;1079&#34;
 	height=&#34;914&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_480x0_resize_q75_box.jpg 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_480x0_resize_q75_box.jpg 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_1024x0_resize_q75_box.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS逻辑&#34;
@@ -4268,10 +4268,10 @@
 &lt;/div&gt;&lt;h3 id=&#34;初始化&#34;&gt;初始化&lt;/h3&gt;
 &lt;p&gt;先开一个终端输入&lt;code&gt;adguardhome&lt;/code&gt;，然后浏览器打开 &lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:3000&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://10.0.0.2:3000&lt;/a&gt; 并按下图设置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1.png&#34;
 	width=&#34;621&#34;
 	height=&#34;133&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;网页管理监听端口建议改回3000，至于80端口我们留给nginx使用&#34;
@@ -4282,10 +4282,10 @@
 		data-flex-basis=&#34;1120px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2.png&#34;
 	width=&#34;617&#34;
 	height=&#34;138&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS服务器就监听53端口&#34;
@@ -4299,10 +4299,10 @@
 &lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
 &lt;h4 id=&#34;dns设置&#34;&gt;DNS设置&lt;/h4&gt;
 &lt;p&gt;上游DNS服务器设置为mosdns的监听端口。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1.png&#34;
 	width=&#34;517&#34;
 	height=&#34;272&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;上游DNS服务器&#34;
@@ -4314,10 +4314,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;后备DNS服务器填写公共DNS服务器，可以附加上你的ISP当地的DNS服务器，如果主路由设置了DNS的功能，也可以加上，当mosdns出现故障时，adguardhome会转为使用后备DNS服务器来进行解析。这样。即使mosdns或者clash出现故障时，也不影响adguardhome为局域网提供DNS服务。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2.png&#34;
 	width=&#34;517&#34;
 	height=&#34;189&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;后备DNS服务器&#34;
@@ -4329,10 +4329,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;我们只在局域网中使用，所以不限制查询流量。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3.png&#34;
 	width=&#34;516&#34;
 	height=&#34;180&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS服务配置&#34;
@@ -4344,10 +4344,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;开启乐观缓存可以更快的响应，但有些时候可能会导致问题，可以视情况开关。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4.png&#34;
 	width=&#34;516&#34;
 	height=&#34;482&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS缓存配置&#34;
@@ -4363,10 +4363,10 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;一个良好的习惯是针对局域网中每一个运行着需要被访问的服务的IP，都通过 &lt;code&gt;adguardhome&lt;/code&gt; 劫持其域名，做到不同IP不同子域名。只要设置好DDNS的子域名以及主路由爱快的端口转发，就可以做到在局域网环境中和在公网环境中，使用相同的域名去访问同一个服务。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99.png&#34;
 	width=&#34;517&#34;
 	height=&#34;397&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS重写&#34;
@@ -4680,20 +4680,20 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（一）</title>
-        <link>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/</link>
+        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/</link>
         <pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;之前我用的是爱快作为主路由，OpenWRT作为旁路由，旁路由上会跑一些只有它能跑而主路由上不能跑的服务。尽管OpenWRT还是我自己定制化编译的，抛弃了许多我不使用的功能，但可能因为要用的服务仍然有些多，并且它们之间都会操作netfilter，导致网络经常出问题。所以，用OpenWRT作为旁路由的时候，我从来不敢在爱快上直接指定全部设备的网关和DNS为OpenWRT（网关和DNS仍然是爱快自己），只敢在我自己的设备上手动指定网关和DNS为OpenWRT。但这长久用起来不是个办法，所以干脆下定决心，抛弃OpenWRT，完全启用Debian来作为旁路由。&lt;/p&gt;
 &lt;h2 id=&#34;网络设计思路&#34;&gt;网络设计思路&lt;/h2&gt;
 &lt;p&gt;为什么不直接采用Debian作为主路由呢，毕竟爱快作为专业的路由系统，还是有其便利性的，查看相关数据也比较容易，如果直接采用Debian作为主路由的话，将会有大量的配置工作，并且想要便捷的查看各项数据也不是很方便。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;并且，我还需要旁路由的存在不能影响端口转发，必须由主路由爱快直接将端口转发到NAS及其他服务，不能先转发到旁路由再经旁路由再转发一次。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;那么，基于爱快作为主路由，Debian作为旁路由，我将以下面的拓扑图开展。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg&#34;
 	width=&#34;1117&#34;
 	height=&#34;739&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C_hu4d3bb5febb14b87d984ab69f868ff292_86542_480x0_resize_q75_box.jpg 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C_hu4d3bb5febb14b87d984ab69f868ff292_86542_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C_hu4d3bb5febb14b87d984ab69f868ff292_86542_480x0_resize_q75_box.jpg 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C_hu4d3bb5febb14b87d984ab69f868ff292_86542_1024x0_resize_q75_box.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;家庭网络&#34;
@@ -4721,10 +4721,10 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;lan1&lt;/code&gt;设置&lt;code&gt;10.0.0.1&lt;/code&gt;为主IP，子网掩码为&lt;code&gt;/24&lt;/code&gt;，同时设置&lt;code&gt;10.0.1.1&lt;/code&gt;为扩展IP，子网掩码同样为&lt;code&gt;/24&lt;/code&gt;，详见下图。你也可以设置更多的扩展IP来分别管理不同的网段及设备（比如再单独设置一个子网为访客网络）。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE.png&#34;
 	width=&#34;1153&#34;
 	height=&#34;871&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE_huaf6e35a44de962287fe85c549cbb4212_81953_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE_huaf6e35a44de962287fe85c549cbb4212_81953_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE_huaf6e35a44de962287fe85c549cbb4212_81953_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE_huaf6e35a44de962287fe85c549cbb4212_81953_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;爱快lan1设置&#34;
@@ -4738,10 +4738,10 @@
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;爱快的DHCP服务器中分别设置两个子网的掩码、网关和DNS，其中&lt;code&gt;10.0.0.3-10.0.0.254&lt;/code&gt;的网关和DNS都是旁路由的IP&lt;code&gt;10.0.0.2&lt;/code&gt;(请在完成全部旁路由配置以后再在爱快中设置成这样，没配置好旁路由前就设置成这样会上不了网)；&lt;code&gt;10.0.1.2-10.0.1.254&lt;/code&gt;这一段的网关是爱快的扩展IP&lt;code&gt;10.0.1.1&lt;/code&gt;，DNS可以设置为当地响应最快的DNS服务器，如果爱快开启了DNS加速，也可以将爱快的扩展IP&lt;code&gt;10.0.1.1&lt;/code&gt;设置为这一网段的DNS服务器。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE.png&#34;
 	width=&#34;1366&#34;
 	height=&#34;202&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE_huef29d9b17b5b36c741f759ef67dcc3a1_47684_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE_huef29d9b17b5b36c741f759ef67dcc3a1_47684_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE_huef29d9b17b5b36c741f759ef67dcc3a1_47684_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE_huef29d9b17b5b36c741f759ef67dcc3a1_47684_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;爱快DHCP设置&#34;
@@ -4761,10 +4761,10 @@
 &lt;p&gt;关闭IPv6的DNS。后续我将在旁路由上自建DNS服务，所以必须关闭爱快IPv6的DNS通告。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE.png&#34;
 	width=&#34;981&#34;
 	height=&#34;808&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE_hu5a029c27786a3bd5aa6dd3f3480020ff_67014_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE_hu5a029c27786a3bd5aa6dd3f3480020ff_67014_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE_hu5a029c27786a3bd5aa6dd3f3480020ff_67014_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE_hu5a029c27786a3bd5aa6dd3f3480020ff_67014_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;爱快IPv6设置&#34;
@@ -4833,20 +4833,20 @@
         </item>
         <item>
         <title>光猫桥接爱快拨号时，上海电信IPTV盒子如何正常使用</title>
-        <link>https://devome.github.io/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/</link>
+        <link>https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/</link>
         <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1.jpg" alt="Featured image of post 光猫桥接爱快拨号时，上海电信IPTV盒子如何正常使用" /&gt;&lt;blockquote&gt;
+        <guid>https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1.jpg" alt="Featured image of post 光猫桥接爱快拨号时，上海电信IPTV盒子如何正常使用" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：上海 电信 IPTV SDN光猫 桥接 爱快 iKuai IPTV盒子&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;根据 &lt;a class=&#34;link&#34; href=&#34;https://bbs.ikuai8.com/forum.php?mod=redirect&amp;amp;goto=findpost&amp;amp;ptid=133841&amp;amp;pid=1186537&amp;amp;fromuid=52325&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这个方法&lt;/a&gt; ，可以在没有交换机时，实现光猫桥接、爱快作为主路由进行拨号的情况下，无需设置vlan tag即可让上海电信IPTV盒子正常使用。注意：此方法不是将IPTV信号流媒体化，只是让电信的IPTV盒子可以正常使用。主要适用于SDN光猫以及最新的2.5G光猫。&lt;/p&gt;
 &lt;p&gt;光猫先找电信小哥沟通好改桥接，然后按如下的网络拓扑图接线：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1.jpg&#34;
 	width=&#34;808&#34;
 	height=&#34;686&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1_hu110183bbca19103c650c46f2204413d3_49641_480x0_resize_q75_box.jpg 480w, https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1_hu110183bbca19103c650c46f2204413d3_49641_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1_hu110183bbca19103c650c46f2204413d3_49641_480x0_resize_q75_box.jpg 480w, https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic1_hu110183bbca19103c650c46f2204413d3_49641_1024x0_resize_q75_box.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;网络拓扑图&#34;
@@ -4860,10 +4860,10 @@
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;爱快至少需要4个物理网口，假如分别为&lt;code&gt;eth0&lt;/code&gt;、&lt;code&gt;eth1&lt;/code&gt;、&lt;code&gt;eth2&lt;/code&gt;、&lt;code&gt;eth3&lt;/code&gt;。其中&lt;code&gt;eth3&lt;/code&gt;作为&lt;code&gt;wan&lt;/code&gt;口连接光猫（你也可以使用其他口，只要区分清楚即可）。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic2.png&#34;
 	width=&#34;1050&#34;
 	height=&#34;258&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic2_hua39e7db82c6222f267884594ba60e0bb_40396_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic2_hua39e7db82c6222f267884594ba60e0bb_40396_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic2_hua39e7db82c6222f267884594ba60e0bb_40396_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic2_hua39e7db82c6222f267884594ba60e0bb_40396_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;wan&#34;
@@ -4877,10 +4877,10 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;eth0&lt;/code&gt;设置为&lt;code&gt;lan1&lt;/code&gt; ，&lt;code&gt;lan1&lt;/code&gt;相应的DHCP服务请自行设置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic3.png&#34;
 	width=&#34;1109&#34;
 	height=&#34;362&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic3_hu80bcee3f106f5f79ea94f023667db9a8_41060_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic3_hu80bcee3f106f5f79ea94f023667db9a8_41060_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic3_hu80bcee3f106f5f79ea94f023667db9a8_41060_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic3_hu80bcee3f106f5f79ea94f023667db9a8_41060_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;lan1&#34;
@@ -4894,10 +4894,10 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;eth2&lt;/code&gt;通过网线连接光猫的网口3，&lt;code&gt;eth1&lt;/code&gt;和&lt;code&gt;eth2&lt;/code&gt;设置为&lt;code&gt;lan2&lt;/code&gt;，注意扩展网卡要勾选两个。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic4.png&#34;
 	width=&#34;1193&#34;
 	height=&#34;1287&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic4_hu200c7ccfc6081e21e3a85137c8adcf0e_108699_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic4_hu200c7ccfc6081e21e3a85137c8adcf0e_108699_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic4_hu200c7ccfc6081e21e3a85137c8adcf0e_108699_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic4_hu200c7ccfc6081e21e3a85137c8adcf0e_108699_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;lan2要勾选两个网卡&#34;
@@ -4933,10 +4933,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00:00:01:00:02:03:43:50:45:03:0e:45:38:20:47:50:4f:4e:20:52:4f:55:54:45:52:04:03:31:2e:30
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic5.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic5.png&#34;
 	width=&#34;713&#34;
 	height=&#34;1409&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic5_hu1ce8ac2d4748d2c3bbcc039c2ffab570_154024_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic5_hu1ce8ac2d4748d2c3bbcc039c2ffab570_154024_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic5_hu1ce8ac2d4748d2c3bbcc039c2ffab570_154024_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic5_hu1ce8ac2d4748d2c3bbcc039c2ffab570_154024_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;lan2的DHCP设置&#34;
@@ -4951,10 +4951,10 @@
 &lt;li&gt;
 &lt;p&gt;打开IPTV盒子，连接好电视机，应该就可以了，从系统信息中也能看到能够获取到两个
 IP。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic6.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic6.jpg&#34;
 	width=&#34;1240&#34;
 	height=&#34;930&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic6_hu9140e035514538317878b57ecfc523a8_142543_480x0_resize_q75_box.jpg 480w, https://devome.github.io/blog/blog/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic6_hu9140e035514538317878b57ecfc523a8_142543_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic6_hu9140e035514538317878b57ecfc523a8_142543_480x0_resize_q75_box.jpg 480w, https://www.evine.win/p/%E5%85%89%E7%8C%AB%E6%A1%A5%E6%8E%A5%E7%88%B1%E5%BF%AB%E6%8B%A8%E5%8F%B7%E6%97%B6%E4%B8%8A%E6%B5%B7%E7%94%B5%E4%BF%A1iptv%E7%9B%92%E5%AD%90%E5%A6%82%E4%BD%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8/pic6_hu9140e035514538317878b57ecfc523a8_142543_1024x0_resize_q75_box.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPTV盒子的网络状态&#34;
@@ -4971,11 +4971,11 @@ IP。&lt;/p&gt;
         </item>
         <item>
         <title>爱快 IPv4／IPv6 ACL／防火墙设置</title>
-        <link>https://devome.github.io/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/</link>
+        <link>https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/</link>
         <pubDate>Sat, 08 Apr 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1.png" alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置" /&gt;&lt;blockquote&gt;
+        <guid>https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1.png" alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;相关概念&#34;&gt;相关概念&lt;/h2&gt;
@@ -5016,10 +5016,10 @@ IP。&lt;/p&gt;
 &lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。由于默认IPv6环境是几乎完全暴露在公网的。所以开启IPv6后，先加入两条规则，不允许公网通过IPv6访问本地，但允许本地通过IPv6访问公网：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;181&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv6默认ACL规则&#34;
@@ -5047,10 +5047,10 @@ IP。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;那么可以这样设置：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;221&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2_hu39ed452c9f26703f4009fa49f498a68f_49112_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2_hu39ed452c9f26703f4009fa49f498a68f_49112_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2_hu39ed452c9f26703f4009fa49f498a68f_49112_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic2_hu39ed452c9f26703f4009fa49f498a68f_49112_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;允许通过IPv6访问指定设备的指定端口&#34;
@@ -5098,10 +5098,10 @@ IP。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;可以如下设置：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;182&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3_hu584795d4bb9cf1bb1bd6b35a306fc693_39098_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3_hu584795d4bb9cf1bb1bd6b35a306fc693_39098_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3_hu584795d4bb9cf1bb1bd6b35a306fc693_39098_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic3_hu584795d4bb9cf1bb1bd6b35a306fc693_39098_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;BT/PT监听不作限制&#34;
@@ -5117,10 +5117,10 @@ IP。&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;完全暴露某台设备&lt;/p&gt;
 &lt;p&gt;因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以这样设置：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;105&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4_hud452aacf12229a1a6c533014143efcec_25874_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4_hud452aacf12229a1a6c533014143efcec_25874_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4_hud452aacf12229a1a6c533014143efcec_25874_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E7%88%B1%E5%BF%AB-ipv4ipv6-acl%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/pic4_hud452aacf12229a1a6c533014143efcec_25874_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;完全暴露指定IPv6&#34;
@@ -5193,11 +5193,11 @@ IP。&lt;/p&gt;
         </item>
         <item>
         <title>使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击</title>
-        <link>https://devome.github.io/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/</link>
+        <link>https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/</link>
         <pubDate>Fri, 08 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1.png" alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击" /&gt;&lt;blockquote&gt;
+        <guid>https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/</guid>
+        <description>&lt;img src="https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1.png" alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本教程为原创教程，转载需注明来源及作者。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;关键词&#34;&gt;关键词&lt;/h2&gt;
@@ -5215,10 +5215,10 @@ IP。&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;限制访问来源&lt;/p&gt;
 &lt;p&gt;方式1：使用&lt;code&gt;安全设置 -&amp;gt; ACL规则&lt;/code&gt;（需要先设置好端口转发，使用ACL时，端口转发可以不限制任何来源），参考下面的方式，允许你所在地区的对应的运营商的IP转发到你所使用的端口（&lt;code&gt;目的地址&lt;/code&gt;可以不填，如果要填可以填端口转发对应的目标设备IP，也可以填整个本地网络，如&lt;code&gt;10.0.0.0/8&lt;/code&gt;、&lt;code&gt;172.16.0.0/16&lt;/code&gt;或&lt;code&gt;192.168.0.0/24&lt;/code&gt;，&lt;code&gt;连接方向匹配&lt;/code&gt;为&lt;code&gt;原始方向&lt;/code&gt;），而阻断其他所有IP访问对应的端口。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;180&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1_huc8d9904e0468058665f9639c498c48d6_43079_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1_huc8d9904e0468058665f9639c498c48d6_43079_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1_huc8d9904e0468058665f9639c498c48d6_43079_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic1_huc8d9904e0468058665f9639c498c48d6_43079_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv4设置ACL&#34;
@@ -5230,10 +5230,10 @@ IP。&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;方式2：某些旧版本爱快的ACL功能可能是失效的（你可以自行测试，比如阻断你所在省份后手机使用蜂窝网访问），这时只能在&lt;code&gt;网络设置 -&amp;gt; 端口映射 -&amp;gt; 端口映射&lt;/code&gt;处，给每一条需要限制访问来源IP的条目选择对应的IP分组。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/blog/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;170&#34;
-	srcset=&#34;https://devome.github.io/blog/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2_hu879b3ba3f2f059d3487513572343df2f_11278_480x0_resize_box_3.png 480w, https://devome.github.io/blog/blog/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2_hu879b3ba3f2f059d3487513572343df2f_11278_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2_hu879b3ba3f2f059d3487513572343df2f_11278_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E4%BD%BF%E7%94%A8%E7%88%B1%E5%BF%AB%E6%9D%A5%E9%99%90%E5%88%B6sshwebuirdp%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%A5%E6%BA%90ip%E4%BF%9D%E6%8A%A4%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87%E4%B8%8D%E8%A2%AB%E6%94%BB%E5%87%BB/pic2_hu879b3ba3f2f059d3487513572343df2f_11278_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv4设置端口转发限制来源&#34;

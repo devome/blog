@@ -4,17 +4,17 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。'>
 <title>我的家庭网络设计思路，开启debian的旁路由之路（五）</title>
 
-<link rel='canonical' href='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/'>
+<link rel='canonical' href='https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/'>
 
-<link rel="stylesheet" href="/blog/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（五）'>
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（五）'>
 <meta property='og:description' content='本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。'>
-<meta property='og:url' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/'>
+<meta property='og:url' content='https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='unblockneteasemusic' /><meta property='article:tag' content='nftables' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T01:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-22T01:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='unblockneteasemusic' /><meta property='article:tag' content='nftables' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T01:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-22T01:00:00&#43;00:00'/><meta property='og:image' content='https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（五）">
 <meta name="twitter:description" content="本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
-    <link rel="shortcut icon" href="/blog/favicon.ico" />
+    <meta name="twitter:image" content='https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
     <body class="
@@ -53,13 +53,13 @@
         
             
             <figure class="site-avatar">
-                <a href="/blog">
+                <a href="/">
                 
                     
                     
                     
                         
-                        <img src="/blog/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -72,7 +72,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/blog">Evine的个人博客</a></h1>
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
     </header><ol class="social-menu">
@@ -102,7 +102,7 @@
         
         
         <li >
-            <a href='/blog/' >
+            <a href='/' >
                 
                 
                 
@@ -122,7 +122,7 @@
         
         
         <li >
-            <a href='/blog/archives/' >
+            <a href='/archives/' >
                 
                 
                 
@@ -142,7 +142,7 @@
         
         
         <li >
-            <a href='/blog/search/' >
+            <a href='/search/' >
                 
                 
                 
@@ -161,7 +161,7 @@
         
         
         <li >
-            <a href='/blog/link/' >
+            <a href='/link/' >
                 
                 
                 
@@ -264,9 +264,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_800x0_resize_box_3.png"
-                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_800x0_resize_box_3.png 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_1600x0_resize_box_3.png 1600w"
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_800x0_resize_box_3.png"
+                        srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_800x0_resize_box_3.png 800w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_1600x0_resize_box_3.png 1600w"
                         width="800" 
                         height="212" 
                         loading="lazy"
@@ -280,7 +280,7 @@
     
     <header class="article-category">
         
-            <a href="/blog/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+            <a href="/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
                 软路由
             </a>
         
@@ -289,7 +289,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">我的家庭网络设计思路，开启debian的旁路由之路（五）</a>
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">我的家庭网络设计思路，开启debian的旁路由之路（五）</a>
         </h2>
     
         
@@ -1048,10 +1048,10 @@
 <p>安卓系统不支持。</p>
 <h3 id="windows">Windows</h3>
 <p>安装网易云音乐客户端后，创建一个快捷方式，然后在该快捷方式的属性中的“目标”增加 <code> --ignore-certificate-errors</code>，注意有个空格。</p>
-<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png"
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png"
 	width="421"
 	height="673"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_1024x0_resize_box_3.png 1024w"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="网易云音乐"
@@ -1088,10 +1088,10 @@
 <p>打开 <code>clash</code> 的 <code>webui</code>：<a class="link" href="http://10.0.0.2:9090/ui/xd/#/proxies"  target="_blank" rel="noopener"
     >http://10.0.0.2:9090/ui/xd/#/proxies</a> ，选择 <code>网易音乐</code> 为 <code>网易代理</code>；你再打开网易云音乐客户端后，在 <a class="link" href="http://10.0.0.2:9090/ui/xd/#/conns"  target="_blank" rel="noopener"
     >http://10.0.0.2:9090/ui/xd/#/conns</a> 就能看到许多连接都接管到 <code>UnblockNeteaseMusic</code> 了。</p>
-<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png"
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png"
 	width="1156"
 	height="307"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_1024x0_resize_box_3.png 1024w"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="clash将网易云音乐的流量透明代理到了unblocknem"
@@ -1103,10 +1103,10 @@
 	
 ></p>
 <p>从 <code>unblocknem.service</code> 的日志中也能看到它的作用，这些灰色歌曲都被接管了。</p>
-<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3.png"
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3.png"
 	width="1151"
 	height="659"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_1024x0_resize_box_3.png 1024w"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="unblocknem的日志"
@@ -1161,21 +1161,21 @@
     
     <section class="article-tags">
         
-            <a href="/blog/tags/%E7%88%B1%E5%BF%AB/">爱快</a>
+            <a href="/tags/%E7%88%B1%E5%BF%AB/">爱快</a>
         
-            <a href="/blog/tags/debian/">debian</a>
+            <a href="/tags/debian/">debian</a>
         
-            <a href="/blog/tags/network/">network</a>
+            <a href="/tags/network/">network</a>
         
-            <a href="/blog/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
+            <a href="/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
         
-            <a href="/blog/tags/clash/">clash</a>
+            <a href="/tags/clash/">clash</a>
         
-            <a href="/blog/tags/unblockneteasemusic/">unblockneteasemusic</a>
+            <a href="/tags/unblockneteasemusic/">unblockneteasemusic</a>
         
-            <a href="/blog/tags/nftables/">nftables</a>
+            <a href="/tags/nftables/">nftables</a>
         
-            <a href="/blog/tags/shell/">shell</a>
+            <a href="/tags/shell/">shell</a>
         
     </section>
 
@@ -1197,11 +1197,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.b3c4f5a888a68e427bedc772b6e460e3_hu88789eb5a0253449c69e203685dbd166_85259_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.b3c4f5a888a68e427bedc772b6e460e3_hu88789eb5a0253449c69e203685dbd166_85259_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1221,11 +1221,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1245,11 +1245,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1269,11 +1269,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.20854af746270e9b4b1e51c4b66b27f3_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_250x150_fill_q75_box_smart1.jpg" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.20854af746270e9b4b1e51c4b66b27f3_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_250x150_fill_q75_box_smart1.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1293,11 +1293,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1455,7 +1455,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/blog/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Evine的个人博客</title>
-        <link>https://devome.github.io/blog/categories/</link>
+        <link>https://www.evine.win/categories/</link>
         <description>Recent content in Categories on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 22 Oct 2023 07:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 22 Oct 2023 07:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>软路由</title>
-        <link>https://devome.github.io/blog/categories/gateway/</link>
+        <link>https://www.evine.win/categories/gateway/</link>
         <pubDate>Sun, 22 Oct 2023 07:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/categories/gateway/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/categories/gateway/cover.png" alt="Featured image of post 软路由" /&gt;</description>
+        <guid>https://www.evine.win/categories/gateway/</guid>
+        <description>&lt;img src="https://www.evine.win/categories/gateway/cover.png" alt="Featured image of post 软路由" /&gt;</description>
         </item>
         <item>
         <title>qBittorrent</title>
-        <link>https://devome.github.io/blog/categories/qbittorrent/</link>
+        <link>https://www.evine.win/categories/qbittorrent/</link>
         <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/categories/qbittorrent/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/categories/qbittorrent/cover.png" alt="Featured image of post qBittorrent" /&gt;</description>
+        <guid>https://www.evine.win/categories/qbittorrent/</guid>
+        <description>&lt;img src="https://www.evine.win/categories/qbittorrent/cover.png" alt="Featured image of post qBittorrent" /&gt;</description>
         </item>
         <item>
         <title>Docker</title>
-        <link>https://devome.github.io/blog/categories/docker/</link>
+        <link>https://www.evine.win/categories/docker/</link>
         <pubDate>Wed, 06 Sep 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/categories/docker/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/categories/docker/cover.png" alt="Featured image of post Docker" /&gt;</description>
+        <guid>https://www.evine.win/categories/docker/</guid>
+        <description>&lt;img src="https://www.evine.win/categories/docker/cover.png" alt="Featured image of post Docker" /&gt;</description>
         </item>
         <item>
         <title>Promox VE</title>
-        <link>https://devome.github.io/blog/categories/pve/</link>
+        <link>https://www.evine.win/categories/pve/</link>
         <pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/categories/pve/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/categories/pve/cover.png" alt="Featured image of post Promox VE" /&gt;</description>
+        <guid>https://www.evine.win/categories/pve/</guid>
+        <description>&lt;img src="https://www.evine.win/categories/pve/cover.png" alt="Featured image of post Promox VE" /&gt;</description>
         </item>
         <item>
         <title>Kodi</title>
-        <link>https://devome.github.io/blog/categories/kodi/</link>
+        <link>https://www.evine.win/categories/kodi/</link>
         <pubDate>Sun, 06 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/categories/kodi/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/categories/kodi/cover.png" alt="Featured image of post Kodi" /&gt;</description>
+        <guid>https://www.evine.win/categories/kodi/</guid>
+        <description>&lt;img src="https://www.evine.win/categories/kodi/cover.png" alt="Featured image of post Kodi" /&gt;</description>
         </item>
         <item>
         <title>Jellyfin</title>
-        <link>https://devome.github.io/blog/categories/jellyfin/</link>
+        <link>https://www.evine.win/categories/jellyfin/</link>
         <pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/blog/categories/jellyfin/</guid>
-        <description>&lt;img src="https://devome.github.io/blog/categories/jellyfin/cover.png" alt="Featured image of post Jellyfin" /&gt;</description>
+        <guid>https://www.evine.win/categories/jellyfin/</guid>
+        <description>&lt;img src="https://www.evine.win/categories/jellyfin/cover.png" alt="Featured image of post Jellyfin" /&gt;</description>
         </item>
         
     </channel>

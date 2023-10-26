@@ -4,17 +4,17 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解安装Debian的一些注意事项，初始的网络配置，以及一些必要软件的安装。'>
 <title>我的家庭网络设计思路，开启debian的旁路由之路（二）</title>
 
-<link rel='canonical' href='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/'>
+<link rel='canonical' href='https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/'>
 
-<link rel="stylesheet" href="/blog/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（二）'>
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（二）'>
 <meta property='og:description' content='本篇主要讲解安装Debian的一些注意事项，初始的网络配置，以及一些必要软件的安装。'>
-<meta property='og:url' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/'>
+<meta property='og:url' content='https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='旁路由' /><meta property='article:published_time' content='2023-10-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-20T00:00:00&#43;00:00'/><meta property='og:image' content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='旁路由' /><meta property='article:published_time' content='2023-10-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-20T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（二）">
 <meta name="twitter:description" content="本篇主要讲解安装Debian的一些注意事项，初始的网络配置，以及一些必要软件的安装。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://devome.github.io/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png' />
-    <link rel="shortcut icon" href="/blog/favicon.ico" />
+    <meta name="twitter:image" content='https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
     <body class="
@@ -53,13 +53,13 @@
         
             
             <figure class="site-avatar">
-                <a href="/blog">
+                <a href="/">
                 
                     
                     
                     
                         
-                        <img src="/blog/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -72,7 +72,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/blog">Evine的个人博客</a></h1>
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
     </header><ol class="social-menu">
@@ -102,7 +102,7 @@
         
         
         <li >
-            <a href='/blog/' >
+            <a href='/' >
                 
                 
                 
@@ -122,7 +122,7 @@
         
         
         <li >
-            <a href='/blog/archives/' >
+            <a href='/archives/' >
                 
                 
                 
@@ -142,7 +142,7 @@
         
         
         <li >
-            <a href='/blog/search/' >
+            <a href='/search/' >
                 
                 
                 
@@ -161,7 +161,7 @@
         
         
         <li >
-            <a href='/blog/link/' >
+            <a href='/link/' >
                 
                 
                 
@@ -259,9 +259,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_800x0_resize_box_3.png"
-                        srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_800x0_resize_box_3.png 800w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_1600x0_resize_box_3.png 1600w"
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_800x0_resize_box_3.png"
+                        srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_800x0_resize_box_3.png 800w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_1600x0_resize_box_3.png 1600w"
                         width="800" 
                         height="422" 
                         loading="lazy"
@@ -275,7 +275,7 @@
     
     <header class="article-category">
         
-            <a href="/blog/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+            <a href="/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
                 软路由
             </a>
         
@@ -284,7 +284,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/">我的家庭网络设计思路，开启debian的旁路由之路（二）</a>
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/">我的家庭网络设计思路，开启debian的旁路由之路（二）</a>
         </h2>
     
         
@@ -344,10 +344,10 @@
 <p>安装Debian的详细过程我就不提了，网上的教程很多，我只提一部分内容。如果对其他安装内容真有需要，可以在本文下方评论区提出。</p>
 <h3 id="主机名和域名">主机名和域名</h3>
 <p>在配置主机名和域名时，可以考虑设置为你的DDNS域名的三级域名下，详见下面两图，后续就可以使用<code>gate.evine.com</code>来访问旁路由。</p>
-<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D.png"
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D.png"
 	width="1922"
 	height="1200"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu0c0c2e91e1d55caf467953fab7a22376_220206_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu0c0c2e91e1d55caf467953fab7a22376_220206_1024x0_resize_box_3.png 1024w"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu0c0c2e91e1d55caf467953fab7a22376_220206_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu0c0c2e91e1d55caf467953fab7a22376_220206_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="Debian主机名"
@@ -358,10 +358,10 @@
 		data-flex-basis="384px"
 	
 ></p>
-<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D.png"
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D.png"
 	width="1919"
 	height="1196"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu3a4aa506e95c76067c12b963f9fbc7e6_223164_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu3a4aa506e95c76067c12b963f9fbc7e6_223164_1024x0_resize_box_3.png 1024w"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu3a4aa506e95c76067c12b963f9fbc7e6_223164_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu3a4aa506e95c76067c12b963f9fbc7e6_223164_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="Debian域名"
@@ -374,10 +374,10 @@
 ></p>
 <h3 id="安装哪些内容">安装哪些内容</h3>
 <p>仅安装核心系统和SSH服务端，不要安装其他东西，连“标准系统工具”都不需要选择。</p>
-<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF.png"
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF.png"
 	width="1922"
 	height="1202"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu51b5ad6c5a2ec1deed21180b7a740960_260753_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu51b5ad6c5a2ec1deed21180b7a740960_260753_1024x0_resize_box_3.png 1024w"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu51b5ad6c5a2ec1deed21180b7a740960_260753_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu51b5ad6c5a2ec1deed21180b7a740960_260753_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="仅安装核心系统和SSH服务端"
@@ -390,10 +390,10 @@
 ></p>
 <h3 id="首次安装后">首次安装后</h3>
 <p>首次安装完成后进入系统，系统进程只有这些（请手动安装<code>htop</code>：<code>apt install htop</code>），非常清爽。下图是虚拟机安装的，并且创建时启用了<code>qemu-guest-agent</code>，所以额外有个<code>qemu-ga</code>进程，物理机安装甚至连这个进程都没有。在我们还没有配置其他服务时，内存也只占用了120M左右，也并没有比OpenWRT多多少。</p>
-<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B.png"
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B.png"
 	width="1726"
 	height="902"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hub0fc6a9a37e59d4bf659d1833177268d_778628_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hub0fc6a9a37e59d4bf659d1833177268d_778628_1024x0_resize_box_3.png 1024w"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hub0fc6a9a37e59d4bf659d1833177268d_778628_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hub0fc6a9a37e59d4bf659d1833177268d_778628_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="Debian刚刚安装完成后的进程"
@@ -477,10 +477,10 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后你就会发现系统启动了DHCPv6客户端以获取IPv6地址。不过虽然配置了静态IPv4地址，但需要在重启系统以后，<code>dhclient -4</code>这个用来获取DHCPv4地址的进程才会消失。</p>
-<p><img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png"
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png"
 	width="1726"
 	height="910"
-	srcset="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_480x0_resize_box_3.png 480w, /blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_1024x0_resize_box_3.png 1024w"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="系统启动了DHCPv6客户端"
@@ -634,9 +634,9 @@
     
     <section class="article-tags">
         
-            <a href="/blog/tags/debian/">debian</a>
+            <a href="/tags/debian/">debian</a>
         
-            <a href="/blog/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
+            <a href="/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
         
     </section>
 
@@ -658,11 +658,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.925c5182e2c52553c625786cef22b077_huef3c692eae64eb585ab4ff7890b397a3_413344_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.925c5182e2c52553c625786cef22b077_huef3c692eae64eb585ab4ff7890b397a3_413344_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -682,11 +682,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -706,11 +706,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.b7046b9f264a6935792612610be51e8f_hu574dba91de5fa709b097f092f38ffb07_437319_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.b7046b9f264a6935792612610be51e8f_hu574dba91de5fa709b097f092f38ffb07_437319_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -730,11 +730,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.ab3c360faeeff41c3faa05a6a34d1643_hu51d4af1eeefa67a1188add7d16f39c36_65107_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.ab3c360faeeff41c3faa05a6a34d1643_hu51d4af1eeefa67a1188add7d16f39c36_65107_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -754,11 +754,11 @@
             
                 
 <article class="has-image">
-    <a href="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
         
         
             <div class="article-image">
-                <img src="/blog/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -916,7 +916,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/blog/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
