@@ -381,7 +381,7 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 检查最新稳定版的版本号，如果获取不到请检查网络</span>
 </span></span><span class="line"><span class="cl"><span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -sS https://api.github.com/repos/MetaCubeX/Clash.Meta/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$remote_ver</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版（前一句有输出这一句才能正常执行）</span>
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
 </span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;clash.meta-linux-amd64-v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">.gz&#34;</span> <span class="s2">&#34;https://github.com/MetaCubeX/Clash.Meta/releases/download/v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">/clash.meta-linux-amd64-v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">.gz&#34;</span>
 </span></span><span class="line"><span class="cl">
