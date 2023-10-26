@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>adguradhome on Evine的个人博客</title>
-        <link>https://www.evine.win/tags/adguradhome/</link>
+        <link>https://evine.win/tags/adguradhome/</link>
         <description>Recent content in adguradhome on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 21 Oct 2023 14:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/tags/adguradhome/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 21 Oct 2023 14:00:00 +0000</lastBuildDate><atom:link href="https://evine.win/tags/adguradhome/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（四）</title>
-        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</link>
+        <link>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</link>
         <pubDate>Sat, 21 Oct 2023 14:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</guid>
-        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</guid>
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;使用clash实现透明代理有两种方式，一种是 &lt;code&gt;redirect&lt;/code&gt;，仅支持TCP流量，另一种是 &lt;code&gt;tproxy&lt;/code&gt;，支持TCP和UDP流量。为了能代理UDP流量，所以我们选用 &lt;code&gt;tproxy&lt;/code&gt; 的方式来实现。&lt;/p&gt;
 &lt;h2 id=&#34;工作流&#34;&gt;工作流&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;nftables&lt;/code&gt; 的工作流详见 &lt;a class=&#34;link&#34; href=&#34;https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Netfilter hooks&lt;/a&gt;。具体Netfilter的五个链 &lt;code&gt;prerouting&lt;/code&gt; &lt;code&gt;input&lt;/code&gt; &lt;code&gt;forward&lt;/code&gt; &lt;code&gt;output&lt;/code&gt; &lt;code&gt;postrouting&lt;/code&gt; 是什么关系，以及流向，请参考该链接来加深理解。全部的文档可以查阅本文下方 &lt;a class=&#34;link&#34; href=&#34;#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99&#34; &gt;参考资料&lt;/a&gt; 的1和2。&lt;/p&gt;
 &lt;p&gt;注意，在旁路由自身中运行的程序都工作在应用层，而 &lt;code&gt;tproxy&lt;/code&gt; 只能工作在 &lt;code&gt;prerouting&lt;/code&gt; 链，所以如果我们要想透明代理旁路由自己产生的流量，要通过设置IP规则让这部分流量在进入 &lt;code&gt;output&lt;/code&gt; 链时，将需要代理的流量转回到 &lt;code&gt;prerouting&lt;/code&gt; 链。这就需要靠IP规则来实现。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png&#34;
 	width=&#34;1116&#34;
 	height=&#34;586&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_480x0_resize_box_3.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu88789eb5a0253449c69e203685dbd166_85259_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Netfilter hooks&#34;
@@ -647,17 +647,17 @@
         </item>
         <item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（三）</title>
-        <link>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</link>
+        <link>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</link>
         <pubDate>Sat, 21 Oct 2023 13:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</guid>
-        <description>&lt;img src="https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</guid>
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我提及了我的目标是在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个旁路由所在的子网中实现国内网站IPv4/IPv6双栈解析并可正常访问，国外网站仅解析IPv4地址并进行科学上网，那么仅凭Clash很难实现（其他的代理软件我也不介绍了），我们可以借助mosdns来实现（其他的smartdns、coredns我就不介绍了）。又为了能够&lt;strong&gt;更加方便&lt;/strong&gt;的为电视机屏蔽广告、自定义子网中设备解析为私网IPv4地址和公网IPv6地址这种形式的双栈、防止代理有故障需要后备DNS等等功能，我继续在mosdns前加一层adguardhome，以方便的实现。&lt;/p&gt;
 &lt;h2 id=&#34;逻辑图&#34;&gt;逻辑图&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg&#34;
 	width=&#34;1079&#34;
 	height=&#34;914&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_480x0_resize_q75_box.jpg 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_480x0_resize_q75_box.jpg 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_1024x0_resize_q75_box.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS逻辑&#34;
@@ -788,10 +788,10 @@
 &lt;/div&gt;&lt;h3 id=&#34;初始化&#34;&gt;初始化&lt;/h3&gt;
 &lt;p&gt;先开一个终端输入&lt;code&gt;adguardhome&lt;/code&gt;，然后浏览器打开 &lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:3000&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://10.0.0.2:3000&lt;/a&gt; 并按下图设置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1.png&#34;
 	width=&#34;621&#34;
 	height=&#34;133&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_480x0_resize_box_3.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu76f48241105c2c97d59cb6336210e918_14496_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;网页管理监听端口建议改回3000，至于80端口我们留给nginx使用&#34;
@@ -802,10 +802,10 @@
 		data-flex-basis=&#34;1120px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2.png&#34;
 	width=&#34;617&#34;
 	height=&#34;138&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_480x0_resize_box_3.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hudd38056e1bd808836627a7890823dc67_12060_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS服务器就监听53端口&#34;
@@ -819,10 +819,10 @@
 &lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
 &lt;h4 id=&#34;dns设置&#34;&gt;DNS设置&lt;/h4&gt;
 &lt;p&gt;上游DNS服务器设置为mosdns的监听端口。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1.png&#34;
 	width=&#34;517&#34;
 	height=&#34;272&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_480x0_resize_box_3.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu6dbceca21223e513227bdb67b0bf7b79_40698_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;上游DNS服务器&#34;
@@ -834,10 +834,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;后备DNS服务器填写公共DNS服务器，可以附加上你的ISP当地的DNS服务器，如果主路由设置了DNS的功能，也可以加上，当mosdns出现故障时，adguardhome会转为使用后备DNS服务器来进行解析。这样。即使mosdns或者clash出现故障时，也不影响adguardhome为局域网提供DNS服务。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2.png&#34;
 	width=&#34;517&#34;
 	height=&#34;189&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_480x0_resize_box_3.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu45636e6485ad311a263051caa1ba98a6_27126_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;后备DNS服务器&#34;
@@ -849,10 +849,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;我们只在局域网中使用，所以不限制查询流量。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3.png&#34;
 	width=&#34;516&#34;
 	height=&#34;180&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_480x0_resize_box_3.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hua88ea732afeab4d750ff7c2aacb70388_20419_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS服务配置&#34;
@@ -864,10 +864,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;开启乐观缓存可以更快的响应，但有些时候可能会导致问题，可以视情况开关。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4.png&#34;
 	width=&#34;516&#34;
 	height=&#34;482&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_480x0_resize_box_3.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu231dd13fff5717b387a4e1a3afb23ce7_74543_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS缓存配置&#34;
@@ -883,10 +883,10 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;一个良好的习惯是针对局域网中每一个运行着需要被访问的服务的IP，都通过 &lt;code&gt;adguardhome&lt;/code&gt; 劫持其域名，做到不同IP不同子域名。只要设置好DDNS的子域名以及主路由爱快的端口转发，就可以做到在局域网环境中和在公网环境中，使用相同的域名去访问同一个服务。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99.png&#34;
 	width=&#34;517&#34;
 	height=&#34;397&#34;
-	srcset=&#34;https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_480x0_resize_box_3.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_huc64ceb0e398c2ca5cd394f17b1795e00_53995_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS重写&#34;

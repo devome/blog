@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>systemd on Evine的个人博客</title>
-        <link>https://www.evine.win/tags/systemd/</link>
+        <link>https://evine.win/tags/systemd/</link>
         <description>Recent content in systemd on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 24 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/tags/systemd/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://evine.win/tags/systemd/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>修改Kodi字幕字体</title>
-        <link>https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</link>
+        <link>https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</link>
         <pubDate>Thu, 24 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</guid>
-        <description>&lt;img src="https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</guid>
+        <description>&lt;img src="https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;

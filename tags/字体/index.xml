@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>字体 on Evine的个人博客</title>
-        <link>https://www.evine.win/tags/%E5%AD%97%E4%BD%93/</link>
+        <link>https://evine.win/tags/%E5%AD%97%E4%BD%93/</link>
         <description>Recent content in 字体 on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/tags/%E5%AD%97%E4%BD%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://evine.win/tags/%E5%AD%97%E4%BD%93/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>屏蔽Kodi的关机、重启按钮</title>
-        <link>https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/</link>
+        <link>https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/</link>
         <pubDate>Sat, 23 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/</guid>
-        <description>&lt;img src="https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5.png" alt="Featured image of post 屏蔽Kodi的关机、重启按钮" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/</guid>
+        <description>&lt;img src="https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5.png" alt="Featured image of post 屏蔽Kodi的关机、重启按钮" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -80,10 +80,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;2-在kodi界面中隐藏关机重启等按钮&#34;&gt;2. 在Kodi界面中隐藏关机、重启等按钮&lt;/h2&gt;
 &lt;p&gt;最后，为了保证在Kodi界面中也只能看见&lt;code&gt;退出&lt;/code&gt;，并且看不到&lt;code&gt;关机&lt;/code&gt;、&lt;code&gt;重启&lt;/code&gt;等按钮（注意：这只是在界面中隐藏掉而已，Kodi本身还是有关机、重启的权限的），可以在皮肤设置中将相关按钮隐藏掉，比如使用的&lt;code&gt;Aeon Nox: SiLVO&lt;/code&gt;皮肤的话，可以在进入&lt;code&gt;系统设置 -&amp;gt; 皮肤设置 -&amp;gt; 主菜单设置&lt;/code&gt;后这样操作：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic1_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic1_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic1_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_480x0_resize_box_3.png 480w, https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic1_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094809.png&#34;
@@ -95,10 +95,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;在上图中的“管理子菜单”按钮下，以及在主菜单“系统”的“管理子菜单”下，也要将“关闭系统电源”“重启”“待机”“休眠”“注销”给禁用了，这里本文就不截图了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic2_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic2_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic2_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_480x0_resize_box_3.png 480w, https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic2_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094821.png&#34;
@@ -109,10 +109,10 @@
 		data-flex-basis=&#34;384px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic3_hu45b471235be728b8917150d94cd5399a_40252_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic3_hu45b471235be728b8917150d94cd5399a_40252_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic3_hu45b471235be728b8917150d94cd5399a_40252_480x0_resize_box_3.png 480w, https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic3_hu45b471235be728b8917150d94cd5399a_40252_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094832.png&#34;
@@ -123,10 +123,10 @@
 		data-flex-basis=&#34;384px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic4.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic4_hu538f4d7bc8f80fc1b6eeabd37b527cbc_40326_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic4_hu538f4d7bc8f80fc1b6eeabd37b527cbc_40326_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic4_hu538f4d7bc8f80fc1b6eeabd37b527cbc_40326_480x0_resize_box_3.png 480w, https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic4_hu538f4d7bc8f80fc1b6eeabd37b527cbc_40326_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094844.png&#34;
@@ -138,10 +138,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;最后的效果，主菜单中也只有退出按钮了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_480x0_resize_box_3.png 480w, https://www.evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_480x0_resize_box_3.png 480w, https://evine.win/p/%E5%B1%8F%E8%94%BDkodi%E7%9A%84%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E6%8C%89%E9%92%AE/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094656.png&#34;
@@ -156,11 +156,11 @@
         </item>
         <item>
         <title>修改Kodi皮肤字体</title>
-        <link>https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/</link>
+        <link>https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/</link>
         <pubDate>Sat, 23 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/</guid>
-        <description>&lt;img src="https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi皮肤字体" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/</guid>
+        <description>&lt;img src="https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E7%9A%AE%E8%82%A4%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi皮肤字体" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -219,11 +219,11 @@
         </item>
         <item>
         <title>修改Kodi字幕字体</title>
-        <link>https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</link>
+        <link>https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</link>
         <pubDate>Mon, 18 Jul 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</guid>
-        <description>&lt;img src="https://www.evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/</guid>
+        <description>&lt;img src="https://evine.win/p/%E4%BF%AE%E6%94%B9kodi%E5%AD%97%E5%B9%95%E5%AD%97%E4%BD%93/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;

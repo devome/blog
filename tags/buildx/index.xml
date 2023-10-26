@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>buildx on Evine的个人博客</title>
-        <link>https://www.evine.win/tags/buildx/</link>
+        <link>https://evine.win/tags/buildx/</link>
         <description>Recent content in buildx on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 30 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/tags/buildx/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 30 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://evine.win/tags/buildx/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）</title>
-        <link>https://www.evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/</link>
+        <link>https://evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/</link>
         <pubDate>Wed, 30 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/</guid>
-        <description>&lt;img src="https://www.evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/</guid>
+        <description>&lt;img src="https://evine.win/p/docker-buildx-%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E4%BF%9D%E5%AD%98%E6%97%B6%E9%97%B4%E5%8F%8A%E5%A4%A7%E5%B0%8F%E4%B8%8A%E9%99%90/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;新建&lt;code&gt;buildkit&lt;/code&gt;配置文件&lt;code&gt;$HOME/.docker/buildx/buildkitd.default.toml&lt;/code&gt;如下：&lt;/p&gt;
@@ -148,11 +148,11 @@
         </item>
         <item>
         <title>docker buildx 跨平台构建镜像时限制CPU使用率</title>
-        <link>https://www.evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/</link>
+        <link>https://evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/</link>
         <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/</guid>
-        <description>&lt;img src="https://www.evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/docker-poster.jpg" alt="Featured image of post docker buildx 跨平台构建镜像时限制CPU使用率" /&gt;&lt;p&gt;官方教程中提供了一种&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/build/buildkit/configure/#resource-limiting&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>https://evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/</guid>
+        <description>&lt;img src="https://evine.win/p/docker-buildx-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E6%97%B6%E9%99%90%E5%88%B6cpu%E4%BD%BF%E7%94%A8%E7%8E%87/docker-poster.jpg" alt="Featured image of post docker buildx 跨平台构建镜像时限制CPU使用率" /&gt;&lt;p&gt;官方教程中提供了一种&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/build/buildkit/configure/#resource-limiting&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;做法&lt;/a&gt;，也就是提供buildkitd的配置文件后再创建builder：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

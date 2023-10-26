@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>驱动 on Evine的个人博客</title>
-        <link>https://www.evine.win/tags/%E9%A9%B1%E5%8A%A8/</link>
+        <link>https://evine.win/tags/%E9%A9%B1%E5%8A%A8/</link>
         <description>Recent content in 驱动 on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 15 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.evine.win/tags/%E9%A9%B1%E5%8A%A8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 15 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://evine.win/tags/%E9%A9%B1%E5%8A%A8/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动</title>
-        <link>https://www.evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</link>
+        <link>https://evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</link>
         <pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://www.evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</guid>
-        <description>&lt;img src="https://www.evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/pve-poster.jpg" alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <guid>https://evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</guid>
+        <description>&lt;img src="https://evine.win/p/pve-8-%E5%AE%89%E8%A3%85-reaktek-rtl8125b-2.5g%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/pve-poster.jpg" alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的驱动是&lt;code&gt;r8169&lt;/code&gt;，它并没有开启网卡多队列等特性。导致一个网卡的软中断只能使用固定的一个核心开接收和发送数据。&lt;/p&gt;
 &lt;p&gt;查看网卡加载的是什么驱动：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
