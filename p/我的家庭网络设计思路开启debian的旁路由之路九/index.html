@@ -10,7 +10,7 @@
 <meta property='og:description' content='本篇主要讲解如何监测陌生设备接入，记录下来并发送通知。'>
 <meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='arp' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T05:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T21:56:46&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='arp' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T05:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-27T09:14:18&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（九）">
 <meta name="twitter:description" content="本篇主要讲解如何监测陌生设备接入，记录下来并发送通知。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png' />
@@ -483,7 +483,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/notify.sh
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>有许多设备无法被 <code>arp-scan</code> 识别出来制造商，可以编辑 <code>/etc/arp-scan/mac-vendor.txt</code>，手动增加它们的制造商，形式如下：</p>
+</div><p>有许多设备无法被 <code>arp-scan</code> 识别出来制造商，可以编辑 <code>/etc/arp-scan/mac-vendor.txt</code>，手动增加它们的制造商，形式如下（仅支持小写字母，不支持大写字母）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -699,7 +699,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-10-26 21:56
+            最后更新于 2023-10-27 09:14
         </span>
     </section></footer>
 
