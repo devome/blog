@@ -10,7 +10,7 @@
 <meta property='og:description' content='本篇主要讲解clash透明代理(Tproxy)的安装和配置，以及涉及到的IP规则和nftables规则。'>
 <meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='nftables' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-21T14:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-27T08:51:10&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='nftables' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-21T14:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-27T08:52:24&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（四）">
 <meta name="twitter:description" content="本篇主要讲解clash透明代理(Tproxy)的安装和配置，以及涉及到的IP规则和nftables规则。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png' />
@@ -408,19 +408,22 @@ if (!doNotTrack) {
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 --help <span class="p">|</span> grep supported
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如若支持 AMD64 v3 架构，输出将会是下面这样的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 --help | grep supported
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">## 如若支持 AMD64 v3 架构，输出将会是下面这样的
-</span></span><span class="line"><span class="cl">  x86-64-v3 (supported, searched)
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  x86-64-v3 (supported, searched)
 </span></span><span class="line"><span class="cl">  x86-64-v2 (supported, searched)
 </span></span><span class="line"><span class="cl">  x86_64 (AT_PLATFORM; supported, searched)
 </span></span><span class="line"><span class="cl">  tls (supported, searched)
@@ -1045,7 +1048,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-10-27 08:51
+            最后更新于 2023-10-27 08:52
         </span>
     </section></footer>
 
