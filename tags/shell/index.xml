@@ -212,7 +212,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;declare&lt;/span&gt; -A clash
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;clash&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;reponame&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;MetaCubeX/Clash.Meta&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}.meta-linux-amd64-v${remote_ver}.gz&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dlname&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd}.meta-linux-amd64-v${remote_ver}.gz&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 这一行默认下载的是 AMD64 v3 架构的包，如若不支持，可以下载名称中带 cgo 或者 compatible 的，说明：https://github.com/MetaCubeX/Clash.Meta/wiki/FAQ&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;decomp&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gzip -d $dlname&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;install -ps clash.meta-linux-amd64-v${remote_ver} /usr/local/bin/${cmd}&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clash&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;install_post&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;systemctl restart ${cmd}.service&amp;#39;&lt;/span&gt;
@@ -3461,6 +3461,30 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 安装&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;install -ps clash.meta-linux-amd64-v&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;remote_ver&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; /usr/local/bin/clash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上述 &lt;code&gt;wget&lt;/code&gt; 这一行默认下载的是 &lt;code&gt;AMD64 v3&lt;/code&gt; 架构的包，你可以输入以下命令查看是否支持。如若不支持，可以下载名称中带 &lt;code&gt;cgo&lt;/code&gt; 或者 &lt;code&gt;compatible&lt;/code&gt; 的版本，说明 &lt;a class=&#34;link&#34; href=&#34;https://github.com/MetaCubeX/Clash.Meta/wiki/FAQ&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;在此&lt;/a&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 --help | grep supported
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 如若支持 AMD64 v3 架构，输出将会是下面这样的
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  x86-64-v3 (supported, searched)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  x86-64-v2 (supported, searched)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  x86_64 (AT_PLATFORM; supported, searched)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  tls (supported, searched)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  x86_64 (supported, searched)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;创建服务&#34;&gt;创建服务&lt;/h2&gt;
