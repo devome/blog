@@ -10,7 +10,7 @@
 <meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
 <meta property='og:url' content='https://evine.win/p/kodi-start-stop-by-remote-controller/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2022-11-24T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-27T15:23:08&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2022-11-24T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-31T10:28:11&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg' />
 <meta name="twitter:title" content="像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停">
 <meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg' />
@@ -762,7 +762,24 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>该脚本同样需要可执行权限：<code>chmod +x /usr/local/bin/evsieve.sh</code>。</p>
-</li>
+<p>注意：如果在进行 <code>evtest</code> 时，电源键所在的设备组在 <code>Event type 1</code> 下支持的 <code>Event code</code> 不仅仅只有 <code>KEY_POWER</code> <code>KEY_SLEEP</code> <code>KEY_WAKEUP</code>这三个，那么一般情况下这个设备组还有其他按键，这时不能完全屏蔽掉整个设备，需要将上述脚本中最后四行改成下面这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">exec</span> evsieve <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --input <span class="s2">&#34;</span><span class="nv">$target_hijack_input_device</span><span class="s2">&#34;</span> grab <span class="nv">persist</span><span class="o">=</span>reopen <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --hook key:<span class="nv">$target_hijack_button</span> exec-shell<span class="o">=</span><span class="s2">&#34;/usr/local/bin/kodi-power.sh&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --block key:<span class="nv">$target_hijack_button</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --output
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>新建<code>/etc/systemd/system/evsieve.service</code>，内容如下：</p>
 <div class="highlight"><div class="chroma">
@@ -884,7 +901,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-10-27 15:23
+            最后更新于 2023-10-31 10:28
         </span>
     </section></footer>
 
