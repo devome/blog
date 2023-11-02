@@ -1242,6 +1242,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果 &lt;code&gt;nginx&lt;/code&gt; 已经启动起来了，那么重新读取下：&lt;code&gt;nginx -s reload&lt;/code&gt;；如果 &lt;code&gt;nginx&lt;/code&gt; 还没有启动，那么就启动它： &lt;code&gt;systemctl restart nginx.service&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;然后，放在 &lt;code&gt;/var/www/html&lt;/code&gt; 下面的文件，可以通过网址 &lt;code&gt;http://10.0.0.2/XXXXX&lt;/code&gt; 来下载，也就是说，我们后面创建的 &lt;code&gt;/var/www/html/config_template.yaml&lt;/code&gt; 和  &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt; 等等文件，可以通过网址 &lt;code&gt;http://10.0.0.2/config_template.yaml&lt;/code&gt; &lt;code&gt;http://10.0.0.2/convert_rule.ini&lt;/code&gt; 来下载。&lt;/p&gt;
 &lt;h3 id=&#34;clash配置模板&#34;&gt;clash配置模板&lt;/h3&gt;
 &lt;p&gt;为 &lt;code&gt;clash&lt;/code&gt; 订阅制作适合你自己的模板，根据 &lt;a class=&#34;link&#34; href=&#34;https://wiki.metacubex.one/config/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;clash meta wiki&lt;/a&gt;，自行创建 &lt;code&gt;/var/www/html/config_template.yaml&lt;/code&gt;。以下是我的。&lt;/p&gt;
