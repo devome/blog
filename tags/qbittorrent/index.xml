@@ -437,8 +437,8 @@
 &lt;tr&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;13&lt;/td&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;UMASK_SET&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;000&lt;/td&gt;
-&lt;td&gt;权限掩码&lt;code&gt;umask&lt;/code&gt;，指定qBittorrent在建立文件时预设的权限掩码，可以设置为&lt;code&gt;022&lt;/code&gt;。&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;权限掩码&lt;code&gt;umask&lt;/code&gt;，指定qBittorrent在建立文件时预设的权限掩码。&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;14&lt;/td&gt;
@@ -1048,10 +1048,13 @@
 &lt;h3 id=&#34;使用此镜像会导致封号吗&#34;&gt;使用此镜像会导致封号吗&lt;/h3&gt;
 &lt;p&gt;此镜像未修改qbittorrent客户端官方任何信息，在和pt站tracker服务器交互时反馈的一切信息均是qbittorrent官方原版反馈的信息，此镜像只是基于qbittorrent额外增加了一些脚本而已。增加的脚本全部代码在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt; 可以查看，不会因为使用此镜像导致pt账号被封。&lt;/p&gt;
-&lt;h3 id=&#34;如何在运行-dl-finish-i-时调用自定义脚本&#34;&gt;如何在运行 dl-finish &amp;ldquo;%I&amp;rdquo; 时调用自定义脚本&lt;/h3&gt;
+&lt;h3 id=&#34;如何在运行-dl-finish-k-时调用自定义脚本&#34;&gt;如何在运行 dl-finish &amp;ldquo;%K&amp;rdquo; 时调用自定义脚本&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;此功能可用版本：4.3.7+；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在4.5.0以前的版本不能使用&lt;code&gt;%K&lt;/code&gt;，只能使用&lt;code&gt;%I&lt;/code&gt;；&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;只要你将名为&lt;code&gt;diy.sh&lt;/code&gt;的shell脚本放在映射目录下的&lt;code&gt;diy&lt;/code&gt;文件夹下即可，容器内路径为&lt;code&gt;/data/diy/diy.sh&lt;/code&gt;（hash已存储在名为torrent_hash的变量中，可通过此值获取其他信息）。&lt;/p&gt;
