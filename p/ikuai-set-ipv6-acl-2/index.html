@@ -10,7 +10,7 @@
 <meta property='og:description' content='关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP'>
 <meta property='og:url' content='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-27T10:29:17&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-27T10:36:06&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
 <meta name="twitter:title" content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）">
 <meta name="twitter:description" content="关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
@@ -496,7 +496,7 @@ if (!doNotTrack) {
 	
 ></p>
 <h4 id="完全暴露某台设备">完全暴露某台设备</h4>
-<p>因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 或者 “MAC匹配” 进行设置即可，唯一的不同点是源地址、目的端口均留空，表示全部允许。</p>
+<p>因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 或者 “MAC匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。</p>
 <h2 id="规则验证">规则验证</h2>
 <p>另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 <a class="link" href="https://nmap.org/download#windows"  target="_blank" rel="noopener"
     >这里</a>），比如检测IPv6的某端口开放情况运行下面命令即可：</p>
@@ -581,7 +581,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-11-27 10:29
+            最后更新于 2023-11-27 10:36
         </span>
     </section></footer>
 
