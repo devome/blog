@@ -10,7 +10,7 @@
 <meta property='og:description' content='关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP'>
 <meta property='og:url' content='https://evine.win/p/ikuai-set-ipv6-acl/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-04-08T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T21:56:46&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl/pic1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-04-08T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-27T10:29:17&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl/pic1.png' />
 <meta name="twitter:title" content="爱快 IPv4／IPv6 ACL／防火墙设置">
 <meta name="twitter:description" content="关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/ikuai-set-ipv6-acl/pic1.png' />
@@ -390,7 +390,7 @@ if (!doNotTrack) {
 		data-flex-basis="1644px"
 	
 ></p>
-<p>注：第一条阻断规则的连接方向为<code>原始方向</code>，第二条允许规则的连接方向为<code>关闭</code>。并且由于目前爱快的IPv6 ACL还无法针对性的打开指定本地设备的ICMP协议，所以这样操作以后会默认禁止从公网ping本地的IPv6地址。</p>
+<p>注：第一条阻断规则的连接方向为<code>原始方向</code>，第二条允许规则的连接方向为<code>关闭</code>。并且由于目前爱快的IPv6 ACL还无法针对性的打开指定本地设备的ICMP协议，所以这样操作以后会默认禁止从公网ping本地的IPv6地址。爱快默认允许，所以上图中第二条规则不设置也可以。</p>
 <p>然后再对有安全性要求的端口/IP来针对性的开放权限。以下举几种情况：</p>
 <ol>
 <li>
@@ -578,7 +578,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-10-26 21:56
+            最后更新于 2023-11-27 10:29
         </span>
     </section></footer>
 
@@ -594,6 +594,30 @@ if (!doNotTrack) {
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/ikuai-set-ipv6-acl-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/ikuai-set-ipv6-acl-2/pic1.b59e92159012b80f8905c7b3d3190529_hucc47260a9bbf21ba621002cdab8a4a01_35548_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）"
+                        data-key="ikuai-set-ipv6-acl-2" 
+                        data-hash="md5-tZ6SFZASuA&#43;JBcez0xkFKQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -686,30 +710,6 @@ if (!doNotTrack) {
 
         <div class="article-details">
             <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（十）</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/">
-        
-        
-            <div class="article-image">
-                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.b7046b9f264a6935792612610be51e8f_hu574dba91de5fa709b097f092f38ffb07_437319_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）"
-                        
-                        data-hash="md5-twRrnyZKaTV5JhJhC&#43;Uejw==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（九）</h2>
         </div>
     </a>
 </article>
