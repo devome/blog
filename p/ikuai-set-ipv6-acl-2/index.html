@@ -10,7 +10,7 @@
 <meta property='og:description' content='关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP'>
 <meta property='og:url' content='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-27T10:52:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-27T10:56:25&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
 <meta name="twitter:title" content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）">
 <meta name="twitter:description" content="关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
@@ -393,7 +393,7 @@ if (!doNotTrack) {
 <p>下载 <a class="link" href="https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv"  target="_blank" rel="noopener"
     >ipv6group.csv</a> ，然后在爱快 “网络设置 -&gt; 终端分组设置 -&gt; IPv6分组” 处导入。如果下载不下来，可以前往我放在Github上的仓库 <a class="link" href="https://github.com/devome/files/tree/master/zxipv6wry"  target="_blank" rel="noopener"
     >https://github.com/devome/files/tree/master/zxipv6wry</a> clone后使用，在该仓库中，你也可以查阅中国完整的IPv6数据及分省数据。</p>
-<p>需要注意的是，由于爱快分组名称的字数有限制，所以“联通”包含“联通”和“网通”，“移动”包含“移动”和“铁通”，“鹏博士”包含“鹏博士”和“长城宽带”。</p>
+<p>需要注意的是，由于爱快分组名称的字数有限制，所以“联通”包含“联通”和“网通”，“移动”包含“移动”和“铁通”，“鹏博士”包含“鹏博士”和“长城宽带”。还有部分IPv6数据暂不清楚其分配到什么省份，所以归类为“未知省份”，请在选择来源IPv6分组时根据你的实际需要进行选择。</p>
 <h3 id="设置mac分组">设置MAC分组</h3>
 <p>爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&gt; 终端分组设置 -&gt; MAC分组” 处设置。</p>
 <h3 id="acl规则">ACL规则</h3>
@@ -582,7 +582,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-11-27 10:52
+            最后更新于 2023-11-27 10:56
         </span>
     </section></footer>
 
