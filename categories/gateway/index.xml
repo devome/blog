@@ -56,6 +56,7 @@
 &lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ipv6group.csv&lt;/a&gt; ，然后在爱快 “网络设置 -&amp;gt; 终端分组设置 -&amp;gt; IPv6分组” 处导入。如果下载不下来，可以前往我放在Github上的仓库 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/files/tree/master/zxipv6wry&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/devome/files/tree/master/zxipv6wry&lt;/a&gt; clone后使用，在该仓库中，你也可以查阅中国完整的IPv6数据及分省数据。&lt;/p&gt;
+&lt;p&gt;需要注意的是，由于爱快分组名称的字数有限制，所以“联通”包含“联通”和“网通”，“移动”包含“移动”和“铁通”，“鹏博士”包含“鹏博士”和“长城宽带”。&lt;/p&gt;
 &lt;h3 id=&#34;设置mac分组&#34;&gt;设置MAC分组&lt;/h3&gt;
 &lt;p&gt;爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&amp;gt; 终端分组设置 -&amp;gt; MAC分组” 处设置。&lt;/p&gt;
 &lt;h3 id=&#34;acl规则&#34;&gt;ACL规则&lt;/h3&gt;
