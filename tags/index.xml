@@ -6,7 +6,31 @@
         <description>Recent content in Tags on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 Nov 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>debian</title>
+        <link>https://evine.win/tags/debian/</link>
+        <pubDate>Tue, 28 Nov 2023 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/tags/debian/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>pve</title>
+        <link>https://evine.win/tags/pve/</link>
+        <pubDate>Tue, 28 Nov 2023 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/tags/pve/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>ram</title>
+        <link>https://evine.win/tags/ram/</link>
+        <pubDate>Tue, 28 Nov 2023 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/tags/ram/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>acl</title>
         <link>https://evine.win/tags/acl/</link>
         <pubDate>Mon, 27 Nov 2023 00:00:00 +0800</pubDate>
@@ -36,14 +60,6 @@
         <pubDate>Mon, 27 Nov 2023 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>debian</title>
-        <link>https://evine.win/tags/debian/</link>
-        <pubDate>Sun, 22 Oct 2023 07:00:00 +0800</pubDate>
-        
-        <guid>https://evine.win/tags/debian/</guid>
         <description></description>
         </item>
         <item>
@@ -215,14 +231,6 @@
         <description></description>
         </item>
         <item>
-        <title>pve</title>
-        <link>https://evine.win/tags/pve/</link>
-        <pubDate>Tue, 15 Aug 2023 00:00:00 +0800</pubDate>
-        
-        <guid>https://evine.win/tags/pve/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>驱动</title>
         <link>https://evine.win/tags/%E9%A9%B1%E5%8A%A8/</link>
         <pubDate>Tue, 15 Aug 2023 00:00:00 +0800</pubDate>
@@ -292,14 +300,6 @@
         <pubDate>Wed, 21 Dec 2022 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/tags/kodi-send/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>ram</title>
-        <link>https://evine.win/tags/ram/</link>
-        <pubDate>Sun, 27 Nov 2022 00:00:00 +0800</pubDate>
-        
-        <guid>https://evine.win/tags/ram/</guid>
         <description></description>
         </item>
         <item>

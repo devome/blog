@@ -6,10 +6,10 @@
         <description>Recent content in ram on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 27 Nov 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/ram/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 Nov 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/ram/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Debian / PVE 在内存中挂载 /tmp</title>
         <link>https://evine.win/p/debian-pve-mount-tmp-in-ram/</link>
-        <pubDate>Sun, 27 Nov 2022 00:00:00 +0800</pubDate>
+        <pubDate>Tue, 28 Nov 2023 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/debian-pve-mount-tmp-in-ram/</guid>
         <description>&lt;img src="https://evine.win/p/debian-pve-mount-tmp-in-ram/pve-poster.jpg" alt="Featured image of post Debian / PVE 在内存中挂载 /tmp" /&gt;&lt;p&gt;我们有时候会需要临时创建一些文件，在Linux中我们一般在&lt;code&gt;/tmp&lt;/code&gt;目录下来创建，Debian / PVE 默认不会将&lt;code&gt;/tmp&lt;/code&gt;目录挂载到内存中。可以先输入命令检查一下：&lt;/p&gt;
