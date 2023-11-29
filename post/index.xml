@@ -107,9 +107,9 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;另一种形式是 “MAC匹配”，如下图所示：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic3.png&#34;
-	width=&#34;1867&#34;
-	height=&#34;1520&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic3_hu53338f20b54115a27c0f02430a27ac58_209913_480x0_resize_box_3.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic3_hu53338f20b54115a27c0f02430a27ac58_209913_1024x0_resize_box_3.png 1024w&#34;
+	width=&#34;1862&#34;
+	height=&#34;1522&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic3_hu24a4c4de88ffc0e1b046cc4750052ef2_209729_480x0_resize_box_3.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic3_hu24a4c4de88ffc0e1b046cc4750052ef2_209729_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;MAC匹配放行湖北电信、湖北联通的IPv6&#34;
@@ -117,7 +117,7 @@
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;122&#34;
-		data-flex-basis=&#34;294px&#34;
+		data-flex-basis=&#34;293px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;btpt的监听端口&#34;&gt;BT/PT的监听端口&lt;/h4&gt;
@@ -5793,10 +5793,17 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;20231121&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;4.6.1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.9&lt;/br&gt;4.6.1&lt;/td&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;3.18.4&lt;/td&gt;
-&lt;td&gt;增加一个环境变量&lt;code&gt;TG_API_HOST&lt;/code&gt;，同时允许关闭&lt;code&gt;CRON_HEALTH_CHECK&lt;/code&gt;和&lt;code&gt;CRON_TRACKER_ERROR&lt;/code&gt;，此三项环境变量说明详见 &lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;。从此版本起，qBittorrent官方已经设置禁止默认密码，从此版本起，请务必设置&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;。&lt;/td&gt;
+&lt;td&gt;增加一个环境变量&lt;code&gt;TG_API_HOST&lt;/code&gt;，同时允许关闭&lt;code&gt;CRON_HEALTH_CHECK&lt;/code&gt;和&lt;code&gt;CRON_TRACKER_ERROR&lt;/code&gt;，此三项环境变量说明详见 &lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;。从此版本起，qBittorrent官方已经设置禁止默认密码，因此请务必设置&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;为非默认值。同步编译的&lt;code&gt;4.3.9&lt;/code&gt;版本亦可使用新版本可用的环境变量。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20231128&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.6.2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.18.4&lt;/td&gt;
+&lt;td&gt;修复&lt;code&gt;UMASK_SET&lt;/code&gt;。&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
