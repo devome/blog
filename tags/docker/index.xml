@@ -1252,6 +1252,17 @@
 某些类型的存储可以由CPU直接寻址，就像它是RAM一样，绕过了许多内核基础设施，并提供了非常高的性能。（linux称此DAX）
 此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h3 id=&#34;qb老是不监听ipv6地址怎么办&#34;&gt;qB老是不监听IPv6地址，怎么办？&lt;/h3&gt;
+&lt;p&gt;有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;检测到外部 IP。IP：“240e🔢5678🔡ef12:3456:7890:abcd”
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果没有出现类似这样的日志，或者出的日志中的IPv6地址不是当前最新的地址，那么你可以操作：先将 “设置-&amp;gt;高级-&amp;gt;绑定到的可选IP地址” 选择最新的IPv6地址，保存一次；然后再将其设置为 “所有地址” 后再重新保存一次。过一会日志中就会出现正常的信息了。&lt;/p&gt;
 &lt;h2 id=&#34;命令&#34;&gt;命令&lt;/h2&gt;
 &lt;h3 id=&#34;自动运行的命令所有标签可用由设置的cron或在下载完成时自动运行当然也可以手动运行&#34;&gt;自动运行的命令（所有标签可用，由设置的cron或在下载完成时自动运行，当然也可以手动运行）&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
