@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://evine.win/categories/</loc>
-    <lastmod>2023-11-29T12:11:03+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/debian/</loc>
     <lastmod>2023-11-29T11:56:30+08:00</lastmod>
@@ -12,7 +12,7 @@
     <lastmod>2023-11-29T11:56:30+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/post/</loc>
-    <lastmod>2023-11-29T12:11:03+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/pve/</loc>
     <lastmod>2023-11-29T11:56:30+08:00</lastmod>
@@ -21,7 +21,7 @@
     <lastmod>2023-11-29T11:56:30+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/</loc>
-    <lastmod>2023-11-29T12:11:03+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/acl/</loc>
     <lastmod>2023-11-27T10:56:25+08:00</lastmod>
@@ -114,7 +114,7 @@
     <lastmod>2023-10-26T22:22:58+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/docker/</loc>
-    <lastmod>2023-11-29T12:11:03+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/qbittorrent/</loc>
     <lastmod>2023-11-29T12:11:03+08:00</lastmod>
@@ -129,10 +129,10 @@
     <lastmod>2023-10-26T21:56:46+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/buildkit/</loc>
-    <lastmod>2023-11-27T12:49:10+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/buildx/</loc>
-    <lastmod>2023-11-27T12:49:10+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/cache/</loc>
     <lastmod>2023-10-26T21:56:46+08:00</lastmod>
@@ -189,13 +189,13 @@
     <lastmod>2023-10-26T22:22:58+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/cgroup2/</loc>
-    <lastmod>2023-11-27T12:49:10+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/p/docker-buildx-limit-cpu-usage/</loc>
-    <lastmod>2023-11-27T12:49:10+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/resource-limiting/</loc>
-    <lastmod>2023-11-27T12:49:10+08:00</lastmod>
+    <lastmod>2023-12-01T12:48:53+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/systemd/</loc>
     <lastmod>2023-10-27T15:23:08+08:00</lastmod>
