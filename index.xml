@@ -6917,6 +6917,18 @@
     &gt;Gitee&lt;/a&gt;。如有使用上的问题，或者有其他好的功能建议，请直接在本文下方评论，或者在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Github这里&lt;/a&gt; 或 &lt;a class=&#34;link&#34; href=&#34;https://gitee.com/evine/dockerfiles/issues&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Gitee这里&lt;/a&gt; 提交。&lt;/p&gt;
+&lt;p&gt;提交bug必须反馈的信息，如不反馈以下信息，我就直接无视了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;创建命令或 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件，请自行对密码打码；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用的docker镜像的tag；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入容器后运行 &lt;code&gt;bash -x /usr/local/bin/&amp;lt;命令名&amp;gt;&lt;/code&gt; 如 &lt;code&gt;bash -x /usr/local/bin/report-seed-files&lt;/code&gt; 的输出，请自行对密码打码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
