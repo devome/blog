@@ -5857,7 +5857,7 @@
 &lt;p&gt;在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中&lt;code&gt;WEBUI_PORT&lt;/code&gt; &lt;code&gt;BT_PORT&lt;/code&gt;的形式自行补充添加到创建命令中。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;注1：默认值的含义是，你不设置这个环境变量为其他值，那么程序就自动使用默认值。&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;注2：所有定时任务cron类的环境变量（以&lt;code&gt;CRON&lt;/code&gt;这四个字母开头的）在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;注3：&lt;strong&gt;所有环境变量你都可以不设置，并不影响qbittorrent的使用&lt;/strong&gt;，但如果你想用得更爽，你就根据你的需要设置。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注3：&lt;strong&gt;&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;必须改成非默认值，除此以外，其余所有环境变量你都可以不设置，并不影响qbittorrent的使用&lt;/strong&gt;，但如果你想用得更爽，你就根据你的需要设置。&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;以下是所有标签均可用的环境变量：&lt;/strong&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -5897,13 +5897,13 @@
 &lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;QB_USERNAME&lt;/td&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;admin&lt;/td&gt;
-&lt;td&gt;4.5.5+必须设置此环境变量，登陆qBittorrent的用户名，&lt;strong&gt;请务必不要使用默认值&lt;/strong&gt;。&lt;/td&gt;
+&lt;td&gt;4.5.5+必须设置此环境变量，登陆qBittorrent的用户名，&lt;strong&gt;请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;6&lt;/td&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;QB_PASSWORD&lt;/td&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;adminadmin&lt;/td&gt;
-&lt;td&gt;4.5.5+必须设置此环境变量，登陆qBittorrent的密码，&lt;strong&gt;请务必不要使用默认值&lt;/strong&gt;。&lt;/td&gt;
+&lt;td&gt;4.5.5+必须设置此环境变量，登陆qBittorrent的密码，&lt;strong&gt;请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;7&lt;/td&gt;
