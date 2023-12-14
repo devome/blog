@@ -10,7 +10,7 @@
 <meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
 <meta property='og:url' content='https://evine.win/p/kodi-start-stop-by-remote-controller/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2022-11-24T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-31T10:28:35&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2022-11-24T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg' />
 <meta name="twitter:title" content="像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停">
 <meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg' />
@@ -351,7 +351,7 @@ if (!doNotTrack) {
 <li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
 </ul>
 <h2 id="前言">前言</h2>
-<p>在《<a class="link" href="../pve-%e7%9b%b4%e6%8e%a5%e5%ae%89%e8%a3%85%e6%9c%80%e6%96%b0%e7%89%88-kodi" >PVE 直接安装最新版 Kodi</a>》一文的评论中，有网友提出能不能像操控电视盒子/LibreELEC/CoreELCE一样用遥控器操控PVE中直装的Kodi，实现打开和关闭Kodi，这是个好想法，我也认为这样会大方便PVE中直装的Kodi的使用，所以学习了相关udev、udevadm、evtest、input、input remap相关知识，终于实现了这个非常便于使用的功能。</p>
+<p>在《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》一文的评论中，有网友提出能不能像操控电视盒子/LibreELEC/CoreELCE一样用遥控器操控PVE中直装的Kodi，实现打开和关闭Kodi，这是个好想法，我也认为这样会大方便PVE中直装的Kodi的使用，所以学习了相关udev、udevadm、evtest、input、input remap相关知识，终于实现了这个非常便于使用的功能。</p>
 <h2 id="参考资料">参考资料</h2>
 <p><a class="link" href="https://www.man7.org/linux/man-pages/man7/udev.7.html"  target="_blank" rel="noopener"
     >udev</a>, <a class="link" href="https://www.man7.org/linux/man-pages/man8/udevadm.8.html"  target="_blank" rel="noopener"
@@ -667,7 +667,7 @@ if (!doNotTrack) {
 </div>
 </div></li>
 <li>
-<p>按照《<a class="link" href="../pve-%e7%9b%b4%e6%8e%a5%e5%ae%89%e8%a3%85%e6%9c%80%e6%96%b0%e7%89%88-kodi" >PVE 直接安装最新版 Kodi</a>》安装好Kodi，建议按非root用户设置好<code>/etc/systemd/system/kodi.service</code>，注意含有<code>ExecStart</code>和<code>ExecStop</code>这两行。如果你不需要Kodi开机自动启动，那么创建好这个文件就好了，不需要运行<code>systemctl enable --now kodi.service</code>。</p>
+<p>按照《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》安装好Kodi，建议按非root用户设置好<code>/etc/systemd/system/kodi.service</code>，注意含有<code>ExecStart</code>和<code>ExecStop</code>这两行。如果你不需要Kodi开机自动启动，那么创建好这个文件就好了，不需要运行<code>systemctl enable --now kodi.service</code>。</p>
 </li>
 <li>
 <p>新建一个用来自动判断是启动Kodi还是关闭Kodi的脚本<code>/usr/local/bin/kodi-power.sh</code>，后续由<code>evsieve</code>来使用，内容如下：</p>
@@ -695,7 +695,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>注：停止Kodi这一行，相比使用<code>systemctl stop kodi.service</code>，更推荐使用<code>kodi-send</code>，详见：<a class="link" href="../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e" >kodi-send使用相关说明</a>。</strong></p>
+</div><p><strong>注：停止Kodi这一行，相比使用<code>systemctl stop kodi.service</code>，更推荐使用<code>kodi-send</code>，详见：<a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a>。</strong></p>
 <p>注意增加可执行权限：<code>chmod +x /usr/local/bin/kodi-power.sh</code>。</p>
 </li>
 <li>
@@ -867,7 +867,7 @@ if (!doNotTrack) {
 </div>
 </div></li>
 <li>
-<p>有些遥控器的返回键不是真正的返回键，而是退出键，会直接退出到主菜单，而不是返回到上一层。如果不习惯这样的操作方式，那么我们可以仍然借助evsieve这个工具来实现按键的转换。详见 <a class="link" href="../%e8%bd%ac%e6%8d%a2%e9%81%a5%e6%8e%a7%e5%99%a8%e7%9a%84%e9%80%80%e5%87%ba%e9%94%ae%e4%b8%ba%e8%bf%94%e5%9b%9e%e9%94%ae" >转换遥控器的退出键为返回键</a>。</p>
+<p>有些遥控器的返回键不是真正的返回键，而是退出键，会直接退出到主菜单，而不是返回到上一层。如果不习惯这样的操作方式，那么我们可以仍然借助evsieve这个工具来实现按键的转换。详见 <a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a>。</p>
 </li>
 </ol>
 <h2 id="总结">总结</h2>
@@ -901,7 +901,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-10-31 10:28
+            最后更新于 2023-12-14 13:12
         </span>
     </section></footer>
 

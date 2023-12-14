@@ -10,7 +10,7 @@
 <meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
 <meta property='og:url' content='https://evine.win/p/kodi-use-remote-controller/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2022-07-13T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T22:22:58&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-use-remote-controller/kodi-poster.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2022-07-13T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-use-remote-controller/kodi-poster.jpg' />
 <meta name="twitter:title" content="为Kodi适配遥控器">
 <meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/kodi-use-remote-controller/kodi-poster.jpg' />
@@ -361,7 +361,7 @@ if (!doNotTrack) {
 <h2 id="前言">前言</h2>
 <p>虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。</p>
 <h2 id="注意事项">注意事项</h2>
-<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
+<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
 <h2 id="适配遥控器">适配遥控器</h2>
 <p>当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，<del>经过本人踩坑，我更推荐2.4G无线遥控器</del>（<strong>2023年8月补充说明：Linux内核支持关闭USB设备进入<code>suspend</code>状态的功能，也可以实现蓝牙遥控器永不断连</strong>）。总得说来，二者都可以非常舒服地使用，对比如下：</p>
 <ul>
@@ -558,7 +558,7 @@ if (!doNotTrack) {
 <h3 id="红外遥控器">红外遥控器</h3>
 <p>不好用，教程就不写了。</p>
 <h2 id="再次提醒">再次提醒</h2>
-<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
+<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
 
 </section>
 
@@ -588,7 +588,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-10-26 22:22
+            最后更新于 2023-12-14 13:12
         </span>
     </section></footer>
 

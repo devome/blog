@@ -10,7 +10,7 @@
 <meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
 <meta property='og:url' content='https://evine.win/p/kodi-change-exit-to-backspace/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2023-08-06T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T22:22:58&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2023-08-06T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg' />
 <meta name="twitter:title" content="转换遥控器的退出键为返回键">
 <meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg' />
@@ -348,9 +348,9 @@ if (!doNotTrack) {
 <li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
 </ul>
 <h2 id="前言">前言</h2>
-<p>在上文 《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（<code>backspace</code>键），而是退出键（<code>esc</code>键），导致短按它的效果是直接退出到上一级菜单（<code>PreviousMenu</code>），而不是返回到上一个界面（<code>Back</code>）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。</p>
+<p>在上文 《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（<code>backspace</code>键），而是退出键（<code>esc</code>键），导致短按它的效果是直接退出到上一级菜单（<code>PreviousMenu</code>），而不是返回到上一个界面（<code>Back</code>）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。</p>
 <h2 id="说明">说明</h2>
-<p>看到本篇教程这里，我默认你已经按照《<a class="link" href="../pve-%e7%9b%b4%e6%8e%a5%e5%ae%89%e8%a3%85%e6%9c%80%e6%96%b0%e7%89%88-kodi" >PVE 直接安装最新版 Kodi</a>》《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》《<a class="link" href="../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e" >kodi-send使用相关说明</a>》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。</p>
+<p>看到本篇教程这里，我默认你已经按照《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》《<a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a>》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。</p>
 <p>2.4G无线遥控器一般被Linux系统识别为键盘设备，所以这种遥控器的按键实际上就是普通键盘上的常规按键，它的按键的作用是通过<code>/usr/share/kodi/system/keymaps/keyboard.xml</code>来处理的（在未被<a class="link" href="https://kodi.wiki/view/Add-on:Keymap_Editor"  target="_blank" rel="noopener"
     >Keymap Editor</a>映射的前提下）。打开该<code>xml</code>文件内容可知（见下），大部分界面中<strong>长按<code>esc</code>键</strong>的效果等同于<strong>短按<code>backspace</code>键</strong>（然而似乎遥控器并不支持长按&hellip;普通键盘才支持&hellip;），如果你习惯短按是<code>PreviousMenu</code>，也可以不再往下看了。不过对我来说，短按<code>Back</code>才更符合我的习惯，所以我需要将这个遥控器的<code>esc</code>键转换为<code>backspace</code>键。</p>
 <div class="highlight"><div class="chroma">
@@ -510,7 +510,7 @@ if (!doNotTrack) {
 </div><p>由上述输出内容可知，这款遥控器的返回键是<code>esc</code>键，而另外一些遥控器的返回键是<code>backspace</code>键，这才是返回上一层而非退出的按键。所以我们接下来把这个遥控器的<code>esc</code>键转换为<code>backspace</code>键。</p>
 </li>
 <li>
-<p>先确认<code>/dev/input/by-id</code>下已经有<code>/dev/input/event5</code>（对我而言，event5就是我的2.4G Composite Devic这个遥控器设备）的软连接。一般<code>udev</code>程序识别这个设备没有问题，不再需要自己编辑相应的udev规则；然后修改在《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》中创建的脚本<code>/usr/local/bin/run-evsieve.sh</code>如下，并注意按照注释修改为自己的信息。</p>
+<p>先确认<code>/dev/input/by-id</code>下已经有<code>/dev/input/event5</code>（对我而言，event5就是我的2.4G Composite Devic这个遥控器设备）的软连接。一般<code>udev</code>程序识别这个设备没有问题，不再需要自己编辑相应的udev规则；然后修改在《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》中创建的脚本<code>/usr/local/bin/run-evsieve.sh</code>如下，并注意按照注释修改为自己的信息。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -595,7 +595,7 @@ if (!doNotTrack) {
 </div>
 </div></li>
 <li>
-<p>然后重启在《<a class="link" href="../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》中创建的服务<code>/etc/systemd/system/evsieve.service</code>。</p>
+<p>然后重启在《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》中创建的服务<code>/etc/systemd/system/evsieve.service</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -672,7 +672,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2023-10-26 22:22
+            最后更新于 2023-12-14 13:12
         </span>
     </section></footer>
 

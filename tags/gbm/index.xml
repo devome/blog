@@ -167,7 +167,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WantedBy = multi-user.target
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注：&lt;code&gt;ExecStop&lt;/code&gt;这一行，相比使用&lt;code&gt;killall&lt;/code&gt;，更推荐使用&lt;code&gt;kodi-send&lt;/code&gt;，详见：&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注：&lt;code&gt;ExecStop&lt;/code&gt;这一行，相比使用&lt;code&gt;killall&lt;/code&gt;，更推荐使用&lt;code&gt;kodi-send&lt;/code&gt;，详见：&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;上面内容中是以root用户启动Kodi的，然后启用开机自动启动即可（无需重启PVE系统，如不启用则需要开机后手动启动），Kodi将在PVE通过HDMI/DP接口连接的显示器/电视机上显示出来：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -309,7 +309,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;WantedBy &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; multi-user.target&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注：&lt;code&gt;ExecStop&lt;/code&gt;这一行，相比使用&lt;code&gt;killall&lt;/code&gt;，更推荐使用&lt;code&gt;kodi-send&lt;/code&gt;，详见：&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注：&lt;code&gt;ExecStop&lt;/code&gt;这一行，相比使用&lt;code&gt;killall&lt;/code&gt;，更推荐使用&lt;code&gt;kodi-send&lt;/code&gt;，详见：&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启用开机自动启动（如不启用则需要开机后手动启动）&lt;/p&gt;

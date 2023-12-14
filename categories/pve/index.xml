@@ -1325,7 +1325,7 @@
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。&lt;/p&gt;
 &lt;h2 id=&#34;注意事项&#34;&gt;注意事项&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;适配遥控器&#34;&gt;适配遥控器&lt;/h2&gt;
 &lt;p&gt;当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，&lt;del&gt;经过本人踩坑，我更推荐2.4G无线遥控器&lt;/del&gt;（&lt;strong&gt;2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连&lt;/strong&gt;）。总得说来，二者都可以非常舒服地使用，对比如下：&lt;/p&gt;
 &lt;ul&gt;
@@ -1522,7 +1522,7 @@
 &lt;h3 id=&#34;红外遥控器&#34;&gt;红外遥控器&lt;/h3&gt;
 &lt;p&gt;不好用，教程就不写了。&lt;/p&gt;
 &lt;h2 id=&#34;再次提醒&#34;&gt;再次提醒&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../%e5%83%8f%e4%bd%bf%e7%94%a8%e7%9b%92%e5%ad%90libreelec%e4%b8%80%e6%a0%b7%e4%bd%bf%e7%94%a8pve%e7%9b%b4%e8%a3%85%e7%9a%84kodi%e5%ae%9e%e7%8e%b0%e9%81%a5%e6%8e%a7%e5%99%a8%e5%90%af%e5%81%9c&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1686,7 +1686,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WantedBy = multi-user.target
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注：&lt;code&gt;ExecStop&lt;/code&gt;这一行，相比使用&lt;code&gt;killall&lt;/code&gt;，更推荐使用&lt;code&gt;kodi-send&lt;/code&gt;，详见：&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注：&lt;code&gt;ExecStop&lt;/code&gt;这一行，相比使用&lt;code&gt;killall&lt;/code&gt;，更推荐使用&lt;code&gt;kodi-send&lt;/code&gt;，详见：&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;上面内容中是以root用户启动Kodi的，然后启用开机自动启动即可（无需重启PVE系统，如不启用则需要开机后手动启动），Kodi将在PVE通过HDMI/DP接口连接的显示器/电视机上显示出来：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1828,7 +1828,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;WantedBy &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; multi-user.target&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注：&lt;code&gt;ExecStop&lt;/code&gt;这一行，相比使用&lt;code&gt;killall&lt;/code&gt;，更推荐使用&lt;code&gt;kodi-send&lt;/code&gt;，详见：&lt;a class=&#34;link&#34; href=&#34;../kodi-send%e4%bd%bf%e7%94%a8%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e&#34; &gt;kodi-send使用相关说明&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注：&lt;code&gt;ExecStop&lt;/code&gt;这一行，相比使用&lt;code&gt;killall&lt;/code&gt;，更推荐使用&lt;code&gt;kodi-send&lt;/code&gt;，详见：&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;启用开机自动启动（如不启用则需要开机后手动启动）&lt;/p&gt;
