@@ -1423,10 +1423,10 @@
 &lt;p&gt;创建命令或 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件，请自行对密码打码；&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;使用的docker镜像的tag；&lt;/p&gt;
+&lt;p&gt;使用的docker镜像的tag，以及qBittorrent的版本；&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;进入容器后运行 &lt;code&gt;bash -x /usr/local/bin/&amp;lt;命令名&amp;gt;&lt;/code&gt; 如 &lt;code&gt;bash -x /usr/local/bin/report-seed-files&lt;/code&gt; 的输出，请自行对密码打码。&lt;/p&gt;
+&lt;p&gt;进入容器后运行 &lt;code&gt;bash -x /usr/local/bin/&amp;lt;命令名&amp;gt;&lt;/code&gt; 如 &lt;code&gt;bash -x /usr/local/bin/report-seed-files&lt;/code&gt; 的输出（什么命令出错你就反馈什么命令的内容），请自行对密码打码。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </description>
