@@ -5452,7 +5452,7 @@
 &gt;&lt;/p&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;全部子网内的设备不再单独设置防火墙，全部在主路由爱快中设置，具体的教程可以见这两篇文章：&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv4-acl&#34; &gt;IPv4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv6-acl&#34; &gt;IPv6&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;全部子网内的设备不再单独设置防火墙，全部在主路由爱快中设置，具体的教程可以见这两篇文章：&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv4-acl&#34; &gt;IPv4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv6-acl-2&#34; &gt;IPv6&lt;/a&gt;。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;网关为旁路由的设备在爱快的终端监控中，全部显示为旁路由的信息，所以我们还需要设置爱快的“高级应用-&amp;gt;跨三层应用”，具体如何设置因为还涉及到旁路由中的设置，我将在接下来的 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;本系列第（八）篇&lt;/a&gt; 中详细讲解。&lt;/p&gt;
