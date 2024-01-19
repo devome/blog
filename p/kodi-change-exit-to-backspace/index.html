@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
+<title>转换遥控器的退出键为返回键</title>
+
+<link rel='canonical' href='https://evine.win/p/kodi-change-exit-to-backspace/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='转换遥控器的退出键为返回键'>
+<meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
+<meta property='og:url' content='https://evine.win/p/kodi-change-exit-to-backspace/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2023-08-06T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg' />
+<meta name="twitter:title" content="转换遥控器的退出键为返回键">
+<meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#说明">说明</a></li>
+    <li><a href="#流程">流程</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/kodi-change-exit-to-backspace/">
+                <img src="/p/kodi-change-exit-to-backspace/kodi-poster_hu6a9a6c2102fadf339a8899f5319f0c51_430270_800x0_resize_q75_box.jpg"
+                        srcset="/p/kodi-change-exit-to-backspace/kodi-poster_hu6a9a6c2102fadf339a8899f5319f0c51_430270_800x0_resize_q75_box.jpg 800w, /p/kodi-change-exit-to-backspace/kodi-poster_hu6a9a6c2102fadf339a8899f5319f0c51_430270_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post 转换遥控器的退出键为返回键" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/kodi/" style="background-color: #2a9d8f; color: #fff;">
+                Kodi
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kodi-change-exit-to-backspace/">转换遥控器的退出键为返回键</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-08-06</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>本文为《PVE安装Kodi》系列文章的一部分。</p>
+</blockquote>
+<ul>
+<li><a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a></li>
+<li><a class="link" href="../kodi-use-remote-controller" >为Kodi适配遥控器</a></li>
+<li><a class="link" href="../kodi-change-subtitle-font" >修改Kodi字幕字体</a></li>
+<li><a class="link" href="../kodi-change-interface-font" >修改Kodi皮肤字体</a></li>
+<li><a class="link" href="../kodi-disable-shutdown" >屏蔽Kodi的关机、重启按钮</a></li>
+<li><a class="link" href="../kodi-set-pre-condition" >设置Kodi启动的前置条件</a></li>
+<li><a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a></li>
+<li><a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a></li>
+<li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
+</ul>
+<h2 id="前言">前言</h2>
+<p>在上文 《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（<code>backspace</code>键），而是退出键（<code>esc</code>键），导致短按它的效果是直接退出到上一级菜单（<code>PreviousMenu</code>），而不是返回到上一个界面（<code>Back</code>）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。</p>
+<h2 id="说明">说明</h2>
+<p>看到本篇教程这里，我默认你已经按照《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》《<a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a>》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。</p>
+<p>2.4G无线遥控器一般被Linux系统识别为键盘设备，所以这种遥控器的按键实际上就是普通键盘上的常规按键，它的按键的作用是通过<code>/usr/share/kodi/system/keymaps/keyboard.xml</code>来处理的（在未被<a class="link" href="https://kodi.wiki/view/Add-on:Keymap_Editor"  target="_blank" rel="noopener"
+    >Keymap Editor</a>映射的前提下）。打开该<code>xml</code>文件内容可知（见下），大部分界面中<strong>长按<code>esc</code>键</strong>的效果等同于<strong>短按<code>backspace</code>键</strong>（然而似乎遥控器并不支持长按&hellip;普通键盘才支持&hellip;），如果你习惯短按是<code>PreviousMenu</code>，也可以不再往下看了。不过对我来说，短按<code>Back</code>才更符合我的习惯，所以我需要将这个遥控器的<code>esc</code>键转换为<code>backspace</code>键。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;keymap&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;global&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">      ...
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;backspace&gt;</span>Back<span class="nt">&lt;/backspace&gt;</span>
+</span></span><span class="line"><span class="cl">      ...
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;escape&gt;</span>PreviousMenu<span class="nt">&lt;/escape&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;escape</span> <span class="na">mod=</span><span class="s">&#34;longpress&#34;</span><span class="nt">&gt;</span>Back<span class="nt">&lt;/escape&gt;</span>
+</span></span><span class="line"><span class="cl">      ...
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/global&gt;</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/keymap&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>转换按键有很多方式，一种使用Kodi本身支持的特性，新建<code>~/.kodi/userdata/keymaps/my_remap.xml</code>（文件名可以自己定义，详见<a class="link" href="https://kodi.wiki/view/Keymap"  target="_blank" rel="noopener"
+    >Keymaps</a>，<code>~/.kodi/userdata/keymaps</code>下的<code>xml</code>覆盖<code>/usr/share/kodi/keymaps</code>下的，同文件夹下的文件名字母序靠后的覆盖靠前的），内容可以形如下面这种：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;keymap&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;global&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;escape&gt;</span>Back<span class="nt">&lt;/escape&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;escape</span> <span class="na">mod=</span><span class="s">&#34;longpress&#34;</span><span class="nt">&gt;</span>PreviousMenu<span class="nt">&lt;/escape&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/global&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/keymap&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面的示例就是把短按<code>esc</code>和长按<code>esc</code>的作用交换了一下（尽管遥控器可能并不支持长按）。虽然上述配置并未列全，但基本上可以应付大部分情况了，你也可以自行参考<code>/usr/share/kodi/system/keymaps/keyboard.xml</code>中的<code>escape</code>所在的全部模块进行自定义覆盖。</p>
+<p>既然我已经在使用<code>evsieve</code>来胁持电源键了，那么再用它来胁持<code>esc</code>键也是个不错的办法，所以就有了另外第二种办法，流程如下。</p>
+<h2 id="流程">流程</h2>
+<ol>
+<li>
+<p>测试遥控器的返回键到底是个什么按键，不出意外，出现一点返回结果返回了很远的一个界面这种情况下，返回键应该就是<code>esc</code>键。<strong>注：在测试前请先退出Kodi，保证画面处于控制台界面。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 运行evtest</span>
+</span></span><span class="line"><span class="cl">evtest --grab
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># evtest会列出所有可用的输入设备，可以看到我的遥控器有event5-event8共4个设备</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 你可以选择具体的编号来进行测试，找到每个设备分别能控制哪些按键</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 经过测试，我发现我遥控器的返回键在event5，也就是2.4G Composite Devic这个设备</span>
+</span></span><span class="line"><span class="cl">No device specified, trying to scan all of /dev/input/event*
+</span></span><span class="line"><span class="cl">Available devices:
+</span></span><span class="line"><span class="cl">/dev/input/event0:      Power Button
+</span></span><span class="line"><span class="cl">/dev/input/event1:      AT Translated Set <span class="m">2</span> keyboard
+</span></span><span class="line"><span class="cl">/dev/input/event2:      VirtualPS/2 VMware VMMouse
+</span></span><span class="line"><span class="cl">/dev/input/event3:      VirtualPS/2 VMware VMMouse
+</span></span><span class="line"><span class="cl">/dev/input/event4:      QEMU QEMU USB Tablet
+</span></span><span class="line"><span class="cl">/dev/input/event5:      2.4G Composite Devic
+</span></span><span class="line"><span class="cl">/dev/input/event6:      2.4G Composite Devic Mouse
+</span></span><span class="line"><span class="cl">/dev/input/event7:      2.4G Composite Devic Consumer Control
+</span></span><span class="line"><span class="cl">/dev/input/event8:      2.4G Composite Devic System Control
+</span></span><span class="line"><span class="cl">/dev/input/event9:      PC Speaker
+</span></span><span class="line"><span class="cl">Select the device event number <span class="o">[</span>0-9<span class="o">]</span>:5   <span class="c1"># 反馈键一般在遥控器名称最短的那个设备上，也就是2.4G Composite Devic，你也可以把多次测试一个一个试出来</span>
+</span></span><span class="line"><span class="cl">Input driver version is 1.0.1
+</span></span><span class="line"><span class="cl">Input device ID: bus 0x3 vendor 0x276d product 0x1101 version 0x111
+</span></span><span class="line"><span class="cl">Input device name: <span class="s2">&#34;2.4G Composite Devic&#34;</span>
+</span></span><span class="line"><span class="cl">Supported events:
+</span></span><span class="line"><span class="cl">Event <span class="nb">type</span> <span class="m">0</span> <span class="o">(</span>EV_SYN<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Event <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">1</span> <span class="o">(</span>KEY_ESC<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">2</span> <span class="o">(</span>KEY_1<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">3</span> <span class="o">(</span>KEY_2<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">4</span> <span class="o">(</span>KEY_3<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">5</span> <span class="o">(</span>KEY_4<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">6</span> <span class="o">(</span>KEY_5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    ...  <span class="c1">## 中间太长了，略去</span>
+</span></span><span class="line"><span class="cl">Properties:
+</span></span><span class="line"><span class="cl">Testing ... <span class="o">(</span>interrupt to <span class="nb">exit</span><span class="o">)</span>  <span class="c1">## 按下返回键，有反应说明设备选择对了，无反应说明返回键不在这个设备上</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1691294047.183861, <span class="nb">type</span> <span class="m">4</span> <span class="o">(</span>EV_MSC<span class="o">)</span>, code <span class="m">4</span> <span class="o">(</span>MSC_SCAN<span class="o">)</span>, value <span class="m">70029</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1691294047.183861, <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>, code <span class="m">1</span> <span class="o">(</span>KEY_ESC<span class="o">)</span>, value <span class="m">1</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1691294047.183861, -------------- SYN_REPORT ------------
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1691294047.255862, <span class="nb">type</span> <span class="m">4</span> <span class="o">(</span>EV_MSC<span class="o">)</span>, code <span class="m">4</span> <span class="o">(</span>MSC_SCAN<span class="o">)</span>, value <span class="m">70029</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1691294047.255862, <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>, code <span class="m">1</span> <span class="o">(</span>KEY_ESC<span class="o">)</span>, value <span class="m">0</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1691294047.255862, -------------- SYN_REPORT ------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Ctrl+C退出</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由上述输出内容可知，这款遥控器的返回键是<code>esc</code>键，而另外一些遥控器的返回键是<code>backspace</code>键，这才是返回上一层而非退出的按键。所以我们接下来把这个遥控器的<code>esc</code>键转换为<code>backspace</code>键。</p>
+</li>
+<li>
+<p>先确认<code>/dev/input/by-id</code>下已经有<code>/dev/input/event5</code>（对我而言，event5就是我的2.4G Composite Devic这个遥控器设备）的软连接。一般<code>udev</code>程序识别这个设备没有问题，不再需要自己编辑相应的udev规则；然后修改在《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》中创建的脚本<code>/usr/local/bin/run-evsieve.sh</code>如下，并注意按照注释修改为自己的信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 要劫持的目标设备的绝对路径，请注意修改成自己的</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 不要直接写/dev/input/eventX，而要写/dev/input/by-id下的设备</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## target_hijack_input_device1是返回键（esc键）所在的设备</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## target_hijack_input_device2是电源键（power键）所在的设备</span>
+</span></span><span class="line"><span class="cl"><span class="nv">target_hijack_input_device1</span><span class="o">=</span><span class="s2">&#34;/dev/input/by-id/usb-0627_2.4G_Composite_Devic-event-kbd&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">target_hijack_input_device2</span><span class="o">=</span><span class="s2">&#34;/dev/input/by-id/usb-0627_2.4G_Composite_Devic-System-Control&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 要胁持的按键的键名，应该分别就是esc和power了，大概率不用改</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## target_hijack_button1就是target_hijack_input_device1上的esc键</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## target_hijack_button2就是target_hijack_input_device2上的power键</span>
+</span></span><span class="line"><span class="cl"><span class="nv">target_hijack_button1</span><span class="o">=</span><span class="s2">&#34;esc&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">target_hijack_button2</span><span class="o">=</span><span class="s2">&#34;power&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">###### 以下无需修改 ######</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 先检测 target_hijack_input_device1 和 target_hijack_input_device2 是否已经存在</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> :<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -L <span class="s2">&#34;</span><span class="nv">$target_hijack_input_device1</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> -L <span class="s2">&#34;</span><span class="nv">$target_hijack_input_device2</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;The &#39;</span><span class="nv">$target_hijack_input_device1</span><span class="s2">&#39; or &#39;</span><span class="nv">$target_hijack_input_device2</span><span class="s2">&#39; is not inserted, wait 2 seconds...&#34;</span>
+</span></span><span class="line"><span class="cl">        sleep <span class="m">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 执行按键胁持，详细用法请见：https://github.com/KarsMulder/evsieve</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 当按下退出键时，转换为返回键</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 当按下电源键时，转换为运行脚本/usr/local/bin/kodi-power.sh</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exec</span> evsieve <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --input <span class="s2">&#34;</span><span class="nv">$target_hijack_input_device1</span><span class="s2">&#34;</span> grab <span class="nv">persist</span><span class="o">=</span>reopen <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --map key:<span class="nv">$target_hijack_button1</span> key:backspace <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --output <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --input <span class="s2">&#34;</span><span class="nv">$target_hijack_input_device2</span><span class="s2">&#34;</span> grab <span class="nv">persist</span><span class="o">=</span>reopen <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --hook key:<span class="nv">$target_hijack_button2</span> exec-shell<span class="o">=</span><span class="s2">&#34;/usr/local/bin/kodi-power.sh&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --block key:<span class="nv">$target_hijack_button2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>然后重启在《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》中创建的服务<code>/etc/systemd/system/evsieve.service</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl daemon-reload
+</span></span><span class="line"><span class="cl">systemctl restart evsieve.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>确认服务正常运行起来了，然后你就可以用遥控器打开Kodi并测试退出键是否转换为返回键了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 查看状态</span>
+</span></span><span class="line"><span class="cl">systemctl status evsieve.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 如下输出内容像下面这样，就表示胁持好了</span>
+</span></span><span class="line"><span class="cl">● evsieve.service - Run Evsieve
+</span></span><span class="line"><span class="cl">    Loaded: loaded <span class="o">(</span>/etc/systemd/system/evsieve.service<span class="p">;</span> enabled<span class="p">;</span> preset: enabled<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Active: active <span class="o">(</span>running<span class="o">)</span> since Sun 2023-08-06 12:05:36 CST<span class="p">;</span> 1h 20min ago
+</span></span><span class="line"><span class="cl">Main PID: <span class="m">3612370</span> <span class="o">(</span>evsieve<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Tasks: <span class="m">2</span> <span class="o">(</span>limit: 75726<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Memory: 1.3M
+</span></span><span class="line"><span class="cl">        CPU: 317ms
+</span></span><span class="line"><span class="cl">    CGroup: /system.slice/evsieve.service
+</span></span><span class="line"><span class="cl">            └─3612370 evsieve --input /dev/input/by-id/usb-0627_2.4G_Composite_Devic-event-kbd grab <span class="nv">persist</span><span class="o">=</span>reopen --map key:esc key:backspace --output --input /dev/input/by-id/usb-0627_2.4G_Composite_Devic-System-Control grab <span class="nv">persist</span><span class="o">=</span>reopen --hook key:power exec-shell<span class="o">=</span>/usr/local/bin/kodi-power.sh --block key:power
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">8月 <span class="m">06</span> 12:05:36 pve systemd<span class="o">[</span>1<span class="o">]</span>: Started evsieve.service - Run Evsieve.
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kodi/">kodi</a>
+        
+            <a href="/tags/%E9%81%A5%E6%8E%A7%E5%99%A8/">遥控器</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-12-14 13:12
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-start-stop-by-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-start-stop-by-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停"
+                        data-key="kodi-start-stop-by-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-use-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-use-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 为Kodi适配遥控器"
+                        data-key="kodi-use-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">为Kodi适配遥控器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-send-help/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-send-help/pic1.ac887faa70df0434c0db368f56485a34_hu475cd8f935c8a52cdb5f675d449a382e_76470_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post kodi-send使用相关说明"
+                        data-key="kodi-send-help" 
+                        data-hash="md5-rIh/qnDfBDTA2zaPVkhaNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">kodi-send使用相关说明</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-set-pre-condition/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-set-pre-condition/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 设置Kodi启动的前置条件"
+                        data-key="kodi-set-pre-condition" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">设置Kodi启动的前置条件</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-change-interface-font/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-change-interface-font/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 修改Kodi皮肤字体"
+                        data-key="kodi-change-interface-font" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">修改Kodi皮肤字体</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

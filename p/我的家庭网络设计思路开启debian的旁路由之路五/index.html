@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。'>
+<title>我的家庭网络设计思路，开启debian的旁路由之路（五）</title>
+
+<link rel='canonical' href='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（五）'>
+<meta property='og:description' content='本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。'>
+<meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='unblockneteasemusic' /><meta property='article:tag' content='nftables' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T01:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-02T21:06:00&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
+<meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（五）">
+<meta name="twitter:description" content="本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#下载与安装">下载与安装</a></li>
+    <li><a href="#创建服务">创建服务</a>
+      <ol>
+        <li><a href="#unblocknemservice">unblocknem.service</a></li>
+        <li><a href="#安装依赖">安装依赖</a></li>
+        <li><a href="#unblocknem-的配置文件">unblocknem 的配置文件</a></li>
+        <li><a href="#生成自己的证书">生成自己的证书</a></li>
+        <li><a href="#调整-nftables-规则">调整 nftables 规则</a></li>
+        <li><a href="#调整-clash-配置文件">调整 clash 配置文件</a></li>
+        <li><a href="#网易云音乐ip只允许解析ipv4">网易云音乐IP只允许解析IPv4</a></li>
+        <li><a href="#启用服务">启用服务</a></li>
+      </ol>
+    </li>
+    <li><a href="#客户端">客户端</a>
+      <ol>
+        <li><a href="#windows">Windows</a></li>
+        <li><a href="#archlinux系">ArchLinux系</a></li>
+        <li><a href="#debian系">Debian系</a></li>
+      </ol>
+    </li>
+    <li><a href="#最后">最后</a></li>
+    <li><a href="#系列">系列</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_800x0_resize_box_3.png"
+                        srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_800x0_resize_box_3.png 800w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="212" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+                软路由
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">我的家庭网络设计思路，开启debian的旁路由之路（五）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 12 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p>我们继续趁热打铁，将UnblockNeteaseMusic也一起部署了，因为它也要用到 <code>nftables</code> 来实现。</p>
+<h2 id="下载与安装">下载与安装</h2>
+<p><code>unblockneteasemusic</code> 这个名称太长了，我们把它更名为 <code>unblocknem</code>。我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好了必要的软件了。以下为root用户运行的命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 检查最新稳定版的版本号，如果获取不到请检查网络</span>
+</span></span><span class="line"><span class="cl"><span class="nv">remote_ver</span><span class="o">=</span><span class="k">$(</span>curl -sS https://api.github.com/repos/UnblockNeteaseMusic/server/releases/latest <span class="p">|</span> jq -r .tag_name <span class="p">|</span> sed <span class="s1">&#39;s|v||&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;null&#34;</span><span class="k">)</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">$remote_ver</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新稳定版（前一句有输出这一句才能正常执行）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;unblockneteasemusic-linux-x64&#34;</span> <span class="s2">&#34;https://github.com/UnblockNeteaseMusic/server/releases/download/v</span><span class="si">${</span><span class="nv">remote_ver</span><span class="si">}</span><span class="s2">/unblockneteasemusic-linux-x64&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装</span>
+</span></span><span class="line"><span class="cl">install -p unblockneteasemusic-linux-x64 /usr/local/bin/unblocknem
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="创建服务">创建服务</h2>
+<h3 id="unblocknemservice">unblocknem.service</h3>
+<p>创建工作目录<code>/var/lib/unblocknem</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p /var/lib/unblocknem
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建文件 <code>/etc/systemd/system/unblocknem.service</code>，内容如下。这时 <code>clash</code> 的配置文件为 <code>/var/lib/unblocknem/unblocknem.env</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description </span><span class="o">=</span><span class="s"> Revive unavailable songs for Netease Cloud Music (Refactored &amp; Enhanced version).</span>
+</span></span><span class="line"><span class="cl"><span class="na">Wants       </span><span class="o">=</span><span class="s"> network-online.target clash.service</span>
+</span></span><span class="line"><span class="cl"><span class="na">After       </span><span class="o">=</span><span class="s"> network-online.target</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Type               </span><span class="o">=</span><span class="s"> simple</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart            </span><span class="o">=</span><span class="s"> always</span>
+</span></span><span class="line"><span class="cl"><span class="na">EnvironmentFile    </span><span class="o">=</span><span class="s"> -/var/lib/unblocknem/unblocknem.env</span>
+</span></span><span class="line"><span class="cl"><span class="na">WorkingDirectory   </span><span class="o">=</span><span class="s"> /var/lib/unblocknem</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart          </span><span class="o">=</span><span class="s"> /usr/local/bin/unblocknem</span>
+</span></span><span class="line"><span class="cl"><span class="na">RestartSec         </span><span class="o">=</span><span class="s"> 10</span>
+</span></span><span class="line"><span class="cl"><span class="na">StartLimitInterval </span><span class="o">=</span><span class="s"> 0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你比较讲究Linux哲学，可以把 <code>EnvironmentFile</code> 改成下面这样，这时 <code>unblocknem</code> 的配置文件为 <code>/etc/default/unblocknem</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">EnvironmentFile    </span><span class="o">=</span><span class="s"> -/etc/default/unblocknem</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果不想以root用户运行 <code>unblocknem</code> ，可以自行创建用户 <code>unblocknem</code> 和用户组 <code>unblocknem</code> ，然后在 <code>/etc/systemd/system/unblocknem.service</code> 的 <code>[Service]</code> 单元下增加下面两行，同时修改 <code>/var/lib/unblocknem</code> 及其子文件为该普通用户所有。（后续的脚本都是以root用户为运行用户进行的，如果要把 <code>unblocknem</code> 服务调整为普通用户运行，请自行修改脚本）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">User  </span><span class="o">=</span><span class="s"> unblocknem</span>
+</span></span><span class="line"><span class="cl"><span class="na">Group </span><span class="o">=</span><span class="s"> unblocknem</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装依赖">安装依赖</h3>
+<p>在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 我们已经安装了UnblockNeteaseMusic的一个依赖项： yt-dlp，在实际运行中，部分情况下还需要另外一个依赖：phantomjs。这个软件已经多年没有更新过了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
+</span></span><span class="line"><span class="cl">wget -q --progress<span class="o">=</span>bar:dot --show-progress -O phantomjs-2.1.1-linux-x86_64.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+</span></span><span class="line"><span class="cl">tar --no-same-owner -xf phantomjs-2.1.1-linux-x86_64.tar.bz2  <span class="c1"># 需要安装bzip2才能解压</span>
+</span></span><span class="line"><span class="cl">install -p phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="unblocknem-的配置文件">unblocknem 的配置文件</h3>
+<p>没有配置文件， <code>unblocknem</code> 也是可以以默认配置启动的。如有需要，可以新建 <code>/var/lib/unblocknem/unblocknem.env</code> 或 <code>/etc/default/unblocknem</code>，内容如下，请注意按照注释修改。全部环境变量详见 <a class="link" href="https://github.com/UnblockNeteaseMusic/server"  target="_blank" rel="noopener"
+    >官方README</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 全部环境变量详见：https://github.com/UnblockNeteaseMusic/server</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 激活无损音质获取</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ENABLE_FLAC</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 激活本地黑胶 VIP，可选值：true（等同于 CVIP）、cvip 和 svip</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ENABLE_LOCAL_VIP</span><span class="o">=</span>svip
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 仅对这些 UID 激活本地黑胶 VIP，默认为对全部用户生效</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LOCAL_VIP_UID=123456789,1234,123456</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 激活故障的 Netease HTTPDNS 查询（不建议）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ENABLE_HTTPDNS=true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 屏蔽应用内部分广告</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BLOCK_ADS</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用更新检测</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DISABLE_UPGRADE_CHECK</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 激活开发模式。需要自己用 yarn 安装依赖 (dependencies)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># DEVELOPMENT=true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 严格按照配置音源的顺序进行查询</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># FOLLOW_SOURCE_ORDER=true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出机器可读的 JSON 记录格式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># JSON_LOG=true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 停用 cache</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># NO_CACHE=true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许的最低源音质，小于该值将被替换</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># MIN_BR=320000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择所有音源中的最高码率替换音频</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SELECT_MAX_BR</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 日志输出等级。请见〈日志等级〉部分</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LOG_LEVEL=debug</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从 Pino 端设置日志输出的文件位置。也可以用 *sh 的输出重导向功能 (node app.js &gt;&gt; app.log) 代替</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LOG_FILE=app.log</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># JOOX 音源的 wmid 和 session_key cookie</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># JOOX_COOKIE=&#34;wmid=&lt;your_wmid&gt;; session_key=&lt;your_session_key&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 咪咕音源的 aversionid cookie</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># MIGU_COOKIE=&#34;&lt;your_aversionid&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># QQ 音源的 uin 和 qm_keyst cookie</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># QQ_COOKIE=&#34;uin=123456789; qm_keyst=Q_H_L_6hTegBdoCzFj6bcUUpuhkOP11234ChsOkfKiOdvcIOFKiQQf4oGjykQ&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Youtube 音源的 Data API v3 Key</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># YOUTUBE_KEY=&#34;Adjeuskn12xdEvQfLHnvfC12386QAApcOt5Kh1g&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自定义证书文件</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SIGN_CERT</span><span class="o">=</span><span class="s2">&#34;/var/lib/unblocknem/server.crt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自定义密钥文件</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SIGN_KEY</span><span class="o">=</span><span class="s2">&#34;/var/lib/unblocknem/server.key&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在其他音源搜索歌曲时携带专辑名称（默认搜索条件 歌曲名 - 歌手，启用后搜索条件 歌曲名 - 歌手 专辑名</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># SEARCH_ALBUM=true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="生成自己的证书">生成自己的证书</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /var/lib/unblocknem
+</span></span><span class="line"><span class="cl">wget https://raw.githubusercontent.com/UnblockNeteaseMusic/server/enhanced/generate-cert.sh
+</span></span><span class="line"><span class="cl">env <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;RSA&#34;</span> <span class="nv">ISSUENAME</span><span class="o">=</span><span class="s2">&#34;Your Name&#34;</span> bash generate-cert.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本会在 <code>/var/lib/unblocknem</code> 目录下生成这些文件。如果你不以root用户来启动 <code>unblocknem</code>，则请注意修改它们的所有者。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">unblocknem</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">ca</span><span class="o">.</span><span class="n">crt</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">ca</span><span class="o">.</span><span class="n">key</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">ca</span><span class="o">.</span><span class="n">srl</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">server</span><span class="o">.</span><span class="n">crt</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">server</span><span class="o">.</span><span class="n">csr</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">server</span><span class="o">.</span><span class="n">key</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="调整-nftables-规则">调整 nftables 规则</h3>
+<p>在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >前文（四）</a> 中我们为 <code>clash</code> 创建了一些 <code>nftables</code> 规则，现在我们多了 <code>unblocknem</code>，它也需要，所以我们要调整一下 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >前文（四）</a> 中的 <code>/usr/local/bin/mynftables.nft</code>，调整为下面这个样子。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#!/usr/sbin/nft -f</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 清空旧规则</span>
+</span></span><span class="line"><span class="cl"><span class="n">flush</span> <span class="n">ruleset</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 只处理指定网卡的流量，要和ip规则中的接口操持一致</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">interface</span> <span class="o">=</span> <span class="n">ens18</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## clash的透明代理端口</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">tproxy_port</span> <span class="o">=</span> <span class="mi">7895</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## clash打的标记（routing-mark）</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">clash_mark</span> <span class="o">=</span> <span class="mi">666</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 常规流量标记，ip rule中加的标记，要和ip规则中保持一致，对应 &#34;ip rule add fwmark 1 lookup 100&#34; 中的 &#34;1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">default_mark</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 本机运行了服务并且需要在公网上访问的tcp端口（本机开放在公网上的端口），仅本地局域网访问的服务端口可不用在此变量中，以半角逗号分隔</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">local_tcp_port</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2222</span><span class="p">,</span>      <span class="c1"># ssh，按需设置</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">8080</span><span class="o">-</span><span class="mi">8088</span>  <span class="c1"># nginx webui，按需设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 要绕过的局域网内tcp流量经由本机访问的目标端口，也就是允许局域网内其他主机主动设置DNS服务器为其他服务器，而非旁路由</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">lan_2_dport_tcp</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">53</span>     <span class="c1"># dns查询</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 要绕过的局域网内udp流量经由本机访问的目标端口，也就是允许局域网内其他主机主动设置DNS服务器为其他服务器，而非旁路由；另外也允许局域网内其他主机访问远程的NTP服务器</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">lan_2_dport_udp</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">53</span><span class="p">,</span>    <span class="c1"># dns查询</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">123</span>    <span class="c1"># ntp端口</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 保留ip地址</span>
+</span></span><span class="line"><span class="cl"><span class="n">define</span> <span class="n">private_address</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">100.64</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">169.254</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">16</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">224.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">240.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">10.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">172.16</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">16</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 大陆ip地址</span>
+</span></span><span class="line"><span class="cl"><span class="n">include</span> <span class="s2">&#34;/var/lib/clash/geoip4_cn.nft&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 网易云音乐ip地址</span>
+</span></span><span class="line"><span class="cl"><span class="n">include</span> <span class="s2">&#34;/var/lib/clash/nem_address.nft&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">table</span> <span class="n">ip</span> <span class="n">clash</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## 保留ipv4集合</span>
+</span></span><span class="line"><span class="cl">    <span class="n">set</span> <span class="n">private_address_set</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">type</span> <span class="n">ipv4_addr</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flags</span> <span class="n">interval</span>
+</span></span><span class="line"><span class="cl">        <span class="n">elements</span> <span class="o">=</span> <span class="o">$</span><span class="n">private_address</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## 网易云音乐ipv4集合</span>
+</span></span><span class="line"><span class="cl">    <span class="n">set</span> <span class="n">nem_address_set</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">type</span> <span class="n">ipv4_addr</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flags</span> <span class="n">interval</span>
+</span></span><span class="line"><span class="cl">        <span class="n">elements</span> <span class="o">=</span> <span class="o">$</span><span class="n">nem_address</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## 大陆ipv4集合</span>
+</span></span><span class="line"><span class="cl">    <span class="n">set</span> <span class="n">geoip4_cn_set</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">type</span> <span class="n">ipv4_addr</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flags</span> <span class="n">interval</span>
+</span></span><span class="line"><span class="cl">        <span class="n">elements</span> <span class="o">=</span> <span class="o">$</span><span class="n">geoip4_cn</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## prerouting链</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chain</span> <span class="n">prerouting</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">type</span> <span class="n">filter</span> <span class="n">hook</span> <span class="n">prerouting</span> <span class="n">priority</span> <span class="n">filter</span><span class="p">;</span> <span class="n">policy</span> <span class="n">accept</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="n">protocol</span> <span class="p">{</span> <span class="n">tcp</span><span class="p">,</span> <span class="n">udp</span> <span class="p">}</span> <span class="n">socket</span> <span class="n">transparent</span> <span class="mi">1</span> <span class="n">meta</span> <span class="n">mark</span> <span class="n">set</span> <span class="o">$</span><span class="n">default_mark</span> <span class="n">accept</span> <span class="c1"># 绕过已经建立的连接</span>
+</span></span><span class="line"><span class="cl">        <span class="n">meta</span> <span class="n">mark</span> <span class="o">$</span><span class="n">default_mark</span> <span class="n">goto</span> <span class="n">clash_tproxy</span>                                        <span class="c1"># 已经打上default_mark标记的属于本机流量转过来的，直接进入透明代理</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fib</span> <span class="n">daddr</span> <span class="n">type</span> <span class="p">{</span> <span class="n">local</span><span class="p">,</span> <span class="n">broadcast</span><span class="p">,</span> <span class="n">anycast</span><span class="p">,</span> <span class="n">multicast</span> <span class="p">}</span> <span class="n">accept</span>                   <span class="c1"># 绕过本地、单播、组播、多播地址</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tcp</span> <span class="n">dport</span> <span class="o">$</span><span class="n">lan_2_dport_tcp</span> <span class="n">accept</span>                                                <span class="c1"># 绕过经由本机到目标端口的tcp流量</span>
+</span></span><span class="line"><span class="cl">        <span class="n">udp</span> <span class="n">dport</span> <span class="o">$</span><span class="n">lan_2_dport_udp</span> <span class="n">accept</span>                                                <span class="c1"># 绕过经由本地到目标端口的udp流量</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="n">daddr</span> <span class="err">@</span><span class="n">private_address_set</span> <span class="n">accept</span>                                             <span class="c1"># 绕过目标地址为保留ip的地址</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="n">daddr</span> <span class="err">@</span><span class="n">nem_address_set</span> <span class="n">goto</span> <span class="n">clash_tproxy</span>                                      <span class="c1"># 将网易云音乐的流量转发到透明代理</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="n">daddr</span> <span class="err">@</span><span class="n">geoip4_cn_set</span> <span class="n">accept</span>                                                   <span class="c1"># 绕过目标地址为大陆ip的地址</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># ip protocol udp accept                                                         # 绕过全部udp流量（udp不进行透明代理）</span>
+</span></span><span class="line"><span class="cl">        <span class="n">goto</span> <span class="n">clash_tproxy</span>                                                                <span class="c1"># 其他流量透明代理到clash</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## 透明代理</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chain</span> <span class="n">clash_tproxy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="n">protocol</span> <span class="p">{</span> <span class="n">tcp</span><span class="p">,</span> <span class="n">udp</span> <span class="p">}</span> <span class="n">tproxy</span> <span class="n">to</span> <span class="p">:</span><span class="o">$</span><span class="n">tproxy_port</span> <span class="n">meta</span> <span class="n">mark</span> <span class="n">set</span> <span class="o">$</span><span class="n">default_mark</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## output链</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chain</span> <span class="n">output</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">type</span> <span class="n">route</span> <span class="n">hook</span> <span class="n">output</span> <span class="n">priority</span> <span class="n">filter</span><span class="p">;</span> <span class="n">policy</span> <span class="n">accept</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">oifname</span> <span class="o">!=</span> <span class="o">$</span><span class="n">interface</span> <span class="n">accept</span>                                   <span class="c1"># 绕过本机内部通信的流量（接口lo）</span>
+</span></span><span class="line"><span class="cl">        <span class="n">meta</span> <span class="n">mark</span> <span class="o">$</span><span class="n">clash_mark</span> <span class="n">accept</span>                                   <span class="c1"># 绕过本机clash发出的流量</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fib</span> <span class="n">daddr</span> <span class="n">type</span> <span class="p">{</span> <span class="n">local</span><span class="p">,</span> <span class="n">broadcast</span><span class="p">,</span> <span class="n">anycast</span><span class="p">,</span> <span class="n">multicast</span> <span class="p">}</span> <span class="n">accept</span> <span class="c1"># 绕过本地、单播、组播、多播地址</span>
+</span></span><span class="line"><span class="cl">        <span class="n">udp</span> <span class="n">dport</span> <span class="p">{</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">123</span> <span class="p">}</span> <span class="n">accept</span>                                   <span class="c1"># 绕过本机dns查询、NTP流量</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tcp</span> <span class="n">sport</span> <span class="o">$</span><span class="n">local_tcp_port</span> <span class="n">accept</span>                               <span class="c1"># 绕过本地运行了服务的tcp端口，如果并不需要从公网访问这些端口，可以注释掉本行</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="n">daddr</span> <span class="err">@</span><span class="n">private_address_set</span> <span class="n">accept</span>                           <span class="c1"># 绕过目标地址为保留ip的地址</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="n">daddr</span> <span class="err">@</span><span class="n">geoip4_cn_set</span> <span class="n">accept</span>                                 <span class="c1"># 绕过目标地址为大陆ip的地址</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="n">protocol</span> <span class="p">{</span> <span class="n">tcp</span><span class="p">,</span> <span class="n">udp</span> <span class="p">}</span> <span class="n">meta</span> <span class="n">mark</span> <span class="n">set</span> <span class="o">$</span><span class="n">default_mark</span>           <span class="c1"># 其他流量重路由到prerouting</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意到我们在第51行多引用了一个文件 <code>/var/lib/clash/nem_address.nft</code> （可先下载这个并非最新的文件到指定位置来将就一下：<a class="link" href="nem_address.nft" >nem_address.nft</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新这个文件），在第63-67行多形成了一个集合 <code>nem_address_set</code>，在第85行插入了一行规则 <code>ip daddr @nem_address_set goto clash_tproxy</code>，这条规则插入在 <code>ip daddr @geoip4_cn_set accept</code> 之前，表示虽然网易云音乐IP是中国大陆IP，但要在直接接收前转到透明代理并停止后续规则。现在的 <code>prerouting</code> 链内容有点多，其实可以一拆为三。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    ## prerouting链
+</span></span><span class="line"><span class="cl">    chain prerouting {
+</span></span><span class="line"><span class="cl">        type filter hook prerouting priority filter; policy accept;
+</span></span><span class="line"><span class="cl">        fib daddr type { local, broadcast, anycast, multicast } accept # 绕过本地、单播、组播、多播地址
+</span></span><span class="line"><span class="cl">        tcp dport $lan_2_dport_tcp accept                              # 绕过经由本机到目标端口的tcp流量
+</span></span><span class="line"><span class="cl">        udp dport $lan_2_dport_udp accept                              # 绕过经由本地到目标端口的udp流量
+</span></span><span class="line"><span class="cl">        ip daddr @private_address_set accept                           # 绕过目标地址为保留ip的地址
+</span></span><span class="line"><span class="cl">        ip daddr @geoip4_cn_set accept                                 # 绕过目标地址为大陆ip的地址
+</span></span><span class="line"><span class="cl">        # ip protocol udp accept                                       # 绕过全部udp流量（udp不进行透明代理）
+</span></span><span class="line"><span class="cl">        goto clash_tproxy                                              # 其他流量透明代理到clash
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ## prerouting链绕过已经建立的连接，已经打上default_mark标记的属于本机流量转过来的，直接进入透明代理
+</span></span><span class="line"><span class="cl">    chain divert {
+</span></span><span class="line"><span class="cl">        type filter hook prerouting priority mangle; policy accept;
+</span></span><span class="line"><span class="cl">        ip protocol { tcp, udp } socket transparent 1 meta mark set $default_mark accept
+</span></span><span class="line"><span class="cl">        meta mark $default_mark goto clash_tproxy
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ## 局域网中访问网易云音乐的流量，第一次全部进行透明代理，优先级需要比绕过大陆ip先执行（mangle为-150，filter为0）
+</span></span><span class="line"><span class="cl">    chain neteasemusic {
+</span></span><span class="line"><span class="cl">        type filter hook prerouting priority dstnat; policy accept;
+</span></span><span class="line"><span class="cl">        ip daddr @nem_address_set goto clash_tproxy
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一拆为三后，新的 <code>divert</code> 链的优先级为 <code>mangle</code> （-150），新的<code>neteasemusic</code> 链的优先级为 <code>dstnat</code> (-100)，而新的 <code>prerouting</code> 链则仍是 <code>filter</code> （0），数值越小，优先级越高，所以 <code>ip daddr @nem_address_set goto clash_tproxy</code> 这条规则仍然早于 <code>ip daddr @geoip4_cn_set accept</code> 执行。这样也可以让网易云音乐IP在被直接接收前就转到透明代理去。</p>
+<p><code>unblocknem</code> 工作在应用层，<code>clash</code> 转给它后，它出来的流量会经由 <code>output</code> 链中的 <code>ip daddr @geoip4_cn_set accept</code> 直接出去，不会形成环路（<code>output</code> 链并没有再劫持这部分流量）。这也就意味着上述规则只能代理局域网中除旁路由以外其他设备（以旁路由为网关的）的网易云音乐流量，不能代理旁路由自己的网易云音乐流量。</p>
+<h3 id="调整-clash-配置文件">调整 clash 配置文件</h3>
+<p>我们后续将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动在 <code>clash</code> 的配置中自动插入下面这些内容。</p>
+<p>在 <code>clash</code> 的配置文件中 <code>proxies:</code> 部分新增：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">🎶 网易代理</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="m">10.0.0.2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>proxy-groups:</code> 部分新增：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">🎶 网易音乐</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">select</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">proxies</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">🎶 网易代理</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">DIRECT</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>rules:</code> 部分新增（各地IP可能是不一样的，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动生成它，将其刷新为你本地的解析IP）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">DOMAIN-SUFFIX,music.163.com,🎶 网易音乐</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">DOMAIN-SUFFIX,music.163.com.163jiasu.com,🎶 网易音乐</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,39.105.63.80/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,39.105.175.128/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,45.127.129.53/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,47.100.127.239/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,59.111.19.33/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,59.111.19.99/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,59.111.160.195/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,112.47.51.30/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,114.80.149.72/30,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,115.238.119.67/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,115.238.119.68/31,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,118.24.63.156/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,121.228.190.68/30,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,122.225.83.106/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,122.225.83.109/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,122.225.83.110/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,180.163.200.96/30,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,182.92.170.253/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,183.134.34.248/31,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,183.136.182.18/31,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,183.136.182.20/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">IP-CIDR,193.112.159.225/32,🎶 网易音乐,no-resolve</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="网易云音乐ip只允许解析ipv4">网易云音乐IP只允许解析IPv4</h3>
+<p>因为我们的透明代理只代理 <code>IPv4</code> 流量，所以我们不能让网易云音乐客户端解析出 <code>IPv6</code> 地址。有好几种方式可以实现，既可以在 <code>mosdns</code> 中实现，也可以在 <code>adguardhome</code> 中实现，但后者有 <code>webui</code> 要方便些，并且 <code>adguardhome</code> 是第一级，它有可能会切换到后备服务器而不向 <code>mosdns</code> 发起请求，所以我们就选后者吧。</p>
+<p>在 <code>adguardhome</code> 中实现也有两种方式，其一是将 “设置 -&gt; DNS设置 -&gt; 上游DNS服务器” 设置为下面这样（这种方式不会计入“被拦截域名”中，但是如若 <code>adguardhome</code> 在 <code>clash</code> 遇到故障会切换到后备，对后备是不生效的），直接将网易云音乐的解析发到 <code>clash</code> 去解析，因为我们关闭了 <code>clash</code> 的DNS模块的 <code>IPv6</code> 解析。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">127.0.0.1:5335
+</span></span><span class="line"><span class="cl">[/music.163.com/music.ntes53.netease.com/music.163.com.163jiasu.com/music.163.com.bsclink.cn/uz99.v.bsclink.cn/]127.0.0.1:7874
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其二是在 “过滤器 -&gt; 自定义过滤规则” 中添加规则如下（这种方式会计入“被拦截域名”中，但是对包括后备在内的全部上游DNS服务器都有效）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">||music.163.com^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||music.ntes53.netease.com^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||music.163.com.163jiasu.com^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||music.163.com.bsclink.cn^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||uz99.v.bsclink.cn^$dnstype=AAAA
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只能保证目前有效。上述两种方式，都由于 <code>CNAME</code> 域名的存在，光处理 <code>music.163.com</code> 和 <code>music.163.com.163jiasu.com</code> 不行，还要处理它们背后的 <code>CNAME</code> 域名。可能有望在未来得以改进，详见 <a class="link" href="https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#dnstype"  target="_blank" rel="noopener"
+    >Hosts-Blocklists#dnstype</a>。</p>
+<h3 id="启用服务">启用服务</h3>
+<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/unblocknem.service</code> 为开启自动启动，并立即启动起来。如果这个时候 <code>clash</code> 还没有启动起来，那么 <code>unblocknem</code> 服务就还不可用。都启动好后，<code>unblocknem</code> 将会监听在 <code>8080</code> 和 <code>8081</code> 端口上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now unblocknem.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后续如想查看日志，我们直接使用Debian自带的工具来查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">journalctl -efu unblocknem.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想要重启：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl restart unblocknem.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="客户端">客户端</h2>
+<p>安卓系统不支持。</p>
+<h3 id="windows">Windows</h3>
+<p>安装网易云音乐客户端后，创建一个快捷方式，然后在该快捷方式的属性中的“目标”增加 <code> --ignore-certificate-errors</code>，注意有个空格。</p>
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png"
+	width="421"
+	height="673"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hudbd0785a8fc8def520a70d64a275a085_16666_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="网易云音乐"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="62"
+		data-flex-basis="150px"
+	
+></p>
+<h3 id="archlinux系">ArchLinux系</h3>
+<p>将刚刚生成的 <code>/var/lib/unblocknem/ca.crt</code> 下载下来，然后运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo trust anchor --store ca.crt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在启动命令行后面添加 <code> --ignore-certificate-errors</code>，然后启动即可。</p>
+<h3 id="debian系">Debian系</h3>
+<p>将刚刚生成的 <code>/var/lib/unblocknem/ca.crt</code> 下载下来，放在 <code>/usr/local/share/ca-certificates</code> 下，然后运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo update-ca-certificates
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在启动命令行后面添加 <code> --ignore-certificate-errors</code>，然后启动即可。</p>
+<h2 id="最后">最后</h2>
+<p>打开 <code>clash</code> 的 <code>webui</code>：<a class="link" href="http://10.0.0.2:9090/ui/xd/#/proxies"  target="_blank" rel="noopener"
+    >http://10.0.0.2:9090/ui/xd/#/proxies</a> ，选择 <code>网易音乐</code> 为 <code>网易代理</code>；你再打开网易云音乐客户端后，在 <a class="link" href="http://10.0.0.2:9090/ui/xd/#/conns"  target="_blank" rel="noopener"
+    >http://10.0.0.2:9090/ui/xd/#/conns</a> 就能看到许多连接都接管到 <code>UnblockNeteaseMusic</code> 了。</p>
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png"
+	width="1156"
+	height="307"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hua626112c0e4470a9588945448e9e4001_62327_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="clash将网易云音乐的流量透明代理到了unblocknem"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="376"
+		data-flex-basis="903px"
+	
+></p>
+<p>从 <code>unblocknem.service</code> 的日志中也能看到它的作用，这些灰色歌曲都被接管了。</p>
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3.png"
+	width="1151"
+	height="659"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu200ceb0af0e746813a7e08c4fa8b5ce5_657050_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="unblocknem的日志"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="419px"
+	
+></p>
+<h2 id="系列">系列</h2>
+<ul>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >二、安装Debian、初始网络配置、必要软件安装</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89" >三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >四、clash透明代理(Tproxy)的安装和配置、相关的IP规则和nftables规则</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad" >六、subconverter的安装和配置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab" >八、配置旁路由的SNMPD服务、配置主路由的跨三层应用</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d" >九、监测陌生设备</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81" >十、快速简单的安装和更新软件包</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80" >十一、DNS、网络故障等的总结，以及一些注意事项</a></p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%88%B1%E5%BF%AB/">爱快</a>
+        
+            <a href="/tags/debian/">debian</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
+        
+            <a href="/tags/clash/">clash</a>
+        
+            <a href="/tags/unblockneteasemusic/">unblockneteasemusic</a>
+        
+            <a href="/tags/nftables/">nftables</a>
+        
+            <a href="/tags/shell/">shell</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-11-02 21:06
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.b3c4f5a888a68e427bedc772b6e460e3_hu88789eb5a0253449c69e203685dbd166_85259_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）"
+                        
+                        data-hash="md5-s8T1qIimjkJ77cdytuRg4w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（四）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（七）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（六）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（六）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.20854af746270e9b4b1e51c4b66b27f3_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）"
+                        
+                        data-hash="md5-IIVK90YnDptLHlHEtmsn8w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（三）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（十）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

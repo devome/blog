@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解安装Debian的一些注意事项，初始的网络配置，以及一些必要软件的安装。'>
+<title>我的家庭网络设计思路，开启debian的旁路由之路（二）</title>
+
+<link rel='canonical' href='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（二）'>
+<meta property='og:description' content='本篇主要讲解安装Debian的一些注意事项，初始的网络配置，以及一些必要软件的安装。'>
+<meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='旁路由' /><meta property='article:published_time' content='2023-10-20T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-02T21:06:00&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png' />
+<meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（二）">
+<meta name="twitter:description" content="本篇主要讲解安装Debian的一些注意事项，初始的网络配置，以及一些必要软件的安装。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#安装">安装</a>
+      <ol>
+        <li><a href="#主机名和域名">主机名和域名</a></li>
+        <li><a href="#安装哪些内容">安装哪些内容</a></li>
+        <li><a href="#首次安装后">首次安装后</a></li>
+      </ol>
+    </li>
+    <li><a href="#配置">配置</a>
+      <ol>
+        <li><a href="#sshd">SSHD</a></li>
+        <li><a href="#配置网络">配置网络</a></li>
+        <li><a href="#配置网关功能">配置网关功能</a></li>
+      </ol>
+    </li>
+    <li><a href="#安装一些后续必要的软件">安装一些后续必要的软件</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#系列">系列</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_800x0_resize_box_3.png"
+                        srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_800x0_resize_box_3.png 800w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="422" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（二）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+                软路由
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/">我的家庭网络设计思路，开启debian的旁路由之路（二）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            本篇主要讲解安装Debian的一些注意事项，初始的网络配置，以及一些必要软件的安装。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-20</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="安装">安装</h2>
+<p>安装Debian的详细过程我就不提了，网上的教程很多，我只提一部分内容。如果对其他安装内容真有需要，可以在本文下方评论区提出。</p>
+<h3 id="主机名和域名">主机名和域名</h3>
+<p>在配置主机名和域名时，可以考虑设置为你的DDNS域名的三级域名下，详见下面两图，后续就可以使用<code>gate.evine.com</code>来访问旁路由。</p>
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D.png"
+	width="1922"
+	height="1200"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu0c0c2e91e1d55caf467953fab7a22376_220206_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu0c0c2e91e1d55caf467953fab7a22376_220206_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Debian主机名"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D.png"
+	width="1919"
+	height="1196"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu3a4aa506e95c76067c12b963f9fbc7e6_223164_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu3a4aa506e95c76067c12b963f9fbc7e6_223164_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Debian域名"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="385px"
+	
+></p>
+<h3 id="安装哪些内容">安装哪些内容</h3>
+<p>仅安装核心系统和SSH服务端，不要安装其他东西，连“标准系统工具”都不需要选择。</p>
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF.png"
+	width="1922"
+	height="1202"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu51b5ad6c5a2ec1deed21180b7a740960_260753_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu51b5ad6c5a2ec1deed21180b7a740960_260753_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="仅安装核心系统和SSH服务端"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="383px"
+	
+></p>
+<h3 id="首次安装后">首次安装后</h3>
+<p>首次安装完成后进入系统，系统进程只有这些（请手动安装<code>htop</code>：<code>apt install htop</code>），非常清爽。下图是虚拟机安装的，并且创建时启用了<code>qemu-guest-agent</code>，所以额外有个<code>qemu-ga</code>进程，物理机安装甚至连这个进程都没有。在我们还没有配置其他服务时，内存也只占用了120M左右，也并没有比OpenWRT多多少。</p>
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B.png"
+	width="1726"
+	height="902"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hub0fc6a9a37e59d4bf659d1833177268d_778628_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hub0fc6a9a37e59d4bf659d1833177268d_778628_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Debian刚刚安装完成后的进程"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="191"
+		data-flex-basis="459px"
+	
+></p>
+<h2 id="配置">配置</h2>
+<h3 id="sshd">SSHD</h3>
+<p>如果你想以root用户进行ssh登陆，可以将<code>/etc/ssh/sshd_config</code>中的<code>#PermitRootLogin prohibit-password</code>修改为<code>PermitRootLogin yes</code>，如果要修改ssh端口，可以将<code>#Port 22</code>修改为<code>Port 2222</code>（2222端口仅为示例）。最后重启一下sshd服务<code>systemctl restart sshd.service</code>。</p>
+<p>你也可以关闭密码登陆仅允许私钥登陆，将<code>#PasswordAuthentication yes</code>修改为<code>PasswordAuthentication no</code>即可，不过在关闭前请先以700权限创建好<code>$HOME/.ssh</code>文件夹，以600权限上传公钥<code>$HOME/.ssh/authorized_keys</code>，并在其他地方保存好私钥。</p>
+<h3 id="配置网络">配置网络</h3>
+<p>输入 <code>nano /etc/network/interfaces</code>，编辑为以下内容，编辑好后以 <code>Ctrl+X</code> 退出。说明：</p>
+<ul>
+<li>
+<p>其中的 <code>ens18</code> 是我的网卡名，可以输入 <code>ip a</code> 这个命令查看到。</p>
+</li>
+<li>
+<p>IPv4地址进行静态配置 <code>inet static</code>，设置自身的IP和掩码为 <code>10.0.0.2/24</code>，网关为 <code>10.0.0.1</code>，后续我还将以adguardhome和mosdns在旁路由中自建DNS服务，所以设置默认DNS服务器为 <code>127.0.0.1</code>。<strong>不过下面的示例是最终的状态，我们在配置旁路由过程中，需要科学上网环境，所以在完全配置好旁路由以前，网关 <code>gateway</code> 和默认DNS服务器 <code>dns-nameservers</code> 建议先暂时设置为局域网中另一台可以实现科学上网的OpenWRT，在完全配置好后再改成下面这样。</strong></p>
+</li>
+<li>
+<p>IPv6地址采用DHCPv6形式，配置为 <code>inet6 dhcp</code>，这仅仅表示旁路由自身可以从主路由爱快处获取IPv6地址，并不代表它将作为IPv6网关。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># This file describes the network interfaces available on your system
+</span></span><span class="line"><span class="cl"># and how to activate them. For more information, see interfaces(5).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">source /etc/network/interfaces.d/*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># The loopback network interface
+</span></span><span class="line"><span class="cl">auto lo
+</span></span><span class="line"><span class="cl">iface lo inet loopback
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># The primary network interface
+</span></span><span class="line"><span class="cl"># allow-hotplug ens18
+</span></span><span class="line"><span class="cl">auto ens18
+</span></span><span class="line"><span class="cl">iface ens18 inet static
+</span></span><span class="line"><span class="cl">        address 10.0.0.2/24
+</span></span><span class="line"><span class="cl">        network 10.0.0.0
+</span></span><span class="line"><span class="cl">        broadcast 10.0.0.255
+</span></span><span class="line"><span class="cl">        gateway 10.0.0.1
+</span></span><span class="line"><span class="cl">        dns-nameservers 127.0.0.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">iface ens18 inet6 dhcp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>保存好该文件后，输入以下命令重启网络服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl restart networking.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后你就会发现系统启动了DHCPv6客户端以获取IPv6地址。不过虽然配置了静态IPv4地址，但需要在重启系统以后，<code>dhclient -4</code>这个用来获取DHCPv4地址的进程才会消失。</p>
+<p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png"
+	width="1726"
+	height="910"
+	srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_480x0_resize_box_3.png 480w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu341c4831b38005b757fc546cdf02cd89_805455_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="系统启动了DHCPv6客户端"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="189"
+		data-flex-basis="455px"
+	
+></p>
+<p>查看IP：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ip a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 输出可见ip已经是所设置的了</span>
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">    inet 127.0.0.1/8 scope host lo
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 ::1/128 scope host noprefixroute 
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">2: ens18: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether 0e:■■:■■:■■:■■:■■ brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">    altname enp0s18
+</span></span><span class="line"><span class="cl">    inet 10.0.0.2/24 brd 10.0.0.255 scope global ens18
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 240e:■■■:■■■■:■■■■::dfc/128 scope global dynamic 
+</span></span><span class="line"><span class="cl">       valid_lft 5242sec preferred_lft 5242sec
+</span></span><span class="line"><span class="cl">    inet6 240e:■■■:■■■■:■■■■:■■■:■■■■:■■■■:ff2f/64 scope global dynamic mngtmpaddr 
+</span></span><span class="line"><span class="cl">       valid_lft 215432sec preferred_lft 129032sec
+</span></span><span class="line"><span class="cl">    inet6 fe80::■■■:■■■■:■■■■:ff2f/64 scope link 
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置网关功能">配置网关功能</h3>
+<p>由于我仅将旁路由作为IPv4的网关，IPv6网关仍然为主路由爱快，所以只需要配置IPv4的转发。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;net.ipv4.ip_forward = 1&#34;</span> &gt;&gt; /etc/sysctl.conf
+</span></span><span class="line"><span class="cl">sysctl -p
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装一些后续必要的软件">安装一些后续必要的软件</h2>
+<p>后续我们会用到一些软件包，在这里可以先安装好。如果你暂时不想增加系统体积，也可以根据下方的注释选择性的安装，或者在后续配置旁路由的过程中根据需要再进行安装。</p>
+<p>你可以先将源更改为国内源后再安装下面的包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 后续会用到的</span>
+</span></span><span class="line"><span class="cl">apt install -y --no-install-recommends <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    arp-scan                              <span class="sb">`</span><span class="c1"># arp扫描用的，后续监测外来陌生设备会用到` \</span>
+</span></span><span class="line"><span class="cl">    bind9-dnsutils                        <span class="sb">`</span><span class="c1"># dns工具` \</span>
+</span></span><span class="line"><span class="cl">    binutils                              <span class="sb">`</span><span class="c1"># 二进制文件处理工具，在本系统最后的脚本汇总中会用到` \</span>
+</span></span><span class="line"><span class="cl">    bzip2                                 <span class="sb">`</span><span class="c1"># 解压bz2`  \</span>
+</span></span><span class="line"><span class="cl">    curl                                  <span class="sb">`</span><span class="c1"># 下载工具` \</span>
+</span></span><span class="line"><span class="cl">    git                                   <span class="sb">`</span><span class="c1"># 从github下载东西` \</span>
+</span></span><span class="line"><span class="cl">    htop                                  <span class="sb">`</span><span class="c1"># 监测进程` \</span>
+</span></span><span class="line"><span class="cl">    jq                                    <span class="sb">`</span><span class="c1"># 后续在各种脚本中、命令中解析json会用到` \</span>
+</span></span><span class="line"><span class="cl">    lsof                                  <span class="sb">`</span><span class="c1"># 后续监测打开的TCP/UDP端口会用到` \</span>
+</span></span><span class="line"><span class="cl">    nginx                                 <span class="sb">`</span><span class="c1"># 后续配置文件服务器会用到` \</span>
+</span></span><span class="line"><span class="cl">    libnginx-mod-http-headers-more-filter <span class="sb">`</span><span class="c1"># nginx的一个模块，后续如果用不到可以不安装` \</span>
+</span></span><span class="line"><span class="cl">    openssh-server                        <span class="sb">`</span><span class="c1"># 安装Debian时应该已经安装好了` \</span>
+</span></span><span class="line"><span class="cl">    snmpd                                 <span class="sb">`</span><span class="c1"># 解决爱快查到不到以旁路由为网关的设备信息的问题` \</span>
+</span></span><span class="line"><span class="cl">    sudo                                  <span class="sb">`</span><span class="c1"># 如果不是root用户登陆的话，需要这个` \</span>
+</span></span><span class="line"><span class="cl">    unzip                                 <span class="sb">`</span><span class="c1"># 解压zip` \</span>
+</span></span><span class="line"><span class="cl">    wget                                  <span class="sb">`</span><span class="c1"># 下载工具` \</span>
+</span></span><span class="line"><span class="cl">    xz-utils                              <span class="sb">`</span><span class="c1"># 解压xz` \</span>
+</span></span><span class="line"><span class="cl">    yt-dlp                                <span class="sb">`</span><span class="c1"># youtube下载工具，unblockneteasemusic的依赖项`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 一些好用的工具，按需安装</span>
+</span></span><span class="line"><span class="cl">apt install -y --no-install-recommends <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    duf                                   <span class="sb">`</span><span class="c1"># 美观的磁盘使用情况查看工具` \</span>
+</span></span><span class="line"><span class="cl">    etherwake                             <span class="sb">`</span><span class="c1"># 网络唤醒用的` \</span>
+</span></span><span class="line"><span class="cl">    ethtool                               <span class="sb">`</span><span class="c1"># 网卡工具` \</span>
+</span></span><span class="line"><span class="cl">    fzf                                   <span class="sb">`</span><span class="c1"># 配合zsh插件fzf和zsh-interactive-cd` \</span>
+</span></span><span class="line"><span class="cl">    iftop                                 <span class="sb">`</span><span class="c1"># 监测网络流量` \</span>
+</span></span><span class="line"><span class="cl">    iperf3                                <span class="sb">`</span><span class="c1"># 测速工具` \</span>
+</span></span><span class="line"><span class="cl">    lsd                                   <span class="sb">`</span><span class="c1"># 比ls美观`  \</span>
+</span></span><span class="line"><span class="cl">    gdu                                   <span class="sb">`</span><span class="c1"># 美观的查看文件夹体积大小的工具` \</span>
+</span></span><span class="line"><span class="cl">    qemu-guest-agent                      <span class="sb">`</span><span class="c1"># qemu宿主机管理虚拟机的工具` \</span>
+</span></span><span class="line"><span class="cl">    rsync                                 <span class="sb">`</span><span class="c1"># 同步工具` \</span>
+</span></span><span class="line"><span class="cl">    socat                                 <span class="sb">`</span><span class="c1"># 自动签发ssl证书的工具acme.sh的依赖` \</span>
+</span></span><span class="line"><span class="cl">    tmux                                  <span class="sb">`</span><span class="c1"># 虚拟屏幕，运行长任务的好帮手` \</span>
+</span></span><span class="line"><span class="cl">    zoxide                                <span class="sb">`</span><span class="c1"># 配合zsh的插件zoxide` \</span>
+</span></span><span class="line"><span class="cl">    zsh                                   <span class="sb">`</span><span class="c1"># 一个好用的shell`</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>截止目前，我们安装好了Debian，并配置了它的基础网络服务，开启了IPv4流量转发，这个时候，它已经可以做一个旁路由了。不过，如果仅仅是这样，我们要这旁路由有何用！！！所以，我将在接下来的 <a class="link" href="../../categories/gateway/" >软路由系列文章</a> 继续设置adguardhome、mosdns、clash、nftables、subconverter、unblockneteasemusic、snmpd、cron、nginx等等，让它成为一台合格的旁路由。</p>
+<h2 id="系列">系列</h2>
+<ul>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >二、安装Debian、初始网络配置、必要软件安装</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89" >三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >四、clash透明代理(Tproxy)的安装和配置、相关的IP规则和nftables规则</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad" >六、subconverter的安装和配置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab" >八、配置旁路由的SNMPD服务、配置主路由的跨三层应用</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d" >九、监测陌生设备</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81" >十、快速简单的安装和更新软件包</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80" >十一、DNS、网络故障等的总结，以及一些注意事项</a></p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/debian/">debian</a>
+        
+            <a href="/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-11-02 21:06
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.925c5182e2c52553c625786cef22b077_huef3c692eae64eb585ab4ff7890b397a3_413344_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）"
+                        
+                        data-hash="md5-klxRguLFJVPGJXhs7yKwdw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（十一）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（十）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.b7046b9f264a6935792612610be51e8f_hu574dba91de5fa709b097f092f38ffb07_437319_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）"
+                        
+                        data-hash="md5-twRrnyZKaTV5JhJhC&#43;Uejw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（九）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.ab3c360faeeff41c3faa05a6a34d1643_hu51d4af1eeefa67a1188add7d16f39c36_65107_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）"
+                        
+                        data-hash="md5-qzw2D67v9Bw/qgWmo00WQw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（八）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（七）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD 前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-t'>
+<title>PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池</title>
+
+<link rel='canonical' href='https://evine.win/p/pve-create-lvm-thin-with-cachepool/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池'>
+<meta property='og:description' content='关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD 前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-t'>
+<meta property='og:url' content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='lvm-thin' /><meta property='article:tag' content='cachepool' /><meta property='article:published_time' content='2022-09-01T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T21:56:46&#43;08:00'/><meta property='og:image' content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png' />
+<meta name="twitter:title" content="PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池">
+<meta name="twitter:description" content="关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD 前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-t"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#有关概念">有关概念</a></li>
+    <li><a href="#创建具有缓存池的lvm-thin存储">创建具有缓存池的LVM-thin存储</a>
+      <ol>
+        <li><a href="#先看看磁盘的识别情况">先看看磁盘的识别情况</a></li>
+        <li><a href="#对磁盘初始化">对磁盘初始化</a></li>
+        <li><a href="#全部分好区再输入lsblk检查一下">全部分好区再输入<code>lsblk</code>检查一下：</a></li>
+        <li><a href="#创建pv">创建PV</a></li>
+        <li><a href="#创建vg">创建VG</a></li>
+        <li><a href="#创建数据lv">创建数据LV</a></li>
+        <li><a href="#创建元数据lv和缓存池元数据lv">创建元数据LV和缓存池元数据LV</a></li>
+        <li><a href="#创建缓存池数据lv">创建缓存池数据LV</a></li>
+        <li><a href="#转换存储类型">转换存储类型</a></li>
+      </ol>
+    </li>
+    <li><a href="#检查">检查</a></li>
+    <li><a href="#添加存储">添加存储</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/pve-create-lvm-thin-with-cachepool/">
+                <img src="/p/pve-create-lvm-thin-with-cachepool/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_800x0_resize_box_3.png"
+                        srcset="/p/pve-create-lvm-thin-with-cachepool/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_800x0_resize_box_3.png 800w, /p/pve-create-lvm-thin-with-cachepool/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="337" 
+                        loading="lazy"
+                        alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/pve/" style="background-color: #2a9d8f; color: #fff;">
+                Promox VE
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/pve-create-lvm-thin-with-cachepool/">PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022-09-01</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 17 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD</p>
+</blockquote>
+<h2 id="前言">前言</h2>
+<p>最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。</p>
+<p>作为垃圾佬，怎么舍得再额外购置硬件多花钱呢。垃圾佬当然不愿意再购买新硬盘了，掏出多年前给台式机装系统的两块SATA接口的固态硬盘，以及以前台式机用的两块机械硬盘，准备将两块SSD组raid0后作为缓存池，为两块HDD以raid0组后创建的LVM-thin提供读写缓存服务。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center">硬盘类型</th>
+<th style="text-align:center">型号</th>
+<th style="text-align:center">硬盘大小</th>
+<th style="text-align:center">通电时长</th>
+<th style="text-align:center">出厂时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SSD</td>
+<td style="text-align:center">Samsung 840 EVO</td>
+<td style="text-align:center">120G</td>
+<td style="text-align:center">28744h</td>
+<td style="text-align:center">2014年3月</td>
+</tr>
+<tr>
+<td style="text-align:center">SSD</td>
+<td style="text-align:center">Samsung 850 EVO</td>
+<td style="text-align:center">120G</td>
+<td style="text-align:center">22981h</td>
+<td style="text-align:center">2015年5月</td>
+</tr>
+<tr>
+<td style="text-align:center">HDD</td>
+<td style="text-align:center">WD20EZRX</td>
+<td style="text-align:center">2T</td>
+<td style="text-align:center">55700h</td>
+<td style="text-align:center">2013年2月</td>
+</tr>
+<tr>
+<td style="text-align:center">HDD</td>
+<td style="text-align:center">HGST HUA723020ALA640</td>
+<td style="text-align:center">2T</td>
+<td style="text-align:center">19267h</td>
+<td style="text-align:center">2013年12月</td>
+</tr>
+</tbody>
+</table></div>
+<p>和我的使用场景、硬件条件一模一样几乎是不可能的，也就几乎不可能有人能够完全照搬我的操作过程，所以本文也仅是提供一种思路，LVM依靠它已经提供的各种功能，可以实现各种你想得到想不到的玩法。这里举三个例子：</p>
+<ul>
+<li>
+<p>2块2T的HDD、1块3T的HDD，3块HDD分别创建一个2T的分区，共3个2TiB的分区组建6T大小3个PV的raid0的LVM或LVM-thin；再将3T盘没有用到的1T空间单独再创建个dir存储，用于保存备份文件、镜像文件等。</p>
+</li>
+<li>
+<p>1块256G的nvme磁盘，安装系统已经占用了50G，余下的空间大又不大，小又不小，单独用好像也干不了什么太多的事。系统已经默认创建了local-lvm，但是可以将local-lvm删除，然后将产生的约200G空间作为其他HDD磁盘的缓存池，提升IO性能。</p>
+</li>
+<li>
+<p>4块4T的HDD组raid5后再转换为LVM，然后一块256G的nvme磁盘作为其缓存池。</p>
+</li>
+</ul>
+<h2 id="有关概念">有关概念</h2>
+<blockquote>
+<p>PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。</p>
+</blockquote>
+<blockquote>
+<p>VG(volume group)：卷组，建立在物理卷上，一卷组中至少要包括一物理卷，卷组建立后可动态的添加卷到卷组中，一个逻辑卷管理系统工程中可有多个卷组。</p>
+</blockquote>
+<blockquote>
+<p>LV(logical volume)：逻辑卷，建立在卷组基础上，卷组中未分配空间可用于建立新的逻辑卷，逻辑卷建立后可以动态扩展和缩小空间。</p>
+</blockquote>
+<blockquote>
+<p>PE(physical extent)：物理区域，是物理卷中可用于分配的最小存储单元（本文采用默认值4MiB），物理区域大小在建立卷组时指定，一旦确定不能更改，同一卷组所有物理卷的物理区域大小需一致，新的PV加入到VG后，PE的大小自动更改为VG中定义的PE大小。</p>
+</blockquote>
+<blockquote>
+<p>LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。</p>
+</blockquote>
+<p>网上有很多有关概念的详细介绍，这里不再多说。</p>
+<h2 id="创建具有缓存池的lvm-thin存储">创建具有缓存池的LVM-thin存储</h2>
+<p>这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：</p>
+<ul>
+<li>
+<p>数据LV：也就是存储LVM-thin原始数据的LV，所有数据最终需要写入的地方，我将在HDD上创建它。</p>
+</li>
+<li>
+<p>元数据LV：LVM-thin的特色，相比LVM直接按卷大小预先分配所需空间，LVM-thin则是需要向卷内写入数据时才按实际写入数据量大小分配所需空间。LVM-thin需要用来索引实际数据的元数据metadata空间，就是元数据LV。为了提升数据索引速度，我将在SSD上创建它。</p>
+</li>
+<li>
+<p>缓存池LV：为了提升访问数据LV中数据的IO速度，使用SSD为它创建缓存池，这样可以将经常读取的数据加载到缓存池中，后续再读取这些数据会提升IO；同时要写入数据时也先写入缓存池，写入也可以更快。缓存池LV也分为数据LV和元数据LV两部分。</p>
+<ul>
+<li>
+<p>缓存池数据LV：临时存储缓存数据的地方，我将在SSD上创建它。</p>
+</li>
+<li>
+<p>缓存池元数据LV：索引缓存数据的元数据存储的地方，我也将在SSD上创建它。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>还有额外的备用池元数据LV，后文遇到时再作介绍。</p>
+</li>
+</ul>
+<p>如果直接在PVE的WEBUI中来创建，无法实现我所设想的思路，所以只能通过命令行来创建，然后再经过多次转换，来转换为我所需要的LVM-thin。</p>
+<h3 id="先看看磁盘的识别情况">先看看磁盘的识别情况</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lsblk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从输出可见，/dev/sdb和/dev/sdc是两块HDD，/dev/sdd和/dev/sde是两块SSD：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sda            8:0    0    32G  0 disk 
+</span></span><span class="line"><span class="cl">├─sda1         8:1    0  1007K  0 part 
+</span></span><span class="line"><span class="cl">├─sda2         8:2    0   512M  0 part 
+</span></span><span class="line"><span class="cl">└─sda3         8:3    0  31.5G  0 part 
+</span></span><span class="line"><span class="cl">  ├─pve-swap 253:0    0     2G  0 lvm  [SWAP]
+</span></span><span class="line"><span class="cl">  └─pve-root 253:1    0  29.5G  0 lvm  /
+</span></span><span class="line"><span class="cl">sdb            8:16   0   1.8T  0 disk 
+</span></span><span class="line"><span class="cl">sdc            8:32   0   1.8T  0 disk 
+</span></span><span class="line"><span class="cl">sdd            8:48   0 111.8G  0 disk 
+</span></span><span class="line"><span class="cl">sde            8:64   0 111.8G  0 disk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对磁盘初始化">对磁盘初始化</h3>
+<p>给2块SSD、2块HDD磁盘全部以GPT进行初始化，每个磁盘只分一个区，以下以<code>/dev/sdb</code>为例（不分区直接创建整盘PV也可以）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 进入fdisk命令行</span>
+</span></span><span class="line"><span class="cl">fdisk /dev/sdb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 分别按g、n，sector采用默认的值直接回车，最后 wq 保存并退出</span>
+</span></span><span class="line"><span class="cl">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: g
+</span></span><span class="line"><span class="cl">Created a new GPT disklabel <span class="o">(</span>GUID: 798FC3B9-A99E-B245-9A2E-C02B9A2D0836<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+</span></span><span class="line"><span class="cl">Partition number <span class="o">(</span>1-128, default 1<span class="o">)</span>: 
+</span></span><span class="line"><span class="cl">First sector <span class="o">(</span>2048-41943006, default 2048<span class="o">)</span>: 
+</span></span><span class="line"><span class="cl">Last sector, +/-sectors or +/-size<span class="o">{</span>K,M,G,T,P<span class="o">}</span> <span class="o">(</span>2048-41943006, default 41943006<span class="o">)</span>: 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Created a new partition <span class="m">1</span> of <span class="nb">type</span> <span class="s1">&#39;Linux filesystem&#39;</span> and of size <span class="m">20</span> GiB.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: wq
+</span></span><span class="line"><span class="cl">The partition table has been altered.
+</span></span><span class="line"><span class="cl">Calling ioctl<span class="o">()</span> to re-read partition table.
+</span></span><span class="line"><span class="cl">Syncing disks.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="全部分好区再输入lsblk检查一下">全部分好区再输入<code>lsblk</code>检查一下：</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lsblk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+</span></span><span class="line"><span class="cl">sda            8:0    0    32G  0 disk 
+</span></span><span class="line"><span class="cl">├─sda1         8:1    0  1007K  0 part 
+</span></span><span class="line"><span class="cl">├─sda2         8:2    0   512M  0 part 
+</span></span><span class="line"><span class="cl">└─sda3         8:3    0  31.5G  0 part 
+</span></span><span class="line"><span class="cl">  ├─pve-swap 253:0    0     2G  0 lvm  [SWAP]
+</span></span><span class="line"><span class="cl">  └─pve-root 253:1    0  29.5G  0 lvm  /
+</span></span><span class="line"><span class="cl">sdb            8:16   0   1.8T  0 disk 
+</span></span><span class="line"><span class="cl">└─sdb1         8:17   0   1.8T  0 part 
+</span></span><span class="line"><span class="cl">sdc            8:32   0   1.8T  0 disk 
+</span></span><span class="line"><span class="cl">└─sdc1         8:33   0   1.8T  0 part 
+</span></span><span class="line"><span class="cl">sdd            8:48   0 111.8G  0 disk 
+</span></span><span class="line"><span class="cl">└─sdd1         8:49   0 111.8G  0 part 
+</span></span><span class="line"><span class="cl">sde            8:64   0 111.8G  0 disk 
+</span></span><span class="line"><span class="cl">└─sde1         8:65   0 111.8G  0 part
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建pv">创建PV</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pvcreate /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  Physical volume &#34;/dev/sdb1&#34; successfully created.
+</span></span><span class="line"><span class="cl">  Physical volume &#34;/dev/sdc1&#34; successfully created.
+</span></span><span class="line"><span class="cl">  Physical volume &#34;/dev/sdd1&#34; successfully created.
+</span></span><span class="line"><span class="cl">  Physical volume &#34;/dev/sde1&#34; successfully created.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建vg">创建VG</h3>
+<p>采用默认的4M大小的PE，创建名叫<code>hybrid</code>的VG：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">vgcreate hybrid /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  Volume group &#34;hybrid&#34; successfully created
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建数据lv">创建数据LV</h3>
+<p>给两块HDD组raid0，用完它们的全部空间创建名叫<code>data</code>的数据LV：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lvcreate --type raid0 --name data --extents 100%FREE --stripesize 256k hybrid /dev/sdb1 /dev/sdc1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  Logical volume &#34;data&#34; created.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>RAID的Stripe Size大小可以设置为8KiB、16KiB、32KiB、64KiB、128KiB和256KiB，如不设置此参数则默认采用64KiB。</p>
+<blockquote>
+<p>对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。</p>
+</blockquote>
+<p>我的主要是大文件，所以我设置Stripe Size为256KiB。并且我的使用场景下，主要目的是提升IO，反而对数据损坏这个情况不关心，坏了就坏了，所以我采用的是raid0，和我使用场景不一致的不要采用raid0以及256KiB的Stripe Size。</p>
+<h3 id="创建元数据lv和缓存池元数据lv">创建元数据LV和缓存池元数据LV</h3>
+<ul>
+<li>
+<p>我最终要创建的存储类型是LVM-thin，这种薄存储类型需要另外的空间存储元数据metadata，如果直接在HDD上创建LVM-thin，系统会自动在HDD上创建其对应的元数据LV。但我们现在创建的是raid0类型的LVM，默认不带元数据LV，并且另一方面，我希望能在SSD上创建元数据所需要的LV，这样还可以提升数据索引速度，所以我需要手动在SSD上创建最终的LVM-thin存储所需要的元数据LV。</p>
+</li>
+<li>
+<p>并且，我们后面将SSD作为缓存池cachepool时，缓存池它本身也需要存储元数据，所以这里也需要为缓存池创建缓存池元数据LV。</p>
+</li>
+<li>
+<p>另外，我有两块SSD，我希望能最大化的提升IO，所以这两块SSD之间也需要组raid0。</p>
+</li>
+</ul>
+<p>首先为最终要创建的LVM-thin存储创建名叫<code>meta_thinpool</code>的元数据LV，创建时它默认是数据LV大小的0.1%，我取约0.3%，创建11.5GiB的元数据LV（不能超过15.81GiB）。</p>
+<p>存储元数据的raid0组Stripe Size我就保持默认的64KiB吧（不添加&ndash;stripesize即使用默认值）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lvcreate --type raid0 --name meta_thinpool --size 11.5G hybrid /dev/sdd1 /dev/sde1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  Using default stripesize 64.00 KiB.
+</span></span><span class="line"><span class="cl">  Logical volume &#34;meta_thinpool&#34; created.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再为后面马上要创建的的缓存池LV创建名叫<code>meta_cachepool</code>的缓存池元数据LV，raid0组也使用默认的Stripe Size，大小就取528M（大约也是缓存池LV的0.3%）吧。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lvcreate --type raid0 --name meta_cachepool --size 528M hybrid /dev/sdd1 /dev/sde1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>有关元数据LV大小应该设置多大，可以查看官方建议：<a class="link" href="https://man.archlinux.org/man/lvmthin.7.en#Size_of_pool_metadata_LV"  target="_blank" rel="noopener"
+    >lvmthin.7.en#Size_of_pool_metadata_LV</a></em></p>
+<p>输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  Using default stripesize 64.00 KiB.
+</span></span><span class="line"><span class="cl">  Logical volume &#34;meta_cachepool&#34; created.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建缓存池数据lv">创建缓存池数据LV</h3>
+<p>在SSD上已经创建好了两个metadata的LV，占了一点空间，为了最大化利用磁盘空间，先把两块SSD余下的空间全部分配给缓存池数据LV。不过如果后续进行lvconvert转换存储类型操作时，如未设置关闭自动创建备用池元数据LV（即命令中添加<code>--poolmetadataspare n</code>，在PVE的WEBUI中创建LVM-thin，系统也会默认创建备用池元数据LV），在进行转换操作时就需要额外的等同于<code>hybrid/meta_thinpool</code>大小（我这里就是11.5GiB）的空间。我打算让其自动创建备用池元数据LV，所以我需要预留11.5GiB（即2944个PE）。</p>
+<p><strong>如果已经在LVM-thin创建了虚拟磁盘，没有任何剩余空间的话，后续再调整就不太好调整了，所以如果不太放心的话，你多保留一些空间不完全创建LV也是可以的。</strong></p>
+<p>为了最大化的提升IO性能，缓存池也采用raid0。同样采用默认的Stripe Size。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 先检查一下hybrid这个VG还剩下多少个PE</span>
+</span></span><span class="line"><span class="cl">vgdisplay hybrid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 从输出可以看出还剩下54144个PE</span>
+</span></span><span class="line"><span class="cl">  --- Volume group ---
+</span></span><span class="line"><span class="cl">  VG Name               hybrid
+</span></span><span class="line"><span class="cl">  System ID             
+</span></span><span class="line"><span class="cl">  Format                lvm2
+</span></span><span class="line"><span class="cl">  Metadata Areas        <span class="m">4</span>
+</span></span><span class="line"><span class="cl">  Metadata Sequence No  <span class="m">4</span>
+</span></span><span class="line"><span class="cl">  VG Access             read/write
+</span></span><span class="line"><span class="cl">  VG Status             resizable
+</span></span><span class="line"><span class="cl">  MAX LV                <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  Cur LV                <span class="m">3</span>
+</span></span><span class="line"><span class="cl">  Open LV               <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  Max PV                <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  Cur PV                <span class="m">4</span>
+</span></span><span class="line"><span class="cl">  Act PV                <span class="m">4</span>
+</span></span><span class="line"><span class="cl">  VG Size               &lt;3.86 TiB
+</span></span><span class="line"><span class="cl">  PE Size               4.00 MiB
+</span></span><span class="line"><span class="cl">  Total PE              <span class="m">1010894</span>
+</span></span><span class="line"><span class="cl">  Alloc PE / Size       <span class="m">956750</span> / &lt;3.65 TiB
+</span></span><span class="line"><span class="cl">  Free  PE / Size       <span class="m">54144</span> / 211.50 GiB
+</span></span><span class="line"><span class="cl">  VG UUID               13c6EC-n2E4-nQvh-hD5J-q8F1-Hl73-77pkji
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 为后面的转换预留2944个PE即11.5GiB用作备用池元数据LV，其他的共51200个PE创建缓存池数据LV</span>
+</span></span><span class="line"><span class="cl">lvcreate --type raid0 --name cache --extents <span class="m">51200</span> hybrid /dev/sdd1 /dev/sde1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 输出</span>
+</span></span><span class="line"><span class="cl">  Using default stripesize 64.00 KiB.
+</span></span><span class="line"><span class="cl">  Logical volume <span class="s2">&#34;cache&#34;</span> created.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="转换存储类型">转换存储类型</h3>
+<ol>
+<li>转换<code>hybrid/cache</code>这个LV的类型为缓存池<code>cache-pool</code>，设置<code>chunksize</code>为256KiB，指定缓存池元数据LV为之前已经在SSD上以raid0创建的<code>hybrid/meta_cachepool</code>：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lvconvert --type cache-pool --poolmetadata hybrid/meta_cachepool --chunksize <span class="m">256</span> hybrid/cache
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这一步操作中<code>chunksize</code>的值应该参考下方说明中<code>lvmcache</code>有关的说明进行设置。输出如下，这样，缓存池元数据LV<code>hybrid/meta_cachepool</code>和缓存池数据LV<code>hybrid/cache</code>就合并成新的缓存池LV了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  WARNING: Converting hybrid/cache and hybrid/meta_cachepool to cache pool&#39;s data and metadata volumes with metadata wiping.
+</span></span><span class="line"><span class="cl">  THIS WILL DESTROY CONTENT OF LOGICAL VOLUME (filesystem etc.)
+</span></span><span class="line"><span class="cl">Do you really want to convert hybrid/cache and hybrid/meta_cachepool? [y/n]: y
+</span></span><span class="line"><span class="cl">  Converted hybrid/cache and hybrid/meta_cachepool to cache pool.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>有关chunksize的说明</strong></p>
+<blockquote>
+<p><em>The size of chunks in a snapshot, cache pool or thin pool. For snapshots, the value must be a power of 2 between 4KiB and 512KiB and the default value is 4. For a cache pool the value must be between 32KiB and 1GiB and the default value is 64. For a thin pool the value must be between 64KiB and 1GiB and the default value starts with 64 and scales up to fit the pool metadata size within 128MiB, if the pool metadata size is not specified. The value must be a multiple of 64KiB. See lvmthin(7) and lvmcache(7) for more information.</em>
+机翻：快照、缓存池或精简池中的块大小。对于快照，该值必须是2的幂，介于4KB和512KB之间，默认值为4。对于缓存池，该值须介于32KiB和1GiB之间，并且默认值为64。对于精简池，该数值必须介于64KiB和1GiB之间，如果未指定池元数据大小，则默认值从64开始，并按比例放大以适应128MiB内的池元数据大小。该值必须是64KiB的倍数。有关更多信息，请参见<a class="link" href="https://man.archlinux.org/man/lvmthin.7.en#Chunk_size"  target="_blank" rel="noopener"
+    >lvmthin</a>和<a class="link" href="https://man.archlinux.org/man/lvmcache.7.en#dm-cache_chunk_size"  target="_blank" rel="noopener"
+    >lvmcache</a>。</p>
+</blockquote>
+<p>lvmthin：</p>
+<blockquote>
+<p>When a thin pool is used primarily for the thin provisioning feature, a larger value is optimal. To optimize for many snapshots, a smaller value reduces copying time and consumes less space.
+机翻：当精简池主要用于精简资源调配功能时，最好使用较大的值。要优化多个快照，较小的值可以减少复制时间并消耗更少的空间。</p>
+</blockquote>
+<p>lvmcache：</p>
+<blockquote>
+<p>Using a chunk size that is too large can result in wasteful use of the cache, in which small reads and writes cause large sections of an LV to be stored in the cache. It can also require increasing migration threshold which defaults to 2048 sectors (1 MiB). Lvm2 ensures migration threshold is at least 8 chunks in size. This may in some cases result in very high bandwidth load of transfering data between the cache LV and its cache origin LV. However, choosing a chunk size that is too small can result in more overhead trying to manage the numerous chunks that become mapped into the cache. Overhead can include both excessive CPU time searching for chunks, and excessive memory tracking chunks.
+机翻：使用过大的块大小可能会导致缓存的浪费使用，在这种情况下，较小的读取和写入会导致LV的较大部分存储在缓存中。它还可能需要增加迁移阈值，默认为2048个扇区（1个MiB）。Lvm2确保迁移阈值的大小至少为8个块。在某些情况下，这可能导致在高速缓存LV与其高速缓存源LV之间传输数据的非常高的带宽负载。然而，选择太小的块大小可能会导致管理映射到缓存中的大量块的更多开销。开销可能包括过多的CPU时间搜索块，以及过多的内存跟踪块。</p>
+</blockquote>
+<ol start="2">
+<li>把之前在HDD上创建的<code>hybrid/data</code>这个LV的类型转换为带缓存池LV（<code>hybrid/cache</code>）的存储类型，指定缓存池为刚刚合并后的缓存池LV<code>hybrid/cache</code>，设置缓存模式为<code>writeback</code>：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lvconvert --type cache --cachepool hybrid/cache --cachemode writeback hybrid/data
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出如下，这样，数据LV<code>hybrid/data</code>就和缓存池LV<code>hybrid/cache</code>合并成新的带缓存池的LVM存储<code>hybrid/data</code>了，这个时候它还不是LVM-thin存储。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Do you want wipe existing metadata of cache pool hybrid/cache? [y/n]: y
+</span></span><span class="line"><span class="cl">  WARNING: Data redundancy could be lost with writeback caching of raid logical volume!
+</span></span><span class="line"><span class="cl">  Logical volume hybrid/data is now cached.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>缓存模式可选择如下，我都raid0了，已经无所畏惧了，所以我选择<code>writeback</code>，数据丢了就丢了吧：</p>
+<blockquote>
+<p><strong>writeback</strong>: writeback considers a write complete as soon as it is stored in the cache pool.</p>
+</blockquote>
+<blockquote>
+<p><strong>writethough</strong>: writethough considers a write complete only when it has been stored in both the cache pool and on the origin LV. While writethrough may be slower for writes, it is more resilient if something should happen to a device associated with the cache pool LV.</p>
+</blockquote>
+<blockquote>
+<p><strong>passthrough</strong>: With passthrough, all reads are served from the origin LV (all reads miss the cache) and all writes are forwarded to the origin LV; additionally, write hits cause cache block invalidates. See lvmcache(7) for more information.</p>
+</blockquote>
+<ol start="3">
+<li>再把刚刚合并的带缓存池的LVM存储<code>hybrid/data</code>与之前创建的元数据LV<code>hybrid/meta_thinpool</code>合并转换为最终需要的LVM-thin存储：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lvconvert --type thin-pool --poolmetadata hybrid/meta_thinpool hybrid/data
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有关<code>chunksize</code>的具体说明见上方，这一步操作中<code>chunksize</code>的值应该参考上方说明中<code>lvmthin</code>有关的说明进行设置。如采用默认64KiB的chunksize，最大可支持15.81TiB的LVM-thin。我的输出如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  Thin pool volume with chunk size 64.00 KiB can address at most 15.81 TiB of data.
+</span></span><span class="line"><span class="cl">  WARNING: Converting hybrid/data and hybrid/meta_thinpool to thin pool&#39;s data and metadata volumes with metadata wiping.
+</span></span><span class="line"><span class="cl">  THIS WILL DESTROY CONTENT OF LOGICAL VOLUME (filesystem etc.)
+</span></span><span class="line"><span class="cl">Do you really want to convert hybrid/data and hybrid/meta_thinpool? [y/n]: y
+</span></span><span class="line"><span class="cl">  Converted hybrid/data and hybrid/meta_thinpool to thin pool.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="检查">检查</h2>
+<p>最后，我们来看看LV和物理磁盘的情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lvs -a -o lv_full_name,parent,lv_size,modules,devices
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">LV                                Parent              LSize   Modules              Devices                                                    
+</span></span><span class="line"><span class="cl">hybrid/cache_cpool                                    200.00g cache,raid           cache_cpool_cdata(0)                                       
+</span></span><span class="line"><span class="cl">hybrid/cache_cpool_cdata          [cache_cpool]       200.00g raid                 cache_cpool_cdata_rimage_0(0),cache_cpool_cdata_rimage_1(0)
+</span></span><span class="line"><span class="cl">hybrid/cache_cpool_cdata_rimage_0 [cache_cpool_cdata] 100.00g                      /dev/sdd1(1538)                                            
+</span></span><span class="line"><span class="cl">hybrid/cache_cpool_cdata_rimage_1 [cache_cpool_cdata] 100.00g                      /dev/sde1(1538)                                            
+</span></span><span class="line"><span class="cl">hybrid/cache_cpool_cmeta          [cache_cpool]       528.00m raid                 cache_cpool_cmeta_rimage_0(0),cache_cpool_cmeta_rimage_1(0)
+</span></span><span class="line"><span class="cl">hybrid/cache_cpool_cmeta_rimage_0 [cache_cpool_cmeta] 264.00m                      /dev/sdd1(0)                                               
+</span></span><span class="line"><span class="cl">hybrid/cache_cpool_cmeta_rimage_1 [cache_cpool_cmeta] 264.00m                      /dev/sde1(0)                                               
+</span></span><span class="line"><span class="cl">hybrid/data                                            &lt;3.64t cache,raid,thin-pool data_tdata(0)                                              
+</span></span><span class="line"><span class="cl">hybrid/data_tdata                 data                 &lt;3.64t cache,raid           data_tdata_corig(0)                                        
+</span></span><span class="line"><span class="cl">hybrid/data_tdata_corig                                &lt;3.64t raid                 data_tdata_corig_rimage_0(0),data_tdata_corig_rimage_1(0)  
+</span></span><span class="line"><span class="cl">hybrid/data_tdata_corig_rimage_0  [data_tdata_corig]   &lt;1.82t                      /dev/sdb1(0)                                               
+</span></span><span class="line"><span class="cl">hybrid/data_tdata_corig_rimage_1  [data_tdata_corig]   &lt;1.82t                      /dev/sdc1(0)                                               
+</span></span><span class="line"><span class="cl">hybrid/data_tmeta                 data                 11.50g raid                 data_tmeta_rimage_0(0),data_tmeta_rimage_1(0)              
+</span></span><span class="line"><span class="cl">hybrid/data_tmeta_rimage_0        [data_tmeta]          5.75g                      /dev/sdd1(66)                                              
+</span></span><span class="line"><span class="cl">hybrid/data_tmeta_rimage_1        [data_tmeta]          5.75g                      /dev/sde1(66)                                              
+</span></span><span class="line"><span class="cl">hybrid/lvol0_pmspare                                   11.50g                      /dev/sdd1(27138)                                           
+</span></span><span class="line"><span class="cl">hybrid/lvol0_pmspare                                   11.50g                      /dev/sde1(27138)                                           
+</span></span><span class="line"><span class="cl">pve/root                                              &lt;29.50g                      /dev/sda3(512)                                             
+</span></span><span class="line"><span class="cl">pve/swap                                                2.00g                      /dev/sda3(0) 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从输出中的<code>Layout</code>和<code>Devices</code>字段可以看出，<code>hybrid/data</code>这个综合了raid0、缓存池和具有thin功能的LVM-thin，内部的各个下级LV：</p>
+<ol>
+<li>
+<p>它的数据LV<code>data_tdata</code>大小是3.64TiB，其实就是两块HDD大小之和（2T盘的实际大小是1.82TiB），它的原始（orig）数据LV是<code>data_tdata_corig</code>，而<code>data_tdata_corig</code>是由两块HDD的<code>/dev/sdb1</code>和<code>/dev/sdc1</code>分区组的raid0（<code>data_tdata_corig_rimage_0</code>和<code>data_tdata_corig_rimage_1</code>）；</p>
+</li>
+<li>
+<p>它所需要的元数据LV（即<code>data_tmeta</code>）大小是11.5GiB，也是raid0组，这个raid0组位于两块SSD上，即<code>data_tmeta_rimage_0</code>和<code>data_tmeta_rimage_1</code>；</p>
+</li>
+<li>
+<p>它有一个缓存池LV<code>cache_cpool</code>，而缓存池LV<code>cache_cpool</code>本身又分为数据和元数据两部分：</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>缓存池数据LV是<code>cache_cpool_cdata</code>，总大小200GiB，是位于两块SSD上的<code>cache_cpool_cdata_rimage_0</code>和<code>cache_cpool_cdata_rimage_1</code>组成的raid0；</p>
+</li>
+<li>
+<p>缓存池元数据LV是<code>cache_cpool_cmeta</code>，总大小528MiB，也是由位于两块SSD上的<code>cache_cpool_cmeta_rimage_0</code>和<code>cache_cpool_cmeta_rimage_1</code>组成的raid0。</p>
+</li>
+</ul>
+<ol start="4">
+<li>转换存储类型还生成了<code>lvol0_pmspare</code>，这个是自动创建的备用池元数据LV，备用池元数据LV是在修复池时可以使用的保留空间。它的大小等同于最大的元数据LV大小（我创建的两个元数据LV中较大的是11.5GiB）。如想关闭自动创建这种类型的LV，需要在与元数据LV有关的两次转换命令lvconvert中添加<code>--poolmetadataspare n</code>。如果设置了不自动创建，那么前面的存储类型转换时也就不需要提前预留空间。虽然看起来有两个（因为我进行了两次与元数据有关的转换lvconvert），但实际上是在两块SSD上总共占用11.5GiB，每块SSD各5.75GiB。</li>
+</ol>
+<p>每块SSD上的LV有：缓存池数据LV（cache_cpool_cdata）100GiB，缓存池元数据LV（cache_cpool_cmeta）264MiB，元数据LV（data_tmeta）5.75GiB，备用池元数据LV（lvol0_pmspare）5.75GiB。以上总计111.76GiB，这就是120G的SSD的真实大小。</p>
+<p>这样，将<code>元数据LV</code>、<code>缓存池数据LV</code>、<code>缓存池元数据LV</code>全部放在SSD上以提升IO性能，两块HDD组成<code>数据LV</code>以保存原始数据，那么HDD大小之和3.64TiB就是这个LVM-thin存储的最终大小。</p>
+<p>再以另外一个角度来看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lsblk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从输出也可以看到HDD上只有data，两个metadata和cache全部位于SSD：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">NAME                                  MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+</span></span><span class="line"><span class="cl">sda                                     8:0    0    32G  0 disk 
+</span></span><span class="line"><span class="cl">├─sda1                                  8:1    0  1007K  0 part 
+</span></span><span class="line"><span class="cl">├─sda2                                  8:2    0   512M  0 part 
+</span></span><span class="line"><span class="cl">└─sda3                                  8:3    0  31.5G  0 part 
+</span></span><span class="line"><span class="cl">  ├─pve-swap                          253:0    0     2G  0 lvm  [SWAP]
+</span></span><span class="line"><span class="cl">  └─pve-root                          253:1    0  29.5G  0 lvm  /
+</span></span><span class="line"><span class="cl">sdb                                     8:16   0   1.8T  0 disk 
+</span></span><span class="line"><span class="cl">└─sdb1                                  8:17   0   1.8T  0 part 
+</span></span><span class="line"><span class="cl">  └─hybrid-data_tdata_corig_rimage_0  253:11   0   1.8T  0 lvm  
+</span></span><span class="line"><span class="cl">    └─hybrid-data_tdata_corig         253:13   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">      └─hybrid-data_tdata             253:14   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">        └─hybrid-data                 253:15   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">sdc                                     8:32   0   1.8T  0 disk 
+</span></span><span class="line"><span class="cl">└─sdc1                                  8:33   0   1.8T  0 part 
+</span></span><span class="line"><span class="cl">  └─hybrid-data_tdata_corig_rimage_1  253:12   0   1.8T  0 lvm  
+</span></span><span class="line"><span class="cl">    └─hybrid-data_tdata_corig         253:13   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">      └─hybrid-data_tdata             253:14   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">        └─hybrid-data                 253:15   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">sdd                                     8:48   0 111.8G  0 disk 
+</span></span><span class="line"><span class="cl">└─sdd1                                  8:49   0 111.8G  0 part 
+</span></span><span class="line"><span class="cl">  ├─hybrid-data_tmeta_rimage_0        253:2    0   5.8G  0 lvm  
+</span></span><span class="line"><span class="cl">  │ └─hybrid-data_tmeta               253:4    0  11.5G  0 lvm  
+</span></span><span class="line"><span class="cl">  │   └─hybrid-data                   253:15   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">  ├─hybrid-cache_cpool_cdata_rimage_0 253:5    0   100G  0 lvm  
+</span></span><span class="line"><span class="cl">  │ └─hybrid-cache_cpool_cdata        253:7    0   200G  0 lvm  
+</span></span><span class="line"><span class="cl">  │   └─hybrid-data_tdata             253:14   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">  │     └─hybrid-data                 253:15   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">  └─hybrid-cache_cpool_cmeta_rimage_0 253:8    0   264M  0 lvm  
+</span></span><span class="line"><span class="cl">    └─hybrid-cache_cpool_cmeta        253:10   0   528M  0 lvm  
+</span></span><span class="line"><span class="cl">      └─hybrid-data_tdata             253:14   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">        └─hybrid-data                 253:15   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">sde                                     8:64   0 111.8G  0 disk 
+</span></span><span class="line"><span class="cl">└─sde1                                  8:65   0 111.8G  0 part 
+</span></span><span class="line"><span class="cl">  ├─hybrid-data_tmeta_rimage_1        253:3    0   5.8G  0 lvm  
+</span></span><span class="line"><span class="cl">  │ └─hybrid-data_tmeta               253:4    0  11.5G  0 lvm  
+</span></span><span class="line"><span class="cl">  │   └─hybrid-data                   253:15   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">  ├─hybrid-cache_cpool_cdata_rimage_1 253:6    0   100G  0 lvm  
+</span></span><span class="line"><span class="cl">  │ └─hybrid-cache_cpool_cdata        253:7    0   200G  0 lvm  
+</span></span><span class="line"><span class="cl">  │   └─hybrid-data_tdata             253:14   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">  │     └─hybrid-data                 253:15   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">  └─hybrid-cache_cpool_cmeta_rimage_1 253:9    0   264M  0 lvm  
+</span></span><span class="line"><span class="cl">    └─hybrid-cache_cpool_cmeta        253:10   0   528M  0 lvm  
+</span></span><span class="line"><span class="cl">      └─hybrid-data_tdata             253:14   0   3.6T  0 lvm  
+</span></span><span class="line"><span class="cl">        └─hybrid-data                 253:15   0   3.6T  0 lvm
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="添加存储">添加存储</h2>
+<p>把创建好的LVM-thin存储添加到PVE，就大功告成了：</p>
+<p><img src="/p/pve-create-lvm-thin-with-cachepool/pic1.png"
+	width="1500"
+	height="686"
+	srcset="/p/pve-create-lvm-thin-with-cachepool/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_480x0_resize_box_3.png 480w, /p/pve-create-lvm-thin-with-cachepool/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="添加LVM-thin存储，ID自己取"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="218"
+		data-flex-basis="524px"
+	
+></p>
+<p><img src="/p/pve-create-lvm-thin-with-cachepool/pic2.png"
+	width="1500"
+	height="723"
+	srcset="/p/pve-create-lvm-thin-with-cachepool/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_480x0_resize_box_3.png 480w, /p/pve-create-lvm-thin-with-cachepool/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1000进制看起来就是4T"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="207"
+		data-flex-basis="497px"
+	
+></p>
+<p>顺便再看看磁盘空间有没有100%利用完全：</p>
+<p><img src="/p/pve-create-lvm-thin-with-cachepool/pic3.png"
+	width="1500"
+	height="632"
+	srcset="/p/pve-create-lvm-thin-with-cachepool/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_480x0_resize_box_3.png 480w, /p/pve-create-lvm-thin-with-cachepool/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="4块磁盘都100%利用了"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="237"
+		data-flex-basis="569px"
+	
+></p>
+<h2 id="参考资料">参考资料</h2>
+<p><a class="link" href="https://man.archlinux.org/man/lvm.8.en"  target="_blank" rel="noopener"
+    >lvm</a>, <a class="link" href="https://man.archlinux.org/man/pvcreate.8.en"  target="_blank" rel="noopener"
+    >pvcreate</a>, <a class="link" href="https://man.archlinux.org/man/vgcreate.8.en"  target="_blank" rel="noopener"
+    >vgcreate</a>, <a class="link" href="https://man.archlinux.org/man/lvcreate.8.en"  target="_blank" rel="noopener"
+    >lvcreate</a>, <a class="link" href="https://man.archlinux.org/man/lvconvert.8.en"  target="_blank" rel="noopener"
+    >lvconvert</a>, <a class="link" href="https://man.archlinux.org/man/lvreduce.8.en"  target="_blank" rel="noopener"
+    >lvreduce</a>, <a class="link" href="https://man.archlinux.org/man/lvremove.8.en"  target="_blank" rel="noopener"
+    >lvremove</a>, <a class="link" href="https://man.archlinux.org/man/lvs.8.en"  target="_blank" rel="noopener"
+    >lvs</a>, <a class="link" href="https://man.archlinux.org/man/lvmraid.7.en"  target="_blank" rel="noopener"
+    >lvmraid</a>, <a class="link" href="https://man.archlinux.org/man/lvmthin.7.en"  target="_blank" rel="noopener"
+    >lvmthin</a>, <a class="link" href="https://man.archlinux.org/man/lvmcache.7.en"  target="_blank" rel="noopener"
+    >lvmcache</a></p>
+<p>在上述参考资料链接下方可以看见全部命令的帮助文档，同时也可以直接在PVE命令行中输入<code>man &lt;cmd&gt;</code>来查阅上述文档。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/pve/">pve</a>
+        
+            <a href="/tags/lvm-thin/">lvm-thin</a>
+        
+            <a href="/tags/cachepool/">cachepool</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-10-26 21:56
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/debian-pve-mount-tmp-in-ram/">
+        
+        
+            <div class="article-image">
+                <img src="/p/debian-pve-mount-tmp-in-ram/pve-poster.64e7009edce642c17ad393ce579005f5_hu73cac004b61f9f0535175084b6c5473f_45414_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Debian / PVE 在内存中挂载 /tmp"
+                        data-key="debian-pve-mount-tmp-in-ram" 
+                        data-hash="md5-ZOcAntzmQsF605POV5AF9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Debian / PVE 在内存中挂载 /tmp</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/pve-install-realtek-8125-driver/">
+        
+        
+            <div class="article-image">
+                <img src="/p/pve-install-realtek-8125-driver/pve-poster.64e7009edce642c17ad393ce579005f5_hu73cac004b61f9f0535175084b6c5473f_45414_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动"
+                        data-key="pve-install-realtek-8125-driver" 
+                        data-hash="md5-ZOcAntzmQsF605POV5AF9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-use-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-use-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 为Kodi适配遥控器"
+                        data-key="kodi-use-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">为Kodi适配遥控器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-install-in-pve/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-install-in-pve/pic5.ee564cee14b7850acb26de691531a3ab_hu8370a00dfa88e5eac6888add903e6475_78260_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PVE 直接安装最新版 Kodi"
+                        data-key="kodi-install-in-pve" 
+                        data-hash="md5-7lZM7hS3hQrLJt5pFTGjqw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PVE 直接安装最新版 Kodi</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

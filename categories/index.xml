@@ -2,33 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Evine的个人博客</title>
-        <link>https://devome.github.io/categories/</link>
+        <link>https://evine.win/categories/</link>
         <description>Recent content in Categories on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 28 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Jellyfin</title>
-        <link>https://devome.github.io/categories/jellyfin/</link>
-        <pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate>
+        <lastBuildDate>Tue, 28 Nov 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Docker</title>
+        <link>https://evine.win/categories/docker/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/categories/jellyfin/</guid>
-        <description></description>
+        <guid>https://evine.win/categories/docker/</guid>
+        <description>&lt;img src="https://evine.win/categories/docker/cover.png" alt="Featured image of post Docker" /&gt;</description>
         </item>
         <item>
-        <title>教程</title>
-        <link>https://devome.github.io/categories/%E6%95%99%E7%A8%8B/</link>
-        <pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate>
+        <title>Jellyfin</title>
+        <link>https://evine.win/categories/jellyfin/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/categories/%E6%95%99%E7%A8%8B/</guid>
-        <description></description>
+        <guid>https://evine.win/categories/jellyfin/</guid>
+        <description>&lt;img src="https://evine.win/categories/jellyfin/cover.png" alt="Featured image of post Jellyfin" /&gt;</description>
+        </item>
+        <item>
+        <title>Kodi</title>
+        <link>https://evine.win/categories/kodi/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://evine.win/categories/kodi/</guid>
+        <description>&lt;img src="https://evine.win/categories/kodi/cover.png" alt="Featured image of post Kodi" /&gt;</description>
         </item>
         <item>
         <title>Promox VE</title>
-        <link>https://devome.github.io/categories/proxmoxve/</link>
-        <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+        <link>https://evine.win/categories/pve/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://devome.github.io/categories/proxmoxve/</guid>
-        <description></description>
+        <guid>https://evine.win/categories/pve/</guid>
+        <description>&lt;img src="https://evine.win/categories/pve/cover.png" alt="Featured image of post Promox VE" /&gt;</description>
+        </item>
+        <item>
+        <title>qBittorrent</title>
+        <link>https://evine.win/categories/qbittorrent/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://evine.win/categories/qbittorrent/</guid>
+        <description>&lt;img src="https://evine.win/categories/qbittorrent/cover.png" alt="Featured image of post qBittorrent" /&gt;</description>
+        </item>
+        <item>
+        <title>软路由</title>
+        <link>https://evine.win/categories/gateway/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://evine.win/categories/gateway/</guid>
+        <description>&lt;img src="https://evine.win/categories/gateway/cover.png" alt="Featured image of post 软路由" /&gt;</description>
         </item>
         
     </channel>

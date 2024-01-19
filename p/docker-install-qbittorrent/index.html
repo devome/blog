@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文较长，如想略过某些内容，请直接点击右侧目录链接。 说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，'>
+<title>一款更懂你的 qbittorrent docker 镜像</title>
+
+<link rel='canonical' href='https://evine.win/p/docker-install-qbittorrent/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='一款更懂你的 qbittorrent docker 镜像'>
+<meta property='og:description' content='本文较长，如想略过某些内容，请直接点击右侧目录链接。 说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，'>
+<meta property='og:url' content='https://evine.win/p/docker-install-qbittorrent/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-19T14:12:58&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
+<meta name="twitter:title" content="一款更懂你的 qbittorrent docker 镜像">
+<meta name="twitter:description" content="本文较长，如想略过某些内容，请直接点击右侧目录链接。 说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#说明">说明</a></li>
+    <li><a href="#声明">声明</a></li>
+    <li><a href="#效果图">效果图</a></li>
+    <li><a href="#特点">特点</a></li>
+    <li><a href="#标签">标签</a></li>
+    <li><a href="#更新日志仅列出稳定版">更新日志（仅列出稳定版）</a></li>
+    <li><a href="#环境变量清单">环境变量清单</a></li>
+    <li><a href="#创建">创建</a>
+      <ol>
+        <li><a href="#群晖">群晖</a></li>
+        <li><a href="#命令行docker-cli">命令行docker cli</a></li>
+        <li><a href="#docker-compose">docker compose</a></li>
+      </ol>
+    </li>
+    <li><a href="#目录说明">目录说明</a></li>
+    <li><a href="#相关问题">相关问题</a>
+      <ol>
+        <li><a href="#使用此镜像会导致封号吗">使用此镜像会导致封号吗</a></li>
+        <li><a href="#如何在运行-dl-finish-k-时调用自定义脚本">如何在运行 dl-finish &ldquo;%K&rdquo; 时调用自定义脚本</a></li>
+        <li><a href="#如何优雅的关闭qbittorrent容器">如何优雅的关闭qbittorrent容器</a></li>
+        <li><a href="#如何从其他作者的镜像套件版转移至本镜像">如何从其他作者的镜像/套件版转移至本镜像</a></li>
+        <li><a href="#可不可以不使用默认下载目录">可不可以不使用默认下载目录</a></li>
+        <li><a href="#遗忘登陆密码如何重置">遗忘登陆密码如何重置</a></li>
+        <li><a href="#如何与emby-jellyfin-plex等等配合使用">如何与emby, jellyfin, plex等等配合使用</a></li>
+        <li><a href="#启用了其他非官方webui导致webui打不开如何关闭">启用了其他非官方webui，导致webui打不开，如何关闭</a></li>
+        <li><a href="#如何自动更新容器">如何自动更新容器</a></li>
+        <li><a href="#安装了watchtower如何让qbittorrent不被watchtower自动更新">安装了watchtower，如何让qbittorrent不被watchtower自动更新</a></li>
+        <li><a href="#为何建议将qbittorrent安装在macvlan网络上">为何建议将qbittorrent安装在macvlan网络上</a></li>
+        <li><a href="#将qbittorrent安装在macvlan网络上时如何使用iyuuautoreseed自动辅种">将qbittorrent安装在macvlan网络上时，如何使用IYUUAutoReseed自动辅种</a></li>
+        <li><a href="#如何使用-cron_alter_limits-这个环境变量">如何使用 CRON_ALTER_LIMITS 这个环境变量</a></li>
+        <li><a href="#如何使用-cron_iyuu_help-这个环境变量">如何使用 CRON_IYUU_HELP 这个环境变量</a></li>
+        <li><a href="#qbittorrent使用https的webui时iyuu如何连接">qBittorrent使用https的webui时，iyuu如何连接</a></li>
+        <li><a href="#qbittorrent占用了巨大的内存如何调整">qBittorrent占用了巨大的内存，如何调整</a></li>
+        <li><a href="#qb老是不监听ipv6地址怎么办">qB老是不监听IPv6地址，怎么办？</a></li>
+      </ol>
+    </li>
+    <li><a href="#命令">命令</a>
+      <ol>
+        <li><a href="#自动运行的命令所有标签可用由设置的cron或在下载完成时自动运行当然也可以手动运行">自动运行的命令（所有标签可用，由设置的cron或在下载完成时自动运行，当然也可以手动运行）</a></li>
+        <li><a href="#需要手动运行的命令所有标签可用">需要手动运行的命令（所有标签可用）</a></li>
+        <li><a href="#仅iyuu标签可用的命令">仅“iyuu”标签可用的命令</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考">参考</a></li>
+    <li><a href="#源代码问题反馈意见建议">源代码、问题反馈、意见建议</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/docker-install-qbittorrent/">
+                <img src="/p/docker-install-qbittorrent/notify_hu76daec3f73afd3f1986c395facd4c9f2_27308_800x0_resize_box_3.png"
+                        srcset="/p/docker-install-qbittorrent/notify_hu76daec3f73afd3f1986c395facd4c9f2_27308_800x0_resize_box_3.png 800w, /p/docker-install-qbittorrent/notify_hu76daec3f73afd3f1986c395facd4c9f2_27308_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="849" 
+                        loading="lazy"
+                        alt="Featured image of post 一款更懂你的 qbittorrent docker 镜像" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/qbittorrent/" style="background-color: #2a9d8f; color: #fff;">
+                qBittorrent
+            </a>
+        
+            <a href="/categories/docker/" style="background-color: #2a9d8f; color: #fff;">
+                Docker
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/docker-install-qbittorrent/">一款更懂你的 qbittorrent docker 镜像</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-18</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 34 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>本文较长，如想略过某些内容，请直接点击右侧目录链接。</p>
+</blockquote>
+<h2 id="说明">说明</h2>
+<p>为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。<a class="link" href="https://github.com/devome/dockerfiles/issues/101"  target="_blank" rel="noopener"
+    >详情</a>。也因此镜像默认即安装好python，不再需要设置<code>INSTALL_PYTHON</code>这个环境变量。</p>
+<h2 id="声明">声明</h2>
+<p>本镜像非魔改版、非快验版、非Enhanced增强版，qBittorrent自身的行为/功能全部未做任何改动（也不会考虑添加或修改官方客户端行为/功能的内容），全部属于官方客户端的默认行为/功能，在和PT站Tracker服务器交互时反馈的一切信息均是qBittorrent官方版反馈的信息。本镜像只是基于官方客户端附加了一些实用的脚本，脚本全部是合理合法使用qBittorrent官方API获取信息，脚本全部行为都集中在本地，与任何远端服务器无任何联系。增加的脚本全部代码在 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
+    >Github</a> 或 <a class="link" href="https://gitee.com/evine/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
+    >Gitee</a> 均可查看 。绝对不会因为使用此镜像而导致账号被封。</p>
+<h2 id="效果图">效果图</h2>
+<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/d81ef270f591ed4c.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="iyuu-help"
+	
+	
+></p>
+<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/d0164dc03fa2fcdc.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="change-tracker"
+	
+	
+></p>
+<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/c68d896355a22dcf.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="change-tracker"
+	
+	
+></p>
+<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/1cad397ec970f9e3.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="remove-tracker"
+	
+	
+></p>
+<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/620a163165b3398f.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="del-unseed-dir"
+	
+	
+></p>
+<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/08cd619845b95053.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="report-seed-files"
+	
+	
+></p>
+<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/0d107538303e9ce2.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="report-unseed-files"
+	
+	
+></p>
+<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/cf0b7468ef16760e.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="gen-dup"
+	
+	
+></p>
+<h2 id="特点">特点</h2>
+<ul>
+<li>
+<p>自动按<code>tracker</code>分类或打标签（<strong>可以选择关闭，可以选择采用qBittorrent中的“分类”还是“标签”</strong>）。</p>
+</li>
+<li>
+<p>下载完成发送通知（<strong>可以选择关闭</strong>），可选途径：钉钉（<a class="link" href="notify.png" >效果图</a>）, Telegram, ServerChan, 爱语飞飞, PUSHPLUS推送加, 企业微信, Gotify；搭配RSS功能（<a class="link" href="https://www.jianshu.com/p/54e6137ea4e3"  target="_blank" rel="noopener"
+    >RSS教程</a>）自动下载效果很好；下载完成后还可以补充运行你的自定义脚本。</p>
+</li>
+<li>
+<p>故障时发送通知，可选途径同上。</p>
+</li>
+<li>
+<p>按设定的cron检查tracker状态，如发现种子的tracker状态有问题，将给该种子添加<code>TrackerError</code>的标签，方便筛选；如果tracker出错数量超过设定的阈值，给设定渠道发送通知。</p>
+</li>
+<li>
+<p><strong>一些辅助功能：批量修改tracker；检测指定文件夹下未做种的子文件夹/文件；生成做种文件清单；生成未做种文件清单；配合IYUU自动重新校验和自动恢复做种；指定设备上线时自动限速；多时段限速；分析指定目录的重复做种率（辅种率）等等。</strong></p>
+</li>
+<li>
+<p><strong>如需要下载完成后自动触发EMBY/JELLYFIN扫描媒体库，触发ChineseSubFinder自动为刚刚下载完成的视频自动下载字幕，请按照 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent/diy"  target="_blank" rel="noopener"
+    >这里</a> 操作。</strong></p>
+</li>
+<li>
+<p><del><code>python</code>为可选安装项，设置为<code>true</code>就自动安装。</del>（从2023年9月5日起，默认安装好python，不再需要设置这一项。）</p>
+</li>
+<li>
+<p>体积小，默认中文UI，默认东八区时区。</p>
+</li>
+<li>
+<p><code>iyuu</code>标签集成了<a class="link" href="https://github.com/ledccn/IYUUPlus"  target="_blank" rel="noopener"
+    >IYUUPlus</a>，自动设置好下载器，减少IYUUPlus设置复杂程度。</p>
+</li>
+</ul>
+<h2 id="标签">标签</h2>
+<ol>
+<li>
+<p><strong><code>4.x.x</code> , <code>latest</code></strong>: 标签以纯数字版本号命名，这是qBittorrent正式发布的稳定版，其中最新的版本额外增加<code>latest</code>标签。</p>
+</li>
+<li>
+<p><strong><code>4.x.x-iyuu</code> , <code>latest-iyuu</code> , <code>iyuu</code></strong>: 标签中带有<code>iyuu</code>字样，基于qBittorrent稳定版集成了<a class="link" href="https://github.com/ledccn/IYUUPlus"  target="_blank" rel="noopener"
+    >IYUUPlus</a>，其中最新的版本额外增加<code>latest-iyuu</code>和<code>iyuu</code>标签，自动安装好<a class="link" href="https://github.com/ledccn/IYUUPlus"  target="_blank" rel="noopener"
+    >IYUUPlus</a>，自动设置好下载器，主要针对不会设置下载器的用户。</p>
+</li>
+<li>
+<p><strong><code>x.x.xalphax</code>, <code>x.x.xbetax</code> , <code>x.x.xrcx</code> , <code>unstable</code></strong>: 标签中带有<code>alpha</code>、<code>beta</code>或<code>rc</code>字样，这是qBittorrent发布的测试版，其中最新的测试版额外增加<code>unstable</code> 标签。此标签仅供测试使用及向qBittorrent官方反馈bug使用。</p>
+</li>
+<li>
+<p><strong><code>edge</code></strong>: 基于<code>alpine:edge</code>制作的镜像，体积最小，所依赖的组件版本最新，会提供<code>riscv64</code>版本镜像。<strong>所有新功能或者BUG修复，或者有任何变化时，都会第一时间更新到此标签。</strong></p>
+</li>
+</ol>
+<h2 id="更新日志仅列出稳定版">更新日志（仅列出稳定版）</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center">Date</th>
+<th style="text-align:center">qBittorrent</th>
+<th style="text-align:center">libtorrent</th>
+<th style="text-align:center">alpine</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">20210608</td>
+<td style="text-align:center">4.3.5</td>
+<td style="text-align:center">1.2.13</td>
+<td style="text-align:center">3.13.5</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">20210617</td>
+<td style="text-align:center">4.3.5</td>
+<td style="text-align:center">1.2.14</td>
+<td style="text-align:center">3.14.0</td>
+<td>默认不再安装python，需要开关打开才安装</td>
+</tr>
+<tr>
+<td style="text-align:center">20210628</td>
+<td style="text-align:center">4.3.6</td>
+<td style="text-align:center">1.2.14</td>
+<td style="text-align:center">3.14.0</td>
+<td>优化自动分类和tracker错误检查时的资源占用</td>
+</tr>
+<tr>
+<td style="text-align:center">20210804</td>
+<td style="text-align:center">4.3.7</td>
+<td style="text-align:center">1.2.14</td>
+<td style="text-align:center">3.14.0</td>
+<td>1. 增加5个环境变量控制开关，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 增加批量修改 tracker的功能，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；<br>3. 增加在运行<code>dl-finish %K</code>时运行自定义脚本的功能，详见<a class="link" href="#%e5%a6%82%e4%bd%95%e5%9c%a8%e8%bf%90%e8%a1%8c-dl-finish-i-%e6%97%b6%e8%b0%83%e7%94%a8%e8%87%aa%e5%ae%9a%e4%b9%89%e8%84%9a%e6%9c%ac" >相关问题2</a>。</td>
+</tr>
+<tr>
+<td style="text-align:center">20210830</td>
+<td style="text-align:center">4.3.8</td>
+<td style="text-align:center">1.2.14</td>
+<td style="text-align:center">3.14.2</td>
+<td>1. 增加3个环境变量控制开关，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 增加检测指定目录未做种的子文件夹/文件功能，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>。</td>
+</tr>
+<tr>
+<td style="text-align:center">20211101</td>
+<td style="text-align:center">4.3.9</td>
+<td style="text-align:center">1.2.14</td>
+<td style="text-align:center">3.14.2</td>
+<td>修复通知内容中含有字符&quot;&amp;&ldquo;时无法正常发送的bug。</td>
+</tr>
+<tr>
+<td style="text-align:center">20220107</td>
+<td style="text-align:center">4.4.0</td>
+<td style="text-align:center">2.0.5</td>
+<td style="text-align:center">3.14.3</td>
+<td>1. 增加环境变量<code>EXTRA_PACKAGES</code>，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 默认运行自动分类程序时仅对未分类的种子进行分类，如需要强制对所有种子进行分类，请参考<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；<br>3. 增加两个需要手动运行的脚本<code>report-seed-files</code>(导出所有做种文件清单)和<code>report-unseed-files</code>(导出指定文件夹下未做种文件清单)，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>。</td>
+</tr>
+<tr>
+<td style="text-align:center">20220216</td>
+<td style="text-align:center">4.4.1</td>
+<td style="text-align:center">2.0.5</td>
+<td style="text-align:center">3.14.3</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">20220325</td>
+<td style="text-align:center">4.4.2</td>
+<td style="text-align:center">2.0.5</td>
+<td style="text-align:center">3.14.4</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">20220524</td>
+<td style="text-align:center">4.4.3</td>
+<td style="text-align:center">2.0.6</td>
+<td style="text-align:center">3.16.0</td>
+<td>1. 修复存在多个标签时无法移除<code>TrackerError</code>标签的bug；</br>2. 增加企业微信群机器人的通知渠道。</br>3. 升级openssl到1.1.1o，boost到1.78，alpine到3.16.0，升级iyuu镜像中的php7为php8。</td>
+</tr>
+<tr>
+<td style="text-align:center">20220526</td>
+<td style="text-align:center">4.4.3.1</td>
+<td style="text-align:center">2.0.6</td>
+<td style="text-align:center">3.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">20220824</td>
+<td style="text-align:center">4.4.4</td>
+<td style="text-align:center">2.0.7</td>
+<td style="text-align:center">3.16.2</td>
+<td>1. 增加<code>remove-track</code>脚本，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；</br>2. 优化<code>del-unseed-dir</code>脚本，现还可以一次性检测多个目录了；</br>3. 增加Gotity通知环境变量<code>GOTIFY_URL</code> <code>GOTIFY_APP_TOKEN</code> <code>GOTIFY_PRIORITY</code>，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>。</td>
+</tr>
+<tr>
+<td style="text-align:center">20220831</td>
+<td style="text-align:center">4.4.5</td>
+<td style="text-align:center">2.0.7</td>
+<td style="text-align:center">3.16.2</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">20221024</td>
+<td style="text-align:center">4.4.5</td>
+<td style="text-align:center">2.0.8</td>
+<td style="text-align:center">3.16.2</td>
+<td>libtorrent-rasterbar v2.0.8 修复了内存溢出的问题，因此更新一下qbittorrent。</td>
+</tr>
+<tr>
+<td style="text-align:center">20221109</td>
+<td style="text-align:center">4.3.9</td>
+<td style="text-align:center">1.2.18</td>
+<td style="text-align:center">3.16.2</td>
+<td>添加<code>CATEGORY_OR_TAG</code>环境变量，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；考虑到4.3.9将是许多人的使用版本，将全部新功能重新应用到4.3.9版本中。</td>
+</tr>
+<tr>
+<td style="text-align:center">20221126</td>
+<td style="text-align:center">4.3.9</br>4.5.0</td>
+<td style="text-align:center">1.2.18</br>2.0.8</td>
+<td style="text-align:center">3.17.0</td>
+<td>alpine升级至3.17.0，升级依赖版本为：boost 1.80.0, openssl 3.0.7, qt 5.16.6, zlib 1.2.13</td>
+</tr>
+<tr>
+<td style="text-align:center">20221130</td>
+<td style="text-align:center">4.5.0</td>
+<td style="text-align:center">1.2.18</td>
+<td style="text-align:center">3.17.0</td>
+<td>把依赖项<code>libtorrent-rasterbar</code>从<code>2.0.8</code>切换为<code>1.2.18</code>，应用<a class="link" href="https://patch-diff.githubusercontent.com/raw/qbittorrent/qBittorrent/pull/17994.patch"  target="_blank" rel="noopener"
+    >#17994.patch</a>修复<code>4.5.0</code>版本简体中文无法启用的bug，需要先切换为英文再切换为中文，或者在启动容器前先将<code>config/qBittorrent.conf</code>中<code>General\Locale</code>这一行从<code>zh</code>改为<code>zh_CN</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center">20230213</td>
+<td style="text-align:center">4.5.1</td>
+<td style="text-align:center">1.2.18</td>
+<td style="text-align:center">3.17.2</td>
+<td>1. 根据版本的不同自动设置<code>General\Locale</code>为<code>zh</code>或<code>zh_CN</code>；</br>2. 优化<code>auto-cat</code> <code>report-unseed-files</code> <code>tracker-error</code>逻辑，加快运行速度，对多tracker的，只要有一个正常就不标记为<code>TrackerError</code>（有任何一个tracker处于<code>工作``更新中</code>和<code>未联系</code>都不会视作<code>TrackerError</code>，只有在运行脚本当时那一刻全部tracker处于<code>未工作</code>才会标记）；</br>3. 切换为qt6并增加依赖<code>qt6-qtbase-sqlite</code>；</br>4. 修复<a class="link" href="https://github.com/devome/dockerfiles/issues/68"  target="_blank" rel="noopener"
+    >#68</a>，<a class="link" href="https://github.com/devome/dockerfiles/issues/69"  target="_blank" rel="noopener"
+    >#69</a>。</td>
+</tr>
+<tr>
+<td style="text-align:center">20230228</td>
+<td style="text-align:center">4.5.2</td>
+<td style="text-align:center">2.0.8</td>
+<td style="text-align:center">3.17.2</td>
+<td>1. libtorrent-rasterbar切换为2.x；</br>2. 再一次优化<code>tracker-error</code>减少70%时长。</td>
+</tr>
+<tr>
+<td style="text-align:center">20230529</td>
+<td style="text-align:center">4.5.3</td>
+<td style="text-align:center">2.0.9</td>
+<td style="text-align:center">3.18.0</td>
+<td>1. 再一次优化<code>report-seed-files</code>减少70%时长；</br>2. <code>dl-finish</code>不再使用<code>%I</code>传参，而使用<code>%K</code>，已经部署好的使用<code>%I</code>也没有问题（除非会有混合种子或v2种子）；3. 增加<code>gen-dup</code>脚本，详见“命令”章节。</td>
+</tr>
+<tr>
+<td style="text-align:center">20230619</td>
+<td style="text-align:center">4.5.4</td>
+<td style="text-align:center">2.0.9</td>
+<td style="text-align:center">3.18.2</td>
+<td><code>gen-dup</code>脚本增加总计输出。</td>
+</tr>
+<tr>
+<td style="text-align:center">20230830</td>
+<td style="text-align:center">4.5.5</td>
+<td style="text-align:center">2.0.9</td>
+<td style="text-align:center">3.18.3</td>
+<td>抛弃<code>s6-overlay</code>，直接交给<code>tini</code>来捕获退出信号，在退出/停止容器时qB会自动保存配置和种子进度。定时任务改由低权限运行，日志记录在容器内的<code>/data/diy/crond.log</code>，不再输出到容器控制台。</td>
+</tr>
+<tr>
+<td style="text-align:center">20230906</td>
+<td style="text-align:center">4.5.5</td>
+<td style="text-align:center">2.0.9</td>
+<td style="text-align:center">3.18.3</td>
+<td>为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。<a class="link" href="https://github.com/devome/dockerfiles/issues/101"  target="_blank" rel="noopener"
+    >详情</a>。也因此镜像默认即安装好python，不再需要设置<code>INSTALL_PYTHON</code>这个环境变量。</td>
+</tr>
+<tr>
+<td style="text-align:center">20231023</td>
+<td style="text-align:center">4.6.0</td>
+<td style="text-align:center">2.0.9</td>
+<td style="text-align:center">3.18.4</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">20231121</td>
+<td style="text-align:center">4.3.9</br>4.6.1</td>
+<td style="text-align:center">2.0.9</td>
+<td style="text-align:center">3.18.4</td>
+<td>增加一个环境变量<code>TG_API_HOST</code>，同时允许关闭<code>CRON_HEALTH_CHECK</code>和<code>CRON_TRACKER_ERROR</code>，此三项环境变量说明详见 <a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>。从此版本起，qBittorrent官方已经设置禁止默认密码，因此请务必设置<code>QB_USERNAME</code>和<code>QB_PASSWORD</code>为非默认值。同步编译的<code>4.3.9</code>版本亦可使用新版本可用的环境变量。</td>
+</tr>
+<tr>
+<td style="text-align:center">20231128</td>
+<td style="text-align:center">4.6.2</td>
+<td style="text-align:center">2.0.9</td>
+<td style="text-align:center">3.18.4</td>
+<td>修复<code>UMASK_SET</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center">20240117</td>
+<td style="text-align:center">4.6.3</td>
+<td style="text-align:center">2.0.9</td>
+<td style="text-align:center">3.19.0</td>
+<td><code>iyuu</code>相关标签将php升级到8.3.x。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="环境变量清单">环境变量清单</h2>
+<p>在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中<code>WEBUI_PORT</code> <code>BT_PORT</code>的形式自行补充添加到创建命令中。</p>
+<p><em>注1：默认值的含义是，你不设置这个环境变量为其他值，那么程序就自动使用默认值。</em></p>
+<p><em>注2：所有定时任务cron类的环境变量（以<code>CRON</code>这四个字母开头的）在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。</em></p>
+<p><em>注3：<strong><code>QB_USERNAME</code>和<code>QB_PASSWORD</code>必须改成非默认值，除此以外，其余所有环境变量你都可以不设置，并不影响qbittorrent的使用</strong>，但如果你想用得更爽，你就根据你的需要设置。</em></p>
+<p><strong>以下是所有标签均可用的环境变量：</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">变量名</th>
+<th style="text-align:center">默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">PUID</td>
+<td style="text-align:center">1000</td>
+<td>用户的uid，输入命令<code>id -u</code>可以查到，以该用户运行qbittorrent-nox，群晖用户必须改。</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">PGID</td>
+<td style="text-align:center">100</td>
+<td>用户的gid，输入命令<code>id -g</code>可以查到，以该用户运行qbittorrent-nox，群晖用户必须改。</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">WEBUI_PORT</td>
+<td style="text-align:center">8080</td>
+<td>WebUI访问端口，建议自定义，如需公网访问，需要将qBittorrent和公网之间所有网关设备上都设置端口转发。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">BT_PORT</td>
+<td style="text-align:center">34567</td>
+<td>BT监听端口，建议自定义，如需达到<code>可连接</code>状态，需要将qBittorrent和公网之间所有网关设备上都设置端口转发。</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">QB_USERNAME</td>
+<td style="text-align:center">admin</td>
+<td>4.5.5+必须设置此环境变量，登陆qBittorrent的用户名，<strong>请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">QB_PASSWORD</td>
+<td style="text-align:center">adminadmin</td>
+<td>4.5.5+必须设置此环境变量，登陆qBittorrent的密码，<strong>请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">TZ</td>
+<td style="text-align:center">Asia/Shanghai</td>
+<td>时区，可填内容详见：https://meetingplanner.io/zh-cn/timezone/cities</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">INSTALL_PYTHON</td>
+<td style="text-align:center">false</td>
+<td><strong>从4.5.5起，默认安装好python，不再需要设置这个环境变量。</strong><del>默认不安装python，如需要python（qBittorrent的搜索功能必须安装python），请设置为<code>true</code>，设置后将在首次启动容器时自动安装好。</del></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">ENABLE_AUTO_CATEGORY</td>
+<td style="text-align:center">true</td>
+<td>4.3.7+可用。是否自动按tracker进行分类，默认为<code>true</code>开启，如需关闭，请设置为<code>false</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">CATEGORY_OR_TAG</td>
+<td style="text-align:center">category</td>
+<td>4.3.9及4.5.0+可用，当<code>ENABLE_AUTO_CATEGORY=true</code>时，控制自动分类是qBittorrent中的“分类”还是“标签”。设置为<code>category</code>（默认值）为“分类”，设置为<code>tag</code>为“标签”。当设置为<code>tag</code>时，由于标签不是唯一的，无法筛选出没有打上tracker标签的种子，所以运行<code>auto-cat -a</code>和<code>auto-cat -A</code>都将对全部种子按tracker打标签，种子多时比较耗时；而当设置为<code>category</code>时，运行<code>auto-cat -a</code>就只对未分类种子进行分类。</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">DL_FINISH_NOTIFY</td>
+<td style="text-align:center">true</td>
+<td>默认会在下载完成时向设定的通知渠道发送种子下载完成的通知消息，如不想收此类通知，则设置为<code>false</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">TRACKER_ERROR_COUNT_MIN</td>
+<td style="text-align:center">3</td>
+<td>4.3.7+可用。可以设置的值：正整数。在检测到tracker出错的种子数量超过这个阈值时，给设置的通知渠道发送通知。</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">UMASK_SET</td>
+<td style="text-align:center"></td>
+<td>权限掩码<code>umask</code>，指定qBittorrent在建立文件时预设的权限掩码。</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">TG_USER_ID</td>
+<td style="text-align:center"></td>
+<td>通知渠道telegram，如需使用需要和 TG_BOT_TOKEN 同时赋值，私聊 @getuseridbot 获取。</td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:center">TG_BOT_TOKEN</td>
+<td style="text-align:center"></td>
+<td>通知渠道telegram，如需使用需要和 TG_USER_ID 同时赋值，私聊 @BotFather 获取。</td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td style="text-align:center">TG_PROXY_ADDRESS</td>
+<td style="text-align:center"></td>
+<td>4.3.7+可用。给TG机器人发送消息的代理地址，当设置了<code>TG_USER_ID</code>和<code>TG_BOT_TOKEN</code>后可以设置此值，形如：<code>http://192.168.1.1:7890</code>，也可以不设置。</td>
+</tr>
+<tr>
+<td style="text-align:center">17</td>
+<td style="text-align:center">TG_PROXY_USER</td>
+<td style="text-align:center"></td>
+<td>4.3.7+可用。给TG机器人发送消息的代理的用户名和密码，当设置了<code>TG_PROXY_ADDRESS</code>后可以设置此值，格式为：<code>&lt;用户名&gt;:&lt;密码&gt;</code>，形如：<code>admin:password</code>，如没有可不设置。</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td style="text-align:center">TG_API_HOST</td>
+<td style="text-align:center"></td>
+<td>4.6.1+可用。Telegram 的反代 API，如果设置了就改为向你的反代 API 发送消息，不设置则向官方 API 发送消息。</td>
+</tr>
+<tr>
+<td style="text-align:center">19</td>
+<td style="text-align:center">DD_BOT_TOKEN</td>
+<td style="text-align:center"></td>
+<td>通知渠道钉钉，如需使用需要和 DD_BOT_SECRET 同时赋值，机器人设置中webhook链接<code>access_token=</code>后面的字符串（不含<code>=</code>以及<code>=</code>之前的字符）。</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td style="text-align:center">DD_BOT_SECRET</td>
+<td style="text-align:center"></td>
+<td>通知渠道钉钉，如需使用需要和 DD_BOT_TOKEN 同时赋值，机器人设置中<strong>只启用</strong><code>加签</code>，加签的秘钥，形如：<code>SEC1234567890abcdefg</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">IYUU_TOKEN</td>
+<td style="text-align:center"></td>
+<td>通知渠道爱语飞飞，通过 <a class="link" href="http://iyuu.cn"  target="_blank" rel="noopener"
+    >这里</a> 获取，爱语飞飞的TOKEN。</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td style="text-align:center">SCKEY</td>
+<td style="text-align:center"></td>
+<td>通知渠道ServerChan，通过 <a class="link" href="http://sc.ftqq.com/3.version"  target="_blank" rel="noopener"
+    >这里</a> 获取。</td>
+</tr>
+<tr>
+<td style="text-align:center">23</td>
+<td style="text-align:center">PUSHPLUS_TOKEN</td>
+<td style="text-align:center"></td>
+<td>4.3.7+可用。通知渠道PUSH PLUS，填入其token，详见 <a class="link" href="http://www.pushplus.plus"  target="_blank" rel="noopener"
+    >这里</a>。</td>
+</tr>
+<tr>
+<td style="text-align:center">24</td>
+<td style="text-align:center">WORK_WECHAT_BOT_KEY</td>
+<td style="text-align:center"></td>
+<td>4.3.9及4.4.3+可用。通知渠道企业微信群机器人，填入机器人设置webhook链接中<code>key=</code>后面的字符串，不含<code>key=</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center">25</td>
+<td style="text-align:center">GOTIFY_URL</td>
+<td style="text-align:center"></td>
+<td>4.3.9及4.4.4+可用。通知渠道Gotify，填入其通知网址，需要和<code>GOTIFY_APP_TOKEN</code>同时赋值。</td>
+</tr>
+<tr>
+<td style="text-align:center">26</td>
+<td style="text-align:center">GOTIFY_APP_TOKEN</td>
+<td style="text-align:center"></td>
+<td>4.3.9及4.4.4+可用。通知渠道Gotify，填入其TOKEN，需要和<code>GOTIFY_URL</code>同时赋值。</td>
+</tr>
+<tr>
+<td style="text-align:center">27</td>
+<td style="text-align:center">GOTIFY_PRIORITY</td>
+<td style="text-align:center">5</td>
+<td>4.3.9及4.4.4+可用。通知渠道Gotify，发送消息的优先级。</td>
+</tr>
+<tr>
+<td style="text-align:center">28</td>
+<td style="text-align:center">CRON_HEALTH_CHECK</td>
+<td style="text-align:center">12 * * * *</td>
+<td>宕机检查的cron，在设定的cron运行时如发现qbittorrent-nox宕机了，则向设置的通知渠道发送通知。<strong>4.6.1+可以设置为<code>off</code>，意为关闭此定时任务。</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">29</td>
+<td style="text-align:center">CRON_AUTO_CATEGORY</td>
+<td style="text-align:center">32 */2 * * *</td>
+<td>自动分类的cron，在设定的cron运行<code>auto-cat -a</code>命令，将所有<strong>未分类</strong>种子按tracker分类（当<code>CATEGORY_OR_TAG=category</code>时），或将所有种子按tracker打标签（当<code>CATEGORY_OR_TAG=tag</code>时）。对于种子很多的大户人家，建议把cron频率修改低一些，一天一次即可。此cron可以由<code>ENABLE_AUTO_CATEGORY</code>关闭，关闭后不生效。虽然本变量是全版本有效，但控制采用“分类”还是“标签”的变量<code>CATEGORY_OR_TAG</code>仅4.3.9和4.5.0+有效。</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td style="text-align:center">CRON_TRACKER_ERROR</td>
+<td style="text-align:center">52 */4 * * *</td>
+<td>检查tracker状态是否健康的cron，在设定的cron将检查所有种子的tracker状态，如果有问题就打上<code>TrackerError</code>的标签。在运行的时候比较吃资源，所以对于种子很多的大户人家，或者是对此不那么敏感的用户，建议把cron频率修改低一些，一天一次即可。<strong>4.6.1+可以设置为<code>off</code>，意为关闭此定时任务。</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">31</td>
+<td style="text-align:center">MONITOR_IP</td>
+<td style="text-align:center"></td>
+<td>4.3.8+可用。可设置为局域网设备的ip，多个ip以半角空格分隔，形如：<code>192.168.1.5 192.168.1.9 192.168.1.20</code>。本变量作用：当检测到这些设置的ip中有任何一个ip在线时（检测频率为每分钟），自动启用qbittorent客户端的“备用速度限制”，如果都不在线就关闭“备用速度限制”。“备用速度限制”需要事先设置好限制速率，建议在路由器上给需要设置的设备固定ip。在docker cli中请使用一对双引号引起来，在docker-compose中不要使用引用。</td>
+</tr>
+<tr>
+<td style="text-align:center">32</td>
+<td style="text-align:center">CRON_ALTER_LIMITS</td>
+<td style="text-align:center"></td>
+<td>4.3.8+可用。启动和关闭“备用速度限制“的cron，主要针对多时段限速场景，当设置了<code>MONITOR_IP</code>时本变量的cron不生效（因为会冲突）。详见 <a class="link" href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-cron_alter_limits-%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" >相关问题13</a> 问题13。</td>
+</tr>
+<tr>
+<td style="text-align:center">33</td>
+<td style="text-align:center">CRON_IYUU_HELP</td>
+<td style="text-align:center"></td>
+<td>4.3.8+可用。IYUUPlus辅助任务的cron，自动重校验、自动恢复做种，详见 <a class="link" href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-cron_iyuu_help-%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" >相关问题14</a>。</td>
+</tr>
+<tr>
+<td style="text-align:center">34</td>
+<td style="text-align:center">EXTRA_PACKAGES</td>
+<td style="text-align:center"></td>
+<td>4.3.9+可用。你需要安装的其他软件包，形如<code>htop nano nodejs</code>，多个软件包用半角空格分开，在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>以下是仅<code>iyuu</code>标签额外可用的环境变量：</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">变量名</th>
+<th style="text-align:center">默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">IYUU_REPO_URL</td>
+<td style="text-align:center"><code>https://gitee.com/ledc/iyuuplus.git</code></td>
+<td>指定从哪里获取IYUUPlus的代码，默认从gitee更新，如果你想从github更新，可以设置为：<code>https://github.com/ledccn/IYUUPlus.git</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="创建">创建</h2>
+<h3 id="群晖">群晖</h3>
+<p><img src="/p/docker-install-qbittorrent/pic1.png"
+	width="1061"
+	height="571"
+	srcset="/p/docker-install-qbittorrent/pic1_hu9f4301c8c0ff0cfc9c89115ea04171db_77768_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic1_hu9f4301c8c0ff0cfc9c89115ea04171db_77768_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic2.png"
+	width="1062"
+	height="572"
+	srcset="/p/docker-install-qbittorrent/pic2_hua6cd79e085caf0d0bcf5eaad0f242db9_71239_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic2_hua6cd79e085caf0d0bcf5eaad0f242db9_71239_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic3.png"
+	width="1062"
+	height="570"
+	srcset="/p/docker-install-qbittorrent/pic3_hueff177dec2995f9cca7d7812c6b6d3c9_48535_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic3_hueff177dec2995f9cca7d7812c6b6d3c9_48535_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="3"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="447px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic4.png"
+	width="1060"
+	height="569"
+	srcset="/p/docker-install-qbittorrent/pic4_hu5f80005e1d729d7b6755a7444a097540_84706_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic4_hu5f80005e1d729d7b6755a7444a097540_84706_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="4"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="447px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic5.png"
+	width="1059"
+	height="567"
+	srcset="/p/docker-install-qbittorrent/pic5_hu7c1446dd16101d827b4b3ada316f611e_55426_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic5_hu7c1446dd16101d827b4b3ada316f611e_55426_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="5"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="448px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic6.png"
+	width="1061"
+	height="574"
+	srcset="/p/docker-install-qbittorrent/pic6_hu8055a851d776379c35fbda5bfa7280be_63283_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic6_hu8055a851d776379c35fbda5bfa7280be_63283_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="6"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="184"
+		data-flex-basis="443px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic7.png"
+	width="1061"
+	height="572"
+	srcset="/p/docker-install-qbittorrent/pic7_hu5b37a8e50e007dd4fdd539f62c764948_63613_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic7_hu5b37a8e50e007dd4fdd539f62c764948_63613_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="7"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic8.png"
+	width="1060"
+	height="570"
+	srcset="/p/docker-install-qbittorrent/pic8_hu917f0b0c3c379996c8a8c4874a6c3229_75047_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic8_hu917f0b0c3c379996c8a8c4874a6c3229_75047_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="8"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="446px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic9.png"
+	width="1061"
+	height="571"
+	srcset="/p/docker-install-qbittorrent/pic9_hu141b015aa107b1c29b806bd048e03d57_57085_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic9_hu141b015aa107b1c29b806bd048e03d57_57085_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="9"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic10.png"
+	width="1060"
+	height="571"
+	srcset="/p/docker-install-qbittorrent/pic10_hubacdaa7870bdeccbff269c50348aa08b_138689_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic10_hubacdaa7870bdeccbff269c50348aa08b_138689_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="10"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic11.png"
+	width="1063"
+	height="570"
+	srcset="/p/docker-install-qbittorrent/pic11_hu4230c049679416b68245edda483c4a65_141185_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic11_hu4230c049679416b68245edda483c4a65_141185_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="11"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="447px"
+	
+></p>
+<p><img src="/p/docker-install-qbittorrent/pic12.png"
+	width="1060"
+	height="568"
+	srcset="/p/docker-install-qbittorrent/pic12_huc8e7c5814096501d4a7dde0db78e9c22_92732_480x0_resize_box_3.png 480w, /p/docker-install-qbittorrent/pic12_huc8e7c5814096501d4a7dde0db78e9c22_92732_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="12"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="186"
+		data-flex-basis="447px"
+	
+></p>
+<p>安装后访问<code>http://ip:8080</code>。如想使用集成了IYUUPlus的qBittorrent（自动设置好IYUUPlus中的下载器），请使用docker cli以命令行方式部署。</p>
+<h3 id="命令行docker-cli">命令行docker cli</h3>
+<ul>
+<li>
+<p>除<code>WEBUI_PORT</code> <code>BT_PORT</code> <code>PUID</code> <code>PGID</code>这几个环境变量外，如果你还需要使用其他环境变量，请根据<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>按照<code>-e 变量名=&quot;变量值&quot; \</code>的形式自行添加在创建命令中。</p>
+</li>
+<li>
+<p>armv7设备如若无法使用网络，可能是seccomp问题，详见 <a class="link" href="https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements"  target="_blank" rel="noopener"
+    >这里</a>。可以在创建命令中增加一行<code>--security-opt seccomp=unconfined \</code> 来解决。</p>
+</li>
+<li>
+<p>创建完成后请访问<code>http://&lt;IP&gt;:&lt;WEBUI_PORT&gt;</code>（如未修改，对安装机默认是<code>http://127.0.0.1:8080</code>）来对qbittorrent作进一步设置，初始用户名密码：<code>admin/adminadmin</code>。如要在公网访问，请务必修改用户名和密码。</p>
+</li>
+<li>
+<p>针对<code>iyuu</code>标签，创建后可访问<code>http://&lt;IP&gt;:8787</code>进行IYUUPlus设置。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## latest标签或unstable标签
+</span></span><span class="line"><span class="cl">docker run -dit \
+</span></span><span class="line"><span class="cl">  -v $PWD/qbittorrent:/data `# 冒号左边请修改为你想在本地保存的路径，这个路径用来保存你个人的配置文件` \
+</span></span><span class="line"><span class="cl">  -e PUID=&#34;1000&#34;        `# 输入id -u可查询，群晖必须改` \
+</span></span><span class="line"><span class="cl">  -e PGID=&#34;100&#34;         `# 输入id -g可查询，群晖必须改` \
+</span></span><span class="line"><span class="cl">  -e WEBUI_PORT=&#34;8080&#34;  `# WEBUI控制端口，可自定义` \
+</span></span><span class="line"><span class="cl">  -e BT_PORT=&#34;34567&#34;    `# BT监听端口，可自定义` \
+</span></span><span class="line"><span class="cl">  -p 8080:8080          `# 冒号左右一样，要和WEBUI_PORT一致，命令中的3个8080要改一起改` \
+</span></span><span class="line"><span class="cl">  -p 34567:34567/tcp    `# 冒号左右一样，要和BT_PORT一致，命令中的5个34567要改一起改` \
+</span></span><span class="line"><span class="cl">  -p 34567:34567/udp    `# 冒号左右一样，要和BT_PORT一致，命令中的5个34567要改一起改` \
+</span></span><span class="line"><span class="cl">  --tmpfs /tmp \
+</span></span><span class="line"><span class="cl">  --restart always \
+</span></span><span class="line"><span class="cl">  --name qbittorrent \
+</span></span><span class="line"><span class="cl">  --hostname qbittorrent \
+</span></span><span class="line"><span class="cl">  nevinee/qbittorrent   `# 如想参与qbittorrent测试工作，可以指定测试标签nevinee/qbittorrent:unstable`
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## iyuu标签
+</span></span><span class="line"><span class="cl">docker run -dit \
+</span></span><span class="line"><span class="cl">  -v $PWD/qbittorrent:/data `# 冒号左边请修改为你想在本地保存的路径，这个路径用来保存你个人的配置文件` \
+</span></span><span class="line"><span class="cl">  -e PUID=&#34;1000&#34;        `# 输入id -u可查询，群晖必须改` \
+</span></span><span class="line"><span class="cl">  -e PGID=&#34;100&#34;         `# 输入id -g可查询，群晖必须改` \
+</span></span><span class="line"><span class="cl">  -e WEBUI_PORT=&#34;8080&#34;  `# WEBUI控制端口，可自定义` \
+</span></span><span class="line"><span class="cl">  -e BT_PORT=&#34;34567&#34;    `# BT监听端口，可自定义` \
+</span></span><span class="line"><span class="cl">  -p 8080:8080          `# 冒号左右一样，要和WEBUI_PORT一致，命令中的3个8080要改一起改` \
+</span></span><span class="line"><span class="cl">  -p 34567:34567/tcp    `# 冒号左右一样，要和BT_PORT一致，命令中的5个34567要改一起改` \
+</span></span><span class="line"><span class="cl">  -p 34567:34567/udp    `# 冒号左右一样，要和BT_PORT一致，命令中的5个34567要改一起改` \
+</span></span><span class="line"><span class="cl">  -p 8787:8787          `# IYUUPlus的WebUI控制端口` \
+</span></span><span class="line"><span class="cl">  --tmpfs /tmp \
+</span></span><span class="line"><span class="cl">  --restart always \
+</span></span><span class="line"><span class="cl">  --name qbittorrent \
+</span></span><span class="line"><span class="cl">  --hostname qbittorrent \
+</span></span><span class="line"><span class="cl">  nevinee/qbittorrent:iyuu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-compose">docker compose</h3>
+<p>新建<code>compose.yml</code>文件如下（<a class="link" href="https://docs.docker.com/compose/cli-command/"  target="_blank" rel="noopener"
+    >docker compose安装方法</a>），创建好后以<code>docker-compose up -d</code>(旧版)或<code>docker compose up -d</code>(新版)命令启动即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">version: &#34;2.0&#34;
+</span></span><span class="line"><span class="cl">services:
+</span></span><span class="line"><span class="cl">  qbittorrent:
+</span></span><span class="line"><span class="cl">    image: nevinee/qbittorrent  # 如想参与测试工作可以指定nevinee/qbittorrent:unstable，如想使用集成了iyuu的版本请指定nevinee/qbittorrent:iyuu
+</span></span><span class="line"><span class="cl">    container_name: qbittorrent
+</span></span><span class="line"><span class="cl">    restart: always
+</span></span><span class="line"><span class="cl">    tty: true
+</span></span><span class="line"><span class="cl">    network_mode: bridge
+</span></span><span class="line"><span class="cl">    hostname: qbitorrent
+</span></span><span class="line"><span class="cl">    stop_grace_period: 10m # 让qBittorrent程序自行退出后再关闭/删除/重启容器的最长时间，如不设置，则docker默认10秒，这时，种子多的qBittorrent可能还没有完全保存好全部需要保存的信息。
+</span></span><span class="line"><span class="cl">    volumes:
+</span></span><span class="line"><span class="cl">      - ./data:/data      # 配置保存目录
+</span></span><span class="line"><span class="cl">    tmpfs:
+</span></span><span class="line"><span class="cl">      - /tmp
+</span></span><span class="line"><span class="cl">    environment:          # 下面未列出的其他环境变量请根据环境变量清单自行添加
+</span></span><span class="line"><span class="cl">      - WEBUI_PORT=8080   # WEBUI控制端口，可自定义
+</span></span><span class="line"><span class="cl">      - BT_PORT=34567     # BT监听端口，可自定义
+</span></span><span class="line"><span class="cl">      - PUID=1000         # 输入id -u可查询，群晖必须改
+</span></span><span class="line"><span class="cl">      - PGID=100          # 输入id -g可查询，群晖必须改
+</span></span><span class="line"><span class="cl">    ports:
+</span></span><span class="line"><span class="cl">      - 8080:8080        # 冒号左右一致，必须同WEBUI_PORT一样，本文件中的3个8080要改一起改
+</span></span><span class="line"><span class="cl">      - 34567:34567      # 冒号左右一致，必须同BT_PORT一样，本文件中的5个34567要改一起改
+</span></span><span class="line"><span class="cl">      - 34567:34567/udp  # 冒号左右一致，必须同BT_PORT一样，本文件中的5个34567要改一起改
+</span></span><span class="line"><span class="cl">      #- 8787:8787       # 如使用的是nevinee/qbittorrent:iyuu标签，请解除本行注释
+</span></span><span class="line"><span class="cl">    #security_opt:       # armv7设备请解除本行和下一行的注释
+</span></span><span class="line"><span class="cl">      #- seccomp=unconfined
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如若想将qbittorrent建立在已经创建好的macvlan网络上，可以按如下方式创建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">version: &#34;2.0&#34;
+</span></span><span class="line"><span class="cl">services:
+</span></span><span class="line"><span class="cl">  qbittorrent:
+</span></span><span class="line"><span class="cl">    image: nevinee/qbittorrent # 如想参与测试工作可以指定nevinee/qbittorrent:unstable，如想使用集成了iyuu的版本，请指定nevinee/qbittorrent:iyuu
+</span></span><span class="line"><span class="cl">    container_name: qbittorrent
+</span></span><span class="line"><span class="cl">    restart: always
+</span></span><span class="line"><span class="cl">    tty: true
+</span></span><span class="line"><span class="cl">    networks: 
+</span></span><span class="line"><span class="cl">      &lt;你的macvlan网络名称&gt;:
+</span></span><span class="line"><span class="cl">        ipv4_address: &lt;你想设置的ip&gt;
+</span></span><span class="line"><span class="cl">        aliases:
+</span></span><span class="line"><span class="cl">          - qbittorrent
+</span></span><span class="line"><span class="cl">    dns:   # docker是无法为macvlan网络提供dns解析服务的，要想正常在macvlan网络上发通知，请给容器添加dns服务器，你也可以直接使用你的网关ip作为dns服务器
+</span></span><span class="line"><span class="cl">      - 223.5.5.5
+</span></span><span class="line"><span class="cl">      - 114.114.114.114
+</span></span><span class="line"><span class="cl">      - 1.2.4.8
+</span></span><span class="line"><span class="cl">    hostname: qbitorrent
+</span></span><span class="line"><span class="cl">    stop_grace_period: 10m # 让qBittorrent程序自行退出后再关闭/删除/重启容器的最长时间，如不设置，则docker默认10秒，这时，种子多的qBittorrent可能还没有完全保存好全部需要保存的信息。
+</span></span><span class="line"><span class="cl">    volumes:
+</span></span><span class="line"><span class="cl">      - ./data:/data
+</span></span><span class="line"><span class="cl">    tmpfs:
+</span></span><span class="line"><span class="cl">      - /tmp
+</span></span><span class="line"><span class="cl">    environment:          # 下面未列出的其他环境变量请根据环境变量清单自行添加
+</span></span><span class="line"><span class="cl">      - WEBUI_PORT=8080   # WEBUI控制端口，可自定义
+</span></span><span class="line"><span class="cl">      - BT_PORT=34567     # BT监听端口，可自定义
+</span></span><span class="line"><span class="cl">      - PUID=1000         # 输入id -u可查询，群晖必须改
+</span></span><span class="line"><span class="cl">      - PGID=100          # 输入id -g可查询，群晖必须改
+</span></span><span class="line"><span class="cl">    #security_opt:        # armv7设备请解除本行和下一行的注释
+</span></span><span class="line"><span class="cl">      #- seccomp=unconfined
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">networks: 
+</span></span><span class="line"><span class="cl">  &lt;你的macvlan网络名称&gt;:
+</span></span><span class="line"><span class="cl">    external: true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>创建完成后请访问<code>http://&lt;IP&gt;:&lt;WEBUI_PORT&gt;</code>（如未修改，对安装机默认是<code>http://127.0.0.1:8080</code>）来对qbittorrent作进一步设置，初始用户名密码：<code>admin/adminadmin</code>。如要在公网访问，请务必修改用户名和密码。</p>
+</li>
+<li>
+<p>针对<code>iyuu</code>标签，创建后可访问<code>http://&lt;IP&gt;:8787</code>进行IYUUPlus设置。</p>
+</li>
+</ul>
+<h2 id="目录说明">目录说明</h2>
+<p>如果按照上述任何一种部署方式，在映射的目录下会有以下文件夹：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">/</span><span class="n">data</span>                         <span class="c1"># 基础路径在容器内为/data，下面所有文件夹均处于/data的下一层，基础路径在宿主机上为你创建容器时映射的</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">cache</span>                     <span class="c1"># qbittorrent的缓存目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">certs</span>                     <span class="c1"># 用来存放ssl证书，默认是空的，可另外使用acme.sh来申请ssl证书</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">config</span>                    <span class="c1"># 所有的配置文件保存目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">qBittorrent</span><span class="o">.</span><span class="n">conf</span>      <span class="c1"># **配置文件，很重要，如需恢复配置此文件必须保留**</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">qBittorrent</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">conf</span> <span class="c1"># **上传下载数据统计文件，如需恢复配置此文件必须保留**</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">└──</span> <span class="n">rss</span>                   <span class="c1"># **rss的配置文件保存目录，如需恢复配置此目录必须保留**</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">data</span>                      <span class="c1"># 所有的数据文件保存目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">BT_backup</span>             <span class="c1"># **当高级设置中恢复文件选择为&#34;Fastresume files&#34;时，种子和快速恢复文件保存目录，如需恢复做种数据此目录必须保留**</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">torrents</span><span class="o">.</span><span class="n">db</span>           <span class="c1"># **当高级设置中恢复文件选择为&#34;SQLite database&#34;时，种子和快速恢复数据的数据库文件，如需恢复做种数据此文件必须保留**</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">GeoDB</span>                 <span class="c1"># IP数据保存目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">logs</span>                  <span class="c1"># 日志文件保存目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">nova3</span>                 <span class="c1"># 启用qBittorrent搜索功能后相关文件保存目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">└──</span> <span class="n">rss</span>                   <span class="c1"># rss订阅下载文件保存目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">diy</span>                       <span class="c1"># 存放你自己编写的脚本的目录，diy.sh需要存放在此</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">downloads</span>                 <span class="c1"># 默认下载目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">iyuu_db</span>                   <span class="c1"># 仅iyuu标签有此目录，用来保存IYUUPlus的配置文件，IYUUPlus用户须保留此文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">logs</span> <span class="o">-&gt;</span> <span class="n">data</span><span class="o">/</span><span class="n">logs</span>         <span class="c1"># 只是个软连接，连接到容器内的/data/data/logs</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">temp</span>                      <span class="c1"># 下载文件临时存放目录，默认在配置中未启用</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">torrents</span>                  <span class="c1"># 保存种子文件目录，默认在配置中未启用</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">watch</span>                     <span class="c1"># 监控目录，监控这个目录下的.torrent文件并自动下载，默认在配置中未启用</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">webui</span>                     <span class="c1"># 存放其他webui文件的目录，需要自己存放，默认在配置中未启用</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>有两个星号标记的文件或目录是重要目录，恢复数据必须要有这几个。</em></p>
+<p><em>在 <a class="link" href="https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs"  target="_blank" rel="noopener"
+    >这里</a> 可以查阅所有可用的非官方webui。</em></p>
+<h2 id="相关问题">相关问题</h2>
+<h3 id="使用此镜像会导致封号吗">使用此镜像会导致封号吗</h3>
+<p>此镜像未修改qbittorrent客户端官方任何信息，在和pt站tracker服务器交互时反馈的一切信息均是qbittorrent官方原版反馈的信息，此镜像只是基于qbittorrent额外增加了一些脚本而已。增加的脚本全部代码在 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
+    >这里</a> 可以查看，不会因为使用此镜像导致pt账号被封。</p>
+<h3 id="如何在运行-dl-finish-k-时调用自定义脚本">如何在运行 dl-finish &ldquo;%K&rdquo; 时调用自定义脚本</h3>
+<ul>
+<li>
+<p>此功能可用版本：4.3.7+；</p>
+</li>
+<li>
+<p>在4.5.0以前的版本不能使用<code>%K</code>，只能使用<code>%I</code>；</p>
+</li>
+<li>
+<p>只要你将名为<code>diy.sh</code>的shell脚本放在映射目录下的<code>diy</code>文件夹下即可，容器内路径为<code>/data/diy/diy.sh</code>（hash已存储在名为torrent_hash的变量中，可通过此值获取其他信息）。</p>
+</li>
+<li>
+<p>如想传入除“%K”种子ID之外的其他参数，可以在 设置-&gt;下载-&gt;Torrent 完成时运行外部程序 下填入这种形式：<code>dl-finish &quot;%K&quot; &quot;%N&quot; &quot;%L&quot; &quot;%F&quot;</code>，必须保证&rdquo;%K&quot;是第一个参数，后面的参数根据你自己需要调整。在<code>diy.sh</code>中，<code>&quot;%N&quot; &quot;%L&quot; &quot;%F&quot;</code>分别通过<code>$2 $3 $4</code>调用。如：<code>cmd &quot;$2&quot; &quot;$3 &quot;$4&quot;</code>。$2, $3, $4分别指传入的第2, 第3, 第4个参数，分别对应<code>&quot;%N&quot; &quot;%L&quot; &quot;%F&quot;</code>。</p>
+</li>
+<li>
+<p>假如你要调用其他语言的脚本，比如python，可以在<code>diy.sh</code>中写上<code>python3 /data/diy/your_python_scripts.py $torrent_hash</code>即可。如需要传入更多参数，请参考上一条在“Torrent 完成时运行外部程序”填入形如<code>dl-finish &quot;%K&quot; &quot;%N&quot; &quot;%L&quot; &quot;%F&quot;</code>的形式，然后在<code>diy.sh</code>中写上<code>python3 /data/diy/your_python_scripts.py &quot;$2&quot; &quot;$3&quot; &quot;$4&quot;</code>。</p>
+</li>
+<li>
+<p>如需要下载完成后自动触发EMBY/JELLYFIN扫描媒体库，触发ChineseSubFinder自动为刚刚下载完成的视频自动下载字幕，请按照 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent/diy"  target="_blank" rel="noopener"
+    >这里</a> 操作。</p>
+</li>
+</ul>
+<h3 id="如何优雅的关闭qbittorrent容器">如何优雅的关闭qbittorrent容器</h3>
+<ul>
+<li>
+<p>暴力强制关闭qbittorrent容器自然是容易丢失任务的，所以在关闭前应当先将所有种子暂停，过一会再关闭容器。这时，所有的配置文件和torrent恢复文件也都是暂停后的状态，然后再新建容器或重新部署，启动后再开始所有任务。</p>
+</li>
+<li>
+<p>还有一点要注意，千万不要在有下载任务时关闭或重启qbittorrent容器。</p>
+</li>
+</ul>
+<h3 id="如何从其他作者的镜像套件版转移至本镜像">如何从其他作者的镜像/套件版转移至本镜像</h3>
+<ul>
+<li>
+<p><strong>如果启用了ssl/https，请先在原qbittorrent的webui中禁用，或者将<code>qBittorrent.conf</code>中<code>WebUI\HTTPS\Enabled=true</code>改为<code>WebUI\HTTPS\Enabled=false</code>。</strong></p>
+</li>
+<li>
+<p>请注意要优雅的关闭旧容器后再处理配置文件。</p>
+</li>
+<li>
+<p>进入原来容器的映射目录（或原套件版配置文件保存目录，可能是隐藏的）下，在config下分别找到<code>qBittorrent.conf</code> <code>qBittorrent-data.conf</code> <code>rss</code>，在data下找到<code>BT_backup</code>或<code>torrents.db</code>，然后将其参考上面的目录树放在新容器的映射目录下，然后在创建容器时，保证新容器中的下载文件的保存路径和旧容器一致，并新建容器即可。</p>
+</li>
+<li>
+<p>举例说明如何保证新容器中的下载文件的保存路径和旧容器一致，比如旧容器中下载了一个 <code>xxx.2020.BluRay.1080p.x264.DTS-XXX</code>，保存路径为<code>/movies</code>（宿主机上的真实路径为<code>/volume1/home/id/movies</code>），那么在新建新容器时，给新容器增加一个路径映射：<code>/volume1/home/id/movies:/movies</code>　即可。</p>
+</li>
+<li>
+<p>注意新容器的PUID/PGID和要旧容器保持一致。</p>
+</li>
+<li>
+<p>注意在 <code>设置</code> -&gt; <code>下载</code> 中勾选 <code>Torrent 完成时运行外部程序</code> 并填入 <code>dl-finish &quot;%K&quot;</code>，如需要https要重新设置证书路径。</p>
+</li>
+</ul>
+<h3 id="可不可以不使用默认下载目录">可不可以不使用默认下载目录</h3>
+<p>默认下载目录是<code>/data/downloads</code>，如不想使用默认下载目录，可以额外映射其他路径，比如映射<code>/volume1/media:/media</code>，然后在qbittorrent中设置默认下载目录为<code>/media</code>，也可以在每次下载时自己输入下载目录为<code>/media</code>。</p>
+<h3 id="遗忘登陆密码如何重置">遗忘登陆密码如何重置</h3>
+<p>重启一次容器即可，启动时容器会自动以你创建容器时定义的环境变量<code>QB_USERNAME</code>和<code>QB_PASSWORD</code>去设置登陆qBittorrent的用户名和密码。</p>
+<h3 id="如何与emby-jellyfin-plex等等配合使用">如何与emby, jellyfin, plex等等配合使用</h3>
+<p>将需要配合使用的容器的环境变量PUID/PGID设置为一样的即可。</p>
+<h3 id="启用了其他非官方webui导致webui打不开如何关闭">启用了其他非官方webui，导致webui打不开，如何关闭</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 进入容器
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 关闭备用webui
+</span></span><span class="line"><span class="cl">source /usr/local/bin/share; $cmd_curl_post -d &#39;json={&#34;alternative_webui_enabled&#34;:false}&#39; $api_url_base/app/setPreferences
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="如何自动更新容器">如何自动更新容器</h3>
+<p>安装watchtower即可，详见 <a class="link" href="https://hub.docker.com/r/containrrr/watchtower"  target="_blank" rel="noopener"
+    >这里</a></p>
+<h3 id="安装了watchtower如何让qbittorrent不被watchtower自动更新">安装了watchtower，如何让qbittorrent不被watchtower自动更新</h3>
+<ul>
+<li>
+<p>方法1：部署qbittorrent容器时，直接指定标签，如<code>nevinee/qbittorrent:4.3.7</code>；</p>
+</li>
+<li>
+<p>方法2（推荐）：在部署时在命令中添加一个label：<code>com.centurylinklabs.watchtower.enable=false</code>：</p>
+<p>docker cli：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">--label com.centurylinklabs.watchtower.enable=false \
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>docker-compose:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    labels:
+</span></span><span class="line"><span class="cl">      com.centurylinklabs.watchtower.enable: false
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="为何建议将qbittorrent安装在macvlan网络上">为何建议将qbittorrent安装在macvlan网络上</h3>
+<ul>
+<li>
+<p>可以在网关上给qbittorrent所在ip独立设置限速;</p>
+</li>
+<li>
+<p>如果有用openwrt时，可以让qbittorrent所在ip跳过代理。</p>
+</li>
+</ul>
+<h3 id="将qbittorrent安装在macvlan网络上时如何使用iyuuautoreseed自动辅种">将qbittorrent安装在macvlan网络上时，如何使用IYUUAutoReseed自动辅种</h3>
+<p>将两个容器都安装在同一个macvlan网络上即可，或者直接安装<code>nevinee/qbittorrent:iyuu</code>标签。</p>
+<h3 id="如何使用-cron_alter_limits-这个环境变量">如何使用 CRON_ALTER_LIMITS 这个环境变量</h3>
+<ul>
+<li>
+<p>4.3.8+可用。</p>
+</li>
+<li>
+<p>该功能主要提供给多时段限速场景使用，请在qbittorrent客户端中先设置好”备用速度限制“的限制速率。</p>
+</li>
+<li>
+<p>当设置了有效的<code>MONITOR_IP</code>时，<code>CRON_ALTER_LIMITS</code>的cron不生效（因为会冲突）。</p>
+</li>
+<li>
+<p>设置形式如：<code>0 5 * * *:0 18 * * *|0 8 * * *:0 22 * * *</code>，<code>|</code>前面的cron是启用“备用速度限制”的时间点，<code>|</code>后面的cron是关闭“备用速度限制”的时间点。需要在一天中多次启用“备用速度限制”的，以<code>:</code>分隔每个cron，可以任意个cron，需要多次关闭“备用速度限制”的同样以<code>:</code>分隔每个cron。</p>
+</li>
+<li>
+<p>比如需要在周一至周五的5:00-8:00、17:30-23:30，以及周六、周日的9:00-23:30进行限速，那么可以设置<code>CRON_ALTER_LIMITS</code>为<code>0 5 * * 1-5:30 17 * * 1-5:0 9 * * 0,6|0 8 * * 1-5:30 23 * * *</code>。</p>
+</li>
+<li>
+<p>比如需要在周一至周五的17:30-22:00，以及周六、周日的8:30-23:00进行限速，那么可以设置<code>CRON_ALTER_LIMITS</code>为<code>30 17 * * 1-5:30 8 * * 0,6|0 22 * * 1-5:0 23 * * 0,6</code>。</p>
+</li>
+<li>
+<p>在docker cli中请使用一对双引号引起来，在docker-compose.yml中请勿增加引号。</p>
+</li>
+</ul>
+<h3 id="如何使用-cron_iyuu_help-这个环境变量">如何使用 CRON_IYUU_HELP 这个环境变量</h3>
+<ul>
+<li>
+<p>4.3.8+可用。</p>
+</li>
+<li>
+<p>在设置的时间点执行<code>iyuu-help</code>命令，实现以下功能：</p>
+<ol>
+<li>检查下载清单（就是qbittorrent筛选“下载”的清单），检测该清单中处于暂停状态、并且下载完成率为0%（辅种的种子在校验前也是0%）的种子，将这些种子请求重新校验。<strong>已经请求过校验并且完成率大于0%的种子不会再次校验。</strong></li>
+<li>检查暂停清单（就是qbittorrent筛选“暂停”的清单），检测该清单中100%下载完成/100%校验通过的种子，将这些种子恢复做种。<strong>校验未通过不达100%完成率的种子不会启动，仍然保持暂停状态。</strong></li>
+</ol>
+</li>
+<li>
+<p>配合IYUUAutoReseed，将CRON_IYUU_HELP设置在IYUUAutoReseed自动辅种任务的cron以后，并运行若干次即可（因为校验比较费时，所以要多次运行）。</p>
+</li>
+<li>
+<p>比如你IYUUAutoReseed辅种任务的cron是<code>22 7 * * *</code>，你想从辅种任务3分钟后，每10分钟运行一次，共运行4次，那么可以设置CRON_IYUU_HELP为：<code>25-55/10 7 * * *</code>。</p>
+</li>
+<li>
+<p>在docker cli中请使用一对双引号引起来，在docker-compose.yml中请勿增加引号。</p>
+</li>
+</ul>
+<h3 id="qbittorrent使用https的webui时iyuu如何连接">qBittorrent使用https的webui时，iyuu如何连接</h3>
+<ul>
+<li>
+<p>当qBittorrent使用https的webui时，iyuu连接qBittorrent需要使用<code>https://&lt;域名&gt;:&lt;端口&gt;</code>的形式，不能使用<code>https://&lt;IP&gt;:&lt;端口&gt;</code>，所以需要在创建iyuu容器（使用nevinee/qbittorrent:iyuu时同样也需要）指定域名和ip的对应关系。</p>
+</li>
+<li>
+<p>命令行创建iyuu容器时时，增加<code>--add-host &lt;域名&gt;:&lt;qBittorrent容器的IP&gt;</code>，其中域名是你在公网上访问qBittorrent的webui的域名，如果直接使用的<code>nevinee/qbittorrent:iyuu</code>标签，就是<code>--add-host &lt;域名&gt;:127.0.0.1</code>。</p>
+</li>
+<li>
+<p>docker compose创建时，增加以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    extra_hosts:
+</span></span><span class="line"><span class="cl">      - &#34;&lt;域名&gt;:&lt;qBittorrent容器的IP&gt;&#34;  ## 如果直接使用的`nevinee/qbittorrent:iyuu`标签，IP就是127.0.0.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="qbittorrent占用了巨大的内存如何调整">qBittorrent占用了巨大的内存，如何调整</h3>
+<p>你所见到的占用巨大的内存并不是真的占用了，使用<code>docker stats qbittorrent</code>输出的内存占用更准确一点，其他方式输出的内存占用会非常的大。因为libtorrent-rasterbar v2.x把内存使用交给内核来处理，内核会自己根据内存大小和读取频次来自动决定怎么去缓存，所以不要被看起来庞大的内存占用给吓着了。详见libtorrent-rasterbar作者的<a class="link" href="https://github.com/arvidn/libtorrent/issues/6667#issuecomment-1040874903"  target="_blank" rel="noopener"
+    >原话</a>。</p>
+<p>谷歌翻译如下：</p>
+<blockquote>
+<p>总结一下，libtorrent2.0使用内存映射文件。在除windows之外的所有现代操作系统上，在块设备级别使用统一的页面缓存，其中匿名内存（由swapfile支持）和内存映射文件（包括共享库，运行可执行文件）都是同一缓存的一部分。Linux可能是决定如何在物理RAM中平衡这些页面的最复杂的工具。
+使用内存映射文件的好处主要有：
+内核（它知道机器有多少物理RAM可用）最了解何时以及以何种顺序刷新缓存。也许更重要的是，决定保留读缓存的数量和时间。
+某些类型的存储可以由CPU直接寻址，就像它是RAM一样，绕过了许多内核基础设施，并提供了非常高的性能。（linux称此DAX）
+此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。</p>
+</blockquote>
+<h3 id="qb老是不监听ipv6地址怎么办">qB老是不监听IPv6地址，怎么办？</h3>
+<p>有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">检测到外部 IP。IP：“240e:1234:5678:abcd:ef12:3456:7890:abcd”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果没有出现类似这样的日志，或者出的日志中的IPv6地址不是当前最新的地址，那么你可以操作：先将 “设置-&gt;高级-&gt;绑定到的可选IP地址” 选择最新的IPv6地址，保存一次；然后再将其设置为 “所有地址” 后再重新保存一次。过一会日志中就会出现正常的信息了。</p>
+<h2 id="命令">命令</h2>
+<h3 id="自动运行的命令所有标签可用由设置的cron或在下载完成时自动运行当然也可以手动运行">自动运行的命令（所有标签可用，由设置的cron或在下载完成时自动运行，当然也可以手动运行）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="c1"># 发送通知
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">notify</span><span class="w"> </span><span class="s2">&#34;测试消息标题&#34;</span><span class="w"> </span><span class="s2">&#34;测试消息通知内容&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 将种子按tracker进行分类，由CRON_AUTO_CATEGOR设置的cron来调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">auto</span><span class="o">-</span><span class="n">cat</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w">  </span><span class="c1"># 由程序自动调用，也可手动运行。当CATEGORY_OR_TAG=category时，将所有未分类的种子按tracker分类；当CATEGORY_OR_TAG=tag时，对所有种子按tracker打标签
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">auto</span><span class="o">-</span><span class="n">cat</span><span class="w"> </span><span class="o">-</span><span class="n">A</span><span class="w">  </span><span class="c1"># 需要手动运行。当CATEGORY_OR_TAG=category时，将所有种子按tracker分类；当CATEGORY_OR_TAG=tag时，对所有种子按tracker打标签
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 将指定种子按tracker进行分类，会自动在下载完成时运行一次（由 dl-finish &lt;hash&gt; 命令调用）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">auto</span><span class="o">-</span><span class="n">cat</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="n">hash</span><span class="o">&gt;</span><span class="w">   </span><span class="c1"># hash可以在种子详情中的&#34;普通&#34;标签页上查看到
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 下载完成时将种子分类，并发送通知，已经在配置文件中填好了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">dl</span><span class="o">-</span><span class="n">finish</span><span class="w"> </span><span class="o">&lt;</span><span class="n">hash</span><span class="o">&gt;</span><span class="w">     </span><span class="c1"># hash可以在种子详情中的&#34;普通&#34;标签页上查看到
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 检查qbittorrent是否宕机，如宕机则发送通知，由CRON_HEALTH_CHECK设置的cron来调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">health</span><span class="o">-</span><span class="k">check</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 检查所有种子的tracker状态是否有问题，如有问题，给该种子添加一个 TrackerError 的标签，由CRON_TRACKER_ERROR设置的cron来调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"># 有任何一个tracker处于`工作中``更新中`和`未联系`都不会视作`TrackerError`，只有在运行脚本当时那一刻全部tracker处于`未工作`才会标记
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">tracker</span><span class="o">-</span><span class="n">error</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 每分钟检测MONITOR_IP设置的ip是否在线，如有任何一个ip在线，则启用“备用速度限制”，4.3.8+可用。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">detect</span><span class="o">-</span><span class="n">ip</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 启用可关闭“备用速度限制”，4.3.8+可用，由CRON_ALTER_LIMITS设置的cron来调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="k">alter</span><span class="o">-</span><span class="n">limits</span><span class="w"> </span><span class="k">on</span><span class="w">    </span><span class="c1"># 启用“备用速度限制”
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="k">alter</span><span class="o">-</span><span class="n">limits</span><span class="w"> </span><span class="n">off</span><span class="w">   </span><span class="c1"># 关闭“备用速度限制”
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## IYUUAutoReseed辅助任务，自动重校验、自动恢复做种，4.3.8+可用，由CRON_IYUU_HELP设置的cron来调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">iyuu</span><span class="o">-</span><span class="n">help</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="需要手动运行的命令所有标签可用">需要手动运行的命令（所有标签可用）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 查看qbittorrent日志，也可以直接在portainer控制台中看到
+</span></span><span class="line"><span class="cl">docker logs -f qbittorrent
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 批量修改tracker，详见效果图，4.3.7+可用，有两种使用方式，请运行下面命令查看两种方式
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent change-tracker -h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 批量删除tracker，4.4.4+可用，有两种使用方式，请运行下面命令查看两种方式
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent remove-tracker -h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 检测指定文件夹下没有在qbittorrent客户端中做种或下载的子文件夹/子文件，由用户确认是否删除，详见效果图，4.3.8+可用
+</span></span><span class="line"><span class="cl"># 从4.4.4起，更改成可以一次性检测多个目录
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent del-unseed-dir
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 当CATEGORY_OR_TAG=category时，将所有种子按tracker分类；当CATEGORY_OR_TAG=tag时，对所有种子按tracker打标签。4.3.9+可用
+</span></span><span class="line"><span class="cl">docker exec qbittorrent auto-cat -A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 生成本qBittorrent客户端中所有做种文件清单，4.3.9+可用
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent report-seed-files
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 生成指定路径下没有在本qBittorrent客户端做种的文件清单，4.3.9+可用
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent report-unseed-files
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 分析指定目录的重复做种率（辅种率），具体说明请运行下列命令，4.5.3+可用
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent gen-dup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="仅iyuu标签可用的命令">仅“iyuu”标签可用的命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 更新IYUUPlus脚本
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent git -C /iyuu pull
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 重启IYUUPlus
+</span></span><span class="line"><span class="cl">docker exec -it qbittorrent php /iyuu/start.php restart -d 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ul>
+<li>
+<p><a class="link" href="https://hub.docker.com/r/crazymax/qbittorrent"  target="_blank" rel="noopener"
+    >crazymax/qbittorrent</a> , 参考了Dockerfile;</p>
+</li>
+<li>
+<p><a class="link" href="https://hub.docker.com/r/80x86/qbittorrent"  target="_blank" rel="noopener"
+    >80x86/qbittorrent</a>, 借鉴了标签和分类的理念。</p>
+</li>
+</ul>
+<h2 id="源代码问题反馈意见建议">源代码、问题反馈、意见建议</h2>
+<p>如果镜像好用，请点亮star。全套代码见 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
+    >Github</a> 或 <a class="link" href="https://gitee.com/evine/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
+    >Gitee</a>。如有使用上的问题，或者有其他好的功能建议，请直接在本文下方评论，或者在 <a class="link" href="https://github.com/devome/dockerfiles/issues"  target="_blank" rel="noopener"
+    >Github这里</a> 或 <a class="link" href="https://gitee.com/evine/dockerfiles/issues"  target="_blank" rel="noopener"
+    >Gitee这里</a> 提交。</p>
+<p>提交bug必须反馈的信息，如不反馈以下信息，我就直接无视了。</p>
+<ul>
+<li>
+<p>创建命令或 <code>docker-compose.yml</code> 文件，请自行对密码打码；</p>
+</li>
+<li>
+<p>使用的docker镜像的tag，以及qBittorrent的版本；</p>
+</li>
+<li>
+<p>进入容器后运行 <code>bash -x /usr/local/bin/&lt;命令名&gt;</code> 如 <code>bash -x /usr/local/bin/report-seed-files</code> 的输出（什么命令出错你就反馈什么命令的内容），请自行对密码打码。</p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/docker/">docker</a>
+        
+            <a href="/tags/qbittorrent/">qbittorrent</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2024-01-19 14:12
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/docker-create-macvlan-with-multi-subnet/">
+        
+        
+            <div class="article-image">
+                <img src="/p/docker-create-macvlan-with-multi-subnet/docker-poster.dbb227265f9f0c7348d1875bad21f8a4_hu6b60afdf246d478211143ca08b6c21f4_93451_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post docker在一块网卡上创建多个macvlan子网"
+                        data-key="docker-create-macvlan-with-multi-subnet" 
+                        data-hash="md5-27InJl&#43;fDHNI0YdbrSH4pA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">docker在一块网卡上创建多个macvlan子网</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/docker-buildx-set-cache-gcpolicy/">
+        
+        
+            <div class="article-image">
+                <img src="/p/docker-buildx-set-cache-gcpolicy/docker-poster.dbb227265f9f0c7348d1875bad21f8a4_hu6b60afdf246d478211143ca08b6c21f4_93451_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）"
+                        data-key="docker-buildx-set-cache-gcpolicy" 
+                        data-hash="md5-27InJl&#43;fDHNI0YdbrSH4pA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/docker-buildx-limit-cpu-usage/">
+        
+        
+            <div class="article-image">
+                <img src="/p/docker-buildx-limit-cpu-usage/docker-poster.dbb227265f9f0c7348d1875bad21f8a4_hu6b60afdf246d478211143ca08b6c21f4_93451_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post docker buildx 跨平台构建镜像时限制CPU使用率"
+                        data-key="docker-buildx-limit-cpu-usage" 
+                        data-hash="md5-27InJl&#43;fDHNI0YdbrSH4pA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">docker buildx 跨平台构建镜像时限制CPU使用率</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/qbittorrent-settings/">
+        
+        
+            <div class="article-image">
+                <img src="/p/qbittorrent-settings/1%E8%A1%8C%E4%B8%BA.51815dec8ceba48fc197086fa657b086_huc57fee344677a40084e50468e69505e3_58748_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post qBittorrent 设置教程"
+                        data-key="qbittorrent-settings" 
+                        data-hash="md5-UYFd7IzrpI/Blwhvplewhg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">qBittorrent 设置教程</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>cachepool on Evine的个人博客</title>
-        <link>https://devome.github.io/tags/cachepool/</link>
+        <link>https://evine.win/tags/cachepool/</link>
         <description>Recent content in cachepool on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://devome.github.io/tags/cachepool/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/cachepool/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池</title>
-        <link>https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/</link>
-        <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+        <link>https://evine.win/p/pve-create-lvm-thin-with-cachepool/</link>
+        <pubDate>Thu, 01 Sep 2022 00:00:00 +0800</pubDate>
         
-        <guid>https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/</guid>
-        <description>&lt;img src="https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1.jpg" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
+        <guid>https://evine.win/p/pve-create-lvm-thin-with-cachepool/</guid>
+        <description>&lt;img src="https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -345,7 +345,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lvcreate --type raid0 --name meta_cachepool --size 528M hybrid /dev/sdd1 /dev/sde1
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lvcreate --type raid0 --name meta_cachepool --size 528M hybrid /dev/sdd1 /dev/sde1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;em&gt;有关元数据LV大小应该设置多大，可以查看官方建议：&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvmthin.7.en#Size_of_pool_metadata_LV&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -729,10 +729,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;添加存储&#34;&gt;添加存储&lt;/h2&gt;
 &lt;p&gt;把创建好的LVM-thin存储添加到PVE，就大功告成了：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;686&#34;
-	srcset=&#34;https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_480x0_resize_q75_box.jpg 480w, https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_480x0_resize_box_3.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1_hue19038eaf5b7fb3085eecdf1c62a7ec3_18696_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;添加LVM-thin存储，ID自己取&#34;
@@ -743,10 +743,10 @@
 		data-flex-basis=&#34;524px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;723&#34;
-	srcset=&#34;https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_480x0_resize_q75_box.jpg 480w, https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_480x0_resize_box_3.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic2_hu618e635b42c5b70c371d2fcbe862ae07_25146_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1000进制看起来就是4T&#34;
@@ -758,10 +758,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;顺便再看看磁盘空间有没有100%利用完全：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;632&#34;
-	srcset=&#34;https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_480x0_resize_q75_box.jpg 480w, https://devome.github.io/p/pve%E5%9F%BA%E4%BA%8Eraid0%E5%88%9B%E5%BB%BAlvm-thin%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%9B%BA%E6%80%81%E7%A3%81%E7%9B%98%E4%BD%9C%E4%B8%BA%E7%BC%93%E5%AD%98%E6%B1%A0/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_480x0_resize_box_3.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;4块磁盘都100%利用了&#34;

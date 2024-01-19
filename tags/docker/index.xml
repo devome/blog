@@ -1,0 +1,1700 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>docker on Evine的个人博客</title>
+        <link>https://evine.win/tags/docker/</link>
+        <description>Recent content in docker on Evine的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>一款更懂你的 qbittorrent docker 镜像</title>
+        <link>https://evine.win/p/docker-install-qbittorrent/</link>
+        <pubDate>Wed, 18 Oct 2023 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/docker-install-qbittorrent/</guid>
+        <description>&lt;img src="https://evine.win/p/docker-install-qbittorrent/notify.png" alt="Featured image of post 一款更懂你的 qbittorrent docker 镜像" /&gt;&lt;blockquote&gt;
+&lt;p&gt;本文较长，如想略过某些内容，请直接点击右侧目录链接。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+&lt;p&gt;为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/101&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;详情&lt;/a&gt;。也因此镜像默认即安装好python，不再需要设置&lt;code&gt;INSTALL_PYTHON&lt;/code&gt;这个环境变量。&lt;/p&gt;
+&lt;h2 id=&#34;声明&#34;&gt;声明&lt;/h2&gt;
+&lt;p&gt;本镜像非魔改版、非快验版、非Enhanced增强版，qBittorrent自身的行为/功能全部未做任何改动（也不会考虑添加或修改官方客户端行为/功能的内容），全部属于官方客户端的默认行为/功能，在和PT站Tracker服务器交互时反馈的一切信息均是qBittorrent官方版反馈的信息。本镜像只是基于官方客户端附加了一些实用的脚本，脚本全部是合理合法使用qBittorrent官方API获取信息，脚本全部行为都集中在本地，与任何远端服务器无任何联系。增加的脚本全部代码在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github&lt;/a&gt; 或 &lt;a class=&#34;link&#34; href=&#34;https://gitee.com/evine/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Gitee&lt;/a&gt; 均可查看 。绝对不会因为使用此镜像而导致账号被封。&lt;/p&gt;
+&lt;h2 id=&#34;效果图&#34;&gt;效果图&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://s3.bmp.ovh/imgs/2023/03/16/d81ef270f591ed4c.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;iyuu-help&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s3.bmp.ovh/imgs/2023/03/16/d0164dc03fa2fcdc.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;change-tracker&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s3.bmp.ovh/imgs/2023/03/16/c68d896355a22dcf.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;change-tracker&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s3.bmp.ovh/imgs/2023/03/16/1cad397ec970f9e3.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;remove-tracker&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s3.bmp.ovh/imgs/2023/03/16/620a163165b3398f.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;del-unseed-dir&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s3.bmp.ovh/imgs/2023/03/16/08cd619845b95053.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;report-seed-files&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s3.bmp.ovh/imgs/2023/03/16/0d107538303e9ce2.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;report-unseed-files&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s3.bmp.ovh/imgs/2023/03/16/cf0b7468ef16760e.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;gen-dup&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;特点&#34;&gt;特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;自动按&lt;code&gt;tracker&lt;/code&gt;分类或打标签（&lt;strong&gt;可以选择关闭，可以选择采用qBittorrent中的“分类”还是“标签”&lt;/strong&gt;）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载完成发送通知（&lt;strong&gt;可以选择关闭&lt;/strong&gt;），可选途径：钉钉（&lt;a class=&#34;link&#34; href=&#34;notify.png&#34; &gt;效果图&lt;/a&gt;）, Telegram, ServerChan, 爱语飞飞, PUSHPLUS推送加, 企业微信, Gotify；搭配RSS功能（&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/54e6137ea4e3&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RSS教程&lt;/a&gt;）自动下载效果很好；下载完成后还可以补充运行你的自定义脚本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;故障时发送通知，可选途径同上。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;按设定的cron检查tracker状态，如发现种子的tracker状态有问题，将给该种子添加&lt;code&gt;TrackerError&lt;/code&gt;的标签，方便筛选；如果tracker出错数量超过设定的阈值，给设定渠道发送通知。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;一些辅助功能：批量修改tracker；检测指定文件夹下未做种的子文件夹/文件；生成做种文件清单；生成未做种文件清单；配合IYUU自动重新校验和自动恢复做种；指定设备上线时自动限速；多时段限速；分析指定目录的重复做种率（辅种率）等等。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;如需要下载完成后自动触发EMBY/JELLYFIN扫描媒体库，触发ChineseSubFinder自动为刚刚下载完成的视频自动下载字幕，请按照 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent/diy&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt; 操作。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;&lt;code&gt;python&lt;/code&gt;为可选安装项，设置为&lt;code&gt;true&lt;/code&gt;就自动安装。&lt;/del&gt;（从2023年9月5日起，默认安装好python，不再需要设置这一项。）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;体积小，默认中文UI，默认东八区时区。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;iyuu&lt;/code&gt;标签集成了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ledccn/IYUUPlus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;IYUUPlus&lt;/a&gt;，自动设置好下载器，减少IYUUPlus设置复杂程度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;标签&#34;&gt;标签&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;4.x.x&lt;/code&gt; , &lt;code&gt;latest&lt;/code&gt;&lt;/strong&gt;: 标签以纯数字版本号命名，这是qBittorrent正式发布的稳定版，其中最新的版本额外增加&lt;code&gt;latest&lt;/code&gt;标签。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;4.x.x-iyuu&lt;/code&gt; , &lt;code&gt;latest-iyuu&lt;/code&gt; , &lt;code&gt;iyuu&lt;/code&gt;&lt;/strong&gt;: 标签中带有&lt;code&gt;iyuu&lt;/code&gt;字样，基于qBittorrent稳定版集成了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ledccn/IYUUPlus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;IYUUPlus&lt;/a&gt;，其中最新的版本额外增加&lt;code&gt;latest-iyuu&lt;/code&gt;和&lt;code&gt;iyuu&lt;/code&gt;标签，自动安装好&lt;a class=&#34;link&#34; href=&#34;https://github.com/ledccn/IYUUPlus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;IYUUPlus&lt;/a&gt;，自动设置好下载器，主要针对不会设置下载器的用户。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;x.x.xalphax&lt;/code&gt;, &lt;code&gt;x.x.xbetax&lt;/code&gt; , &lt;code&gt;x.x.xrcx&lt;/code&gt; , &lt;code&gt;unstable&lt;/code&gt;&lt;/strong&gt;: 标签中带有&lt;code&gt;alpha&lt;/code&gt;、&lt;code&gt;beta&lt;/code&gt;或&lt;code&gt;rc&lt;/code&gt;字样，这是qBittorrent发布的测试版，其中最新的测试版额外增加&lt;code&gt;unstable&lt;/code&gt; 标签。此标签仅供测试使用及向qBittorrent官方反馈bug使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;edge&lt;/code&gt;&lt;/strong&gt;: 基于&lt;code&gt;alpine:edge&lt;/code&gt;制作的镜像，体积最小，所依赖的组件版本最新，会提供&lt;code&gt;riscv64&lt;/code&gt;版本镜像。&lt;strong&gt;所有新功能或者BUG修复，或者有任何变化时，都会第一时间更新到此标签。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;更新日志仅列出稳定版&#34;&gt;更新日志（仅列出稳定版）&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Date&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;qBittorrent&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;libtorrent&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;alpine&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20210608&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.13&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.13.5&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20210617&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.14&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.14.0&lt;/td&gt;
+&lt;td&gt;默认不再安装python，需要开关打开才安装&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20210628&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.14&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.14.0&lt;/td&gt;
+&lt;td&gt;优化自动分类和tracker错误检查时的资源占用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20210804&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.14&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.14.0&lt;/td&gt;
+&lt;td&gt;1. 增加5个环境变量控制开关，详见&lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;；&lt;br&gt;2. 增加批量修改 tracker的功能，详见&lt;a class=&#34;link&#34; href=&#34;#%e5%91%bd%e4%bb%a4&#34; &gt;命令&lt;/a&gt;；&lt;br&gt;3. 增加在运行&lt;code&gt;dl-finish %K&lt;/code&gt;时运行自定义脚本的功能，详见&lt;a class=&#34;link&#34; href=&#34;#%e5%a6%82%e4%bd%95%e5%9c%a8%e8%bf%90%e8%a1%8c-dl-finish-i-%e6%97%b6%e8%b0%83%e7%94%a8%e8%87%aa%e5%ae%9a%e4%b9%89%e8%84%9a%e6%9c%ac&#34; &gt;相关问题2&lt;/a&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20210830&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.14&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.14.2&lt;/td&gt;
+&lt;td&gt;1. 增加3个环境变量控制开关，详见&lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;；&lt;br&gt;2. 增加检测指定目录未做种的子文件夹/文件功能，详见&lt;a class=&#34;link&#34; href=&#34;#%e5%91%bd%e4%bb%a4&#34; &gt;命令&lt;/a&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20211101&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.14&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.14.2&lt;/td&gt;
+&lt;td&gt;修复通知内容中含有字符&amp;quot;&amp;amp;&amp;ldquo;时无法正常发送的bug。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20220107&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.4.0&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.14.3&lt;/td&gt;
+&lt;td&gt;1. 增加环境变量&lt;code&gt;EXTRA_PACKAGES&lt;/code&gt;，详见&lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;；&lt;br&gt;2. 默认运行自动分类程序时仅对未分类的种子进行分类，如需要强制对所有种子进行分类，请参考&lt;a class=&#34;link&#34; href=&#34;#%e5%91%bd%e4%bb%a4&#34; &gt;命令&lt;/a&gt;；&lt;br&gt;3. 增加两个需要手动运行的脚本&lt;code&gt;report-seed-files&lt;/code&gt;(导出所有做种文件清单)和&lt;code&gt;report-unseed-files&lt;/code&gt;(导出指定文件夹下未做种文件清单)，详见&lt;a class=&#34;link&#34; href=&#34;#%e5%91%bd%e4%bb%a4&#34; &gt;命令&lt;/a&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20220216&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.4.1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.14.3&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20220325&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.4.2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.14.4&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20220524&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.4.3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.16.0&lt;/td&gt;
+&lt;td&gt;1. 修复存在多个标签时无法移除&lt;code&gt;TrackerError&lt;/code&gt;标签的bug；&lt;/br&gt;2. 增加企业微信群机器人的通知渠道。&lt;/br&gt;3. 升级openssl到1.1.1o，boost到1.78，alpine到3.16.0，升级iyuu镜像中的php7为php8。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20220526&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.4.3.1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.16.0&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20220824&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.4.4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.16.2&lt;/td&gt;
+&lt;td&gt;1. 增加&lt;code&gt;remove-track&lt;/code&gt;脚本，详见&lt;a class=&#34;link&#34; href=&#34;#%e5%91%bd%e4%bb%a4&#34; &gt;命令&lt;/a&gt;；&lt;/br&gt;2. 优化&lt;code&gt;del-unseed-dir&lt;/code&gt;脚本，现还可以一次性检测多个目录了；&lt;/br&gt;3. 增加Gotity通知环境变量&lt;code&gt;GOTIFY_URL&lt;/code&gt; &lt;code&gt;GOTIFY_APP_TOKEN&lt;/code&gt; &lt;code&gt;GOTIFY_PRIORITY&lt;/code&gt;，详见&lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20220831&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.4.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.16.2&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20221024&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.4.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.16.2&lt;/td&gt;
+&lt;td&gt;libtorrent-rasterbar v2.0.8 修复了内存溢出的问题，因此更新一下qbittorrent。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20221109&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.18&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.16.2&lt;/td&gt;
+&lt;td&gt;添加&lt;code&gt;CATEGORY_OR_TAG&lt;/code&gt;环境变量，详见&lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;；考虑到4.3.9将是许多人的使用版本，将全部新功能重新应用到4.3.9版本中。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20221126&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.9&lt;/br&gt;4.5.0&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.18&lt;/br&gt;2.0.8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.17.0&lt;/td&gt;
+&lt;td&gt;alpine升级至3.17.0，升级依赖版本为：boost 1.80.0, openssl 3.0.7, qt 5.16.6, zlib 1.2.13&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20221130&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.5.0&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.18&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.17.0&lt;/td&gt;
+&lt;td&gt;把依赖项&lt;code&gt;libtorrent-rasterbar&lt;/code&gt;从&lt;code&gt;2.0.8&lt;/code&gt;切换为&lt;code&gt;1.2.18&lt;/code&gt;，应用&lt;a class=&#34;link&#34; href=&#34;https://patch-diff.githubusercontent.com/raw/qbittorrent/qBittorrent/pull/17994.patch&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;#17994.patch&lt;/a&gt;修复&lt;code&gt;4.5.0&lt;/code&gt;版本简体中文无法启用的bug，需要先切换为英文再切换为中文，或者在启动容器前先将&lt;code&gt;config/qBittorrent.conf&lt;/code&gt;中&lt;code&gt;General\Locale&lt;/code&gt;这一行从&lt;code&gt;zh&lt;/code&gt;改为&lt;code&gt;zh_CN&lt;/code&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20230213&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.5.1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1.2.18&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.17.2&lt;/td&gt;
+&lt;td&gt;1. 根据版本的不同自动设置&lt;code&gt;General\Locale&lt;/code&gt;为&lt;code&gt;zh&lt;/code&gt;或&lt;code&gt;zh_CN&lt;/code&gt;；&lt;/br&gt;2. 优化&lt;code&gt;auto-cat&lt;/code&gt; &lt;code&gt;report-unseed-files&lt;/code&gt; &lt;code&gt;tracker-error&lt;/code&gt;逻辑，加快运行速度，对多tracker的，只要有一个正常就不标记为&lt;code&gt;TrackerError&lt;/code&gt;（有任何一个tracker处于&lt;code&gt;工作``更新中&lt;/code&gt;和&lt;code&gt;未联系&lt;/code&gt;都不会视作&lt;code&gt;TrackerError&lt;/code&gt;，只有在运行脚本当时那一刻全部tracker处于&lt;code&gt;未工作&lt;/code&gt;才会标记）；&lt;/br&gt;3. 切换为qt6并增加依赖&lt;code&gt;qt6-qtbase-sqlite&lt;/code&gt;；&lt;/br&gt;4. 修复&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/68&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;#68&lt;/a&gt;，&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/69&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;#69&lt;/a&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20230228&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.5.2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.17.2&lt;/td&gt;
+&lt;td&gt;1. libtorrent-rasterbar切换为2.x；&lt;/br&gt;2. 再一次优化&lt;code&gt;tracker-error&lt;/code&gt;减少70%时长。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20230529&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.5.3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.18.0&lt;/td&gt;
+&lt;td&gt;1. 再一次优化&lt;code&gt;report-seed-files&lt;/code&gt;减少70%时长；&lt;/br&gt;2. &lt;code&gt;dl-finish&lt;/code&gt;不再使用&lt;code&gt;%I&lt;/code&gt;传参，而使用&lt;code&gt;%K&lt;/code&gt;，已经部署好的使用&lt;code&gt;%I&lt;/code&gt;也没有问题（除非会有混合种子或v2种子）；3. 增加&lt;code&gt;gen-dup&lt;/code&gt;脚本，详见“命令”章节。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20230619&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.5.4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.18.2&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;gen-dup&lt;/code&gt;脚本增加总计输出。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20230830&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.5.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.18.3&lt;/td&gt;
+&lt;td&gt;抛弃&lt;code&gt;s6-overlay&lt;/code&gt;，直接交给&lt;code&gt;tini&lt;/code&gt;来捕获退出信号，在退出/停止容器时qB会自动保存配置和种子进度。定时任务改由低权限运行，日志记录在容器内的&lt;code&gt;/data/diy/crond.log&lt;/code&gt;，不再输出到容器控制台。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20230906&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.5.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.18.3&lt;/td&gt;
+&lt;td&gt;为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/101&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;详情&lt;/a&gt;。也因此镜像默认即安装好python，不再需要设置&lt;code&gt;INSTALL_PYTHON&lt;/code&gt;这个环境变量。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20231023&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.6.0&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.18.4&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20231121&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.3.9&lt;/br&gt;4.6.1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.18.4&lt;/td&gt;
+&lt;td&gt;增加一个环境变量&lt;code&gt;TG_API_HOST&lt;/code&gt;，同时允许关闭&lt;code&gt;CRON_HEALTH_CHECK&lt;/code&gt;和&lt;code&gt;CRON_TRACKER_ERROR&lt;/code&gt;，此三项环境变量说明详见 &lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;。从此版本起，qBittorrent官方已经设置禁止默认密码，因此请务必设置&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;为非默认值。同步编译的&lt;code&gt;4.3.9&lt;/code&gt;版本亦可使用新版本可用的环境变量。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20231128&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.6.2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.18.4&lt;/td&gt;
+&lt;td&gt;修复&lt;code&gt;UMASK_SET&lt;/code&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20240117&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4.6.3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2.0.9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3.19.0&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;iyuu&lt;/code&gt;相关标签将php升级到8.3.x。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;环境变量清单&#34;&gt;环境变量清单&lt;/h2&gt;
+&lt;p&gt;在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中&lt;code&gt;WEBUI_PORT&lt;/code&gt; &lt;code&gt;BT_PORT&lt;/code&gt;的形式自行补充添加到创建命令中。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注1：默认值的含义是，你不设置这个环境变量为其他值，那么程序就自动使用默认值。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注2：所有定时任务cron类的环境变量（以&lt;code&gt;CRON&lt;/code&gt;这四个字母开头的）在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注3：&lt;strong&gt;&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;必须改成非默认值，除此以外，其余所有环境变量你都可以不设置，并不影响qbittorrent的使用&lt;/strong&gt;，但如果你想用得更爽，你就根据你的需要设置。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以下是所有标签均可用的环境变量：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;序号&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;变量名&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;默认值&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;PUID&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1000&lt;/td&gt;
+&lt;td&gt;用户的uid，输入命令&lt;code&gt;id -u&lt;/code&gt;可以查到，以该用户运行qbittorrent-nox，群晖用户必须改。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;PGID&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;100&lt;/td&gt;
+&lt;td&gt;用户的gid，输入命令&lt;code&gt;id -g&lt;/code&gt;可以查到，以该用户运行qbittorrent-nox，群晖用户必须改。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;WEBUI_PORT&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8080&lt;/td&gt;
+&lt;td&gt;WebUI访问端口，建议自定义，如需公网访问，需要将qBittorrent和公网之间所有网关设备上都设置端口转发。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;BT_PORT&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;34567&lt;/td&gt;
+&lt;td&gt;BT监听端口，建议自定义，如需达到&lt;code&gt;可连接&lt;/code&gt;状态，需要将qBittorrent和公网之间所有网关设备上都设置端口转发。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;QB_USERNAME&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;admin&lt;/td&gt;
+&lt;td&gt;4.5.5+必须设置此环境变量，登陆qBittorrent的用户名，&lt;strong&gt;请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;QB_PASSWORD&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;adminadmin&lt;/td&gt;
+&lt;td&gt;4.5.5+必须设置此环境变量，登陆qBittorrent的密码，&lt;strong&gt;请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;TZ&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Asia/Shanghai&lt;/td&gt;
+&lt;td&gt;时区，可填内容详见：https://meetingplanner.io/zh-cn/timezone/cities&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;INSTALL_PYTHON&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;从4.5.5起，默认安装好python，不再需要设置这个环境变量。&lt;/strong&gt;&lt;del&gt;默认不安装python，如需要python（qBittorrent的搜索功能必须安装python），请设置为&lt;code&gt;true&lt;/code&gt;，设置后将在首次启动容器时自动安装好。&lt;/del&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ENABLE_AUTO_CATEGORY&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td&gt;4.3.7+可用。是否自动按tracker进行分类，默认为&lt;code&gt;true&lt;/code&gt;开启，如需关闭，请设置为&lt;code&gt;false&lt;/code&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;CATEGORY_OR_TAG&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;category&lt;/td&gt;
+&lt;td&gt;4.3.9及4.5.0+可用，当&lt;code&gt;ENABLE_AUTO_CATEGORY=true&lt;/code&gt;时，控制自动分类是qBittorrent中的“分类”还是“标签”。设置为&lt;code&gt;category&lt;/code&gt;（默认值）为“分类”，设置为&lt;code&gt;tag&lt;/code&gt;为“标签”。当设置为&lt;code&gt;tag&lt;/code&gt;时，由于标签不是唯一的，无法筛选出没有打上tracker标签的种子，所以运行&lt;code&gt;auto-cat -a&lt;/code&gt;和&lt;code&gt;auto-cat -A&lt;/code&gt;都将对全部种子按tracker打标签，种子多时比较耗时；而当设置为&lt;code&gt;category&lt;/code&gt;时，运行&lt;code&gt;auto-cat -a&lt;/code&gt;就只对未分类种子进行分类。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;11&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;DL_FINISH_NOTIFY&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td&gt;默认会在下载完成时向设定的通知渠道发送种子下载完成的通知消息，如不想收此类通知，则设置为&lt;code&gt;false&lt;/code&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;12&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;TRACKER_ERROR_COUNT_MIN&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;3&lt;/td&gt;
+&lt;td&gt;4.3.7+可用。可以设置的值：正整数。在检测到tracker出错的种子数量超过这个阈值时，给设置的通知渠道发送通知。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;13&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;UMASK_SET&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;权限掩码&lt;code&gt;umask&lt;/code&gt;，指定qBittorrent在建立文件时预设的权限掩码。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;14&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;TG_USER_ID&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;通知渠道telegram，如需使用需要和 TG_BOT_TOKEN 同时赋值，私聊 @getuseridbot 获取。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;15&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;TG_BOT_TOKEN&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;通知渠道telegram，如需使用需要和 TG_USER_ID 同时赋值，私聊 @BotFather 获取。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;16&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;TG_PROXY_ADDRESS&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.7+可用。给TG机器人发送消息的代理地址，当设置了&lt;code&gt;TG_USER_ID&lt;/code&gt;和&lt;code&gt;TG_BOT_TOKEN&lt;/code&gt;后可以设置此值，形如：&lt;code&gt;http://192.168.1.1:7890&lt;/code&gt;，也可以不设置。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;17&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;TG_PROXY_USER&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.7+可用。给TG机器人发送消息的代理的用户名和密码，当设置了&lt;code&gt;TG_PROXY_ADDRESS&lt;/code&gt;后可以设置此值，格式为：&lt;code&gt;&amp;lt;用户名&amp;gt;:&amp;lt;密码&amp;gt;&lt;/code&gt;，形如：&lt;code&gt;admin:password&lt;/code&gt;，如没有可不设置。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;18&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;TG_API_HOST&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.6.1+可用。Telegram 的反代 API，如果设置了就改为向你的反代 API 发送消息，不设置则向官方 API 发送消息。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;19&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;DD_BOT_TOKEN&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;通知渠道钉钉，如需使用需要和 DD_BOT_SECRET 同时赋值，机器人设置中webhook链接&lt;code&gt;access_token=&lt;/code&gt;后面的字符串（不含&lt;code&gt;=&lt;/code&gt;以及&lt;code&gt;=&lt;/code&gt;之前的字符）。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;20&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;DD_BOT_SECRET&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;通知渠道钉钉，如需使用需要和 DD_BOT_TOKEN 同时赋值，机器人设置中&lt;strong&gt;只启用&lt;/strong&gt;&lt;code&gt;加签&lt;/code&gt;，加签的秘钥，形如：&lt;code&gt;SEC1234567890abcdefg&lt;/code&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;21&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;IYUU_TOKEN&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;通知渠道爱语飞飞，通过 &lt;a class=&#34;link&#34; href=&#34;http://iyuu.cn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt; 获取，爱语飞飞的TOKEN。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;22&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;SCKEY&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;通知渠道ServerChan，通过 &lt;a class=&#34;link&#34; href=&#34;http://sc.ftqq.com/3.version&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt; 获取。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;23&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;PUSHPLUS_TOKEN&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.7+可用。通知渠道PUSH PLUS，填入其token，详见 &lt;a class=&#34;link&#34; href=&#34;http://www.pushplus.plus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;24&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;WORK_WECHAT_BOT_KEY&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.9及4.4.3+可用。通知渠道企业微信群机器人，填入机器人设置webhook链接中&lt;code&gt;key=&lt;/code&gt;后面的字符串，不含&lt;code&gt;key=&lt;/code&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;25&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;GOTIFY_URL&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.9及4.4.4+可用。通知渠道Gotify，填入其通知网址，需要和&lt;code&gt;GOTIFY_APP_TOKEN&lt;/code&gt;同时赋值。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;26&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;GOTIFY_APP_TOKEN&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.9及4.4.4+可用。通知渠道Gotify，填入其TOKEN，需要和&lt;code&gt;GOTIFY_URL&lt;/code&gt;同时赋值。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;27&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;GOTIFY_PRIORITY&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;5&lt;/td&gt;
+&lt;td&gt;4.3.9及4.4.4+可用。通知渠道Gotify，发送消息的优先级。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;28&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;CRON_HEALTH_CHECK&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;12 * * * *&lt;/td&gt;
+&lt;td&gt;宕机检查的cron，在设定的cron运行时如发现qbittorrent-nox宕机了，则向设置的通知渠道发送通知。&lt;strong&gt;4.6.1+可以设置为&lt;code&gt;off&lt;/code&gt;，意为关闭此定时任务。&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;29&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;CRON_AUTO_CATEGORY&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;32 */2 * * *&lt;/td&gt;
+&lt;td&gt;自动分类的cron，在设定的cron运行&lt;code&gt;auto-cat -a&lt;/code&gt;命令，将所有&lt;strong&gt;未分类&lt;/strong&gt;种子按tracker分类（当&lt;code&gt;CATEGORY_OR_TAG=category&lt;/code&gt;时），或将所有种子按tracker打标签（当&lt;code&gt;CATEGORY_OR_TAG=tag&lt;/code&gt;时）。对于种子很多的大户人家，建议把cron频率修改低一些，一天一次即可。此cron可以由&lt;code&gt;ENABLE_AUTO_CATEGORY&lt;/code&gt;关闭，关闭后不生效。虽然本变量是全版本有效，但控制采用“分类”还是“标签”的变量&lt;code&gt;CATEGORY_OR_TAG&lt;/code&gt;仅4.3.9和4.5.0+有效。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;30&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;CRON_TRACKER_ERROR&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;52 */4 * * *&lt;/td&gt;
+&lt;td&gt;检查tracker状态是否健康的cron，在设定的cron将检查所有种子的tracker状态，如果有问题就打上&lt;code&gt;TrackerError&lt;/code&gt;的标签。在运行的时候比较吃资源，所以对于种子很多的大户人家，或者是对此不那么敏感的用户，建议把cron频率修改低一些，一天一次即可。&lt;strong&gt;4.6.1+可以设置为&lt;code&gt;off&lt;/code&gt;，意为关闭此定时任务。&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;31&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;MONITOR_IP&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.8+可用。可设置为局域网设备的ip，多个ip以半角空格分隔，形如：&lt;code&gt;192.168.1.5 192.168.1.9 192.168.1.20&lt;/code&gt;。本变量作用：当检测到这些设置的ip中有任何一个ip在线时（检测频率为每分钟），自动启用qbittorent客户端的“备用速度限制”，如果都不在线就关闭“备用速度限制”。“备用速度限制”需要事先设置好限制速率，建议在路由器上给需要设置的设备固定ip。在docker cli中请使用一对双引号引起来，在docker-compose中不要使用引用。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;32&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;CRON_ALTER_LIMITS&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.8+可用。启动和关闭“备用速度限制“的cron，主要针对多时段限速场景，当设置了&lt;code&gt;MONITOR_IP&lt;/code&gt;时本变量的cron不生效（因为会冲突）。详见 &lt;a class=&#34;link&#34; href=&#34;#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-cron_alter_limits-%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f&#34; &gt;相关问题13&lt;/a&gt; 问题13。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;33&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;CRON_IYUU_HELP&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.8+可用。IYUUPlus辅助任务的cron，自动重校验、自动恢复做种，详见 &lt;a class=&#34;link&#34; href=&#34;#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-cron_iyuu_help-%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f&#34; &gt;相关问题14&lt;/a&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;34&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;EXTRA_PACKAGES&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td&gt;4.3.9+可用。你需要安装的其他软件包，形如&lt;code&gt;htop nano nodejs&lt;/code&gt;，多个软件包用半角空格分开，在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;以下是仅&lt;code&gt;iyuu&lt;/code&gt;标签额外可用的环境变量：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;序号&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;变量名&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;默认值&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;IYUU_REPO_URL&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;code&gt;https://gitee.com/ledc/iyuuplus.git&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;指定从哪里获取IYUUPlus的代码，默认从gitee更新，如果你想从github更新，可以设置为：&lt;code&gt;https://github.com/ledccn/IYUUPlus.git&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;创建&#34;&gt;创建&lt;/h2&gt;
+&lt;h3 id=&#34;群晖&#34;&gt;群晖&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic1.png&#34;
+	width=&#34;1061&#34;
+	height=&#34;571&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic1_hu9f4301c8c0ff0cfc9c89115ea04171db_77768_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic1_hu9f4301c8c0ff0cfc9c89115ea04171db_77768_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;445px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic2.png&#34;
+	width=&#34;1062&#34;
+	height=&#34;572&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic2_hua6cd79e085caf0d0bcf5eaad0f242db9_71239_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic2_hua6cd79e085caf0d0bcf5eaad0f242db9_71239_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;445px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic3.png&#34;
+	width=&#34;1062&#34;
+	height=&#34;570&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic3_hueff177dec2995f9cca7d7812c6b6d3c9_48535_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic3_hueff177dec2995f9cca7d7812c6b6d3c9_48535_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;3&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;186&#34;
+		data-flex-basis=&#34;447px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic4.png&#34;
+	width=&#34;1060&#34;
+	height=&#34;569&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic4_hu5f80005e1d729d7b6755a7444a097540_84706_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic4_hu5f80005e1d729d7b6755a7444a097540_84706_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;4&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;186&#34;
+		data-flex-basis=&#34;447px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic5.png&#34;
+	width=&#34;1059&#34;
+	height=&#34;567&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic5_hu7c1446dd16101d827b4b3ada316f611e_55426_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic5_hu7c1446dd16101d827b4b3ada316f611e_55426_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;5&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;186&#34;
+		data-flex-basis=&#34;448px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic6.png&#34;
+	width=&#34;1061&#34;
+	height=&#34;574&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic6_hu8055a851d776379c35fbda5bfa7280be_63283_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic6_hu8055a851d776379c35fbda5bfa7280be_63283_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;6&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;184&#34;
+		data-flex-basis=&#34;443px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic7.png&#34;
+	width=&#34;1061&#34;
+	height=&#34;572&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic7_hu5b37a8e50e007dd4fdd539f62c764948_63613_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic7_hu5b37a8e50e007dd4fdd539f62c764948_63613_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;7&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;445px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic8.png&#34;
+	width=&#34;1060&#34;
+	height=&#34;570&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic8_hu917f0b0c3c379996c8a8c4874a6c3229_75047_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic8_hu917f0b0c3c379996c8a8c4874a6c3229_75047_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;446px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic9.png&#34;
+	width=&#34;1061&#34;
+	height=&#34;571&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic9_hu141b015aa107b1c29b806bd048e03d57_57085_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic9_hu141b015aa107b1c29b806bd048e03d57_57085_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;9&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;445px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic10.png&#34;
+	width=&#34;1060&#34;
+	height=&#34;571&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic10_hubacdaa7870bdeccbff269c50348aa08b_138689_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic10_hubacdaa7870bdeccbff269c50348aa08b_138689_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;10&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;445px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic11.png&#34;
+	width=&#34;1063&#34;
+	height=&#34;570&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic11_hu4230c049679416b68245edda483c4a65_141185_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic11_hu4230c049679416b68245edda483c4a65_141185_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;11&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;186&#34;
+		data-flex-basis=&#34;447px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic12.png&#34;
+	width=&#34;1060&#34;
+	height=&#34;568&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic12_huc8e7c5814096501d4a7dde0db78e9c22_92732_480x0_resize_box_3.png 480w, https://evine.win/p/docker-install-qbittorrent/pic12_huc8e7c5814096501d4a7dde0db78e9c22_92732_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;12&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;186&#34;
+		data-flex-basis=&#34;447px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;安装后访问&lt;code&gt;http://ip:8080&lt;/code&gt;。如想使用集成了IYUUPlus的qBittorrent（自动设置好IYUUPlus中的下载器），请使用docker cli以命令行方式部署。&lt;/p&gt;
+&lt;h3 id=&#34;命令行docker-cli&#34;&gt;命令行docker cli&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;除&lt;code&gt;WEBUI_PORT&lt;/code&gt; &lt;code&gt;BT_PORT&lt;/code&gt; &lt;code&gt;PUID&lt;/code&gt; &lt;code&gt;PGID&lt;/code&gt;这几个环境变量外，如果你还需要使用其他环境变量，请根据&lt;a class=&#34;link&#34; href=&#34;#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95&#34; &gt;环境变量清单&lt;/a&gt;按照&lt;code&gt;-e 变量名=&amp;quot;变量值&amp;quot; \&lt;/code&gt;的形式自行添加在创建命令中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;armv7设备如若无法使用网络，可能是seccomp问题，详见 &lt;a class=&#34;link&#34; href=&#34;https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;。可以在创建命令中增加一行&lt;code&gt;--security-opt seccomp=unconfined \&lt;/code&gt; 来解决。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建完成后请访问&lt;code&gt;http://&amp;lt;IP&amp;gt;:&amp;lt;WEBUI_PORT&amp;gt;&lt;/code&gt;（如未修改，对安装机默认是&lt;code&gt;http://127.0.0.1:8080&lt;/code&gt;）来对qbittorrent作进一步设置，初始用户名密码：&lt;code&gt;admin/adminadmin&lt;/code&gt;。如要在公网访问，请务必修改用户名和密码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;针对&lt;code&gt;iyuu&lt;/code&gt;标签，创建后可访问&lt;code&gt;http://&amp;lt;IP&amp;gt;:8787&lt;/code&gt;进行IYUUPlus设置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## latest标签或unstable标签
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -dit \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -v $PWD/qbittorrent:/data `# 冒号左边请修改为你想在本地保存的路径，这个路径用来保存你个人的配置文件` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -e PUID=&amp;#34;1000&amp;#34;        `# 输入id -u可查询，群晖必须改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -e PGID=&amp;#34;100&amp;#34;         `# 输入id -g可查询，群晖必须改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -e WEBUI_PORT=&amp;#34;8080&amp;#34;  `# WEBUI控制端口，可自定义` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -e BT_PORT=&amp;#34;34567&amp;#34;    `# BT监听端口，可自定义` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 8080:8080          `# 冒号左右一样，要和WEBUI_PORT一致，命令中的3个8080要改一起改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 34567:34567/tcp    `# 冒号左右一样，要和BT_PORT一致，命令中的5个34567要改一起改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 34567:34567/udp    `# 冒号左右一样，要和BT_PORT一致，命令中的5个34567要改一起改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --tmpfs /tmp \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --restart always \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --name qbittorrent \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --hostname qbittorrent \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  nevinee/qbittorrent   `# 如想参与qbittorrent测试工作，可以指定测试标签nevinee/qbittorrent:unstable`
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## iyuu标签
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -dit \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -v $PWD/qbittorrent:/data `# 冒号左边请修改为你想在本地保存的路径，这个路径用来保存你个人的配置文件` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -e PUID=&amp;#34;1000&amp;#34;        `# 输入id -u可查询，群晖必须改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -e PGID=&amp;#34;100&amp;#34;         `# 输入id -g可查询，群晖必须改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -e WEBUI_PORT=&amp;#34;8080&amp;#34;  `# WEBUI控制端口，可自定义` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -e BT_PORT=&amp;#34;34567&amp;#34;    `# BT监听端口，可自定义` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 8080:8080          `# 冒号左右一样，要和WEBUI_PORT一致，命令中的3个8080要改一起改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 34567:34567/tcp    `# 冒号左右一样，要和BT_PORT一致，命令中的5个34567要改一起改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 34567:34567/udp    `# 冒号左右一样，要和BT_PORT一致，命令中的5个34567要改一起改` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 8787:8787          `# IYUUPlus的WebUI控制端口` \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --tmpfs /tmp \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --restart always \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --name qbittorrent \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --hostname qbittorrent \
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  nevinee/qbittorrent:iyuu
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;docker-compose&#34;&gt;docker compose&lt;/h3&gt;
+&lt;p&gt;新建&lt;code&gt;compose.yml&lt;/code&gt;文件如下（&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/compose/cli-command/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;docker compose安装方法&lt;/a&gt;），创建好后以&lt;code&gt;docker-compose up -d&lt;/code&gt;(旧版)或&lt;code&gt;docker compose up -d&lt;/code&gt;(新版)命令启动即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;version: &amp;#34;2.0&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;services:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  qbittorrent:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: nevinee/qbittorrent  # 如想参与测试工作可以指定nevinee/qbittorrent:unstable，如想使用集成了iyuu的版本请指定nevinee/qbittorrent:iyuu
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    container_name: qbittorrent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    restart: always
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    tty: true
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    network_mode: bridge
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    hostname: qbitorrent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    stop_grace_period: 10m # 让qBittorrent程序自行退出后再关闭/删除/重启容器的最长时间，如不设置，则docker默认10秒，这时，种子多的qBittorrent可能还没有完全保存好全部需要保存的信息。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - ./data:/data      # 配置保存目录
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    tmpfs:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - /tmp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    environment:          # 下面未列出的其他环境变量请根据环境变量清单自行添加
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - WEBUI_PORT=8080   # WEBUI控制端口，可自定义
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - BT_PORT=34567     # BT监听端口，可自定义
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - PUID=1000         # 输入id -u可查询，群晖必须改
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - PGID=100          # 输入id -g可查询，群晖必须改
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ports:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 8080:8080        # 冒号左右一致，必须同WEBUI_PORT一样，本文件中的3个8080要改一起改
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 34567:34567      # 冒号左右一致，必须同BT_PORT一样，本文件中的5个34567要改一起改
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 34567:34567/udp  # 冒号左右一致，必须同BT_PORT一样，本文件中的5个34567要改一起改
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      #- 8787:8787       # 如使用的是nevinee/qbittorrent:iyuu标签，请解除本行注释
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    #security_opt:       # armv7设备请解除本行和下一行的注释
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      #- seccomp=unconfined
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如若想将qbittorrent建立在已经创建好的macvlan网络上，可以按如下方式创建：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;version: &amp;#34;2.0&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;services:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  qbittorrent:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: nevinee/qbittorrent # 如想参与测试工作可以指定nevinee/qbittorrent:unstable，如想使用集成了iyuu的版本，请指定nevinee/qbittorrent:iyuu
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    container_name: qbittorrent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    restart: always
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    tty: true
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    networks: 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &amp;lt;你的macvlan网络名称&amp;gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ipv4_address: &amp;lt;你想设置的ip&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        aliases:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          - qbittorrent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    dns:   # docker是无法为macvlan网络提供dns解析服务的，要想正常在macvlan网络上发通知，请给容器添加dns服务器，你也可以直接使用你的网关ip作为dns服务器
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 223.5.5.5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 114.114.114.114
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 1.2.4.8
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    hostname: qbitorrent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    stop_grace_period: 10m # 让qBittorrent程序自行退出后再关闭/删除/重启容器的最长时间，如不设置，则docker默认10秒，这时，种子多的qBittorrent可能还没有完全保存好全部需要保存的信息。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    volumes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - ./data:/data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    tmpfs:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - /tmp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    environment:          # 下面未列出的其他环境变量请根据环境变量清单自行添加
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - WEBUI_PORT=8080   # WEBUI控制端口，可自定义
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - BT_PORT=34567     # BT监听端口，可自定义
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - PUID=1000         # 输入id -u可查询，群晖必须改
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - PGID=100          # 输入id -g可查询，群晖必须改
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    #security_opt:        # armv7设备请解除本行和下一行的注释
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      #- seccomp=unconfined
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;networks: 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;lt;你的macvlan网络名称&amp;gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    external: true
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;创建完成后请访问&lt;code&gt;http://&amp;lt;IP&amp;gt;:&amp;lt;WEBUI_PORT&amp;gt;&lt;/code&gt;（如未修改，对安装机默认是&lt;code&gt;http://127.0.0.1:8080&lt;/code&gt;）来对qbittorrent作进一步设置，初始用户名密码：&lt;code&gt;admin/adminadmin&lt;/code&gt;。如要在公网访问，请务必修改用户名和密码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;针对&lt;code&gt;iyuu&lt;/code&gt;标签，创建后可访问&lt;code&gt;http://&amp;lt;IP&amp;gt;:8787&lt;/code&gt;进行IYUUPlus设置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;目录说明&#34;&gt;目录说明&lt;/h2&gt;
+&lt;p&gt;如果按照上述任何一种部署方式，在映射的目录下会有以下文件夹：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;                         &lt;span class=&#34;c1&#34;&gt;# 基础路径在容器内为/data，下面所有文件夹均处于/data的下一层，基础路径在宿主机上为你创建容器时映射的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cache&lt;/span&gt;                     &lt;span class=&#34;c1&#34;&gt;# qbittorrent的缓存目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;certs&lt;/span&gt;                     &lt;span class=&#34;c1&#34;&gt;# 用来存放ssl证书，默认是空的，可另外使用acme.sh来申请ssl证书&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;                    &lt;span class=&#34;c1&#34;&gt;# 所有的配置文件保存目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;qBittorrent&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;conf&lt;/span&gt;      &lt;span class=&#34;c1&#34;&gt;# **配置文件，很重要，如需恢复配置此文件必须保留**&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;qBittorrent&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;conf&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# **上传下载数据统计文件，如需恢复配置此文件必须保留**&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;└──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rss&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;# **rss的配置文件保存目录，如需恢复配置此目录必须保留**&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;                      &lt;span class=&#34;c1&#34;&gt;# 所有的数据文件保存目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BT_backup&lt;/span&gt;             &lt;span class=&#34;c1&#34;&gt;# **当高级设置中恢复文件选择为&amp;#34;Fastresume files&amp;#34;时，种子和快速恢复文件保存目录，如需恢复做种数据此目录必须保留**&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;torrents&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;           &lt;span class=&#34;c1&#34;&gt;# **当高级设置中恢复文件选择为&amp;#34;SQLite database&amp;#34;时，种子和快速恢复数据的数据库文件，如需恢复做种数据此文件必须保留**&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GeoDB&lt;/span&gt;                 &lt;span class=&#34;c1&#34;&gt;# IP数据保存目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;logs&lt;/span&gt;                  &lt;span class=&#34;c1&#34;&gt;# 日志文件保存目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nova3&lt;/span&gt;                 &lt;span class=&#34;c1&#34;&gt;# 启用qBittorrent搜索功能后相关文件保存目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;└──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rss&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;# rss订阅下载文件保存目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;diy&lt;/span&gt;                       &lt;span class=&#34;c1&#34;&gt;# 存放你自己编写的脚本的目录，diy.sh需要存放在此&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;downloads&lt;/span&gt;                 &lt;span class=&#34;c1&#34;&gt;# 默认下载目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;iyuu_db&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;# 仅iyuu标签有此目录，用来保存IYUUPlus的配置文件，IYUUPlus用户须保留此文件夹&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;logs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logs&lt;/span&gt;         &lt;span class=&#34;c1&#34;&gt;# 只是个软连接，连接到容器内的/data/data/logs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;                      &lt;span class=&#34;c1&#34;&gt;# 下载文件临时存放目录，默认在配置中未启用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;torrents&lt;/span&gt;                  &lt;span class=&#34;c1&#34;&gt;# 保存种子文件目录，默认在配置中未启用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;watch&lt;/span&gt;                     &lt;span class=&#34;c1&#34;&gt;# 监控目录，监控这个目录下的.torrent文件并自动下载，默认在配置中未启用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;└──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;webui&lt;/span&gt;                     &lt;span class=&#34;c1&#34;&gt;# 存放其他webui文件的目录，需要自己存放，默认在配置中未启用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;em&gt;有两个星号标记的文件或目录是重要目录，恢复数据必须要有这几个。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt; 可以查阅所有可用的非官方webui。&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;相关问题&#34;&gt;相关问题&lt;/h2&gt;
+&lt;h3 id=&#34;使用此镜像会导致封号吗&#34;&gt;使用此镜像会导致封号吗&lt;/h3&gt;
+&lt;p&gt;此镜像未修改qbittorrent客户端官方任何信息，在和pt站tracker服务器交互时反馈的一切信息均是qbittorrent官方原版反馈的信息，此镜像只是基于qbittorrent额外增加了一些脚本而已。增加的脚本全部代码在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt; 可以查看，不会因为使用此镜像导致pt账号被封。&lt;/p&gt;
+&lt;h3 id=&#34;如何在运行-dl-finish-k-时调用自定义脚本&#34;&gt;如何在运行 dl-finish &amp;ldquo;%K&amp;rdquo; 时调用自定义脚本&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;此功能可用版本：4.3.7+；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在4.5.0以前的版本不能使用&lt;code&gt;%K&lt;/code&gt;，只能使用&lt;code&gt;%I&lt;/code&gt;；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;只要你将名为&lt;code&gt;diy.sh&lt;/code&gt;的shell脚本放在映射目录下的&lt;code&gt;diy&lt;/code&gt;文件夹下即可，容器内路径为&lt;code&gt;/data/diy/diy.sh&lt;/code&gt;（hash已存储在名为torrent_hash的变量中，可通过此值获取其他信息）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如想传入除“%K”种子ID之外的其他参数，可以在 设置-&amp;gt;下载-&amp;gt;Torrent 完成时运行外部程序 下填入这种形式：&lt;code&gt;dl-finish &amp;quot;%K&amp;quot; &amp;quot;%N&amp;quot; &amp;quot;%L&amp;quot; &amp;quot;%F&amp;quot;&lt;/code&gt;，必须保证&amp;rdquo;%K&amp;quot;是第一个参数，后面的参数根据你自己需要调整。在&lt;code&gt;diy.sh&lt;/code&gt;中，&lt;code&gt;&amp;quot;%N&amp;quot; &amp;quot;%L&amp;quot; &amp;quot;%F&amp;quot;&lt;/code&gt;分别通过&lt;code&gt;$2 $3 $4&lt;/code&gt;调用。如：&lt;code&gt;cmd &amp;quot;$2&amp;quot; &amp;quot;$3 &amp;quot;$4&amp;quot;&lt;/code&gt;。$2, $3, $4分别指传入的第2, 第3, 第4个参数，分别对应&lt;code&gt;&amp;quot;%N&amp;quot; &amp;quot;%L&amp;quot; &amp;quot;%F&amp;quot;&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;假如你要调用其他语言的脚本，比如python，可以在&lt;code&gt;diy.sh&lt;/code&gt;中写上&lt;code&gt;python3 /data/diy/your_python_scripts.py $torrent_hash&lt;/code&gt;即可。如需要传入更多参数，请参考上一条在“Torrent 完成时运行外部程序”填入形如&lt;code&gt;dl-finish &amp;quot;%K&amp;quot; &amp;quot;%N&amp;quot; &amp;quot;%L&amp;quot; &amp;quot;%F&amp;quot;&lt;/code&gt;的形式，然后在&lt;code&gt;diy.sh&lt;/code&gt;中写上&lt;code&gt;python3 /data/diy/your_python_scripts.py &amp;quot;$2&amp;quot; &amp;quot;$3&amp;quot; &amp;quot;$4&amp;quot;&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如需要下载完成后自动触发EMBY/JELLYFIN扫描媒体库，触发ChineseSubFinder自动为刚刚下载完成的视频自动下载字幕，请按照 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent/diy&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt; 操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;如何优雅的关闭qbittorrent容器&#34;&gt;如何优雅的关闭qbittorrent容器&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;暴力强制关闭qbittorrent容器自然是容易丢失任务的，所以在关闭前应当先将所有种子暂停，过一会再关闭容器。这时，所有的配置文件和torrent恢复文件也都是暂停后的状态，然后再新建容器或重新部署，启动后再开始所有任务。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;还有一点要注意，千万不要在有下载任务时关闭或重启qbittorrent容器。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;如何从其他作者的镜像套件版转移至本镜像&#34;&gt;如何从其他作者的镜像/套件版转移至本镜像&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;如果启用了ssl/https，请先在原qbittorrent的webui中禁用，或者将&lt;code&gt;qBittorrent.conf&lt;/code&gt;中&lt;code&gt;WebUI\HTTPS\Enabled=true&lt;/code&gt;改为&lt;code&gt;WebUI\HTTPS\Enabled=false&lt;/code&gt;。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;请注意要优雅的关闭旧容器后再处理配置文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入原来容器的映射目录（或原套件版配置文件保存目录，可能是隐藏的）下，在config下分别找到&lt;code&gt;qBittorrent.conf&lt;/code&gt; &lt;code&gt;qBittorrent-data.conf&lt;/code&gt; &lt;code&gt;rss&lt;/code&gt;，在data下找到&lt;code&gt;BT_backup&lt;/code&gt;或&lt;code&gt;torrents.db&lt;/code&gt;，然后将其参考上面的目录树放在新容器的映射目录下，然后在创建容器时，保证新容器中的下载文件的保存路径和旧容器一致，并新建容器即可。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;举例说明如何保证新容器中的下载文件的保存路径和旧容器一致，比如旧容器中下载了一个 &lt;code&gt;xxx.2020.BluRay.1080p.x264.DTS-XXX&lt;/code&gt;，保存路径为&lt;code&gt;/movies&lt;/code&gt;（宿主机上的真实路径为&lt;code&gt;/volume1/home/id/movies&lt;/code&gt;），那么在新建新容器时，给新容器增加一个路径映射：&lt;code&gt;/volume1/home/id/movies:/movies&lt;/code&gt;　即可。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注意新容器的PUID/PGID和要旧容器保持一致。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注意在 &lt;code&gt;设置&lt;/code&gt; -&amp;gt; &lt;code&gt;下载&lt;/code&gt; 中勾选 &lt;code&gt;Torrent 完成时运行外部程序&lt;/code&gt; 并填入 &lt;code&gt;dl-finish &amp;quot;%K&amp;quot;&lt;/code&gt;，如需要https要重新设置证书路径。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;可不可以不使用默认下载目录&#34;&gt;可不可以不使用默认下载目录&lt;/h3&gt;
+&lt;p&gt;默认下载目录是&lt;code&gt;/data/downloads&lt;/code&gt;，如不想使用默认下载目录，可以额外映射其他路径，比如映射&lt;code&gt;/volume1/media:/media&lt;/code&gt;，然后在qbittorrent中设置默认下载目录为&lt;code&gt;/media&lt;/code&gt;，也可以在每次下载时自己输入下载目录为&lt;code&gt;/media&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;遗忘登陆密码如何重置&#34;&gt;遗忘登陆密码如何重置&lt;/h3&gt;
+&lt;p&gt;重启一次容器即可，启动时容器会自动以你创建容器时定义的环境变量&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;去设置登陆qBittorrent的用户名和密码。&lt;/p&gt;
+&lt;h3 id=&#34;如何与emby-jellyfin-plex等等配合使用&#34;&gt;如何与emby, jellyfin, plex等等配合使用&lt;/h3&gt;
+&lt;p&gt;将需要配合使用的容器的环境变量PUID/PGID设置为一样的即可。&lt;/p&gt;
+&lt;h3 id=&#34;启用了其他非官方webui导致webui打不开如何关闭&#34;&gt;启用了其他非官方webui，导致webui打不开，如何关闭&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 进入容器
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 关闭备用webui
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;source /usr/local/bin/share; $cmd_curl_post -d &amp;#39;json={&amp;#34;alternative_webui_enabled&amp;#34;:false}&amp;#39; $api_url_base/app/setPreferences
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;如何自动更新容器&#34;&gt;如何自动更新容器&lt;/h3&gt;
+&lt;p&gt;安装watchtower即可，详见 &lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/containrrr/watchtower&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装了watchtower如何让qbittorrent不被watchtower自动更新&#34;&gt;安装了watchtower，如何让qbittorrent不被watchtower自动更新&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;方法1：部署qbittorrent容器时，直接指定标签，如&lt;code&gt;nevinee/qbittorrent:4.3.7&lt;/code&gt;；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;方法2（推荐）：在部署时在命令中添加一个label：&lt;code&gt;com.centurylinklabs.watchtower.enable=false&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;docker cli：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--label com.centurylinklabs.watchtower.enable=false \
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;docker-compose:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    labels:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      com.centurylinklabs.watchtower.enable: false
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;为何建议将qbittorrent安装在macvlan网络上&#34;&gt;为何建议将qbittorrent安装在macvlan网络上&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;可以在网关上给qbittorrent所在ip独立设置限速;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果有用openwrt时，可以让qbittorrent所在ip跳过代理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;将qbittorrent安装在macvlan网络上时如何使用iyuuautoreseed自动辅种&#34;&gt;将qbittorrent安装在macvlan网络上时，如何使用IYUUAutoReseed自动辅种&lt;/h3&gt;
+&lt;p&gt;将两个容器都安装在同一个macvlan网络上即可，或者直接安装&lt;code&gt;nevinee/qbittorrent:iyuu&lt;/code&gt;标签。&lt;/p&gt;
+&lt;h3 id=&#34;如何使用-cron_alter_limits-这个环境变量&#34;&gt;如何使用 CRON_ALTER_LIMITS 这个环境变量&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;4.3.8+可用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;该功能主要提供给多时段限速场景使用，请在qbittorrent客户端中先设置好”备用速度限制“的限制速率。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当设置了有效的&lt;code&gt;MONITOR_IP&lt;/code&gt;时，&lt;code&gt;CRON_ALTER_LIMITS&lt;/code&gt;的cron不生效（因为会冲突）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置形式如：&lt;code&gt;0 5 * * *:0 18 * * *|0 8 * * *:0 22 * * *&lt;/code&gt;，&lt;code&gt;|&lt;/code&gt;前面的cron是启用“备用速度限制”的时间点，&lt;code&gt;|&lt;/code&gt;后面的cron是关闭“备用速度限制”的时间点。需要在一天中多次启用“备用速度限制”的，以&lt;code&gt;:&lt;/code&gt;分隔每个cron，可以任意个cron，需要多次关闭“备用速度限制”的同样以&lt;code&gt;:&lt;/code&gt;分隔每个cron。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;比如需要在周一至周五的5:00-8:00、17:30-23:30，以及周六、周日的9:00-23:30进行限速，那么可以设置&lt;code&gt;CRON_ALTER_LIMITS&lt;/code&gt;为&lt;code&gt;0 5 * * 1-5:30 17 * * 1-5:0 9 * * 0,6|0 8 * * 1-5:30 23 * * *&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;比如需要在周一至周五的17:30-22:00，以及周六、周日的8:30-23:00进行限速，那么可以设置&lt;code&gt;CRON_ALTER_LIMITS&lt;/code&gt;为&lt;code&gt;30 17 * * 1-5:30 8 * * 0,6|0 22 * * 1-5:0 23 * * 0,6&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在docker cli中请使用一对双引号引起来，在docker-compose.yml中请勿增加引号。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;如何使用-cron_iyuu_help-这个环境变量&#34;&gt;如何使用 CRON_IYUU_HELP 这个环境变量&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;4.3.8+可用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在设置的时间点执行&lt;code&gt;iyuu-help&lt;/code&gt;命令，实现以下功能：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;检查下载清单（就是qbittorrent筛选“下载”的清单），检测该清单中处于暂停状态、并且下载完成率为0%（辅种的种子在校验前也是0%）的种子，将这些种子请求重新校验。&lt;strong&gt;已经请求过校验并且完成率大于0%的种子不会再次校验。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;检查暂停清单（就是qbittorrent筛选“暂停”的清单），检测该清单中100%下载完成/100%校验通过的种子，将这些种子恢复做种。&lt;strong&gt;校验未通过不达100%完成率的种子不会启动，仍然保持暂停状态。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配合IYUUAutoReseed，将CRON_IYUU_HELP设置在IYUUAutoReseed自动辅种任务的cron以后，并运行若干次即可（因为校验比较费时，所以要多次运行）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;比如你IYUUAutoReseed辅种任务的cron是&lt;code&gt;22 7 * * *&lt;/code&gt;，你想从辅种任务3分钟后，每10分钟运行一次，共运行4次，那么可以设置CRON_IYUU_HELP为：&lt;code&gt;25-55/10 7 * * *&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在docker cli中请使用一对双引号引起来，在docker-compose.yml中请勿增加引号。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;qbittorrent使用https的webui时iyuu如何连接&#34;&gt;qBittorrent使用https的webui时，iyuu如何连接&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;当qBittorrent使用https的webui时，iyuu连接qBittorrent需要使用&lt;code&gt;https://&amp;lt;域名&amp;gt;:&amp;lt;端口&amp;gt;&lt;/code&gt;的形式，不能使用&lt;code&gt;https://&amp;lt;IP&amp;gt;:&amp;lt;端口&amp;gt;&lt;/code&gt;，所以需要在创建iyuu容器（使用nevinee/qbittorrent:iyuu时同样也需要）指定域名和ip的对应关系。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;命令行创建iyuu容器时时，增加&lt;code&gt;--add-host &amp;lt;域名&amp;gt;:&amp;lt;qBittorrent容器的IP&amp;gt;&lt;/code&gt;，其中域名是你在公网上访问qBittorrent的webui的域名，如果直接使用的&lt;code&gt;nevinee/qbittorrent:iyuu&lt;/code&gt;标签，就是&lt;code&gt;--add-host &amp;lt;域名&amp;gt;:127.0.0.1&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;docker compose创建时，增加以下内容：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    extra_hosts:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - &amp;#34;&amp;lt;域名&amp;gt;:&amp;lt;qBittorrent容器的IP&amp;gt;&amp;#34;  ## 如果直接使用的`nevinee/qbittorrent:iyuu`标签，IP就是127.0.0.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;qbittorrent占用了巨大的内存如何调整&#34;&gt;qBittorrent占用了巨大的内存，如何调整&lt;/h3&gt;
+&lt;p&gt;你所见到的占用巨大的内存并不是真的占用了，使用&lt;code&gt;docker stats qbittorrent&lt;/code&gt;输出的内存占用更准确一点，其他方式输出的内存占用会非常的大。因为libtorrent-rasterbar v2.x把内存使用交给内核来处理，内核会自己根据内存大小和读取频次来自动决定怎么去缓存，所以不要被看起来庞大的内存占用给吓着了。详见libtorrent-rasterbar作者的&lt;a class=&#34;link&#34; href=&#34;https://github.com/arvidn/libtorrent/issues/6667#issuecomment-1040874903&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;原话&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;谷歌翻译如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;总结一下，libtorrent2.0使用内存映射文件。在除windows之外的所有现代操作系统上，在块设备级别使用统一的页面缓存，其中匿名内存（由swapfile支持）和内存映射文件（包括共享库，运行可执行文件）都是同一缓存的一部分。Linux可能是决定如何在物理RAM中平衡这些页面的最复杂的工具。
+使用内存映射文件的好处主要有：
+内核（它知道机器有多少物理RAM可用）最了解何时以及以何种顺序刷新缓存。也许更重要的是，决定保留读缓存的数量和时间。
+某些类型的存储可以由CPU直接寻址，就像它是RAM一样，绕过了许多内核基础设施，并提供了非常高的性能。（linux称此DAX）
+此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;qb老是不监听ipv6地址怎么办&#34;&gt;qB老是不监听IPv6地址，怎么办？&lt;/h3&gt;
+&lt;p&gt;有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;检测到外部 IP。IP：“240e:1234:5678:abcd:ef12:3456:7890:abcd”
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果没有出现类似这样的日志，或者出的日志中的IPv6地址不是当前最新的地址，那么你可以操作：先将 “设置-&amp;gt;高级-&amp;gt;绑定到的可选IP地址” 选择最新的IPv6地址，保存一次；然后再将其设置为 “所有地址” 后再重新保存一次。过一会日志中就会出现正常的信息了。&lt;/p&gt;
+&lt;h2 id=&#34;命令&#34;&gt;命令&lt;/h2&gt;
+&lt;h3 id=&#34;自动运行的命令所有标签可用由设置的cron或在下载完成时自动运行当然也可以手动运行&#34;&gt;自动运行的命令（所有标签可用，由设置的cron或在下载完成时自动运行，当然也可以手动运行）&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 发送通知
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;notify&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;测试消息标题&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;测试消息通知内容&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 将种子按tracker进行分类，由CRON_AUTO_CATEGOR设置的cron来调用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cat&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 由程序自动调用，也可手动运行。当CATEGORY_OR_TAG=category时，将所有未分类的种子按tracker分类；当CATEGORY_OR_TAG=tag时，对所有种子按tracker打标签
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cat&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 需要手动运行。当CATEGORY_OR_TAG=category时，将所有种子按tracker分类；当CATEGORY_OR_TAG=tag时，对所有种子按tracker打标签
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 将指定种子按tracker进行分类，会自动在下载完成时运行一次（由 dl-finish &amp;lt;hash&amp;gt; 命令调用）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cat&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hash&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# hash可以在种子详情中的&amp;#34;普通&amp;#34;标签页上查看到
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 下载完成时将种子分类，并发送通知，已经在配置文件中填好了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;finish&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hash&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# hash可以在种子详情中的&amp;#34;普通&amp;#34;标签页上查看到
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 检查qbittorrent是否宕机，如宕机则发送通知，由CRON_HEALTH_CHECK设置的cron来调用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;health&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;check&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 检查所有种子的tracker状态是否有问题，如有问题，给该种子添加一个 TrackerError 的标签，由CRON_TRACKER_ERROR设置的cron来调用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 有任何一个tracker处于`工作中``更新中`和`未联系`都不会视作`TrackerError`，只有在运行脚本当时那一刻全部tracker处于`未工作`才会标记
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tracker&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 每分钟检测MONITOR_IP设置的ip是否在线，如有任何一个ip在线，则启用“备用速度限制”，4.3.8+可用。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;detect&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;## 启用可关闭“备用速度限制”，4.3.8+可用，由CRON_ALTER_LIMITS设置的cron来调用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;alter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;limits&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 启用“备用速度限制”
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;alter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;limits&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;off&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 关闭“备用速度限制”
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;## IYUUAutoReseed辅助任务，自动重校验、自动恢复做种，4.3.8+可用，由CRON_IYUU_HELP设置的cron来调用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;docker&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;qbittorrent&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iyuu&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;help&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;需要手动运行的命令所有标签可用&#34;&gt;需要手动运行的命令（所有标签可用）&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 查看qbittorrent日志，也可以直接在portainer控制台中看到
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker logs -f qbittorrent
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 批量修改tracker，详见效果图，4.3.7+可用，有两种使用方式，请运行下面命令查看两种方式
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent change-tracker -h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 批量删除tracker，4.4.4+可用，有两种使用方式，请运行下面命令查看两种方式
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent remove-tracker -h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 检测指定文件夹下没有在qbittorrent客户端中做种或下载的子文件夹/子文件，由用户确认是否删除，详见效果图，4.3.8+可用
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 从4.4.4起，更改成可以一次性检测多个目录
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent del-unseed-dir
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 当CATEGORY_OR_TAG=category时，将所有种子按tracker分类；当CATEGORY_OR_TAG=tag时，对所有种子按tracker打标签。4.3.9+可用
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec qbittorrent auto-cat -A
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 生成本qBittorrent客户端中所有做种文件清单，4.3.9+可用
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent report-seed-files
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 生成指定路径下没有在本qBittorrent客户端做种的文件清单，4.3.9+可用
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent report-unseed-files
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 分析指定目录的重复做种率（辅种率），具体说明请运行下列命令，4.5.3+可用
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent gen-dup
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;仅iyuu标签可用的命令&#34;&gt;仅“iyuu”标签可用的命令&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 更新IYUUPlus脚本
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent git -C /iyuu pull
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 重启IYUUPlus
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it qbittorrent php /iyuu/start.php restart -d 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/crazymax/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;crazymax/qbittorrent&lt;/a&gt; , 参考了Dockerfile;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://hub.docker.com/r/80x86/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;80x86/qbittorrent&lt;/a&gt;, 借鉴了标签和分类的理念。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源代码问题反馈意见建议&#34;&gt;源代码、问题反馈、意见建议&lt;/h2&gt;
+&lt;p&gt;如果镜像好用，请点亮star。全套代码见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github&lt;/a&gt; 或 &lt;a class=&#34;link&#34; href=&#34;https://gitee.com/evine/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Gitee&lt;/a&gt;。如有使用上的问题，或者有其他好的功能建议，请直接在本文下方评论，或者在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github这里&lt;/a&gt; 或 &lt;a class=&#34;link&#34; href=&#34;https://gitee.com/evine/dockerfiles/issues&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Gitee这里&lt;/a&gt; 提交。&lt;/p&gt;
+&lt;p&gt;提交bug必须反馈的信息，如不反馈以下信息，我就直接无视了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;创建命令或 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件，请自行对密码打码；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用的docker镜像的tag，以及qBittorrent的版本；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入容器后运行 &lt;code&gt;bash -x /usr/local/bin/&amp;lt;命令名&amp;gt;&lt;/code&gt; 如 &lt;code&gt;bash -x /usr/local/bin/report-seed-files&lt;/code&gt; 的输出（什么命令出错你就反馈什么命令的内容），请自行对密码打码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>docker在一块网卡上创建多个macvlan子网</title>
+        <link>https://evine.win/p/docker-create-macvlan-with-multi-subnet/</link>
+        <pubDate>Wed, 06 Sep 2023 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/docker-create-macvlan-with-multi-subnet/</guid>
+        <description>&lt;img src="https://evine.win/p/docker-create-macvlan-with-multi-subnet/docker-poster.jpg" alt="Featured image of post docker在一块网卡上创建多个macvlan子网" /&gt;&lt;p&gt;docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一个&lt;code&gt;subnet&lt;/code&gt;对应一个&lt;code&gt;gateway&lt;/code&gt;，&lt;code&gt;gateway&lt;/code&gt;必须在&lt;code&gt;subnet&lt;/code&gt;的范围内，直接改为你所使用的真实的&lt;code&gt;gateway&lt;/code&gt;即可。这样可以不同的&lt;code&gt;subnet&lt;/code&gt;设置不同的&lt;code&gt;gateway&lt;/code&gt;，控制不同的容器走不同的线路（比如有的需要代理，有的不能代理）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;--subnet=fe80::/64 --ipv6&lt;/code&gt;可以打开ipv6，无需设置公网ipv6的&lt;code&gt;subnet&lt;/code&gt;，只要这样设置在这个macvlan网络上的容器就能自动获取到公网ipv6。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;--opt parent=eth0&lt;/code&gt;指定本macvlan网络绑定到父级网卡&lt;code&gt;eth0&lt;/code&gt;上。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;--opt com.docker.network.bridge.name=mymacvlan&lt;/code&gt;指定macvlan网络名称为&lt;code&gt;mymacvlan&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最后的&lt;code&gt;mymacvlan&lt;/code&gt;是docker中的网络名称。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker network create &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --driver macvlan &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --subnet&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;10.0.0.0/24 --gateway &lt;span class=&#34;s2&#34;&gt;&amp;#34;10.0.0.2&amp;#34;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --subnet&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;10.0.1.0/24 --gateway &lt;span class=&#34;s2&#34;&gt;&amp;#34;10.0.1.1&amp;#34;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --subnet&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;10.0.2.0/24 --gateway &lt;span class=&#34;s2&#34;&gt;&amp;#34;10.0.2.254&amp;#34;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --subnet&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;fe80::/64 --ipv6 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --opt &lt;span class=&#34;nv&#34;&gt;parent&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;eth0 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --opt &lt;span class=&#34;nv&#34;&gt;macvlan_mode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bridge &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --opt com.docker.network.bridge.name&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;mymacvlan &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    mymacvlan
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）</title>
+        <link>https://evine.win/p/docker-buildx-set-cache-gcpolicy/</link>
+        <pubDate>Wed, 30 Aug 2023 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/docker-buildx-set-cache-gcpolicy/</guid>
+        <description>&lt;img src="https://evine.win/p/docker-buildx-set-cache-gcpolicy/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
+&lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;新建&lt;code&gt;buildkit&lt;/code&gt;配置文件&lt;code&gt;$HOME/.docker/buildx/buildkitd.default.toml&lt;/code&gt;如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;worker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;oci&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;enabled&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;gc&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;gckeepstorage&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;20480&lt;/span&gt;     &lt;span class=&#34;c&#34;&gt;# 单位：MiB&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;worker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;oci&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gcpolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;keepBytes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;21474836480&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;# 单位：B，下同&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;keepDuration&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;7200&lt;/span&gt;     &lt;span class=&#34;c&#34;&gt;# 单位：s，下同&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;filters&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;type==source.local&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;type==exec.cachemount&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;type==source.git.checkout&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;worker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;oci&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gcpolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;keepBytes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;32212254720&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;keepDuration&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;86400&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;filters&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;type==source.local&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;type==exec.cachemount&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;type==source.git.checkout&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;worker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;oci&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gcpolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;all&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;keepBytes&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;42949672960&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上述配置可以按时间、按上限设置多个层级的&lt;code&gt;worker.oci.gcpolicy&lt;/code&gt;，按照不同时间、不同上限来删除&lt;code&gt;buildx&lt;/code&gt;的构建缓存。如果是本地构建，主要的缓存类型是&lt;code&gt;source.local&lt;/code&gt;和&lt;code&gt;exec.cachemount&lt;/code&gt;。详细配置请见：&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/build/buildkit/toml-configuration/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;buildkit&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;如果之前创建过名为&lt;code&gt;builder&lt;/code&gt;的实例，先删除：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker buildx rm builder
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后重新创建一个名为&lt;code&gt;builder&lt;/code&gt;的实例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run --privileged --rm tonistiigi/binfmt --install all
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker buildx create --name builder --driver&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;docker-container --use --bootstrap
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker buildx inspect
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上面最后一个命令&lt;code&gt;docker buildx inspect&lt;/code&gt;输出如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Name:          builder
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Driver:        docker-container
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Last Activity: 2023-09-06 02:55:47 +0000 UTC
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Nodes:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Name:      builder0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Endpoint:  unix:///var/run/docker.sock
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status:    running
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Buildkit:  v0.12.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Platforms: linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/arm64, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/mips64le, linux/mips64, linux/arm/v7, linux/arm/v6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Labels:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; org.mobyproject.buildkit.worker.executor:         oci
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; org.mobyproject.buildkit.worker.hostname:         bcff51b12dca
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; org.mobyproject.buildkit.worker.network:          host
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; org.mobyproject.buildkit.worker.selinux.enabled:  false
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GC Policy rule#0:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; All:           false
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Filters:       type==source.local type==exec.cachemount type==source.git.checkout
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Keep Duration: 2h0m0s
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Keep Bytes:    20GiB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GC Policy rule#1:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; All:           false
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Filters:       type==source.local type==exec.cachemount type==source.git.checkout
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Keep Duration: 24h0m0s
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Keep Bytes:    30GiB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GC Policy rule#2:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; All:        true
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Keep Bytes: 40GiB
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;可以看出缓存策略已经设置为自己的了。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>docker buildx 跨平台构建镜像时限制CPU使用率</title>
+        <link>https://evine.win/p/docker-buildx-limit-cpu-usage/</link>
+        <pubDate>Sat, 26 Nov 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/docker-buildx-limit-cpu-usage/</guid>
+        <description>&lt;img src="https://evine.win/p/docker-buildx-limit-cpu-usage/docker-poster.jpg" alt="Featured image of post docker buildx 跨平台构建镜像时限制CPU使用率" /&gt;&lt;p&gt;官方教程中提供了一种&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/build/buildkit/configure/#resource-limiting&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;做法&lt;/a&gt;，也就是提供buildkitd的配置文件后再创建builder：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 宿主上新建`$HOME/.docker/buildx/buildkitd.default.toml`，比如限制同时最多4个进程
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[worker.oci]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  max-parallelism = 4
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后创建builder：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ docker buildx create --use &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --name mybuilder &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --driver docker-container
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;但这种方式对于同时构建多个平台的镜像起不到限制的作用，所以这里再提供一种不依靠docker本身，而是使用cgroup2的功能来实现：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 创建builder&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run --privileged --rm tonistiigi/binfmt --install all &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker buildx create --name builder --use 2&amp;gt;/dev/null &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; docker buildx use builder
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker buildx inspect --bootstrap
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 限制 docker buildx CPU使用率&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## CPU每线程上限为100%，CPU多个线程的上限就是线程数乘以100%，比如16线程的上限就是1600%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 如果有16个核心，那么设置800%就是16个核心的一半使用率，整体上就是50%（800%/1600%=8/16=50%）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 而如果有32个核心，那么设置800%相对于全部核心，整体上就是限制在25%（800%/3200%=8/32=25%）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 需要自行先安装好 jq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl set-property docker-&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;docker inspect buildx_buildkit_builder0 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; jq -r .&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;.Id&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;.scope &lt;span class=&#34;nv&#34;&gt;CPUQuota&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;800%
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

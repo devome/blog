@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='前言 近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的'>
+<title>PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动</title>
+
+<link rel='canonical' href='https://evine.win/p/pve-install-realtek-8125-driver/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动'>
+<meta property='og:description' content='前言 近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的'>
+<meta property='og:url' content='https://evine.win/p/pve-install-realtek-8125-driver/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='驱动' /><meta property='article:published_time' content='2023-08-15T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-06T15:05:02&#43;08:00'/><meta property='og:image' content='https://evine.win/p/pve-install-realtek-8125-driver/pve-poster.jpg' />
+<meta name="twitter:title" content="PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动">
+<meta name="twitter:description" content="前言 近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/pve-install-realtek-8125-driver/pve-poster.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#使用官方驱动">使用官方驱动</a></li>
+    <li><a href="#如何更新驱动">如何更新驱动</a></li>
+    <li><a href="#看看效果">看看效果</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/pve-install-realtek-8125-driver/">
+                <img src="/p/pve-install-realtek-8125-driver/pve-poster_hu73cac004b61f9f0535175084b6c5473f_45414_800x0_resize_q75_box.jpg"
+                        srcset="/p/pve-install-realtek-8125-driver/pve-poster_hu73cac004b61f9f0535175084b6c5473f_45414_800x0_resize_q75_box.jpg 800w, /p/pve-install-realtek-8125-driver/pve-poster_hu73cac004b61f9f0535175084b6c5473f_45414_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="325" 
+                        loading="lazy"
+                        alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/pve/" style="background-color: #2a9d8f; color: #fff;">
+                Promox VE
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/pve-install-realtek-8125-driver/">PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-08-15</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 8 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言</h2>
+<p>近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的驱动是<code>r8169</code>，它并没有开启网卡多队列等特性。导致一个网卡的软中断只能使用固定的一个核心开接收和发送数据。</p>
+<p>查看网卡加载的是什么驱动：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 看看网卡的pci编号</span>
+</span></span><span class="line"><span class="cl">$ lspci <span class="p">|</span> grep RTL8125 
+</span></span><span class="line"><span class="cl">22:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller <span class="o">(</span>rev 05<span class="o">)</span>
+</span></span><span class="line"><span class="cl">2a:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller <span class="o">(</span>rev 05<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 看看网卡加载的驱动</span>
+</span></span><span class="line"><span class="cl">$ lspci -s 22:00.0 -k <span class="c1"># 22:00.0这块网卡</span>
+</span></span><span class="line"><span class="cl">22:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller <span class="o">(</span>rev 05<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        Subsystem: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller
+</span></span><span class="line"><span class="cl">        Kernel driver in use: r8169
+</span></span><span class="line"><span class="cl">        Kernel modules: r8169
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ lspci -s 2a:00.0 -k <span class="c1"># 2a:00.0这块网卡</span>
+</span></span><span class="line"><span class="cl">2a:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller <span class="o">(</span>rev 05<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        Subsystem: Micro-Star International Co., Ltd. <span class="o">[</span>MSI<span class="o">]</span> RTL8125 2.5GbE Controller
+</span></span><span class="line"><span class="cl">        Kernel driver in use: r8169
+</span></span><span class="line"><span class="cl">        Kernel modules: r8169
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看网卡软中断数量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ cat /proc/interrupts <span class="p">|</span> grep -P <span class="s1">&#39;eth|CPU0&#39;</span>  <span class="c1"># 我的网卡名叫eth0、eth1</span>
+</span></span><span class="line"><span class="cl">            CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       CPU8       CPU9       CPU10      CPU11      CPU12      CPU13      CPU14      CPU15      
+</span></span><span class="line"><span class="cl">  51:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  <span class="m">631894756</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    eth0
+</span></span><span class="line"><span class="cl">  59:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  <span class="m">932824696</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    eth1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以用这个命令看看软件中断（<code>%soft</code>）是不是大量集中在某个核心上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ mpstat -P ALL <span class="m">1</span> <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>连接数多的时候，甚至这两个核心的使用率能达到80%，而其他核心才不到20%。所以还是有必要将该网卡驱动从Linux默认的<code>r8169</code>切换到<a class="link" href="https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software"  target="_blank" rel="noopener"
+    >官方驱动</a>上。</p>
+<h2 id="使用官方驱动">使用官方驱动</h2>
+<p>已经有大佬把官方驱动打包成了dkms deb包：https://github.com/awesometic/realtek-r8125-dkms，不过该deb包并没有打开网卡多队列，所以我FORK了一份，启用TX多队列及RSS，禁用ASPM，发布在：<a class="link" href="https://github.com/devome/realtek-r8125-dkms"  target="_blank" rel="noopener"
+    >https://github.com/devome/realtek-r8125-dkms</a> ，直接使用即可。先下载Release中最新的deb文件，再按下方流程安装即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 更新内核、安装依赖</span>
+</span></span><span class="line"><span class="cl">$ apt update
+</span></span><span class="line"><span class="cl">$ apt upgrade
+</span></span><span class="line"><span class="cl">$ apt install -y dkms pve-headers <span class="c1">#pve 8.0.4+建议将pve-headers替换为proxmox-default-headers</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装headers</span>
+</span></span><span class="line"><span class="cl">$ <span class="nv">headers</span><span class="o">=</span><span class="k">$(</span>dpkg -l <span class="p">|</span> awk <span class="s1">&#39;/^ii.+kernel-[0-9]+\.[0-9]+\.[0-9]/{gsub(/-signed/, &#34;&#34;); gsub(/kernel/, &#34;headers&#34;); print $2}&#39;</span> <span class="p">|</span> tr <span class="s2">&#34;\n&#34;</span> <span class="s2">&#34; &#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">eval</span> apt install -y <span class="nv">$headers</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装刚刚下载好的deb包，此命令只会为当前系统所使用的内核以及刚刚安装的最新内核（也可能当前所使用的内核就是最新内核）安装驱动</span>
+</span></span><span class="line"><span class="cl">$ dpkg -i realtek-r8125-dkms_*.deb  <span class="c1"># 如通配符会匹配多个时亦可指定具体的文件名</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 如果想为那些既不是系统当前所使用的内核，也不是刚刚安装的最新内核安装驱动，需要手动指定安装</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 看看哪些内核安装好了驱动</span>
+</span></span><span class="line"><span class="cl">$ dkms status
+</span></span><span class="line"><span class="cl"><span class="c1">## 列出全部内核版本kernel_version，找出那些还没有安装驱动的内核</span>
+</span></span><span class="line"><span class="cl">$ dpkg -l <span class="p">|</span> awk <span class="s1">&#39;/^ii.+kernel-[0-9]+\.[0-9]+\.[0-9]/{gsub(/proxmox-kernel-|pve-kernel-|-signed/, &#34;&#34;); print $2}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 手动指定驱动版本（在deb文件名中有体现）和内核版本（从上一句命令的输出中），zsh按tab可自动补全，比如：dkms install realtek-r8125/9.011.01 -k 6.2.16-5-pve</span>
+</span></span><span class="line"><span class="cl">$ dkms install realtek-r8125/&lt;driver_version&gt; -k &lt;kernel_version&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 卸载不再需要的headers</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">eval</span> apt-mark auto <span class="nv">$headers</span>
+</span></span><span class="line"><span class="cl">$ apt autopurge
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 禁用r8169驱动</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;blacklist r8169&#34;</span> &gt;&gt; /etc/modprobe.d/dkms.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 重启</span>
+</span></span><span class="line"><span class="cl">$ update-grub
+</span></span><span class="line"><span class="cl">$ update-initramfs -u -k all
+</span></span><span class="line"><span class="cl">$ reboot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 再次查看网卡加载的驱动，现在加载的是r8125了</span>
+</span></span><span class="line"><span class="cl">$ lspci -s 22:00.0 -k
+</span></span><span class="line"><span class="cl">22:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller <span class="o">(</span>rev 05<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        Subsystem: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller
+</span></span><span class="line"><span class="cl">        Kernel driver in use: r8125
+</span></span><span class="line"><span class="cl">        Kernel modules: r8169, r8125
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="如何更新驱动">如何更新驱动</h2>
+<p>如果已经安装好了 <code>realtek-r8125-dkms</code> 驱动，未来升级时可以无需重启PVE。<strong>如需要不重启PVE来更新驱动，并且你的 RTL8125B 网口作为了管理口，那么建议直接物理操作PVE（也就是不要通过ssh）来达到更新驱动的目标。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">modprobe -r r8125
+</span></span><span class="line"><span class="cl">insmod <span class="s2">&#34;/lib/modules/</span><span class="k">$(</span>uname -r<span class="k">)</span><span class="s2">/updates/dkms/r8125.ko&#34;</span>
+</span></span><span class="line"><span class="cl">systemctl restart networking.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 然后自行重启全部虚拟机</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你的 RTL8125B 网口作为了管理口，并且无法物理操作PVE，那么也可以将上述命令保存到一个脚本文件 <code>reload.sh</code> 中，增加可执行权限后在 <code>tmux</code> 中运行它（不能直接在ssh中运行）。</p>
+<h2 id="看看效果">看看效果</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 看看中断数</span>
+</span></span><span class="line"><span class="cl">$ cat /proc/interrupts <span class="p">|</span> grep -P <span class="s1">&#39;eth|CPU0&#39;</span>  <span class="c1"># 我的网卡名叫eth0、eth1</span>
+</span></span><span class="line"><span class="cl">            CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       CPU8       CPU9       CPU10      CPU11      CPU12      CPU13      CPU14      CPU15      
+</span></span><span class="line"><span class="cl">  99:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  <span class="m">144263633</span>          <span class="m">0</span>  <span class="m">631894756</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>        <span class="m">297</span>          <span class="m">0</span>       <span class="m">3128</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    0-edge      eth0-0
+</span></span><span class="line"><span class="cl"> 101:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    1-edge      eth0-1
+</span></span><span class="line"><span class="cl"> 102:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    2-edge      eth0-2
+</span></span><span class="line"><span class="cl"> 103:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    3-edge      eth0-3
+</span></span><span class="line"><span class="cl"> 104:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    4-edge      eth0-4
+</span></span><span class="line"><span class="cl"> 105:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    5-edge      eth0-5
+</span></span><span class="line"><span class="cl"> 106:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    6-edge      eth0-6
+</span></span><span class="line"><span class="cl"> 107:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    7-edge      eth0-7
+</span></span><span class="line"><span class="cl"> 108:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    8-edge      eth0-8
+</span></span><span class="line"><span class="cl"> 109:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0    9-edge      eth0-9
+</span></span><span class="line"><span class="cl"> 110:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   10-edge      eth0-10
+</span></span><span class="line"><span class="cl"> 111:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   11-edge      eth0-11
+</span></span><span class="line"><span class="cl"> 112:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   12-edge      eth0-12
+</span></span><span class="line"><span class="cl"> 113:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   13-edge      eth0-13
+</span></span><span class="line"><span class="cl"> 114:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   14-edge      eth0-14
+</span></span><span class="line"><span class="cl"> 115:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   15-edge      eth0-15
+</span></span><span class="line"><span class="cl"> 116:          <span class="m">0</span>          <span class="m">0</span>       <span class="m">1733</span>          <span class="m">0</span>  <span class="m">440636622</span>    <span class="m">5579613</span>          <span class="m">0</span>     <span class="m">161245</span>   <span class="m">17862881</span>          <span class="m">0</span>          <span class="m">0</span>       <span class="m">1031</span>          <span class="m">0</span>          <span class="m">0</span>    <span class="m">9500904</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   16-edge      eth0-16
+</span></span><span class="line"><span class="cl"> 117:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   17-edge      eth0-17
+</span></span><span class="line"><span class="cl"> 118:    <span class="m">3365897</span>          <span class="m">0</span>    <span class="m">1182441</span>          <span class="m">0</span>     <span class="m">124570</span>     <span class="m">308349</span>    <span class="m">2351042</span>  <span class="m">235318334</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  <span class="m">230800986</span>       <span class="m">1358</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   18-edge      eth0-18
+</span></span><span class="line"><span class="cl"> 119:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   19-edge      eth0-19
+</span></span><span class="line"><span class="cl"> 120:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   20-edge      eth0-20
+</span></span><span class="line"><span class="cl"> 121:          <span class="m">1</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   21-edge      eth0-21
+</span></span><span class="line"><span class="cl"> 122:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   22-edge      eth0-22
+</span></span><span class="line"><span class="cl"> 123:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   23-edge      eth0-23
+</span></span><span class="line"><span class="cl"> 124:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   24-edge      eth0-24
+</span></span><span class="line"><span class="cl"> 125:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   25-edge      eth0-25
+</span></span><span class="line"><span class="cl"> 126:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   26-edge      eth0-26
+</span></span><span class="line"><span class="cl"> 127:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   27-edge      eth0-27
+</span></span><span class="line"><span class="cl"> 128:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   28-edge      eth0-28
+</span></span><span class="line"><span class="cl"> 129:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   29-edge      eth0-29
+</span></span><span class="line"><span class="cl"> 130:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   30-edge      eth0-30
+</span></span><span class="line"><span class="cl"> 131:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:22:00.0   31-edge      eth0-31
+</span></span><span class="line"><span class="cl"> 133:          <span class="m">0</span>  <span class="m">156031397</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  <span class="m">147300933</span>        <span class="m">215</span>     <span class="m">514317</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span> <span class="m">1456987057</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>        <span class="m">422</span>  IR-PCI-MSIX-0000:2a:00.0    0-edge      eth1-0
+</span></span><span class="line"><span class="cl"> 134:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    1-edge      eth1-1
+</span></span><span class="line"><span class="cl"> 136:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    2-edge      eth1-2
+</span></span><span class="line"><span class="cl"> 137:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    3-edge      eth1-3
+</span></span><span class="line"><span class="cl"> 138:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    4-edge      eth1-4
+</span></span><span class="line"><span class="cl"> 139:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    5-edge      eth1-5
+</span></span><span class="line"><span class="cl"> 140:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    6-edge      eth1-6
+</span></span><span class="line"><span class="cl"> 141:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    7-edge      eth1-7
+</span></span><span class="line"><span class="cl"> 142:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    8-edge      eth1-8
+</span></span><span class="line"><span class="cl"> 143:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0    9-edge      eth1-9
+</span></span><span class="line"><span class="cl"> 144:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   10-edge      eth1-10
+</span></span><span class="line"><span class="cl"> 145:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   11-edge      eth1-11
+</span></span><span class="line"><span class="cl"> 146:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   12-edge      eth1-12
+</span></span><span class="line"><span class="cl"> 147:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   13-edge      eth1-13
+</span></span><span class="line"><span class="cl"> 148:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   14-edge      eth1-14
+</span></span><span class="line"><span class="cl"> 149:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   15-edge      eth1-15
+</span></span><span class="line"><span class="cl"> 150:       <span class="m">2196</span>  <span class="m">115680935</span>  <span class="m">162017341</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">3</span>     <span class="m">459917</span>  <span class="m">567139230</span>      <span class="m">25305</span>     <span class="m">106494</span>       <span class="m">2371</span>          <span class="m">5</span>   <span class="m">82635683</span>          <span class="m">0</span>       <span class="m">1254</span>  <span class="m">632401889</span>  IR-PCI-MSIX-0000:2a:00.0   16-edge      eth1-16
+</span></span><span class="line"><span class="cl"> 151:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   17-edge      eth1-17
+</span></span><span class="line"><span class="cl"> 152:       <span class="m">1557</span>       <span class="m">4043</span>  <span class="m">309835387</span>          <span class="m">0</span>          <span class="m">0</span>        <span class="m">293</span>    <span class="m">1044744</span>          <span class="m">0</span>          <span class="m">0</span>  <span class="m">473416721</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">4</span>  <span class="m">162948447</span>  <span class="m">615115873</span>  IR-PCI-MSIX-0000:2a:00.0   18-edge      eth1-18
+</span></span><span class="line"><span class="cl"> 153:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   19-edge      eth1-19
+</span></span><span class="line"><span class="cl"> 154:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   20-edge      eth1-20
+</span></span><span class="line"><span class="cl"> 155:          <span class="m">1</span>          <span class="m">0</span>          <span class="m">4</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   21-edge      eth1-21
+</span></span><span class="line"><span class="cl"> 156:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   22-edge      eth1-22
+</span></span><span class="line"><span class="cl"> 157:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   23-edge      eth1-23
+</span></span><span class="line"><span class="cl"> 158:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   24-edge      eth1-24
+</span></span><span class="line"><span class="cl"> 159:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   25-edge      eth1-25
+</span></span><span class="line"><span class="cl"> 160:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   26-edge      eth1-26
+</span></span><span class="line"><span class="cl"> 161:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   27-edge      eth1-27
+</span></span><span class="line"><span class="cl"> 162:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   28-edge      eth1-28
+</span></span><span class="line"><span class="cl"> 163:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   29-edge      eth1-29
+</span></span><span class="line"><span class="cl"> 164:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   30-edge      eth1-30
+</span></span><span class="line"><span class="cl"> 165:          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>          <span class="m">0</span>  IR-PCI-MSIX-0000:2a:00.0   31-edge      eth1-31
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>每个网卡都用到了多个核心来处理软中断，效果不错。根据<a class="link" href="https://www.right.com.cn/forum/thread-7446026-1-1.html"  target="_blank" rel="noopener"
+    >这个帖子</a>的说法，9.011.01版本驱动是1个rx队列和2个tx队列。</p>
+<p>再看看cpu各核心的使用率是否相对均衡：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ mpstat -P ALL <span class="m">1</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl">Linux 6.2.16-6-pve <span class="o">(</span>pve<span class="o">)</span>        08/15/23        _x86_64_        <span class="o">(</span><span class="m">16</span> CPU<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">20:55:54     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+</span></span><span class="line"><span class="cl">20:55:55     all    1.44    0.06    1.57    0.06    0.00    0.38    0.00    4.27    0.00   92.21
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">0</span>    0.98    0.00    1.96    0.00    0.00    0.00    0.00    5.88    0.00   91.18
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">1</span>    0.00    0.00    1.01    0.00    0.00    0.00    0.00    4.04    0.00   94.95
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">2</span>    0.00    0.00    0.99    0.00    0.00    0.00    0.00    8.91    0.00   90.10
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">3</span>    1.01    0.00    0.00    0.00    0.00    1.01    0.00    5.05    0.00   92.93
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">4</span>    2.02    0.00    0.00    0.00    0.00    1.01    0.00    5.05    0.00   91.92
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">5</span>    4.00    0.00    4.00    0.00    0.00    1.00    0.00    1.00    0.00   90.00
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">6</span>    1.98    0.99    1.98    0.00    0.00    0.99    0.00    3.96    0.00   90.10
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">7</span>    1.98    0.00    1.98    0.99    0.00    0.00    0.00    3.96    0.00   91.09
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">8</span>    1.02    0.00    2.04    0.00    0.00    0.00    0.00    2.04    0.00   94.90
+</span></span><span class="line"><span class="cl">20:55:55       <span class="m">9</span>    0.00    0.00    1.03    0.00    0.00    0.00    0.00    4.12    0.00   94.85
+</span></span><span class="line"><span class="cl">20:55:55      <span class="m">10</span>    4.12    0.00    1.03    0.00    0.00    0.00    0.00    3.09    0.00   91.75
+</span></span><span class="line"><span class="cl">20:55:55      <span class="m">11</span>    1.01    0.00    1.01    0.00    0.00    1.01    0.00    7.07    0.00   89.90
+</span></span><span class="line"><span class="cl">20:55:55      <span class="m">12</span>    1.02    0.00    2.04    0.00    0.00    1.02    0.00    2.04    0.00   93.88
+</span></span><span class="line"><span class="cl">20:55:55      <span class="m">13</span>    3.00    0.00    1.00    0.00    0.00    0.00    0.00    3.00    0.00   93.00
+</span></span><span class="line"><span class="cl">20:55:55      <span class="m">14</span>    0.00    0.00    2.02    0.00    0.00    0.00    0.00    3.03    0.00   94.95
+</span></span><span class="line"><span class="cl">20:55:55      <span class="m">15</span>    0.98    0.00    2.94    0.00    0.00    0.00    0.00    5.88    0.00   90.20
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">20:55:55     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+</span></span><span class="line"><span class="cl">20:55:56     all    1.14    0.00    1.21    0.51    0.00    0.44    0.00    2.35    0.00   94.35
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">0</span>    1.02    0.00    3.06    0.00    0.00    0.00    0.00    2.04    0.00   93.88
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">1</span>    1.02    0.00    0.00    1.02    0.00    1.02    0.00    1.02    0.00   95.92
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">2</span>    0.99    0.00    1.98    0.00    0.00    0.00    0.00    3.96    0.00   93.07
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">3</span>    1.98    0.00    1.98    0.00    0.00    0.99    0.00    3.96    0.00   91.09
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">4</span>    3.06    0.00    1.02    0.00    0.00    0.00    0.00    2.04    0.00   93.88
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">5</span>    0.00    0.00    2.97    0.00    0.00    1.98    0.00    4.95    0.00   90.10
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">6</span>    2.06    0.00    1.03    0.00    0.00    0.00    0.00    0.00    0.00   96.91
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">7</span>    1.02    0.00    0.00    3.06    0.00    1.02    0.00    2.04    0.00   92.86
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">8</span>    0.00    0.00    0.00    0.00    0.00    0.00    0.00    1.04    0.00   98.96
+</span></span><span class="line"><span class="cl">20:55:56       <span class="m">9</span>    1.02    0.00    1.02    0.00    0.00    1.02    0.00    2.04    0.00   94.90
+</span></span><span class="line"><span class="cl">20:55:56      <span class="m">10</span>    0.00    0.00    1.01    1.01    0.00    0.00    0.00    3.03    0.00   94.95
+</span></span><span class="line"><span class="cl">20:55:56      <span class="m">11</span>    2.04    0.00    1.02    0.00    0.00    0.00    0.00    2.04    0.00   94.90
+</span></span><span class="line"><span class="cl">20:55:56      <span class="m">12</span>    1.03    0.00    1.03    1.03    0.00    1.03    0.00    2.06    0.00   93.81
+</span></span><span class="line"><span class="cl">20:55:56      <span class="m">13</span>    1.01    0.00    1.01    0.00    0.00    0.00    0.00    2.02    0.00   95.96
+</span></span><span class="line"><span class="cl">20:55:56      <span class="m">14</span>    1.01    0.00    0.00    2.02    0.00    0.00    0.00    3.03    0.00   93.94
+</span></span><span class="line"><span class="cl">20:55:56      <span class="m">15</span>    1.02    0.00    2.04    0.00    0.00    0.00    0.00    2.04    0.00   94.90
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">20:55:56     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+</span></span><span class="line"><span class="cl">20:55:57     all    1.95    0.00    1.01    0.19    0.00    0.38    0.00    2.83    0.00   93.65
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">0</span>    0.99    0.00    0.00    0.00    0.00    0.99    0.00    3.96    0.00   94.06
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">1</span>    0.00    0.00    1.98    0.99    0.00    0.00    0.00    2.97    0.00   94.06
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">2</span>    0.00    0.00    2.04    0.00    0.00    0.00    0.00    3.06    0.00   94.90
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">3</span>    2.00    0.00    0.00    0.00    0.00    1.00    0.00    3.00    0.00   94.00
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">4</span>    1.01    0.00    2.02    0.00    0.00    0.00    0.00    2.02    0.00   94.95
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">5</span>    2.02    0.00    3.03    0.00    0.00    0.00    0.00    1.01    0.00   93.94
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">6</span>    2.00    0.00    0.00    0.00    0.00    1.00    0.00    2.00    0.00   95.00
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">7</span>   10.10    0.00    0.00    1.01    0.00    0.00    0.00    2.02    0.00   86.87
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">8</span>    0.00    0.00    1.01    0.00    0.00    0.00    0.00    5.05    0.00   93.94
+</span></span><span class="line"><span class="cl">20:55:57       <span class="m">9</span>    1.01    0.00    0.00    0.00    0.00    2.02    0.00    3.03    0.00   93.94
+</span></span><span class="line"><span class="cl">20:55:57      <span class="m">10</span>    3.03    0.00    1.01    0.00    0.00    0.00    0.00    4.04    0.00   91.92
+</span></span><span class="line"><span class="cl">20:55:57      <span class="m">11</span>    4.00    0.00    2.00    0.00    0.00    0.00    0.00    2.00    0.00   92.00
+</span></span><span class="line"><span class="cl">20:55:57      <span class="m">12</span>    3.92    0.00    0.98    0.00    0.00    0.98    0.00    3.92    0.00   90.20
+</span></span><span class="line"><span class="cl">20:55:57      <span class="m">13</span>    0.00    0.00    1.01    1.01    0.00    0.00    0.00    3.03    0.00   94.95
+</span></span><span class="line"><span class="cl">20:55:57      <span class="m">14</span>    0.00    0.00    1.03    0.00    0.00    0.00    0.00    1.03    0.00   97.94
+</span></span><span class="line"><span class="cl">20:55:57      <span class="m">15</span>    1.01    0.00    0.00    0.00    0.00    0.00    0.00    3.03    0.00   95.96
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Average:     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+</span></span><span class="line"><span class="cl">Average:     all    1.51    0.02    1.26    0.25    0.00    0.40    0.00    3.15    0.00   93.40
+</span></span><span class="line"><span class="cl">Average:       <span class="m">0</span>    1.00    0.00    1.66    0.00    0.00    0.33    0.00    3.99    0.00   93.02
+</span></span><span class="line"><span class="cl">Average:       <span class="m">1</span>    0.34    0.00    1.01    0.67    0.00    0.34    0.00    2.68    0.00   94.97
+</span></span><span class="line"><span class="cl">Average:       <span class="m">2</span>    0.33    0.00    1.67    0.00    0.00    0.00    0.00    5.33    0.00   92.67
+</span></span><span class="line"><span class="cl">Average:       <span class="m">3</span>    1.67    0.00    0.67    0.00    0.00    1.00    0.00    4.00    0.00   92.67
+</span></span><span class="line"><span class="cl">Average:       <span class="m">4</span>    2.03    0.00    1.01    0.00    0.00    0.34    0.00    3.04    0.00   93.58
+</span></span><span class="line"><span class="cl">Average:       <span class="m">5</span>    2.00    0.00    3.33    0.00    0.00    1.00    0.00    2.33    0.00   91.33
+</span></span><span class="line"><span class="cl">Average:       <span class="m">6</span>    2.01    0.34    1.01    0.00    0.00    0.67    0.00    2.01    0.00   93.96
+</span></span><span class="line"><span class="cl">Average:       <span class="m">7</span>    4.36    0.00    0.67    1.68    0.00    0.34    0.00    2.68    0.00   90.27
+</span></span><span class="line"><span class="cl">Average:       <span class="m">8</span>    0.34    0.00    1.02    0.00    0.00    0.00    0.00    2.73    0.00   95.90
+</span></span><span class="line"><span class="cl">Average:       <span class="m">9</span>    0.68    0.00    0.68    0.00    0.00    1.02    0.00    3.06    0.00   94.56
+</span></span><span class="line"><span class="cl">Average:      <span class="m">10</span>    2.37    0.00    1.02    0.34    0.00    0.00    0.00    3.39    0.00   92.88
+</span></span><span class="line"><span class="cl">Average:      <span class="m">11</span>    2.36    0.00    1.35    0.00    0.00    0.34    0.00    3.70    0.00   92.26
+</span></span><span class="line"><span class="cl">Average:      <span class="m">12</span>    2.02    0.00    1.35    0.34    0.00    1.01    0.00    2.69    0.00   92.59
+</span></span><span class="line"><span class="cl">Average:      <span class="m">13</span>    1.34    0.00    1.01    0.34    0.00    0.00    0.00    2.68    0.00   94.63
+</span></span><span class="line"><span class="cl">Average:      <span class="m">14</span>    0.34    0.00    1.02    0.68    0.00    0.00    0.00    2.37    0.00   95.59
+</span></span><span class="line"><span class="cl">Average:      <span class="m">15</span>    1.00    0.00    1.67    0.00    0.00    0.00    0.00    3.68    0.00   93.65
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看得出来软中断在各核心上使用率差异已不如之前大了。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/pve/">pve</a>
+        
+            <a href="/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2024-01-06 15:05
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/debian-pve-mount-tmp-in-ram/">
+        
+        
+            <div class="article-image">
+                <img src="/p/debian-pve-mount-tmp-in-ram/pve-poster.64e7009edce642c17ad393ce579005f5_hu73cac004b61f9f0535175084b6c5473f_45414_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Debian / PVE 在内存中挂载 /tmp"
+                        data-key="debian-pve-mount-tmp-in-ram" 
+                        data-hash="md5-ZOcAntzmQsF605POV5AF9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Debian / PVE 在内存中挂载 /tmp</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/pve-create-lvm-thin-with-cachepool/">
+        
+        
+            <div class="article-image">
+                <img src="/p/pve-create-lvm-thin-with-cachepool/pic3.8c7a646d8695196f10f1375e71ded48c_hua4ffbedaca548353bb2e9ae9cbb3a1ca_32006_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池"
+                        data-key="pve-create-lvm-thin-with-cachepool" 
+                        data-hash="md5-jHpkbYaVGW8Q8Tdecd7UjA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-use-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-use-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 为Kodi适配遥控器"
+                        data-key="kodi-use-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">为Kodi适配遥控器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-install-in-pve/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-install-in-pve/pic5.ee564cee14b7850acb26de691531a3ab_hu8370a00dfa88e5eac6888add903e6475_78260_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PVE 直接安装最新版 Kodi"
+                        data-key="kodi-install-in-pve" 
+                        data-hash="md5-7lZM7hS3hQrLJt5pFTGjqw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PVE 直接安装最新版 Kodi</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

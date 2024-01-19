@@ -1,0 +1,190 @@
+log:
+  level: info
+
+api:
+  http: "0.0.0.0:9091"
+
+plugins:
+  - tag: geosite_cn
+    type: domain_set
+    args:
+      files:
+        - "geodata/geosite_cn.txt"
+
+  - tag: geoip_cn
+    type: ip_set
+    args:
+      files:
+        - "geodata/geoip_cn.txt"
+
+  - tag: geosite_no_cn
+    type: domain_set
+    args:
+      files:
+        - "geodata/geosite_geolocation-!cn.txt"
+
+  - tag: whitelist
+    type: domain_set
+    args:
+      files:
+        - "rule/whitelist.txt"
+
+  - tag: greylist
+    type: domain_set
+    args:
+      files:
+        - "rule/greylist.txt"
+
+  - tag: ddnslist
+    type: domain_set
+    args:
+      files:
+        - "rule/ddnslist.txt"
+
+  - tag: redirect
+    type: redirect
+    args:
+      files:
+        - "rule/redirect.txt"
+
+  - tag: local_ptr
+    type: domain_set
+    args:
+      files:
+        - "rule/local-ptr.txt"
+
+  - tag: lazy_cache
+    type: cache
+    args:
+      size: 20000
+      lazy_cache_ttl: 86400
+
+  - tag: forward_local
+    type: forward
+    args:
+      concurrent: 3
+      upstreams: # 可以增加设置你所属ISP当地的DNS服务器
+        - addr: "10.0.0.1"
+        - addr: "101.226.4.6"
+        - addr: "223.5.5.5"
+
+  - tag: forward_remote
+    type: forward
+    args:
+      concurrent: 3
+      upstreams: # 本机clash的dns模块监听端口
+        - addr: "127.0.0.1:7874"
+
+  - tag: modify_ttl
+    type: sequence
+    args:
+      - exec: ttl 0-0
+
+  - tag: modify_ddns_ttl
+    type: sequence
+    args:
+      - exec: ttl 5-5
+
+  - tag: local_sequence
+    type: sequence
+    args:
+      - exec: $forward_local
+
+  - tag: remote_sequence
+    type: sequence
+    args:
+      - exec: prefer_ipv4
+      - exec: $forward_remote
+
+  - tag: has_resp_sequence
+    type: sequence
+    args:
+      - matches: qname $ddnslist
+        exec: $modify_ddns_ttl
+      - matches: "!qname $ddnslist"
+        exec: $modify_ttl
+      - matches: has_resp
+        exec: accept
+
+  - tag: query_is_local_ip
+    type: sequence
+    args:
+      - exec: $local_sequence
+      - matches: "!resp_ip $geoip_cn"
+        exec: drop_resp
+
+  - tag: query_is_remote
+    type: sequence
+    args:
+      - exec: $remote_sequence
+
+  - tag: fallback
+    type: fallback
+    args:
+      primary: query_is_local_ip
+      secondary: query_is_remote
+      threshold: 500
+      always_standby: true
+
+  - tag: query_is_ddns_domain
+    type: sequence
+    args:
+      - matches: qname $ddnslist
+        exec: $local_sequence
+
+  - tag: query_is_local_domain
+    type: sequence
+    args:
+      - matches: qname $geosite_cn
+        exec: $local_sequence
+
+  - tag: query_is_no_local_domain
+    type: sequence
+    args:
+      - matches: qname $geosite_no_cn
+        exec: $remote_sequence
+
+  - tag: query_is_whitelist_domain
+    type: sequence
+    args:
+      - matches: qname $whitelist
+        exec: $local_sequence
+
+  - tag: query_is_greylist_domain
+    type: sequence
+    args:
+      - matches: qname $greylist
+        exec: $remote_sequence
+
+  - tag: main_sequence
+    type: sequence
+    args:
+      - matches:
+        - "!qname $ddnslist"
+        - "!qname $local_ptr"
+        exec: $lazy_cache
+      - exec: $redirect
+      - exec: jump has_resp_sequence
+      - exec: $query_is_ddns_domain
+      - exec: jump has_resp_sequence
+      - exec: $query_is_whitelist_domain
+      - exec: jump has_resp_sequence
+      - exec: $query_is_greylist_domain
+      - exec: jump has_resp_sequence
+      - exec: $query_is_local_domain
+      - exec: jump has_resp_sequence
+      - exec: $query_is_no_local_domain
+      - exec: jump has_resp_sequence
+      - exec: $fallback
+
+  - tag: udp_server
+    type: udp_server
+    args:
+      entry: main_sequence
+      listen: ":5335"
+
+  - tag: tcp_server
+    type: tcp_server
+    args:
+      entry: main_sequence
+      listen: ":5335"

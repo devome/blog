@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP'>
+<title>爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）</title>
+
+<link rel='canonical' href='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）'>
+<meta property='og:description' content='关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP'>
+<meta property='og:url' content='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-17T13:41:22&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
+<meta name="twitter:title" content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）">
+<meta name="twitter:description" content="关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#相关概念">相关概念</a></li>
+    <li><a href="#ipv4与ipv6的不同">IPv4与IPv6的不同</a></li>
+    <li><a href="#ipv4的acl防火墙设置">IPv4的ACL/防火墙设置</a></li>
+    <li><a href="#ipv6的acl防火墙设置">IPv6的ACL/防火墙设置</a>
+      <ol>
+        <li><a href="#导入ipv6分组">导入IPv6分组</a></li>
+        <li><a href="#设置mac分组">设置MAC分组</a></li>
+        <li><a href="#acl规则">ACL规则</a>
+          <ol>
+            <li><a href="#默认规则">默认规则</a></li>
+            <li><a href="#webuihttpshttpsshrdp等">WEBUI/HTTPS/HTTP/SSH/RDP等</a></li>
+            <li><a href="#btpt的监听端口">BT/PT的监听端口</a></li>
+            <li><a href="#完全暴露某台设备">完全暴露某台设备</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#规则验证">规则验证</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/ikuai-set-ipv6-acl-2/">
+                <img src="/p/ikuai-set-ipv6-acl-2/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_800x0_resize_box_3.png"
+                        srcset="/p/ikuai-set-ipv6-acl-2/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_800x0_resize_box_3.png 800w, /p/ikuai-set-ipv6-acl-2/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="117" 
+                        loading="lazy"
+                        alt="Featured image of post 爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+                软路由
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/ikuai-set-ipv6-acl-2/">爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-11-27</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全</p>
+</blockquote>
+<h2 id="相关概念">相关概念</h2>
+<p>引用自<a class="link" href="https://www.ikuai8.com/index.php?option=com_content&amp;view=article&amp;id=192&amp;Itemid=312"  target="_blank" rel="noopener"
+    >爱快帮助文档</a>，不完全理解也没有关系，可以在实践中加深概念理解。</p>
+<ul>
+<li>协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。</li>
+<li>协议：这条ACL规则所走的协议的类型。</li>
+<li>动作：允许或阻断；</li>
+<li>方向： 进或转发；
+<ul>
+<li>[进]：内网或外网进路由。</li>
+<li>[转发]：路由接收到内网或外网数据然后把数据进行转发动作。</li>
+</ul>
+</li>
+<li>连接方向匹配:
+<ul>
+<li>[原始方向]：匹配主动发起方发起访问时的报文。</li>
+<li>[应答方向]：匹配被访问方应答时的报文。</li>
+</ul>
+</li>
+<li>源地址：转发与进动作的起始地址。</li>
+<li>目的地址：转发与进动作的结束地址。</li>
+<li>源端口：允许或阻断的起始端口。</li>
+<li>目的端口：特定目标的端口。</li>
+<li>进接口：数据来源口。</li>
+<li>出接口：目的出口。</li>
+</ul>
+<h2 id="ipv4与ipv6的不同">IPv4与IPv6的不同</h2>
+<p>IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。</p>
+<p>而IPv6不存在端口转发的概念，只要在爱快系统中启用了IPv6，那么内网的设备都有全球唯一的IPv6地址，不需要什么设置就能从公网访问。而爱快默认就没有启用IPv6防火墙，意思就是有IPv6地址的设备是几乎完全暴露在公网环境中的，极不安全。</p>
+<p>当然，ISP大概率封掉了一些常见的端口。</p>
+<h2 id="ipv4的acl防火墙设置">IPv4的ACL/防火墙设置</h2>
+<p>IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考<a class="link" href="../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb" >这篇教程</a> ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。</p>
+<p>注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。</p>
+<h2 id="ipv6的acl防火墙设置">IPv6的ACL/防火墙设置</h2>
+<blockquote>
+<p>ACL中<code>允许</code>的优先级高于<code>阻断</code>。</p>
+</blockquote>
+<p>爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。爱快3.7.7新增了IPv6分组和MAC分组功能，不过还有BUG，在3.7.8终于稳定了，可以导入分组了简化设置了。</p>
+<h3 id="导入ipv6分组">导入IPv6分组</h3>
+<p>下载 <a class="link" href="https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv"  target="_blank" rel="noopener"
+    >ipv6group.csv</a> ，然后在爱快 “网络设置 -&gt; 终端分组设置 -&gt; IPv6分组” 处导入。如果下载不下来，可以前往我放在Github上的仓库 <a class="link" href="https://github.com/devome/files/tree/master/zxipv6wry"  target="_blank" rel="noopener"
+    >https://github.com/devome/files/tree/master/zxipv6wry</a> clone后使用，在该仓库中，你也可以查阅中国完整的IPv6数据及分省数据。</p>
+<p>需要注意的是，由于爱快分组名称的字数有限制，所以“联通”包含“联通”和“网通”，“移动”包含“移动”和“铁通”，“鹏博士”包含“鹏博士”和“长城宽带”。还有部分IPv6数据暂不清楚其分配到什么省份，所以归类为“未知省份”，请在选择来源IPv6分组时根据你的实际需要进行选择。</p>
+<h3 id="设置mac分组">设置MAC分组</h3>
+<p>爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&gt; 终端分组设置 -&gt; MAC分组” 处设置。</p>
+<h3 id="acl规则">ACL规则</h3>
+<h4 id="默认规则">默认规则</h4>
+<p><img src="/p/ikuai-set-ipv6-acl-2/pic1.png"
+	width="1240"
+	height="181"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_480x0_resize_box_3.png 480w, /p/ikuai-set-ipv6-acl-2/pic1_hucc47260a9bbf21ba621002cdab8a4a01_35548_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="IPv6默认ACL规则"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="685"
+		data-flex-basis="1644px"
+	
+></p>
+<p>注：第一条阻断规则的连接方向为<code>原始方向</code>，第二条允许规则的连接方向为<code>关闭</code>。并且由于目前爱快的IPv6 ACL还无法针对性的打开指定本地设备的ICMP协议，所以这样操作以后会默认禁止从公网ping本地的IPv6地址。爱快默认允许，所以上图中第二条规则不设置也可以。</p>
+<p>然后再对有安全性要求的端口/IP来针对性的开放权限。以下举几种情况：</p>
+<h4 id="webuihttpshttpsshrdp等">WEBUI/HTTPS/HTTP/SSH/RDP等</h4>
+<p>假如<code>8080,20000,30000-30004</code>这几个端口都是同一台设备上运行的WEBUI/SSH/RDP控制端口，只允许你所在省份电信和联通的IPv6地址访问。这个设备有两个IPv6地址（比如一个是DHCPv6分配的，一个是设备自己通过EUI-64自行设置的），分别为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">2400:d0a0:38ba:abde:abbb:c1f:fea5:6c4c/64
+</span></span><span class="line"><span class="cl">2400:d0a0:38ba:abde::add/64
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置方式有两种形式，一种是“后缀匹配”，如下图所示（<em>注：后缀式/负掩码写法是一个全0的位串，后面跟着一个全1的位串，表示地址中不变的部分。</em>）：</p>
+<p><img src="/p/ikuai-set-ipv6-acl-2/pic2.png"
+	width="1860"
+	height="1523"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic2_hud6594b1d7796b9cd572a98439d49a38b_187465_480x0_resize_box_3.png 480w, /p/ikuai-set-ipv6-acl-2/pic2_hud6594b1d7796b9cd572a98439d49a38b_187465_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="后缀匹配放行湖北电信、湖北联通的IPv6"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="122"
+		data-flex-basis="293px"
+	
+></p>
+<p>另一种形式是 “MAC匹配”，如下图所示（<strong>实际上根据下面的说明，这种外网访问内网的MAC匹配过滤是无法生效的，建议只对内网访问外网使用MAC地址匹配过滤</strong>）：</p>
+<p><strong>重要提示</strong></p>
+<blockquote>
+<p>根据 <a class="link" href="https://bbs.ikuai8.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=144430&amp;pid=1244021&amp;fromuid=52325"  target="_blank" rel="noopener"
+    >爱快官方人员的说明</a>：IPv6外网主动访问内网，无法做目的mac匹配，只能做后缀匹配也就是IPv6地址匹配。因为外网主动访问的，内网的此终端IPv6地址对应的mac地址，无法立马拿到（这个就涉及内核的发包细节了）。如果是内网主动向外访问，源主机对应的mac地址路由能第一时间就能拿到。</p>
+</blockquote>
+<p><img src="/p/ikuai-set-ipv6-acl-2/pic3.png"
+	width="1864"
+	height="1522"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic3_hu939a0100498d7b5cb29dd38e8d11c96d_228523_480x0_resize_box_3.png 480w, /p/ikuai-set-ipv6-acl-2/pic3_hu939a0100498d7b5cb29dd38e8d11c96d_228523_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="MAC匹配放行湖北电信、湖北联通的IPv6"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="122"
+		data-flex-basis="293px"
+	
+></p>
+<h4 id="btpt的监听端口">BT/PT的监听端口</h4>
+<p>假如<code>33333,44444</code>这两个端口是BT/PT下载软件的下载监听端口，由于上面最开始添加的默认规则阻断了其他公网IPv6访问本地，现在需要将<code>33333,44444</code>在IPv6上暴露出去。假如下载软件的IPv6地址是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">2400:d0a0:38ba:abde:42:aff:fe00:fc/64
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同上文所述，有两种形式，其一为后缀匹配（下图仅示意了tcp协议，一般BT/PT需要同时监听tcp和udp协议，而爱快目前不能同时设置tcp+udp，只能分成两条规则，请自行再增加一个udp的规则）：</p>
+<p><img src="/p/ikuai-set-ipv6-acl-2/pic4.png"
+	width="1841"
+	height="1511"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic4_hu7f8267bc3636dd7b89cc5a7c330ca287_176575_480x0_resize_box_3.png 480w, /p/ikuai-set-ipv6-acl-2/pic4_hu7f8267bc3636dd7b89cc5a7c330ca287_176575_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="后缀匹配放行BT/PT监听"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="121"
+		data-flex-basis="292px"
+	
+></p>
+<p>其二为MAC匹配（下图仅示意了tcp协议，一般BT/PT需要同时监听tcp和udp协议，而爱快目前不能同时设置tcp+udp，只能分成两条规则，请自行再增加一个udp的规则）：</p>
+<p><img src="/p/ikuai-set-ipv6-acl-2/pic5.png"
+	width="1867"
+	height="1507"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic5_hu186f1ca82dad1ab96eaedb124f89fa60_205504_480x0_resize_box_3.png 480w, /p/ikuai-set-ipv6-acl-2/pic5_hu186f1ca82dad1ab96eaedb124f89fa60_205504_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="MAC匹配放行BT/PT监听"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="297px"
+	
+></p>
+<h4 id="完全暴露某台设备">完全暴露某台设备</h4>
+<p>因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 或者 “MAC匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。</p>
+<h2 id="规则验证">规则验证</h2>
+<p>另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 <a class="link" href="https://nmap.org/download#windows"  target="_blank" rel="noopener"
+    >这里</a>），比如检测IPv6的某端口开放情况运行下面命令即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 检测IPv6某端口的开放情况</span>
+</span></span><span class="line"><span class="cl">nmap -6 &lt;IPv6地址或能解析IPv6的域名&gt; -p &lt;端口&gt; -Pn
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 举例</span>
+</span></span><span class="line"><span class="cl">nmap -6 2400:d0a0:38ba:abde:abbb:c1f:fea5:6c4c -p 8080,20000,30000-30004 -Pn
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 输出</span>
+</span></span><span class="line"><span class="cl">Starting Nmap 7.93 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2023-04-08 20:40 CST
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 2400:d0a0:38ba:abde:abbb:c1f:fea5:6c4c
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.016s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PORT      STATE    SERVICE
+</span></span><span class="line"><span class="cl">8080/tcp  open     unknown
+</span></span><span class="line"><span class="cl">20000/tcp filtered unknown
+</span></span><span class="line"><span class="cl">30000/tcp filtered unknown
+</span></span><span class="line"><span class="cl">30001/tcp filtered unknown
+</span></span><span class="line"><span class="cl">30002/tcp open     unknown
+</span></span><span class="line"><span class="cl">30003/tcp open     unknown
+</span></span><span class="line"><span class="cl">30004/tcp open     unknown
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>假如要检测IPv4的端口开放情况，把命令中的<code>-6</code>更换为<code>-4</code>即可。</p>
+<p><code>state</code>状态说明：</p>
+<ul>
+<li><code>open</code>: 目标可达并且端口已开放；</li>
+<li><code>closed</code>: 目标可达但端口没有打开，一般是没有服务运行在这个端口上；</li>
+<li><code>fitered</code>: 目标不可达，也就是被ACL/防火墙阻断了。</li>
+</ul>
+<p>你可以启用/停用爱快系统中对应的ACL规则后，运行命令检测端口是否可连接。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%88%B1%E5%BF%AB/">爱快</a>
+        
+            <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99/">防火墙</a>
+        
+            <a href="/tags/acl/">acl</a>
+        
+            <a href="/tags/ipv6/">ipv6</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2024-01-17 13:41
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/ikuai-set-ipv6-acl/">
+        
+        
+            <div class="article-image">
+                <img src="/p/ikuai-set-ipv6-acl/pic1.b59e92159012b80f8905c7b3d3190529_hucc47260a9bbf21ba621002cdab8a4a01_35548_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置"
+                        data-key="ikuai-set-ipv6-acl" 
+                        data-hash="md5-tZ6SFZASuA&#43;JBcez0xkFKQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">爱快 IPv4／IPv6 ACL／防火墙设置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ikuai-set-ipv4-acl/">
+        
+        
+            <div class="article-image">
+                <img src="/p/ikuai-set-ipv4-acl/pic1.2e000d656264694e603f8140a74251c0_huc8d9904e0468058665f9639c498c48d6_43079_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击"
+                        data-key="ikuai-set-ipv4-acl" 
+                        data-hash="md5-LgANZWJkaU5gP4FAp0JRwA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.863cfb7ee1ade69851b0f26f7556a9ba_hu4d3bb5febb14b87d984ab69f868ff292_86542_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）"
+                        
+                        data-hash="md5-hjz7fuGt5phRsPJvdVapug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（一）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.925c5182e2c52553c625786cef22b077_huef3c692eae64eb585ab4ff7890b397a3_413344_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）"
+                        
+                        data-hash="md5-klxRguLFJVPGJXhs7yKwdw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（十一）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（十）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

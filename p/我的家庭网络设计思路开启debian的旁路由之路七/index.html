@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解如何使用nginx配置为文件服务器，为其他服务提供文件下载，以及自动更新clash订阅、自动生成前文需要的各种文件。'>
+<title>我的家庭网络设计思路，开启debian的旁路由之路（七）</title>
+
+<link rel='canonical' href='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（七）'>
+<meta property='og:description' content='本篇主要讲解如何使用nginx配置为文件服务器，为其他服务提供文件下载，以及自动更新clash订阅、自动生成前文需要的各种文件。'>
+<meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='nginx' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T03:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-18T10:37:32&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png' />
+<meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（七）">
+<meta name="twitter:description" content="本篇主要讲解如何使用nginx配置为文件服务器，为其他服务提供文件下载，以及自动更新clash订阅、自动生成前文需要的各种文件。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#文件准备">文件准备</a>
+      <ol>
+        <li><a href="#nginx">nginx</a></li>
+        <li><a href="#clash配置模板">clash配置模板</a></li>
+        <li><a href="#subconverter转换配置">subconverter转换配置</a></li>
+        <li><a href="#网易云音乐域名与ip规则">网易云音乐域名与IP规则</a></li>
+        <li><a href="#网易云音乐的代理配置">网易云音乐的代理配置</a></li>
+      </ol>
+    </li>
+    <li><a href="#工具准备">工具准备</a></li>
+    <li><a href="#自动脚本">自动脚本</a></li>
+    <li><a href="#最后">最后</a></li>
+    <li><a href="#系列">系列</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_800x0_resize_box_3.png"
+                        srcset="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_800x0_resize_box_3.png 800w, /p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover_hu6a5bd56cca743251e7bcb3ac30b37337_44366_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="480" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/gateway/" style="background-color: #2a9d8f; color: #fff;">
+                软路由
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/">我的家庭网络设计思路，开启debian的旁路由之路（七）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            本篇主要讲解如何使用nginx配置为文件服务器，为其他服务提供文件下载，以及自动更新clash订阅、自动生成前文需要的各种文件。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-22</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 23 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="文件准备">文件准备</h2>
+<h3 id="nginx">nginx</h3>
+<p>我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好了 <code>nginx</code> 了。新建 <code>/etc/nginx/conf.d/private.conf</code>，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">server_name</span> <span class="mi">10</span><span class="s">.0.0.2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">charset</span> <span class="s">&#39;utf-8&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">root</span> <span class="s">/var/www/html</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_filename</span> <span class="p">~</span><span class="sr">*</span> <span class="s">^((.*?\.(txt|yaml|yml|md|acl|rule|list|ini|xml|conf|vcf|manifest|sig|buildinfo|json))|LICENCE|Packages|sha256sums)</span>$<span class="s">)</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="kn">more_set_headers</span> <span class="s">&#39;Content-Type:</span> <span class="s">text/plain</span><span class="p">;</span> <span class="kn">charset=utf-8&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="kn">autoindex</span> <span class="no">on</span><span class="p">;</span>            <span class="c1"># 索引 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="kn">autoindex_exact_size</span> <span class="no">on</span><span class="p">;</span> <span class="c1"># 显示文件大小 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="kn">autoindex_localtime</span> <span class="no">on</span><span class="p">;</span>  <span class="c1"># 显示文件时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果 <code>nginx</code> 已经启动起来了，那么重新读取下：<code>nginx -s reload</code>；如果 <code>nginx</code> 还没有启动，那么就启动它： <code>systemctl restart nginx.service</code>。</p>
+<p>然后，放在 <code>/var/www/html</code> 下面的文件，可以通过网址 <code>http://10.0.0.2/XXXXX</code> 来下载，也就是说，我们后面创建的 <code>/var/www/html/config_template.yaml</code> 和  <code>/var/www/html/convert_rule.ini</code> 等等文件，可以通过网址 <code>http://10.0.0.2/config_template.yaml</code> <code>http://10.0.0.2/convert_rule.ini</code> 来下载。</p>
+<h3 id="clash配置模板">clash配置模板</h3>
+<p>为 <code>clash</code> 订阅制作适合你自己的模板，根据 <a class="link" href="https://wiki.metacubex.one/config/"  target="_blank" rel="noopener"
+    >clash meta wiki</a>，自行创建 <code>/var/www/html/config_template.yaml</code>。以下是我的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">7890</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">socks-port</span><span class="p">:</span><span class="w"> </span><span class="m">7891</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">mixed-port</span><span class="p">:</span><span class="w"> </span><span class="m">7893</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tproxy-port</span><span class="p">:</span><span class="w"> </span><span class="m">7895</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">routing-mark</span><span class="p">:</span><span class="w"> </span><span class="m">666</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">allow-lan</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">bind-address</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l">rule</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">log-level</span><span class="p">:</span><span class="w"> </span><span class="l">info</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">find-process-mode</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;off&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">external-controller</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="p">:</span><span class="m">9090</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l">Evine9@OPENCLASH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">external-ui</span><span class="p">:</span><span class="w"> </span><span class="l">ui</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">external-ui-name</span><span class="p">:</span><span class="w"> </span><span class="l">xd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">external-ui-url</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">unified-delay</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tcp-concurrent</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">authentication</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;Evine:ABCDEFGHIJK&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">experimental</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sniff-tls-sni</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">geodata-mode</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">geodata-loader</span><span class="p">:</span><span class="w"> </span><span class="l">standard</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">geox-url</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">geoip</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">geosite</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mmdb</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">profile</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tracing</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">store-selected</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">store-fake-ip</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">sniffer</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">                     </span><span class="c"># 嗅探器开关，开启后对 redir-host 类型识别的流量进行强制嗅探，包含Tun、Redir和TProxy或DNS为redir-host</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># force-dns-mapping: false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">parse-pure-ip</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">              </span><span class="c"># 对所有未获取到域名的流量进行强制嗅探</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">override-destination</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">       </span><span class="c"># 是否使用嗅探结果作为实际访问,默认 true，全局配置,优先级低于 sniffer.sniff 实际配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># sniff: # TLS 默认如果不配置 ports 默认嗅探 443</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   TLS:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     ports: [443, 8443]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   HTTP: # 需要嗅探的端口, 默认嗅探 80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     ports: [80, 8080-8880]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     override-destination: true # 可覆盖 sniffer.override-destination</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dns</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">listen</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="p">:</span><span class="m">7874</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">use-hosts</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enhanced-mode</span><span class="p">:</span><span class="w"> </span><span class="l">redir-host</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">default-nameserver</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">10.0.0.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">101.226.4.6</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">114.114.114.114</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">116.228.111.118</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">223.5.5.5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nameserver</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">10.0.0.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">101.226.4.6</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">114.114.114.114</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">116.228.111.118</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">223.5.5.5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fallback</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;https://dns.cloudflare.com/dns-query&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;tls://dns.google:853&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;https://1.1.1.1/dns-query&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;tls://1.1.1.1:853&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;tls://8.8.8.8:853&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;https://public.dns.iij.jp/dns-query&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;https://jp.tiar.app/dns-query&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;https://jp.tiarap.org/dns-query&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;tls://jp.tiar.app&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;tls://dot.tiar.app&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fallback-filter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">geoip</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">geoip-code</span><span class="p">:</span><span class="w"> </span><span class="l">CN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">geosite</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">gfw</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ipcidr</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">0.0.0.0</span><span class="l">/8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10.0.0.0</span><span class="l">/8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">100.64.0.0</span><span class="l">/10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">127.0.0.0</span><span class="l">/8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">169.254.0.0</span><span class="l">/16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">172.16.0.0</span><span class="l">/12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.0.0.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.0.2.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.88.99.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.168.0.0</span><span class="l">/16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">198.18.0.0</span><span class="l">/15</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">198.51.100.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">203.0.113.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">224.0.0.0</span><span class="l">/4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">240.0.0.0</span><span class="l">/4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">255.255.255.255</span><span class="l">/32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">domain</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;+.google.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;+.facebook.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;+.youtube.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;+.githubusercontent.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;+.googlevideo.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;+.msftconnecttest.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;+.msftncsi.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fake-ip-filter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s2">&#34;+.*&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="subconverter转换配置">subconverter转换配置</h3>
+<p>制作自己的 <code>subconverter</code> 转换配置，新建 <code>/var/www/html/convert_rule.ini</code> ，详细的格式见 <a class="link" href="https://github.com/tindy2013/subconverter/blob/master/README-cn.md#%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE"  target="_blank" rel="noopener"
+    >subconverter外部配置</a>，在 <a class="link" href="https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash/config"  target="_blank" rel="noopener"
+    >这里</a> 有大量的参考文件。</p>
+<p>下面是我的 <code>/var/www/html/convert_rule.ini</code>，不要照抄，抄了也用不了。还是需要按照上一段提及的材料自行准备适合自己的。注意到我们自己形成了 <code>ruleset=🎶 网易音乐,http://10.0.0.2/clash/neteasemusic.list</code>，用 <code>(^(?!.*网易).*)</code> 在常规节点中排除了我们自建的 <code>UnblockNeteaseMusic</code> 节点，以及设置了专门的分组 <code>custom_proxy_group=🎶 网易音乐</code>，这都是为解锁网易云音乐服务的。另外，还要注意到我们在这个文件中使用 <code>clash_rule_base=http://10.0.0.2/config_template.yaml</code> 来引用了前一步创建的 <code>clash</code> 配置模板。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[custom]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;设置规则标志位</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">⚓ PT站点,http://10.0.0.2/pt.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🗺 直连网站,http://10.0.0.2/direct.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🌎 强制代理,http://10.0.0.2/proxy.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">📢 谷歌FCM,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">Ⓜ️ 微软云盘,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">Ⓜ️ 微软服务,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🍎 苹果服务,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">📲 电报消息,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">💬 OpenAi,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎶 网易音乐,http://10.0.0.2/neteasemusic.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎮 游戏平台,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎮 游戏平台,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Origin.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎮 游戏平台,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Sony.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎮 游戏平台,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Steam.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎮 游戏平台,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Nintendo.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">📹 油管视频,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">📺 哔哩哔哩,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">📺 哔哩哔哩,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🌏 国内媒体,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🌍 国外媒体,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🚀 节点选择,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🎯 全球直连,[]GEOIP,CN</span>
+</span></span><span class="line"><span class="cl"><span class="na">ruleset</span><span class="o">=</span><span class="s">🐟 漏网之鱼,[]FINAL</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;设置规则标志位</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;设置分组标志位</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🚀 节点选择`select`[]♻️ 自动选择`[]🔯 故障转移`[]🔮 负载均衡`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换`[]DIRECT</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🚀 手动切换`select`(^(?!.*网易).*)</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">♻️ 自动选择`url-test`(^(?!.*网易).*)`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🔯 故障转移`fallback`(^(?!.*网易).*)`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🔮 负载均衡`load-balance`(^(?!.*网易).*)`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">⚓ PT站点`select`[]🚀 节点选择`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换`[]DIRECT</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🗺 直连网站`select`[]DIRECT`[]🚀 节点选择`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🌎 强制代理`select`[]🚀 节点选择`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换`[]DIRECT</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">📲 电报消息`select`[]🚀 节点选择`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换`[]DIRECT</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">💬 OpenAi`select`[]🚀 节点选择`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换`[]DIRECT</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">📹 油管视频`select`[]🚀 节点选择`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换`[]DIRECT</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">📺 哔哩哔哩`select`[]🎯 全球直连`[]🇨🇳 台湾节点`[]🇭🇰 香港节点</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🌍 国外媒体`select`[]🚀 节点选择`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`🏴‍☠️ 其他节点`[]🚀 手动切换`[]DIRECT</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🌏 国内媒体`select`[]DIRECT`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🚀 手动切换</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">📢 谷歌FCM`select`[]DIRECT`[]🚀 节点选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">Ⓜ️ 微软云盘`select`[]DIRECT`[]🚀 节点选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">Ⓜ️ 微软服务`select`[]DIRECT`[]🚀 节点选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🍎 苹果服务`select`[]DIRECT`[]🚀 节点选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🎮 游戏平台`select`[]DIRECT`[]🚀 节点选择`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🎶 网易音乐`select`网易`[]DIRECT</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🎯 全球直连`select`[]DIRECT`[]🚀 节点选择`[]♻️ 自动选择</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🐟 漏网之鱼`select`[]🚀 节点选择`[]♻️ 自动选择`[]DIRECT`[]🇭🇰 香港节点`[]🏴‍☠️ 除香港外`[]🇨🇳 台湾节点`[]🇸🇬 狮城节点`[]🇯🇵 日本节点`[]🇺🇲 美国节点`[]🇰🇷 韩国节点`[]🏴‍☠️ 其他节点`[]🚀 手动切换</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🇭🇰 香港节点`url-test`(^(?!.*10x).*(港|HK|Hong Kong))`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🏴‍☠️ 除香港外`url-test`(^(?!.*(懒人|香港|网易)).*)`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🇯🇵 日本节点`url-test`(^(?!.*10x).*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan))`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🇺🇲 美国节点`url-test`(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🇨🇳 台湾节点`url-test`(台|新北|彰化|TW|Taiwan)`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🇸🇬 狮城节点`url-test`(^(?!.*10x).*(新加坡|坡|狮城|SG|Singapore))`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🇰🇷 韩国节点`url-test`(KR|Korea|KOR|首尔|韩|韓)`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_proxy_group</span><span class="o">=</span><span class="s">🏴‍☠️ 其他节点`url-test`(^(?!.*(懒人|香港|台湾|新加坡|韩国|美国|日本|网易)).*)`https://cp.cloudflare.com/generate_204`180,,10</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;设置分组标志位</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">enable_rule_generator</span><span class="o">=</span><span class="s">true</span>
+</span></span><span class="line"><span class="cl"><span class="na">overwrite_original_rules</span><span class="o">=</span><span class="s">true</span>
+</span></span><span class="line"><span class="cl"><span class="na">clash_rule_base</span><span class="o">=</span><span class="s">http://10.0.0.2/config_template.yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;Options for renaming nodes</span>
+</span></span><span class="line"><span class="cl"><span class="na">rename</span><span class="o">=</span><span class="s">印尼@印度尼西亚</span>
+</span></span><span class="line"><span class="cl"><span class="na">rename</span><span class="o">=</span><span class="s">澳洲@澳大利亚</span>
+</span></span><span class="line"><span class="cl"><span class="na">rename</span><span class="o">=</span><span class="s">迪拜@阿联酋</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;Options for adding emojis</span>
+</span></span><span class="line"><span class="cl"><span class="na">add_emoji</span><span class="o">=</span><span class="s">true</span>
+</span></span><span class="line"><span class="cl"><span class="na">remove_old_emoji</span><span class="o">=</span><span class="s">true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;emoji=(流量|时间|应急),🏳️‍🌈</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">香港,🇭🇰</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">澳门,🇲🇴</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">台湾,🇨🇳</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">日本,🇯🇵</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">韩国,🇰🇷</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">美国,🇺🇸</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">英国,🇬🇧</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">泰国,🇹🇭</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">法国,🇫🇷</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">德国,🇩🇪</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">巴西,🇧🇷</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">(^(?!.*尼).*印度),🇮🇳</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">荷兰,🇳🇱</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">南非,🇿🇦</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">智利,🇨🇱</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">丹麦,🇩🇰</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">伊朗,🇮🇷</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">越南,🇻🇳</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">瑞士,🇨🇭</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">捷克,🇨🇿</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">芬兰,🇫🇮</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">挪威,🇲🇽</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">瑞典,🇸🇪</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">新加坡,🇸🇬</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">俄罗斯,🇷🇺</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">阿根廷,🇦🇷</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">土耳其,🇹🇷</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">菲律宾,🇵🇭</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">比利时,🇧🇪</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">卢森堡,🇱🇺</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">阿联酋,🇦🇪</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">加拿大,🇨🇦</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">意大利,🇮🇹</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">爱尔兰,🇮🇪</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">奥地利,🇦🇹</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">孟加拉,🇧🇩</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">柬埔寨,🇰🇭</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">哈萨克,🇰🇿</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">墨西哥,🇲🇽</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">新西兰,🇳🇿</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">葡萄牙,🇵🇹</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">西班牙,🇪🇸</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">乌克兰,🇺🇦</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">罗马尼亚,🇷🇴</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">巴基斯坦,🇵🇰</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">马来西亚,🇲🇾</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">(澳洲|澳大利亚),🇦🇺</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">(印尼|印度尼西亚),🇮🇩</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">懒人,🦥</span>
+</span></span><span class="line"><span class="cl"><span class="na">emoji</span><span class="o">=</span><span class="s">网易,🎶</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;用于包含或排除节点关键词的选项 会覆盖 主程序目录中的配置文件 里的内容</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;include_remarks=</span>
+</span></span><span class="line"><span class="cl"><span class="na">exclude_remarks</span><span class="o">=</span><span class="s">越南|南非|到期|流量|重置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;在 header 里的加入流量信息</span>
+</span></span><span class="line"><span class="cl"><span class="na">append_sub_userinfo</span><span class="o">=</span><span class="s">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="网易云音乐域名与ip规则">网易云音乐域名与IP规则</h3>
+<p>在 <a class="link" href="#subconverter%e8%bd%ac%e6%8d%a2%e9%85%8d%e7%bd%ae" >subconverter转换配置</a> 中，我们引用了 <code>http://10.0.0.2/neteasemusic.list</code>，现在我们对它初始化。新建 <code>/var/www/html/neteasemusic.list</code>，内容如下，接下来我们会用脚本自动更新它。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DOMAIN-SUFFIX,music.163.com
+</span></span><span class="line"><span class="cl">DOMAIN-SUFFIX,music.163.com.163jiasu.com
+</span></span><span class="line"><span class="cl">IP-CIDR,39.105.63.80/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,39.105.175.128/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,45.127.129.53/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,47.100.127.239/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,59.111.19.33/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,59.111.19.99/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,59.111.160.195/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,112.47.51.30/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,114.80.149.72/30,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,115.238.119.67/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,115.238.119.68/31,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,118.24.63.156/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,121.228.190.68/30,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,122.225.83.106/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,122.225.83.109/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,122.225.83.110/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,180.163.200.96/30,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,182.92.170.253/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,183.134.34.248/31,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,183.136.182.18/31,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,183.136.182.20/32,no-resolve
+</span></span><span class="line"><span class="cl">IP-CIDR,193.112.159.225/32,no-resolve
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="网易云音乐的代理配置">网易云音乐的代理配置</h3>
+<p>在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >前文（五）</a> 中我们手动设置了网易云音乐的代理，现在我们为接下来的自动订阅创建一个文件：<code>/var/www/html/neteasemusic.yaml</code>，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">proxies</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;🎶 网易代理&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="m">10.0.0.2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="工具准备">工具准备</h2>
+<p>后面的脚本中还要用到两个工具。下载 <a class="link" href="v2dat" >v2dat</a> 保存为 <code>/usr/local/bin/v2dat</code>，下载 <a class="link" href="https://github.com/zhanhb/cidr-merger/releases/download/v1.1.3/cidr-merger-linux-amd64"  target="_blank" rel="noopener"
+    >cidr-merger</a> 保存为 <code>/usr/local/bin/cidr-merger</code>。</p>
+<p>然后为它们增加可执行权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/<span class="o">{</span>v2dat,cidr-merger<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>感谢以下仓库：</p>
+<ul>
+<li>
+<p><a class="link" href="https://github.com/urlesistiana/v2dat"  target="_blank" rel="noopener"
+    >https://github.com/urlesistiana/v2dat</a></p>
+</li>
+<li>
+<p><a class="link" href="https://github.com/zhanhb/cidr-merger"  target="_blank" rel="noopener"
+    >https://github.com/zhanhb/cidr-merger</a></p>
+</li>
+<li>
+<p><a class="link" href="https://github.com/sbwml/luci-app-mosdns"  target="_blank" rel="noopener"
+    >https://github.com/sbwml/luci-app-mosdns</a></p>
+</li>
+</ul>
+<h2 id="自动脚本">自动脚本</h2>
+<p>为了自动备份旧的订阅文件，防止出错，我们使用将 <code>/var/lib/clash/config.yaml</code> 软连接到 <code>/var/lib/clash/config/subscribes_name1.yaml</code>（ <code>subscribes_name1</code> 由你自行定义，请和下文的脚本中的命名保持一致）。后续脚本中会自动删除超过30天的旧订阅。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /var/lib/clash
+</span></span><span class="line"><span class="cl">mkdir config
+</span></span><span class="line"><span class="cl">cp config.yaml config/subscribes_name1.yaml
+</span></span><span class="line"><span class="cl">ln -sf config/subscribes_name1.yaml config.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果未来需要在多份订阅中切换，直接更新软连接即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /var/lib/clash
+</span></span><span class="line"><span class="cl">ln -sf config/subscribes_name2.yaml config.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后新建一个文件 <code>/usr/local/bin/update-config.sh</code> 如下，并按照注释修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 订阅相关信息，subscribes_name和subscribes_url一一对应，如果想要合并多个订阅为一份，使用 | 分隔，比如示例中第3个。同时这两个数组的元素个数必须一致。</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subscribes_name</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    subscribes_name1.yaml
+</span></span><span class="line"><span class="cl">    subscribes_name2.yaml
+</span></span><span class="line"><span class="cl">    subscribes_merge.yaml
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subscribes_url</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://api.clashsubscribes.icu/clashudp/1111/125adfqeradf/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://v3.clashsubscribes.xyz/api/v1/client/subscribe?token=abcdefjagadfqaer456&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://api.clashsubscribes.icu/clashudp/1111/125adfqeradf/|https://v3.clashsubscribes.xyz/api/v1/client/subscribe?token=abcdefjagadfqaer456&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 订阅设置</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_target</span><span class="o">=</span><span class="s2">&#34;clash&#34;</span>                           <span class="c1"># 转换目标</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_url</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2:25500/sub&#34;</span>          <span class="c1"># subconverer的api接口</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_nem</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2/neteasemusic.yaml&#34;</span>  <span class="c1"># 前面生成的neteasemusic.yaml的下载网址</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_rule</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2/convert_rule.ini&#34;</span>  <span class="c1"># 前面生成的convert_rule.ini的下载网址</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 路径</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dir_clash_work</span><span class="o">=</span><span class="s2">&#34;/var/lib/clash&#34;</span>              <span class="c1"># clash的工作路径</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dir_xd</span><span class="o">=</span><span class="nv">$dir_clash_work</span>/ui/xd                 <span class="c1"># clash的XD面板相关文件的保存目录</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dir_mosdns_geodata</span><span class="o">=</span><span class="s2">&#34;/var/lib/mosdns/geodata&#34;</span> <span class="c1"># mosdns用到的geodata相关数据的保存目录，在mosdns配置文件中定义的</span>
+</span></span><span class="line"><span class="cl"><span class="nv">list_nem</span><span class="o">=</span><span class="s2">&#34;/var/www/html/neteasemusic.list&#34;</span>   <span class="c1"># neteasemusic.list的路径</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nem_address</span><span class="o">=</span>nem_address.nft                  <span class="c1"># 前文中在/var/lib/clash下的clash需要用到的网易云音乐IP地址，服务clash的nftables规则用</span>
+</span></span><span class="line"><span class="cl"><span class="nv">geoip4_cn</span><span class="o">=</span>geoip4_cn.nft                      <span class="c1"># 前文中在/var/lib/clash下的clash需要用到的中国大陆IP地址，服务clash的nftables规则用</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">############ 以下内容建议不要修改 ############</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## geodata相关</span>
+</span></span><span class="line"><span class="cl"><span class="nv">geodata</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    geoip.dat
+</span></span><span class="line"><span class="cl">    geosite.dat
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">geodata_url</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+</span></span><span class="line"><span class="cl">    https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">geodata_txt</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;geoip_cn.txt&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;geosite_cn.txt&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;geosite_geolocation-!cn.txt&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 订阅相关信息</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subscribes_current</span><span class="o">=</span><span class="k">$(</span>readlink <span class="nv">$dir_clash_work</span>/config.yaml<span class="k">)</span> <span class="c1"># 当前所使用的配置，是个软连接</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 是否重启的标记</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mark_mosdns_restart</span><span class="o">=</span>no
+</span></span><span class="line"><span class="cl"><span class="nv">mark_clash_restart</span><span class="o">=</span>no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 在clash工作目录下运行本脚本</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="s2">&#34;</span><span class="nv">$dir_clash_work</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## url转换</span>
+</span></span><span class="line"><span class="cl">urlencode<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="nb">read</span> -n1 v<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="nv">$v</span> in
+</span></span><span class="line"><span class="cl">            <span class="o">[</span>a-zA-Z0-9.~_-<span class="o">])</span> <span class="nb">printf</span> <span class="s2">&#34;%s&#34;</span> <span class="s2">&#34;</span><span class="nv">$v</span><span class="s2">&#34;</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">                          *<span class="o">)</span> <span class="nb">printf</span> <span class="s2">&#34;%%%02X&#34;</span> <span class="s2">&#34;&#39;</span><span class="nv">$v</span><span class="s2">&#34;</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">esac</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">printf</span> <span class="s1">&#39;\n&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 计算sha256</span>
+</span></span><span class="line"><span class="cl">gen_sha256sum<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">file</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> sha
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -f <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">sha</span><span class="o">=</span><span class="k">$(</span>sha256sum <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;http&#34;</span>* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">sha</span><span class="o">=</span><span class="k">$(</span>curl -fsSL <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span> 2&gt;/dev/null <span class="p">|</span> awk <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -n <span class="nv">$sha</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="nv">$sha</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 更新geodata和nftables规则</span>
+</span></span><span class="line"><span class="cl">update_geodata<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> i txt
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">tmp_geodir</span><span class="o">=</span>/tmp/geodata
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">mmdb</span><span class="o">=</span>country.mmdb
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> ! -d <span class="nv">$tmp_geodir</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        mkdir <span class="nv">$tmp_geodir</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## 更新 country.mmdb</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;开始更新 </span><span class="nv">$mmdb</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$mmdb</span><span class="s2">&#34;</span> https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/<span class="nv">$mmdb</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$mmdb</span><span class="s2">&#34;</span><span class="k">)</span> !<span class="o">=</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$mmdb</span><span class="s2">&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$mmdb</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$mmdb</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$mmdb</span><span class="s2"> 成功...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$mmdb</span><span class="s2"> 无变化，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$mmdb</span><span class="s2"> 失败...&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## 更新 geodata</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span> i&lt;<span class="si">${#</span><span class="nv">geodata</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">local</span> <span class="nv">sha256sum_new</span><span class="o">=</span><span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="si">${</span><span class="nv">geodata_url</span><span class="p">[i]</span><span class="si">}</span><span class="s2">.sha256sum&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;开始更新 </span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span>  <span class="o">[[</span> -n <span class="s2">&#34;</span><span class="nv">$sha256sum_new</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="s2">&#34;</span><span class="nv">$sha256sum_new</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="k">$(</span>gen_sha256sum <span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> wget -q --progress<span class="o">=</span>bar:dot --show-progress -O <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">geodata_url</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$sha256sum_new</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 成功...&#34;</span> 
+</span></span><span class="line"><span class="cl">                    <span class="nv">mark_clash_restart</span><span class="o">=</span>yes  <span class="c1"># 重启clash</span>
+</span></span><span class="line"><span class="cl">                <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 失败...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">geodata</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 无变化，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## 解包geodata</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$mark_clash_restart</span> <span class="o">==</span> yes <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;geo 数据有变化，开始重新生成相关文件...&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">## 为mosdns重新生成geoip_cn.txt，geosite_cn.txt，geosite_geolocation-!cn.txt</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;开始解包 geoip.dat 到临时目录 </span><span class="nv">$tmp_geodir</span><span class="s2">...&#34;</span> 
+</span></span><span class="line"><span class="cl">        v2dat unpack geoip -o <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span> -f cn geoip.dat
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;开始解包 geosite.dat 到临时目录 </span><span class="nv">$tmp_geodir</span><span class="s2">...&#34;</span> 
+</span></span><span class="line"><span class="cl">        v2dat unpack geosite -o <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span> -f cn -f <span class="s1">&#39;geolocation-!cn&#39;</span> geosite.dat
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> txt in <span class="si">${</span><span class="nv">geodata_txt</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$dir_mosdns_geodata</span><span class="s2">/</span><span class="nv">$txt</span><span class="s2">&#34;</span><span class="k">)</span> !<span class="o">=</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$txt</span><span class="s2">&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;检测到 </span><span class="nv">$txt</span><span class="s2"> 内容有变化，从 </span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$txt</span><span class="s2"> 复制到 </span><span class="nv">$dir_mosdns_geodata</span><span class="s2">/</span><span class="nv">$txt</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">                cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$txt</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$dir_mosdns_geodata</span><span class="s2">/</span><span class="nv">$txt</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">mark_mosdns_restart</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$txt</span><span class="s2"> 内容无变化，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">## 为clash重新生成geoip4_cn.nft</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;define geoip4_cn = {&#34;</span> &gt; <span class="nv">$tmp_geodir</span>/<span class="nv">$geoip4_cn</span>
+</span></span><span class="line"><span class="cl">        cat <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/geoip_cn.txt <span class="p">|</span> sed <span class="s1">&#39;/:/d&#39;</span> <span class="p">|</span> perl -pe <span class="s2">&#34;{s|^|    |; s|</span>$<span class="s2">|,|}&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$geoip4_cn</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;}&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$geoip4_cn</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[[</span> -n <span class="k">$(</span>grep -oP <span class="s2">&#34;(\d{1,3}\.){3}\d{1,3}&#34;</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$geoip4_cn</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="k">$(</span>gen_sha256sum <span class="nv">$geoip4_cn</span><span class="k">)</span> !<span class="o">=</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$geoip4_cn</span><span class="s2">&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$geoip4_cn</span> <span class="nv">$geoip4_cn</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$geoip4_cn</span><span class="s2"> 成功...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;geo 数据无变化，无需解包 </span><span class="si">${</span><span class="nv">geodata_txt</span><span class="p">[@]</span><span class="si">}</span><span class="s2">，无需更新 </span><span class="nv">$geoip4_cn</span><span class="s2"> ...&#34;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 为clash重新生成nem_address.nft和neteasemusic.list</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">domain_nem</span><span class="o">=</span><span class="s2">&#34;music.163.com,interface.music.163.com,interface3.music.163.com,apm.music.163.com,apm3.music.163.com,clientlog.music.163.com,clientlog3.music.163.com&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">nemip</span><span class="o">=</span><span class="k">$(</span>wget --timeout<span class="o">=</span><span class="m">5</span> -qO- <span class="s2">&#34;http://httpdns.n.netease.com/httpdns/v2/d?domain=</span><span class="nv">$domain_nem</span><span class="s2">&#34;</span> <span class="p">|</span> jq -r .data<span class="o">[]</span>.ip <span class="p">|</span> grep -v null <span class="p">|</span> jq -r .<span class="o">[]</span> <span class="p">|</span> cidr-merger --range<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">nemip</span><span class="o">=</span><span class="k">$(</span> <span class="o">(</span>cat <span class="nv">$nem_address</span> <span class="p">|</span> grep -oP <span class="s2">&#34;(\d{1,3}\.){3}\d{1,3}(-(\d{1,3}\.){3}\d{1,3})?&#34;</span><span class="p">;</span> cat <span class="nv">$list_nem</span> <span class="p">|</span> grep -oP <span class="s2">&#34;(\d{1,3}\.){3}\d{1,3}/\d+&#34;</span><span class="p">;</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nemip</span><span class="s2">&#34;</span><span class="k">)</span> <span class="p">|</span> cidr-merger --range<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -n <span class="s2">&#34;</span><span class="nv">$nemip</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;define nem_address = {&#34;</span> &gt; <span class="nv">$tmp_geodir</span>/<span class="nv">$nem_address</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nemip</span><span class="s2">&#34;</span> <span class="p">|</span> perl -pe <span class="s2">&#34;{s|^|    |; s|</span>$<span class="s2">|,|}&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$nem_address</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;}&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$nem_address</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[[</span> -n <span class="k">$(</span>grep -oP <span class="s2">&#34;(\d{1,3}\.){3}\d{1,3}&#34;</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$nem_address</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="k">$(</span>gen_sha256sum <span class="nv">$nem_address</span><span class="k">)</span> !<span class="o">=</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="nv">$nem_address</span><span class="s2">&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">&#34;</span>/<span class="nv">$nem_address</span> <span class="nv">$nem_address</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="nv">$nem_address</span><span class="s2"> 成功...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mark_clash_restart</span><span class="o">=</span>yes <span class="c1"># 重启clash</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nem_address</span><span class="s2"> 内容无变化，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    cp -f <span class="nv">$list_nem</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    sed -i <span class="s2">&#34;/IP-CIDR/d&#34;</span> <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$nemip</span><span class="s2">&#34;</span> <span class="p">|</span> cidr-merger -s <span class="p">|</span> perl -pe <span class="s2">&#34;{s|^|IP-CIDR,|; s|</span>$<span class="s2">|,no-resolve|}&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span> !<span class="o">=</span> <span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$list_nem</span><span class="s2">&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        cp -f <span class="s2">&#34;</span><span class="nv">$tmp_geodir</span><span class="s2">/</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&#34;</span> <span class="nv">$list_nem</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;更新数据 </span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2"> 成功...&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">list_nem</span><span class="p">##*/</span><span class="si">}</span><span class="s2"> 内容无变化，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 检测proxies:和proxy-groups:之间的行差，$1: 文件路径</span>
+</span></span><span class="line"><span class="cl">diff_detect<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">yaml</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">line1</span><span class="o">=</span><span class="k">$(</span>grep -nP <span class="s2">&#34;^proxies:&#34;</span> <span class="nv">$yaml</span> <span class="p">|</span> awk -F: <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">line2</span><span class="o">=</span><span class="k">$(</span>grep -nP <span class="s2">&#34;^proxy-groups:&#34;</span> <span class="nv">$yaml</span> <span class="p">|</span> awk -F: <span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">diff</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$line2</span> <span class="o">-</span> <span class="nv">$line1</span> <span class="k">))</span> 2&gt;/dev/null
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -n <span class="nv">$diff</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="nv">$diff</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 更新订阅</span>
+</span></span><span class="line"><span class="cl">update_subscribes<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">## 更新订阅</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> i sha256sum_old sha256sum_new url config
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">dir_tmpsubscribes</span><span class="o">=</span>/tmp/clash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> ! -d <span class="nv">$dir_tmpsubscribes</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        mkdir <span class="nv">$dir_tmpsubscribes</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span> i&lt;<span class="si">${#</span><span class="nv">subscribes_name</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;开始更新订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> ...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">url</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subscribes_url</span><span class="p">[i]</span><span class="si">}</span><span class="s2">|</span><span class="si">${</span><span class="nv">subconverter_nem</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> urlencode<span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">config</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="si">${</span><span class="nv">subconverter_rule</span><span class="si">}</span> <span class="p">|</span> urlencode<span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">subscribes_tmpconfig</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$dir_tmpsubscribes</span><span class="s2">/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> wget -q -O <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">subconverter_url</span><span class="si">}</span><span class="s2">?target=</span><span class="si">${</span><span class="nv">subconverter_target</span><span class="si">}</span><span class="s2">&amp;url=</span><span class="si">${</span><span class="nv">url</span><span class="si">}</span><span class="s2">&amp;config=</span><span class="si">${</span><span class="nv">config</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sha256sum_old</span><span class="o">=</span><span class="k">$(</span>gen_sha256sum <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sha256sum_new</span><span class="o">=</span><span class="k">$(</span>gen_sha256sum <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>diff_detect <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span><span class="k">)</span> -gt <span class="m">2</span> <span class="o">&amp;&amp;</span> <span class="nv">$sha256sum_old</span> !<span class="o">=</span> <span class="nv">$sha256sum_new</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> clash -t -d . -f <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    cp -a <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">.</span><span class="k">$(</span>date +<span class="s1">&#39;%s&#39;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                    cp -f <span class="s2">&#34;</span><span class="nv">$subscribes_tmpconfig</span><span class="s2">&#34;</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">echo</span> <span class="s2">&#34;更新订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 成功...&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;config/</span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="nv">$subscribes_current</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                        <span class="nv">mark_clash_restart</span><span class="o">=</span>yes <span class="c1"># 重启clash</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">echo</span> <span class="s2">&#34;订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 校验失败，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> <span class="s2">&#34;订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 无变化，不更新...&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;订阅 </span><span class="si">${</span><span class="nv">subscribes_name</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> 下载失败...&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">## 删除超过30天的旧订阅</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> yaml in <span class="k">$(</span>ls config/*.yaml.*<span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[[</span> <span class="k">$((</span> <span class="k">$(</span>date +%s<span class="k">)</span> <span class="o">-</span> <span class="si">${</span><span class="nv">yaml</span><span class="p">##*.</span><span class="si">}</span> <span class="k">))</span> -gt <span class="m">2592000</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            rm -v <span class="s2">&#34;</span><span class="nv">$yaml</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 更新clash的XD面板</span>
+</span></span><span class="line"><span class="cl">update_xd<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> ! -d <span class="si">${</span><span class="nv">dir_xd</span><span class="si">}</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        mkdir -p <span class="si">${</span><span class="nv">dir_xd</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">cd</span> <span class="si">${</span><span class="nv">dir_xd</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;开始更新 clash 面板 XD ...&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -n <span class="k">$(</span>ls<span class="k">)</span> <span class="o">&amp;&amp;</span> ! -d .git <span class="o">]]</span> <span class="o">||</span> <span class="o">[[</span> -z <span class="k">$(</span>ls<span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        rm -rf * .* <span class="p">&amp;</span>&gt;/dev/null
+</span></span><span class="line"><span class="cl">        git clone -b gh-pages --depth <span class="m">1</span> https://github.com/MetaCubeX/metacubexd .
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="o">[[</span> -n <span class="k">$(</span>ls<span class="k">)</span> <span class="o">&amp;&amp;</span> -d .git <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> 
+</span></span><span class="line"><span class="cl">        git fetch
+</span></span><span class="line"><span class="cl">        git reset origin/gh-pages --hard
+</span></span><span class="line"><span class="cl">        git pull
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 重启服务</span>
+</span></span><span class="line"><span class="cl">restart_service<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$mark_clash_restart</span> <span class="o">==</span> yes <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        systemctl restart clash.service <span class="c1"># 也可以改成重新加载配置而非重启：curl -Ss -H &#34;Authorization: Bearer YOUR_CLASH_SECRET&#34; -X PUT -d &#39;{&#34;path&#34;: &#34;/var/lib/clash/config.yaml&#34;}&#39; &#34;http://127.0.0.1:9090/configs?force=true&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;重启 clash.service&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$mark_mosdns_restart</span> <span class="o">==</span> yes <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        systemctl restart mosdns.service
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;重启 mosdns.service&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 中止时删除临时文件</span>
+</span></span><span class="line"><span class="cl">finish<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    rm -rf /tmp/<span class="o">{</span>clash,geodata<span class="o">}</span> <span class="p">&amp;</span>&gt;/dev/null
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 调用和函数</span>
+</span></span><span class="line"><span class="cl">main<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">trap</span> finish EXIT
+</span></span><span class="line"><span class="cl">    update_geodata
+</span></span><span class="line"><span class="cl">    update_subscribes
+</span></span><span class="line"><span class="cl">    update_xd
+</span></span><span class="line"><span class="cl">    restart_service
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">main <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为其增加可执行权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x /usr/local/bin/update-config.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后运行一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">update-config.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果有报错，请在报错前行添加 <code>set +x</code>，在后行添加 <code>set -x</code> 后，再次运行，根据输出信息自行排故。这需要你有一点点的 <code>shell</code> 知识。</p>
+<p>建议将 <code>update-config.sh</code> 加入定时任务，请自行调整下执行时间：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;SHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n19 1 * * * update-config.sh &gt;/dev/null&#34;</span> <span class="p">|</span> crontab -
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="最后">最后</h2>
+<p>脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 <a class="link" href="../../categories/gateway/" >本系列</a> 接下来的文章中，将继续配置其他服务。</p>
+<h2 id="系列">系列</h2>
+<ul>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >二、安装Debian、初始网络配置、必要软件安装</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89" >三、AdGuardHome、mosdns、clash在DNS的关系，以及AdGuardHome、mosdns的安装和配置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >四、clash透明代理(Tproxy)的安装和配置、相关的IP规则和nftables规则</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94" >五、UnblockNeteaseMusic的安装和配置、相关的的nftables规则、客户端如何使用</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ad" >六、subconverter的安装和配置</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >七、配置nginx为文件服务器、自动更新clash订阅、自动生成需要的文件</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab" >八、配置旁路由的SNMPD服务、配置主路由的跨三层应用</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b9%9d" >九、监测陌生设备</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81" >十、快速简单的安装和更新软件包</a></p>
+</li>
+<li>
+<p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%8d%81%e4%b8%80" >十一、DNS、网络故障等的总结，以及一些注意事项</a></p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%88%B1%E5%BF%AB/">爱快</a>
+        
+            <a href="/tags/debian/">debian</a>
+        
+            <a href="/tags/network/">network</a>
+        
+            <a href="/tags/%E6%97%81%E8%B7%AF%E7%94%B1/">旁路由</a>
+        
+            <a href="/tags/nginx/">nginx</a>
+        
+            <a href="/tags/mosdns/">mosdns</a>
+        
+            <a href="/tags/clash/">clash</a>
+        
+            <a href="/tags/subconverter/">subconverter</a>
+        
+            <a href="/tags/shell/">shell</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-11-18 10:37
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.b3c4f5a888a68e427bedc772b6e460e3_hu88789eb5a0253449c69e203685dbd166_85259_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）"
+                        
+                        data-hash="md5-s8T1qIimjkJ77cdytuRg4w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（四）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（六）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（六）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.20854af746270e9b4b1e51c4b66b27f3_hu2e0e1a7a45ea46d8799fa74fe7f087e1_104181_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）"
+                        
+                        data-hash="md5-IIVK90YnDptLHlHEtmsn8w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（三）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.28f1df1657a682293d84c6442e7f06ef_hua626112c0e4470a9588945448e9e4001_62327_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）"
+                        
+                        data-hash="md5-KPHfFlemgik9hMZELn8G7w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（五）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu6a5bd56cca743251e7bcb3ac30b37337_44366_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）"
+                        
+                        data-hash="md5-BrKLphXBFxJPrO&#43;PzscRpA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">我的家庭网络设计思路，开启debian的旁路由之路（十）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

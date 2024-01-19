@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
+<title>kodi-send使用相关说明</title>
+
+<link rel='canonical' href='https://evine.win/p/kodi-send-help/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='kodi-send使用相关说明'>
+<meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
+<meta property='og:url' content='https://evine.win/p/kodi-send-help/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='kodi-send' /><meta property='article:published_time' content='2022-12-21T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-send-help/pic1.png' />
+<meta name="twitter:title" content="kodi-send使用相关说明">
+<meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/kodi-send-help/pic1.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#说明">说明</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#设置">设置</a></li>
+    <li><a href="#使用">使用</a></li>
+    <li><a href="#其他应用场景">其他应用场景</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/kodi-send-help/">
+                <img src="/p/kodi-send-help/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_800x0_resize_box_3.png"
+                        srcset="/p/kodi-send-help/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_800x0_resize_box_3.png 800w, /p/kodi-send-help/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post kodi-send使用相关说明" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/kodi/" style="background-color: #2a9d8f; color: #fff;">
+                Kodi
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kodi-send-help/">kodi-send使用相关说明</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022-12-21</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>本文为《PVE安装Kodi》系列文章的一部分。</p>
+</blockquote>
+<ul>
+<li><a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a></li>
+<li><a class="link" href="../kodi-use-remote-controller" >为Kodi适配遥控器</a></li>
+<li><a class="link" href="../kodi-change-subtitle-font" >修改Kodi字幕字体</a></li>
+<li><a class="link" href="../kodi-change-interface-font" >修改Kodi皮肤字体</a></li>
+<li><a class="link" href="../kodi-disable-shutdown" >屏蔽Kodi的关机、重启按钮</a></li>
+<li><a class="link" href="../kodi-set-pre-condition" >设置Kodi启动的前置条件</a></li>
+<li><a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a></li>
+<li><a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a></li>
+<li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
+</ul>
+<h2 id="说明">说明</h2>
+<p><code>kodi-send</code>命令是Kodi自带命令行工具，可以安全的操控Kodi，除了下文使用的<code>Quit</code>指令，还有很多指令可以使用，方便想要自动化操作的人来使用，具体可用的指令见：<a class="link" href="https://kodi.wiki/view/Action_IDs"  target="_blank" rel="noopener"
+    >Action_IDs</a> 及 <a class="link" href="https://kodi.wiki/view/List_of_built-in_functions"  target="_blank" rel="noopener"
+    >List_of_built-in_functions</a> 。</p>
+<h2 id="安装">安装</h2>
+<blockquote>
+<p>请先按照 <a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a> 教程添加好<code>deb-multimedia</code>软件源。</p>
+</blockquote>
+<p><code>kodi-send</code>命令需要安装<code>kodi-eventclients-common</code>（如果未启用<code>deb-multimedia</code>源，则需要安装debian官方源中的<code>kodi-eventclients-kodi-send</code>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">apt install kodi-eventclients-common
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果是从backports源中安装的Kodi，那么也要从backports源中安装kodi-eventclients-common（假如是PVE 7，对应debian的bullseys版本）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">apt install -t bullseye-backports kodi-eventclients-common
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="设置">设置</h2>
+<p>如需要使用<code>kodi-send</code>命令，需要在“Kodi设置-&gt;服务-&gt;控制”处勾选“允许通过本机应用远程控制”。</p>
+<p><img src="/p/kodi-send-help/pic1.png"
+	width="1500"
+	height="844"
+	srcset="/p/kodi-send-help/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_480x0_resize_box_3.png 480w, /p/kodi-send-help/pic1_hu475cd8f935c8a52cdb5f675d449a382e_76470_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="允许通过本机应用远程控制"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<h2 id="使用">使用</h2>
+<p>输入<code>kodi-send --help</code>即可查看。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Usage
+</span></span><span class="line"><span class="cl">        kodi-send [OPTION] --action=ACTION
+</span></span><span class="line"><span class="cl">        kodi-send [OPTION] --button=BUTTON
+</span></span><span class="line"><span class="cl">Example
+</span></span><span class="line"><span class="cl">        kodi-send --host=192.168.0.1 --port=9777 --action=&#34;Quit&#34;
+</span></span><span class="line"><span class="cl">Options
+</span></span><span class="line"><span class="cl">        -?, --help                      Will bring up this message
+</span></span><span class="line"><span class="cl">        --host=HOST                     Choose what HOST to connect to (default=localhost)
+</span></span><span class="line"><span class="cl">        --port=PORT                     Choose what PORT to connect to (default=9777)
+</span></span><span class="line"><span class="cl">        --keymap=KEYMAP                 Choose which KEYMAP to use for key presses (default=KB)
+</span></span><span class="line"><span class="cl">        --button=BUTTON                 Sends a key press event to Kodi, this option can be added multiple times to create a macro
+</span></span><span class="line"><span class="cl">        -a ACTION, --action=ACTION      Sends an action to XBMC, this option can be added multiple times to create a macro
+</span></span><span class="line"><span class="cl">        -d T, --delay=T                 Waits for T ms, this option can be added multiple times to create a macro
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如需对本机安装的Kodi执行退出，如果Kodi是默认的状态，直接输入以下命令即可（<code>-a</code>/<code>--action</code>二者都可以，带不带<code>=</code>都行）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kodi-send -a <span class="s2">&#34;Quit&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --action<span class="o">=</span><span class="s2">&#34;Quit&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者只是调出退出菜单，而不是直接退出（如果遥控器的电源键没有被evsieve劫持的话，电源键在Kodi中倒是原本就是调出退出菜单，不过被evsieve劫持之后就得就这种方式曲线还原了）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 直接调出退出菜单，只能调出，无法切出</span>
+</span></span><span class="line"><span class="cl">kodi-send -a <span class="s2">&#34;ActivateWindow(shutdownmenu)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用命令模拟按下sleep/power按键，以下两个命令作用同上，只能调出，无法切出</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;sleep&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;power&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用命令模拟按下键盘的s键，键盘的s键作用也是调出退出菜单</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 相比上面的几个命令，当退出菜单已经调出时再次运行本命令可以切出退出菜单</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 而若是Kodi正处于输入文字的界面时，此命令只会真的打出“s”，调不出退出菜单</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;s&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注：以上命令均在Kodi的keymaps未作任何调整的情况下运行的。其他指令请见：<a class="link" href="https://kodi.wiki/view/Action_IDs"  target="_blank" rel="noopener"
+    >Action_IDs</a> 及 <a class="link" href="https://kodi.wiki/view/List_of_built-in_functions"  target="_blank" rel="noopener"
+    >List_of_built-in_functions</a>，全部按键见：<a class="link" href="https://kodi.wiki/view/Keyboard_controls"  target="_blank" rel="noopener"
+    >Keyboard_controls</a> 。</p>
+<h2 id="其他应用场景">其他应用场景</h2>
+<p>针对《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》中的<code>/etc/systemd/system/kodi.service</code>服务，可以修改<code>ExecStop</code>这一行为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ExecStop = /usr/bin/kodi-send --action=&#34;Quit&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>针对《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文中的<code>/usr/local/bin/kodi-power.sh</code>脚本，可以修改<code>systemctl stop kodi.service</code>（就是原本的关闭Kodi的指令）这一行为下面任何一句命令，这样也算是在电源键被evsieve劫持之后曲线还原了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 直接退出</span>
+</span></span><span class="line"><span class="cl">kodi-send --action<span class="o">=</span><span class="s2">&#34;Quit&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者只是调出退出菜单，而不是直接退出（根据上一节的说明选其一即可）</span>
+</span></span><span class="line"><span class="cl">kodi-send -a <span class="s2">&#34;ActivateWindow(shutdownmenu)&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --action<span class="o">=</span><span class="s2">&#34;ActivateWindow(shutdownmenu)&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;sleep&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;power&#34;</span>
+</span></span><span class="line"><span class="cl">kodi-send --button<span class="o">=</span><span class="s2">&#34;s&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kodi/">kodi</a>
+        
+            <a href="/tags/kodi-send/">kodi-send</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-12-14 13:12
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-change-exit-to-backspace/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-change-exit-to-backspace/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 转换遥控器的退出键为返回键"
+                        data-key="kodi-change-exit-to-backspace" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">转换遥控器的退出键为返回键</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-start-stop-by-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-start-stop-by-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停"
+                        data-key="kodi-start-stop-by-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-set-pre-condition/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-set-pre-condition/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 设置Kodi启动的前置条件"
+                        data-key="kodi-set-pre-condition" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">设置Kodi启动的前置条件</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-change-interface-font/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-change-interface-font/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 修改Kodi皮肤字体"
+                        data-key="kodi-change-interface-font" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">修改Kodi皮肤字体</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-disable-shutdown/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-disable-shutdown/pic5.da7b421407727b53ac9802b43a74930c_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 屏蔽Kodi的关机、重启按钮"
+                        data-key="kodi-disable-shutdown" 
+                        data-hash="md5-2ntCFAdye1OsmAK0OnSTDA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">屏蔽Kodi的关机、重启按钮</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>字体 on Evine的个人博客</title>
+        <link>https://evine.win/tags/%E5%AD%97%E4%BD%93/</link>
+        <description>Recent content in 字体 on Evine的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E5%AD%97%E4%BD%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>屏蔽Kodi的关机、重启按钮</title>
+        <link>https://evine.win/p/kodi-disable-shutdown/</link>
+        <pubDate>Sat, 23 Jul 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/kodi-disable-shutdown/</guid>
+        <description>&lt;img src="https://evine.win/p/kodi-disable-shutdown/pic5.png" alt="Featured image of post 屏蔽Kodi的关机、重启按钮" /&gt;&lt;blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-subtitle-font&#34; &gt;修改Kodi字幕字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-interface-font&#34; &gt;修改Kodi皮肤字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-disable-shutdown&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-set-pre-condition&#34; &gt;设置Kodi启动的前置条件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果在PVE系统中安装Kodi，并且是以root用户启动Kodi（如果是非root用户，那么可以无视本篇文章），那么Kodi具有很高的权限，可以关机、重启主机等等，这就需要防止不小心用遥控器或者键盘把PVE系统给关闭了。修改之处主要分为两部分：&lt;/p&gt;
+&lt;h2 id=&#34;1-屏蔽键盘的s键屏蔽遥控器的电源键&#34;&gt;1. 屏蔽键盘的s键、屏蔽遥控器的电源键&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;keymaps的WIKI见：https://kodi.wiki/view/Keymap ，keymaps默认文件位于：&lt;code&gt;/usr/share/kodi/system/keymaps&lt;/code&gt;，这里的文件可以被你自己的配置覆盖掉对应按键的作用。新建&lt;code&gt;~/.kodi/userdata/keymaps/disable_keyboard_shutdown.xml&lt;/code&gt;如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;keymap&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;global&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;keyboard&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;s&amp;gt;&amp;lt;/s&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;power&amp;gt;&amp;lt;/power&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;sleep&amp;gt;&amp;lt;/sleep&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/keyboard&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/global&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;LoginScreen&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;keyboard&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;end&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;mod=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ctrl&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&amp;lt;/end&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/keyboard&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/LoginScreen&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;Home&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;keyboard&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;end&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;mod=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ctrl&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&amp;lt;/end&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;backspace&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;mod=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;longpress&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&amp;lt;/backspace&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/keyboard&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/Home&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/keymap&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;2-在kodi界面中隐藏关机重启等按钮&#34;&gt;2. 在Kodi界面中隐藏关机、重启等按钮&lt;/h2&gt;
+&lt;p&gt;最后，为了保证在Kodi界面中也只能看见&lt;code&gt;退出&lt;/code&gt;，并且看不到&lt;code&gt;关机&lt;/code&gt;、&lt;code&gt;重启&lt;/code&gt;等按钮（注意：这只是在界面中隐藏掉而已，Kodi本身还是有关机、重启的权限的），可以在皮肤设置中将相关按钮隐藏掉，比如使用的&lt;code&gt;Aeon Nox: SiLVO&lt;/code&gt;皮肤的话，可以在进入&lt;code&gt;系统设置 -&amp;gt; 皮肤设置 -&amp;gt; 主菜单设置&lt;/code&gt;后这样操作：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic1.png&#34;
+	width=&#34;1500&#34;
+	height=&#34;937&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic1_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_480x0_resize_box_3.png 480w, https://evine.win/p/kodi-disable-shutdown/pic1_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Screenshot_20220713_094809.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在上图中的“管理子菜单”按钮下，以及在主菜单“系统”的“管理子菜单”下，也要将“关闭系统电源”“重启”“待机”“休眠”“注销”给禁用了，这里本文就不截图了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic2.png&#34;
+	width=&#34;1500&#34;
+	height=&#34;937&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic2_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_480x0_resize_box_3.png 480w, https://evine.win/p/kodi-disable-shutdown/pic2_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Screenshot_20220713_094821.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic3.png&#34;
+	width=&#34;1500&#34;
+	height=&#34;937&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic3_hu45b471235be728b8917150d94cd5399a_40252_480x0_resize_box_3.png 480w, https://evine.win/p/kodi-disable-shutdown/pic3_hu45b471235be728b8917150d94cd5399a_40252_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Screenshot_20220713_094832.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic4.png&#34;
+	width=&#34;1500&#34;
+	height=&#34;937&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic4_hu538f4d7bc8f80fc1b6eeabd37b527cbc_40326_480x0_resize_box_3.png 480w, https://evine.win/p/kodi-disable-shutdown/pic4_hu538f4d7bc8f80fc1b6eeabd37b527cbc_40326_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Screenshot_20220713_094844.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最后的效果，主菜单中也只有退出按钮了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic5.png&#34;
+	width=&#34;1500&#34;
+	height=&#34;937&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_480x0_resize_box_3.png 480w, https://evine.win/p/kodi-disable-shutdown/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Screenshot_20220713_094656.png&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>修改Kodi皮肤字体</title>
+        <link>https://evine.win/p/kodi-change-interface-font/</link>
+        <pubDate>Sat, 23 Jul 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/kodi-change-interface-font/</guid>
+        <description>&lt;img src="https://evine.win/p/kodi-change-interface-font/kodi-poster.jpg" alt="Featured image of post 修改Kodi皮肤字体" /&gt;&lt;blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-subtitle-font&#34; &gt;修改Kodi字幕字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-interface-font&#34; &gt;修改Kodi皮肤字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-disable-shutdown&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-set-pre-condition&#34; &gt;设置Kodi启动的前置条件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;操作流程&#34;&gt;操作流程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;将ttf字体文件放在下面列出的对应的皮肤目录下的&lt;code&gt;fonts&lt;/code&gt;子文件夹中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;~/.kodi/addons/skin.XXXX&lt;/code&gt;（用户自己安装的皮肤）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/usr/share/kodi/addons/skin.XXXX&lt;/code&gt;（系统自带的皮肤）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;并在皮肤的配置子目录（不同皮肤的配置子目录不一样，比如&lt;code&gt;skin.estuary&lt;/code&gt;在&lt;code&gt;xml&lt;/code&gt;子目录下，&lt;code&gt;skin.aeon.nox.silvo&lt;/code&gt;在&lt;code&gt;16x9&lt;/code&gt;或其他比例的目录下）中找到&lt;code&gt;Font.xml&lt;/code&gt;，复制一组完整的&lt;code&gt;fontset&lt;/code&gt;（从&lt;code&gt;&amp;lt;fontset&amp;gt;&lt;/code&gt;到&lt;code&gt;&amp;lt;/fontset&amp;gt;&lt;/code&gt;），然后将新增加的这组&lt;code&gt;fontset&lt;/code&gt;的字体文件名改成你放进去的字体文件名，并保存即可（自行做好原始文件备份）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;fonts&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;fontset&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Default&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;idloc=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;31390&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	...原有的fontset，应该有多组...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/fontset&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;fontset&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;FZZYJT&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 	...新增加的fontset...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nt&#34;&gt;&amp;lt;/fontset&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/fonts&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;编辑保存好后重启Kodi即可在皮肤设置中选择新增加的字体。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;注：每次更新Kodi后需要再次设置。&lt;/strong&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>修改Kodi字幕字体</title>
+        <link>https://evine.win/p/kodi-change-subtitle-font/</link>
+        <pubDate>Mon, 18 Jul 2022 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/kodi-change-subtitle-font/</guid>
+        <description>&lt;img src="https://evine.win/p/kodi-change-subtitle-font/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-subtitle-font&#34; &gt;修改Kodi字幕字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-interface-font&#34; &gt;修改Kodi皮肤字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-disable-shutdown&#34; &gt;屏蔽Kodi的关机、重启按钮&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-set-pre-condition&#34; &gt;设置Kodi启动的前置条件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如需要修改字幕字体，将你的ttf字体文件放在&lt;code&gt;~/.kodi/media/Fonts&lt;/code&gt;之下（如果是非root用户，注意修改字体文件所有者），然后在Kodi设置中 &lt;code&gt;播放器 -&amp;gt; 语言 -&amp;gt; 文本字幕字体&lt;/code&gt; 中选择即可，注意该字体仅对文本类字幕有效，即&lt;code&gt;ass/ssa/srt&lt;/code&gt;后缀，其他字幕格式是无效的。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

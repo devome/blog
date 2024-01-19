@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
+<title>像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</title>
+
+<link rel='canonical' href='https://evine.win/p/kodi-start-stop-by-remote-controller/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停'>
+<meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
+<meta property='og:url' content='https://evine.win/p/kodi-start-stop-by-remote-controller/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2022-11-24T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg' />
+<meta name="twitter:title" content="像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停">
+<meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+    <li><a href="#思路">思路</a></li>
+    <li><a href="#准备工作">准备工作</a></li>
+    <li><a href="#设置按键胁持">设置按键胁持</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/kodi-start-stop-by-remote-controller/">
+                <img src="/p/kodi-start-stop-by-remote-controller/kodi-poster_hu6a9a6c2102fadf339a8899f5319f0c51_430270_800x0_resize_q75_box.jpg"
+                        srcset="/p/kodi-start-stop-by-remote-controller/kodi-poster_hu6a9a6c2102fadf339a8899f5319f0c51_430270_800x0_resize_q75_box.jpg 800w, /p/kodi-start-stop-by-remote-controller/kodi-poster_hu6a9a6c2102fadf339a8899f5319f0c51_430270_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/kodi/" style="background-color: #2a9d8f; color: #fff;">
+                Kodi
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kodi-start-stop-by-remote-controller/">像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022-11-24</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 10 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>本文为《PVE安装Kodi》系列文章的一部分。</p>
+</blockquote>
+<ul>
+<li><a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a></li>
+<li><a class="link" href="../kodi-use-remote-controller" >为Kodi适配遥控器</a></li>
+<li><a class="link" href="../kodi-change-subtitle-font" >修改Kodi字幕字体</a></li>
+<li><a class="link" href="../kodi-change-interface-font" >修改Kodi皮肤字体</a></li>
+<li><a class="link" href="../kodi-disable-shutdown" >屏蔽Kodi的关机、重启按钮</a></li>
+<li><a class="link" href="../kodi-set-pre-condition" >设置Kodi启动的前置条件</a></li>
+<li><a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a></li>
+<li><a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a></li>
+<li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
+</ul>
+<h2 id="前言">前言</h2>
+<p>在《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》一文的评论中，有网友提出能不能像操控电视盒子/LibreELEC/CoreELCE一样用遥控器操控PVE中直装的Kodi，实现打开和关闭Kodi，这是个好想法，我也认为这样会大方便PVE中直装的Kodi的使用，所以学习了相关udev、udevadm、evtest、input、input remap相关知识，终于实现了这个非常便于使用的功能。</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a class="link" href="https://www.man7.org/linux/man-pages/man7/udev.7.html"  target="_blank" rel="noopener"
+    >udev</a>, <a class="link" href="https://www.man7.org/linux/man-pages/man8/udevadm.8.html"  target="_blank" rel="noopener"
+    >udevadm</a>, <a class="link" href="https://man.archlinux.org/man/evtest.1"  target="_blank" rel="noopener"
+    >evtest</a>, <a class="link" href="https://wiki.archlinux.org/title/Input_remap_utilities"  target="_blank" rel="noopener"
+    >input_remap_utilities</a>, <a class="link" href="https://github.com/KarsMulder/evsieve"  target="_blank" rel="noopener"
+    >evsieve</a></p>
+<h2 id="思路">思路</h2>
+<p>用遥控器操控PVE中直装的Kodi，实现打开和关闭Kodi，这个场景需要在无桌面环境下，胁持遥控器的电源键，让它的作用变更为打开/关闭Kodi，所以只是将电源键映射为其他键是不行的，而是需要胁持遥控器的电源键，让它变更为运行某个脚本，然后由脚本实现打开/关闭Kodi。</p>
+<p>根据 <a class="link" href="https://wiki.archlinux.org/title/Input_remap_utilities"  target="_blank" rel="noopener"
+    >input_remap_utilities</a> 列出的几个按键映射工具，只有 <a class="link" href="https://github.com/KarsMulder/evsieve"  target="_blank" rel="noopener"
+    >evsieve</a> 可以在无桌面环境下胁持按键并运行指定脚本，实现上述场景。</p>
+<h2 id="准备工作">准备工作</h2>
+<blockquote>
+<p>以下相关命令均为root用户执行的。</p>
+</blockquote>
+<blockquote>
+<p>如果需要新建文件，请直接在Linux环境中使用<code>nano XXXX</code>创建，请不要在Windows环境中创建后再上传。</p>
+</blockquote>
+<p>所有的输入设备都由<code>udev</code>程序识别并保存在<code>/dev/input</code>下，通过输入<code>ls -l /dev/input</code>可以查看到许多<code>eventX</code>的设备。设备的编号会随着外设的插入或卸载以及开关机的变化而变化，也就是说电源键所在的输入设备的<code>eventX</code>中<code>X</code>这个编号不是固定的，所以我们不能直接使用<code>/dev/input/eventX</code>来作为后续要胁持的输入设备。运行<code>ls -l /dev/input/by-id</code>，<code>udev</code>会在这个目录下创建易于识别的、唯一的、不随外设的插入卸载或开关机而变化的软连接，无论<code>X</code>如何变化，它们都将指向正确的设备。</p>
+<p>我的遥控器是自带接收器的2.4G无线遥控器，插上接收器，通过<code>evtest</code>程序先找出遥控器电源键在什么设备上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 安装evtest</span>
+</span></span><span class="line"><span class="cl">apt install evtest
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行evtest</span>
+</span></span><span class="line"><span class="cl">evtest --grab
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># evtest会列出所有可用的输入设备，可以看到我的遥控器有event5-event8共4个设备</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 你可以选择具体的编号来进行测试，找到每个设备分别能控制哪些按键</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 经过测试，我发现我遥控器的电源键在event8，也就是2.4G Composite Devic System Control这个设备</span>
+</span></span><span class="line"><span class="cl">No device specified, trying to scan all of /dev/input/event*
+</span></span><span class="line"><span class="cl">Available devices:
+</span></span><span class="line"><span class="cl">/dev/input/event0:      Power Button
+</span></span><span class="line"><span class="cl">/dev/input/event1:      AT Translated Set <span class="m">2</span> keyboard
+</span></span><span class="line"><span class="cl">/dev/input/event2:      VirtualPS/2 VMware VMMouse
+</span></span><span class="line"><span class="cl">/dev/input/event3:      VirtualPS/2 VMware VMMouse
+</span></span><span class="line"><span class="cl">/dev/input/event4:      QEMU QEMU USB Tablet
+</span></span><span class="line"><span class="cl">/dev/input/event5:      2.4G Composite Devic
+</span></span><span class="line"><span class="cl">/dev/input/event6:      2.4G Composite Devic Mouse
+</span></span><span class="line"><span class="cl">/dev/input/event7:      2.4G Composite Devic Consumer Control
+</span></span><span class="line"><span class="cl">/dev/input/event8:      2.4G Composite Devic System Control
+</span></span><span class="line"><span class="cl">/dev/input/event9:      PC Speaker
+</span></span><span class="line"><span class="cl">Select the device event number <span class="o">[</span>0-9<span class="o">]</span>:8   <span class="c1"># 手动输入要测试的设备编号，如果不清楚电源键在什么设备上，你可以一个一个试出来</span>
+</span></span><span class="line"><span class="cl">Input device ID: bus 0x3 vendor 0x627 product 0x697d version 0x110
+</span></span><span class="line"><span class="cl">Input device name: <span class="s2">&#34;2.4G Composite Devic System Control&#34;</span>
+</span></span><span class="line"><span class="cl">Supported events:
+</span></span><span class="line"><span class="cl">  Event <span class="nb">type</span> <span class="m">0</span> <span class="o">(</span>EV_SYN<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Event <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">116</span> <span class="o">(</span>KEY_POWER<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">142</span> <span class="o">(</span>KEY_SLEEP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">143</span> <span class="o">(</span>KEY_WAKEUP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Event <span class="nb">type</span> <span class="m">4</span> <span class="o">(</span>EV_MSC<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    Event code <span class="m">4</span> <span class="o">(</span>MSC_SCAN<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Properties:
+</span></span><span class="line"><span class="cl">Testing ... <span class="o">(</span>interrupt to <span class="nb">exit</span><span class="o">)</span>  <span class="c1"># 按下电源键，evtest输出以下结果，没有反应表示设备择取不对</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.421999, <span class="nb">type</span> <span class="m">4</span> <span class="o">(</span>EV_MSC<span class="o">)</span>, code <span class="m">4</span> <span class="o">(</span>MSC_SCAN<span class="o">)</span>, value <span class="m">10081</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.421999, <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>, code <span class="m">116</span> <span class="o">(</span>KEY_POWER<span class="o">)</span>, value <span class="m">1</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.421999, -------------- SYN_REPORT ------------
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.422021, <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>, code <span class="m">116</span> <span class="o">(</span>KEY_POWER<span class="o">)</span>, value <span class="m">0</span>
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1669209045.422021, -------------- SYN_REPORT ------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Ctrl+C退出</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过测试，我知道了我遥控器的电源键的键码为<code>116</code>，键名为<code>KEY_POWER</code>，去掉<code>KEY_</code>，键值转换为小写<code>power</code>这个值在后面会用到。不出意外，一般遥控器的电源键的键值都是<code>power</code>。</p>
+<p>现在来找一下<code>event8</code>这个设备在<code>/dev/input/by-id</code>下的软连接叫什么，运行<code>ls -l /dev/input/by-id/</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">total 0
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-event-if01 -&gt; ../event7
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-event-kbd -&gt; ../event5
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-if01-event-mouse -&gt; ../event6
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-0627_2.4G_Composite_Devic-if01-mouse -&gt; ../mouse3
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-event-mouse -&gt; ../event4
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root root 9 Nov 23 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-mouse -&gt; ../mouse2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这&hellip;&hellip;<code>udev</code>没有识别出来&hellip;&hellip;准确的讲，是因为<code>udev</code>的默认规则<code>/usr/lib/udev/rules.d/60-persistent-input.rules</code>无法区分<code>2.4G Composite Devic Consumer Control</code>和<code>2.4G Composite Devic System Control</code>这两个设备，现象是每次关机再开机或每次卸载再插入接收器后，<code>usb-0627_2.4G_Composite_Devic-event-if01</code>这个设备一会儿指向<code>2.4G Composite Devic Consumer Control</code>，一会儿指向<code>2.4G Composite Devic System Control</code>，所以我需要修改一下<code>udev</code>的规则，让它能够准确识别出<code>2.4G Composite Devic System Control</code>。可能其他遥控器不存在此问题，需要你自行测试一下此问题存在不存在。</p>
+<p>现在来让<code>udev</code>能准确识别<code>2.4G Composite Devic System Control</code>，运行<code>udevadm info --attribute-walk --name=/dev/input/event8</code>（其中<code>event8</code>是根据上面<code>evtest</code>测试后知道的），输出内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Udevadm info starts with the device specified by the devpath and then
+</span></span><span class="line"><span class="cl">walks up the chain of parent devices. It prints for every device
+</span></span><span class="line"><span class="cl">found, all possible attributes in the udev rules key format.
+</span></span><span class="line"><span class="cl">A rule to match, can be composed by the attributes of the device
+</span></span><span class="line"><span class="cl">and the attributes from one single parent device.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">looking at device &#39;/devices/pci0000:00/0000:00:1e.0/0000:01:1b.0/usb2/2-1/2-1:1.1/0003:0627:697D.0003/input/input9/event8&#39;:
+</span></span><span class="line"><span class="cl">    KERNEL==&#34;event8&#34;
+</span></span><span class="line"><span class="cl">    SUBSYSTEM==&#34;input&#34;
+</span></span><span class="line"><span class="cl">    DRIVER==&#34;&#34;
+</span></span><span class="line"><span class="cl">    ATTR{power/async}==&#34;disabled&#34;
+</span></span><span class="line"><span class="cl">    ATTR{power/control}==&#34;auto&#34;
+</span></span><span class="line"><span class="cl">    ATTR{power/runtime_active_kids}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTR{power/runtime_active_time}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTR{power/runtime_enabled}==&#34;disabled&#34;
+</span></span><span class="line"><span class="cl">    ATTR{power/runtime_status}==&#34;unsupported&#34;
+</span></span><span class="line"><span class="cl">    ATTR{power/runtime_suspended_time}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTR{power/runtime_usage}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">looking at parent device &#39;/devices/pci0000:00/0000:00:1e.0/0000:01:1b.0/usb2/2-1/2-1:1.1/0003:0627:697D.0003/input/input9&#39;:
+</span></span><span class="line"><span class="cl">    KERNELS==&#34;input9&#34;
+</span></span><span class="line"><span class="cl">    SUBSYSTEMS==&#34;input&#34;
+</span></span><span class="line"><span class="cl">    DRIVERS==&#34;&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/abs}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/ev}==&#34;13&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/ff}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/key}==&#34;c000 10000000000000 0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/led}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/msc}==&#34;10&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/rel}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/snd}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{capabilities/sw}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{id/bustype}==&#34;0003&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{id/product}==&#34;697d&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{id/vendor}==&#34;0627&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{id/version}==&#34;0110&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{inhibited}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{name}==&#34;2.4G Composite Devic System Control&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{phys}==&#34;usb-0000:01:1b.0-1/input1&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{power/async}==&#34;disabled&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{power/control}==&#34;auto&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{power/runtime_active_kids}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{power/runtime_active_time}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{power/runtime_enabled}==&#34;disabled&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{power/runtime_status}==&#34;unsupported&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{power/runtime_suspended_time}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{power/runtime_usage}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{properties}==&#34;0&#34;
+</span></span><span class="line"><span class="cl">    ATTRS{uniq}==&#34;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...下面其他信息此处略去
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过多次运行<code>udevadm info --attribute-walk --name=/dev/input/eventX</code>（X更换为不同的设备编号）可知，我的设备<code>2.4G Composite Devic System Control</code>可以通过<code>ATTRS{name}</code>这个属性即可以进行唯一识别。参考 <a class="link" href="https://www.man7.org/linux/man-pages/man7/udev.7.html"  target="_blank" rel="noopener"
+    >udev</a> 这个链接，新建<code>/etc/udev/rules.d/01-system-control.rules</code>，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ATTRS{name}==&#34;2.4G Composite Devic System Control&#34;, SYMLINK+=&#34;input/by-id/usb-0627_2.4G_Composite_Devic-System-Control&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种方式是写死的，只针对这一个遥控器有效，复杂的规则咱也写不来&hellip;当然如果你想采用更智能的识别方式，可以参考 <a class="link" href="http://www.reactivated.net/writing_udev_rules.html"  target="_blank" rel="noopener"
+    >Writing udev rules</a> 和 <a class="link" href="https://wiki.archlinuxcn.org/wiki/Udev#%e7%bc%96%e5%86%99_udev_%e8%a7%84%e5%88%99"  target="_blank" rel="noopener"
+    >编写udev规则</a>。</p>
+<p>其中<code>SYMLINK+=&quot;input/by-id/usb-0627_2.4G_Composite_Devic-System-Control&quot;</code>是指让<code>udev</code>在<code>/dev/input/by-id</code>下自动创建<code>usb-0627_2.4G_Composite_Devic-System-Control</code>，其指向<code>2.4G Composite Devic System Control</code>这个设备。软连接名称你可以自行定义。</p>
+<p>现在重启下或者重插一下接收器，终于可以识别出来了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls -l /dev/input/by-id
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 生成了`usb-0627_2.4G_Composite_Devic-System-Control`这个软连接</span>
+</span></span><span class="line"><span class="cl">total <span class="m">0</span>
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-event-if01 -&gt; ../event7
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-event-kbd -&gt; ../event5
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-System-Control -&gt; ../event8
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-if01-event-mouse -&gt; ../event6
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-0627_2.4G_Composite_Devic-if01-mouse -&gt; ../mouse3
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-event-mouse -&gt; ../event4
+</span></span><span class="line"><span class="cl">lrwxrwxrwx <span class="m">1</span> root root <span class="m">9</span> Nov <span class="m">23</span> 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-mouse -&gt; ../mouse2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="设置按键胁持">设置按键胁持</h2>
+<blockquote>
+<p>以下相关命令均为root用户执行的。</p>
+</blockquote>
+<blockquote>
+<p>如果需要新建文件，请直接在Linux环境中使用<code>nano XXXX</code>创建，请不要在Windows环境中创建后再上传。</p>
+</blockquote>
+<ol>
+<li>
+<p>下载我为PVE 7.X预编译好的 <a class="link" href="https://raw.githubusercontent.com/devome/files/master/evsieve/evsieve"  target="_blank" rel="noopener"
+    >evsieve</a>，其他版本不保证可用，如果下载不了，可以按照<a class="link" href="https://github.com/KarsMulder/evsieve"  target="_blank" rel="noopener"
+    >官方教程</a>自己编译。我会随着Debian和evsieve版本的升级一直更新该文件，请及时在这个仓库查看更新情况：<a class="link" href="https://github.com/devome/files/tree/master/evsieve"  target="_blank" rel="noopener"
+    >devome/files@github</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget https://raw.githubusercontent.com/devome/files/master/evsieve/evsieve -O /usr/local/bin/evsieve
+</span></span><span class="line"><span class="cl">chmod +x /usr/local/bin/evsieve
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装evsieve的运行依赖</span>
+</span></span><span class="line"><span class="cl">apt install libevdev2
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>按照《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》安装好Kodi，建议按非root用户设置好<code>/etc/systemd/system/kodi.service</code>，注意含有<code>ExecStart</code>和<code>ExecStop</code>这两行。如果你不需要Kodi开机自动启动，那么创建好这个文件就好了，不需要运行<code>systemctl enable --now kodi.service</code>。</p>
+</li>
+<li>
+<p>新建一个用来自动判断是启动Kodi还是关闭Kodi的脚本<code>/usr/local/bin/kodi-power.sh</code>，后续由<code>evsieve</code>来使用，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -z <span class="k">$(</span>ps -ef <span class="p">|</span> grep <span class="s2">&#34;kodi.bin&#34;</span> <span class="p">|</span> grep -v <span class="s2">&#34;grep&#34;</span><span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>   <span class="c1">## 如果kodi还没有启动，那么就启动它</span>
+</span></span><span class="line"><span class="cl">    systemctl start kodi.service
+</span></span><span class="line"><span class="cl"><span class="k">else</span>   <span class="c1">## 如果kodi已经启动了，那么就停止它</span>
+</span></span><span class="line"><span class="cl">    systemctl stop kodi.service
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注：停止Kodi这一行，相比使用<code>systemctl stop kodi.service</code>，更推荐使用<code>kodi-send</code>，详见：<a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a>。</strong></p>
+<p>注意增加可执行权限：<code>chmod +x /usr/local/bin/kodi-power.sh</code>。</p>
+</li>
+<li>
+<p>根据 <a class="link" href="https://github.com/KarsMulder/evsieve"  target="_blank" rel="noopener"
+    >evsieve</a> 的说明，在运行<code>evsieve</code>时，它所要胁持的设备必须已经插入了，但是我又希望<code>evsieve</code>能够开机自动运行，所以我需要在正式运行前先确保<code>2.4G Composite Devic System Control</code>这个设备已经插入。这项工作就交给脚本来判断吧，新建<code>/usr/local/bin/evsieve.sh</code>，内容如下（<strong>注意按照注释修改<code>target_hijack_input_device</code>和<code>target_hijack_button</code></strong>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 要胁持的目标设备的绝对路径，请注意修改成自己的</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 不要直接写/dev/input/eventX，而要写/dev/input/by-id下的设备</span>
+</span></span><span class="line"><span class="cl"><span class="nv">target_hijack_input_device</span><span class="o">=</span><span class="s2">&#34;/dev/input/by-id/usb-0627_2.4G_Composite_Devic-System-Control&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 要胁持的按键的键名，请注意修改成你获取到的，不出意外，一般遥控器的电源键的键值都是power</span>
+</span></span><span class="line"><span class="cl"><span class="nv">target_hijack_button</span><span class="o">=</span><span class="s2">&#34;power&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">###### 以下无需修改 ######</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 先检测 target_hijack_input_device 是否已经存在</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> :<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -L <span class="s2">&#34;</span><span class="nv">$target_hijack_input_device</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;The &#39;</span><span class="nv">$target_hijack_input_device</span><span class="s2">&#39; is not inserted, wait 2 seconds...&#34;</span>
+</span></span><span class="line"><span class="cl">        sleep <span class="m">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 执行电源键胁持，当按下指定键时，转换为运行脚本/usr/local/bin/kodi-power.sh，详细用法请见：https://github.com/KarsMulder/evsieve</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exec</span> evsieve <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --input <span class="s2">&#34;</span><span class="nv">$target_hijack_input_device</span><span class="s2">&#34;</span> grab <span class="nv">persist</span><span class="o">=</span>reopen <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --hook key:<span class="nv">$target_hijack_button</span> exec-shell<span class="o">=</span><span class="s2">&#34;/usr/local/bin/kodi-power.sh&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --block key:<span class="nv">$target_hijack_button</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该脚本同样需要可执行权限：<code>chmod +x /usr/local/bin/evsieve.sh</code>。</p>
+<p>注意：如果在进行 <code>evtest</code> 时，电源键所在的设备组在 <code>Event type 1</code> 下支持的 <code>Event code</code> 不仅仅只有 <code>KEY_POWER</code> <code>KEY_SLEEP</code> <code>KEY_WAKEUP</code>这三个，那么一般情况下这个设备组还有其他按键，这时不能完全屏蔽掉整个设备，需要将上述脚本中最后四行改成下面这样。这种情况一般出现在蓝牙遥控器上面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">exec</span> evsieve <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --input <span class="s2">&#34;</span><span class="nv">$target_hijack_input_device</span><span class="s2">&#34;</span> grab <span class="nv">persist</span><span class="o">=</span>reopen <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --hook key:<span class="nv">$target_hijack_button</span> exec-shell<span class="o">=</span><span class="s2">&#34;/usr/local/bin/kodi-power.sh&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --block key:<span class="nv">$target_hijack_button</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --output
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>新建<code>/etc/systemd/system/evsieve.service</code>，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description </span><span class="o">=</span><span class="s"> Run evsieve</span>
+</span></span><span class="line"><span class="cl"><span class="na">Requires </span><span class="o">=</span><span class="s"> systemd-udevd.service</span>
+</span></span><span class="line"><span class="cl"><span class="na">After </span><span class="o">=</span><span class="s"> systemd-udevd.service</span>
+</span></span><span class="line"><span class="cl"><span class="na">Wants </span><span class="o">=</span><span class="s"> systemd-udevd.service</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">User </span><span class="o">=</span><span class="s"> root</span>
+</span></span><span class="line"><span class="cl"><span class="na">Group </span><span class="o">=</span><span class="s"> root</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart </span><span class="o">=</span><span class="s"> /usr/local/bin/evsieve.sh</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStop </span><span class="o">=</span><span class="s"> /usr/bin/killall --user root --exact --wait evsieve</span>
+</span></span><span class="line"><span class="cl"><span class="na">TimeoutStartSec </span><span class="o">=</span><span class="s"> infinity</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart </span><span class="o">=</span><span class="s"> on-abort</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>让<code>evsieve.service</code>开机启动启动。这个必须得开机自动启动，要不然胁持不了。运行并确保<code>evsieve.service</code>已经运行好后，按一下遥控器的电源键来试一试效果吧。</p>
+<p><strong>注意：因为Kodi程序比较大，无论是启动Kodi，还是关闭Kodi，系统都需要一定时间来处理，所以不要连续按电源键，这样只会让系统混乱。</strong></p>
+<p><strong>注意：如果<code>evsieve.service</code>没有正常启动，可能按下电源键会让PVE关机。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 设置开机自动启动，并立即运行起来</span>
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now evsieve.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 再看看是不是evsieve.service是不是启动好了</span>
+</span></span><span class="line"><span class="cl">systemctl status evsieve.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 如果像这样就表示启动好啦</span>
+</span></span><span class="line"><span class="cl"> evsieve.service - Run evsieve
+</span></span><span class="line"><span class="cl">     Loaded: loaded <span class="o">(</span>/etc/systemd/system/evsieve.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+</span></span><span class="line"><span class="cl">     Active: active <span class="o">(</span>running<span class="o">)</span> since Thu 2022-11-24 18:11:27 CST<span class="p">;</span> 36min ago
+</span></span><span class="line"><span class="cl">   Main PID: <span class="m">1249</span> <span class="o">(</span>evsieve<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      Tasks: <span class="m">2</span> <span class="o">(</span>limit: 72123<span class="o">)</span>
+</span></span><span class="line"><span class="cl">     Memory: 1.8M
+</span></span><span class="line"><span class="cl">        CPU: 59ms
+</span></span><span class="line"><span class="cl">     CGroup: /system.slice/evsieve.service
+</span></span><span class="line"><span class="cl">             └─1249 evsieve --input /dev/input/by-id/usb-0627_2.4G_Composite_Devic-System-Control grab <span class="nv">persist</span><span class="o">=</span>reopen --hook key:power exec-shell<span class="o">=</span>/usr/local/bin/kodi-power.sh --block key:power
+</span></span><span class="line"><span class="cl">11月 <span class="m">24</span> 18:11:27 pve systemd<span class="o">[</span>1<span class="o">]</span>: Started Run evsieve.
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>有些遥控器的返回键不是真正的返回键，而是退出键，会直接退出到主菜单，而不是返回到上一层。如果不习惯这样的操作方式，那么我们可以仍然借助evsieve这个工具来实现按键的转换。详见 <a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a>。</p>
+</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>通过本教程，PVE直接安装Kodi也变得很好用了，就像使用电视盒子/LibreELEC/CoreELEC一样，实现遥控器启动/停止。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kodi/">kodi</a>
+        
+            <a href="/tags/debian/">debian</a>
+        
+            <a href="/tags/pve/">pve</a>
+        
+            <a href="/tags/%E9%81%A5%E6%8E%A7%E5%99%A8/">遥控器</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-12-14 13:12
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-use-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-use-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 为Kodi适配遥控器"
+                        data-key="kodi-use-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">为Kodi适配遥控器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-install-in-pve/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-install-in-pve/pic5.ee564cee14b7850acb26de691531a3ab_hu8370a00dfa88e5eac6888add903e6475_78260_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PVE 直接安装最新版 Kodi"
+                        data-key="kodi-install-in-pve" 
+                        data-hash="md5-7lZM7hS3hQrLJt5pFTGjqw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PVE 直接安装最新版 Kodi</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-change-exit-to-backspace/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-change-exit-to-backspace/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 转换遥控器的退出键为返回键"
+                        data-key="kodi-change-exit-to-backspace" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">转换遥控器的退出键为返回键</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-send-help/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-send-help/pic1.ac887faa70df0434c0db368f56485a34_hu475cd8f935c8a52cdb5f675d449a382e_76470_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post kodi-send使用相关说明"
+                        data-key="kodi-send-help" 
+                        data-hash="md5-rIh/qnDfBDTA2zaPVkhaNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">kodi-send使用相关说明</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-set-pre-condition/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-set-pre-condition/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 设置Kodi启动的前置条件"
+                        data-key="kodi-set-pre-condition" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">设置Kodi启动的前置条件</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

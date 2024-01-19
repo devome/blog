@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文为原创教程，转载请注明来源及作者。 更新于2023年8月4日，以当前最新的PVE 8为示例。 按照本教程，可以保持PVE全部套件稳定的同时，又'>
+<title>PVE 直接安装最新版 Kodi</title>
+
+<link rel='canonical' href='https://evine.win/p/kodi-install-in-pve/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='PVE 直接安装最新版 Kodi'>
+<meta property='og:description' content='本文为原创教程，转载请注明来源及作者。 更新于2023年8月4日，以当前最新的PVE 8为示例。 按照本教程，可以保持PVE全部套件稳定的同时，又'>
+<meta property='og:url' content='https://evine.win/p/kodi-install-in-pve/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='gbm' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:published_time' content='2022-07-12T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-install-in-pve/pic5.png' />
+<meta name="twitter:title" content="PVE 直接安装最新版 Kodi">
+<meta name="twitter:description" content="本文为原创教程，转载请注明来源及作者。 更新于2023年8月4日，以当前最新的PVE 8为示例。 按照本教程，可以保持PVE全部套件稳定的同时，又"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/kodi-install-in-pve/pic5.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#安装最新版kodi">安装最新版Kodi</a></li>
+    <li><a href="#设置开机启动">设置开机启动</a></li>
+    <li><a href="#如何以非root用户运行kodi">如何以非root用户运行Kodi</a></li>
+    <li><a href="#相关命令">相关命令</a></li>
+    <li><a href="#关于音频直通">关于音频直通</a></li>
+    <li><a href="#关于硬解">关于硬解</a></li>
+    <li><a href="#pve安装kodi系列文章">《PVE安装Kodi》系列文章</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/kodi-install-in-pve/">
+                <img src="/p/kodi-install-in-pve/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_800x0_resize_box_3.png"
+                        srcset="/p/kodi-install-in-pve/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_800x0_resize_box_3.png 800w, /p/kodi-install-in-pve/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post PVE 直接安装最新版 Kodi" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/pve/" style="background-color: #2a9d8f; color: #fff;">
+                Promox VE
+            </a>
+        
+            <a href="/categories/kodi/" style="background-color: #2a9d8f; color: #fff;">
+                Kodi
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kodi-install-in-pve/">PVE 直接安装最新版 Kodi</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022-07-12</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 8 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>本文为原创教程，转载请注明来源及作者。
+更新于2023年8月4日，以当前最新的PVE 8为示例。</p>
+</blockquote>
+<ul>
+<li>按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi；</li>
+<li>没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计；</li>
+<li>不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故；</li>
+<li>少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存；</li>
+<li>音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道；</li>
+<li>另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。</li>
+</ul>
+<h2 id="安装最新版kodi">安装最新版Kodi</h2>
+<blockquote>
+<p>注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。</p>
+</blockquote>
+<p>不需要如同网上其他教程一般，安装<code>xinit</code>、<code>xfce</code>、<code>lightdm</code>、<code>gnome</code>等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。</p>
+<p>并且网上的教程全是安装Debian官方仓库自带的Kodi，但因为Debian的特色，官方稳定仓库中的Kodi版本比较老。所以有的博主自作主张启用了Debian的sid不稳定仓库，以便使用新版Kodi，这对PVE环境来说是不可取的，不建议这么做。</p>
+<p>事实上在Debian稳定版本上也是可以安装最新版的Kodi的，主要来自一个专门负责维护多媒体软件的仓库：https://www.deb-multimedia.org，国内连接较差，不用担心，有一堆镜像站可以使用。以下基于PVE 8.x（Debian bookworm）并以北外镜像站为例（<strong>其他版本请修改<code>bookworm</code>为对应的版本号</strong>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 信任keyring</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~
+</span></span><span class="line"><span class="cl">wget https://mirrors.bfsu.edu.cn/debian-multimedia/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
+</span></span><span class="line"><span class="cl">dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加仓库</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;deb https://mirrors.bfsu.edu.cn/debian-multimedia bookworm main non-free&#34;</span> &gt; /etc/apt/sources.list.d/multimedia.list
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;deb https://mirrors.bfsu.edu.cn/debian-multimedia bookworm-backports main&#34;</span> &gt;&gt; /etc/apt/sources.list.d/multimedia.list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装最新稳定版Kodi</span>
+</span></span><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install -y va-driver-all pipewire-audio kodi  <span class="c1"># va-driver-all是硬解需要的，Kodi 20还需要额外安装pipewire，Kodi 19及以下版本应该不需要</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><em>注：各PVE对应的Debian版本号如下：</em></p>
+</blockquote>
+<ul>
+<li>PVE 5 -&gt; Debian 9 -&gt; stretch</li>
+<li>PVE 6 -&gt; Debian 10 -&gt; buster</li>
+<li>PVE 7 -&gt; Debian 11 -&gt; bullseye</li>
+<li>PVE 8 -&gt; Debian 12 -&gt; bookworm</li>
+<li>PVE 9 -&gt; Debian 13 -&gt; trixie（未来的版本号）</li>
+</ul>
+<p>有的时候，在当前debian的版本中，<code>deb-multimedia</code>会将大版本升级后的Kodi放在<code>backports</code>源中，如果你发现你安装的Kodi不是当前最新版（见 <a class="link" href="https://github.com/xbmc/xbmc/releases"  target="_blank" rel="noopener"
+    >官方</a>，可以先查询一下看看是不是在<code>backports</code>源中，再来指定<code>backports</code>源安装。</p>
+<p>因为PVE 8可以直接安装到Kodi 20，所以以下内容以PVE 7从<code>backports</code>源安装最新版本为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看所有版本</span>
+</span></span><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt policy kodi
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出</span>
+</span></span><span class="line"><span class="cl">kodi:
+</span></span><span class="line"><span class="cl">  Installed: 5:19.5-dmo0+deb11u2
+</span></span><span class="line"><span class="cl">  Candidate: 5:19.5-dmo0+deb11u2
+</span></span><span class="line"><span class="cl">  Version table:
+</span></span><span class="line"><span class="cl">     5:20.2-dmo~bpo11+1 <span class="m">100</span>
+</span></span><span class="line"><span class="cl">        <span class="m">100</span> https://mirrors.bfsu.edu.cn/debian-multimedia bullseye-backports/main amd64 Packages
+</span></span><span class="line"><span class="cl"> *** 5:19.5-dmo0+deb11u2 <span class="m">500</span>
+</span></span><span class="line"><span class="cl">        <span class="m">500</span> https://mirrors.bfsu.edu.cn/debian-multimedia bullseye/main amd64 Packages
+</span></span><span class="line"><span class="cl">        <span class="m">100</span> /var/lib/dpkg/status
+</span></span><span class="line"><span class="cl">     5:18.9-dmo0+deb10u1 <span class="m">500</span>
+</span></span><span class="line"><span class="cl">        <span class="m">500</span> https://mirrors.bfsu.edu.cn/debian-multimedia bullseye/main amd64 Packages
+</span></span><span class="line"><span class="cl">     2:19.1+dfsg2-2+deb11u1 <span class="m">500</span>
+</span></span><span class="line"><span class="cl">        <span class="m">500</span> https://mirrors.bfsu.edu.cn/debian bullseye/main amd64 Packages
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上面的输出内容显示最新的版本位于bullseye-backports中，所以这时要安装最新版本需要指定backports源，如下</span>
+</span></span><span class="line"><span class="cl">apt install -t bullseye-backports -y kodi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>国内其他镜像站如<a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/"  target="_blank" rel="noopener"
+    >清华TUNA</a>、<a class="link" href="https://mirrors.ustc.edu.cn/help/deb-multimedia.html"  target="_blank" rel="noopener"
+    >中科大USTC</a>、<a class="link" href="https://mirrors.cloud.tencent.com/debian-multimedia/"  target="_blank" rel="noopener"
+    >腾讯云</a>、<a class="link" href="https://mirrors.cnnic.cn/debian-multimedia/"  target="_blank" rel="noopener"
+    >国家互联网络信息中心</a>、<a class="link" href="https://mirror.bjtu.edu.cn/debian-multimedia/"  target="_blank" rel="noopener"
+    >北交</a>、<a class="link" href="http://mirrors.nju.edu.cn/deb-multimedia/"  target="_blank" rel="noopener"
+    >南大</a>等站点都是有<code>deb-multimedia</code>仓库的，改成你下载最快的镜像站点即可。</p>
+<h2 id="设置开机启动">设置开机启动</h2>
+<p>新建<code>/etc/systemd/system/kodi.service</code>，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[Unit]
+</span></span><span class="line"><span class="cl">Description = Kodi Media Center
+</span></span><span class="line"><span class="cl">After = network-online.target polkit.service evsieve.service remote-fs.target systemd-user-sessions.service nss-lookup.target sound.target bluetooth.target upower.service mysqld.service lircd.service
+</span></span><span class="line"><span class="cl">Wants = network-online.target polkit.service evsieve.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[Service]
+</span></span><span class="line"><span class="cl">User = root
+</span></span><span class="line"><span class="cl">Group = root
+</span></span><span class="line"><span class="cl">ExecStart = /usr/bin/kodi
+</span></span><span class="line"><span class="cl">ExecStop = /usr/bin/killall --user root --exact --wait kodi.bin
+</span></span><span class="line"><span class="cl">TimeoutStartSec = infinity
+</span></span><span class="line"><span class="cl">Restart = on-abort
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[Install]
+</span></span><span class="line"><span class="cl">WantedBy = multi-user.target
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注：<code>ExecStop</code>这一行，相比使用<code>killall</code>，更推荐使用<code>kodi-send</code>，详见：<a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a>。</strong></p>
+<p>上面内容中是以root用户启动Kodi的，然后启用开机自动启动即可（无需重启PVE系统，如不启用则需要开机后手动启动），Kodi将在PVE通过HDMI/DP接口连接的显示器/电视机上显示出来：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now kodi.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从系统信息中可以看到内核、分辨率、GPU、OPENGL、视窗系统等信息，可以看到视窗系统直接使用GBM，而非X11（下图是在PVE 8上安装的Kodi 20.2的截图，已经明确支持HDR了）：</p>
+<p><img src="/p/kodi-install-in-pve/pic1.png"
+	width="1200"
+	height="675"
+	srcset="/p/kodi-install-in-pve/pic1_hu0c056bdaf0f775ecb2a66e0a563e4114_62070_480x0_resize_box_3.png 480w, /p/kodi-install-in-pve/pic1_hu0c056bdaf0f775ecb2a66e0a563e4114_62070_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="核心数量超过一行的宽度了，字有点重"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/kodi-install-in-pve/pic2.png"
+	width="1240"
+	height="698"
+	srcset="/p/kodi-install-in-pve/pic2_hu20d62b7608d6181aeadc2a23ef683e95_1073957_480x0_resize_box_3.png 480w, /p/kodi-install-in-pve/pic2_hu20d62b7608d6181aeadc2a23ef683e95_1073957_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Kodi 20也支持开关HDR"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<h2 id="如何以非root用户运行kodi">如何以非root用户运行Kodi</h2>
+<p>如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。</p>
+<p><strong>下文均以用户名<code>evine</code>举例。你可以直接建立一个kodi专用账户，用户名可以就叫<code>kodi</code>。</strong></p>
+<ol>
+<li>
+<p>如果还没有这个用户的话就添加用户，注意家目录不能少</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 常规用户evine</span>
+</span></span><span class="line"><span class="cl">useradd -m -d /home/evine -U -s /usr/bin/bash evine
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果想建立的是kodi专用账户，也可以放在/var，并禁止登陆</span>
+</span></span><span class="line"><span class="cl">useradd -m -d /var/lib/kodi -U -s /usr/sbin/nologin kodi
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>为普通用户设置密码，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">passwd evine  <span class="c1"># 替换为你自己创建的用户名，如果设置的shell是/usr/sbin/nologin可以忽略这一步</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>为用户添加<code>video</code> <code>render</code> <code>audio</code>和<code>input</code>的组权限</p>
+<p><em>注：如果还需要使用其他类型的设备，则进一步添加其对应的组权限，详见：<a class="link" href="https://kodi.wiki/view/HOW-TO:Install_Kodi_for_Linux#Installing_Kodi_on_Debian_Unstable_or_Testing"  target="_blank" rel="noopener"
+    >HOW-TO:Install Kodi for Linux</a>。</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">usermod -a -G video,render,audio,input evine  <span class="c1"># 替换为你自己创建的用户名</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有关用户组，可以参见：https://wiki.debian.org/SystemGroups ，解释一下添加的各用户组的用途：</p>
+<ul>
+<li><code>video</code>：允许该普通用户使用显示器；</li>
+<li><code>render</code>：允许该普通用户使用显卡硬解；</li>
+<li><code>audio</code>：允许该普通用户使用音频设备；</li>
+<li><code>input</code>：允许该普通用户使用输入设备，如键盘、鼠标、2.4G无线遥控器等。</li>
+</ul>
+</li>
+<li>
+<p>如果已经设置了root用户的开机自动启动，需要先禁用它</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl disable --now kodi.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>新建或修改<code>/etc/systemd/system/kodi.service</code>，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description </span><span class="o">=</span><span class="s"> Kodi Media Center</span>
+</span></span><span class="line"><span class="cl"><span class="na">After </span><span class="o">=</span><span class="s"> network-online.target polkit.service evsieve.service remote-fs.target systemd-user-    sessions.service nss-lookup.target sound.target bluetooth.target upower.service mysqld.service lircd.service</span>
+</span></span><span class="line"><span class="cl"><span class="na">Wants </span><span class="o">=</span><span class="s"> network-online.target polkit.service evsieve.service</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">User </span><span class="o">=</span><span class="s"> evine   # 依据你自己建立的账户修改</span>
+</span></span><span class="line"><span class="cl"><span class="na">Group </span><span class="o">=</span><span class="s"> evine  # 依据你自己建立的账户修改</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart </span><span class="o">=</span><span class="s"> /usr/bin/kodi</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStop </span><span class="o">=</span><span class="s"> /usr/bin/killall --user evine --exact --wait kodi.bin  # 依据你自己建立的账户修改</span>
+</span></span><span class="line"><span class="cl"><span class="na">TimeoutStartSec </span><span class="o">=</span><span class="s"> infinity</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart </span><span class="o">=</span><span class="s"> on-abort</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy </span><span class="o">=</span><span class="s"> multi-user.target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注：<code>ExecStop</code>这一行，相比使用<code>killall</code>，更推荐使用<code>kodi-send</code>，详见：<a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a>。</strong></p>
+</li>
+<li>
+<p>启用开机自动启动（如不启用则需要开机后手动启动）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now kodi.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>注：如Kodi使用smb共享来访问媒体资源，或者是其他服务，可以在启动Koid前判断启动条件是否具备，详见本文最上方的相关教程。</em></p>
+</li>
+</ol>
+<h2 id="相关命令">相关命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 启动Kodi</span>
+</span></span><span class="line"><span class="cl">systemctl start kodi.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启Kodi</span>
+</span></span><span class="line"><span class="cl">systemctl restart kodi.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭Kodi，可以直接在Kodi界面中点击退出按钮，也可命令行关闭，关闭后就是PVE的控制台</span>
+</span></span><span class="line"><span class="cl">systemctl stop kodi.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看Kodi的运行状态</span>
+</span></span><span class="line"><span class="cl">systemctl status kodi.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用Kodi开机自动启动</span>
+</span></span><span class="line"><span class="cl">systemctl disable kodi.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 未来升级Kodi，就直接运行apt命令就好了，简单方便</span>
+</span></span><span class="line"><span class="cl">apt update <span class="o">&amp;&amp;</span> apt upgrade
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="关于音频直通">关于音频直通</h2>
+<p>如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置<code>系统 -&gt; 音频</code>中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。</p>
+<p>音频直通最高可以支持7.1全景声，而如果你用Kodi解码后再传递给HDMI/DP，有可能只能支持2.0或2.1声道（对，管你几声道通通转成二声道），这大大降低了视听感受。直通显卡和声卡给虚拟机LibreELEC的，我不确定是否可以实现音频直通，这至少在我的环境中无法实现。</p>
+<p>通过HDMI/DP直通的音频，在播放时无法在Kodi中控制音量，只能通过接收方控制。而某些不支持直通的音频，则是通过Kodi解码的，既可以通过Kodi控制音量，也可以通过接收方控制音量。</p>
+<p>通过HDMI/DP直通的音频，在<a class="link" href="https://kodi.wiki/view/Player_process_info#Player_Process_Info"  target="_blank" rel="noopener"
+    >解码信息</a>（按键盘的o键，如想在遥控器上按出来，需要在Kodi中安装<a class="link" href="https://kodi.wiki/view/Add-on:Keymap_Editor"  target="_blank" rel="noopener"
+    >Keymap Editor</a>插件来将某个按钮映射为此功能）上所有音频频道将显示<code>RAW</code>，而未直通的音频将显示正常的轨道信息。如下面图片所示：</p>
+<p><img src="/p/kodi-install-in-pve/pic3.png"
+	width="1500"
+	height="844"
+	srcset="/p/kodi-install-in-pve/pic3_huebf779db08b12f146b665a829f0bbe97_39584_480x0_resize_box_3.png 480w, /p/kodi-install-in-pve/pic3_huebf779db08b12f146b665a829f0bbe97_39584_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="AAC未直通"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/kodi-install-in-pve/pic4.png"
+	width="1500"
+	height="844"
+	srcset="/p/kodi-install-in-pve/pic4_hu1470d81160dd56017c0075ee14d2742c_49434_480x0_resize_box_3.png 480w, /p/kodi-install-in-pve/pic4_hu1470d81160dd56017c0075ee14d2742c_49434_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="TrueHD直通"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/kodi-install-in-pve/pic5.png"
+	width="1500"
+	height="844"
+	srcset="/p/kodi-install-in-pve/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_480x0_resize_box_3.png 480w, /p/kodi-install-in-pve/pic5_hu8370a00dfa88e5eac6888add903e6475_78260_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="DTS-HD直通"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<h2 id="关于硬解">关于硬解</h2>
+<p>如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">## 安装</span>
+</span></span><span class="line"><span class="cl">apt install -y vainfo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 检测</span>
+</span></span><span class="line"><span class="cl">vainfo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功硬解的视频，在解码信息上的<code>硬件解码</code>将显示<code>活动</code>，并且解码器使用的是<code>vaapi</code>系列解码器，如下面图片所示：</p>
+<p><img src="/p/kodi-install-in-pve/pic6.png"
+	width="1500"
+	height="844"
+	srcset="/p/kodi-install-in-pve/pic6_hu10858b5370910b272dffda905e8a3741_47452_480x0_resize_box_3.png 480w, /p/kodi-install-in-pve/pic6_hu10858b5370910b272dffda905e8a3741_47452_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="HEVC/x265硬解"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/kodi-install-in-pve/pic7.png"
+	width="1500"
+	height="844"
+	srcset="/p/kodi-install-in-pve/pic7_hu8660be8c2f4b96b0caf16cec61c841d0_55536_480x0_resize_box_3.png 480w, /p/kodi-install-in-pve/pic7_hu8660be8c2f4b96b0caf16cec61c841d0_55536_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="x264硬解"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<h2 id="pve安装kodi系列文章">《PVE安装Kodi》系列文章</h2>
+<p>如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。</p>
+<ul>
+<li><a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a></li>
+<li><a class="link" href="../kodi-use-remote-controller" >为Kodi适配遥控器</a></li>
+<li><a class="link" href="../kodi-change-subtitle-font" >修改Kodi字幕字体</a></li>
+<li><a class="link" href="../kodi-change-interface-font" >修改Kodi皮肤字体</a></li>
+<li><a class="link" href="../kodi-disable-shutdown" >屏蔽Kodi的关机、重启按钮</a></li>
+<li><a class="link" href="../kodi-set-pre-condition" >设置Kodi启动的前置条件</a></li>
+<li><a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a></li>
+<li><a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a></li>
+<li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>按上述流程，只主动安装了很少的软件包，根据<code>dpkg-query -L kodi</code>的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/usr/lib/x86_64-linux-gnu/kodi
+</span></span><span class="line"><span class="cl">/usr/share/applications/
+</span></span><span class="line"><span class="cl">/usr/share/doc/kodi
+</span></span><span class="line"><span class="cl">/usr/share/man/man1/
+</span></span><span class="line"><span class="cl">/usr/share/metainfo/
+</span></span><span class="line"><span class="cl">/usr/share/xsessions
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同时，Kodi的配置文件主要存放在两个地方：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/usr/share/kodi  # 系统级配置
+</span></span><span class="line"><span class="cl">~/.kodi          # 用户级配置
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些文件对系统都谈不上有什么污染，对PVE套件本身一点影响都没有，整体上对PVE环境的影响是完全可控的。</p>
+<p>在最后，提醒一下，如果是以root用户启动的，千万要注意在Kodi中将关机、重启等影响PVE主机的命令都按照上面的教程屏蔽掉，要不然你懂的&hellip;</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kodi/">kodi</a>
+        
+            <a href="/tags/gbm/">gbm</a>
+        
+            <a href="/tags/debian/">debian</a>
+        
+            <a href="/tags/pve/">pve</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-12-14 13:12
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-use-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-use-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 为Kodi适配遥控器"
+                        data-key="kodi-use-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">为Kodi适配遥控器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-start-stop-by-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-start-stop-by-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停"
+                        data-key="kodi-start-stop-by-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/debian-pve-mount-tmp-in-ram/">
+        
+        
+            <div class="article-image">
+                <img src="/p/debian-pve-mount-tmp-in-ram/pve-poster.64e7009edce642c17ad393ce579005f5_hu73cac004b61f9f0535175084b6c5473f_45414_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Debian / PVE 在内存中挂载 /tmp"
+                        data-key="debian-pve-mount-tmp-in-ram" 
+                        data-hash="md5-ZOcAntzmQsF605POV5AF9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Debian / PVE 在内存中挂载 /tmp</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/pve-install-realtek-8125-driver/">
+        
+        
+            <div class="article-image">
+                <img src="/p/pve-install-realtek-8125-driver/pve-poster.64e7009edce642c17ad393ce579005f5_hu73cac004b61f9f0535175084b6c5473f_45414_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动"
+                        data-key="pve-install-realtek-8125-driver" 
+                        data-hash="md5-ZOcAntzmQsF605POV5AF9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-change-exit-to-backspace/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-change-exit-to-backspace/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 转换遥控器的退出键为返回键"
+                        data-key="kodi-change-exit-to-backspace" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">转换遥控器的退出键为返回键</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

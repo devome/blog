@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
+<title>屏蔽Kodi的关机、重启按钮</title>
+
+<link rel='canonical' href='https://evine.win/p/kodi-disable-shutdown/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='屏蔽Kodi的关机、重启按钮'>
+<meta property='og:description' content='本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关'>
+<meta property='og:url' content='https://evine.win/p/kodi-disable-shutdown/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='字体' /><meta property='article:tag' content='字幕' /><meta property='article:published_time' content='2022-07-23T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T22:22:58&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-disable-shutdown/pic5.png' />
+<meta name="twitter:title" content="屏蔽Kodi的关机、重启按钮">
+<meta name="twitter:description" content="本文为《PVE安装Kodi》系列文章的一部分。 PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/kodi-disable-shutdown/pic5.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-5SWJSDBST9', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-屏蔽键盘的s键屏蔽遥控器的电源键">1. 屏蔽键盘的s键、屏蔽遥控器的电源键</a></li>
+    <li><a href="#2-在kodi界面中隐藏关机重启等按钮">2. 在Kodi界面中隐藏关机、重启等按钮</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/kodi-disable-shutdown/">
+                <img src="/p/kodi-disable-shutdown/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_800x0_resize_box_3.png"
+                        srcset="/p/kodi-disable-shutdown/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_800x0_resize_box_3.png 800w, /p/kodi-disable-shutdown/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="500" 
+                        loading="lazy"
+                        alt="Featured image of post 屏蔽Kodi的关机、重启按钮" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/kodi/" style="background-color: #2a9d8f; color: #fff;">
+                Kodi
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kodi-disable-shutdown/">屏蔽Kodi的关机、重启按钮</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022-07-23</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>本文为《PVE安装Kodi》系列文章的一部分。</p>
+</blockquote>
+<ul>
+<li><a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a></li>
+<li><a class="link" href="../kodi-use-remote-controller" >为Kodi适配遥控器</a></li>
+<li><a class="link" href="../kodi-change-subtitle-font" >修改Kodi字幕字体</a></li>
+<li><a class="link" href="../kodi-change-interface-font" >修改Kodi皮肤字体</a></li>
+<li><a class="link" href="../kodi-disable-shutdown" >屏蔽Kodi的关机、重启按钮</a></li>
+<li><a class="link" href="../kodi-set-pre-condition" >设置Kodi启动的前置条件</a></li>
+<li><a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a></li>
+<li><a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a></li>
+<li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
+</ul>
+<p>如果在PVE系统中安装Kodi，并且是以root用户启动Kodi（如果是非root用户，那么可以无视本篇文章），那么Kodi具有很高的权限，可以关机、重启主机等等，这就需要防止不小心用遥控器或者键盘把PVE系统给关闭了。修改之处主要分为两部分：</p>
+<h2 id="1-屏蔽键盘的s键屏蔽遥控器的电源键">1. 屏蔽键盘的s键、屏蔽遥控器的电源键</h2>
+<p><strong>注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。</strong></p>
+<p><strong>注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。</strong></p>
+<p><strong>注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。</strong></p>
+<p>keymaps的WIKI见：https://kodi.wiki/view/Keymap ，keymaps默认文件位于：<code>/usr/share/kodi/system/keymaps</code>，这里的文件可以被你自己的配置覆盖掉对应按键的作用。新建<code>~/.kodi/userdata/keymaps/disable_keyboard_shutdown.xml</code>如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;keymap&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;global&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;s&gt;&lt;/s&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;power&gt;&lt;/power&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;sleep&gt;&lt;/sleep&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/global&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;LoginScreen&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;end</span> <span class="na">mod=</span><span class="s">&#34;ctrl&#34;</span><span class="nt">&gt;&lt;/end&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/LoginScreen&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;Home&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;end</span> <span class="na">mod=</span><span class="s">&#34;ctrl&#34;</span><span class="nt">&gt;&lt;/end&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;backspace</span> <span class="na">mod=</span><span class="s">&#34;longpress&#34;</span><span class="nt">&gt;&lt;/backspace&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/keyboard&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/Home&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/keymap&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-在kodi界面中隐藏关机重启等按钮">2. 在Kodi界面中隐藏关机、重启等按钮</h2>
+<p>最后，为了保证在Kodi界面中也只能看见<code>退出</code>，并且看不到<code>关机</code>、<code>重启</code>等按钮（注意：这只是在界面中隐藏掉而已，Kodi本身还是有关机、重启的权限的），可以在皮肤设置中将相关按钮隐藏掉，比如使用的<code>Aeon Nox: SiLVO</code>皮肤的话，可以在进入<code>系统设置 -&gt; 皮肤设置 -&gt; 主菜单设置</code>后这样操作：</p>
+<p><img src="/p/kodi-disable-shutdown/pic1.png"
+	width="1500"
+	height="937"
+	srcset="/p/kodi-disable-shutdown/pic1_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_480x0_resize_box_3.png 480w, /p/kodi-disable-shutdown/pic1_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Screenshot_20220713_094809.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<p>在上图中的“管理子菜单”按钮下，以及在主菜单“系统”的“管理子菜单”下，也要将“关闭系统电源”“重启”“待机”“休眠”“注销”给禁用了，这里本文就不截图了。</p>
+<p><img src="/p/kodi-disable-shutdown/pic2.png"
+	width="1500"
+	height="937"
+	srcset="/p/kodi-disable-shutdown/pic2_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_480x0_resize_box_3.png 480w, /p/kodi-disable-shutdown/pic2_hubfebbcb4d72f4ccfe63d839ca2da7bd7_40874_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Screenshot_20220713_094821.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<p><img src="/p/kodi-disable-shutdown/pic3.png"
+	width="1500"
+	height="937"
+	srcset="/p/kodi-disable-shutdown/pic3_hu45b471235be728b8917150d94cd5399a_40252_480x0_resize_box_3.png 480w, /p/kodi-disable-shutdown/pic3_hu45b471235be728b8917150d94cd5399a_40252_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Screenshot_20220713_094832.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<p><img src="/p/kodi-disable-shutdown/pic4.png"
+	width="1500"
+	height="937"
+	srcset="/p/kodi-disable-shutdown/pic4_hu538f4d7bc8f80fc1b6eeabd37b527cbc_40326_480x0_resize_box_3.png 480w, /p/kodi-disable-shutdown/pic4_hu538f4d7bc8f80fc1b6eeabd37b527cbc_40326_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Screenshot_20220713_094844.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<p>最后的效果，主菜单中也只有退出按钮了。</p>
+<p><img src="/p/kodi-disable-shutdown/pic5.png"
+	width="1500"
+	height="937"
+	srcset="/p/kodi-disable-shutdown/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_480x0_resize_box_3.png 480w, /p/kodi-disable-shutdown/pic5_hua2d2cf3653e3bfece8e4b3ac085b5f51_190480_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Screenshot_20220713_094656.png"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kodi/">kodi</a>
+        
+            <a href="/tags/%E5%AD%97%E4%BD%93/">字体</a>
+        
+            <a href="/tags/%E5%AD%97%E5%B9%95/">字幕</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-10-26 22:22
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-change-subtitle-font/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-change-subtitle-font/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 修改Kodi字幕字体"
+                        data-key="kodi-change-subtitle-font" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">修改Kodi字幕字体</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-change-interface-font/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-change-interface-font/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 修改Kodi皮肤字体"
+                        data-key="kodi-change-interface-font" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">修改Kodi皮肤字体</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-change-exit-to-backspace/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-change-exit-to-backspace/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 转换遥控器的退出键为返回键"
+                        data-key="kodi-change-exit-to-backspace" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">转换遥控器的退出键为返回键</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-send-help/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-send-help/pic1.ac887faa70df0434c0db368f56485a34_hu475cd8f935c8a52cdb5f675d449a382e_76470_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post kodi-send使用相关说明"
+                        data-key="kodi-send-help" 
+                        data-hash="md5-rIh/qnDfBDTA2zaPVkhaNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">kodi-send使用相关说明</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kodi-start-stop-by-remote-controller/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kodi-start-stop-by-remote-controller/kodi-poster.037beff4acaa76a2e29b83c5da19f723_hu6a9a6c2102fadf339a8899f5319f0c51_430270_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停"
+                        data-key="kodi-start-stop-by-remote-controller" 
+                        data-hash="md5-A3vv9KyqdqLim4PF2hn3Iw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
