@@ -10,7 +10,7 @@
 <meta property='og:description' content='安装Proxmox Backup Server新姿势，Systemd Container！'>
 <meta property='og:url' content='https://evine.win/p/install-proxmox-backup-server-with-systemd-container/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='pbs' /><meta property='article:tag' content='systemd' /><meta property='article:tag' content='nspawn' /><meta property='article:published_time' content='2024-01-23T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-23T14:45:15&#43;08:00'/><meta property='og:image' content='https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='pbs' /><meta property='article:tag' content='systemd' /><meta property='article:tag' content='nspawn' /><meta property='article:published_time' content='2024-01-23T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-23T17:57:50&#43;08:00'/><meta property='og:image' content='https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png' />
 <meta name="twitter:title" content="安装Proxmox Backup Server新姿势，Systemd Container！">
 <meta name="twitter:description" content="安装Proxmox Backup Server新姿势，Systemd Container！"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png' />
@@ -673,7 +673,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$IFACE</span><span class="s2">&#34;</span> <span class="o">=</span> <span class="s2">&#34;eth0&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">    ip link add mymv link vmbr0 <span class="nb">type</span> macvlan mode bridge
+</span></span><span class="line"><span class="cl">    ip link add mymv link eth0 <span class="nb">type</span> macvlan mode bridge
 </span></span><span class="line"><span class="cl">    ip link <span class="nb">set</span> dev mymv address <span class="s2">&#34;76:d3:4a:8b:81:47&#34;</span>
 </span></span><span class="line"><span class="cl">    ip link <span class="nb">set</span> mymv up
 </span></span><span class="line"><span class="cl">    ip route add 10.0.0.30 dev mymv
@@ -723,7 +723,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">set_ip_route<span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$INTERFACE</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;eth0&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        ip link add mymv link vmbr0 <span class="nb">type</span> macvlan mode bridge
+</span></span><span class="line"><span class="cl">        ip link add mymv link eth0 <span class="nb">type</span> macvlan mode bridge
 </span></span><span class="line"><span class="cl">        ip link <span class="nb">set</span> dev mymv address <span class="s2">&#34;76:d3:4a:8b:81:47&#34;</span>
 </span></span><span class="line"><span class="cl">        ip link <span class="nb">set</span> mymv up
 </span></span><span class="line"><span class="cl">        ip route add 10.0.0.30 dev mymv
@@ -809,7 +809,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2024-01-23 14:45
+            最后更新于 2024-01-23 17:57
         </span>
     </section></footer>
 
