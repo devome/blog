@@ -10,7 +10,7 @@
 <meta property='og:description' content='本篇主要讲解如何使用nginx配置为文件服务器，为其他服务提供文件下载，以及自动更新clash订阅、自动生成前文需要的各种文件。'>
 <meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='nginx' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T03:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-24T15:17:05&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='nginx' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T03:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-24T14:41:37&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（七）">
 <meta name="twitter:description" content="本篇主要讲解如何使用nginx配置为文件服务器，为其他服务提供文件下载，以及自动更新clash订阅、自动生成前文需要的各种文件。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png' />
@@ -365,10 +365,12 @@ if (!doNotTrack) {
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">server_name</span> <span class="mi">10</span><span class="s">.0.0.2</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="kn">charset</span> <span class="s">&#39;utf-8&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="kn">root</span> <span class="s">/var/www/html</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
@@ -1312,7 +1314,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">## 订阅设置</span>
 </span></span><span class="line"><span class="cl"><span class="nv">subconverter_target</span><span class="o">=</span><span class="s2">&#34;clash&#34;</span>                           <span class="c1"># 转换目标</span>
-</span></span><span class="line"><span class="cl"><span class="nv">subconverter_url</span><span class="o">=</span><span class="s2">&#34;http://127.0.0.1:25500/sub&#34;</span>         <span class="c1"># subconverer的api接口</span>
+</span></span><span class="line"><span class="cl"><span class="nv">subconverter_url</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2:25500/sub&#34;</span>          <span class="c1"># subconverer的api接口</span>
 </span></span><span class="line"><span class="cl"><span class="nv">subconverter_nem</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2/neteasemusic.yaml&#34;</span>  <span class="c1"># 前面生成的neteasemusic.yaml的下载网址</span>
 </span></span><span class="line"><span class="cl"><span class="nv">subconverter_rule</span><span class="o">=</span><span class="s2">&#34;http://10.0.0.2/convert_rule.ini&#34;</span>  <span class="c1"># 前面生成的convert_rule.ini的下载网址</span>
 </span></span><span class="line"><span class="cl">
@@ -1682,7 +1684,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2024-01-24 15:17
+            最后更新于 2024-01-24 14:41
         </span>
     </section></footer>
 
