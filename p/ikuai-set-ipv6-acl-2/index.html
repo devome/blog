@@ -10,7 +10,7 @@
 <meta property='og:description' content='关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP'>
 <meta property='og:url' content='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-24T16:19:52&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-24T16:26:37&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
 <meta name="twitter:title" content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）">
 <meta name="twitter:description" content="关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
@@ -471,7 +471,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">2400:d0a0:38ba:abde:42:aff:fe00:fc/64
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>同上文所述，有两种形式，其一为后缀匹配（下图仅示意了tcp协议，一般BT/PT需要同时监听tcp和udp协议，而爱快目前不能同时设置tcp+udp，只能分成两条规则，请自行再增加一个udp的规则）：</p>
+</div><p>同上文所述，后缀匹配（下图仅示意了tcp协议，一般BT/PT需要同时监听tcp和udp协议，而爱快目前不能同时设置tcp+udp，只能分成两条规则，请自行再增加一个udp的规则）：</p>
 <p><img src="/p/ikuai-set-ipv6-acl-2/pic4.png"
 	width="1841"
 	height="1511"
@@ -484,21 +484,6 @@ if (!doNotTrack) {
 		class="gallery-image" 
 		data-flex-grow="121"
 		data-flex-basis="292px"
-	
-></p>
-<p>其二为MAC匹配（下图仅示意了tcp协议，一般BT/PT需要同时监听tcp和udp协议，而爱快目前不能同时设置tcp+udp，只能分成两条规则，请自行再增加一个udp的规则）：</p>
-<p><img src="/p/ikuai-set-ipv6-acl-2/pic5.png"
-	width="1867"
-	height="1507"
-	srcset="/p/ikuai-set-ipv6-acl-2/pic5_hu186f1ca82dad1ab96eaedb124f89fa60_205504_480x0_resize_box_3.png 480w, /p/ikuai-set-ipv6-acl-2/pic5_hu186f1ca82dad1ab96eaedb124f89fa60_205504_1024x0_resize_box_3.png 1024w"
-	loading="lazy"
-	
-		alt="MAC匹配放行BT/PT监听"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="123"
-		data-flex-basis="297px"
 	
 ></p>
 <h4 id="完全暴露某台设备">完全暴露某台设备</h4>
@@ -587,7 +572,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2024-01-24 16:19
+            最后更新于 2024-01-24 16:26
         </span>
     </section></footer>
 
