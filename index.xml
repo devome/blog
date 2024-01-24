@@ -300,6 +300,9 @@
 &lt;p&gt;在容器内默认仍然是宿主机的 &lt;code&gt;hostname&lt;/code&gt; ，在容器内可以修改 &lt;code&gt;/etc/hostname&lt;/code&gt; 为 &lt;code&gt;pbs&lt;/code&gt;。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
+&lt;p&gt;如果未来要更新PBS，进入容器后输入 &lt;code&gt;apt update &amp;amp;&amp;amp; apt upgrade&lt;/code&gt; 就好了，简单方便。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;使用MacVLAN时，默认情况下宿主机无法访问和自身处在同一个子网下的 Systemd 容器，不在一个子网的可以访问，所以建议将PBS的IP设置在和宿主机不在一个子网下。当然，在一个子网也可以访问，可以在宿主机再额外创建一个macvlan桥来达到目的：&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -410,7 +413,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol start=&#34;5&#34;&gt;
+&lt;ol start=&#34;6&#34;&gt;
 &lt;li&gt;其他功能详见 &lt;a class=&#34;link&#34; href=&#34;https://wiki.archlinux.org/title/Systemd-nspawn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Systemd-nspawn&lt;/a&gt;。&lt;/li&gt;
 &lt;/ol&gt;

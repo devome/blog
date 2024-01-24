@@ -10,7 +10,7 @@
 <meta property='og:description' content='安装Proxmox Backup Server新姿势，Systemd Container！'>
 <meta property='og:url' content='https://evine.win/p/install-proxmox-backup-server-with-systemd-container/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='pbs' /><meta property='article:tag' content='systemd' /><meta property='article:tag' content='nspawn' /><meta property='article:published_time' content='2024-01-23T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-23T17:57:50&#43;08:00'/><meta property='og:image' content='https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='pbs' /><meta property='article:tag' content='systemd' /><meta property='article:tag' content='nspawn' /><meta property='article:published_time' content='2024-01-23T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-24T09:51:18&#43;08:00'/><meta property='og:image' content='https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png' />
 <meta name="twitter:title" content="安装Proxmox Backup Server新姿势，Systemd Container！">
 <meta name="twitter:description" content="安装Proxmox Backup Server新姿势，Systemd Container！"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png' />
@@ -637,6 +637,9 @@ if (!doNotTrack) {
 <p>在容器内默认仍然是宿主机的 <code>hostname</code> ，在容器内可以修改 <code>/etc/hostname</code> 为 <code>pbs</code>。</p>
 </li>
 <li>
+<p>如果未来要更新PBS，进入容器后输入 <code>apt update &amp;&amp; apt upgrade</code> 就好了，简单方便。</p>
+</li>
+<li>
 <p>使用MacVLAN时，默认情况下宿主机无法访问和自身处在同一个子网下的 Systemd 容器，不在一个子网的可以访问，所以建议将PBS的IP设置在和宿主机不在一个子网下。当然，在一个子网也可以访问，可以在宿主机再额外创建一个macvlan桥来达到目的：</p>
 </li>
 </ol>
@@ -747,7 +750,7 @@ if (!doNotTrack) {
 </div>
 </div></li>
 </ul>
-<ol start="5">
+<ol start="6">
 <li>其他功能详见 <a class="link" href="https://wiki.archlinux.org/title/Systemd-nspawn"  target="_blank" rel="noopener"
     >Systemd-nspawn</a>。</li>
 </ol>
@@ -809,7 +812,7 @@ if (!doNotTrack) {
 
 
         <span>
-            最后更新于 2024-01-23 17:57
+            最后更新于 2024-01-24 09:51
         </span>
     </section></footer>
 
