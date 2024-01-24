@@ -4330,7 +4330,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -efu clash.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;如果日志报错 &lt;code&gt;ip: RTNETLINK answers: File exists&lt;/code&gt;，请手动将旧的ip路由及ip规则清空，其实就是多执行几次 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 中 &lt;code&gt;ExecStop&lt;/code&gt; 这一行的命令：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;如果日志报错 &lt;code&gt;ip: RTNETLINK answers: File exists&lt;/code&gt;，请手动将旧的ip路由及ip规则清空，其实就是多执行几次 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 中 &lt;code&gt;ExecStop&lt;/code&gt; 这一行的命令，出现 &lt;code&gt;RTNETLINK answers: No such process&lt;/code&gt; 和 &lt;code&gt;RTNETLINK answers: No such file or directory&lt;/code&gt; 为止，表示旧的ip路由及ip规则都清空了。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
