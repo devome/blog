@@ -6,6 +6,16 @@
         <description>Recent content on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language><atom:link href="https://evine.win/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>没什么不可以，我选用 Arch Linux 作为 NAS 系统</title>
+        <link>https://evine.win/p/install-archlinux-as-nas-operating-system/</link>
+        <pubDate>Thu, 25 Jan 2024 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/install-archlinux-as-nas-operating-system/</guid>
+        <description>&lt;img src="https://evine.win/pic1.png" alt="Featured image of post 没什么不可以，我选用 Arch Linux 作为 NAS 系统" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;之前一直在Debian系统中使用Docker来安装自己所需要的服务与应用，&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>安装Proxmox Backup Server新姿势，Systemd Container！</title>
         <link>https://evine.win/p/install-proxmox-backup-server-with-systemd-container/</link>
         <pubDate>Tue, 23 Jan 2024 00:00:00 +0800</pubDate>
@@ -640,6 +650,9 @@
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;完全暴露某台设备&#34;&gt;完全暴露某台设备&lt;/h4&gt;
 &lt;p&gt;因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： &lt;code&gt;nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535&lt;/code&gt;，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;规则验证&#34;&gt;规则验证&lt;/h2&gt;
 &lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt;），比如检测IPv6的某端口开放情况运行下面命令即可：&lt;/p&gt;
