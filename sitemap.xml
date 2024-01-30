@@ -2,35 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://evine.win/tags/arch/</loc>
-    <lastmod>2024-01-25T00:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://evine.win/categories/</loc>
     <lastmod>2024-01-29T13:04:28+08:00</lastmod>
-  </url><url>
-    <loc>https://evine.win/tags/nas/</loc>
-    <lastmod>2024-01-25T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/nspawn/</loc>
     <lastmod>2024-01-27T18:44:40+08:00</lastmod>
   </url><url>
+    <loc>https://evine.win/tags/pbs/</loc>
+    <lastmod>2024-01-27T18:44:40+08:00</lastmod>
+  </url><url>
     <loc>https://evine.win/post/</loc>
     <lastmod>2024-01-29T13:04:28+08:00</lastmod>
+  </url><url>
+    <loc>https://evine.win/tags/pve/</loc>
+    <lastmod>2024-01-27T18:44:40+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/systemd/</loc>
     <lastmod>2024-01-27T18:44:40+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/tags/</loc>
     <lastmod>2024-01-29T13:04:28+08:00</lastmod>
-  </url><url>
-    <loc>https://evine.win/p/install-archlinux-as-nas-operating-system/</loc>
-    <lastmod>2024-01-25T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://evine.win/tags/pbs/</loc>
-    <lastmod>2024-01-27T18:44:40+08:00</lastmod>
-  </url><url>
-    <loc>https://evine.win/tags/pve/</loc>
-    <lastmod>2024-01-27T18:44:40+08:00</lastmod>
   </url><url>
     <loc>https://evine.win/p/install-proxmox-backup-server-with-systemd-container/</loc>
     <lastmod>2024-01-27T18:44:40+08:00</lastmod>
