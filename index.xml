@@ -188,6 +188,9 @@
 &lt;li&gt;
 &lt;p&gt;你可以在Automa的设置中备份/同步工作流到自己的账号中，这样可以跨设备同步工作流。&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;理论上其他需要提供Cookie的使用场景，比如MoviePilot之类的，也可以用Automa实现，欢迎分享你的工作流。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 </description>
         </item>
