@@ -6,7 +6,190 @@
         <description>Recent content in Posts on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 23 Jan 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 26 Apr 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息</title>
+        <link>https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/</link>
+        <pubDate>Fri, 26 Apr 2024 00:00:00 +0800</pubDate>
+        
+        <guid>https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/</guid>
+        <description>&lt;img src="https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png" alt="Featured image of post 通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息" /&gt;&lt;h2 id=&#34;申明&#34;&gt;申明&lt;/h2&gt;
+&lt;p&gt;转载需注明本文链接及作者。&lt;/p&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息。IYUUPlus的用户应该知道，有部分站点需要提供Cookie才可以正常辅种，而我们又基本都会在同一个浏览器中既登陆相应的PT站，又会登陆IYUUPlus管理页面。那么我们就可以借助浏览器的一款叫Automa的插件，来完成自动提取浏览器中已经登陆的PT站的Cookie，然后按一定格式要求整理后，通过IYUUPlus的接口自动提前Cookie，以减少用户手工填写的烦恼。&lt;/p&gt;
+&lt;h2 id=&#34;前提条件&#34;&gt;前提条件&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;你得自己会抓Cookie查看信息，后面会需要用到；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用的浏览器是Firefox、Chrome、Edge或其他任何Chromium内核并可以从Chrome插件商店安装插件的浏览器；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IYUUPlus是使用的大卫2024年4月才提交的最新版的iyuuplus-dev，也就是这个仓库：&lt;a class=&#34;link&#34; href=&#34;https://github.com/ledccn/iyuuplus-dev&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/ledccn/iyuuplus-dev&lt;/a&gt;，旧的仓库（&lt;a class=&#34;link&#34; href=&#34;https://github.com/ledccn/IYUUPlus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/ledccn/IYUUPlus&lt;/a&gt;）当然也可以实现自动化，只是不能使用本文提供的我编制好的工作流。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;实现流程&#34;&gt;实现流程&lt;/h2&gt;
+&lt;h3 id=&#34;安装automa&#34;&gt;安装Automa&lt;/h3&gt;
+&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;https://automa.wiki&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://automa.wiki&lt;/a&gt;。Edge和其他任何Chromium内核的浏览器也从Chrome扩展商店安装。安装好后可以可以在Automa的设置中修改语言为中文。&lt;/p&gt;
+&lt;h3 id=&#34;导入工作流&#34;&gt;导入工作流&lt;/h3&gt;
+&lt;p&gt;下载我设计好的工作流模板（&lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/automa/auto-update-pt-cookies-in-iyuuplus.json&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;点我下载&lt;/a&gt;）,如果无法下载，可直接前往我的仓库：&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/files/blob/master/automa/auto-update-pt-cookies-in-iyuuplus.json&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;devome/files&lt;/a&gt; 来自己复制粘贴。&lt;/p&gt;
+&lt;p&gt;打开Automa主面板，选择“新建工作流”旁边下拉菜单里面的“导入工作流”，将刚下载好的json文件导入。导入的工作流如下图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png&#34;
+	width=&#34;1900&#34;
+	height=&#34;1266&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;工作流&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;360px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;允许需要的权限&#34;&gt;允许需要的权限&lt;/h3&gt;
+&lt;p&gt;点击刚刚导入的工作流，点击步骤4（获取Cookie）允许必要的权限：读取Cookie。&lt;/p&gt;
+&lt;p&gt;ps: 由于我不是新装的Automa，已经无法知道新安装的Automa在运行本工作流需要哪些权限了，请读到本教程的用户点击一下各个工作节点，检查一下还需要哪些权限，并在下方评论区评论一下。&lt;/p&gt;
+&lt;h3 id=&#34;创建全局表格和变量&#34;&gt;创建全局表格和变量&lt;/h3&gt;
+&lt;p&gt;点击“存储 -&amp;gt; 表格 -&amp;gt; 添加表格“，创建一个名为 &lt;code&gt;cookie&lt;/code&gt; 的表格，然后给该表添加一列 &lt;code&gt;content&lt;/code&gt;，数据类型为 &lt;code&gt;Text&lt;/code&gt;，如下图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2.png&#34;
+	width=&#34;872&#34;
+	height=&#34;900&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_huf258c66d39a6994044448354093ce73c_40716_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_huf258c66d39a6994044448354093ce73c_40716_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;新建一个名叫cookie的表格&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;96&#34;
+		data-flex-basis=&#34;232px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击“存储 -&amp;gt; 变量 -&amp;gt; 添加变量“，创建以下两个变量。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;iyuuplus_url&lt;/code&gt;，其值为你的iyuuplus的访问网址，比如：&lt;code&gt;http://iyuuplus.com:8787&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sites&lt;/code&gt;，其值的形式见下方代码块。这些内容就是IYUUPlus中需要提供Cookie的PT站的一些必要的信息，你有多少个PT站需要提供就输入多少个。编辑好后请在&lt;a class=&#34;link&#34; href=&#34;https://www.json.cn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.json.cn&lt;/a&gt;验证一下你输入的内容是否满足json的格式要求，各字段的含义如下。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;id&lt;/code&gt;: IYUUPlus站点信息中的&lt;code&gt;主键&lt;/code&gt;，注意不是&lt;code&gt;站点ID&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;site&lt;/code&gt;: IYUUPlus站点信息中的&lt;code&gt;站点名称&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;url&lt;/code&gt;: 对应的PT站的网址，注意不要带有子路径，对于有多个CDN地址的，只能输入你所使用的那一个地址。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;key_content&lt;/code&gt;: 工作流用来辅助判断抓取到的Cookie是不是登陆后的Cookie的一个字段，如果这个字段存在，那么工作流会认为该PT站已经是登陆成功的状态。你可以在登陆前和登陆后分别用浏览器开发工具抓取一下Cookie，对比一下他们的不同点，然后找一个只有登陆后才有的字段（只能一个），将该字段的名称填到这里。工作流运行时，如果抓取到Cookie不存在所提供的字段，会发出没有登陆的通知提示（这时也不会向IYUUPlus提交该PT站的Cookie）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;site&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;m-team&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://kp.m-team.cc&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;key_content&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;auth&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;4&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;site&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;hdsky&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://hdsky.me&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;key_content&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;c_secure_uid&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;关连表格&#34;&gt;关连表格&lt;/h3&gt;
+&lt;p&gt;如下图所示，将上一步添加的表格与工作流关联起来。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3.png&#34;
+	width=&#34;1749&#34;
+	height=&#34;1078&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_hudbc163442fa8633512c0cb071fbbcadd_234365_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_hudbc163442fa8633512c0cb071fbbcadd_234365_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;关联表格&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;389px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;下面是关联好之后的状态。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4.png&#34;
+	width=&#34;1002&#34;
+	height=&#34;629&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu63fbeda3e5954b19d088aee0fc099162_36097_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu63fbeda3e5954b19d088aee0fc099162_36097_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;关联好之后的状态&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;382px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;运行&#34;&gt;运行&lt;/h3&gt;
+&lt;p&gt;通过上述设置，已经可以运行这个工作流了，你可以点击“执行”按钮，然后看看结果，也可以直接去IYUUPlus的管理后台中看看Cookie是否成功更新了。我设置的触发器见下图，你也可以根据你的需要自己再添加其他触发器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5.png&#34;
+	width=&#34;1001&#34;
+	height=&#34;616&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu63b5e1f338320e599c6161236a71871e_30860_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu63b5e1f338320e599c6161236a71871e_30860_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;触发器&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;390px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一些说明&#34;&gt;一些说明&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如需理解工作流，请编辑各个工作节点，我在里面都写了注释。同时，也请访问 &lt;a class=&#34;link&#34; href=&#34;https://automa.wiki&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Automa官方文档&lt;/a&gt; 查阅更多信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果教程中有未提及但又需要注意的点，请在下方评论指出。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>安装Proxmox Backup Server新姿势，Systemd Container！</title>
         <link>https://evine.win/p/install-proxmox-backup-server-with-systemd-container/</link>
         <pubDate>Tue, 23 Jan 2024 00:00:00 +0800</pubDate>

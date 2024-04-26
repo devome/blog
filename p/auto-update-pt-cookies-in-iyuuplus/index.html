@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='申明 转载需注明本文链接及作者。 前言 玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus'>
+<title>通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息</title>
+
+<link rel='canonical' href='https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息'>
+<meta property='og:description' content='申明 转载需注明本文链接及作者。 前言 玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus'>
+<meta property='og:url' content='https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/'>
+<meta property='og:site_name' content='Evine的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='iyuuplus' /><meta property='article:tag' content='browser' /><meta property='article:tag' content='pt' /><meta property='article:tag' content='cookies' /><meta property='article:published_time' content='2024-04-26T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-04-26T20:15:04&#43;08:00'/><meta property='og:image' content='https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png' />
+<meta name="twitter:title" content="通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息">
+<meta name="twitter:description" content="申明 转载需注明本文链接及作者。 前言 玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5SWJSDBST9');
+        }
+      </script>
+    
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua8d737fb9ecb759fd046ff7741579796_17709_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
+            <h2 class="site-description">Pain demands to be felt.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/devome'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://evine.win/" selected></option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#申明">申明</a></li>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#前提条件">前提条件</a></li>
+    <li><a href="#实现流程">实现流程</a>
+      <ol>
+        <li><a href="#安装automa">安装Automa</a></li>
+        <li><a href="#导入工作流">导入工作流</a></li>
+        <li><a href="#允许需要的权限">允许需要的权限</a></li>
+        <li><a href="#创建全局表格和变量">创建全局表格和变量</a></li>
+        <li><a href="#关连表格">关连表格</a></li>
+        <li><a href="#运行">运行</a></li>
+      </ol>
+    </li>
+    <li><a href="#一些说明">一些说明</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/auto-update-pt-cookies-in-iyuuplus/">
+                <img src="/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_800x0_resize_box_3.png"
+                        srcset="/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_800x0_resize_box_3.png 800w, /p/auto-update-pt-cookies-in-iyuuplus/pic1_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post 通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                Linux
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/auto-update-pt-cookies-in-iyuuplus/">通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-04-26</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="申明">申明</h2>
+<p>转载需注明本文链接及作者。</p>
+<h2 id="前言">前言</h2>
+<p>玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息。IYUUPlus的用户应该知道，有部分站点需要提供Cookie才可以正常辅种，而我们又基本都会在同一个浏览器中既登陆相应的PT站，又会登陆IYUUPlus管理页面。那么我们就可以借助浏览器的一款叫Automa的插件，来完成自动提取浏览器中已经登陆的PT站的Cookie，然后按一定格式要求整理后，通过IYUUPlus的接口自动提前Cookie，以减少用户手工填写的烦恼。</p>
+<h2 id="前提条件">前提条件</h2>
+<ol>
+<li>
+<p>你得自己会抓Cookie查看信息，后面会需要用到；</p>
+</li>
+<li>
+<p>使用的浏览器是Firefox、Chrome、Edge或其他任何Chromium内核并可以从Chrome插件商店安装插件的浏览器；</p>
+</li>
+<li>
+<p>IYUUPlus是使用的大卫2024年4月才提交的最新版的iyuuplus-dev，也就是这个仓库：<a class="link" href="https://github.com/ledccn/iyuuplus-dev"  target="_blank" rel="noopener"
+    >https://github.com/ledccn/iyuuplus-dev</a>，旧的仓库（<a class="link" href="https://github.com/ledccn/IYUUPlus"  target="_blank" rel="noopener"
+    >https://github.com/ledccn/IYUUPlus</a>）当然也可以实现自动化，只是不能使用本文提供的我编制好的工作流。</p>
+</li>
+</ol>
+<h2 id="实现流程">实现流程</h2>
+<h3 id="安装automa">安装Automa</h3>
+<p>详见：<a class="link" href="https://automa.wiki"  target="_blank" rel="noopener"
+    >https://automa.wiki</a>。Edge和其他任何Chromium内核的浏览器也从Chrome扩展商店安装。安装好后可以可以在Automa的设置中修改语言为中文。</p>
+<h3 id="导入工作流">导入工作流</h3>
+<p>下载我设计好的工作流模板（<a class="link" href="https://raw.githubusercontent.com/devome/files/master/automa/auto-update-pt-cookies-in-iyuuplus.json"  target="_blank" rel="noopener"
+    >点我下载</a>）,如果无法下载，可直接前往我的仓库：<a class="link" href="https://github.com/devome/files/blob/master/automa/auto-update-pt-cookies-in-iyuuplus.json"  target="_blank" rel="noopener"
+    >devome/files</a> 来自己复制粘贴。</p>
+<p>打开Automa主面板，选择“新建工作流”旁边下拉菜单里面的“导入工作流”，将刚下载好的json文件导入。导入的工作流如下图所示。</p>
+<p><img src="/p/auto-update-pt-cookies-in-iyuuplus/pic1.png"
+	width="1900"
+	height="1266"
+	srcset="/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_480x0_resize_box_3.png 480w, /p/auto-update-pt-cookies-in-iyuuplus/pic1_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="工作流"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<h3 id="允许需要的权限">允许需要的权限</h3>
+<p>点击刚刚导入的工作流，点击步骤4（获取Cookie）允许必要的权限：读取Cookie。</p>
+<p>ps: 由于我不是新装的Automa，已经无法知道新安装的Automa在运行本工作流需要哪些权限了，请读到本教程的用户点击一下各个工作节点，检查一下还需要哪些权限，并在下方评论区评论一下。</p>
+<h3 id="创建全局表格和变量">创建全局表格和变量</h3>
+<p>点击“存储 -&gt; 表格 -&gt; 添加表格“，创建一个名为 <code>cookie</code> 的表格，然后给该表添加一列 <code>content</code>，数据类型为 <code>Text</code>，如下图所示。</p>
+<p><img src="/p/auto-update-pt-cookies-in-iyuuplus/pic2.png"
+	width="872"
+	height="900"
+	srcset="/p/auto-update-pt-cookies-in-iyuuplus/pic2_huf258c66d39a6994044448354093ce73c_40716_480x0_resize_box_3.png 480w, /p/auto-update-pt-cookies-in-iyuuplus/pic2_huf258c66d39a6994044448354093ce73c_40716_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="新建一个名叫cookie的表格"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="96"
+		data-flex-basis="232px"
+	
+></p>
+<p>点击“存储 -&gt; 变量 -&gt; 添加变量“，创建以下两个变量。</p>
+<ul>
+<li>
+<p><code>iyuuplus_url</code>，其值为你的iyuuplus的访问网址，比如：<code>http://iyuuplus.com:8787</code>。</p>
+</li>
+<li>
+<p><code>sites</code>，其值的形式见下方代码块。这些内容就是IYUUPlus中需要提供Cookie的PT站的一些必要的信息，你有多少个PT站需要提供就输入多少个。编辑好后请在<a class="link" href="https://www.json.cn"  target="_blank" rel="noopener"
+    >https://www.json.cn</a>验证一下你输入的内容是否满足json的格式要求，各字段的含义如下。</p>
+<ul>
+<li>
+<p><code>id</code>: IYUUPlus站点信息中的<code>主键</code>，注意不是<code>站点ID</code>。</p>
+</li>
+<li>
+<p><code>site</code>: IYUUPlus站点信息中的<code>站点名称</code>。</p>
+</li>
+<li>
+<p><code>url</code>: 对应的PT站的网址，注意不要带有子路径，对于有多个CDN地址的，只能输入你所使用的那一个地址。</p>
+</li>
+<li>
+<p><code>key_content</code>: 工作流用来辅助判断抓取到的Cookie是不是登陆后的Cookie的一个字段，如果这个字段存在，那么工作流会认为该PT站已经是登陆成功的状态。你可以在登陆前和登陆后分别用浏览器开发工具抓取一下Cookie，对比一下他们的不同点，然后找一个只有登陆后才有的字段（只能一个），将该字段的名称填到这里。工作流运行时，如果抓取到Cookie不存在所提供的字段，会发出没有登陆的通知提示（这时也不会向IYUUPlus提交该PT站的Cookie）。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;site&#34;</span><span class="p">:</span> <span class="s2">&#34;m-team&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://kp.m-team.cc&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;key_content&#34;</span><span class="p">:</span> <span class="s2">&#34;auth&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;site&#34;</span><span class="p">:</span> <span class="s2">&#34;hdsky&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://hdsky.me&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;key_content&#34;</span><span class="p">:</span> <span class="s2">&#34;c_secure_uid&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="关连表格">关连表格</h3>
+<p>如下图所示，将上一步添加的表格与工作流关联起来。</p>
+<p><img src="/p/auto-update-pt-cookies-in-iyuuplus/pic3.png"
+	width="1749"
+	height="1078"
+	srcset="/p/auto-update-pt-cookies-in-iyuuplus/pic3_hudbc163442fa8633512c0cb071fbbcadd_234365_480x0_resize_box_3.png 480w, /p/auto-update-pt-cookies-in-iyuuplus/pic3_hudbc163442fa8633512c0cb071fbbcadd_234365_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="关联表格"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="162"
+		data-flex-basis="389px"
+	
+></p>
+<p>下面是关联好之后的状态。</p>
+<p><img src="/p/auto-update-pt-cookies-in-iyuuplus/pic4.png"
+	width="1002"
+	height="629"
+	srcset="/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu63fbeda3e5954b19d088aee0fc099162_36097_480x0_resize_box_3.png 480w, /p/auto-update-pt-cookies-in-iyuuplus/pic4_hu63fbeda3e5954b19d088aee0fc099162_36097_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="关联好之后的状态"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="382px"
+	
+></p>
+<h3 id="运行">运行</h3>
+<p>通过上述设置，已经可以运行这个工作流了，你可以点击“执行”按钮，然后看看结果，也可以直接去IYUUPlus的管理后台中看看Cookie是否成功更新了。我设置的触发器见下图，你也可以根据你的需要自己再添加其他触发器。</p>
+<p><img src="/p/auto-update-pt-cookies-in-iyuuplus/pic5.png"
+	width="1001"
+	height="616"
+	srcset="/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu63b5e1f338320e599c6161236a71871e_30860_480x0_resize_box_3.png 480w, /p/auto-update-pt-cookies-in-iyuuplus/pic5_hu63b5e1f338320e599c6161236a71871e_30860_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="触发器"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="162"
+		data-flex-basis="390px"
+	
+></p>
+<h2 id="一些说明">一些说明</h2>
+<ol>
+<li>
+<p>如需理解工作流，请编辑各个工作节点，我在里面都写了注释。同时，也请访问 <a class="link" href="https://automa.wiki"  target="_blank" rel="noopener"
+    >Automa官方文档</a> 查阅更多信息。</p>
+</li>
+<li>
+<p>如果教程中有未提及但又需要注意的点，请在下方评论指出。</p>
+</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/iyuuplus/">Iyuuplus</a>
+        
+            <a href="/tags/browser/">Browser</a>
+        
+            <a href="/tags/pt/">Pt</a>
+        
+            <a href="/tags/cookies/">Cookies</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2024-04-26 20:15
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/install-proxmox-backup-server-with-systemd-container/">
+        
+        
+            <div class="article-image">
+                <img src="/p/install-proxmox-backup-server-with-systemd-container/pic1.78fc64b2b3ec67b88776542fcf0a56e0_hu2c059647dfa6c143dea02ad5fe861920_171592_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 安装Proxmox Backup Server新姿势，Systemd Container！"
+                        data-key="install-proxmox-backup-server-with-systemd-container" 
+                        data-hash="md5-ePxksrPsZ7iHdlQvzwpW4A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">安装Proxmox Backup Server新姿势，Systemd Container！</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "ceac2d88b1248ae2307e",
+        clientSecret: "e987f99876ac0bcc8af0963dbe5f49f47f8c8822",
+        repo: "blog",
+        owner: "devome",
+        admin: ["devome"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Evine的个人博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
