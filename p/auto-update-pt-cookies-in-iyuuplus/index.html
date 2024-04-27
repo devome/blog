@@ -10,7 +10,7 @@
 <meta property='og:description' content='申明 转载需注明本文链接及作者。 前言 玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus'>
 <meta property='og:url' content='https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='iyuuplus' /><meta property='article:tag' content='browser' /><meta property='article:tag' content='pt' /><meta property='article:tag' content='cookies' /><meta property='article:published_time' content='2024-04-26T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-04-26T20:46:35&#43;08:00'/><meta property='og:image' content='https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='iyuuplus' /><meta property='article:tag' content='browser' /><meta property='article:tag' content='pt' /><meta property='article:tag' content='cookies' /><meta property='article:published_time' content='2024-04-26T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-04-27T09:51:31&#43;08:00'/><meta property='og:image' content='https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png' />
 <meta name="twitter:title" content="通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息">
 <meta name="twitter:description" content="申明 转载需注明本文链接及作者。 前言 玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png' />
@@ -375,25 +375,25 @@
     <h2 id="申明">申明</h2>
 <p>转载需注明本文链接及作者。</p>
 <h2 id="前言">前言</h2>
-<p>玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息。IYUUPlus的用户应该知道，有部分站点需要提供Cookie才可以正常辅种，而我们又基本都会在同一个浏览器中既登陆相应的PT站，又会登陆IYUUPlus管理页面。那么我们就可以借助浏览器的一款叫Automa的插件，来完成自动提取浏览器中已经登陆的PT站的Cookie，然后按一定格式要求整理后，通过IYUUPlus的接口自动提前Cookie，以减少用户手工填写的烦恼。</p>
+<p>玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息。IYUUPlus的用户应该知道，有部分站点需要提供Cookie才可以正常辅种，而我们又基本都会在同一个浏览器中既登陆相应的PT站，又会登陆IYUUPlus管理页面。那么我们就可以借助浏览器的一款叫Automa的插件，来完成自动提取浏览器中已经登陆的PT站的Cookie，然后按一定格式要求整理后，通过IYUUPlus的接口自动提交Cookie，以减少用户手工填写的烦恼。</p>
 <h2 id="前提条件">前提条件</h2>
 <ol>
 <li>
 <p>你得自己会抓Cookie查看信息，后面会需要用到；</p>
 </li>
 <li>
-<p>使用的浏览器是Firefox、Chrome、Edge或其他任何Chromium内核并可以从Chrome插件商店安装插件的浏览器；</p>
+<p>使用的浏览器是Firefox、Chrome、Edge或其他任何Chromium内核并可以从Chrome扩展商店安装插件的浏览器；</p>
 </li>
 <li>
 <p>IYUUPlus是使用的大卫2024年4月才提交的最新版的iyuuplus-dev，也就是这个仓库：<a class="link" href="https://github.com/ledccn/iyuuplus-dev"  target="_blank" rel="noopener"
     >https://github.com/ledccn/iyuuplus-dev</a>，旧的仓库（<a class="link" href="https://github.com/ledccn/IYUUPlus"  target="_blank" rel="noopener"
-    >https://github.com/ledccn/IYUUPlus</a>）当然也可以实现自动化，只是不能使用本文提供的我编制好的工作流。</p>
+    >https://github.com/ledccn/IYUUPlus</a>）当然也可以实现自动化，只是不能直接使用本文提供的我编制好的工作流（需要进行一定的修改才能用）。</p>
 </li>
 </ol>
 <h2 id="实现流程">实现流程</h2>
 <h3 id="安装automa">安装Automa</h3>
 <p>详见：<a class="link" href="https://automa.wiki"  target="_blank" rel="noopener"
-    >https://automa.wiki</a>。Edge和其他任何Chromium内核的浏览器也从Chrome扩展商店安装。安装好后可以可以在Automa的设置中修改语言为中文。</p>
+    >https://automa.wiki</a>。Edge和其他任何Chromium内核的浏览器也从Chrome扩展商店安装。安装好后可以在Automa的设置中修改语言为中文。</p>
 <h3 id="导入工作流">导入工作流</h3>
 <p>下载我设计好的工作流模板（<a class="link" href="https://raw.githubusercontent.com/devome/files/master/automa/auto-update-pt-cookies-in-iyuuplus.json"  target="_blank" rel="noopener"
     >点我下载</a>）,如果无法下载，可直接前往我的仓库：<a class="link" href="https://github.com/devome/files/blob/master/automa/auto-update-pt-cookies-in-iyuuplus.json"  target="_blank" rel="noopener"
@@ -417,7 +417,7 @@
 <p>点击刚刚导入的工作流，点击步骤4（获取Cookie）允许必要的权限：读取Cookie。</p>
 <p>ps: 由于我不是新装的Automa，已经无法知道新安装的Automa在运行本工作流需要哪些权限了，请读到本教程的用户点击一下各个工作节点，检查一下还需要哪些权限，并在下方评论区评论一下。</p>
 <h3 id="创建全局表格和变量">创建全局表格和变量</h3>
-<p>点击“存储 -&gt; 表格 -&gt; 添加表格“，创建一个名为 <code>cookie</code> 的表格，然后给该表添加一列 <code>content</code>，数据类型为 <code>Text</code>，如下图所示。</p>
+<p>点击“存储 -&gt; 表格 -&gt; 添加表格”，创建一个名为 <code>cookie</code> 的表格，然后给该表添加一列 <code>content</code>，数据类型为 <code>Text</code>，如下图所示。</p>
 <p><img src="/p/auto-update-pt-cookies-in-iyuuplus/pic2.png"
 	width="872"
 	height="900"
@@ -432,7 +432,7 @@
 		data-flex-basis="232px"
 	
 ></p>
-<p>点击“存储 -&gt; 变量 -&gt; 添加变量“，创建以下两个变量。</p>
+<p>点击“存储 -&gt; 变量 -&gt; 添加变量”，创建以下两个变量。</p>
 <ul>
 <li>
 <p><code>iyuuplus_url</code>，其值为你的iyuuplus的访问网址，比如：<code>http://iyuuplus.com:8787</code>。</p>
@@ -476,13 +476,13 @@
 </span></span><span class="line"><span class="cl">  <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;3&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;site&#34;</span><span class="p">:</span> <span class="s2">&#34;m-team&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://kp.m-team.cc&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://xxxx.com&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;key_content&#34;</span><span class="p">:</span> <span class="s2">&#34;auth&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">},</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;site&#34;</span><span class="p">:</span> <span class="s2">&#34;hdsky&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://hdsky.me&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://yyyy.com&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;key_content&#34;</span><span class="p">:</span> <span class="s2">&#34;c_secure_uid&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">]</span>
@@ -582,7 +582,7 @@
 
 
         <span>
-            最后更新于 2024-04-26 20:46
+            最后更新于 2024-04-27 09:51
         </span>
     </section></footer>
 
