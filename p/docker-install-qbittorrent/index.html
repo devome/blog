@@ -10,7 +10,7 @@
 <meta property='og:description' content='本文较长，如想略过某些内容，请直接点击右侧目录链接。 说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，'>
 <meta property='og:url' content='https://evine.win/p/docker-install-qbittorrent/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-19T14:12:58&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-05-27T22:29:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
 <meta name="twitter:title" content="一款更懂你的 qbittorrent docker 镜像">
 <meta name="twitter:description" content="本文较长，如想略过某些内容，请直接点击右侧目录链接。 说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
@@ -753,6 +753,20 @@
 <td style="text-align:center">3.19.0</td>
 <td><code>iyuu</code>相关标签将php升级到8.3.x。</td>
 </tr>
+<tr>
+<td style="text-align:center">20240325</td>
+<td style="text-align:center">4.6.4</td>
+<td style="text-align:center">2.0.10</td>
+<td style="text-align:center">3.19.1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">20240527</td>
+<td style="text-align:center">4.6.5</td>
+<td style="text-align:center">2.0.10</td>
+<td style="text-align:center">3.20.0</td>
+<td>因<code>IYUUPlus</code>调整了架构，从此版本起，不再构建集成了<code>IYUUPlus</code>的标签。</td>
+</tr>
 </tbody>
 </table></div>
 <h2 id="环境变量清单">环境变量清单</h2>
@@ -822,8 +836,8 @@
 <tr>
 <td style="text-align:center">9</td>
 <td style="text-align:center">ENABLE_AUTO_CATEGORY</td>
-<td style="text-align:center">true</td>
-<td>4.3.7+可用。是否自动按tracker进行分类，默认为<code>true</code>开启，如需关闭，请设置为<code>false</code>。</td>
+<td style="text-align:center">false</td>
+<td>4.3.7+可用。是否自动按tracker进行分类，设置为<code>true</code>开启（从4.6.5+起默认值为<code>false</code>，4.6.4-的默认值为<code>true</code>）。</td>
 </tr>
 <tr>
 <td style="text-align:center">10</td>
@@ -834,8 +848,8 @@
 <tr>
 <td style="text-align:center">11</td>
 <td style="text-align:center">DL_FINISH_NOTIFY</td>
-<td style="text-align:center">true</td>
-<td>默认会在下载完成时向设定的通知渠道发送种子下载完成的通知消息，如不想收此类通知，则设置为<code>false</code>。</td>
+<td style="text-align:center">false</td>
+<td>是否在下载完成时向设定的通知渠道发送种子下载完成的通知消息，设置为<code>true</code>开启（从4.6.5+起默认值为<code>false</code>，4.6.4-的默认值为<code>true</code>）。</td>
 </tr>
 <tr>
 <td style="text-align:center">12</td>
@@ -1857,7 +1871,7 @@
 
 
         <span>
-            最后更新于 2024-01-19 14:12
+            最后更新于 2024-05-27 22:29
         </span>
     </section></footer>
 
