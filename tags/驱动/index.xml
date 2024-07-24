@@ -79,11 +79,11 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ mpstat -P ALL &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;连接数多的时候，甚至这两个核心的使用率能达到80%，而其他核心才不到20%。所以还是有必要将该网卡驱动从Linux默认的&lt;code&gt;r8169&lt;/code&gt;切换到&lt;a class=&#34;link&#34; href=&#34;https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;p&gt;连接数多的时候，甚至这两个核心的使用率能达到80%，而其他核心才不到20%。所以还是有必要将该网卡驱动从Linux默认的&lt;code&gt;r8169&lt;/code&gt;切换到&lt;a class=&#34;link&#34; href=&#34;https://www.realtek.com/Download/List?cate_id=584&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;官方驱动&lt;/a&gt;上。&lt;/p&gt;
 &lt;h2 id=&#34;使用官方驱动&#34;&gt;使用官方驱动&lt;/h2&gt;
-&lt;p&gt;已经有大佬把官方驱动打包成了dkms deb包：https://github.com/awesometic/realtek-r8125-dkms，不过该deb包并没有打开网卡多队列，所以我FORK了一份，启用TX多队列及RSS，禁用ASPM，发布在：&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/realtek-r8125-dkms&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/devome/realtek-r8125-dkms&lt;/a&gt; ，直接使用即可。先下载Release中最新的deb文件，再按下方流程安装即可：&lt;/p&gt;
+&lt;p&gt;已经有大佬把官方驱动打包成了dkms deb包：https://github.com/awesometic/realtek-r8125-dkms，不过该deb包并没有打开网卡多队列，所以我FORK了一份，启用TX多队列及RSS，禁用ASPM，发布在：&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/r8125-dkms&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/devome/r8125-dkms&lt;/a&gt; ，直接使用即可。先下载Release中最新的deb文件，再按下方流程安装即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -136,15 +136,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; apt install -y &lt;span class=&#34;nv&#34;&gt;$headers&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 安装刚刚下载好的deb包，此命令只会为当前系统所使用的内核以及刚刚安装的最新内核（也可能当前所使用的内核就是最新内核）安装驱动&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ dpkg -i realtek-r8125-dkms_*.deb  &lt;span class=&#34;c1&#34;&gt;# 如通配符会匹配多个时亦可指定具体的文件名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ dpkg -i r8125-dkms_*.deb  &lt;span class=&#34;c1&#34;&gt;# 如通配符会匹配多个时亦可指定具体的文件名&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 如果想为那些既不是系统当前所使用的内核，也不是刚刚安装的最新内核安装驱动，需要手动指定安装&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 看看哪些内核安装好了驱动&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ dkms status
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 列出全部内核版本kernel_version，找出那些还没有安装驱动的内核&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ dpkg -l &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; awk &lt;span class=&#34;s1&#34;&gt;&amp;#39;/^ii.+kernel-[0-9]+\.[0-9]+\.[0-9]/{gsub(/proxmox-kernel-|pve-kernel-|-signed/, &amp;#34;&amp;#34;); print $2}&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 手动指定驱动版本（在deb文件名中有体现）和内核版本（从上一句命令的输出中），zsh按tab可自动补全，比如：dkms install realtek-r8125/9.011.01 -k 6.2.16-5-pve&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ dkms install realtek-r8125/&amp;lt;driver_version&amp;gt; -k &amp;lt;kernel_version&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 手动指定驱动版本（在deb文件名中有体现）和内核版本（从上一句命令的输出中），zsh按tab可自动补全，比如：dkms install r8125/9.011.01 -k 6.2.16-5-pve&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ dkms install r8125/&amp;lt;driver_version&amp;gt; -k &amp;lt;kernel_version&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## 卸载不再需要的headers&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; apt-mark auto &lt;span class=&#34;nv&#34;&gt;$headers&lt;/span&gt;
@@ -167,7 +167,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;如何更新驱动&#34;&gt;如何更新驱动&lt;/h2&gt;
-&lt;p&gt;如果已经安装好了 &lt;code&gt;realtek-r8125-dkms&lt;/code&gt; 驱动，未来升级时可以无需重启PVE。&lt;strong&gt;如需要不重启PVE来更新驱动，并且你的 RTL8125B 网口作为了管理口，那么建议直接物理操作PVE（也就是不要通过ssh）来达到更新驱动的目标。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果已经安装好了 &lt;code&gt;r8125-dkms&lt;/code&gt; 驱动，未来升级时可以无需重启PVE。&lt;strong&gt;如需要不重启PVE来更新驱动，并且你的 RTL8125B 网口作为了管理口，那么建议直接物理操作PVE（也就是不要通过ssh）来达到更新驱动的目标。&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
