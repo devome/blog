@@ -10,7 +10,7 @@
 <meta property='og:description' content='本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。'>
 <meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='unblockneteasemusic' /><meta property='article:tag' content='nftables' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T01:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-07-23T23:32:08&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='unblockneteasemusic' /><meta property='article:tag' content='nftables' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-22T01:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-07-24T15:11:39&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（五）">
 <meta name="twitter:description" content="本篇主要讲解UnblockNeteaseMusic的安装和配置，涉及到的nftables规则，以及在客户端上如何使用。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png' />
@@ -370,7 +370,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 13 分钟
+                    阅读时长: 14 分钟
                 </time>
             </div>
         
@@ -963,6 +963,8 @@
 </div>
 </div><p>一拆为三后，新的 <code>divert</code> 链的优先级为 <code>mangle</code> （-150），新的<code>neteasemusic</code> 链的优先级为 <code>dstnat</code> (-100)，而新的 <code>prerouting</code> 链则仍是 <code>filter</code> （0），数值越小，优先级越高，所以 <code>ip daddr @nem_address_set goto clash_tproxy</code> 这条规则仍然早于 <code>ip daddr @geoip4_cn_set accept</code> 执行。这样也可以让网易云音乐IP在被直接接收前就转到透明代理去。</p>
 <p><code>unblocknem</code> 工作在应用层，<code>clash</code> 转给它后，它出来的流量会经由 <code>output</code> 链中的 <code>ip daddr @geoip4_cn_set accept</code> 直接出去，不会形成环路（<code>output</code> 链并没有再劫持这部分流量）。这也就意味着上述规则只能代理局域网中除旁路由以外其他设备（以旁路由为网关的）的网易云音乐流量，不能代理旁路由自己的网易云音乐流量。</p>
+<p>设想一个这样的场景：<code>unblocknem</code> 设置了 <code>ytdlp</code>（Youtube）为劫持音源，那么局域网中以旁路由为网关的客户端A在播放灰色歌曲触发 <code>unblocknem</code> 时，流量是怎么运作的呢？</p>
+<p>对照<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >前文（四）</a>的题图，客户端A的流量先进入旁路由的 <code>prerouting</code> 链，按上述说明触发该链中的 <code>ip daddr @nem_address_set goto clash_tproxy</code> 规则将流量转向我们的 <code>unblocknem</code> HTTP代理，然后 <code>unblocknem</code> 代理会将流量劫持向Youtube，也就是说 <code>unblocknem</code> 会在旁路由中产生向Youtube的请求。前文已经说过，<code>unblocknem</code> 工作在应用层，它产生的流量会先进入 <code>output</code> 链。如果它请求的是国内的音源，那么将会由 <code>output</code> 链中 <code>ip daddr @geoip4_cn_set accept</code> 规则直接放行，而现在它请求的是Youtube需要走代理，所以流量会在 <code>output</code> 链中触发 <code>ip protocol { tcp, udp } meta mark set $default_mark</code> 这条规则，将其打上标记并重路由到 <code>prerouting</code> 链，然后按照<a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b" >前文（四）</a>所说进行透明代理。也就是说，在这个假设场景下，客户端A在播放灰色歌曲时，流量经过了clash的两次透明代理。</p>
 <h3 id="调整-clash-配置文件">调整 clash 配置文件</h3>
 <p>我们后续将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动在 <code>clash</code> 的配置中自动插入下面这些内容。</p>
 <p>在 <code>clash</code> 的配置文件中 <code>proxies:</code> 部分新增：</p>
@@ -1073,12 +1075,16 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">||music.163.com^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||music.ntes53.netease.com^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||music.163.com.163jiasu.com^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||music.163.com.bsclink.cn^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||music.163.com.c.vedcdnlb.com^$dnstype=AAAA
+</span></span><span class="line"><span class="cl">||s.bdsa.cdnbuild.net^$dnstype=AAAA
 </span></span><span class="line"><span class="cl">||uz99.v.bsclink.cn^$dnstype=AAAA
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1258,7 +1264,7 @@
 
 
         <span>
-            最后更新于 2024-07-23 23:32
+            最后更新于 2024-07-24 15:11
         </span>
     </section></footer>
 

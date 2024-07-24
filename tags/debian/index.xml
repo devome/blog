@@ -3297,6 +3297,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;一拆为三后，新的 &lt;code&gt;divert&lt;/code&gt; 链的优先级为 &lt;code&gt;mangle&lt;/code&gt; （-150），新的&lt;code&gt;neteasemusic&lt;/code&gt; 链的优先级为 &lt;code&gt;dstnat&lt;/code&gt; (-100)，而新的 &lt;code&gt;prerouting&lt;/code&gt; 链则仍是 &lt;code&gt;filter&lt;/code&gt; （0），数值越小，优先级越高，所以 &lt;code&gt;ip daddr @nem_address_set goto clash_tproxy&lt;/code&gt; 这条规则仍然早于 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 执行。这样也可以让网易云音乐IP在被直接接收前就转到透明代理去。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;unblocknem&lt;/code&gt; 工作在应用层，&lt;code&gt;clash&lt;/code&gt; 转给它后，它出来的流量会经由 &lt;code&gt;output&lt;/code&gt; 链中的 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 直接出去，不会形成环路（&lt;code&gt;output&lt;/code&gt; 链并没有再劫持这部分流量）。这也就意味着上述规则只能代理局域网中除旁路由以外其他设备（以旁路由为网关的）的网易云音乐流量，不能代理旁路由自己的网易云音乐流量。&lt;/p&gt;
+&lt;p&gt;设想一个这样的场景：&lt;code&gt;unblocknem&lt;/code&gt; 设置了 &lt;code&gt;ytdlp&lt;/code&gt;（Youtube）为劫持音源，那么局域网中以旁路由为网关的客户端A在播放灰色歌曲触发 &lt;code&gt;unblocknem&lt;/code&gt; 时，流量是怎么运作的呢？&lt;/p&gt;
+&lt;p&gt;对照&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;前文（四）&lt;/a&gt;的题图，客户端A的流量先进入旁路由的 &lt;code&gt;prerouting&lt;/code&gt; 链，按上述说明触发该链中的 &lt;code&gt;ip daddr @nem_address_set goto clash_tproxy&lt;/code&gt; 规则将流量转向我们的 &lt;code&gt;unblocknem&lt;/code&gt; HTTP代理，然后 &lt;code&gt;unblocknem&lt;/code&gt; 代理会将流量劫持向Youtube，也就是说 &lt;code&gt;unblocknem&lt;/code&gt; 会在旁路由中产生向Youtube的请求。前文已经说过，&lt;code&gt;unblocknem&lt;/code&gt; 工作在应用层，它产生的流量会先进入 &lt;code&gt;output&lt;/code&gt; 链。如果它请求的是国内的音源，那么将会由 &lt;code&gt;output&lt;/code&gt; 链中 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 规则直接放行，而现在它请求的是Youtube需要走代理，所以流量会在 &lt;code&gt;output&lt;/code&gt; 链中触发 &lt;code&gt;ip protocol { tcp, udp } meta mark set $default_mark&lt;/code&gt; 这条规则，将其打上标记并重路由到 &lt;code&gt;prerouting&lt;/code&gt; 链，然后按照&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;前文（四）&lt;/a&gt;所说进行透明代理。也就是说，在这个假设场景下，客户端A在播放灰色歌曲时，流量经过了clash的两次透明代理。&lt;/p&gt;
 &lt;h3 id=&#34;调整-clash-配置文件&#34;&gt;调整 clash 配置文件&lt;/h3&gt;
 &lt;p&gt;我们后续将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动在 &lt;code&gt;clash&lt;/code&gt; 的配置中自动插入下面这些内容。&lt;/p&gt;
 &lt;p&gt;在 &lt;code&gt;clash&lt;/code&gt; 的配置文件中 &lt;code&gt;proxies:&lt;/code&gt; 部分新增：&lt;/p&gt;
@@ -3407,12 +3409,16 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.163.com^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.ntes53.netease.com^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.163.com.163jiasu.com^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.163.com.bsclink.cn^$dnstype=AAAA
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||music.163.com.c.vedcdnlb.com^$dnstype=AAAA
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||s.bdsa.cdnbuild.net^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;||uz99.v.bsclink.cn^$dnstype=AAAA
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
