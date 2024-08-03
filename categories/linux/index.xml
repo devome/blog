@@ -6,12 +6,12 @@
         <description>Recent content in Linux on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language><atom:link href="https://evine.win/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>简单快捷高效的用五笔打出特殊符号（含Emoji）</title>
+        <title>Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）</title>
         <link>https://evine.win/p/use-wubi-type-special-symbols/</link>
         <pubDate>Fri, 02 Aug 2024 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/use-wubi-type-special-symbols/</guid>
-        <description>&lt;img src="https://evine.win/p/use-wubi-type-special-symbols/assets/image-003.png" alt="Featured image of post 简单快捷高效的用五笔打出特殊符号（含Emoji）" /&gt;&lt;blockquote&gt;
+        <description>&lt;img src="https://evine.win/p/use-wubi-type-special-symbols/assets/image-003.png" alt="Featured image of post Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文只是对 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;wubi-symbols&lt;/a&gt; 项目的引用，也可以直接去看该项目。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -33,7 +33,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-001.png&#34;
 	width=&#34;1020&#34;
 	height=&#34;300&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-001_hu5fe6375eaad21d50f59dc5e0ef85440f_147702_480x0_resize_box_3.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-001_hu5fe6375eaad21d50f59dc5e0ef85440f_147702_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-001_hu14667898819932085582.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-001_hu16647085656033632292.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -46,7 +46,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-002.png&#34;
 	width=&#34;1000&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-002_huc75f542644ccf44d722b7f863d08fb78_315160_480x0_resize_box_3.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-002_huc75f542644ccf44d722b7f863d08fb78_315160_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-002_hu3793426780770652089.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-002_hu18206938294250062526.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -59,7 +59,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-003.png&#34;
 	width=&#34;1000&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-003_hud74a2a46da9b9df5df5e62d61cf43e92_204740_480x0_resize_box_3.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-003_hud74a2a46da9b9df5df5e62d61cf43e92_204740_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-003_hu18137492573971328137.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-003_hu91047206704262423.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -71,7 +71,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-004.png&#34;
 	width=&#34;1000&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-004_hue8467f25804cb69486eb9e30d036bcad_209876_480x0_resize_box_3.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-004_hue8467f25804cb69486eb9e30d036bcad_209876_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-004_hu15737450917762088761.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-004_hu11975083270239595243.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -83,7 +83,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-005.png&#34;
 	width=&#34;1000&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-005_hu5a0c1688e7277eb49d35e5bd714ef952_297411_480x0_resize_box_3.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-005_hu5a0c1688e7277eb49d35e5bd714ef952_297411_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-005_hu9445283213449602576.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-005_hu16026662512090364333.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -213,7 +213,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png&#34;
 	width=&#34;760&#34;
 	height=&#34;415&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hud1751577d91916ddf0023e7e03d435cb_68579_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hud1751577d91916ddf0023e7e03d435cb_68579_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu5374504077258275619.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu4562238170455602173.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;权限许可&#34;
@@ -228,7 +228,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2.png&#34;
 	width=&#34;1900&#34;
 	height=&#34;1266&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_hu106aa40b0b23c076cc07b8ae7361f9bd_442385_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_hu7151189160821344619.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_hu13204723615385085942.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;工作流&#34;
@@ -244,7 +244,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3.png&#34;
 	width=&#34;872&#34;
 	height=&#34;900&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_huf258c66d39a6994044448354093ce73c_40716_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_huf258c66d39a6994044448354093ce73c_40716_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_hu12529960842614890289.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_hu1336721319013435350.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;新建一个名叫cookie的表格&#34;
@@ -315,7 +315,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4.png&#34;
 	width=&#34;1193&#34;
 	height=&#34;606&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu7d886ce2e16ad1697bab79f50210c813_143713_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu7d886ce2e16ad1697bab79f50210c813_143713_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu13116852025128831382.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu2845826161437646227.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;设置好的最终的全局变量&#34;
@@ -331,7 +331,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5.png&#34;
 	width=&#34;1749&#34;
 	height=&#34;1078&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hudbc163442fa8633512c0cb071fbbcadd_234365_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hudbc163442fa8633512c0cb071fbbcadd_234365_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu15060083913749276395.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu15197112855654277952.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;关联表格&#34;
@@ -346,7 +346,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6.png&#34;
 	width=&#34;1002&#34;
 	height=&#34;629&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6_hu63fbeda3e5954b19d088aee0fc099162_36097_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6_hu63fbeda3e5954b19d088aee0fc099162_36097_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6_hu11078058994482601026.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6_hu14121685176520115141.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;关联好之后的状态&#34;
@@ -363,7 +363,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7.png&#34;
 	width=&#34;1001&#34;
 	height=&#34;616&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7_hu63b5e1f338320e599c6161236a71871e_30860_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7_hu63b5e1f338320e599c6161236a71871e_30860_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7_hu15645981424442704038.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7_hu2147229024307758081.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;触发器&#34;
@@ -381,7 +381,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8.png&#34;
 	width=&#34;966&#34;
 	height=&#34;562&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8_hue0d032801be9c61a2fe66b7592e1538d_72899_480x0_resize_box_3.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8_hue0d032801be9c61a2fe66b7592e1538d_72899_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8_hu14202320687401310123.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8_hu13110296110824543928.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;手动将要插入的数据和要插入的列关联起来&#34;
@@ -834,7 +834,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png&#34;
 	width=&#34;2560&#34;
 	height=&#34;1600&#34;
-	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu2c059647dfa6c143dea02ad5fe861920_171592_480x0_resize_box_3.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu2c059647dfa6c143dea02ad5fe861920_171592_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu3940587504822999221.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu4052557653323295602.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;数据存储&#34;
@@ -848,7 +848,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2.png&#34;
 	width=&#34;2560&#34;
 	height=&#34;1600&#34;
-	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu2c059647dfa6c143dea02ad5fe861920_705944_480x0_resize_box_3.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu2c059647dfa6c143dea02ad5fe861920_705944_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu7304894291735458794.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu3282289737058333386.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;系统日志&#34;
