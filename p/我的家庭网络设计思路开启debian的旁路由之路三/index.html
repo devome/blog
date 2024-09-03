@@ -10,7 +10,7 @@
 <meta property='og:description' content='本篇主要讲解在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。'>
 <meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-21T13:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-11-02T20:36:42&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='openwrt' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-21T13:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-09-03T13:10:52&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
 <meta name="twitter:title" content="我的家庭网络设计思路，开启debian的旁路由之路（三）">
 <meta name="twitter:description" content="本篇主要讲解在DNS服务方面AdGuardHome、mosdns、clash的前后关系，以及AdGuardHome、mosdns的安装和配置。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg' />
@@ -506,12 +506,16 @@
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-systemd" data-lang="systemd"><span class="line"><span class="cl"><span class="na">User  </span><span class="o">=</span><span class="s"> adguardhome</span>
 </span></span><span class="line"><span class="cl"><span class="na">Group </span><span class="o">=</span><span class="s"> adguardhome</span>
-</span></span><span class="line"><span class="cl"><span class="na">CapabilityBoundingSet </span><span class="o">=</span><span class="s"> CAP_NET_BIND_SERVICE  # 我们需要监听特权端口53</span>
-</span></span><span class="line"><span class="cl"><span class="na">AmbientCapabilities   </span><span class="o">=</span><span class="s"> CAP_NET_BIND_SERVICE  # 我们需要监听特权端口53</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 我们需要监听特权端口53</span>
+</span></span><span class="line"><span class="cl"><span class="na">CapabilityBoundingSet </span><span class="o">=</span><span class="s"> CAP_NET_BIND_SERVICE</span>
+</span></span><span class="line"><span class="cl"><span class="na">AmbientCapabilities   </span><span class="o">=</span><span class="s"> CAP_NET_BIND_SERVICE</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>adguardhome</code> 自身的命令行是支持自动创建 <code>/etc/systemd/system/adguardhome.service</code> 的，但个人不是很建议直接使用 <code>adguardhome</code> 本身所支持的命令来完成上述工作，以下仅供参考。</p>
@@ -977,7 +981,7 @@
 
 
         <span>
-            最后更新于 2023-11-02 20:36
+            最后更新于 2024-09-03 13:10
         </span>
     </section></footer>
 
