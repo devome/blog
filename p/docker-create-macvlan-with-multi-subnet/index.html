@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下： 一个sub'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下：
+一个subnet对应一个gateway，gateway必须在subnet的范围内，直接改为你所使用的真实的gateway即可。这样可以不同的subnet设置不同的gateway，控制不同的容器走不同的线路（比如有的需要代理，有的不能代理）。
+'>
 <title>docker在一块网卡上创建多个macvlan子网</title>
 
 <link rel='canonical' href='https://evine.win/p/docker-create-macvlan-with-multi-subnet/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='docker在一块网卡上创建多个macvlan子网'>
-<meta property='og:description' content='docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下： 一个sub'>
+<meta property='og:description' content='docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下：
+一个subnet对应一个gateway，gateway必须在subnet的范围内，直接改为你所使用的真实的gateway即可。这样可以不同的subnet设置不同的gateway，控制不同的容器走不同的线路（比如有的需要代理，有的不能代理）。
+'>
 <meta property='og:url' content='https://evine.win/p/docker-create-macvlan-with-multi-subnet/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='network' /><meta property='article:tag' content='macvlan' /><meta property='article:tag' content='subnet' /><meta property='article:published_time' content='2023-09-06T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T21:56:46&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-create-macvlan-with-multi-subnet/docker-poster.jpg' />
 <meta name="twitter:title" content="docker在一块网卡上创建多个macvlan子网">
-<meta name="twitter:description" content="docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下： 一个sub"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="docker在一块网卡上创建多个macvlan子网，不可以进行多次创建，需要在一次创建中把多个子网同时创建好。说明及创建命令如下：
+一个subnet对应一个gateway，gateway必须在subnet的范围内，直接改为你所使用的真实的gateway即可。这样可以不同的subnet设置不同的gateway，控制不同的容器走不同的线路（比如有的需要代理，有的不能代理）。
+"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/docker-create-macvlan-with-multi-subnet/docker-poster.jpg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-  
-    
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
       <script>
         var doNotTrack = false;
@@ -32,10 +36,6 @@
           gtag('config', 'G-5SWJSDBST9');
         }
       </script>
-    
-  
-
-
     </head>
     <body class="
     article-page

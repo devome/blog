@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD 前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-t'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD
+前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。
+'>
 <title>PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池</title>
 
 <link rel='canonical' href='https://evine.win/p/pve-create-lvm-thin-with-cachepool/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池'>
-<meta property='og:description' content='关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD 前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-t'>
+<meta property='og:description' content=' 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD
+前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。
+'>
 <meta property='og:url' content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='lvm-thin' /><meta property='article:tag' content='cachepool' /><meta property='article:published_time' content='2022-09-01T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T21:56:46&#43;08:00'/><meta property='og:image' content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png' />
 <meta name="twitter:title" content="PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池">
-<meta name="twitter:description" content="关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD 前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-t"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content=" 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD
+前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。
+"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-  
-    
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
       <script>
         var doNotTrack = false;
@@ -32,10 +36,6 @@
           gtag('config', 'G-5SWJSDBST9');
         }
       </script>
-    
-  
-
-
     </head>
     <body class="
     article-page
@@ -383,45 +383,45 @@
 <p>最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。</p>
 <p>作为垃圾佬，怎么舍得再额外购置硬件多花钱呢。垃圾佬当然不愿意再购买新硬盘了，掏出多年前给台式机装系统的两块SATA接口的固态硬盘，以及以前台式机用的两块机械硬盘，准备将两块SSD组raid0后作为缓存池，为两块HDD以raid0组后创建的LVM-thin提供读写缓存服务。</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th style="text-align:center">硬盘类型</th>
-<th style="text-align:center">型号</th>
-<th style="text-align:center">硬盘大小</th>
-<th style="text-align:center">通电时长</th>
-<th style="text-align:center">出厂时间</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">SSD</td>
-<td style="text-align:center">Samsung 840 EVO</td>
-<td style="text-align:center">120G</td>
-<td style="text-align:center">28744h</td>
-<td style="text-align:center">2014年3月</td>
-</tr>
-<tr>
-<td style="text-align:center">SSD</td>
-<td style="text-align:center">Samsung 850 EVO</td>
-<td style="text-align:center">120G</td>
-<td style="text-align:center">22981h</td>
-<td style="text-align:center">2015年5月</td>
-</tr>
-<tr>
-<td style="text-align:center">HDD</td>
-<td style="text-align:center">WD20EZRX</td>
-<td style="text-align:center">2T</td>
-<td style="text-align:center">55700h</td>
-<td style="text-align:center">2013年2月</td>
-</tr>
-<tr>
-<td style="text-align:center">HDD</td>
-<td style="text-align:center">HGST HUA723020ALA640</td>
-<td style="text-align:center">2T</td>
-<td style="text-align:center">19267h</td>
-<td style="text-align:center">2013年12月</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">硬盘类型</th>
+          <th style="text-align: center">型号</th>
+          <th style="text-align: center">硬盘大小</th>
+          <th style="text-align: center">通电时长</th>
+          <th style="text-align: center">出厂时间</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">SSD</td>
+          <td style="text-align: center">Samsung 840 EVO</td>
+          <td style="text-align: center">120G</td>
+          <td style="text-align: center">28744h</td>
+          <td style="text-align: center">2014年3月</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">SSD</td>
+          <td style="text-align: center">Samsung 850 EVO</td>
+          <td style="text-align: center">120G</td>
+          <td style="text-align: center">22981h</td>
+          <td style="text-align: center">2015年5月</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">HDD</td>
+          <td style="text-align: center">WD20EZRX</td>
+          <td style="text-align: center">2T</td>
+          <td style="text-align: center">55700h</td>
+          <td style="text-align: center">2013年2月</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">HDD</td>
+          <td style="text-align: center">HGST HUA723020ALA640</td>
+          <td style="text-align: center">2T</td>
+          <td style="text-align: center">19267h</td>
+          <td style="text-align: center">2013年12月</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>和我的使用场景、硬件条件一模一样几乎是不可能的，也就几乎不可能有人能够完全照搬我的操作过程，所以本文也仅是提供一种思路，LVM依靠它已经提供的各种功能，可以实现各种你想得到想不到的玩法。这里举三个例子：</p>
 <ul>

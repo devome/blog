@@ -16,8 +16,6 @@
     <meta name="twitter:image" content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-  
-    
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
       <script>
         var doNotTrack = false;
@@ -32,10 +30,6 @@
           gtag('config', 'G-5SWJSDBST9');
         }
       </script>
-    
-  
-
-
     </head>
     <body class="
     article-page
@@ -424,83 +418,83 @@
 </div>
 </div><p>如果你需要发送通知，解除上述脚本第10行注释的同时，在第4行之后根据下表选用通知渠道的变量并赋值。</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th style="text-align:center">序号</th>
-<th style="text-align:center">变量名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">TG_USER_ID</td>
-<td>通知渠道telegram，如需使用需要和 TG_BOT_TOKEN 同时赋值，私聊 @getuseridbot 获取。</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">TG_BOT_TOKEN</td>
-<td>通知渠道telegram，如需使用需要和 TG_USER_ID 同时赋值，私聊 @BotFather 获取。</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">TG_PROXY_ADDRESS</td>
-<td>给TG机器人发送消息的代理地址，当设置了<code>TG_USER_ID</code>和<code>TG_BOT_TOKEN</code>后可以设置此值，形如：<code>http://192.168.1.1:7890</code>，也可以不设置。</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">TG_PROXY_USER</td>
-<td>给TG机器人发送消息的代理的用户名和密码，当设置了<code>TG_PROXY_ADDRESS</code>后可以设置此值，格式为：<code>&lt;用户名&gt;:&lt;密码&gt;</code>，形如：<code>admin:password</code>，如没有可不设置。</td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td style="text-align:center">DD_BOT_TOKEN</td>
-<td>通知渠道钉钉，如需使用需要和 DD_BOT_SECRET 同时赋值，机器人设置中webhook链接<code>access_token=</code>后面的字符串（不含<code>=</code>以及<code>=</code>之前的字符）。</td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">DD_BOT_SECRET</td>
-<td>通知渠道钉钉，如需使用需要和 DD_BOT_TOKEN 同时赋值，机器人设置中<strong>只启用</strong><code>加签</code>，加签的秘钥，形如：<code>SEC1234567890abcdefg</code>。</td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td style="text-align:center">IYUU_TOKEN</td>
-<td>通知渠道爱语飞飞，通过 <a class="link" href="http://iyuu.cn"  target="_blank" rel="noopener"
+  <thead>
+      <tr>
+          <th style="text-align: center">序号</th>
+          <th style="text-align: center">变量名</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">TG_USER_ID</td>
+          <td style="text-align: left">通知渠道telegram，如需使用需要和 TG_BOT_TOKEN 同时赋值，私聊 @getuseridbot 获取。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">TG_BOT_TOKEN</td>
+          <td style="text-align: left">通知渠道telegram，如需使用需要和 TG_USER_ID 同时赋值，私聊 @BotFather 获取。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">TG_PROXY_ADDRESS</td>
+          <td style="text-align: left">给TG机器人发送消息的代理地址，当设置了<code>TG_USER_ID</code>和<code>TG_BOT_TOKEN</code>后可以设置此值，形如：<code>http://192.168.1.1:7890</code>，也可以不设置。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">TG_PROXY_USER</td>
+          <td style="text-align: left">给TG机器人发送消息的代理的用户名和密码，当设置了<code>TG_PROXY_ADDRESS</code>后可以设置此值，格式为：<code>&lt;用户名&gt;:&lt;密码&gt;</code>，形如：<code>admin:password</code>，如没有可不设置。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">5</td>
+          <td style="text-align: center">DD_BOT_TOKEN</td>
+          <td style="text-align: left">通知渠道钉钉，如需使用需要和 DD_BOT_SECRET 同时赋值，机器人设置中webhook链接<code>access_token=</code>后面的字符串（不含<code>=</code>以及<code>=</code>之前的字符）。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">6</td>
+          <td style="text-align: center">DD_BOT_SECRET</td>
+          <td style="text-align: left">通知渠道钉钉，如需使用需要和 DD_BOT_TOKEN 同时赋值，机器人设置中<strong>只启用</strong><code>加签</code>，加签的秘钥，形如：<code>SEC1234567890abcdefg</code>。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">7</td>
+          <td style="text-align: center">IYUU_TOKEN</td>
+          <td style="text-align: left">通知渠道爱语飞飞，通过 <a class="link" href="http://iyuu.cn"  target="_blank" rel="noopener"
     >这里</a> 获取，爱语飞飞的TOKEN。</td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td style="text-align:center">SCKEY</td>
-<td>通知渠道ServerChan，通过 <a class="link" href="http://sc.ftqq.com/3.version"  target="_blank" rel="noopener"
+      </tr>
+      <tr>
+          <td style="text-align: center">8</td>
+          <td style="text-align: center">SCKEY</td>
+          <td style="text-align: left">通知渠道ServerChan，通过 <a class="link" href="http://sc.ftqq.com/3.version"  target="_blank" rel="noopener"
     >这里</a> 获取。</td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td style="text-align:center">PUSHPLUS_TOKEN</td>
-<td>通知渠道PUSH PLUS，填入其token，详见 <a class="link" href="http://www.pushplus.plus"  target="_blank" rel="noopener"
+      </tr>
+      <tr>
+          <td style="text-align: center">9</td>
+          <td style="text-align: center">PUSHPLUS_TOKEN</td>
+          <td style="text-align: left">通知渠道PUSH PLUS，填入其token，详见 <a class="link" href="http://www.pushplus.plus"  target="_blank" rel="noopener"
     >这里</a>。</td>
-</tr>
-<tr>
-<td style="text-align:center">10</td>
-<td style="text-align:center">WORK_WECHAT_BOT_KEY</td>
-<td>通知渠道企业微信群机器人，填入机器人设置webhook链接中<code>key=</code>后面的字符串，不含<code>key=</code>。</td>
-</tr>
-<tr>
-<td style="text-align:center">11</td>
-<td style="text-align:center">GOTIFY_URL</td>
-<td>通知渠道Gotify，填入其通知网址，需要和<code>GOTIFY_APP_TOKEN</code>同时赋值。</td>
-</tr>
-<tr>
-<td style="text-align:center">12</td>
-<td style="text-align:center">GOTIFY_APP_TOKEN</td>
-<td>通知渠道Gotify，填入其TOKEN，需要和<code>GOTIFY_URL</code>同时赋值。</td>
-</tr>
-<tr>
-<td style="text-align:center">13</td>
-<td style="text-align:center">GOTIFY_PRIORITY</td>
-<td>通知渠道Gotify，发送消息的优先级。</td>
-</tr>
-</tbody>
+      </tr>
+      <tr>
+          <td style="text-align: center">10</td>
+          <td style="text-align: center">WORK_WECHAT_BOT_KEY</td>
+          <td style="text-align: left">通知渠道企业微信群机器人，填入机器人设置webhook链接中<code>key=</code>后面的字符串，不含<code>key=</code>。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">11</td>
+          <td style="text-align: center">GOTIFY_URL</td>
+          <td style="text-align: left">通知渠道Gotify，填入其通知网址，需要和<code>GOTIFY_APP_TOKEN</code>同时赋值。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">12</td>
+          <td style="text-align: center">GOTIFY_APP_TOKEN</td>
+          <td style="text-align: left">通知渠道Gotify，填入其TOKEN，需要和<code>GOTIFY_URL</code>同时赋值。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">13</td>
+          <td style="text-align: center">GOTIFY_PRIORITY</td>
+          <td style="text-align: left">通知渠道Gotify，发送消息的优先级。</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>同时下载 <a class="link" href="notify.sh" >notify.sh</a> 保存为 <code>/usr/local/bin/notify.sh</code> ，并为其增加可执行权限：</p>
 <div class="highlight"><div class="chroma">

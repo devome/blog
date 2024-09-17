@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全
+相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。
+协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。
+'>
 <title>爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）</title>
 
 <link rel='canonical' href='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）'>
-<meta property='og:description' content='关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP'>
+<meta property='og:description' content=' 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全
+相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。
+协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。
+'>
 <meta property='og:url' content='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-29T13:04:28&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
 <meta name="twitter:title" content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）">
-<meta name="twitter:description" content="关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全 相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。 协议栈：支持选择IP"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content=" 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全
+相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。
+协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。
+"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-  
-    
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
       <script>
         var doNotTrack = false;
@@ -32,10 +39,6 @@
           gtag('config', 'G-5SWJSDBST9');
         }
       </script>
-    
-  
-
-
     </head>
     <body class="
     article-page

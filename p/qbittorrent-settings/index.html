@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='以下内容以4.3.7为例。 可用的UI主题清单：List-of-known-qBittorrent-themes 本人制作的docker镜像：n'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='以下内容以4.3.7为例。
+可用的UI主题清单：List-of-known-qBittorrent-themes
+本人制作的docker镜像：nevinee/qbittorrent
+可实现下载完成通知、宕机通知、tracker出错超出阈值通知、自动分类、tracker出错打标签、批量修改tracker、检测指定文件夹下未在qbittorrent客户端中做种的文件夹/文件、配合IYUUAutoReseed实现自动重新校验和自动恢复做种、指定设备上线时自动限速、多时段限速、导出做种文件清单、导出未做种文件清单等等等等，教程见这里
+'>
 <title>qBittorrent 设置教程</title>
 
 <link rel='canonical' href='https://evine.win/p/qbittorrent-settings/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='qBittorrent 设置教程'>
-<meta property='og:description' content='以下内容以4.3.7为例。 可用的UI主题清单：List-of-known-qBittorrent-themes 本人制作的docker镜像：n'>
+<meta property='og:description' content='以下内容以4.3.7为例。
+可用的UI主题清单：List-of-known-qBittorrent-themes
+本人制作的docker镜像：nevinee/qbittorrent
+可实现下载完成通知、宕机通知、tracker出错超出阈值通知、自动分类、tracker出错打标签、批量修改tracker、检测指定文件夹下未在qbittorrent客户端中做种的文件夹/文件、配合IYUUAutoReseed实现自动重新校验和自动恢复做种、指定设备上线时自动限速、多时段限速、导出做种文件清单、导出未做种文件清单等等等等，教程见这里
+'>
 <meta property='og:url' content='https://evine.win/p/qbittorrent-settings/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2021-08-07T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T21:56:46&#43;08:00'/><meta property='og:image' content='https://evine.win/p/qbittorrent-settings/1%E8%A1%8C%E4%B8%BA.png' />
 <meta name="twitter:title" content="qBittorrent 设置教程">
-<meta name="twitter:description" content="以下内容以4.3.7为例。 可用的UI主题清单：List-of-known-qBittorrent-themes 本人制作的docker镜像：n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="以下内容以4.3.7为例。
+可用的UI主题清单：List-of-known-qBittorrent-themes
+本人制作的docker镜像：nevinee/qbittorrent
+可实现下载完成通知、宕机通知、tracker出错超出阈值通知、自动分类、tracker出错打标签、批量修改tracker、检测指定文件夹下未在qbittorrent客户端中做种的文件夹/文件、配合IYUUAutoReseed实现自动重新校验和自动恢复做种、指定设备上线时自动限速、多时段限速、导出做种文件清单、导出未做种文件清单等等等等，教程见这里
+"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/qbittorrent-settings/1%E8%A1%8C%E4%B8%BA.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-  
-    
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SWJSDBST9"></script>
       <script>
         var doNotTrack = false;
@@ -32,10 +42,6 @@
           gtag('config', 'G-5SWJSDBST9');
         }
       </script>
-    
-  
-
-
     </head>
     <body class="
     article-page
