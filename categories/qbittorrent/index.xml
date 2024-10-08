@@ -385,6 +385,13 @@
           &lt;td style=&#34;text-align: center&#34;&gt;3.20.3&lt;/td&gt;
           &lt;td style=&#34;text-align: left&#34;&gt;下载完成通知也可以设置为下载开始通知，通知中添加主机名。&lt;/td&gt;
       &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2024-10-08&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;5.0.0&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2.0.10&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3.20.3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;修改&lt;code&gt;iyuu-help&lt;/code&gt;脚本以适应5.0.0带来的API接口变化。&lt;/td&gt;
+      &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;环境变量清单&#34;&gt;环境变量清单&lt;/h2&gt;
