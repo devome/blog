@@ -1375,7 +1375,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;+.*&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;subconverter转换配置&#34;&gt;subconverter转换配置&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;subconverter转换规则&#34;&gt;subconverter转换规则&lt;/h3&gt;
 &lt;p&gt;制作自己的 &lt;code&gt;subconverter&lt;/code&gt; 转换配置，新建 &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt; ，详细的格式见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tindy2013/subconverter/blob/master/README-cn.md#%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;subconverter外部配置&lt;/a&gt;，在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash/config&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt; 有大量的参考文件。&lt;/p&gt;
