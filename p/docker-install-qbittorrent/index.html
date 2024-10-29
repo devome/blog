@@ -14,7 +14,7 @@
 '>
 <meta property='og:url' content='https://evine.win/p/docker-install-qbittorrent/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-10-08T15:42:43&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-10-29T17:39:49&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
 <meta name="twitter:title" content="一款更懂你的 qbittorrent docker 镜像">
 <meta name="twitter:description" content=" 本文较长，如想略过某些内容，请直接点击右侧目录链接。
 说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。
@@ -556,7 +556,7 @@
           <th style="text-align: center">qBittorrent</th>
           <th style="text-align: center">libtorrent</th>
           <th style="text-align: center">alpine</th>
-          <th style="text-align: left">备注</th>
+          <th>备注</th>
       </tr>
   </thead>
   <tbody>
@@ -565,119 +565,119 @@
           <td style="text-align: center">4.3.5</td>
           <td style="text-align: center">1.2.13</td>
           <td style="text-align: center">3.13.5</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
       <tr>
           <td style="text-align: center">2021-06-17</td>
           <td style="text-align: center">4.3.5</td>
           <td style="text-align: center">1.2.14</td>
           <td style="text-align: center">3.14.0</td>
-          <td style="text-align: left">默认不再安装python，需要开关打开才安装</td>
+          <td>默认不再安装python，需要开关打开才安装</td>
       </tr>
       <tr>
           <td style="text-align: center">2021-06-28</td>
           <td style="text-align: center">4.3.6</td>
           <td style="text-align: center">1.2.14</td>
           <td style="text-align: center">3.14.0</td>
-          <td style="text-align: left">优化自动分类和tracker错误检查时的资源占用</td>
+          <td>优化自动分类和tracker错误检查时的资源占用</td>
       </tr>
       <tr>
           <td style="text-align: center">2021-08-04</td>
           <td style="text-align: center">4.3.7</td>
           <td style="text-align: center">1.2.14</td>
           <td style="text-align: center">3.14.0</td>
-          <td style="text-align: left">1. 增加5个环境变量控制开关，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 增加批量修改 tracker的功能，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；<br>3. 增加在运行<code>dl-finish %K</code>时运行自定义脚本的功能，详见<a class="link" href="#%e5%a6%82%e4%bd%95%e5%9c%a8%e8%bf%90%e8%a1%8c-dl-finish-i-%e6%97%b6%e8%b0%83%e7%94%a8%e8%87%aa%e5%ae%9a%e4%b9%89%e8%84%9a%e6%9c%ac" >相关问题2</a>。</td>
+          <td>1. 增加5个环境变量控制开关，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 增加批量修改 tracker的功能，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；<br>3. 增加在运行<code>dl-finish %K</code>时运行自定义脚本的功能，详见<a class="link" href="#%e5%a6%82%e4%bd%95%e5%9c%a8%e8%bf%90%e8%a1%8c-dl-finish-i-%e6%97%b6%e8%b0%83%e7%94%a8%e8%87%aa%e5%ae%9a%e4%b9%89%e8%84%9a%e6%9c%ac" >相关问题2</a>。</td>
       </tr>
       <tr>
           <td style="text-align: center">2021-08-30</td>
           <td style="text-align: center">4.3.8</td>
           <td style="text-align: center">1.2.14</td>
           <td style="text-align: center">3.14.2</td>
-          <td style="text-align: left">1. 增加3个环境变量控制开关，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 增加检测指定目录未做种的子文件夹/文件功能，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>。</td>
+          <td>1. 增加3个环境变量控制开关，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 增加检测指定目录未做种的子文件夹/文件功能，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>。</td>
       </tr>
       <tr>
           <td style="text-align: center">2021-11-01</td>
           <td style="text-align: center">4.3.9</td>
           <td style="text-align: center">1.2.14</td>
           <td style="text-align: center">3.14.2</td>
-          <td style="text-align: left">修复通知内容中含有字符&quot;&amp;&ldquo;时无法正常发送的bug。</td>
+          <td>修复通知内容中含有字符&quot;&amp;&ldquo;时无法正常发送的bug。</td>
       </tr>
       <tr>
           <td style="text-align: center">2022-01-07</td>
           <td style="text-align: center">4.4.0</td>
           <td style="text-align: center">2.0.5</td>
           <td style="text-align: center">3.14.3</td>
-          <td style="text-align: left">1. 增加环境变量<code>EXTRA_PACKAGES</code>，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 默认运行自动分类程序时仅对未分类的种子进行分类，如需要强制对所有种子进行分类，请参考<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；<br>3. 增加两个需要手动运行的脚本<code>report-seed-files</code>(导出所有做种文件清单)和<code>report-unseed-files</code>(导出指定文件夹下未做种文件清单)，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>。</td>
+          <td>1. 增加环境变量<code>EXTRA_PACKAGES</code>，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；<br>2. 默认运行自动分类程序时仅对未分类的种子进行分类，如需要强制对所有种子进行分类，请参考<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；<br>3. 增加两个需要手动运行的脚本<code>report-seed-files</code>(导出所有做种文件清单)和<code>report-unseed-files</code>(导出指定文件夹下未做种文件清单)，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>。</td>
       </tr>
       <tr>
           <td style="text-align: center">2022-02-16</td>
           <td style="text-align: center">4.4.1</td>
           <td style="text-align: center">2.0.5</td>
           <td style="text-align: center">3.14.3</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
       <tr>
           <td style="text-align: center">2022-03-25</td>
           <td style="text-align: center">4.4.2</td>
           <td style="text-align: center">2.0.5</td>
           <td style="text-align: center">3.14.4</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
       <tr>
           <td style="text-align: center">2022-05-24</td>
           <td style="text-align: center">4.4.3</td>
           <td style="text-align: center">2.0.6</td>
           <td style="text-align: center">3.16.0</td>
-          <td style="text-align: left">1. 修复存在多个标签时无法移除<code>TrackerError</code>标签的bug；</br>2. 增加企业微信群机器人的通知渠道。</br>3. 升级openssl到1.1.1o，boost到1.78，alpine到3.16.0，升级iyuu镜像中的php7为php8。</td>
+          <td>1. 修复存在多个标签时无法移除<code>TrackerError</code>标签的bug；</br>2. 增加企业微信群机器人的通知渠道。</br>3. 升级openssl到1.1.1o，boost到1.78，alpine到3.16.0，升级iyuu镜像中的php7为php8。</td>
       </tr>
       <tr>
           <td style="text-align: center">2022-05-26</td>
           <td style="text-align: center">4.4.3.1</td>
           <td style="text-align: center">2.0.6</td>
           <td style="text-align: center">3.16.0</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
       <tr>
           <td style="text-align: center">2022-08-24</td>
           <td style="text-align: center">4.4.4</td>
           <td style="text-align: center">2.0.7</td>
           <td style="text-align: center">3.16.2</td>
-          <td style="text-align: left">1. 增加<code>remove-track</code>脚本，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；</br>2. 优化<code>del-unseed-dir</code>脚本，现还可以一次性检测多个目录了；</br>3. 增加Gotity通知环境变量<code>GOTIFY_URL</code> <code>GOTIFY_APP_TOKEN</code> <code>GOTIFY_PRIORITY</code>，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>。</td>
+          <td>1. 增加<code>remove-track</code>脚本，详见<a class="link" href="#%e5%91%bd%e4%bb%a4" >命令</a>；</br>2. 优化<code>del-unseed-dir</code>脚本，现还可以一次性检测多个目录了；</br>3. 增加Gotity通知环境变量<code>GOTIFY_URL</code> <code>GOTIFY_APP_TOKEN</code> <code>GOTIFY_PRIORITY</code>，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>。</td>
       </tr>
       <tr>
           <td style="text-align: center">2022-08-31</td>
           <td style="text-align: center">4.4.5</td>
           <td style="text-align: center">2.0.7</td>
           <td style="text-align: center">3.16.2</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
       <tr>
           <td style="text-align: center">2022-10-24</td>
           <td style="text-align: center">4.4.5</td>
           <td style="text-align: center">2.0.8</td>
           <td style="text-align: center">3.16.2</td>
-          <td style="text-align: left">libtorrent-rasterbar v2.0.8 修复了内存溢出的问题，因此更新一下qbittorrent。</td>
+          <td>libtorrent-rasterbar v2.0.8 修复了内存溢出的问题，因此更新一下qbittorrent。</td>
       </tr>
       <tr>
           <td style="text-align: center">2022-11-09</td>
           <td style="text-align: center">4.3.9</td>
           <td style="text-align: center">1.2.18</td>
           <td style="text-align: center">3.16.2</td>
-          <td style="text-align: left">添加<code>CATEGORY_OR_TAG</code>环境变量，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；考虑到4.3.9将是许多人的使用版本，将全部新功能重新应用到4.3.9版本中。</td>
+          <td>添加<code>CATEGORY_OR_TAG</code>环境变量，详见<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>；考虑到4.3.9将是许多人的使用版本，将全部新功能重新应用到4.3.9版本中。</td>
       </tr>
       <tr>
           <td style="text-align: center">2022-11-26</td>
           <td style="text-align: center">4.3.9</br>4.5.0</td>
           <td style="text-align: center">1.2.18</br>2.0.8</td>
           <td style="text-align: center">3.17.0</td>
-          <td style="text-align: left">alpine升级至3.17.0，升级依赖版本为：boost 1.80.0, openssl 3.0.7, qt 5.16.6, zlib 1.2.13</td>
+          <td>alpine升级至3.17.0，升级依赖版本为：boost 1.80.0, openssl 3.0.7, qt 5.16.6, zlib 1.2.13</td>
       </tr>
       <tr>
           <td style="text-align: center">2022-11-30</td>
           <td style="text-align: center">4.5.0</td>
           <td style="text-align: center">1.2.18</td>
           <td style="text-align: center">3.17.0</td>
-          <td style="text-align: left">把依赖项<code>libtorrent-rasterbar</code>从<code>2.0.8</code>切换为<code>1.2.18</code>，应用<a class="link" href="https://patch-diff.githubusercontent.com/raw/qbittorrent/qBittorrent/pull/17994.patch"  target="_blank" rel="noopener"
+          <td>把依赖项<code>libtorrent-rasterbar</code>从<code>2.0.8</code>切换为<code>1.2.18</code>，应用<a class="link" href="https://patch-diff.githubusercontent.com/raw/qbittorrent/qBittorrent/pull/17994.patch"  target="_blank" rel="noopener"
     >#17994.patch</a>修复<code>4.5.0</code>版本简体中文无法启用的bug，需要先切换为英文再切换为中文，或者在启动容器前先将<code>config/qBittorrent.conf</code>中<code>General\Locale</code>这一行从<code>zh</code>改为<code>zh_CN</code>。</td>
       </tr>
       <tr>
@@ -685,7 +685,7 @@
           <td style="text-align: center">4.5.1</td>
           <td style="text-align: center">1.2.18</td>
           <td style="text-align: center">3.17.2</td>
-          <td style="text-align: left">1. 根据版本的不同自动设置<code>General\Locale</code>为<code>zh</code>或<code>zh_CN</code>；</br>2. 优化<code>auto-cat</code> <code>report-unseed-files</code> <code>tracker-error</code>逻辑，加快运行速度，对多tracker的，只要有一个正常就不标记为<code>TrackerError</code>（有任何一个tracker处于<code>工作``更新中</code>和<code>未联系</code>都不会视作<code>TrackerError</code>，只有在运行脚本当时那一刻全部tracker处于<code>未工作</code>才会标记）；</br>3. 切换为qt6并增加依赖<code>qt6-qtbase-sqlite</code>；</br>4. 修复<a class="link" href="https://github.com/devome/dockerfiles/issues/68"  target="_blank" rel="noopener"
+          <td>1. 根据版本的不同自动设置<code>General\Locale</code>为<code>zh</code>或<code>zh_CN</code>；</br>2. 优化<code>auto-cat</code> <code>report-unseed-files</code> <code>tracker-error</code>逻辑，加快运行速度，对多tracker的，只要有一个正常就不标记为<code>TrackerError</code>（有任何一个tracker处于<code>工作``更新中</code>和<code>未联系</code>都不会视作<code>TrackerError</code>，只有在运行脚本当时那一刻全部tracker处于<code>未工作</code>才会标记）；</br>3. 切换为qt6并增加依赖<code>qt6-qtbase-sqlite</code>；</br>4. 修复<a class="link" href="https://github.com/devome/dockerfiles/issues/68"  target="_blank" rel="noopener"
     >#68</a>，<a class="link" href="https://github.com/devome/dockerfiles/issues/69"  target="_blank" rel="noopener"
     >#69</a>。</td>
       </tr>
@@ -694,35 +694,35 @@
           <td style="text-align: center">4.5.2</td>
           <td style="text-align: center">2.0.8</td>
           <td style="text-align: center">3.17.2</td>
-          <td style="text-align: left">1. libtorrent-rasterbar切换为2.x；</br>2. 再一次优化<code>tracker-error</code>减少70%时长。</td>
+          <td>1. libtorrent-rasterbar切换为2.x；</br>2. 再一次优化<code>tracker-error</code>减少70%时长。</td>
       </tr>
       <tr>
           <td style="text-align: center">2023-05-29</td>
           <td style="text-align: center">4.5.3</td>
           <td style="text-align: center">2.0.9</td>
           <td style="text-align: center">3.18.0</td>
-          <td style="text-align: left">1. 再一次优化<code>report-seed-files</code>减少70%时长；</br>2. <code>dl-finish</code>不再使用<code>%I</code>传参，而使用<code>%K</code>，已经部署好的使用<code>%I</code>也没有问题（除非会有混合种子或v2种子）；3. 增加<code>gen-dup</code>脚本，详见“命令”章节。</td>
+          <td>1. 再一次优化<code>report-seed-files</code>减少70%时长；</br>2. <code>dl-finish</code>不再使用<code>%I</code>传参，而使用<code>%K</code>，已经部署好的使用<code>%I</code>也没有问题（除非会有混合种子或v2种子）；3. 增加<code>gen-dup</code>脚本，详见“命令”章节。</td>
       </tr>
       <tr>
           <td style="text-align: center">2023-06-19</td>
           <td style="text-align: center">4.5.4</td>
           <td style="text-align: center">2.0.9</td>
           <td style="text-align: center">3.18.2</td>
-          <td style="text-align: left"><code>gen-dup</code>脚本增加总计输出。</td>
+          <td><code>gen-dup</code>脚本增加总计输出。</td>
       </tr>
       <tr>
           <td style="text-align: center">2023-08-30</td>
           <td style="text-align: center">4.5.5</td>
           <td style="text-align: center">2.0.9</td>
           <td style="text-align: center">3.18.3</td>
-          <td style="text-align: left">抛弃<code>s6-overlay</code>，直接交给<code>tini</code>来捕获退出信号，在退出/停止容器时qB会自动保存配置和种子进度。定时任务改由低权限运行，日志记录在容器内的<code>/data/diy/crond.log</code>，不再输出到容器控制台。</td>
+          <td>抛弃<code>s6-overlay</code>，直接交给<code>tini</code>来捕获退出信号，在退出/停止容器时qB会自动保存配置和种子进度。定时任务改由低权限运行，日志记录在容器内的<code>/data/diy/crond.log</code>，不再输出到容器控制台。</td>
       </tr>
       <tr>
           <td style="text-align: center">2023-09-06</td>
           <td style="text-align: center">4.5.5</td>
           <td style="text-align: center">2.0.9</td>
           <td style="text-align: center">3.18.3</td>
-          <td style="text-align: left">为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。<a class="link" href="https://github.com/devome/dockerfiles/issues/101"  target="_blank" rel="noopener"
+          <td>为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。<a class="link" href="https://github.com/devome/dockerfiles/issues/101"  target="_blank" rel="noopener"
     >详情</a>。也因此镜像默认即安装好python，不再需要设置<code>INSTALL_PYTHON</code>这个环境变量。</td>
       </tr>
       <tr>
@@ -730,63 +730,70 @@
           <td style="text-align: center">4.6.0</td>
           <td style="text-align: center">2.0.9</td>
           <td style="text-align: center">3.18.4</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
       <tr>
           <td style="text-align: center">2023-11-21</td>
           <td style="text-align: center">4.3.9</br>4.6.1</td>
           <td style="text-align: center">2.0.9</td>
           <td style="text-align: center">3.18.4</td>
-          <td style="text-align: left">增加一个环境变量<code>TG_API_HOST</code>，同时允许关闭<code>CRON_HEALTH_CHECK</code>和<code>CRON_TRACKER_ERROR</code>，此三项环境变量说明详见 <a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>。从此版本起，qBittorrent官方已经设置禁止默认密码，因此请务必设置<code>QB_USERNAME</code>和<code>QB_PASSWORD</code>为非默认值。同步编译的<code>4.3.9</code>版本亦可使用新版本可用的环境变量。</td>
+          <td>增加一个环境变量<code>TG_API_HOST</code>，同时允许关闭<code>CRON_HEALTH_CHECK</code>和<code>CRON_TRACKER_ERROR</code>，此三项环境变量说明详见 <a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>。从此版本起，qBittorrent官方已经设置禁止默认密码，因此请务必设置<code>QB_USERNAME</code>和<code>QB_PASSWORD</code>为非默认值。同步编译的<code>4.3.9</code>版本亦可使用新版本可用的环境变量。</td>
       </tr>
       <tr>
           <td style="text-align: center">2023-11-28</td>
           <td style="text-align: center">4.6.2</td>
           <td style="text-align: center">2.0.9</td>
           <td style="text-align: center">3.18.4</td>
-          <td style="text-align: left">修复<code>UMASK_SET</code>。</td>
+          <td>修复<code>UMASK_SET</code>。</td>
       </tr>
       <tr>
           <td style="text-align: center">2024-01-17</td>
           <td style="text-align: center">4.6.3</td>
           <td style="text-align: center">2.0.9</td>
           <td style="text-align: center">3.19.0</td>
-          <td style="text-align: left"><code>iyuu</code>相关标签将php升级到8.3.x。</td>
+          <td><code>iyuu</code>相关标签将php升级到8.3.x。</td>
       </tr>
       <tr>
           <td style="text-align: center">2024-03-25</td>
           <td style="text-align: center">4.6.4</td>
           <td style="text-align: center">2.0.10</td>
           <td style="text-align: center">3.19.1</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
       <tr>
           <td style="text-align: center">2024-05-27</td>
           <td style="text-align: center">4.6.5</td>
           <td style="text-align: center">2.0.10</td>
           <td style="text-align: center">3.20.0</td>
-          <td style="text-align: left">因<code>IYUUPlus</code>调整了架构，从此版本起，不再构建集成了<code>IYUUPlus</code>的标签。</td>
+          <td>因<code>IYUUPlus</code>调整了架构，从此版本起，不再构建集成了<code>IYUUPlus</code>的标签。</td>
       </tr>
       <tr>
           <td style="text-align: center">2024-08-20</td>
           <td style="text-align: center">4.6.6</td>
           <td style="text-align: center">2.0.10</td>
           <td style="text-align: center">3.20.2</td>
-          <td style="text-align: left"></td>
+          <td></td>
       </tr>
       <tr>
           <td style="text-align: center">2024-09-17</td>
           <td style="text-align: center">4.6.7</td>
           <td style="text-align: center">2.0.10</td>
           <td style="text-align: center">3.20.3</td>
-          <td style="text-align: left">下载完成通知也可以设置为下载开始通知，通知中添加主机名。</td>
+          <td>下载完成通知也可以设置为下载开始通知，通知中添加主机名。</td>
       </tr>
       <tr>
           <td style="text-align: center">2024-10-08</td>
           <td style="text-align: center">5.0.0</td>
           <td style="text-align: center">2.0.10</td>
           <td style="text-align: center">3.20.3</td>
-          <td style="text-align: left">修改<code>iyuu-help</code>脚本以适应5.0.0带来的API接口变化。</td>
+          <td>修改<code>iyuu-help</code>脚本以适应5.0.0带来的API接口变化。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">2024-10-29</td>
+          <td style="text-align: center">5.0.1</td>
+          <td style="text-align: center">2.0.10</td>
+          <td style="text-align: center">3.20.3</td>
+          <td></td>
       </tr>
   </tbody>
 </table></div>
@@ -802,7 +809,7 @@
           <th style="text-align: center">序号</th>
           <th style="text-align: center">变量名</th>
           <th style="text-align: center">默认值</th>
-          <th style="text-align: left">说明</th>
+          <th>说明</th>
       </tr>
   </thead>
   <tbody>
@@ -810,208 +817,208 @@
           <td style="text-align: center">1</td>
           <td style="text-align: center">PUID</td>
           <td style="text-align: center">1000</td>
-          <td style="text-align: left">用户的uid，输入命令<code>id -u</code>可以查到，以该用户运行qbittorrent-nox，群晖用户必须改。</td>
+          <td>用户的uid，输入命令<code>id -u</code>可以查到，以该用户运行qbittorrent-nox，群晖用户必须改。</td>
       </tr>
       <tr>
           <td style="text-align: center">2</td>
           <td style="text-align: center">PGID</td>
           <td style="text-align: center">100</td>
-          <td style="text-align: left">用户的gid，输入命令<code>id -g</code>可以查到，以该用户运行qbittorrent-nox，群晖用户必须改。</td>
+          <td>用户的gid，输入命令<code>id -g</code>可以查到，以该用户运行qbittorrent-nox，群晖用户必须改。</td>
       </tr>
       <tr>
           <td style="text-align: center">3</td>
           <td style="text-align: center">WEBUI_PORT</td>
           <td style="text-align: center">8080</td>
-          <td style="text-align: left">WebUI访问端口，建议自定义，如需公网访问，需要将qBittorrent和公网之间所有网关设备上都设置端口转发。</td>
+          <td>WebUI访问端口，建议自定义，如需公网访问，需要将qBittorrent和公网之间所有网关设备上都设置端口转发。</td>
       </tr>
       <tr>
           <td style="text-align: center">4</td>
           <td style="text-align: center">BT_PORT</td>
           <td style="text-align: center">34567</td>
-          <td style="text-align: left">BT监听端口，建议自定义，如需达到<code>可连接</code>状态，需要将qBittorrent和公网之间所有网关设备上都设置端口转发。</td>
+          <td>BT监听端口，建议自定义，如需达到<code>可连接</code>状态，需要将qBittorrent和公网之间所有网关设备上都设置端口转发。</td>
       </tr>
       <tr>
           <td style="text-align: center">5</td>
           <td style="text-align: center">QB_USERNAME</td>
           <td style="text-align: center">admin</td>
-          <td style="text-align: left">4.5.5+必须设置此环境变量，登陆qBittorrent的用户名，<strong>请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。</strong></td>
+          <td>4.5.5+必须设置此环境变量，登陆qBittorrent的用户名，<strong>请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。</strong></td>
       </tr>
       <tr>
           <td style="text-align: center">6</td>
           <td style="text-align: center">QB_PASSWORD</td>
           <td style="text-align: center">adminadmin</td>
-          <td style="text-align: left">4.5.5+必须设置此环境变量，登陆qBittorrent的密码，<strong>请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。</strong></td>
+          <td>4.5.5+必须设置此环境变量，登陆qBittorrent的密码，<strong>请务必不要使用默认值，如使用默认值将无法使用本镜像的全部脚本。</strong></td>
       </tr>
       <tr>
           <td style="text-align: center">7</td>
           <td style="text-align: center">TZ</td>
           <td style="text-align: center">Asia/Shanghai</td>
-          <td style="text-align: left">时区，可填内容详见：https://meetingplanner.io/zh-cn/timezone/cities</td>
+          <td>时区，可填内容详见：https://meetingplanner.io/zh-cn/timezone/cities</td>
       </tr>
       <tr>
           <td style="text-align: center">8</td>
           <td style="text-align: center">INSTALL_PYTHON</td>
           <td style="text-align: center">false</td>
-          <td style="text-align: left"><strong>从4.5.5起，默认安装好python，不再需要设置这个环境变量。</strong><del>默认不安装python，如需要python（qBittorrent的搜索功能必须安装python），请设置为<code>true</code>，设置后将在首次启动容器时自动安装好。</del></td>
+          <td><strong>从4.5.5起，默认安装好python，不再需要设置这个环境变量。</strong><del>默认不安装python，如需要python（qBittorrent的搜索功能必须安装python），请设置为<code>true</code>，设置后将在首次启动容器时自动安装好。</del></td>
       </tr>
       <tr>
           <td style="text-align: center">9</td>
           <td style="text-align: center">ENABLE_AUTO_CATEGORY</td>
           <td style="text-align: center">false</td>
-          <td style="text-align: left">4.3.7+可用。是否自动按tracker进行分类，设置为<code>true</code>开启（从4.6.5+起默认值为<code>false</code>，4.6.4-的默认值为<code>true</code>）。</td>
+          <td>4.3.7+可用。是否自动按tracker进行分类，设置为<code>true</code>开启（从4.6.5+起默认值为<code>false</code>，4.6.4-的默认值为<code>true</code>）。</td>
       </tr>
       <tr>
           <td style="text-align: center">10</td>
           <td style="text-align: center">CATEGORY_OR_TAG</td>
           <td style="text-align: center">category</td>
-          <td style="text-align: left">4.3.9及4.5.0+可用，当<code>ENABLE_AUTO_CATEGORY=true</code>时，控制自动分类是qBittorrent中的“分类”还是“标签”。设置为<code>category</code>（默认值）为“分类”，设置为<code>tag</code>为“标签”。当设置为<code>tag</code>时，由于标签不是唯一的，无法筛选出没有打上tracker标签的种子，所以运行<code>auto-cat -a</code>和<code>auto-cat -A</code>都将对全部种子按tracker打标签，种子多时比较耗时；而当设置为<code>category</code>时，运行<code>auto-cat -a</code>就只对未分类种子进行分类。</td>
+          <td>4.3.9及4.5.0+可用，当<code>ENABLE_AUTO_CATEGORY=true</code>时，控制自动分类是qBittorrent中的“分类”还是“标签”。设置为<code>category</code>（默认值）为“分类”，设置为<code>tag</code>为“标签”。当设置为<code>tag</code>时，由于标签不是唯一的，无法筛选出没有打上tracker标签的种子，所以运行<code>auto-cat -a</code>和<code>auto-cat -A</code>都将对全部种子按tracker打标签，种子多时比较耗时；而当设置为<code>category</code>时，运行<code>auto-cat -a</code>就只对未分类种子进行分类。</td>
       </tr>
       <tr>
           <td style="text-align: center">11</td>
           <td style="text-align: center">DL_FINISH_NOTIFY</td>
           <td style="text-align: center">false</td>
-          <td style="text-align: left">是否在下载完成时向设定的通知渠道发送种子下载完成的通知消息，设置为<code>true</code>开启（从4.6.5+起默认值为<code>false</code>，4.6.4-的默认值为<code>true</code>）。</td>
+          <td>是否在下载完成时向设定的通知渠道发送种子下载完成的通知消息，设置为<code>true</code>开启（从4.6.5+起默认值为<code>false</code>，4.6.4-的默认值为<code>true</code>）。</td>
       </tr>
       <tr>
           <td style="text-align: center">12</td>
           <td style="text-align: center">TRACKER_ERROR_COUNT_MIN</td>
           <td style="text-align: center">3</td>
-          <td style="text-align: left">4.3.7+可用。可以设置的值：正整数。在检测到tracker出错的种子数量超过这个阈值时，给设置的通知渠道发送通知。</td>
+          <td>4.3.7+可用。可以设置的值：正整数。在检测到tracker出错的种子数量超过这个阈值时，给设置的通知渠道发送通知。</td>
       </tr>
       <tr>
           <td style="text-align: center">13</td>
           <td style="text-align: center">UMASK_SET</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">权限掩码<code>umask</code>，指定qBittorrent在建立文件时预设的权限掩码。</td>
+          <td>权限掩码<code>umask</code>，指定qBittorrent在建立文件时预设的权限掩码。</td>
       </tr>
       <tr>
           <td style="text-align: center">14</td>
           <td style="text-align: center">TG_USER_ID</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">通知渠道telegram，如需使用需要和 TG_BOT_TOKEN 同时赋值，私聊 @getuseridbot 获取。</td>
+          <td>通知渠道telegram，如需使用需要和 TG_BOT_TOKEN 同时赋值，私聊 @getuseridbot 获取。</td>
       </tr>
       <tr>
           <td style="text-align: center">15</td>
           <td style="text-align: center">TG_BOT_TOKEN</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">通知渠道telegram，如需使用需要和 TG_USER_ID 同时赋值，私聊 @BotFather 获取。</td>
+          <td>通知渠道telegram，如需使用需要和 TG_USER_ID 同时赋值，私聊 @BotFather 获取。</td>
       </tr>
       <tr>
           <td style="text-align: center">16</td>
           <td style="text-align: center">TG_PROXY_ADDRESS</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.7+可用。给TG机器人发送消息的代理地址，当设置了<code>TG_USER_ID</code>和<code>TG_BOT_TOKEN</code>后可以设置此值，形如：<code>http://192.168.1.1:7890</code>，也可以不设置。</td>
+          <td>4.3.7+可用。给TG机器人发送消息的代理地址，当设置了<code>TG_USER_ID</code>和<code>TG_BOT_TOKEN</code>后可以设置此值，形如：<code>http://192.168.1.1:7890</code>，也可以不设置。</td>
       </tr>
       <tr>
           <td style="text-align: center">17</td>
           <td style="text-align: center">TG_PROXY_USER</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.7+可用。给TG机器人发送消息的代理的用户名和密码，当设置了<code>TG_PROXY_ADDRESS</code>后可以设置此值，格式为：<code>&lt;用户名&gt;:&lt;密码&gt;</code>，形如：<code>admin:password</code>，如没有可不设置。</td>
+          <td>4.3.7+可用。给TG机器人发送消息的代理的用户名和密码，当设置了<code>TG_PROXY_ADDRESS</code>后可以设置此值，格式为：<code>&lt;用户名&gt;:&lt;密码&gt;</code>，形如：<code>admin:password</code>，如没有可不设置。</td>
       </tr>
       <tr>
           <td style="text-align: center">18</td>
           <td style="text-align: center">TG_API_HOST</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.6.1+可用。Telegram 的反代 API，如果设置了就改为向你的反代 API 发送消息，不设置则向官方 API 发送消息。</td>
+          <td>4.6.1+可用。Telegram 的反代 API，如果设置了就改为向你的反代 API 发送消息，不设置则向官方 API 发送消息。</td>
       </tr>
       <tr>
           <td style="text-align: center">19</td>
           <td style="text-align: center">DD_BOT_TOKEN</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">通知渠道钉钉，如需使用需要和 DD_BOT_SECRET 同时赋值，机器人设置中webhook链接<code>access_token=</code>后面的字符串（不含<code>=</code>以及<code>=</code>之前的字符）。</td>
+          <td>通知渠道钉钉，如需使用需要和 DD_BOT_SECRET 同时赋值，机器人设置中webhook链接<code>access_token=</code>后面的字符串（不含<code>=</code>以及<code>=</code>之前的字符）。</td>
       </tr>
       <tr>
           <td style="text-align: center">20</td>
           <td style="text-align: center">DD_BOT_SECRET</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">通知渠道钉钉，如需使用需要和 DD_BOT_TOKEN 同时赋值，机器人设置中<strong>只启用</strong><code>加签</code>，加签的秘钥，形如：<code>SEC1234567890abcdefg</code>。</td>
+          <td>通知渠道钉钉，如需使用需要和 DD_BOT_TOKEN 同时赋值，机器人设置中<strong>只启用</strong><code>加签</code>，加签的秘钥，形如：<code>SEC1234567890abcdefg</code>。</td>
       </tr>
       <tr>
           <td style="text-align: center">21</td>
           <td style="text-align: center">IYUU_TOKEN</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">通知渠道爱语飞飞，通过 <a class="link" href="http://iyuu.cn"  target="_blank" rel="noopener"
+          <td>通知渠道爱语飞飞，通过 <a class="link" href="http://iyuu.cn"  target="_blank" rel="noopener"
     >这里</a> 获取，爱语飞飞的TOKEN。</td>
       </tr>
       <tr>
           <td style="text-align: center">22</td>
           <td style="text-align: center">SCKEY</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">通知渠道ServerChan，通过 <a class="link" href="http://sc.ftqq.com/3.version"  target="_blank" rel="noopener"
+          <td>通知渠道ServerChan，通过 <a class="link" href="http://sc.ftqq.com/3.version"  target="_blank" rel="noopener"
     >这里</a> 获取。</td>
       </tr>
       <tr>
           <td style="text-align: center">23</td>
           <td style="text-align: center">PUSHPLUS_TOKEN</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.7+可用。通知渠道PUSH PLUS，填入其token，详见 <a class="link" href="http://www.pushplus.plus"  target="_blank" rel="noopener"
+          <td>4.3.7+可用。通知渠道PUSH PLUS，填入其token，详见 <a class="link" href="http://www.pushplus.plus"  target="_blank" rel="noopener"
     >这里</a>。</td>
       </tr>
       <tr>
           <td style="text-align: center">24</td>
           <td style="text-align: center">WORK_WECHAT_BOT_KEY</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.9及4.4.3+可用。通知渠道企业微信群机器人，填入机器人设置webhook链接中<code>key=</code>后面的字符串，不含<code>key=</code>。</td>
+          <td>4.3.9及4.4.3+可用。通知渠道企业微信群机器人，填入机器人设置webhook链接中<code>key=</code>后面的字符串，不含<code>key=</code>。</td>
       </tr>
       <tr>
           <td style="text-align: center">25</td>
           <td style="text-align: center">GOTIFY_URL</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.9及4.4.4+可用。通知渠道Gotify，填入其通知网址，需要和<code>GOTIFY_APP_TOKEN</code>同时赋值。</td>
+          <td>4.3.9及4.4.4+可用。通知渠道Gotify，填入其通知网址，需要和<code>GOTIFY_APP_TOKEN</code>同时赋值。</td>
       </tr>
       <tr>
           <td style="text-align: center">26</td>
           <td style="text-align: center">GOTIFY_APP_TOKEN</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.9及4.4.4+可用。通知渠道Gotify，填入其TOKEN，需要和<code>GOTIFY_URL</code>同时赋值。</td>
+          <td>4.3.9及4.4.4+可用。通知渠道Gotify，填入其TOKEN，需要和<code>GOTIFY_URL</code>同时赋值。</td>
       </tr>
       <tr>
           <td style="text-align: center">27</td>
           <td style="text-align: center">GOTIFY_PRIORITY</td>
           <td style="text-align: center">5</td>
-          <td style="text-align: left">4.3.9及4.4.4+可用。通知渠道Gotify，发送消息的优先级。</td>
+          <td>4.3.9及4.4.4+可用。通知渠道Gotify，发送消息的优先级。</td>
       </tr>
       <tr>
           <td style="text-align: center">28</td>
           <td style="text-align: center">CRON_HEALTH_CHECK</td>
           <td style="text-align: center">12 * * * *</td>
-          <td style="text-align: left">宕机检查的cron，在设定的cron运行时如发现qbittorrent-nox宕机了，则向设置的通知渠道发送通知。<strong>4.6.1+可以设置为<code>off</code>，意为关闭此定时任务。</strong></td>
+          <td>宕机检查的cron，在设定的cron运行时如发现qbittorrent-nox宕机了，则向设置的通知渠道发送通知。<strong>4.6.1+可以设置为<code>off</code>，意为关闭此定时任务。</strong></td>
       </tr>
       <tr>
           <td style="text-align: center">29</td>
           <td style="text-align: center">CRON_AUTO_CATEGORY</td>
           <td style="text-align: center">32 */2 * * *</td>
-          <td style="text-align: left">自动分类的cron，在设定的cron运行<code>auto-cat -a</code>命令，将所有<strong>未分类</strong>种子按tracker分类（当<code>CATEGORY_OR_TAG=category</code>时），或将所有种子按tracker打标签（当<code>CATEGORY_OR_TAG=tag</code>时）。对于种子很多的大户人家，建议把cron频率修改低一些，一天一次即可。此cron可以由<code>ENABLE_AUTO_CATEGORY</code>关闭，关闭后不生效。虽然本变量是全版本有效，但控制采用“分类”还是“标签”的变量<code>CATEGORY_OR_TAG</code>仅4.3.9和4.5.0+有效。</td>
+          <td>自动分类的cron，在设定的cron运行<code>auto-cat -a</code>命令，将所有<strong>未分类</strong>种子按tracker分类（当<code>CATEGORY_OR_TAG=category</code>时），或将所有种子按tracker打标签（当<code>CATEGORY_OR_TAG=tag</code>时）。对于种子很多的大户人家，建议把cron频率修改低一些，一天一次即可。此cron可以由<code>ENABLE_AUTO_CATEGORY</code>关闭，关闭后不生效。虽然本变量是全版本有效，但控制采用“分类”还是“标签”的变量<code>CATEGORY_OR_TAG</code>仅4.3.9和4.5.0+有效。</td>
       </tr>
       <tr>
           <td style="text-align: center">30</td>
           <td style="text-align: center">CRON_TRACKER_ERROR</td>
           <td style="text-align: center">52 */4 * * *</td>
-          <td style="text-align: left">检查tracker状态是否健康的cron，在设定的cron将检查所有种子的tracker状态，如果有问题就打上<code>TrackerError</code>的标签。在运行的时候比较吃资源，所以对于种子很多的大户人家，或者是对此不那么敏感的用户，建议把cron频率修改低一些，一天一次即可。<strong>4.6.1+可以设置为<code>off</code>，意为关闭此定时任务。</strong></td>
+          <td>检查tracker状态是否健康的cron，在设定的cron将检查所有种子的tracker状态，如果有问题就打上<code>TrackerError</code>的标签。在运行的时候比较吃资源，所以对于种子很多的大户人家，或者是对此不那么敏感的用户，建议把cron频率修改低一些，一天一次即可。<strong>4.6.1+可以设置为<code>off</code>，意为关闭此定时任务。</strong></td>
       </tr>
       <tr>
           <td style="text-align: center">31</td>
           <td style="text-align: center">MONITOR_IP</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.8+可用。可设置为局域网设备的ip，多个ip以半角空格分隔，形如：<code>192.168.1.5 192.168.1.9 192.168.1.20</code>。本变量作用：当检测到这些设置的ip中有任何一个ip在线时（检测频率为每分钟），自动启用qbittorent客户端的“备用速度限制”，如果都不在线就关闭“备用速度限制”。“备用速度限制”需要事先设置好限制速率，建议在路由器上给需要设置的设备固定ip。在docker cli中请使用一对双引号引起来，在docker-compose中不要使用引用。</td>
+          <td>4.3.8+可用。可设置为局域网设备的ip，多个ip以半角空格分隔，形如：<code>192.168.1.5 192.168.1.9 192.168.1.20</code>。本变量作用：当检测到这些设置的ip中有任何一个ip在线时（检测频率为每分钟），自动启用qbittorent客户端的“备用速度限制”，如果都不在线就关闭“备用速度限制”。“备用速度限制”需要事先设置好限制速率，建议在路由器上给需要设置的设备固定ip。在docker cli中请使用一对双引号引起来，在docker-compose中不要使用引用。</td>
       </tr>
       <tr>
           <td style="text-align: center">32</td>
           <td style="text-align: center">CRON_ALTER_LIMITS</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.8+可用。启动和关闭“备用速度限制“的cron，主要针对多时段限速场景，当设置了<code>MONITOR_IP</code>时本变量的cron不生效（因为会冲突）。详见 <a class="link" href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-cron_alter_limits-%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" >相关问题13</a> 问题13。</td>
+          <td>4.3.8+可用。启动和关闭“备用速度限制“的cron，主要针对多时段限速场景，当设置了<code>MONITOR_IP</code>时本变量的cron不生效（因为会冲突）。详见 <a class="link" href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-cron_alter_limits-%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" >相关问题13</a> 问题13。</td>
       </tr>
       <tr>
           <td style="text-align: center">33</td>
           <td style="text-align: center">CRON_IYUU_HELP</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.8+可用。IYUUPlus辅助任务的cron，自动重校验、自动恢复做种，详见 <a class="link" href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-cron_iyuu_help-%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" >相关问题14</a>。</td>
+          <td>4.3.8+可用。IYUUPlus辅助任务的cron，自动重校验、自动恢复做种，详见 <a class="link" href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-cron_iyuu_help-%e8%bf%99%e4%b8%aa%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" >相关问题14</a>。</td>
       </tr>
       <tr>
           <td style="text-align: center">34</td>
           <td style="text-align: center">EXTRA_PACKAGES</td>
           <td style="text-align: center"></td>
-          <td style="text-align: left">4.3.9+可用。你需要安装的其他软件包，形如<code>htop nano nodejs</code>，多个软件包用半角空格分开，在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。</td>
+          <td>4.3.9+可用。你需要安装的其他软件包，形如<code>htop nano nodejs</code>，多个软件包用半角空格分开，在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。</td>
       </tr>
   </tbody>
 </table></div>
@@ -1022,7 +1029,7 @@
           <th style="text-align: center">序号</th>
           <th style="text-align: center">变量名</th>
           <th style="text-align: center">默认值</th>
-          <th style="text-align: left">说明</th>
+          <th>说明</th>
       </tr>
   </thead>
   <tbody>
@@ -1030,7 +1037,7 @@
           <td style="text-align: center">1</td>
           <td style="text-align: center">IYUU_REPO_URL</td>
           <td style="text-align: center"><code>https://gitee.com/ledc/iyuuplus.git</code></td>
-          <td style="text-align: left">指定从哪里获取IYUUPlus的代码，默认从gitee更新，如果你想从github更新，可以设置为：<code>https://github.com/ledccn/IYUUPlus.git</code></td>
+          <td>指定从哪里获取IYUUPlus的代码，默认从gitee更新，如果你想从github更新，可以设置为：<code>https://github.com/ledccn/IYUUPlus.git</code></td>
       </tr>
   </tbody>
 </table></div>
@@ -1892,7 +1899,7 @@
 
 
         <span>
-            最后更新于 2024-10-08 15:42
+            最后更新于 2024-10-29 17:39
         </span>
     </section></footer>
 
