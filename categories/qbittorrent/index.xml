@@ -369,7 +369,7 @@
           &lt;td style=&#34;text-align: center&#34;&gt;4.6.5&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;2.0.10&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;3.20.0&lt;/td&gt;
-          &lt;td&gt;因&lt;code&gt;IYUUPlus&lt;/code&gt;调整了架构，从此版本起，不再构建集成了&lt;code&gt;IYUUPlus&lt;/code&gt;的标签。&lt;/td&gt;
+          &lt;td&gt;因&lt;code&gt;IYUUPlus&lt;/code&gt;调整了架构，从此版本起，不再构建集成了&lt;code&gt;IYUUPlus&lt;/code&gt;的标签。从此版本起，&lt;code&gt;ENABLE_AUTO_CATEGORY&lt;/code&gt;默认值调整为&lt;code&gt;false&lt;/code&gt;。&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;2024-08-20&lt;/td&gt;
@@ -395,6 +395,13 @@
       &lt;tr&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;2024-10-29&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;5.0.1&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2.0.10&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3.20.3&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2024-11-18&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;5.0.2&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;2.0.10&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;3.20.3&lt;/td&gt;
           &lt;td&gt;&lt;/td&gt;
