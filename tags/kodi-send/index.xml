@@ -6,7 +6,7 @@
         <description>Recent content in Kodi-Send on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 21 Dec 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/kodi-send/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 14 Dec 2023 13:12:09 +0800</lastBuildDate><atom:link href="https://evine.win/tags/kodi-send/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>kodi-send使用相关说明</title>
         <link>https://evine.win/p/kodi-send-help/</link>
         <pubDate>Wed, 21 Dec 2022 00:00:00 +0800</pubDate>
@@ -26,12 +26,12 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令是Kodi自带命令行工具，可以安全的操控Kodi，除了下文使用的&lt;code&gt;Quit&lt;/code&gt;指令，还有很多指令可以使用，方便想要自动化操作的人来使用，具体可用的指令见：&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Action_IDs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令是Kodi自带命令行工具，可以安全的操控Kodi，除了下文使用的&lt;code&gt;Quit&lt;/code&gt;指令，还有很多指令可以使用，方便想要自动化操作的人来使用，具体可用的指令见：&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Action_IDs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Action_IDs&lt;/a&gt; 及 &lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/List_of_built-in_functions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;List_of_built-in_functions&lt;/a&gt; 。&lt;/p&gt;
-&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;请先按照 &lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt; 教程添加好&lt;code&gt;deb-multimedia&lt;/code&gt;软件源。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令需要安装&lt;code&gt;kodi-eventclients-common&lt;/code&gt;（如果未启用&lt;code&gt;deb-multimedia&lt;/code&gt;源，则需要安装debian官方源中的&lt;code&gt;kodi-eventclients-kodi-send&lt;/code&gt;）：&lt;/p&gt;
@@ -52,8 +52,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install -t bullseye-backports kodi-eventclients-common
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;设置&#34;&gt;设置&lt;/h2&gt;
-&lt;p&gt;如需要使用&lt;code&gt;kodi-send&lt;/code&gt;命令，需要在“Kodi设置-&amp;gt;服务-&amp;gt;控制”处勾选“允许通过本机应用远程控制”。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;设置&#34;&gt;设置
+&lt;/h2&gt;&lt;p&gt;如需要使用&lt;code&gt;kodi-send&lt;/code&gt;命令，需要在“Kodi设置-&amp;gt;服务-&amp;gt;控制”处勾选“允许通过本机应用远程控制”。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-send-help/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
@@ -68,8 +68,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
-&lt;p&gt;输入&lt;code&gt;kodi-send --help&lt;/code&gt;即可查看。&lt;/p&gt;
+&lt;h2 id=&#34;使用&#34;&gt;使用
+&lt;/h2&gt;&lt;p&gt;输入&lt;code&gt;kodi-send --help&lt;/code&gt;即可查看。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -146,8 +146,8 @@
     &gt;Action_IDs&lt;/a&gt; 及 &lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/List_of_built-in_functions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;List_of_built-in_functions&lt;/a&gt;，全部按键见：&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Keyboard_controls&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Keyboard_controls&lt;/a&gt; 。&lt;/p&gt;
-&lt;h2 id=&#34;其他应用场景&#34;&gt;其他应用场景&lt;/h2&gt;
-&lt;p&gt;针对《&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》中的&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;服务，可以修改&lt;code&gt;ExecStop&lt;/code&gt;这一行为：&lt;/p&gt;
+&lt;h2 id=&#34;其他应用场景&#34;&gt;其他应用场景
+&lt;/h2&gt;&lt;p&gt;针对《&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》中的&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;服务，可以修改&lt;code&gt;ExecStop&lt;/code&gt;这一行为：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1

@@ -6,15 +6,15 @@
         <description>Recent content in Nginx on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 22 Oct 2023 03:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/nginx/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 14 Oct 2024 22:37:05 +0800</lastBuildDate><atom:link href="https://evine.win/tags/nginx/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（七）</title>
         <link>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/</link>
         <pubDate>Sun, 22 Oct 2023 03:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）" /&gt;&lt;h2 id=&#34;文件准备&#34;&gt;文件准备&lt;/h2&gt;
-&lt;h3 id=&#34;nginx&#34;&gt;nginx&lt;/h3&gt;
-&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;nginx&lt;/code&gt; 了。新建 &lt;code&gt;/etc/nginx/conf.d/private.conf&lt;/code&gt;，内容如下：&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）" /&gt;&lt;h2 id=&#34;文件准备&#34;&gt;文件准备
+&lt;/h2&gt;&lt;h3 id=&#34;nginx&#34;&gt;nginx
+&lt;/h3&gt;&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;nginx&lt;/code&gt; 了。新建 &lt;code&gt;/etc/nginx/conf.d/private.conf&lt;/code&gt;，内容如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -51,8 +51,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果 &lt;code&gt;nginx&lt;/code&gt; 已经启动起来了，那么重新读取下：&lt;code&gt;nginx -s reload&lt;/code&gt;；如果 &lt;code&gt;nginx&lt;/code&gt; 还没有启动，那么就启动它： &lt;code&gt;systemctl restart nginx.service&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;然后，放在 &lt;code&gt;/var/www/html&lt;/code&gt; 下面的文件，可以通过网址 &lt;code&gt;http://10.0.0.2/XXXXX&lt;/code&gt; 来下载，也就是说，我们后面创建的 &lt;code&gt;/var/www/html/config_template.yaml&lt;/code&gt; 和  &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt; 等等文件，可以通过网址 &lt;code&gt;http://10.0.0.2/config_template.yaml&lt;/code&gt; &lt;code&gt;http://10.0.0.2/convert_rule.ini&lt;/code&gt; 来下载。&lt;/p&gt;
-&lt;h3 id=&#34;clash配置模板&#34;&gt;clash配置模板&lt;/h3&gt;
-&lt;p&gt;为 &lt;code&gt;clash&lt;/code&gt; 订阅制作适合你自己的模板，根据 &lt;a class=&#34;link&#34; href=&#34;https://wiki.metacubex.one/config/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;clash配置模板&#34;&gt;clash配置模板
+&lt;/h3&gt;&lt;p&gt;为 &lt;code&gt;clash&lt;/code&gt; 订阅制作适合你自己的模板，根据 &lt;a class=&#34;link&#34; href=&#34;https://wiki.metacubex.one/config/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;clash meta wiki&lt;/a&gt;，自行创建 &lt;code&gt;/var/www/html/config_template.yaml&lt;/code&gt;。以下是我的。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -262,8 +262,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;+.*&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;subconverter转换规则&#34;&gt;subconverter转换规则&lt;/h3&gt;
-&lt;p&gt;制作自己的 &lt;code&gt;subconverter&lt;/code&gt; 转换配置，新建 &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt; ，详细的格式见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tindy2013/subconverter/blob/master/README-cn.md#%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h3 id=&#34;subconverter转换规则&#34;&gt;subconverter转换规则
+&lt;/h3&gt;&lt;p&gt;制作自己的 &lt;code&gt;subconverter&lt;/code&gt; 转换配置，新建 &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt; ，详细的格式见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tindy2013/subconverter/blob/master/README-cn.md#%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;subconverter外部配置&lt;/a&gt;，在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash/config&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt; 有大量的参考文件。&lt;/p&gt;
 &lt;p&gt;下面是我的 &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt;，不要照抄，抄了也用不了。还是需要按照上一段提及的材料自行准备适合自己的。注意到我们自己形成了 &lt;code&gt;ruleset=🎶 网易音乐,http://10.0.0.2/clash/neteasemusic.list&lt;/code&gt;，用 &lt;code&gt;(^(?!.*网易).*)&lt;/code&gt; 在常规节点中排除了我们自建的 &lt;code&gt;UnblockNeteaseMusic&lt;/code&gt; 节点，以及设置了专门的分组 &lt;code&gt;custom_proxy_group=🎶 网易音乐&lt;/code&gt;，这都是为解锁网易云音乐服务的。另外，还要注意到我们在这个文件中使用 &lt;code&gt;clash_rule_base=http://10.0.0.2/config_template.yaml&lt;/code&gt; 来引用了前一步创建的 &lt;code&gt;clash&lt;/code&gt; 配置模板。&lt;/p&gt;
@@ -547,8 +547,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;append_sub_userinfo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;true&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;网易云音乐域名与ip规则&#34;&gt;网易云音乐域名与IP规则&lt;/h3&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;#subconverter%e8%bd%ac%e6%8d%a2%e9%85%8d%e7%bd%ae&#34; &gt;subconverter转换配置&lt;/a&gt; 中，我们引用了 &lt;code&gt;http://10.0.0.2/neteasemusic.list&lt;/code&gt;，现在我们对它初始化。新建 &lt;code&gt;/var/www/html/neteasemusic.list&lt;/code&gt;，内容如下，接下来我们会用脚本自动更新它。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;网易云音乐域名与ip规则&#34;&gt;网易云音乐域名与IP规则
+&lt;/h3&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;#subconverter%e8%bd%ac%e6%8d%a2%e9%85%8d%e7%bd%ae&#34; &gt;subconverter转换配置&lt;/a&gt; 中，我们引用了 &lt;code&gt;http://10.0.0.2/neteasemusic.list&lt;/code&gt;，现在我们对它初始化。新建 &lt;code&gt;/var/www/html/neteasemusic.list&lt;/code&gt;，内容如下，接下来我们会用脚本自动更新它。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -603,8 +603,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IP-CIDR,193.112.159.225/32,no-resolve
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;网易云音乐的代理配置&#34;&gt;网易云音乐的代理配置&lt;/h3&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;前文（五）&lt;/a&gt; 中我们手动设置了网易云音乐的代理，现在我们为接下来的自动订阅创建一个文件：&lt;code&gt;/var/www/html/neteasemusic.yaml&lt;/code&gt;，内容如下：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;网易云音乐的代理配置&#34;&gt;网易云音乐的代理配置
+&lt;/h3&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;前文（五）&lt;/a&gt; 中我们手动设置了网易云音乐的代理，现在我们为接下来的自动订阅创建一个文件：&lt;code&gt;/var/www/html/neteasemusic.yaml&lt;/code&gt;，内容如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -621,8 +621,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;工具准备&#34;&gt;工具准备&lt;/h2&gt;
-&lt;p&gt;后面的脚本中还要用到两个工具。下载 &lt;a class=&#34;link&#34; href=&#34;v2dat&#34; &gt;v2dat&lt;/a&gt; 保存为 &lt;code&gt;/usr/local/bin/v2dat&lt;/code&gt;，下载 &lt;a class=&#34;link&#34; href=&#34;https://github.com/zhanhb/cidr-merger/releases/download/v1.1.3/cidr-merger-linux-amd64&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h2 id=&#34;工具准备&#34;&gt;工具准备
+&lt;/h2&gt;&lt;p&gt;后面的脚本中还要用到两个工具。下载 &lt;a class=&#34;link&#34; href=&#34;v2dat&#34; &gt;v2dat&lt;/a&gt; 保存为 &lt;code&gt;/usr/local/bin/v2dat&lt;/code&gt;，下载 &lt;a class=&#34;link&#34; href=&#34;https://github.com/zhanhb/cidr-merger/releases/download/v1.1.3/cidr-merger-linux-amd64&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;cidr-merger&lt;/a&gt; 保存为 &lt;code&gt;/usr/local/bin/cidr-merger&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;然后为它们增加可执行权限：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -648,8 +648,8 @@
     &gt;https://github.com/sbwml/luci-app-mosdns&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;自动脚本&#34;&gt;自动脚本&lt;/h2&gt;
-&lt;p&gt;为了自动备份旧的订阅文件，防止出错，我们使用将 &lt;code&gt;/var/lib/clash/config.yaml&lt;/code&gt; 软连接到 &lt;code&gt;/var/lib/clash/config/subscribes_name1.yaml&lt;/code&gt;（ &lt;code&gt;subscribes_name1&lt;/code&gt; 由你自行定义，请和下文的脚本中的命名保持一致）。后续脚本中会自动删除超过30天的旧订阅。&lt;/p&gt;
+&lt;h2 id=&#34;自动脚本&#34;&gt;自动脚本
+&lt;/h2&gt;&lt;p&gt;为了自动备份旧的订阅文件，防止出错，我们使用将 &lt;code&gt;/var/lib/clash/config.yaml&lt;/code&gt; 软连接到 &lt;code&gt;/var/lib/clash/config/subscribes_name1.yaml&lt;/code&gt;（ &lt;code&gt;subscribes_name1&lt;/code&gt; 由你自行定义，请和下文的脚本中的命名保持一致）。后续脚本中会自动删除超过30天的旧订阅。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1268,10 +1268,10 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;SHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n19 1 * * * update-config.sh &amp;gt;/dev/null&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; crontab -
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;最后&#34;&gt;最后&lt;/h2&gt;
-&lt;p&gt;脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;本系列&lt;/a&gt; 接下来的文章中，将继续配置其他服务。&lt;/p&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;最后&#34;&gt;最后
+&lt;/h2&gt;&lt;p&gt;脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;本系列&lt;/a&gt; 接下来的文章中，将继续配置其他服务。&lt;/p&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;

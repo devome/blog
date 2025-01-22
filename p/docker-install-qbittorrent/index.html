@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 本文较长，如想略过某些内容，请直接点击右侧目录链接。
-说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。
-'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 本文较长，如想略过某些内容，请直接点击右侧目录链接。\n说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。\n">
 <title>一款更懂你的 qbittorrent docker 镜像</title>
 
 <link rel='canonical' href='https://evine.win/p/docker-install-qbittorrent/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='一款更懂你的 qbittorrent docker 镜像'>
-<meta property='og:description' content=' 本文较长，如想略过某些内容，请直接点击右侧目录链接。
-说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。
-'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="一款更懂你的 qbittorrent docker 镜像">
+<meta property='og:description' content=" 本文较长，如想略过某些内容，请直接点击右侧目录链接。\n说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。\n">
 <meta property='og:url' content='https://evine.win/p/docker-install-qbittorrent/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-12-18T19:30:17&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
 <meta name="twitter:title" content="一款更懂你的 qbittorrent docker 镜像">
-<meta name="twitter:description" content=" 本文较长，如想略过某些内容，请直接点击右侧目录链接。
-说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。
-"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content=" 本文较长，如想略过某些内容，请直接点击右侧目录链接。\n说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -95,7 +89,7 @@
             <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -198,31 +192,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://evine.win/" selected></option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -230,7 +205,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,10 +213,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -410,15 +386,15 @@
     <blockquote>
 <p>本文较长，如想略过某些内容，请直接点击右侧目录链接。</p>
 </blockquote>
-<h2 id="说明">说明</h2>
-<p>为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。<a class="link" href="https://github.com/devome/dockerfiles/issues/101"  target="_blank" rel="noopener"
+<h2 id="说明">说明
+</h2><p>为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。<a class="link" href="https://github.com/devome/dockerfiles/issues/101"  target="_blank" rel="noopener"
     >详情</a>。也因此镜像默认即安装好python，不再需要设置<code>INSTALL_PYTHON</code>这个环境变量。</p>
-<h2 id="声明">声明</h2>
-<p>本镜像非魔改版、非快验版、非Enhanced增强版，qBittorrent自身的行为/功能全部未做任何改动（也不会考虑添加或修改官方客户端行为/功能的内容），全部属于官方客户端的默认行为/功能，在和PT站Tracker服务器交互时反馈的一切信息均是qBittorrent官方版反馈的信息。本镜像只是基于官方客户端附加了一些实用的脚本，脚本全部是合理合法使用qBittorrent官方API获取信息，脚本全部行为都集中在本地，与任何远端服务器无任何联系。增加的脚本全部代码在 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
+<h2 id="声明">声明
+</h2><p>本镜像非魔改版、非快验版、非Enhanced增强版，qBittorrent自身的行为/功能全部未做任何改动（也不会考虑添加或修改官方客户端行为/功能的内容），全部属于官方客户端的默认行为/功能，在和PT站Tracker服务器交互时反馈的一切信息均是qBittorrent官方版反馈的信息。本镜像只是基于官方客户端附加了一些实用的脚本，脚本全部是合理合法使用qBittorrent官方API获取信息，脚本全部行为都集中在本地，与任何远端服务器无任何联系。增加的脚本全部代码在 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
     >Github</a> 或 <a class="link" href="https://gitee.com/evine/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
     >Gitee</a> 均可查看 。绝对不会因为使用此镜像而导致账号被封。</p>
-<h2 id="效果图">效果图</h2>
-<p><img src="https://s3.bmp.ovh/imgs/2023/03/16/d81ef270f591ed4c.gif"
+<h2 id="效果图">效果图
+</h2><p><img src="https://s3.bmp.ovh/imgs/2023/03/16/d81ef270f591ed4c.gif"
 	
 	
 	
@@ -498,8 +474,8 @@
 	
 	
 ></p>
-<h2 id="特点">特点</h2>
-<ul>
+<h2 id="特点">特点
+</h2><ul>
 <li>
 <p>自动按<code>tracker</code>分类或打标签（<strong>可以选择关闭，可以选择采用qBittorrent中的“分类”还是“标签”</strong>）。</p>
 </li>
@@ -531,8 +507,8 @@
     >IYUUPlus</a>，自动设置好下载器，减少IYUUPlus设置复杂程度。</p>
 </li>
 </ul>
-<h2 id="标签">标签</h2>
-<ol>
+<h2 id="标签">标签
+</h2><ol>
 <li>
 <p><strong><code>4.x.x</code> , <code>latest</code></strong>: 标签以纯数字版本号命名，这是qBittorrent正式发布的稳定版，其中最新的版本额外增加<code>latest</code>标签。</p>
 </li>
@@ -548,8 +524,8 @@
 <p><strong><code>edge</code></strong>: 基于<code>alpine:edge</code>制作的镜像，体积最小，所依赖的组件版本最新，会提供<code>riscv64</code>版本镜像。<strong>所有新功能或者BUG修复，或者有任何变化时，都会第一时间更新到此标签。</strong></p>
 </li>
 </ol>
-<h2 id="更新日志仅列出稳定版">更新日志（仅列出稳定版）</h2>
-<div class="table-wrapper"><table>
+<h2 id="更新日志仅列出稳定版">更新日志（仅列出稳定版）
+</h2><div class="table-wrapper"><table>
   <thead>
       <tr>
           <th style="text-align: center">Date</th>
@@ -811,8 +787,8 @@
       </tr>
   </tbody>
 </table></div>
-<h2 id="环境变量清单">环境变量清单</h2>
-<p>在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中<code>WEBUI_PORT</code> <code>BT_PORT</code>的形式自行补充添加到创建命令中。</p>
+<h2 id="环境变量清单">环境变量清单
+</h2><p>在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中<code>WEBUI_PORT</code> <code>BT_PORT</code>的形式自行补充添加到创建命令中。</p>
 <p><em>注1：默认值的含义是，你不设置这个环境变量为其他值，那么程序就自动使用默认值。</em></p>
 <p><em>注2：所有定时任务cron类的环境变量（以<code>CRON</code>这四个字母开头的）在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。</em></p>
 <p><em>注3：<strong><code>QB_USERNAME</code>和<code>QB_PASSWORD</code>必须改成非默认值，除此以外，其余所有环境变量你都可以不设置，并不影响qbittorrent的使用</strong>，但如果你想用得更爽，你就根据你的需要设置。</em></p>
@@ -1055,9 +1031,9 @@
       </tr>
   </tbody>
 </table></div>
-<h2 id="创建">创建</h2>
-<h3 id="群晖">群晖</h3>
-<p><img src="/p/docker-install-qbittorrent/pic1.png"
+<h2 id="创建">创建
+</h2><h3 id="群晖">群晖
+</h3><p><img src="/p/docker-install-qbittorrent/pic1.png"
 	width="1061"
 	height="571"
 	srcset="/p/docker-install-qbittorrent/pic1_hu9834882273691390814.png 480w, /p/docker-install-qbittorrent/pic1_hu17703110641140395457.png 1024w"
@@ -1226,8 +1202,8 @@
 	
 ></p>
 <p>安装后访问<code>http://ip:8080</code>。如想使用集成了IYUUPlus的qBittorrent（自动设置好IYUUPlus中的下载器），请使用docker cli以命令行方式部署。</p>
-<h3 id="命令行docker-cli">命令行docker cli</h3>
-<ul>
+<h3 id="命令行docker-cli">命令行docker cli
+</h3><ul>
 <li>
 <p>除<code>WEBUI_PORT</code> <code>BT_PORT</code> <code>PUID</code> <code>PGID</code>这几个环境变量外，如果你还需要使用其他环境变量，请根据<a class="link" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%b8%85%e5%8d%95" >环境变量清单</a>按照<code>-e 变量名=&quot;变量值&quot; \</code>的形式自行添加在创建命令中。</p>
 </li>
@@ -1312,8 +1288,8 @@
 </span></span><span class="line"><span class="cl">  nevinee/qbittorrent:iyuu
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="docker-compose">docker compose</h3>
-<p>新建<code>compose.yml</code>文件如下（<a class="link" href="https://docs.docker.com/compose/cli-command/"  target="_blank" rel="noopener"
+</div><h3 id="docker-compose">docker compose
+</h3><p>新建<code>compose.yml</code>文件如下（<a class="link" href="https://docs.docker.com/compose/cli-command/"  target="_blank" rel="noopener"
     >docker compose安装方法</a>），创建好后以<code>docker-compose up -d</code>(旧版)或<code>docker compose up -d</code>(新版)命令启动即可。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1454,8 +1430,8 @@
 <p>针对<code>iyuu</code>标签，创建后可访问<code>http://&lt;IP&gt;:8787</code>进行IYUUPlus设置。</p>
 </li>
 </ul>
-<h2 id="目录说明">目录说明</h2>
-<p>如果按照上述任何一种部署方式，在映射的目录下会有以下文件夹：</p>
+<h2 id="目录说明">目录说明
+</h2><p>如果按照上述任何一种部署方式，在映射的目录下会有以下文件夹：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1509,12 +1485,12 @@
 </div><p><em>有两个星号标记的文件或目录是重要目录，恢复数据必须要有这几个。</em></p>
 <p><em>在 <a class="link" href="https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs"  target="_blank" rel="noopener"
     >这里</a> 可以查阅所有可用的非官方webui。</em></p>
-<h2 id="相关问题">相关问题</h2>
-<h3 id="使用此镜像会导致封号吗">使用此镜像会导致封号吗</h3>
-<p>此镜像未修改qbittorrent客户端官方任何信息，在和pt站tracker服务器交互时反馈的一切信息均是qbittorrent官方原版反馈的信息，此镜像只是基于qbittorrent额外增加了一些脚本而已。增加的脚本全部代码在 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
+<h2 id="相关问题">相关问题
+</h2><h3 id="使用此镜像会导致封号吗">使用此镜像会导致封号吗
+</h3><p>此镜像未修改qbittorrent客户端官方任何信息，在和pt站tracker服务器交互时反馈的一切信息均是qbittorrent官方原版反馈的信息，此镜像只是基于qbittorrent额外增加了一些脚本而已。增加的脚本全部代码在 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
     >这里</a> 可以查看，不会因为使用此镜像导致pt账号被封。</p>
-<h3 id="如何在运行-dl-finish-k-时调用自定义脚本">如何在运行 dl-finish &ldquo;%K&rdquo; 时调用自定义脚本</h3>
-<ul>
+<h3 id="如何在运行-dl-finish-k-时调用自定义脚本">如何在运行 dl-finish &ldquo;%K&rdquo; 时调用自定义脚本
+</h3><ul>
 <li>
 <p>此功能可用版本：4.3.7+；</p>
 </li>
@@ -1535,8 +1511,8 @@
     >这里</a> 操作。</p>
 </li>
 </ul>
-<h3 id="如何优雅的关闭qbittorrent容器">如何优雅的关闭qbittorrent容器</h3>
-<ul>
+<h3 id="如何优雅的关闭qbittorrent容器">如何优雅的关闭qbittorrent容器
+</h3><ul>
 <li>
 <p>暴力强制关闭qbittorrent容器自然是容易丢失任务的，所以在关闭前应当先将所有种子暂停，过一会再关闭容器。这时，所有的配置文件和torrent恢复文件也都是暂停后的状态，然后再新建容器或重新部署，启动后再开始所有任务。</p>
 </li>
@@ -1544,8 +1520,8 @@
 <p>还有一点要注意，千万不要在有下载任务时关闭或重启qbittorrent容器。</p>
 </li>
 </ul>
-<h3 id="如何从其他作者的镜像套件版转移至本镜像">如何从其他作者的镜像/套件版转移至本镜像</h3>
-<ul>
+<h3 id="如何从其他作者的镜像套件版转移至本镜像">如何从其他作者的镜像/套件版转移至本镜像
+</h3><ul>
 <li>
 <p><strong>如果启用了ssl/https，请先在原qbittorrent的webui中禁用，或者将<code>qBittorrent.conf</code>中<code>WebUI\HTTPS\Enabled=true</code>改为<code>WebUI\HTTPS\Enabled=false</code>。</strong></p>
 </li>
@@ -1565,14 +1541,14 @@
 <p>注意在 <code>设置</code> -&gt; <code>下载</code> 中勾选 <code>Torrent 完成时运行外部程序</code> 并填入 <code>dl-finish &quot;%K&quot;</code>，如需要https要重新设置证书路径。</p>
 </li>
 </ul>
-<h3 id="可不可以不使用默认下载目录">可不可以不使用默认下载目录</h3>
-<p>默认下载目录是<code>/data/downloads</code>，如不想使用默认下载目录，可以额外映射其他路径，比如映射<code>/volume1/media:/media</code>，然后在qbittorrent中设置默认下载目录为<code>/media</code>，也可以在每次下载时自己输入下载目录为<code>/media</code>。</p>
-<h3 id="遗忘登陆密码如何重置">遗忘登陆密码如何重置</h3>
-<p>重启一次容器即可，启动时容器会自动以你创建容器时定义的环境变量<code>QB_USERNAME</code>和<code>QB_PASSWORD</code>去设置登陆qBittorrent的用户名和密码。</p>
-<h3 id="如何与emby-jellyfin-plex等等配合使用">如何与emby, jellyfin, plex等等配合使用</h3>
-<p>将需要配合使用的容器的环境变量PUID/PGID设置为一样的即可。</p>
-<h3 id="启用了其他非官方webui导致webui打不开如何关闭">启用了其他非官方webui，导致webui打不开，如何关闭</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="可不可以不使用默认下载目录">可不可以不使用默认下载目录
+</h3><p>默认下载目录是<code>/data/downloads</code>，如不想使用默认下载目录，可以额外映射其他路径，比如映射<code>/volume1/media:/media</code>，然后在qbittorrent中设置默认下载目录为<code>/media</code>，也可以在每次下载时自己输入下载目录为<code>/media</code>。</p>
+<h3 id="遗忘登陆密码如何重置">遗忘登陆密码如何重置
+</h3><p>重启一次容器即可，启动时容器会自动以你创建容器时定义的环境变量<code>QB_USERNAME</code>和<code>QB_PASSWORD</code>去设置登陆qBittorrent的用户名和密码。</p>
+<h3 id="如何与emby-jellyfin-plex等等配合使用">如何与emby, jellyfin, plex等等配合使用
+</h3><p>将需要配合使用的容器的环境变量PUID/PGID设置为一样的即可。</p>
+<h3 id="启用了其他非官方webui导致webui打不开如何关闭">启用了其他非官方webui，导致webui打不开，如何关闭
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1588,11 +1564,11 @@
 </span></span><span class="line"><span class="cl">source /usr/local/bin/share; $cmd_curl_post -d &#39;json={&#34;alternative_webui_enabled&#34;:false}&#39; $api_url_base/app/setPreferences
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="如何自动更新容器">如何自动更新容器</h3>
-<p>安装watchtower即可，详见 <a class="link" href="https://hub.docker.com/r/containrrr/watchtower"  target="_blank" rel="noopener"
+</div><h3 id="如何自动更新容器">如何自动更新容器
+</h3><p>安装watchtower即可，详见 <a class="link" href="https://hub.docker.com/r/containrrr/watchtower"  target="_blank" rel="noopener"
     >这里</a></p>
-<h3 id="安装了watchtower如何让qbittorrent不被watchtower自动更新">安装了watchtower，如何让qbittorrent不被watchtower自动更新</h3>
-<ul>
+<h3 id="安装了watchtower如何让qbittorrent不被watchtower自动更新">安装了watchtower，如何让qbittorrent不被watchtower自动更新
+</h3><ul>
 <li>
 <p>方法1：部署qbittorrent容器时，直接指定标签，如<code>nevinee/qbittorrent:4.3.7</code>；</p>
 </li>
@@ -1620,8 +1596,8 @@
 </div>
 </div></li>
 </ul>
-<h3 id="为何建议将qbittorrent安装在macvlan网络上">为何建议将qbittorrent安装在macvlan网络上</h3>
-<ul>
+<h3 id="为何建议将qbittorrent安装在macvlan网络上">为何建议将qbittorrent安装在macvlan网络上
+</h3><ul>
 <li>
 <p>可以在网关上给qbittorrent所在ip独立设置限速;</p>
 </li>
@@ -1629,10 +1605,10 @@
 <p>如果有用openwrt时，可以让qbittorrent所在ip跳过代理。</p>
 </li>
 </ul>
-<h3 id="将qbittorrent安装在macvlan网络上时如何使用iyuuautoreseed自动辅种">将qbittorrent安装在macvlan网络上时，如何使用IYUUAutoReseed自动辅种</h3>
-<p>将两个容器都安装在同一个macvlan网络上即可，或者直接安装<code>nevinee/qbittorrent:iyuu</code>标签。</p>
-<h3 id="如何使用-cron_alter_limits-这个环境变量">如何使用 CRON_ALTER_LIMITS 这个环境变量</h3>
-<ul>
+<h3 id="将qbittorrent安装在macvlan网络上时如何使用iyuuautoreseed自动辅种">将qbittorrent安装在macvlan网络上时，如何使用IYUUAutoReseed自动辅种
+</h3><p>将两个容器都安装在同一个macvlan网络上即可，或者直接安装<code>nevinee/qbittorrent:iyuu</code>标签。</p>
+<h3 id="如何使用-cron_alter_limits-这个环境变量">如何使用 CRON_ALTER_LIMITS 这个环境变量
+</h3><ul>
 <li>
 <p>4.3.8+可用。</p>
 </li>
@@ -1655,8 +1631,8 @@
 <p>在docker cli中请使用一对双引号引起来，在docker-compose.yml中请勿增加引号。</p>
 </li>
 </ul>
-<h3 id="如何使用-cron_iyuu_help-这个环境变量">如何使用 CRON_IYUU_HELP 这个环境变量</h3>
-<ul>
+<h3 id="如何使用-cron_iyuu_help-这个环境变量">如何使用 CRON_IYUU_HELP 这个环境变量
+</h3><ul>
 <li>
 <p>4.3.8+可用。</p>
 </li>
@@ -1677,8 +1653,8 @@
 <p>在docker cli中请使用一对双引号引起来，在docker-compose.yml中请勿增加引号。</p>
 </li>
 </ul>
-<h3 id="qbittorrent使用https的webui时iyuu如何连接">qBittorrent使用https的webui时，iyuu如何连接</h3>
-<ul>
+<h3 id="qbittorrent使用https的webui时iyuu如何连接">qBittorrent使用https的webui时，iyuu如何连接
+</h3><ul>
 <li>
 <p>当qBittorrent使用https的webui时，iyuu连接qBittorrent需要使用<code>https://&lt;域名&gt;:&lt;端口&gt;</code>的形式，不能使用<code>https://&lt;IP&gt;:&lt;端口&gt;</code>，所以需要在创建iyuu容器（使用nevinee/qbittorrent:iyuu时同样也需要）指定域名和ip的对应关系。</p>
 </li>
@@ -1699,8 +1675,8 @@
 </div>
 </div></li>
 </ul>
-<h3 id="qbittorrent占用了巨大的内存如何调整">qBittorrent占用了巨大的内存，如何调整</h3>
-<p>你所见到的占用巨大的内存并不是真的占用了，使用<code>docker stats qbittorrent</code>输出的内存占用更准确一点，其他方式输出的内存占用会非常的大。因为libtorrent-rasterbar v2.x把内存使用交给内核来处理，内核会自己根据内存大小和读取频次来自动决定怎么去缓存，所以不要被看起来庞大的内存占用给吓着了。详见libtorrent-rasterbar作者的<a class="link" href="https://github.com/arvidn/libtorrent/issues/6667#issuecomment-1040874903"  target="_blank" rel="noopener"
+<h3 id="qbittorrent占用了巨大的内存如何调整">qBittorrent占用了巨大的内存，如何调整
+</h3><p>你所见到的占用巨大的内存并不是真的占用了，使用<code>docker stats qbittorrent</code>输出的内存占用更准确一点，其他方式输出的内存占用会非常的大。因为libtorrent-rasterbar v2.x把内存使用交给内核来处理，内核会自己根据内存大小和读取频次来自动决定怎么去缓存，所以不要被看起来庞大的内存占用给吓着了。详见libtorrent-rasterbar作者的<a class="link" href="https://github.com/arvidn/libtorrent/issues/6667#issuecomment-1040874903"  target="_blank" rel="noopener"
     >原话</a>。</p>
 <p>谷歌翻译如下：</p>
 <blockquote>
@@ -1710,8 +1686,8 @@
 某些类型的存储可以由CPU直接寻址，就像它是RAM一样，绕过了许多内核基础设施，并提供了非常高的性能。（linux称此DAX）
 此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。</p>
 </blockquote>
-<h3 id="qb老是不监听ipv6地址怎么办">qB老是不监听IPv6地址，怎么办？</h3>
-<p>有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：</p>
+<h3 id="qb老是不监听ipv6地址怎么办">qB老是不监听IPv6地址，怎么办？
+</h3><p>有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1721,9 +1697,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果没有出现类似这样的日志，或者出的日志中的IPv6地址不是当前最新的地址，那么你可以操作：先将 “设置-&gt;高级-&gt;绑定到的可选IP地址” 选择最新的IPv6地址，保存一次；然后再将其设置为 “所有地址” 后再重新保存一次。过一会日志中就会出现正常的信息了。</p>
-<h2 id="命令">命令</h2>
-<h3 id="自动运行的命令所有标签可用由设置的cron或在下载完成时自动运行当然也可以手动运行">自动运行的命令（所有标签可用，由设置的cron或在下载完成时自动运行，当然也可以手动运行）</h3>
-<div class="highlight"><div class="chroma">
+<h2 id="命令">命令
+</h2><h3 id="自动运行的命令所有标签可用由设置的cron或在下载完成时自动运行当然也可以手动运行">自动运行的命令（所有标签可用，由设置的cron或在下载完成时自动运行，当然也可以手动运行）
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1787,8 +1763,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">qbittorrent</span><span class="w"> </span><span class="n">iyuu</span><span class="o">-</span><span class="n">help</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="需要手动运行的命令所有标签可用">需要手动运行的命令（所有标签可用）</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="需要手动运行的命令所有标签可用">需要手动运行的命令（所有标签可用）
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1842,8 +1818,8 @@
 </span></span><span class="line"><span class="cl">docker exec -it qbittorrent gen-dup
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="仅iyuu标签可用的命令">仅“iyuu”标签可用的命令</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="仅iyuu标签可用的命令">仅“iyuu”标签可用的命令
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1859,8 +1835,8 @@
 </span></span><span class="line"><span class="cl">docker exec -it qbittorrent php /iyuu/start.php restart -d 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="参考">参考</h2>
-<ul>
+</div><h2 id="参考">参考
+</h2><ul>
 <li>
 <p><a class="link" href="https://hub.docker.com/r/crazymax/qbittorrent"  target="_blank" rel="noopener"
     >crazymax/qbittorrent</a> , 参考了Dockerfile;</p>
@@ -1870,8 +1846,8 @@
     >80x86/qbittorrent</a>, 借鉴了标签和分类的理念。</p>
 </li>
 </ul>
-<h2 id="源代码问题反馈意见建议">源代码、问题反馈、意见建议</h2>
-<p>如果镜像好用，请点亮star。全套代码见 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
+<h2 id="源代码问题反馈意见建议">源代码、问题反馈、意见建议
+</h2><p>如果镜像好用，请点亮star。全套代码见 <a class="link" href="https://github.com/devome/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
     >Github</a> 或 <a class="link" href="https://gitee.com/evine/dockerfiles/tree/master/qbittorrent"  target="_blank" rel="noopener"
     >Gitee</a>。如有使用上的问题，或者有其他好的功能建议，请直接在本文下方评论，或者在 <a class="link" href="https://github.com/devome/dockerfiles/issues"  target="_blank" rel="noopener"
     >Github这里</a> 或 <a class="link" href="https://gitee.com/evine/dockerfiles/issues"  target="_blank" rel="noopener"
@@ -2049,6 +2025,7 @@
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
+        proxy: null ,
     });
     (function () {
         if (
@@ -2076,8 +2053,8 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -2166,7 +2143,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

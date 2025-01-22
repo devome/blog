@@ -6,7 +6,7 @@
         <description>Recent content in Gbm on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 12 Jul 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/gbm/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 22 Jan 2025 12:31:48 +0800</lastBuildDate><atom:link href="https://evine.win/tags/gbm/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PVE 直接安装最新版 Kodi</title>
         <link>https://evine.win/p/kodi-install-in-pve/</link>
         <pubDate>Tue, 12 Jul 2022 00:00:00 +0800</pubDate>
@@ -24,8 +24,8 @@
 &lt;li&gt;音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道；&lt;/li&gt;
 &lt;li&gt;另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不需要如同网上其他教程一般，安装&lt;code&gt;xinit&lt;/code&gt;、&lt;code&gt;xfce&lt;/code&gt;、&lt;code&gt;lightdm&lt;/code&gt;、&lt;code&gt;gnome&lt;/code&gt;等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。&lt;/p&gt;
@@ -124,8 +124,8 @@
     &gt;国家互联网络信息中心&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirror.bjtu.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;北交&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;http://mirrors.nju.edu.cn/deb-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;南大&lt;/a&gt;等站点都是有&lt;code&gt;deb-multimedia&lt;/code&gt;仓库的，改成你下载最快的镜像站点即可。&lt;/p&gt;
-&lt;h2 id=&#34;设置开机启动&#34;&gt;设置开机启动&lt;/h2&gt;
-&lt;p&gt;新建&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：&lt;/p&gt;
+&lt;h2 id=&#34;设置开机启动&#34;&gt;设置开机启动
+&lt;/h2&gt;&lt;p&gt;新建&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -201,8 +201,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;如何以非root用户运行kodi&#34;&gt;如何以非root用户运行Kodi&lt;/h2&gt;
-&lt;p&gt;如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。&lt;/p&gt;
+&lt;h2 id=&#34;如何以非root用户运行kodi&#34;&gt;如何以非root用户运行Kodi
+&lt;/h2&gt;&lt;p&gt;如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;下文均以用户名&lt;code&gt;evine&lt;/code&gt;举例。你可以直接建立一个kodi专用账户，用户名可以就叫&lt;code&gt;kodi&lt;/code&gt;。&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -319,8 +319,8 @@
 &lt;/div&gt;&lt;p&gt;&lt;em&gt;注：如Kodi使用smb共享来访问媒体资源，或者是其他服务，可以在启动Koid前判断启动条件是否具备，详见本文最上方的相关教程。&lt;/em&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;相关命令&#34;&gt;相关命令&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h2 id=&#34;相关命令&#34;&gt;相关命令
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -360,8 +360,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt upgrade
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;关于音频直通&#34;&gt;关于音频直通&lt;/h2&gt;
-&lt;p&gt;如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置&lt;code&gt;系统 -&amp;gt; 音频&lt;/code&gt;中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;关于音频直通&#34;&gt;关于音频直通
+&lt;/h2&gt;&lt;p&gt;如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置&lt;code&gt;系统 -&amp;gt; 音频&lt;/code&gt;中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。&lt;/p&gt;
 &lt;p&gt;音频直通最高可以支持7.1全景声，而如果你用Kodi解码后再传递给HDMI/DP，有可能只能支持2.0或2.1声道（对，管你几声道通通转成二声道），这大大降低了视听感受。直通显卡和声卡给虚拟机LibreELEC的，我不确定是否可以实现音频直通，这至少在我的环境中无法实现。&lt;/p&gt;
 &lt;p&gt;通过HDMI/DP直通的音频，在播放时无法在Kodi中控制音量，只能通过接收方控制。而某些不支持直通的音频，则是通过Kodi解码的，既可以通过Kodi控制音量，也可以通过接收方控制音量。&lt;/p&gt;
 &lt;p&gt;通过HDMI/DP直通的音频，在&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Player_process_info#Player_Process_Info&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -409,8 +409,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;关于硬解&#34;&gt;关于硬解&lt;/h2&gt;
-&lt;p&gt;如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：&lt;/p&gt;
+&lt;h2 id=&#34;关于硬解&#34;&gt;关于硬解
+&lt;/h2&gt;&lt;p&gt;如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -456,8 +456,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;pve安装kodi系列文章&#34;&gt;《PVE安装Kodi》系列文章&lt;/h2&gt;
-&lt;p&gt;如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。&lt;/p&gt;
+&lt;h2 id=&#34;pve安装kodi系列文章&#34;&gt;《PVE安装Kodi》系列文章
+&lt;/h2&gt;&lt;p&gt;如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -469,8 +469,8 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
-&lt;p&gt;按上述流程，只主动安装了很少的软件包，根据&lt;code&gt;dpkg-query -L kodi&lt;/code&gt;的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;按上述流程，只主动安装了很少的软件包，根据&lt;code&gt;dpkg-query -L kodi&lt;/code&gt;的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1

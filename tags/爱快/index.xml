@@ -6,7 +6,7 @@
         <description>Recent content in 爱快 on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E7%88%B1%E5%BF%AB/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 14 Oct 2024 22:37:05 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E7%88%B1%E5%BF%AB/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）</title>
         <link>https://evine.win/p/ikuai-set-ipv6-acl-2/</link>
         <pubDate>Mon, 27 Nov 2023 00:00:00 +0800</pubDate>
@@ -15,8 +15,8 @@
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png" alt="Featured image of post 爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;相关概念&#34;&gt;相关概念&lt;/h2&gt;
-&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;相关概念&#34;&gt;相关概念
+&lt;/h2&gt;&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;爱快帮助文档&lt;/a&gt;，不完全理解也没有关系，可以在实践中加深概念理解。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。&lt;/li&gt;
@@ -41,28 +41,28 @@
 &lt;li&gt;进接口：数据来源口。&lt;/li&gt;
 &lt;li&gt;出接口：目的出口。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;ipv4与ipv6的不同&#34;&gt;IPv4与IPv6的不同&lt;/h2&gt;
-&lt;p&gt;IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。&lt;/p&gt;
+&lt;h2 id=&#34;ipv4与ipv6的不同&#34;&gt;IPv4与IPv6的不同
+&lt;/h2&gt;&lt;p&gt;IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。&lt;/p&gt;
 &lt;p&gt;而IPv6不存在端口转发的概念，只要在爱快系统中启用了IPv6，那么内网的设备都有全球唯一的IPv6地址，不需要什么设置就能从公网访问。而爱快默认就没有启用IPv6防火墙，意思就是有IPv6地址的设备是几乎完全暴露在公网环境中的，极不安全。&lt;/p&gt;
 &lt;p&gt;当然，ISP大概率封掉了一些常见的端口。&lt;/p&gt;
-&lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置&lt;/h2&gt;
-&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv4-acl&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
+&lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置
+&lt;/h2&gt;&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv4-acl&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
 &lt;p&gt;注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。&lt;/p&gt;
-&lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。爱快3.7.7新增了IPv6分组和MAC分组功能，不过还有BUG，在3.7.8终于稳定了，可以导入分组了简化设置了。&lt;/p&gt;
-&lt;h3 id=&#34;导入ipv6分组&#34;&gt;导入IPv6分组&lt;/h3&gt;
-&lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;导入ipv6分组&#34;&gt;导入IPv6分组
+&lt;/h3&gt;&lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ipv6group.csv&lt;/a&gt; ，然后在爱快 “网络设置 -&amp;gt; 终端分组设置 -&amp;gt; IPv6分组” 处导入。如果下载不下来，可以前往我放在Github上的仓库 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/files/tree/master/zxipv6wry&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/devome/files/tree/master/zxipv6wry&lt;/a&gt; clone后使用，在该仓库中，你也可以查阅中国完整的IPv6数据及分省数据。&lt;/p&gt;
 &lt;p&gt;需要注意的是，由于爱快分组名称的字数有限制，所以“联通”包含“联通”和“网通”，“移动”包含“移动”和“铁通”，“鹏博士”包含“鹏博士”和“长城宽带”。还有部分IPv6数据暂不清楚其分配到什么省份，所以归类为“未知省份”，请在选择来源IPv6分组时根据你的实际需要进行选择。&lt;/p&gt;
-&lt;h3 id=&#34;设置mac分组&#34;&gt;设置MAC分组&lt;/h3&gt;
-&lt;p&gt;爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&amp;gt; 终端分组设置 -&amp;gt; MAC分组” 处设置。&lt;/p&gt;
-&lt;h3 id=&#34;acl规则&#34;&gt;ACL规则&lt;/h3&gt;
-&lt;h4 id=&#34;默认规则&#34;&gt;默认规则&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png&#34;
+&lt;h3 id=&#34;设置mac分组&#34;&gt;设置MAC分组
+&lt;/h3&gt;&lt;p&gt;爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&amp;gt; 终端分组设置 -&amp;gt; MAC分组” 处设置。&lt;/p&gt;
+&lt;h3 id=&#34;acl规则&#34;&gt;ACL规则
+&lt;/h3&gt;&lt;h4 id=&#34;默认规则&#34;&gt;默认规则
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;181&#34;
 	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1_hu10551001584828499519.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic1_hu12598580468891151092.png 1024w&#34;
@@ -78,8 +78,8 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;注：第一条阻断规则的连接方向为&lt;code&gt;原始方向&lt;/code&gt;，第二条允许规则的连接方向为&lt;code&gt;关闭&lt;/code&gt;。并且由于目前爱快的IPv6 ACL还无法针对性的打开指定本地设备的ICMP协议，所以这样操作以后会默认禁止从公网ping本地的IPv6地址。爱快默认允许，所以上图中第二条规则不设置也可以。&lt;/p&gt;
 &lt;p&gt;然后再对有安全性要求的端口/IP来针对性的开放权限。以下举几种情况：&lt;/p&gt;
-&lt;h4 id=&#34;webuihttpshttpsshrdp等&#34;&gt;WEBUI/HTTPS/HTTP/SSH/RDP等&lt;/h4&gt;
-&lt;p&gt;假如&lt;code&gt;8080,20000,30000-30004&lt;/code&gt;这几个端口都是同一台设备上运行的WEBUI/SSH/RDP控制端口，只允许你所在省份电信和联通的IPv6地址访问。这个设备有两个IPv6地址（比如一个是DHCPv6分配的，一个是设备自己通过EUI-64自行设置的），分别为：&lt;/p&gt;
+&lt;h4 id=&#34;webuihttpshttpsshrdp等&#34;&gt;WEBUI/HTTPS/HTTP/SSH/RDP等
+&lt;/h4&gt;&lt;p&gt;假如&lt;code&gt;8080,20000,30000-30004&lt;/code&gt;这几个端口都是同一台设备上运行的WEBUI/SSH/RDP控制端口，只允许你所在省份电信和联通的IPv6地址访问。这个设备有两个IPv6地址（比如一个是DHCPv6分配的，一个是设备自己通过EUI-64自行设置的），分别为：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -125,8 +125,8 @@
 		data-flex-basis=&#34;293px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;btpt的监听端口&#34;&gt;BT/PT的监听端口&lt;/h4&gt;
-&lt;p&gt;假如&lt;code&gt;33333,44444&lt;/code&gt;这两个端口是BT/PT下载软件的下载监听端口，由于上面最开始添加的默认规则阻断了其他公网IPv6访问本地，现在需要将&lt;code&gt;33333,44444&lt;/code&gt;在IPv6上暴露出去。假如下载软件的IPv6地址是：&lt;/p&gt;
+&lt;h4 id=&#34;btpt的监听端口&#34;&gt;BT/PT的监听端口
+&lt;/h4&gt;&lt;p&gt;假如&lt;code&gt;33333,44444&lt;/code&gt;这两个端口是BT/PT下载软件的下载监听端口，由于上面最开始添加的默认规则阻断了其他公网IPv6访问本地，现在需要将&lt;code&gt;33333,44444&lt;/code&gt;在IPv6上暴露出去。假如下载软件的IPv6地址是：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -150,13 +150,13 @@
 		data-flex-basis=&#34;292px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;完全暴露某台设备&#34;&gt;完全暴露某台设备&lt;/h4&gt;
-&lt;p&gt;因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。&lt;/p&gt;
+&lt;h4 id=&#34;完全暴露某台设备&#34;&gt;完全暴露某台设备
+&lt;/h4&gt;&lt;p&gt;因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： &lt;code&gt;nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535&lt;/code&gt;，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;规则验证&#34;&gt;规则验证&lt;/h2&gt;
-&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;规则验证&#34;&gt;规则验证
+&lt;/h2&gt;&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt;），比如检测IPv6的某端口开放情况运行下面命令即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -218,13 +218,13 @@
         <pubDate>Sun, 22 Oct 2023 07:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" /&gt;&lt;h2 id=&#34;关于systemd&#34;&gt;关于systemd&lt;/h2&gt;
-&lt;p&gt;本系列全部服务都使用 &lt;code&gt;systemd&lt;/code&gt; 来启动和管理，在系列中并未过多的说明这些服务如何启动、开启自启、重启、重载、停止、查看日志、筛选日志等等。关于 &lt;code&gt;systemd&lt;/code&gt;，阮一峰大佬有详细的教程：&lt;a class=&#34;link&#34; href=&#34;https://ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十一）" /&gt;&lt;h2 id=&#34;关于systemd&#34;&gt;关于systemd
+&lt;/h2&gt;&lt;p&gt;本系列全部服务都使用 &lt;code&gt;systemd&lt;/code&gt; 来启动和管理，在系列中并未过多的说明这些服务如何启动、开启自启、重启、重载、停止、查看日志、筛选日志等等。关于 &lt;code&gt;systemd&lt;/code&gt;，阮一峰大佬有详细的教程：&lt;a class=&#34;link&#34; href=&#34;https://ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Systemd 入门教程&lt;/a&gt;，该文详细的介绍了 &lt;code&gt;systemctl&lt;/code&gt; 及 &lt;code&gt;journalctl&lt;/code&gt; 相关命令的使用方法。&lt;/p&gt;
-&lt;h2 id=&#34;关于磁盘占用&#34;&gt;关于磁盘占用&lt;/h2&gt;
-&lt;p&gt;整套系统配置下来，初始的磁盘占用不到2G。从长远来看，只要不会有需要占用大量磁盘空间的应用程序，16应该是绰绰有余。&lt;/p&gt;
-&lt;h2 id=&#34;关于内存&#34;&gt;关于内存&lt;/h2&gt;
-&lt;p&gt;安装完这一系列内容，实际上内存使用并没有增加多少，才 &lt;code&gt;340MiB&lt;/code&gt; 左右。注意 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 是可以通过调整参数降低的，这个占用不算真正的占用。 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 反而是对系统运行有好处的，在内存足够的前提下，不建议清除它们。如果内存真的不够，你可以按照 &lt;a class=&#34;link&#34; href=&#34;https://unix.stackexchange.com/questions/253816/restrict-size-of-buffer-cache-in-linux&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;关于磁盘占用&#34;&gt;关于磁盘占用
+&lt;/h2&gt;&lt;p&gt;整套系统配置下来，初始的磁盘占用不到2G。从长远来看，只要不会有需要占用大量磁盘空间的应用程序，16应该是绰绰有余。&lt;/p&gt;
+&lt;h2 id=&#34;关于内存&#34;&gt;关于内存
+&lt;/h2&gt;&lt;p&gt;安装完这一系列内容，实际上内存使用并没有增加多少，才 &lt;code&gt;340MiB&lt;/code&gt; 左右。注意 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 是可以通过调整参数降低的，这个占用不算真正的占用。 &lt;code&gt;buffer&lt;/code&gt; 和 &lt;code&gt;cache&lt;/code&gt; 反而是对系统运行有好处的，在内存足够的前提下，不建议清除它们。如果内存真的不够，你可以按照 &lt;a class=&#34;link&#34; href=&#34;https://unix.stackexchange.com/questions/253816/restrict-size-of-buffer-cache-in-linux&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这个链接&lt;/a&gt; 来限制它们。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png&#34;
 	width=&#34;1151&#34;
@@ -243,22 +243,22 @@
 &lt;p&gt;如果想要进一步降低内存使用，可以自行动态编译前面所使用到的全部软件包，再使用 &lt;a class=&#34;link&#34; href=&#34;https://github.com/upx/upx&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;upx&lt;/a&gt; 来深度压缩，这样处理后能让内存消耗再小一些，能缩减到 &lt;code&gt;300MiB&lt;/code&gt; 以下。不过注意 &lt;code&gt;unblocknem&lt;/code&gt; 不能这样操作，如果想要减小它的内存占用，请按照 &lt;a class=&#34;link&#34; href=&#34;https://github.com/UnblockNeteaseMusic/server&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;官方仓库&lt;/a&gt; 安装 &lt;code&gt;nodejs&lt;/code&gt; 后使用源码运行，并调整 &lt;code&gt;unblocknem.service&lt;/code&gt; 中的 &lt;code&gt;ExecStart&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;关于dns&#34;&gt;关于DNS&lt;/h2&gt;
-&lt;p&gt;我们在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;本系列第（三）篇&lt;/a&gt; 使用了 &lt;code&gt;adguardhome&lt;/code&gt; &lt;code&gt;mosdns&lt;/code&gt; 和 &lt;code&gt;clash&lt;/code&gt; 来实现自建DNS服务，在 &lt;code&gt;adguardhome&lt;/code&gt; 和 &lt;code&gt;mosdns&lt;/code&gt; 中都存在后备，两级后备保证局域网中的设备访问中国大陆的服务不会因为 &lt;code&gt;clash&lt;/code&gt; 的代理节点出问题，而导致无法访问。我想这点对家人的使用比较重要，他们大多数都只需要能够访问中国大陆有服务就可以了，他们不会再闹着说“又上不了网了，你咋搞的嘛”。&lt;/p&gt;
+&lt;h2 id=&#34;关于dns&#34;&gt;关于DNS
+&lt;/h2&gt;&lt;p&gt;我们在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%89&#34; &gt;本系列第（三）篇&lt;/a&gt; 使用了 &lt;code&gt;adguardhome&lt;/code&gt; &lt;code&gt;mosdns&lt;/code&gt; 和 &lt;code&gt;clash&lt;/code&gt; 来实现自建DNS服务，在 &lt;code&gt;adguardhome&lt;/code&gt; 和 &lt;code&gt;mosdns&lt;/code&gt; 中都存在后备，两级后备保证局域网中的设备访问中国大陆的服务不会因为 &lt;code&gt;clash&lt;/code&gt; 的代理节点出问题，而导致无法访问。我想这点对家人的使用比较重要，他们大多数都只需要能够访问中国大陆有服务就可以了，他们不会再闹着说“又上不了网了，你咋搞的嘛”。&lt;/p&gt;
 &lt;p&gt;在 &lt;code&gt;OpenWRT&lt;/code&gt; 中默认是会安装 &lt;code&gt;dnsmasq&lt;/code&gt; 的，许多包都会操作 &lt;code&gt;dnsmasq&lt;/code&gt; ，这可能也是导致解析不到DNS的原因。 使用 &lt;code&gt;Debian&lt;/code&gt; 没有此烦恼，因为压根没有安装 &lt;code&gt;dnsmasq&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;关于网络故障&#34;&gt;关于网络故障&lt;/h2&gt;
-&lt;p&gt;我们将 &lt;code&gt;nftables&lt;/code&gt; 规则绑定到 &lt;code&gt;clash&lt;/code&gt; 启动之后才执行，在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;本系列第（四）篇&lt;/a&gt; 我们是以 &lt;code&gt;ExecStartPost&lt;/code&gt; 来让 &lt;code&gt;nftables&lt;/code&gt; 规则在 &lt;code&gt;clash&lt;/code&gt; 启动之后才执行的。如果 &lt;code&gt;clash&lt;/code&gt; 没启动好， &lt;code&gt;nftables&lt;/code&gt; 规则也就不会执行，假如这个时候 &lt;code&gt;adguardhome&lt;/code&gt; 和 &lt;code&gt;mosdns&lt;/code&gt; 都启动好了，由于 &lt;code&gt;mosdns&lt;/code&gt; 无法使用 &lt;code&gt;clash&lt;/code&gt; 的DNS服务，它会全部切换到后备也就是国内公共DNS服务器去解析，这不会影响家人的上网体验。另一方面，假如 &lt;code&gt;clash&lt;/code&gt; 启动好了， &lt;code&gt;nftables&lt;/code&gt; 规则也创建好了，可是 &lt;code&gt;clash&lt;/code&gt; 的代理节点全部故障了，这个时候，由于我们有绕过中国大陆IP的 &lt;code&gt;nftables&lt;/code&gt; 规则，仍然不会影响我们使用境内服务。即使再极端一点，连 &lt;code&gt;nftables&lt;/code&gt; 也坏了，因为我们是使用 &lt;code&gt;nftables&lt;/code&gt; 脚本来生成的，而不是使用 &lt;code&gt;shell&lt;/code&gt; 命令一句一句输入的，所以只会整个 &lt;code&gt;mynftables.nft&lt;/code&gt; 脚本中的规则全在或者全不在（有任何一句出错就会全不在），那么全不在就意味着没有任何 &lt;code&gt;nftables&lt;/code&gt; 规则，旁路由这时除了DNS，就是一个纯粹的 &lt;code&gt;IPv4&lt;/code&gt; 转发器，更不会干扰网络的运行（只会影响特殊服务而已）。&lt;/p&gt;
+&lt;h2 id=&#34;关于网络故障&#34;&gt;关于网络故障
+&lt;/h2&gt;&lt;p&gt;我们将 &lt;code&gt;nftables&lt;/code&gt; 规则绑定到 &lt;code&gt;clash&lt;/code&gt; 启动之后才执行，在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;本系列第（四）篇&lt;/a&gt; 我们是以 &lt;code&gt;ExecStartPost&lt;/code&gt; 来让 &lt;code&gt;nftables&lt;/code&gt; 规则在 &lt;code&gt;clash&lt;/code&gt; 启动之后才执行的。如果 &lt;code&gt;clash&lt;/code&gt; 没启动好， &lt;code&gt;nftables&lt;/code&gt; 规则也就不会执行，假如这个时候 &lt;code&gt;adguardhome&lt;/code&gt; 和 &lt;code&gt;mosdns&lt;/code&gt; 都启动好了，由于 &lt;code&gt;mosdns&lt;/code&gt; 无法使用 &lt;code&gt;clash&lt;/code&gt; 的DNS服务，它会全部切换到后备也就是国内公共DNS服务器去解析，这不会影响家人的上网体验。另一方面，假如 &lt;code&gt;clash&lt;/code&gt; 启动好了， &lt;code&gt;nftables&lt;/code&gt; 规则也创建好了，可是 &lt;code&gt;clash&lt;/code&gt; 的代理节点全部故障了，这个时候，由于我们有绕过中国大陆IP的 &lt;code&gt;nftables&lt;/code&gt; 规则，仍然不会影响我们使用境内服务。即使再极端一点，连 &lt;code&gt;nftables&lt;/code&gt; 也坏了，因为我们是使用 &lt;code&gt;nftables&lt;/code&gt; 脚本来生成的，而不是使用 &lt;code&gt;shell&lt;/code&gt; 命令一句一句输入的，所以只会整个 &lt;code&gt;mynftables.nft&lt;/code&gt; 脚本中的规则全在或者全不在（有任何一句出错就会全不在），那么全不在就意味着没有任何 &lt;code&gt;nftables&lt;/code&gt; 规则，旁路由这时除了DNS，就是一个纯粹的 &lt;code&gt;IPv4&lt;/code&gt; 转发器，更不会干扰网络的运行（只会影响特殊服务而已）。&lt;/p&gt;
 &lt;p&gt;在 &lt;code&gt;OpenWRT&lt;/code&gt; 中许多包都会操作 &lt;code&gt;iptbales&lt;/code&gt; 或者 &lt;code&gt;nftables&lt;/code&gt;，它们之间可能并没有很好的协调与配合，毕竟分属不同的人开发。并且多数都是以一句一句的 &lt;code&gt;shell&lt;/code&gt; 命令来增加的规则，很有可能有些语句生效了，有些语句没有生效，然后导致网络故障。现在我们全部自写 &lt;code&gt;nftables&lt;/code&gt; 规则，逻辑清楚，并且只会随着 &lt;code&gt;clash&lt;/code&gt; 的启动而启动，而不是脱离 &lt;code&gt;clash&lt;/code&gt; 自己单独启动，并且直接采用 &lt;code&gt;nftables&lt;/code&gt; 脚本而非 &lt;code&gt;shell&lt;/code&gt; 脚本，这样就能避免一些网络故障问题。&lt;/p&gt;
-&lt;h2 id=&#34;关于ipv6&#34;&gt;关于IPv6&lt;/h2&gt;
-&lt;p&gt;所配置的旁路由只作为了IPv4的网关，不作为IPv6的网关主要有两个原因，一是IPv6代理并未普及，二是想要旁路由成为IPv6网关异常复杂。不过，仍然保留了中国大陆网址的IPv6访问的能力。局域网中对公网转发的服务也是可以提供IPv6访问的，这点并不影响。在非旁路由所在的子网中，IPv4/IPv6双栈都是默认可用的状态。&lt;/p&gt;
-&lt;h2 id=&#34;关于软件包&#34;&gt;关于软件包&lt;/h2&gt;
-&lt;p&gt;国内的用户使用 &lt;code&gt;OpenWRT&lt;/code&gt; 一般是使用 &lt;code&gt;LEDE&lt;/code&gt;，如果是自己编译的话，面对繁多的选项无从下手，用别人的 高大全 又老是配置不好，而且还面临不太好升级的问题。一些旧的软件包想要更新，都要先更新固件的编译依赖仓库。&lt;/p&gt;
+&lt;h2 id=&#34;关于ipv6&#34;&gt;关于IPv6
+&lt;/h2&gt;&lt;p&gt;所配置的旁路由只作为了IPv4的网关，不作为IPv6的网关主要有两个原因，一是IPv6代理并未普及，二是想要旁路由成为IPv6网关异常复杂。不过，仍然保留了中国大陆网址的IPv6访问的能力。局域网中对公网转发的服务也是可以提供IPv6访问的，这点并不影响。在非旁路由所在的子网中，IPv4/IPv6双栈都是默认可用的状态。&lt;/p&gt;
+&lt;h2 id=&#34;关于软件包&#34;&gt;关于软件包
+&lt;/h2&gt;&lt;p&gt;国内的用户使用 &lt;code&gt;OpenWRT&lt;/code&gt; 一般是使用 &lt;code&gt;LEDE&lt;/code&gt;，如果是自己编译的话，面对繁多的选项无从下手，用别人的 高大全 又老是配置不好，而且还面临不太好升级的问题。一些旧的软件包想要更新，都要先更新固件的编译依赖仓库。&lt;/p&gt;
 &lt;p&gt;而使用 &lt;code&gt;Debian&lt;/code&gt; 的话，它自带的仓库是极度稳定的，自己想要额外安装的一些软件包，基于这个稳定的环境，运行也更稳定，而且额外安装的软件包可以保持追新。这样基础环境稳定，部分特殊软件追新，让体验更加完美。&lt;/p&gt;
 &lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;本系列第（二）篇&lt;/a&gt; 中还提及了一些其他的软件包，这些都是简单地应用，如有需要可自行搜索其帮助文档。&lt;/p&gt;
-&lt;h2 id=&#34;关于本系列提供的脚本&#34;&gt;关于本系列提供的脚本&lt;/h2&gt;
-&lt;p&gt;如果你相对于我的改动较多，你就可能不能直接使用本系列提供的 &lt;code&gt;shell&lt;/code&gt; 脚本。如涉及到改动，可能需要你自行修改相关脚本内容，以适应你的环境。若因此脚本出现错误，本人无法提供过多的建议，可能需要你自行排故。&lt;/p&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;关于本系列提供的脚本&#34;&gt;关于本系列提供的脚本
+&lt;/h2&gt;&lt;p&gt;如果你相对于我的改动较多，你就可能不能直接使用本系列提供的 &lt;code&gt;shell&lt;/code&gt; 脚本。如涉及到改动，可能需要你自行修改相关脚本内容，以适应你的环境。若因此脚本出现错误，本人无法提供过多的建议，可能需要你自行排故。&lt;/p&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -301,10 +301,10 @@
         <pubDate>Sun, 22 Oct 2023 06:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;这已经是 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;这个系列&lt;/a&gt; 的第十篇了，我们将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。&lt;/p&gt;
-&lt;h2 id=&#34;脚本&#34;&gt;脚本&lt;/h2&gt;
-&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好各种必要的软件包了。新建 &lt;code&gt;/usr/local/bin/update-pkgs.sh&lt;/code&gt; 内容如下。&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（十）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;这已经是 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;这个系列&lt;/a&gt; 的第十篇了，我们将前文要用到的从Github下载的各个软件包，实现更容易的更新和安装。&lt;/p&gt;
+&lt;h2 id=&#34;脚本&#34;&gt;脚本
+&lt;/h2&gt;&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好各种必要的软件包了。新建 &lt;code&gt;/usr/local/bin/update-pkgs.sh&lt;/code&gt; 内容如下。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1
@@ -640,8 +640,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x /usr/local/bin/update-pkgs.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h2 id=&#34;使用&#34;&gt;使用
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -662,8 +662,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;remote_ver&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl -H &lt;span class=&#34;s2&#34;&gt;&amp;#34;Authorization: Bearer &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$GITHUB_TOKEN&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; -sS https://api.github.com/repos/&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;reponame&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;/releases/latest 2&amp;gt;/dev/null &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; jq -r .tag_name &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sed &lt;span class=&#34;s1&#34;&gt;&amp;#39;s|v||&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -v &lt;span class=&#34;s2&#34;&gt;&amp;#34;null&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;ol&gt;
+&lt;/div&gt;&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;全部的软件包需要定义在数组 &lt;code&gt;pkgs&lt;/code&gt; 中，并以每个软件包定义一组数组。数组中的键名（不能使用 &lt;code&gt;-&lt;/code&gt; ）&lt;strong&gt;依次&lt;/strong&gt;含义为：&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
@@ -688,8 +688,8 @@
 &lt;p&gt;其他Github上的软件包，你可以用同样的方式定义在脚本中，以实现自动安装或更新。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
-&lt;p&gt;比如我还用到另外一组软件包，就是这样子的，你可能注意到不同软件包定义的键不太一样。&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他
+&lt;/h2&gt;&lt;p&gt;比如我还用到另外一组软件包，就是这样子的，你可能注意到不同软件包定义的键不太一样。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1
@@ -926,8 +926,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;trzsz&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;local_ver&lt;span class=&#34;o&#34;&gt;]=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${cmd} -v 2&amp;gt;/dev/null | grep -oP &amp;#34;(\d+\.){2}\d+&amp;#34;&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -970,12 +970,12 @@
         <pubDate>Sun, 22 Oct 2023 05:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;OpenWRT&lt;/code&gt; 有两个插件：&lt;a class=&#34;link&#34; href=&#34;https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-serverchan&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（九）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;OpenWRT&lt;/code&gt; 有两个插件：&lt;a class=&#34;link&#34; href=&#34;https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-serverchan&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;luci-app-serverchan&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://github.com/coolsnowwolf/luci/tree/master/applications/luci-app-pushbot&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;luci-app-pushbot&lt;/a&gt;，可以监测陌生设备上线。当然它们还有些其他功能，但我们只关心“监测陌生设备上线”这一点，那么这两个插件就太臃肿了。并且它们还不能监测非旁路由所在网段，而我却将陌生设备放在了 &lt;code&gt;10.0.1.0/24&lt;/code&gt; 中，和旁路由不在同一网段。所以我们简单的改造一下。&lt;/p&gt;
-&lt;h2 id=&#34;安装和配置&#34;&gt;安装和配置&lt;/h2&gt;
-&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;arp-scan&lt;/code&gt; 了。新建 &lt;code&gt;/usr/local/bin/arp.sh&lt;/code&gt; 内容如下，请自行在爱快中限制陌生设备所能使用的IP（参见 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80#%e7%88%b1%e5%bf%ab%e4%b8%ad%e7%9a%84%e8%ae%be%e7%bd%ae&#34; &gt;前文（一）&lt;/a&gt;，用假MAC预留好可信任设备的IP位置），并填入下面的 &lt;code&gt;arplist&lt;/code&gt; 变量中。&lt;/p&gt;
+&lt;h2 id=&#34;安装和配置&#34;&gt;安装和配置
+&lt;/h2&gt;&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;arp-scan&lt;/code&gt; 了。新建 &lt;code&gt;/usr/local/bin/arp.sh&lt;/code&gt; 内容如下，请自行在爱快中限制陌生设备所能使用的IP（参见 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80#%e7%88%b1%e5%bf%ab%e4%b8%ad%e7%9a%84%e8%ae%be%e7%bd%ae&#34; &gt;前文（一）&lt;/a&gt;，用假MAC预留好可信任设备的IP位置），并填入下面的 &lt;code&gt;arplist&lt;/code&gt; 变量中。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1166,9 +1166,9 @@
 		data-flex-basis=&#34;419px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;运行&#34;&gt;运行&lt;/h2&gt;
-&lt;h3 id=&#34;方式一定时任务&#34;&gt;方式一：定时任务&lt;/h3&gt;
-&lt;p&gt;输入 &lt;code&gt;crontab -e&lt;/code&gt; ，在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;前文（七）&lt;/a&gt; 创建的定时任务之后加入一条：&lt;/p&gt;
+&lt;h2 id=&#34;运行&#34;&gt;运行
+&lt;/h2&gt;&lt;h3 id=&#34;方式一定时任务&#34;&gt;方式一：定时任务
+&lt;/h3&gt;&lt;p&gt;输入 &lt;code&gt;crontab -e&lt;/code&gt; ，在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;前文（七）&lt;/a&gt; 创建的定时任务之后加入一条：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1186,8 +1186,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /tmp/arp.log
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;方式二systemd&#34;&gt;方式二：systemd&lt;/h3&gt;
-&lt;p&gt;新建脚本 &lt;code&gt;/usr/local/bin/run-arp.sh&lt;/code&gt;，内容如下，并增加可执行权限 &lt;code&gt;chmod +x /usr/local/bin/run-arp.sh&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;方式二systemd&#34;&gt;方式二：systemd
+&lt;/h3&gt;&lt;p&gt;新建脚本 &lt;code&gt;/usr/local/bin/run-arp.sh&lt;/code&gt;，内容如下，并增加可执行权限 &lt;code&gt;chmod +x /usr/local/bin/run-arp.sh&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1255,8 +1255,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl -u arp.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -1299,10 +1299,10 @@
         <pubDate>Sun, 22 Oct 2023 04:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我们提到了会存在 “网关为旁路由的设备在爱快的终端监控中全部显示为旁路由” 这个问题，所以我们需要借助跨三层应用来解决这个问题。&lt;/p&gt;
-&lt;h2 id=&#34;debian旁路由安装和配置&#34;&gt;Debian旁路由安装和配置&lt;/h2&gt;
-&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;snmpd&lt;/code&gt; 了。打开 &lt;code&gt;/etc/snmp/snmpd.conf&lt;/code&gt;，进行以下内容的修改。&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（八）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我们提到了会存在 “网关为旁路由的设备在爱快的终端监控中全部显示为旁路由” 这个问题，所以我们需要借助跨三层应用来解决这个问题。&lt;/p&gt;
+&lt;h2 id=&#34;debian旁路由安装和配置&#34;&gt;Debian旁路由安装和配置
+&lt;/h2&gt;&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;snmpd&lt;/code&gt; 了。打开 &lt;code&gt;/etc/snmp/snmpd.conf&lt;/code&gt;，进行以下内容的修改。&lt;/p&gt;
 &lt;p&gt;找到以下内容：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1350,8 +1350,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart snmpd.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;爱快主路由配置&#34;&gt;爱快主路由配置&lt;/h2&gt;
-&lt;p&gt;进入爱快管理界面中的 “高级应用 -&amp;gt; 跨三层应用”，然后添加一条信息如下，保存后以旁路由为网关的设备信息就正常显示了。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;爱快主路由配置&#34;&gt;爱快主路由配置
+&lt;/h2&gt;&lt;p&gt;进入爱快管理界面中的 “高级应用 -&amp;gt; 跨三层应用”，然后添加一条信息如下，保存后以旁路由为网关的设备信息就正常显示了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.png&#34;
 	width=&#34;854&#34;
 	height=&#34;486&#34;
@@ -1366,8 +1366,8 @@
 		data-flex-basis=&#34;421px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -1410,9 +1410,9 @@
         <pubDate>Sun, 22 Oct 2023 03:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）" /&gt;&lt;h2 id=&#34;文件准备&#34;&gt;文件准备&lt;/h2&gt;
-&lt;h3 id=&#34;nginx&#34;&gt;nginx&lt;/h3&gt;
-&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;nginx&lt;/code&gt; 了。新建 &lt;code&gt;/etc/nginx/conf.d/private.conf&lt;/code&gt;，内容如下：&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%83/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（七）" /&gt;&lt;h2 id=&#34;文件准备&#34;&gt;文件准备
+&lt;/h2&gt;&lt;h3 id=&#34;nginx&#34;&gt;nginx
+&lt;/h3&gt;&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了 &lt;code&gt;nginx&lt;/code&gt; 了。新建 &lt;code&gt;/etc/nginx/conf.d/private.conf&lt;/code&gt;，内容如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1449,8 +1449,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果 &lt;code&gt;nginx&lt;/code&gt; 已经启动起来了，那么重新读取下：&lt;code&gt;nginx -s reload&lt;/code&gt;；如果 &lt;code&gt;nginx&lt;/code&gt; 还没有启动，那么就启动它： &lt;code&gt;systemctl restart nginx.service&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;然后，放在 &lt;code&gt;/var/www/html&lt;/code&gt; 下面的文件，可以通过网址 &lt;code&gt;http://10.0.0.2/XXXXX&lt;/code&gt; 来下载，也就是说，我们后面创建的 &lt;code&gt;/var/www/html/config_template.yaml&lt;/code&gt; 和  &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt; 等等文件，可以通过网址 &lt;code&gt;http://10.0.0.2/config_template.yaml&lt;/code&gt; &lt;code&gt;http://10.0.0.2/convert_rule.ini&lt;/code&gt; 来下载。&lt;/p&gt;
-&lt;h3 id=&#34;clash配置模板&#34;&gt;clash配置模板&lt;/h3&gt;
-&lt;p&gt;为 &lt;code&gt;clash&lt;/code&gt; 订阅制作适合你自己的模板，根据 &lt;a class=&#34;link&#34; href=&#34;https://wiki.metacubex.one/config/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;clash配置模板&#34;&gt;clash配置模板
+&lt;/h3&gt;&lt;p&gt;为 &lt;code&gt;clash&lt;/code&gt; 订阅制作适合你自己的模板，根据 &lt;a class=&#34;link&#34; href=&#34;https://wiki.metacubex.one/config/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;clash meta wiki&lt;/a&gt;，自行创建 &lt;code&gt;/var/www/html/config_template.yaml&lt;/code&gt;。以下是我的。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1660,8 +1660,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;+.*&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;subconverter转换规则&#34;&gt;subconverter转换规则&lt;/h3&gt;
-&lt;p&gt;制作自己的 &lt;code&gt;subconverter&lt;/code&gt; 转换配置，新建 &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt; ，详细的格式见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tindy2013/subconverter/blob/master/README-cn.md#%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h3 id=&#34;subconverter转换规则&#34;&gt;subconverter转换规则
+&lt;/h3&gt;&lt;p&gt;制作自己的 &lt;code&gt;subconverter&lt;/code&gt; 转换配置，新建 &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt; ，详细的格式见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tindy2013/subconverter/blob/master/README-cn.md#%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;subconverter外部配置&lt;/a&gt;，在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash/config&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt; 有大量的参考文件。&lt;/p&gt;
 &lt;p&gt;下面是我的 &lt;code&gt;/var/www/html/convert_rule.ini&lt;/code&gt;，不要照抄，抄了也用不了。还是需要按照上一段提及的材料自行准备适合自己的。注意到我们自己形成了 &lt;code&gt;ruleset=🎶 网易音乐,http://10.0.0.2/clash/neteasemusic.list&lt;/code&gt;，用 &lt;code&gt;(^(?!.*网易).*)&lt;/code&gt; 在常规节点中排除了我们自建的 &lt;code&gt;UnblockNeteaseMusic&lt;/code&gt; 节点，以及设置了专门的分组 &lt;code&gt;custom_proxy_group=🎶 网易音乐&lt;/code&gt;，这都是为解锁网易云音乐服务的。另外，还要注意到我们在这个文件中使用 &lt;code&gt;clash_rule_base=http://10.0.0.2/config_template.yaml&lt;/code&gt; 来引用了前一步创建的 &lt;code&gt;clash&lt;/code&gt; 配置模板。&lt;/p&gt;
@@ -1945,8 +1945,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;append_sub_userinfo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;true&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;网易云音乐域名与ip规则&#34;&gt;网易云音乐域名与IP规则&lt;/h3&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;#subconverter%e8%bd%ac%e6%8d%a2%e9%85%8d%e7%bd%ae&#34; &gt;subconverter转换配置&lt;/a&gt; 中，我们引用了 &lt;code&gt;http://10.0.0.2/neteasemusic.list&lt;/code&gt;，现在我们对它初始化。新建 &lt;code&gt;/var/www/html/neteasemusic.list&lt;/code&gt;，内容如下，接下来我们会用脚本自动更新它。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;网易云音乐域名与ip规则&#34;&gt;网易云音乐域名与IP规则
+&lt;/h3&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;#subconverter%e8%bd%ac%e6%8d%a2%e9%85%8d%e7%bd%ae&#34; &gt;subconverter转换配置&lt;/a&gt; 中，我们引用了 &lt;code&gt;http://10.0.0.2/neteasemusic.list&lt;/code&gt;，现在我们对它初始化。新建 &lt;code&gt;/var/www/html/neteasemusic.list&lt;/code&gt;，内容如下，接下来我们会用脚本自动更新它。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2001,8 +2001,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IP-CIDR,193.112.159.225/32,no-resolve
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;网易云音乐的代理配置&#34;&gt;网易云音乐的代理配置&lt;/h3&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;前文（五）&lt;/a&gt; 中我们手动设置了网易云音乐的代理，现在我们为接下来的自动订阅创建一个文件：&lt;code&gt;/var/www/html/neteasemusic.yaml&lt;/code&gt;，内容如下：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;网易云音乐的代理配置&#34;&gt;网易云音乐的代理配置
+&lt;/h3&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%94&#34; &gt;前文（五）&lt;/a&gt; 中我们手动设置了网易云音乐的代理，现在我们为接下来的自动订阅创建一个文件：&lt;code&gt;/var/www/html/neteasemusic.yaml&lt;/code&gt;，内容如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2019,8 +2019,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;工具准备&#34;&gt;工具准备&lt;/h2&gt;
-&lt;p&gt;后面的脚本中还要用到两个工具。下载 &lt;a class=&#34;link&#34; href=&#34;v2dat&#34; &gt;v2dat&lt;/a&gt; 保存为 &lt;code&gt;/usr/local/bin/v2dat&lt;/code&gt;，下载 &lt;a class=&#34;link&#34; href=&#34;https://github.com/zhanhb/cidr-merger/releases/download/v1.1.3/cidr-merger-linux-amd64&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h2 id=&#34;工具准备&#34;&gt;工具准备
+&lt;/h2&gt;&lt;p&gt;后面的脚本中还要用到两个工具。下载 &lt;a class=&#34;link&#34; href=&#34;v2dat&#34; &gt;v2dat&lt;/a&gt; 保存为 &lt;code&gt;/usr/local/bin/v2dat&lt;/code&gt;，下载 &lt;a class=&#34;link&#34; href=&#34;https://github.com/zhanhb/cidr-merger/releases/download/v1.1.3/cidr-merger-linux-amd64&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;cidr-merger&lt;/a&gt; 保存为 &lt;code&gt;/usr/local/bin/cidr-merger&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;然后为它们增加可执行权限：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2046,8 +2046,8 @@
     &gt;https://github.com/sbwml/luci-app-mosdns&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;自动脚本&#34;&gt;自动脚本&lt;/h2&gt;
-&lt;p&gt;为了自动备份旧的订阅文件，防止出错，我们使用将 &lt;code&gt;/var/lib/clash/config.yaml&lt;/code&gt; 软连接到 &lt;code&gt;/var/lib/clash/config/subscribes_name1.yaml&lt;/code&gt;（ &lt;code&gt;subscribes_name1&lt;/code&gt; 由你自行定义，请和下文的脚本中的命名保持一致）。后续脚本中会自动删除超过30天的旧订阅。&lt;/p&gt;
+&lt;h2 id=&#34;自动脚本&#34;&gt;自动脚本
+&lt;/h2&gt;&lt;p&gt;为了自动备份旧的订阅文件，防止出错，我们使用将 &lt;code&gt;/var/lib/clash/config.yaml&lt;/code&gt; 软连接到 &lt;code&gt;/var/lib/clash/config/subscribes_name1.yaml&lt;/code&gt;（ &lt;code&gt;subscribes_name1&lt;/code&gt; 由你自行定义，请和下文的脚本中的命名保持一致）。后续脚本中会自动删除超过30天的旧订阅。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2666,10 +2666,10 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;SHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n19 1 * * * update-config.sh &amp;gt;/dev/null&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; crontab -
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;最后&#34;&gt;最后&lt;/h2&gt;
-&lt;p&gt;脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;本系列&lt;/a&gt; 接下来的文章中，将继续配置其他服务。&lt;/p&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;最后&#34;&gt;最后
+&lt;/h2&gt;&lt;p&gt;脚本运行没问题后，更新完全部所需文件，那么再回过头去把前面没有启动的服务全部启动起来吧。至此，基本的科学上网服务已配置完毕，在 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;本系列&lt;/a&gt; 接下来的文章中，将继续配置其他服务。&lt;/p&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -2712,10 +2712,10 @@
         <pubDate>Sun, 22 Oct 2023 02:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（六）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;clash&lt;/code&gt; 需要用到订阅转换，直接用网上的服务肯定不太安全，并且我们还需要自动在配置文件中插入本地自建的 &lt;code&gt;UnblockNeteaseMusic&lt;/code&gt; 代理服务，所以我们采取自建格式转换服务。&lt;/p&gt;
-&lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装&lt;/h2&gt;
-&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AD/cover.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（六）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;clash&lt;/code&gt; 需要用到订阅转换，直接用网上的服务肯定不太安全，并且我们还需要自动在配置文件中插入本地自建的 &lt;code&gt;UnblockNeteaseMusic&lt;/code&gt; 代理服务，所以我们采取自建格式转换服务。&lt;/p&gt;
+&lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装
+&lt;/h2&gt;&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2754,9 +2754,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cp -afr * /var/lib/subconverter/
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;创建服务&#34;&gt;创建服务&lt;/h2&gt;
-&lt;h3 id=&#34;subconverterservice&#34;&gt;subconverter.service&lt;/h3&gt;
-&lt;p&gt;创建文件 &lt;code&gt;/etc/systemd/system/subconverter.service&lt;/code&gt;，内容如下。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;创建服务&#34;&gt;创建服务
+&lt;/h2&gt;&lt;h3 id=&#34;subconverterservice&#34;&gt;subconverter.service
+&lt;/h3&gt;&lt;p&gt;创建文件 &lt;code&gt;/etc/systemd/system/subconverter.service&lt;/code&gt;，内容如下。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2800,11 +2800,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;Group &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; subconverter&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;subconverter的配置文件&#34;&gt;subconverter的配置文件&lt;/h3&gt;
-&lt;p&gt;如果想要自定义，可以将 &lt;code&gt;/var/lib/subconverter/pref.example.toml&lt;/code&gt; 复制一份为 &lt;code&gt;/var/lib/subconverter/pref.toml&lt;/code&gt;，然后编辑复制后的文件即可，具体可参考 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tindy2013/subconverter/blob/master/README-cn.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h3 id=&#34;subconverter的配置文件&#34;&gt;subconverter的配置文件
+&lt;/h3&gt;&lt;p&gt;如果想要自定义，可以将 &lt;code&gt;/var/lib/subconverter/pref.example.toml&lt;/code&gt; 复制一份为 &lt;code&gt;/var/lib/subconverter/pref.toml&lt;/code&gt;，然后编辑复制后的文件即可，具体可参考 &lt;a class=&#34;link&#34; href=&#34;https://github.com/tindy2013/subconverter/blob/master/README-cn.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;官方README&lt;/a&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;启用服务&#34;&gt;启用服务&lt;/h3&gt;
-&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/subconverter.service&lt;/code&gt; 为开启自动启动，并立即启动起来。&lt;/p&gt;
+&lt;h3 id=&#34;启用服务&#34;&gt;启用服务
+&lt;/h3&gt;&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/subconverter.service&lt;/code&gt; 为开启自动启动，并立即启动起来。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2831,8 +2831,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart subconverter.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -2875,10 +2875,10 @@
         <pubDate>Sun, 22 Oct 2023 01:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;我们继续趁热打铁，将UnblockNeteaseMusic也一起部署了，因为它也要用到 &lt;code&gt;nftables&lt;/code&gt; 来实现。&lt;/p&gt;
-&lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;unblockneteasemusic&lt;/code&gt; 这个名称太长了，我们把它更名为 &lt;code&gt;unblocknem&lt;/code&gt;。我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（五）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;我们继续趁热打铁，将UnblockNeteaseMusic也一起部署了，因为它也要用到 &lt;code&gt;nftables&lt;/code&gt; 来实现。&lt;/p&gt;
+&lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;unblockneteasemusic&lt;/code&gt; 这个名称太长了，我们把它更名为 &lt;code&gt;unblocknem&lt;/code&gt;。我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2903,9 +2903,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;install -p unblockneteasemusic-linux-x64 /usr/local/bin/unblocknem
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;创建服务&#34;&gt;创建服务&lt;/h2&gt;
-&lt;h3 id=&#34;unblocknemservice&#34;&gt;unblocknem.service&lt;/h3&gt;
-&lt;p&gt;创建工作目录&lt;code&gt;/var/lib/unblocknem&lt;/code&gt;。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;创建服务&#34;&gt;创建服务
+&lt;/h2&gt;&lt;h3 id=&#34;unblocknemservice&#34;&gt;unblocknem.service
+&lt;/h3&gt;&lt;p&gt;创建工作目录&lt;code&gt;/var/lib/unblocknem&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2985,8 +2985,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/blockquote&gt;
-&lt;h3 id=&#34;安装依赖&#34;&gt;安装依赖&lt;/h3&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 我们已经安装了UnblockNeteaseMusic的一个依赖项： yt-dlp，在实际运行中，部分情况下还需要另外一个依赖：phantomjs。这个软件已经多年没有更新过了。&lt;/p&gt;
+&lt;h3 id=&#34;安装依赖&#34;&gt;安装依赖
+&lt;/h3&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 我们已经安装了UnblockNeteaseMusic的一个依赖项： yt-dlp，在实际运行中，部分情况下还需要另外一个依赖：phantomjs。这个软件已经多年没有更新过了。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3001,8 +3001,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;install -p phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;unblocknem-的配置文件&#34;&gt;unblocknem 的配置文件&lt;/h3&gt;
-&lt;p&gt;没有配置文件， &lt;code&gt;unblocknem&lt;/code&gt; 也是可以以默认配置启动的。如有需要，可以新建 &lt;code&gt;/var/lib/unblocknem/unblocknem.env&lt;/code&gt; 或 &lt;code&gt;/etc/default/unblocknem&lt;/code&gt;，内容如下，请注意按照注释修改。全部环境变量详见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/UnblockNeteaseMusic/server&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h3 id=&#34;unblocknem-的配置文件&#34;&gt;unblocknem 的配置文件
+&lt;/h3&gt;&lt;p&gt;没有配置文件， &lt;code&gt;unblocknem&lt;/code&gt; 也是可以以默认配置启动的。如有需要，可以新建 &lt;code&gt;/var/lib/unblocknem/unblocknem.env&lt;/code&gt; 或 &lt;code&gt;/etc/default/unblocknem&lt;/code&gt;，内容如下，请注意按照注释修改。全部环境变量详见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/UnblockNeteaseMusic/server&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;官方README&lt;/a&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3138,8 +3138,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# SEARCH_ALBUM=true&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;生成自己的证书&#34;&gt;生成自己的证书&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;生成自己的证书&#34;&gt;生成自己的证书
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -3172,8 +3172,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;└──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;server&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;调整-nftables-规则&#34;&gt;调整 nftables 规则&lt;/h3&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;前文（四）&lt;/a&gt; 中我们为 &lt;code&gt;clash&lt;/code&gt; 创建了一些 &lt;code&gt;nftables&lt;/code&gt; 规则，现在我们多了 &lt;code&gt;unblocknem&lt;/code&gt;，它也需要，所以我们要调整一下 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;前文（四）&lt;/a&gt; 中的 &lt;code&gt;/usr/local/bin/mynftables.nft&lt;/code&gt;，调整为下面这个样子。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;调整-nftables-规则&#34;&gt;调整 nftables 规则
+&lt;/h3&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;前文（四）&lt;/a&gt; 中我们为 &lt;code&gt;clash&lt;/code&gt; 创建了一些 &lt;code&gt;nftables&lt;/code&gt; 规则，现在我们多了 &lt;code&gt;unblocknem&lt;/code&gt;，它也需要，所以我们要调整一下 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;前文（四）&lt;/a&gt; 中的 &lt;code&gt;/usr/local/bin/mynftables.nft&lt;/code&gt;，调整为下面这个样子。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1
@@ -3455,8 +3455,8 @@
 &lt;p&gt;&lt;code&gt;unblocknem&lt;/code&gt; 工作在应用层，&lt;code&gt;clash&lt;/code&gt; 转给它后，它出来的流量会经由 &lt;code&gt;output&lt;/code&gt; 链中的 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 直接出去，不会形成环路（&lt;code&gt;output&lt;/code&gt; 链并没有再劫持这部分流量）。这也就意味着上述规则只能代理局域网中除旁路由以外其他设备（以旁路由为网关的）的网易云音乐流量，不能代理旁路由自己的网易云音乐流量。&lt;/p&gt;
 &lt;p&gt;设想一个这样的场景：&lt;code&gt;unblocknem&lt;/code&gt; 设置了 &lt;code&gt;ytdlp&lt;/code&gt;（Youtube）为劫持音源，那么局域网中以旁路由为网关的客户端A在播放灰色歌曲触发 &lt;code&gt;unblocknem&lt;/code&gt; 时，流量是怎么运作的呢？&lt;/p&gt;
 &lt;p&gt;对照&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;前文（四）&lt;/a&gt;的题图，客户端A的流量先进入旁路由的 &lt;code&gt;prerouting&lt;/code&gt; 链，按上述说明触发该链中的 &lt;code&gt;ip daddr @nem_address_set goto clash_tproxy&lt;/code&gt; 规则将流量转向我们的 &lt;code&gt;unblocknem&lt;/code&gt; HTTP代理，然后 &lt;code&gt;unblocknem&lt;/code&gt; 代理会将流量劫持向Youtube，也就是说 &lt;code&gt;unblocknem&lt;/code&gt; 会在旁路由中产生向Youtube的请求。前文已经说过，&lt;code&gt;unblocknem&lt;/code&gt; 工作在应用层，它产生的流量会先进入 &lt;code&gt;output&lt;/code&gt; 链。如果它请求的是国内的音源，那么将会由 &lt;code&gt;output&lt;/code&gt; 链中 &lt;code&gt;ip daddr @geoip4_cn_set accept&lt;/code&gt; 规则直接放行，而现在它请求的是Youtube需要走代理，所以流量会在 &lt;code&gt;output&lt;/code&gt; 链中触发 &lt;code&gt;ip protocol { tcp, udp } meta mark set $default_mark&lt;/code&gt; 这条规则，将其打上标记并重路由到 &lt;code&gt;prerouting&lt;/code&gt; 链，然后按照&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;前文（四）&lt;/a&gt;所说进行透明代理。也就是说，在这个假设场景下，客户端A在播放灰色歌曲时，流量经过了clash的两次透明代理。&lt;/p&gt;
-&lt;h3 id=&#34;调整-clash-配置文件&#34;&gt;调整 clash 配置文件&lt;/h3&gt;
-&lt;p&gt;我们后续将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动在 &lt;code&gt;clash&lt;/code&gt; 的配置中自动插入下面这些内容。&lt;/p&gt;
+&lt;h3 id=&#34;调整-clash-配置文件&#34;&gt;调整 clash 配置文件
+&lt;/h3&gt;&lt;p&gt;我们后续将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动在 &lt;code&gt;clash&lt;/code&gt; 的配置中自动插入下面这些内容。&lt;/p&gt;
 &lt;p&gt;在 &lt;code&gt;clash&lt;/code&gt; 的配置文件中 &lt;code&gt;proxies:&lt;/code&gt; 部分新增：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3544,8 +3544,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;IP-CIDR,193.112.159.225/32,🎶 网易音乐,no-resolve&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;网易云音乐ip只允许解析ipv4&#34;&gt;网易云音乐IP只允许解析IPv4&lt;/h3&gt;
-&lt;p&gt;因为我们的透明代理只代理 &lt;code&gt;IPv4&lt;/code&gt; 流量，所以我们不能让网易云音乐客户端解析出 &lt;code&gt;IPv6&lt;/code&gt; 地址。有好几种方式可以实现，既可以在 &lt;code&gt;mosdns&lt;/code&gt; 中实现，也可以在 &lt;code&gt;adguardhome&lt;/code&gt; 中实现，但后者有 &lt;code&gt;webui&lt;/code&gt; 要方便些，并且 &lt;code&gt;adguardhome&lt;/code&gt; 是第一级，它有可能会切换到后备服务器而不向 &lt;code&gt;mosdns&lt;/code&gt; 发起请求，所以我们就选后者吧。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;网易云音乐ip只允许解析ipv4&#34;&gt;网易云音乐IP只允许解析IPv4
+&lt;/h3&gt;&lt;p&gt;因为我们的透明代理只代理 &lt;code&gt;IPv4&lt;/code&gt; 流量，所以我们不能让网易云音乐客户端解析出 &lt;code&gt;IPv6&lt;/code&gt; 地址。有好几种方式可以实现，既可以在 &lt;code&gt;mosdns&lt;/code&gt; 中实现，也可以在 &lt;code&gt;adguardhome&lt;/code&gt; 中实现，但后者有 &lt;code&gt;webui&lt;/code&gt; 要方便些，并且 &lt;code&gt;adguardhome&lt;/code&gt; 是第一级，它有可能会切换到后备服务器而不向 &lt;code&gt;mosdns&lt;/code&gt; 发起请求，所以我们就选后者吧。&lt;/p&gt;
 &lt;p&gt;在 &lt;code&gt;adguardhome&lt;/code&gt; 中实现也有两种方式，其一是将 “设置 -&amp;gt; DNS设置 -&amp;gt; 上游DNS服务器” 设置为下面这样（这种方式不会计入“被拦截域名”中，但是如若 &lt;code&gt;adguardhome&lt;/code&gt; 在 &lt;code&gt;clash&lt;/code&gt; 遇到故障会切换到后备，对后备是不生效的），直接将网易云音乐的解析发到 &lt;code&gt;clash&lt;/code&gt; 去解析，因为我们关闭了 &lt;code&gt;clash&lt;/code&gt; 的DNS模块的 &lt;code&gt;IPv6&lt;/code&gt; 解析。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3580,8 +3580,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;只能保证目前有效。上述两种方式，都由于 &lt;code&gt;CNAME&lt;/code&gt; 域名的存在，光处理 &lt;code&gt;music.163.com&lt;/code&gt; 和 &lt;code&gt;music.163.com.163jiasu.com&lt;/code&gt; 不行，还要处理它们背后的 &lt;code&gt;CNAME&lt;/code&gt; 域名。可能有望在未来得以改进，详见 &lt;a class=&#34;link&#34; href=&#34;https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#dnstype&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hosts-Blocklists#dnstype&lt;/a&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;启用服务&#34;&gt;启用服务&lt;/h3&gt;
-&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/unblocknem.service&lt;/code&gt; 为开启自动启动，并立即启动起来。如果这个时候 &lt;code&gt;clash&lt;/code&gt; 还没有启动起来，那么 &lt;code&gt;unblocknem&lt;/code&gt; 服务就还不可用。都启动好后，&lt;code&gt;unblocknem&lt;/code&gt; 将会监听在 &lt;code&gt;8080&lt;/code&gt; 和 &lt;code&gt;8081&lt;/code&gt; 端口上。&lt;/p&gt;
+&lt;h3 id=&#34;启用服务&#34;&gt;启用服务
+&lt;/h3&gt;&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/unblocknem.service&lt;/code&gt; 为开启自动启动，并立即启动起来。如果这个时候 &lt;code&gt;clash&lt;/code&gt; 还没有启动起来，那么 &lt;code&gt;unblocknem&lt;/code&gt; 服务就还不可用。都启动好后，&lt;code&gt;unblocknem&lt;/code&gt; 将会监听在 &lt;code&gt;8080&lt;/code&gt; 和 &lt;code&gt;8081&lt;/code&gt; 端口上。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3608,10 +3608,10 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart unblocknem.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;客户端&#34;&gt;客户端&lt;/h2&gt;
-&lt;p&gt;安卓系统不支持。&lt;/p&gt;
-&lt;h3 id=&#34;windows&#34;&gt;Windows&lt;/h3&gt;
-&lt;p&gt;安装网易云音乐客户端后，创建一个快捷方式，然后在该快捷方式的属性中的“目标”增加 &lt;code&gt; --ignore-certificate-errors&lt;/code&gt;，注意有个空格。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;客户端&#34;&gt;客户端
+&lt;/h2&gt;&lt;p&gt;安卓系统不支持。&lt;/p&gt;
+&lt;h3 id=&#34;windows&#34;&gt;Windows
+&lt;/h3&gt;&lt;p&gt;安装网易云音乐客户端后，创建一个快捷方式，然后在该快捷方式的属性中的“目标”增加 &lt;code&gt; --ignore-certificate-errors&lt;/code&gt;，注意有个空格。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png&#34;
 	width=&#34;421&#34;
 	height=&#34;673&#34;
@@ -3626,8 +3626,8 @@
 		data-flex-basis=&#34;150px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;archlinux系&#34;&gt;ArchLinux系&lt;/h3&gt;
-&lt;p&gt;将刚刚生成的 &lt;code&gt;/var/lib/unblocknem/ca.crt&lt;/code&gt; 下载下来，然后运行：&lt;/p&gt;
+&lt;h3 id=&#34;archlinux系&#34;&gt;ArchLinux系
+&lt;/h3&gt;&lt;p&gt;将刚刚生成的 &lt;code&gt;/var/lib/unblocknem/ca.crt&lt;/code&gt; 下载下来，然后运行：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3637,8 +3637,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在启动命令行后面添加 &lt;code&gt; --ignore-certificate-errors&lt;/code&gt;，然后启动即可。&lt;/p&gt;
-&lt;h3 id=&#34;debian系&#34;&gt;Debian系&lt;/h3&gt;
-&lt;p&gt;将刚刚生成的 &lt;code&gt;/var/lib/unblocknem/ca.crt&lt;/code&gt; 下载下来，放在 &lt;code&gt;/usr/local/share/ca-certificates&lt;/code&gt; 下，然后运行：&lt;/p&gt;
+&lt;h3 id=&#34;debian系&#34;&gt;Debian系
+&lt;/h3&gt;&lt;p&gt;将刚刚生成的 &lt;code&gt;/var/lib/unblocknem/ca.crt&lt;/code&gt; 下载下来，放在 &lt;code&gt;/usr/local/share/ca-certificates&lt;/code&gt; 下，然后运行：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3648,8 +3648,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在启动命令行后面添加 &lt;code&gt; --ignore-certificate-errors&lt;/code&gt;，然后启动即可。&lt;/p&gt;
-&lt;h2 id=&#34;最后&#34;&gt;最后&lt;/h2&gt;
-&lt;p&gt;打开 &lt;code&gt;clash&lt;/code&gt; 的 &lt;code&gt;webui&lt;/code&gt;：&lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:9090/ui/xd/#/proxies&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;最后&#34;&gt;最后
+&lt;/h2&gt;&lt;p&gt;打开 &lt;code&gt;clash&lt;/code&gt; 的 &lt;code&gt;webui&lt;/code&gt;：&lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:9090/ui/xd/#/proxies&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://10.0.0.2:9090/ui/xd/#/proxies&lt;/a&gt; ，选择 &lt;code&gt;网易音乐&lt;/code&gt; 为 &lt;code&gt;网易代理&lt;/code&gt;；你再打开网易云音乐客户端后，在 &lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:9090/ui/xd/#/conns&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://10.0.0.2:9090/ui/xd/#/conns&lt;/a&gt; 就能看到许多连接都接管到 &lt;code&gt;UnblockNeteaseMusic&lt;/code&gt; 了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png&#34;
@@ -3681,8 +3681,8 @@
 		data-flex-basis=&#34;419px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -3725,10 +3725,10 @@
         <pubDate>Sat, 21 Oct 2023 14:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;使用clash实现透明代理有两种方式，一种是 &lt;code&gt;redirect&lt;/code&gt;，仅支持TCP流量，另一种是 &lt;code&gt;tproxy&lt;/code&gt;，支持TCP和UDP流量。为了能代理UDP流量，所以我们选用 &lt;code&gt;tproxy&lt;/code&gt; 的方式来实现。&lt;/p&gt;
-&lt;h2 id=&#34;工作流&#34;&gt;工作流&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;nftables&lt;/code&gt; 的工作流详见 &lt;a class=&#34;link&#34; href=&#34;https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（四）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;使用clash实现透明代理有两种方式，一种是 &lt;code&gt;redirect&lt;/code&gt;，仅支持TCP流量，另一种是 &lt;code&gt;tproxy&lt;/code&gt;，支持TCP和UDP流量。为了能代理UDP流量，所以我们选用 &lt;code&gt;tproxy&lt;/code&gt; 的方式来实现。&lt;/p&gt;
+&lt;h2 id=&#34;工作流&#34;&gt;工作流
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;nftables&lt;/code&gt; 的工作流详见 &lt;a class=&#34;link&#34; href=&#34;https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Netfilter hooks&lt;/a&gt;。具体Netfilter的五个链 &lt;code&gt;prerouting&lt;/code&gt; &lt;code&gt;input&lt;/code&gt; &lt;code&gt;forward&lt;/code&gt; &lt;code&gt;output&lt;/code&gt; &lt;code&gt;postrouting&lt;/code&gt; 是什么关系，以及流向，请参考该链接来加深理解。全部的文档可以查阅本文下方 &lt;a class=&#34;link&#34; href=&#34;#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99&#34; &gt;参考资料&lt;/a&gt; 的1和2。&lt;/p&gt;
 &lt;p&gt;注意，在旁路由自身中运行的程序都工作在应用层，而 &lt;code&gt;tproxy&lt;/code&gt; 只能工作在 &lt;code&gt;prerouting&lt;/code&gt; 链，所以如果我们要想透明代理旁路由自己产生的流量，要通过设置IP规则让这部分流量在进入 &lt;code&gt;output&lt;/code&gt; 链时，将需要代理的流量转回到 &lt;code&gt;prerouting&lt;/code&gt; 链。这就需要靠IP规则来实现。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png&#34;
@@ -3745,8 +3745,8 @@
 		data-flex-basis=&#34;457px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装&lt;/h2&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/Dreamacro/clash&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;下载与安装&#34;&gt;下载与安装
+&lt;/h2&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/Dreamacro/clash&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;clash&lt;/a&gt; 和 &lt;a class=&#34;link&#34; href=&#34;https://github.com/MetaCubeX/mihomo&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;clash-meta&lt;/a&gt; (现在叫mihomo)中，我选用后者来使用（前者已经删库了）。我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -3806,9 +3806,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  x86_64 (supported, searched)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;创建服务&#34;&gt;创建服务&lt;/h2&gt;
-&lt;h3 id=&#34;clashservice&#34;&gt;clash.service&lt;/h3&gt;
-&lt;p&gt;创建工作目录&lt;code&gt;/var/lib/clash&lt;/code&gt;。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;创建服务&#34;&gt;创建服务
+&lt;/h2&gt;&lt;h3 id=&#34;clashservice&#34;&gt;clash.service
+&lt;/h3&gt;&lt;p&gt;创建工作目录&lt;code&gt;/var/lib/clash&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3884,8 +3884,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;AmbientCapabilities   &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BIND_SERVICE&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;mynftablesnft&#34;&gt;mynftables.nft&lt;/h3&gt;
-&lt;p&gt;注意到我们在 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 的 &lt;code&gt;ExecStartPost&lt;/code&gt; 行有执行 &lt;code&gt;mynftables.nft&lt;/code&gt;。现在，新建 &lt;code&gt;/usr/local/bin/mynftables.nft&lt;/code&gt;，内容如下。请注意按照注释修改，创建好后以命令 &lt;code&gt;chmod +x /usr/local/bin/mynftables.nft&lt;/code&gt; 为它增加可执行权限。该文件会引用到另外一个文件 &lt;code&gt;/var/lib/clash/geoip4_cn.nft&lt;/code&gt;，你可以先下载这并非是最新的文件，先保存到该位置：&lt;a class=&#34;link&#34; href=&#34;geoip4_cn.nft&#34; &gt;geoip4_cn.nft&lt;/a&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动更新。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;mynftablesnft&#34;&gt;mynftables.nft
+&lt;/h3&gt;&lt;p&gt;注意到我们在 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 的 &lt;code&gt;ExecStartPost&lt;/code&gt; 行有执行 &lt;code&gt;mynftables.nft&lt;/code&gt;。现在，新建 &lt;code&gt;/usr/local/bin/mynftables.nft&lt;/code&gt;，内容如下。请注意按照注释修改，创建好后以命令 &lt;code&gt;chmod +x /usr/local/bin/mynftables.nft&lt;/code&gt; 为它增加可执行权限。该文件会引用到另外一个文件 &lt;code&gt;/var/lib/clash/geoip4_cn.nft&lt;/code&gt;，你可以先下载这并非是最新的文件，先保存到该位置：&lt;a class=&#34;link&#34; href=&#34;geoip4_cn.nft&#34; &gt;geoip4_cn.nft&lt;/a&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动更新。&lt;/p&gt;
 &lt;p&gt;如果你的代理不支持代理 &lt;code&gt;UDP&lt;/code&gt; 流量，可以选择解除 &lt;code&gt;ip protocol udp accept&lt;/code&gt; 行的注释。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4087,8 +4087,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;clash配置文件&#34;&gt;clash配置文件&lt;/h3&gt;
-&lt;p&gt;暂时先按照下面的形式形成 &lt;code&gt;clash&lt;/code&gt; 的配置文件 &lt;code&gt;/var/lib/clash/config.yaml&lt;/code&gt; 或者 &lt;code&gt;/etc/clash/config.yaml&lt;/code&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动更新订阅。我只对关键信息进行了注释，未注释的内容你都可以自行按照 &lt;a class=&#34;link&#34; href=&#34;https://wiki.metacubex.one/config/general/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h3 id=&#34;clash配置文件&#34;&gt;clash配置文件
+&lt;/h3&gt;&lt;p&gt;暂时先按照下面的形式形成 &lt;code&gt;clash&lt;/code&gt; 的配置文件 &lt;code&gt;/var/lib/clash/config.yaml&lt;/code&gt; 或者 &lt;code&gt;/etc/clash/config.yaml&lt;/code&gt;，我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动更新订阅。我只对关键信息进行了注释，未注释的内容你都可以自行按照 &lt;a class=&#34;link&#34; href=&#34;https://wiki.metacubex.one/config/general/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;官方WIKI&lt;/a&gt; 进行设置。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4282,8 +4282,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;rules&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;clash其他相关文件&#34;&gt;clash其他相关文件&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;clash&lt;/code&gt; 还需要一些配套文件，在启动前先下载下来。我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动更新这些文件。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;clash其他相关文件&#34;&gt;clash其他相关文件
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;clash&lt;/code&gt; 还需要一些配套文件，在启动前先下载下来。我们将在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83&#34; &gt;本系列第（七）篇&lt;/a&gt; 用定时任务来自动更新这些文件。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -4310,8 +4310,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv metacubexd-gh-pages xd
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;启用服务&#34;&gt;启用服务&lt;/h3&gt;
-&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 为开启自动启动，并立即启动起来。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;启用服务&#34;&gt;启用服务
+&lt;/h3&gt;&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/clash.service&lt;/code&gt; 为开启自动启动，并立即启动起来。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4357,14 +4357,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;访问webui：&lt;code&gt;http://&amp;lt;IP&amp;gt;:9090/ui/xd&lt;/code&gt;，其中 &lt;code&gt;9090&lt;/code&gt; &lt;code&gt;ui&lt;/code&gt; &lt;code&gt;xd&lt;/code&gt; 均在配置文件中由你定义，分别对应 &lt;code&gt;external-controller&lt;/code&gt; &lt;code&gt;external-ui&lt;/code&gt; &lt;code&gt;external-ui-name&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;执行逻辑&#34;&gt;执行逻辑&lt;/h2&gt;
-&lt;p&gt;大致在 &lt;a class=&#34;link&#34; href=&#34;#mynftablesnft&#34; &gt;mynftables.nft&lt;/a&gt; 这个文件的注释也解释过每句的作用了，这里再捊一下。&lt;/p&gt;
+&lt;h2 id=&#34;执行逻辑&#34;&gt;执行逻辑
+&lt;/h2&gt;&lt;p&gt;大致在 &lt;a class=&#34;link&#34; href=&#34;#mynftablesnft&#34; &gt;mynftables.nft&lt;/a&gt; 这个文件的注释也解释过每句的作用了，这里再捊一下。&lt;/p&gt;
 &lt;p&gt;对照着题图，局域网中的其他客户端的流量在通过旁路由时，进入 &lt;code&gt;nftables&lt;/code&gt; 的 &lt;code&gt;prerouting&lt;/code&gt; 链，然后判断第69-76行的规则，如果规则匹配就以 &lt;code&gt;accept&lt;/code&gt; 直接收受并发往目的地，不会再转到 &lt;code&gt;clash&lt;/code&gt;；如果全都不匹配，会在最后匹配上 &lt;code&gt;goto clash_tproxy&lt;/code&gt;，也就是进入 &lt;code&gt;ip protocol { tcp, udp } tproxy to :$tproxy_port meta mark set $default_mark&lt;/code&gt; 这句，这句将会把流量转到 &lt;code&gt;clash&lt;/code&gt;。需要提一句的是第70行的规则是针对从本机 &lt;code&gt;output&lt;/code&gt; 链发过来的流量的，没有第70行，这部分流量同样会在最后匹配到第77行的 &lt;code&gt;goto clash_tproxy&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;经过 &lt;code&gt;clash&lt;/code&gt; 代理后，流量会被打上标记 &lt;code&gt;clash_mark&lt;/code&gt;，也就是第13行定义的 &lt;code&gt;666&lt;/code&gt;，&lt;code&gt;clash&lt;/code&gt; 工作在题图中的应用层，经过 &lt;code&gt;clash&lt;/code&gt; 处理过的流量会在 &lt;code&gt;output&lt;/code&gt; 链中被第89行直接接收并发往目的地，不会再一次进行代理，这样就防止了流量一直在走环路的问题。&lt;/p&gt;
 &lt;p&gt;本机产生的流量类似，它们会在 &lt;code&gt;output&lt;/code&gt; 链中先匹配第88-94行，如果匹配就直接接收并发往目的地了，而剩余没有匹配到的会在第95行被打上 &lt;code&gt;$default_mark&lt;/code&gt;，也就是在第16行定义的 &lt;code&gt;1&lt;/code&gt;，这个标记和上方创建的 &lt;code&gt;clash.service&lt;/code&gt; 中 &lt;code&gt;fwmark 1&lt;/code&gt; 的 &lt;code&gt;1&lt;/code&gt; 一致。被打上这个标记的流量会按照 &lt;code&gt;clash.service&lt;/code&gt; 定义的 &lt;code&gt;ip route&lt;/code&gt; 和 &lt;code&gt;ip rule&lt;/code&gt;，重路由进入 &lt;code&gt;prerouting&lt;/code&gt; 链，然后根据规则确定是直接接收还是转向 &lt;code&gt;clash&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;至于 &lt;code&gt;forward&lt;/code&gt; 转发链，我们并没有设置它，那么转发的默认 &lt;code&gt;policy&lt;/code&gt; 就是 &lt;code&gt;accept&lt;/code&gt;，将直接全部接受。我已经在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中提及了我只在主路由爱快上设置防火墙：&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv4-acl&#34; &gt;IPv4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv6-acl-2&#34; &gt;IPv6&lt;/a&gt;，旁路由对这类流量直接转发，不再过滤。所以，针对运行在我NAS &lt;code&gt;10.0.0.11&lt;/code&gt; 上的服务以及其他众多运行在 Docker MacVLAN 网络上的容器，我直接从主路由爱快转发端口到它们即可，无需再经过旁路由额外中转。&lt;/p&gt;
-&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://wiki.nftables.org/wiki-nftables/index.php/Main_Page&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;nftables wiki&lt;/a&gt;&lt;/p&gt;
@@ -4382,8 +4382,8 @@
     &gt;Project X 透明代理（TProxy）配置教程&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -4426,10 +4426,10 @@
         <pubDate>Sat, 21 Oct 2023 13:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我提及了我的目标是在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个旁路由所在的子网中实现国内网站IPv4/IPv6双栈解析并可正常访问，国外网站仅解析IPv4地址并进行科学上网，那么仅凭Clash很难实现（其他的代理软件我也不介绍了），我们可以借助mosdns来实现（其他的smartdns、coredns我就不介绍了）。又为了能够&lt;strong&gt;更加方便&lt;/strong&gt;的为电视机屏蔽广告、自定义子网中设备解析为私网IPv4地址和公网IPv6地址这种形式的双栈、防止代理有故障需要后备DNS等等功能，我继续在mosdns前加一层adguardhome，以方便的实现。&lt;/p&gt;
-&lt;h2 id=&#34;逻辑图&#34;&gt;逻辑图&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg&#34;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（三）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我提及了我的目标是在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个旁路由所在的子网中实现国内网站IPv4/IPv6双栈解析并可正常访问，国外网站仅解析IPv4地址并进行科学上网，那么仅凭Clash很难实现（其他的代理软件我也不介绍了），我们可以借助mosdns来实现（其他的smartdns、coredns我就不介绍了）。又为了能够&lt;strong&gt;更加方便&lt;/strong&gt;的为电视机屏蔽广告、自定义子网中设备解析为私网IPv4地址和公网IPv6地址这种形式的双栈、防止代理有故障需要后备DNS等等功能，我继续在mosdns前加一层adguardhome，以方便的实现。&lt;/p&gt;
+&lt;h2 id=&#34;逻辑图&#34;&gt;逻辑图
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg&#34;
 	width=&#34;1079&#34;
 	height=&#34;914&#34;
 	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu15230395550923775048.jpg 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu14981497889592113204.jpg 1024w&#34;
@@ -4443,13 +4443,13 @@
 		data-flex-basis=&#34;283px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;p&gt;由于我在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 中并没有安装 &lt;code&gt;dnsmasq&lt;/code&gt;，&lt;code&gt;53&lt;/code&gt; 端口上并没有运行任何服务，所以我可以让 &lt;code&gt;adguardhome&lt;/code&gt; 直接监听在 &lt;code&gt;53&lt;/code&gt; 端口。在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 中我已经设置了旁路由自身的DNS服务器为 &lt;code&gt;127.0.0.1&lt;/code&gt;。在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我们也设置好了 &lt;code&gt;10.0.0.0/24&lt;/code&gt; 整个网段的DNS服务器为旁路由的IP &lt;code&gt;10.0.0.2&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;p&gt;由于我在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 中并没有安装 &lt;code&gt;dnsmasq&lt;/code&gt;，&lt;code&gt;53&lt;/code&gt; 端口上并没有运行任何服务，所以我可以让 &lt;code&gt;adguardhome&lt;/code&gt; 直接监听在 &lt;code&gt;53&lt;/code&gt; 端口。在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 中我已经设置了旁路由自身的DNS服务器为 &lt;code&gt;127.0.0.1&lt;/code&gt;。在 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;前文（一）&lt;/a&gt; 中我们也设置好了 &lt;code&gt;10.0.0.0/24&lt;/code&gt; 整个网段的DNS服务器为旁路由的IP &lt;code&gt;10.0.0.2&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;当客户端需要解析DNS时，监听在 &lt;code&gt;53&lt;/code&gt; 端口上的 &lt;code&gt;adguardhome&lt;/code&gt; 会转发给其上游 &lt;code&gt;mosdns&lt;/code&gt;，然后 &lt;code&gt;mosdns&lt;/code&gt; 根据设置来进行分流，中国大陆部分使用国内的公共DNS服务器进行解析，保留IPv4/IPv6双栈结果，非中国大陆部分继续转发给上游 &lt;code&gt;clash&lt;/code&gt; ，由 &lt;code&gt;clash&lt;/code&gt; 通过代理向国外公共DNS服务器进行解析，&lt;code&gt;clash&lt;/code&gt; 中的DNS模块设置关闭IPv6解析，这样国外部分只会返回IPv4的结果。&lt;/p&gt;
 &lt;p&gt;而当 &lt;code&gt;mosdns&lt;/code&gt; 出现故障时（mosdns本身也会有一个后备，防止clash出现故障，也就是说会有两层后备），&lt;code&gt;adguardhome&lt;/code&gt; 则直接向国内公共DNS服务器请求解析，做到不影响局域网的网络。&lt;/p&gt;
-&lt;h2 id=&#34;adguardhome的安装和配置&#34;&gt;AdGuardHome的安装和配置&lt;/h2&gt;
-&lt;h3 id=&#34;下载安装&#34;&gt;下载安装&lt;/h3&gt;
-&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
+&lt;h2 id=&#34;adguardhome的安装和配置&#34;&gt;AdGuardHome的安装和配置
+&lt;/h2&gt;&lt;h3 id=&#34;下载安装&#34;&gt;下载安装
+&lt;/h3&gt;&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -4480,8 +4480,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;install -ps AdGuardHome /usr/local/bin/adguardhome
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建服务&#34;&gt;创建服务&lt;/h3&gt;
-&lt;p&gt;创建工作目录&lt;code&gt;/var/lib/adguardhome&lt;/code&gt;。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建服务&#34;&gt;创建服务
+&lt;/h3&gt;&lt;p&gt;创建工作目录&lt;code&gt;/var/lib/adguardhome&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4568,8 +4568,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adguardhome -s install -w /var/lib/adguardhome -c /etc/adguardhome/config.yaml &lt;span class=&#34;c1&#34;&gt;# 需要自行创建目录/etc/adguardhome和/var/lib/adguardhome&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;初始化&#34;&gt;初始化&lt;/h3&gt;
-&lt;p&gt;先开一个终端输入&lt;code&gt;adguardhome&lt;/code&gt;，然后浏览器打开 &lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:3000&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h3 id=&#34;初始化&#34;&gt;初始化
+&lt;/h3&gt;&lt;p&gt;先开一个终端输入&lt;code&gt;adguardhome&lt;/code&gt;，然后浏览器打开 &lt;a class=&#34;link&#34; href=&#34;http://10.0.0.2:3000&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http://10.0.0.2:3000&lt;/a&gt; 并按下图设置。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1.png&#34;
 	width=&#34;621&#34;
@@ -4599,9 +4599,9 @@
 		data-flex-basis=&#34;1073px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
-&lt;h4 id=&#34;dns设置&#34;&gt;DNS设置&lt;/h4&gt;
-&lt;p&gt;上游DNS服务器设置为mosdns的监听端口。&lt;/p&gt;
+&lt;h3 id=&#34;配置&#34;&gt;配置
+&lt;/h3&gt;&lt;h4 id=&#34;dns设置&#34;&gt;DNS设置
+&lt;/h4&gt;&lt;p&gt;上游DNS服务器设置为mosdns的监听端口。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1.png&#34;
 	width=&#34;517&#34;
 	height=&#34;272&#34;
@@ -4661,8 +4661,8 @@
 		data-flex-basis=&#34;256px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;dns重写&#34;&gt;DNS重写&lt;/h4&gt;
-&lt;p&gt;如果你已经使用DDNS将你的域名解析了IPv4和IPv6，则可以在AdGuardHome的DNS重写模块中按下图这样设置，设置后局域网中的设备在解析时，可以解析私网IPv4地址和公网IPv6地址，做到在局域网中照样使用和公网中一样的域名访问。&lt;/p&gt;
+&lt;h4 id=&#34;dns重写&#34;&gt;DNS重写
+&lt;/h4&gt;&lt;p&gt;如果你已经使用DDNS将你的域名解析了IPv4和IPv6，则可以在AdGuardHome的DNS重写模块中按下图这样设置，设置后局域网中的设备在解析时，可以解析私网IPv4地址和公网IPv6地址，做到在局域网中照样使用和公网中一样的域名访问。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;一个良好的习惯是针对局域网中每一个运行着需要被访问的服务的IP，都通过 &lt;code&gt;adguardhome&lt;/code&gt; 劫持其域名，做到不同IP不同子域名。只要设置好DDNS的子域名以及主路由爱快的端口转发，就可以做到在局域网环境中和在公网环境中，使用相同的域名去访问同一个服务。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -4737,8 +4737,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在完全配置好旁路由后，你就可以实现上述这样的域名解析。这样的话，像手机、笔记本电脑这种会频繁进出局域网的设备，可以在局域网和公网中使用一样的域名去访问各项服务，而不用在公网用域名访问，在局域网得换成IP访问这种形式。&lt;/p&gt;
-&lt;h3 id=&#34;启用服务&#34;&gt;启用服务&lt;/h3&gt;
-&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/adguardhome.service&lt;/code&gt; 为开启自动启动，并立即启动起来（这时上游mosdns尚未配置，会直接跳转到备用DNS服务器去，你可以等后续配置完好以后再来启动它）。&lt;/p&gt;
+&lt;h3 id=&#34;启用服务&#34;&gt;启用服务
+&lt;/h3&gt;&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/adguardhome.service&lt;/code&gt; 为开启自动启动，并立即启动起来（这时上游mosdns尚未配置，会直接跳转到备用DNS服务器去，你可以等后续配置完好以后再来启动它）。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4765,9 +4765,9 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart adguardhome.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;mosdns的安装和配置&#34;&gt;mosdns的安装和配置&lt;/h2&gt;
-&lt;h3 id=&#34;下载安装-1&#34;&gt;下载安装&lt;/h3&gt;
-&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;mosdns的安装和配置&#34;&gt;mosdns的安装和配置
+&lt;/h2&gt;&lt;h3 id=&#34;下载安装-1&#34;&gt;下载安装
+&lt;/h3&gt;&lt;p&gt;我默认你已经按照 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c&#34; &gt;前文（二）&lt;/a&gt; 安装好了必要的软件了。以下为root用户运行的命令。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -4798,8 +4798,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;install -ps mosdns /usr/local/bin/mosdns
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建服务-1&#34;&gt;创建服务&lt;/h3&gt;
-&lt;p&gt;创建工作目录&lt;code&gt;/var/lib/mosdns&lt;/code&gt;。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建服务-1&#34;&gt;创建服务
+&lt;/h3&gt;&lt;p&gt;创建工作目录&lt;code&gt;/var/lib/mosdns&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4878,8 +4878,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mosdns service install -d /var/lib/mosdns -c /etc/mosdns/config.yaml &lt;span class=&#34;c1&#34;&gt;# 需要自行创建目录/etc/mosdns和/var/lib/mosdns&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;配置-1&#34;&gt;配置&lt;/h3&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/sbwml/luci-app-mosdns&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h3 id=&#34;配置-1&#34;&gt;配置
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/sbwml/luci-app-mosdns&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;luci-app-mosdns&lt;/a&gt; 提供的 &lt;a class=&#34;link&#34; href=&#34;https://github.com/sbwml/luci-app-mosdns/blob/v5/luci-app-mosdns/root/usr/share/mosdns/default.yaml&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;默认配置&lt;/a&gt; 已经是一份非常好的配置了，我们稍微改改就能用了。考虑到我已经使用 &lt;code&gt;adguardhome&lt;/code&gt; 来屏蔽广告，以及用来解析本地局域网内的私有IP了，所以在 &lt;code&gt;mosdns&lt;/code&gt; 中我们这可舍弃这一部分配置内容。&lt;/p&gt;
 &lt;p&gt;稍加修改后的配置文件见 &lt;a class=&#34;link&#34; href=&#34;mosdns.yaml&#34; &gt;mosdns配置&lt;/a&gt;，在该文件中，会引用到以下文件。其中 &lt;code&gt;rule&lt;/code&gt; 文件夹下的几份文件可以参考 &lt;a class=&#34;link&#34; href=&#34;https://github.com/sbwml/luci-app-mosdns/tree/v5/luci-app-mosdns/root/etc/mosdns/rule&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -4913,8 +4913,8 @@
 &lt;/div&gt;&lt;p&gt;在配置中，由于 &lt;code&gt;fallback&lt;/code&gt; 这个后备 &lt;code&gt;tag&lt;/code&gt; 的存在，也能保障clash在出现故障时，使用国内DNS服务器进行解析。这一点，再加上 &lt;code&gt;adguardhome&lt;/code&gt; 本身也设置了后备节点，两层保障不因clash服务故障而影响DNS的解析。&lt;/p&gt;
 &lt;p&gt;你也可以参考 &lt;a class=&#34;link&#34; href=&#34;https://irine-sistiana.gitbook.io/mosdns-wiki/mosdns-v5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;mosdns wiki&lt;/a&gt; 来进行更加定制化的配置。&lt;/p&gt;
-&lt;h3 id=&#34;启用服务-1&#34;&gt;启用服务&lt;/h3&gt;
-&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/mosdns.service&lt;/code&gt; 为开启自动启动，并立即启动起来（这时上游clash尚未配置，你可以等后续配置完好以后再来启动它）。&lt;/p&gt;
+&lt;h3 id=&#34;启用服务-1&#34;&gt;启用服务
+&lt;/h3&gt;&lt;p&gt;完全配置好以后，我们可以设置 &lt;code&gt;/etc/systemd/system/mosdns.service&lt;/code&gt; 为开启自动启动，并立即启动起来（这时上游clash尚未配置，你可以等后续配置完好以后再来启动它）。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4941,10 +4941,10 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart mosdns.service
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;clash&#34;&gt;clash&lt;/h2&gt;
-&lt;p&gt;由于clash不仅仅只涉及DNS服务，还涉及到代理、nftables、IP规则相关内容，我们将在接下来的单篇 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;本系列第（四）篇&lt;/a&gt; 中详细详解。&lt;/p&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;clash&#34;&gt;clash
+&lt;/h2&gt;&lt;p&gt;由于clash不仅仅只涉及DNS服务，还涉及到代理、nftables、IP规则相关内容，我们将在接下来的单篇 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%9b%9b&#34; &gt;本系列第（四）篇&lt;/a&gt; 中详细详解。&lt;/p&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -4987,10 +4987,10 @@
         <pubDate>Thu, 19 Oct 2023 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;之前我用的是爱快作为主路由，OpenWRT作为旁路由，旁路由上会跑一些只有它能跑而主路由上不能跑的服务。尽管OpenWRT还是我自己定制化编译的，抛弃了许多我不使用的功能，但可能因为要用的服务仍然有些多，并且它们之间都会操作netfilter，导致网络经常出问题。所以，用OpenWRT作为旁路由的时候，我从来不敢在爱快上直接指定全部设备的网关和DNS为OpenWRT（网关和DNS仍然是爱快自己），只敢在我自己的设备上手动指定网关和DNS为OpenWRT。但这长久用起来不是个办法，所以干脆下定决心，抛弃OpenWRT，完全启用Debian来作为旁路由。&lt;/p&gt;
-&lt;h2 id=&#34;网络设计思路&#34;&gt;网络设计思路&lt;/h2&gt;
-&lt;p&gt;为什么不直接采用Debian作为主路由呢，毕竟爱快作为专业的路由系统，还是有其便利性的，查看相关数据也比较容易，如果直接采用Debian作为主路由的话，将会有大量的配置工作，并且想要便捷的查看各项数据也不是很方便。&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;之前我用的是爱快作为主路由，OpenWRT作为旁路由，旁路由上会跑一些只有它能跑而主路由上不能跑的服务。尽管OpenWRT还是我自己定制化编译的，抛弃了许多我不使用的功能，但可能因为要用的服务仍然有些多，并且它们之间都会操作netfilter，导致网络经常出问题。所以，用OpenWRT作为旁路由的时候，我从来不敢在爱快上直接指定全部设备的网关和DNS为OpenWRT（网关和DNS仍然是爱快自己），只敢在我自己的设备上手动指定网关和DNS为OpenWRT。但这长久用起来不是个办法，所以干脆下定决心，抛弃OpenWRT，完全启用Debian来作为旁路由。&lt;/p&gt;
+&lt;h2 id=&#34;网络设计思路&#34;&gt;网络设计思路
+&lt;/h2&gt;&lt;p&gt;为什么不直接采用Debian作为主路由呢，毕竟爱快作为专业的路由系统，还是有其便利性的，查看相关数据也比较容易，如果直接采用Debian作为主路由的话，将会有大量的配置工作，并且想要便捷的查看各项数据也不是很方便。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;并且，我还需要旁路由的存在不能影响端口转发，必须由主路由爱快直接将端口转发到NAS及其他服务，不能先转发到旁路由再经旁路由再转发一次。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;那么，基于爱快作为主路由，Debian作为旁路由，我将以下面的拓扑图开展。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg&#34;
@@ -5008,11 +5008,11 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;上图中仅涉及了爱快中&lt;code&gt;lan1&lt;/code&gt;的设置，如果需要使用IPTV，还可以参考&lt;a class=&#34;link&#34; href=&#34;../ikuai-how-use-iptv-in-shanghai&#34; &gt;我的这篇文章&lt;/a&gt;来设置一下&lt;code&gt;lan2&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;关于ipv6&#34;&gt;关于IPv6&lt;/h2&gt;
-&lt;p&gt;IPv6是未来的趋势，我的ISP也已经支持IPv6了，并且不管是DDNS还是PT，有IPv6的双栈总归是好的。但又同时，我所使用的科学上网服务并不支持IPv6，所以，我需要在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个科学上网的网段保留国内网站的IPv6解析，屏蔽掉国外网站IPv6的解析。这就得靠我在旁路由&lt;code&gt;10.0.0.2&lt;/code&gt;上自建DNS服务了，与此同时，如果不关闭爱快IPv6的DNS服务，由于我并没有设置旁路由作为IPv6网关，仍然使用主路由作为IPv6网关，这样的话，终端就不仅仅从我的自建DNS服务来获取解析了，也会从IPv6 DNS服务器来获取，所以还需要关闭爱快IPv6的DNS。自建DNS服务一样可以解析IPv6地址，以IPv6访问国内网站不是问题。&lt;/p&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;h3 id=&#34;网段的划分&#34;&gt;网段的划分&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;关于ipv6&#34;&gt;关于IPv6
+&lt;/h2&gt;&lt;p&gt;IPv6是未来的趋势，我的ISP也已经支持IPv6了，并且不管是DDNS还是PT，有IPv6的双栈总归是好的。但又同时，我所使用的科学上网服务并不支持IPv6，所以，我需要在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个科学上网的网段保留国内网站的IPv6解析，屏蔽掉国外网站IPv6的解析。这就得靠我在旁路由&lt;code&gt;10.0.0.2&lt;/code&gt;上自建DNS服务了，与此同时，如果不关闭爱快IPv6的DNS服务，由于我并没有设置旁路由作为IPv6网关，仍然使用主路由作为IPv6网关，这样的话，终端就不仅仅从我的自建DNS服务来获取解析了，也会从IPv6 DNS服务器来获取，所以还需要关闭爱快IPv6的DNS。自建DNS服务一样可以解析IPv6地址，以IPv6访问国内网站不是问题。&lt;/p&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;h3 id=&#34;网段的划分&#34;&gt;网段的划分
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;10.0.0.0/24&lt;/code&gt;作为科学上网的子网，该子网下全部设备默认直接可以科学上网。注意其中旁路由的IP是&lt;code&gt;10.0.0.2/24&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -5020,8 +5020,8 @@
 &lt;p&gt;&lt;code&gt;10.0.1.0/24&lt;/code&gt;作为无需科学上网的子网，该子网下全部设备默认不可以科学上网。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;爱快中的设置&#34;&gt;爱快中的设置&lt;/h3&gt;
-&lt;ol&gt;
+&lt;h3 id=&#34;爱快中的设置&#34;&gt;爱快中的设置
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;lan1&lt;/code&gt;设置&lt;code&gt;10.0.0.1&lt;/code&gt;为主IP，子网掩码为&lt;code&gt;/24&lt;/code&gt;，同时设置&lt;code&gt;10.0.1.1&lt;/code&gt;为扩展IP，子网掩码同样为&lt;code&gt;/24&lt;/code&gt;，详见下图。你也可以设置更多的扩展IP来分别管理不同的网段及设备（比如再单独设置一个子网为访客网络）。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE.png&#34;
@@ -5086,18 +5086,18 @@
 &lt;p&gt;网关为旁路由的设备在爱快的终端监控中，全部显示为旁路由的信息，所以我们还需要设置爱快的“高级应用-&amp;gt;跨三层应用”，具体如何设置因为还涉及到旁路由中的设置，我将在接下来的 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;本系列第（八）篇&lt;/a&gt; 中详细讲解。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;交换机&#34;&gt;交换机&lt;/h3&gt;
-&lt;p&gt;如果主路由有足够的网口，交换机可以省略，全部设备都直接接入主路由。有交换机时，即使交换机本身的管理IP处于&lt;code&gt;10.0.0.3/24&lt;/code&gt;，但接入的处于&lt;code&gt;10.0.1.0/24&lt;/code&gt;网段的设备一样是可以正常上网的，毕竟它是交换机。&lt;/p&gt;
-&lt;h3 id=&#34;ap&#34;&gt;AP&lt;/h3&gt;
-&lt;p&gt;如果主路由或者旁路由有无线功能，AP也可以省略，直接以主路由或者旁路由作为AP即可。&lt;/p&gt;
-&lt;h3 id=&#34;旁路由&#34;&gt;旁路由&lt;/h3&gt;
-&lt;p&gt;旁路由是不是虚拟机都没有关系。我的主路由是物理机，旁路由是虚拟机。其实我的很多设备都是通过虚拟机或者Docker的MacVLAN接入网络中，它们既有&lt;code&gt;10.0.0.0/24&lt;/code&gt;的，也有&lt;code&gt;10.0.1.0/24&lt;/code&gt;的，都按照我上面设置的DHCP服务正常工作着。&lt;/p&gt;
-&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
-&lt;p&gt;通过分离为两个子网，将需要科学上网的设备和不需要科学上网的设置分开，同时在前者所在子网下自建DNS服务器，达到国内支持IPv4/IPv6双栈，国外仅通过IPv4科学上网的目的。而在不需要科学上网的子网下，设备都是直接采用公共DNS服务器。&lt;/p&gt;
+&lt;h3 id=&#34;交换机&#34;&gt;交换机
+&lt;/h3&gt;&lt;p&gt;如果主路由有足够的网口，交换机可以省略，全部设备都直接接入主路由。有交换机时，即使交换机本身的管理IP处于&lt;code&gt;10.0.0.3/24&lt;/code&gt;，但接入的处于&lt;code&gt;10.0.1.0/24&lt;/code&gt;网段的设备一样是可以正常上网的，毕竟它是交换机。&lt;/p&gt;
+&lt;h3 id=&#34;ap&#34;&gt;AP
+&lt;/h3&gt;&lt;p&gt;如果主路由或者旁路由有无线功能，AP也可以省略，直接以主路由或者旁路由作为AP即可。&lt;/p&gt;
+&lt;h3 id=&#34;旁路由&#34;&gt;旁路由
+&lt;/h3&gt;&lt;p&gt;旁路由是不是虚拟机都没有关系。我的主路由是物理机，旁路由是虚拟机。其实我的很多设备都是通过虚拟机或者Docker的MacVLAN接入网络中，它们既有&lt;code&gt;10.0.0.0/24&lt;/code&gt;的，也有&lt;code&gt;10.0.1.0/24&lt;/code&gt;的，都按照我上面设置的DHCP服务正常工作着。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;通过分离为两个子网，将需要科学上网的设备和不需要科学上网的设置分开，同时在前者所在子网下自建DNS服务器，达到国内支持IPv4/IPv6双栈，国外仅通过IPv4科学上网的目的。而在不需要科学上网的子网下，设备都是直接采用公共DNS服务器。&lt;/p&gt;
 &lt;p&gt;不同的服务可以放在不同的子网下分别进行管理，比如我的许多Docker容器就通过创建在两个子网下的MacVLAN网络分别走不同的路线，一块网卡也可以创建多个MacVLAN网络以进行分流，详见我的 &lt;a class=&#34;link&#34; href=&#34;../docker-create-macvlan-with-multi-subnet&#34; &gt;这篇文章&lt;/a&gt;，比如 &lt;a class=&#34;link&#34; href=&#34;../docker-install-qbittorrent&#34; &gt;我的qBittorrent容器&lt;/a&gt; 就放在&lt;code&gt;10.0.1.0/24&lt;/code&gt;下，完全不用担心流量走了代理（我甚至在Clash中开启了代理PT网站，但这只影响我用PC访问PT网站，对 &lt;a class=&#34;link&#34; href=&#34;../docker-install-qbittorrent&#34; &gt;我的qBittorrent容器&lt;/a&gt; 毫无影响）。至于虚拟机也是一样，可以将其放入不同的子网来走不同的路线。&lt;/p&gt;
 &lt;p&gt;接下来，我们将继续设置Debian为旁路由，真正的开启Debian的旁路由之路，这将在我的 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;软路由系列文章&lt;/a&gt; 中逐渐地一篇一篇发出来。这个系列虽然比较长，看起来比较复杂，但你可以根据你的需要进行选择性的使用，并且，配置好后是一劳永逸的，不用担心刷机，不用担心哪天服务故障，这套配置比OpenWRT稳定多了，即使未来升级系统也是分分钟的事。&lt;/p&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -5281,8 +5281,8 @@ IP。&lt;/p&gt;
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv6-acl/pic1.png" alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;相关概念&#34;&gt;相关概念&lt;/h2&gt;
-&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;相关概念&#34;&gt;相关概念
+&lt;/h2&gt;&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;爱快帮助文档&lt;/a&gt;，不完全理解也没有关系，可以在实践中加深概念理解。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。&lt;/li&gt;
@@ -5307,15 +5307,15 @@ IP。&lt;/p&gt;
 &lt;li&gt;进接口：数据来源口。&lt;/li&gt;
 &lt;li&gt;出接口：目的出口。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;ipv4与ipv6的不同&#34;&gt;IPv4与IPv6的不同&lt;/h2&gt;
-&lt;p&gt;IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。&lt;/p&gt;
+&lt;h2 id=&#34;ipv4与ipv6的不同&#34;&gt;IPv4与IPv6的不同
+&lt;/h2&gt;&lt;p&gt;IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。&lt;/p&gt;
 &lt;p&gt;而IPv6不存在端口转发的概念，只要在爱快系统中启用了IPv6，那么内网的设备都有全球唯一的IPv6地址，不需要什么设置就能从公网访问。而爱快默认就没有启用IPv6防火墙，意思就是有IPv6地址的设备是几乎完全暴露在公网环境中的，极不安全。&lt;/p&gt;
 &lt;p&gt;当然，ISP大概率封掉了一些常见的端口。&lt;/p&gt;
-&lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置&lt;/h2&gt;
-&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
+&lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置
+&lt;/h2&gt;&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
 &lt;p&gt;注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。&lt;/p&gt;
-&lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。由于默认IPv6环境是几乎完全暴露在公网的。所以开启IPv6后，先加入两条规则，不允许公网通过IPv6访问本地，但允许本地通过IPv6访问公网：&lt;/p&gt;
@@ -5437,8 +5437,8 @@ IP。&lt;/p&gt;
 &lt;p&gt;其中的连接方向可以选择&lt;code&gt;原始方向&lt;/code&gt;，目的地址，参照上述写法写成负掩码形式，源地址、目的端口均留空，表示全部允许。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;规则验证&#34;&gt;规则验证&lt;/h2&gt;
-&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;规则验证&#34;&gt;规则验证
+&lt;/h2&gt;&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt;），比如检测IPv6的某端口开放情况运行下面命令即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -5503,14 +5503,14 @@ IP。&lt;/p&gt;
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv4-acl/pic1.png" alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本教程为原创教程，转载需注明来源及作者。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;关键词&#34;&gt;关键词&lt;/h2&gt;
-&lt;p&gt;爱快 IKUAI 防火墙 ACL 封禁 恶意IP 限制 来源IP 访问IP SSH WEBUI 远程控制 RDP Fail2BAN&lt;/p&gt;
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-&lt;p&gt;我们转发了端口到公网的人都会面临一个难题，比如转发Windows的远程控制RDP，比如NAS的SSH服务或者其他WEBUI服务，老是有许多恶意IP来探测并尝试爆破。诚然，比如群晖会自带防火墙，Linux也可以使用fail2ban或者其他防火墙来实现自动封禁恶意IP，这些都是有效的手段。&lt;/p&gt;
+&lt;h2 id=&#34;关键词&#34;&gt;关键词
+&lt;/h2&gt;&lt;p&gt;爱快 IKUAI 防火墙 ACL 封禁 恶意IP 限制 来源IP 访问IP SSH WEBUI 远程控制 RDP Fail2BAN&lt;/p&gt;
+&lt;h2 id=&#34;背景&#34;&gt;背景
+&lt;/h2&gt;&lt;p&gt;我们转发了端口到公网的人都会面临一个难题，比如转发Windows的远程控制RDP，比如NAS的SSH服务或者其他WEBUI服务，老是有许多恶意IP来探测并尝试爆破。诚然，比如群晖会自带防火墙，Linux也可以使用fail2ban或者其他防火墙来实现自动封禁恶意IP，这些都是有效的手段。&lt;/p&gt;
 &lt;p&gt;之前，我使用&lt;code&gt;fail2ban&lt;/code&gt;来实现自动封禁恶意IP，后来发现每天都会在几十个IP被封禁，一段时间以后，当&lt;code&gt;fail2ban&lt;/code&gt;的封禁数量上千后，由于机器性能差，&lt;code&gt;fail2ban&lt;/code&gt;竟然占用了好多资源。后来换爱快按下载流程设置后，&lt;code&gt;fail2ban&lt;/code&gt;清静了好多，机器性能也恢复了。而像把Windows的远程桌面端口转发出去，无论你是不是用的3389端口，可能每天都会有IP进行几万次爆破尝试。&lt;/p&gt;
 &lt;p&gt;不过这里想要说明的是，以爱快作为主路由时一个更好的保护方式，就是充分利用爱快的IP分组，结合端口转发功能或ACL功能来实现。当然，这只是保护措施的一种，最重要的，不要使用弱密码，不要使用默认密码，SSH使用私钥而非密码等等。&lt;/p&gt;
-&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;下载（或者点击文件右上角的&lt;code&gt;Copy raw content&lt;/code&gt;按钮复制下来保存为&lt;code&gt;csv&lt;/code&gt;文件） &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/files/blob/master/ikuai/ipgroup.csv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这个&lt;/a&gt; 文件（不定期更新），在爱快设置中 &lt;code&gt;网络设置 -&amp;gt; 终端分组设置 -&amp;gt; IP分组&lt;/code&gt;处导入。&lt;/p&gt;
@@ -5549,15 +5549,15 @@ IP。&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;ACL功能失效的时候，使用端口映射功能来限制时，每一条需要限制访问来源的条目需要分别设置，所以需要限制的端口和不需要限制的端口需要分成两条；&lt;/li&gt;
 &lt;li&gt;需要限制访问来源的服务一般是WEBUI、RDP、SSH等（基本上都是tcp协议），像BT/PT软件（uTorrent, qBittorrent, transmission, deluge等等）等P2P的监听端口（tcp+udp协议）就不要限制访问来源IP；&lt;/li&gt;
 &lt;li&gt;爱快路由器自己的WEBUI端口不要限制，要不然万一你IP不在允许范围内，改都都不了；&lt;/li&gt;
 &lt;li&gt;建议允许访问的来源IP都选上&lt;code&gt;未知&lt;/code&gt;的IP分组，尤其是中国移动，除了选择你所在省份，一定要选上&lt;code&gt;未知移动&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;ipv6&#34;&gt;IPv6&lt;/h2&gt;
-&lt;p&gt;IPv6的ACL设置请在 &lt;a class=&#34;link&#34; href=&#34;../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae&#34; &gt;这里&lt;/a&gt; 查看。&lt;/p&gt;
+&lt;h2 id=&#34;ipv6&#34;&gt;IPv6
+&lt;/h2&gt;&lt;p&gt;IPv6的ACL设置请在 &lt;a class=&#34;link&#34; href=&#34;../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae&#34; &gt;这里&lt;/a&gt; 查看。&lt;/p&gt;
 </description>
         </item>
         

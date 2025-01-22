@@ -6,7 +6,7 @@
         <description>Recent content in 防火墙 on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E9%98%B2%E7%81%AB%E5%A2%99/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 29 Jan 2024 13:04:28 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E9%98%B2%E7%81%AB%E5%A2%99/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）</title>
         <link>https://evine.win/p/ikuai-set-ipv6-acl-2/</link>
         <pubDate>Mon, 27 Nov 2023 00:00:00 +0800</pubDate>
@@ -15,8 +15,8 @@
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png" alt="Featured image of post 爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;相关概念&#34;&gt;相关概念&lt;/h2&gt;
-&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;相关概念&#34;&gt;相关概念
+&lt;/h2&gt;&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;爱快帮助文档&lt;/a&gt;，不完全理解也没有关系，可以在实践中加深概念理解。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。&lt;/li&gt;
@@ -41,28 +41,28 @@
 &lt;li&gt;进接口：数据来源口。&lt;/li&gt;
 &lt;li&gt;出接口：目的出口。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;ipv4与ipv6的不同&#34;&gt;IPv4与IPv6的不同&lt;/h2&gt;
-&lt;p&gt;IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。&lt;/p&gt;
+&lt;h2 id=&#34;ipv4与ipv6的不同&#34;&gt;IPv4与IPv6的不同
+&lt;/h2&gt;&lt;p&gt;IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。&lt;/p&gt;
 &lt;p&gt;而IPv6不存在端口转发的概念，只要在爱快系统中启用了IPv6，那么内网的设备都有全球唯一的IPv6地址，不需要什么设置就能从公网访问。而爱快默认就没有启用IPv6防火墙，意思就是有IPv6地址的设备是几乎完全暴露在公网环境中的，极不安全。&lt;/p&gt;
 &lt;p&gt;当然，ISP大概率封掉了一些常见的端口。&lt;/p&gt;
-&lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置&lt;/h2&gt;
-&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv4-acl&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
+&lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置
+&lt;/h2&gt;&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../ikuai-set-ipv4-acl&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
 &lt;p&gt;注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。&lt;/p&gt;
-&lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。爱快3.7.7新增了IPv6分组和MAC分组功能，不过还有BUG，在3.7.8终于稳定了，可以导入分组了简化设置了。&lt;/p&gt;
-&lt;h3 id=&#34;导入ipv6分组&#34;&gt;导入IPv6分组&lt;/h3&gt;
-&lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;导入ipv6分组&#34;&gt;导入IPv6分组
+&lt;/h3&gt;&lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ipv6group.csv&lt;/a&gt; ，然后在爱快 “网络设置 -&amp;gt; 终端分组设置 -&amp;gt; IPv6分组” 处导入。如果下载不下来，可以前往我放在Github上的仓库 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/files/tree/master/zxipv6wry&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/devome/files/tree/master/zxipv6wry&lt;/a&gt; clone后使用，在该仓库中，你也可以查阅中国完整的IPv6数据及分省数据。&lt;/p&gt;
 &lt;p&gt;需要注意的是，由于爱快分组名称的字数有限制，所以“联通”包含“联通”和“网通”，“移动”包含“移动”和“铁通”，“鹏博士”包含“鹏博士”和“长城宽带”。还有部分IPv6数据暂不清楚其分配到什么省份，所以归类为“未知省份”，请在选择来源IPv6分组时根据你的实际需要进行选择。&lt;/p&gt;
-&lt;h3 id=&#34;设置mac分组&#34;&gt;设置MAC分组&lt;/h3&gt;
-&lt;p&gt;爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&amp;gt; 终端分组设置 -&amp;gt; MAC分组” 处设置。&lt;/p&gt;
-&lt;h3 id=&#34;acl规则&#34;&gt;ACL规则&lt;/h3&gt;
-&lt;h4 id=&#34;默认规则&#34;&gt;默认规则&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png&#34;
+&lt;h3 id=&#34;设置mac分组&#34;&gt;设置MAC分组
+&lt;/h3&gt;&lt;p&gt;爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&amp;gt; 终端分组设置 -&amp;gt; MAC分组” 处设置。&lt;/p&gt;
+&lt;h3 id=&#34;acl规则&#34;&gt;ACL规则
+&lt;/h3&gt;&lt;h4 id=&#34;默认规则&#34;&gt;默认规则
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;181&#34;
 	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1_hu10551001584828499519.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic1_hu12598580468891151092.png 1024w&#34;
@@ -78,8 +78,8 @@
 &gt;&lt;/p&gt;
 &lt;p&gt;注：第一条阻断规则的连接方向为&lt;code&gt;原始方向&lt;/code&gt;，第二条允许规则的连接方向为&lt;code&gt;关闭&lt;/code&gt;。并且由于目前爱快的IPv6 ACL还无法针对性的打开指定本地设备的ICMP协议，所以这样操作以后会默认禁止从公网ping本地的IPv6地址。爱快默认允许，所以上图中第二条规则不设置也可以。&lt;/p&gt;
 &lt;p&gt;然后再对有安全性要求的端口/IP来针对性的开放权限。以下举几种情况：&lt;/p&gt;
-&lt;h4 id=&#34;webuihttpshttpsshrdp等&#34;&gt;WEBUI/HTTPS/HTTP/SSH/RDP等&lt;/h4&gt;
-&lt;p&gt;假如&lt;code&gt;8080,20000,30000-30004&lt;/code&gt;这几个端口都是同一台设备上运行的WEBUI/SSH/RDP控制端口，只允许你所在省份电信和联通的IPv6地址访问。这个设备有两个IPv6地址（比如一个是DHCPv6分配的，一个是设备自己通过EUI-64自行设置的），分别为：&lt;/p&gt;
+&lt;h4 id=&#34;webuihttpshttpsshrdp等&#34;&gt;WEBUI/HTTPS/HTTP/SSH/RDP等
+&lt;/h4&gt;&lt;p&gt;假如&lt;code&gt;8080,20000,30000-30004&lt;/code&gt;这几个端口都是同一台设备上运行的WEBUI/SSH/RDP控制端口，只允许你所在省份电信和联通的IPv6地址访问。这个设备有两个IPv6地址（比如一个是DHCPv6分配的，一个是设备自己通过EUI-64自行设置的），分别为：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -125,8 +125,8 @@
 		data-flex-basis=&#34;293px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;btpt的监听端口&#34;&gt;BT/PT的监听端口&lt;/h4&gt;
-&lt;p&gt;假如&lt;code&gt;33333,44444&lt;/code&gt;这两个端口是BT/PT下载软件的下载监听端口，由于上面最开始添加的默认规则阻断了其他公网IPv6访问本地，现在需要将&lt;code&gt;33333,44444&lt;/code&gt;在IPv6上暴露出去。假如下载软件的IPv6地址是：&lt;/p&gt;
+&lt;h4 id=&#34;btpt的监听端口&#34;&gt;BT/PT的监听端口
+&lt;/h4&gt;&lt;p&gt;假如&lt;code&gt;33333,44444&lt;/code&gt;这两个端口是BT/PT下载软件的下载监听端口，由于上面最开始添加的默认规则阻断了其他公网IPv6访问本地，现在需要将&lt;code&gt;33333,44444&lt;/code&gt;在IPv6上暴露出去。假如下载软件的IPv6地址是：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -150,13 +150,13 @@
 		data-flex-basis=&#34;292px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h4 id=&#34;完全暴露某台设备&#34;&gt;完全暴露某台设备&lt;/h4&gt;
-&lt;p&gt;因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。&lt;/p&gt;
+&lt;h4 id=&#34;完全暴露某台设备&#34;&gt;完全暴露某台设备
+&lt;/h4&gt;&lt;p&gt;因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： &lt;code&gt;nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535&lt;/code&gt;，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;规则验证&#34;&gt;规则验证&lt;/h2&gt;
-&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;规则验证&#34;&gt;规则验证
+&lt;/h2&gt;&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt;），比如检测IPv6的某端口开放情况运行下面命令即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -221,8 +221,8 @@
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv6-acl/pic1.png" alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;相关概念&#34;&gt;相关概念&lt;/h2&gt;
-&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;相关概念&#34;&gt;相关概念
+&lt;/h2&gt;&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;爱快帮助文档&lt;/a&gt;，不完全理解也没有关系，可以在实践中加深概念理解。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。&lt;/li&gt;
@@ -247,15 +247,15 @@
 &lt;li&gt;进接口：数据来源口。&lt;/li&gt;
 &lt;li&gt;出接口：目的出口。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;ipv4与ipv6的不同&#34;&gt;IPv4与IPv6的不同&lt;/h2&gt;
-&lt;p&gt;IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。&lt;/p&gt;
+&lt;h2 id=&#34;ipv4与ipv6的不同&#34;&gt;IPv4与IPv6的不同
+&lt;/h2&gt;&lt;p&gt;IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。&lt;/p&gt;
 &lt;p&gt;而IPv6不存在端口转发的概念，只要在爱快系统中启用了IPv6，那么内网的设备都有全球唯一的IPv6地址，不需要什么设置就能从公网访问。而爱快默认就没有启用IPv6防火墙，意思就是有IPv6地址的设备是几乎完全暴露在公网环境中的，极不安全。&lt;/p&gt;
 &lt;p&gt;当然，ISP大概率封掉了一些常见的端口。&lt;/p&gt;
-&lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置&lt;/h2&gt;
-&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
+&lt;h2 id=&#34;ipv4的acl防火墙设置&#34;&gt;IPv4的ACL/防火墙设置
+&lt;/h2&gt;&lt;p&gt;IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考&lt;a class=&#34;link&#34; href=&#34;../%e4%bd%bf%e7%94%a8%e7%88%b1%e5%bf%ab%e6%9d%a5%e9%99%90%e5%88%b6sshwebuirdp%e7%9a%84%e8%ae%bf%e9%97%ae%e6%9d%a5%e6%ba%90ip%e4%bf%9d%e6%8a%a4%e5%86%85%e7%bd%91%e8%ae%be%e5%a4%87%e4%b8%8d%e8%a2%ab%e6%94%bb%e5%87%bb&#34; &gt;这篇教程&lt;/a&gt; ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。&lt;/p&gt;
 &lt;p&gt;注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。&lt;/p&gt;
-&lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。由于默认IPv6环境是几乎完全暴露在公网的。所以开启IPv6后，先加入两条规则，不允许公网通过IPv6访问本地，但允许本地通过IPv6访问公网：&lt;/p&gt;
@@ -377,8 +377,8 @@
 &lt;p&gt;其中的连接方向可以选择&lt;code&gt;原始方向&lt;/code&gt;，目的地址，参照上述写法写成负掩码形式，源地址、目的端口均留空，表示全部允许。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;规则验证&#34;&gt;规则验证&lt;/h2&gt;
-&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;规则验证&#34;&gt;规则验证
+&lt;/h2&gt;&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt;），比如检测IPv6的某端口开放情况运行下面命令即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -443,14 +443,14 @@
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv4-acl/pic1.png" alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本教程为原创教程，转载需注明来源及作者。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;关键词&#34;&gt;关键词&lt;/h2&gt;
-&lt;p&gt;爱快 IKUAI 防火墙 ACL 封禁 恶意IP 限制 来源IP 访问IP SSH WEBUI 远程控制 RDP Fail2BAN&lt;/p&gt;
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-&lt;p&gt;我们转发了端口到公网的人都会面临一个难题，比如转发Windows的远程控制RDP，比如NAS的SSH服务或者其他WEBUI服务，老是有许多恶意IP来探测并尝试爆破。诚然，比如群晖会自带防火墙，Linux也可以使用fail2ban或者其他防火墙来实现自动封禁恶意IP，这些都是有效的手段。&lt;/p&gt;
+&lt;h2 id=&#34;关键词&#34;&gt;关键词
+&lt;/h2&gt;&lt;p&gt;爱快 IKUAI 防火墙 ACL 封禁 恶意IP 限制 来源IP 访问IP SSH WEBUI 远程控制 RDP Fail2BAN&lt;/p&gt;
+&lt;h2 id=&#34;背景&#34;&gt;背景
+&lt;/h2&gt;&lt;p&gt;我们转发了端口到公网的人都会面临一个难题，比如转发Windows的远程控制RDP，比如NAS的SSH服务或者其他WEBUI服务，老是有许多恶意IP来探测并尝试爆破。诚然，比如群晖会自带防火墙，Linux也可以使用fail2ban或者其他防火墙来实现自动封禁恶意IP，这些都是有效的手段。&lt;/p&gt;
 &lt;p&gt;之前，我使用&lt;code&gt;fail2ban&lt;/code&gt;来实现自动封禁恶意IP，后来发现每天都会在几十个IP被封禁，一段时间以后，当&lt;code&gt;fail2ban&lt;/code&gt;的封禁数量上千后，由于机器性能差，&lt;code&gt;fail2ban&lt;/code&gt;竟然占用了好多资源。后来换爱快按下载流程设置后，&lt;code&gt;fail2ban&lt;/code&gt;清静了好多，机器性能也恢复了。而像把Windows的远程桌面端口转发出去，无论你是不是用的3389端口，可能每天都会有IP进行几万次爆破尝试。&lt;/p&gt;
 &lt;p&gt;不过这里想要说明的是，以爱快作为主路由时一个更好的保护方式，就是充分利用爱快的IP分组，结合端口转发功能或ACL功能来实现。当然，这只是保护措施的一种，最重要的，不要使用弱密码，不要使用默认密码，SSH使用私钥而非密码等等。&lt;/p&gt;
-&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;下载（或者点击文件右上角的&lt;code&gt;Copy raw content&lt;/code&gt;按钮复制下来保存为&lt;code&gt;csv&lt;/code&gt;文件） &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/files/blob/master/ikuai/ipgroup.csv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这个&lt;/a&gt; 文件（不定期更新），在爱快设置中 &lt;code&gt;网络设置 -&amp;gt; 终端分组设置 -&amp;gt; IP分组&lt;/code&gt;处导入。&lt;/p&gt;
@@ -489,15 +489,15 @@
 &gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;ACL功能失效的时候，使用端口映射功能来限制时，每一条需要限制访问来源的条目需要分别设置，所以需要限制的端口和不需要限制的端口需要分成两条；&lt;/li&gt;
 &lt;li&gt;需要限制访问来源的服务一般是WEBUI、RDP、SSH等（基本上都是tcp协议），像BT/PT软件（uTorrent, qBittorrent, transmission, deluge等等）等P2P的监听端口（tcp+udp协议）就不要限制访问来源IP；&lt;/li&gt;
 &lt;li&gt;爱快路由器自己的WEBUI端口不要限制，要不然万一你IP不在允许范围内，改都都不了；&lt;/li&gt;
 &lt;li&gt;建议允许访问的来源IP都选上&lt;code&gt;未知&lt;/code&gt;的IP分组，尤其是中国移动，除了选择你所在省份，一定要选上&lt;code&gt;未知移动&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;ipv6&#34;&gt;IPv6&lt;/h2&gt;
-&lt;p&gt;IPv6的ACL设置请在 &lt;a class=&#34;link&#34; href=&#34;../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae&#34; &gt;这里&lt;/a&gt; 查看。&lt;/p&gt;
+&lt;h2 id=&#34;ipv6&#34;&gt;IPv6
+&lt;/h2&gt;&lt;p&gt;IPv6的ACL设置请在 &lt;a class=&#34;link&#34; href=&#34;../%e7%88%b1%e5%bf%ab-ipv4ipv6-acl%e9%98%b2%e7%81%ab%e5%a2%99%e8%ae%be%e7%bd%ae&#34; &gt;这里&lt;/a&gt; 查看。&lt;/p&gt;
 </description>
         </item>
         

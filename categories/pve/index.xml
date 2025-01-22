@@ -57,8 +57,8 @@
         <pubDate>Tue, 15 Aug 2023 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/pve-install-realtek-8125-driver/</guid>
-        <description>&lt;img src="https://evine.win/p/pve-install-realtek-8125-driver/pve-poster.jpg" alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的驱动是&lt;code&gt;r8169&lt;/code&gt;，它并没有开启网卡多队列等特性。导致一个网卡的软中断只能使用固定的一个核心开接收和发送数据。&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/pve-install-realtek-8125-driver/pve-poster.jpg" alt="Featured image of post PVE 8 安装 ReakTEK RTL8125B 2.5G网卡驱动" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;近期在PVE中发现，只要连接数一多，PVE会有两个单核的使用率明显比其他核超过一大截。经过查询资料发现，这是因为我的 RealTEK RTL8125 2.5GB 网卡默认加载的驱动是&lt;code&gt;r8169&lt;/code&gt;，它并没有开启网卡多队列等特性。导致一个网卡的软中断只能使用固定的一个核心开接收和发送数据。&lt;/p&gt;
 &lt;p&gt;查看网卡加载的是什么驱动：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -126,8 +126,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;连接数多的时候，甚至这两个核心的使用率能达到80%，而其他核心才不到20%。所以还是有必要将该网卡驱动从Linux默认的&lt;code&gt;r8169&lt;/code&gt;切换到&lt;a class=&#34;link&#34; href=&#34;https://www.realtek.com/Download/List?cate_id=584&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;官方驱动&lt;/a&gt;上。&lt;/p&gt;
-&lt;h2 id=&#34;使用官方驱动&#34;&gt;使用官方驱动&lt;/h2&gt;
-&lt;p&gt;已经有大佬把官方驱动打包成了dkms deb包：https://github.com/awesometic/realtek-r8125-dkms，不过该deb包并没有打开网卡多队列，所以我FORK了一份，启用TX多队列及RSS，禁用ASPM，发布在：&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/r8125-dkms&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;使用官方驱动&#34;&gt;使用官方驱动
+&lt;/h2&gt;&lt;p&gt;已经有大佬把官方驱动打包成了dkms deb包：https://github.com/awesometic/realtek-r8125-dkms，不过该deb包并没有打开网卡多队列，所以我FORK了一份，启用TX多队列及RSS，禁用ASPM，发布在：&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/r8125-dkms&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/devome/r8125-dkms&lt;/a&gt; ，直接使用即可。先下载Release中最新的deb文件，再按下方流程安装即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -211,8 +211,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        Kernel modules: r8169, r8125
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;如何更新驱动&#34;&gt;如何更新驱动&lt;/h2&gt;
-&lt;p&gt;如果已经安装好了 &lt;code&gt;r8125-dkms&lt;/code&gt; 驱动，未来升级时可以无需重启PVE。&lt;strong&gt;如需要不重启PVE来更新驱动，并且你的 RTL8125B 网口作为了管理口，那么建议直接物理操作PVE（也就是不要通过ssh）来达到更新驱动的目标。&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;如何更新驱动&#34;&gt;如何更新驱动
+&lt;/h2&gt;&lt;p&gt;如果已经安装好了 &lt;code&gt;r8125-dkms&lt;/code&gt; 驱动，未来升级时可以无需重启PVE。&lt;strong&gt;如需要不重启PVE来更新驱动，并且你的 RTL8125B 网口作为了管理口，那么建议直接物理操作PVE（也就是不要通过ssh）来达到更新驱动的目标。&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -234,8 +234,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果你的 RTL8125B 网口作为了管理口，并且无法物理操作PVE，那么也可以将上述命令保存到一个脚本文件 &lt;code&gt;reload.sh&lt;/code&gt; 中，增加可执行权限后在 &lt;code&gt;tmux&lt;/code&gt; 中运行它（不能直接在ssh中运行）。&lt;/p&gt;
-&lt;h2 id=&#34;看看效果&#34;&gt;看看效果&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h2 id=&#34;看看效果&#34;&gt;看看效果
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -552,8 +552,8 @@
         <description>&lt;img src="https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。&lt;/p&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。&lt;/p&gt;
 &lt;p&gt;作为垃圾佬，怎么舍得再额外购置硬件多花钱呢。垃圾佬当然不愿意再购买新硬盘了，掏出多年前给台式机装系统的两块SATA接口的固态硬盘，以及以前台式机用的两块机械硬盘，准备将两块SSD组raid0后作为缓存池，为两块HDD以raid0组后创建的LVM-thin提供读写缓存服务。&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -608,8 +608,8 @@
 &lt;p&gt;4块4T的HDD组raid5后再转换为LVM，然后一块256G的nvme磁盘作为其缓存池。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;有关概念&#34;&gt;有关概念&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;有关概念&#34;&gt;有关概念
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
@@ -625,8 +625,8 @@
 &lt;p&gt;LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;网上有很多有关概念的详细介绍，这里不再多说。&lt;/p&gt;
-&lt;h2 id=&#34;创建具有缓存池的lvm-thin存储&#34;&gt;创建具有缓存池的LVM-thin存储&lt;/h2&gt;
-&lt;p&gt;这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：&lt;/p&gt;
+&lt;h2 id=&#34;创建具有缓存池的lvm-thin存储&#34;&gt;创建具有缓存池的LVM-thin存储
+&lt;/h2&gt;&lt;p&gt;这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;数据LV：也就是存储LVM-thin原始数据的LV，所有数据最终需要写入的地方，我将在HDD上创建它。&lt;/p&gt;
@@ -650,8 +650,8 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;如果直接在PVE的WEBUI中来创建，无法实现我所设想的思路，所以只能通过命令行来创建，然后再经过多次转换，来转换为我所需要的LVM-thin。&lt;/p&gt;
-&lt;h3 id=&#34;先看看磁盘的识别情况&#34;&gt;先看看磁盘的识别情况&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h3 id=&#34;先看看磁盘的识别情况&#34;&gt;先看看磁盘的识别情况
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -686,8 +686,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sde            8:64   0 111.8G  0 disk
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;对磁盘初始化&#34;&gt;对磁盘初始化&lt;/h3&gt;
-&lt;p&gt;给2块SSD、2块HDD磁盘全部以GPT进行初始化，每个磁盘只分一个区，以下以&lt;code&gt;/dev/sdb&lt;/code&gt;为例（不分区直接创建整盘PV也可以）：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;对磁盘初始化&#34;&gt;对磁盘初始化
+&lt;/h3&gt;&lt;p&gt;给2块SSD、2块HDD磁盘全部以GPT进行初始化，每个磁盘只分一个区，以下以&lt;code&gt;/dev/sdb&lt;/code&gt;为例（不分区直接创建整盘PV也可以）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -730,8 +730,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Syncing disks.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;全部分好区再输入lsblk检查一下&#34;&gt;全部分好区再输入&lt;code&gt;lsblk&lt;/code&gt;检查一下：&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;全部分好区再输入lsblk检查一下&#34;&gt;全部分好区再输入&lt;code&gt;lsblk&lt;/code&gt;检查一下：
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -776,8 +776,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─sde1         8:65   0 111.8G  0 part
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建pv&#34;&gt;创建PV&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建pv&#34;&gt;创建PV
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -800,8 +800,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Physical volume &amp;#34;/dev/sde1&amp;#34; successfully created.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建vg&#34;&gt;创建VG&lt;/h3&gt;
-&lt;p&gt;采用默认的4M大小的PE，创建名叫&lt;code&gt;hybrid&lt;/code&gt;的VG：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建vg&#34;&gt;创建VG
+&lt;/h3&gt;&lt;p&gt;采用默认的4M大小的PE，创建名叫&lt;code&gt;hybrid&lt;/code&gt;的VG：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -819,8 +819,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Volume group &amp;#34;hybrid&amp;#34; successfully created
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建数据lv&#34;&gt;创建数据LV&lt;/h3&gt;
-&lt;p&gt;给两块HDD组raid0，用完它们的全部空间创建名叫&lt;code&gt;data&lt;/code&gt;的数据LV：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建数据lv&#34;&gt;创建数据LV
+&lt;/h3&gt;&lt;p&gt;给两块HDD组raid0，用完它们的全部空间创建名叫&lt;code&gt;data&lt;/code&gt;的数据LV：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -843,8 +843,8 @@
 &lt;p&gt;对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;我的主要是大文件，所以我设置Stripe Size为256KiB。并且我的使用场景下，主要目的是提升IO，反而对数据损坏这个情况不关心，坏了就坏了，所以我采用的是raid0，和我使用场景不一致的不要采用raid0以及256KiB的Stripe Size。&lt;/p&gt;
-&lt;h3 id=&#34;创建元数据lv和缓存池元数据lv&#34;&gt;创建元数据LV和缓存池元数据LV&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h3 id=&#34;创建元数据lv和缓存池元数据lv&#34;&gt;创建元数据LV和缓存池元数据LV
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;我最终要创建的存储类型是LVM-thin，这种薄存储类型需要另外的空间存储元数据metadata，如果直接在HDD上创建LVM-thin，系统会自动在HDD上创建其对应的元数据LV。但我们现在创建的是raid0类型的LVM，默认不带元数据LV，并且另一方面，我希望能在SSD上创建元数据所需要的LV，这样还可以提升数据索引速度，所以我需要手动在SSD上创建最终的LVM-thin存储所需要的元数据LV。&lt;/p&gt;
 &lt;/li&gt;
@@ -898,8 +898,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Logical volume &amp;#34;meta_cachepool&amp;#34; created.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建缓存池数据lv&#34;&gt;创建缓存池数据LV&lt;/h3&gt;
-&lt;p&gt;在SSD上已经创建好了两个metadata的LV，占了一点空间，为了最大化利用磁盘空间，先把两块SSD余下的空间全部分配给缓存池数据LV。不过如果后续进行lvconvert转换存储类型操作时，如未设置关闭自动创建备用池元数据LV（即命令中添加&lt;code&gt;--poolmetadataspare n&lt;/code&gt;，在PVE的WEBUI中创建LVM-thin，系统也会默认创建备用池元数据LV），在进行转换操作时就需要额外的等同于&lt;code&gt;hybrid/meta_thinpool&lt;/code&gt;大小（我这里就是11.5GiB）的空间。我打算让其自动创建备用池元数据LV，所以我需要预留11.5GiB（即2944个PE）。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建缓存池数据lv&#34;&gt;创建缓存池数据LV
+&lt;/h3&gt;&lt;p&gt;在SSD上已经创建好了两个metadata的LV，占了一点空间，为了最大化利用磁盘空间，先把两块SSD余下的空间全部分配给缓存池数据LV。不过如果后续进行lvconvert转换存储类型操作时，如未设置关闭自动创建备用池元数据LV（即命令中添加&lt;code&gt;--poolmetadataspare n&lt;/code&gt;，在PVE的WEBUI中创建LVM-thin，系统也会默认创建备用池元数据LV），在进行转换操作时就需要额外的等同于&lt;code&gt;hybrid/meta_thinpool&lt;/code&gt;大小（我这里就是11.5GiB）的空间。我打算让其自动创建备用池元数据LV，所以我需要预留11.5GiB（即2944个PE）。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果已经在LVM-thin创建了虚拟磁盘，没有任何剩余空间的话，后续再调整就不太好调整了，所以如果不太放心的话，你多保留一些空间不完全创建LV也是可以的。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;为了最大化的提升IO性能，缓存池也采用raid0。同样采用默认的Stripe Size。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -970,8 +970,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Logical volume &lt;span class=&#34;s2&#34;&gt;&amp;#34;cache&amp;#34;&lt;/span&gt; created.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;转换存储类型&#34;&gt;转换存储类型&lt;/h3&gt;
-&lt;ol&gt;
+&lt;/div&gt;&lt;h3 id=&#34;转换存储类型&#34;&gt;转换存储类型
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;转换&lt;code&gt;hybrid/cache&lt;/code&gt;这个LV的类型为缓存池&lt;code&gt;cache-pool&lt;/code&gt;，设置&lt;code&gt;chunksize&lt;/code&gt;为256KiB，指定缓存池元数据LV为之前已经在SSD上以raid0创建的&lt;code&gt;hybrid/meta_cachepool&lt;/code&gt;：&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1076,8 +1076,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Converted hybrid/data and hybrid/meta_thinpool to thin pool.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;检查&#34;&gt;检查&lt;/h2&gt;
-&lt;p&gt;最后，我们来看看LV和物理磁盘的情况&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;检查&#34;&gt;检查
+&lt;/h2&gt;&lt;p&gt;最后，我们来看看LV和物理磁盘的情况&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1264,8 +1264,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        └─hybrid-data                 253:15   0   3.6T  0 lvm
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;添加存储&#34;&gt;添加存储&lt;/h2&gt;
-&lt;p&gt;把创建好的LVM-thin存储添加到PVE，就大功告成了：&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;添加存储&#34;&gt;添加存储
+&lt;/h2&gt;&lt;p&gt;把创建好的LVM-thin存储添加到PVE，就大功告成了：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;686&#34;
@@ -1309,8 +1309,8 @@
 		data-flex-basis=&#34;569px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvm.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvm.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;lvm&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/pvcreate.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;pvcreate&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/vgcreate.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;vgcreate&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvcreate.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1345,12 +1345,12 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。&lt;/p&gt;
-&lt;h2 id=&#34;注意事项&#34;&gt;注意事项&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;适配遥控器&#34;&gt;适配遥控器&lt;/h2&gt;
-&lt;p&gt;当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，&lt;del&gt;经过本人踩坑，我更推荐2.4G无线遥控器&lt;/del&gt;（&lt;strong&gt;2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连&lt;/strong&gt;）。总得说来，二者都可以非常舒服地使用，对比如下：&lt;/p&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。&lt;/p&gt;
+&lt;h2 id=&#34;注意事项&#34;&gt;注意事项
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;适配遥控器&#34;&gt;适配遥控器
+&lt;/h2&gt;&lt;p&gt;当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，&lt;del&gt;经过本人踩坑，我更推荐2.4G无线遥控器&lt;/del&gt;（&lt;strong&gt;2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连&lt;/strong&gt;）。总得说来，二者都可以非常舒服地使用，对比如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;del&gt;蓝牙遥控器即使设置好了永远保持连接，但毕竟需要蓝牙适配器和蓝牙遥控器两个配合，事实上在我的环境中5分钟左右遥控器没有动作二者就失联了，总是需要多按几次遥控器才会有反应。2.4G无线遥控器自带接收器，不存在断连问题。&lt;/del&gt;&lt;/p&gt;
@@ -1368,11 +1368,11 @@
 &lt;p&gt;蓝牙设备可以设置永不断连，但似乎不能劫持电源键，2.4G无线遥控器可以正常劫持。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;无线遥控器&#34;&gt;无线遥控器&lt;/h3&gt;
-&lt;p&gt;谈不上适配，如果是直接在PVE中安装Kodi，插上USB接收器就能用了。如果是直通显卡和声卡给 LibreELEC/CoreELEC 虚拟机的话，就设置下USB接口直通。其他方式安装的Kodi/LibreELEC/CoreELEC，只要该系统能访问USB接口，就可以用这种方式。&lt;/p&gt;
+&lt;h3 id=&#34;无线遥控器&#34;&gt;无线遥控器
+&lt;/h3&gt;&lt;p&gt;谈不上适配，如果是直接在PVE中安装Kodi，插上USB接收器就能用了。如果是直通显卡和声卡给 LibreELEC/CoreELEC 虚拟机的话，就设置下USB接口直通。其他方式安装的Kodi/LibreELEC/CoreELEC，只要该系统能访问USB接口，就可以用这种方式。&lt;/p&gt;
 &lt;p&gt;购买关键词：&lt;code&gt;遥控器&lt;/code&gt; &lt;code&gt;2.4G&lt;/code&gt; &lt;code&gt;飞鼠&lt;/code&gt; &lt;code&gt;空中鼠标&lt;/code&gt; &lt;code&gt;空中键鼠&lt;/code&gt; &lt;code&gt;Air Mouse&lt;/code&gt; &lt;code&gt;键鼠&lt;/code&gt;，注意要自带接收器的。&lt;/p&gt;
-&lt;h3 id=&#34;蓝牙遥控器&#34;&gt;蓝牙遥控器&lt;/h3&gt;
-&lt;p&gt;注：我购买的是胜为蓝牙适配器5.0和小米蓝牙语音遥控器这两样东西。&lt;del&gt;但我现在不推荐用这种方式，除非你需要连接多个蓝牙设备才考虑。&lt;/del&gt;（2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连。）&lt;/p&gt;
+&lt;h3 id=&#34;蓝牙遥控器&#34;&gt;蓝牙遥控器
+&lt;/h3&gt;&lt;p&gt;注：我购买的是胜为蓝牙适配器5.0和小米蓝牙语音遥控器这两样东西。&lt;del&gt;但我现在不推荐用这种方式，除非你需要连接多个蓝牙设备才考虑。&lt;/del&gt;（2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连。）&lt;/p&gt;
 &lt;p&gt;以下为蓝牙遥控器适配流程：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;以下相关命令均为root用户执行的。
@@ -1542,10 +1542,10 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;在这里也简单的提一下 LibreELEC/CoreELEC 如何适配蓝牙遥控器，安装好适配器后，进入LibreELEC/CoreELEC系统设置菜单的蓝牙子菜单后，根据遥控器说明书使遥控器进入待配对状态，然后在LibreELEC/CoreELEC中开始扫描，扫描到后点击配对即可。&lt;/p&gt;
-&lt;h3 id=&#34;红外遥控器&#34;&gt;红外遥控器&lt;/h3&gt;
-&lt;p&gt;不好用，教程就不写了。&lt;/p&gt;
-&lt;h2 id=&#34;再次提醒&#34;&gt;再次提醒&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;红外遥控器&#34;&gt;红外遥控器
+&lt;/h3&gt;&lt;p&gt;不好用，教程就不写了。&lt;/p&gt;
+&lt;h2 id=&#34;再次提醒&#34;&gt;再次提醒
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1566,8 +1566,8 @@
 &lt;li&gt;音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道；&lt;/li&gt;
 &lt;li&gt;另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不需要如同网上其他教程一般，安装&lt;code&gt;xinit&lt;/code&gt;、&lt;code&gt;xfce&lt;/code&gt;、&lt;code&gt;lightdm&lt;/code&gt;、&lt;code&gt;gnome&lt;/code&gt;等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。&lt;/p&gt;
@@ -1666,8 +1666,8 @@
     &gt;国家互联网络信息中心&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirror.bjtu.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;北交&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;http://mirrors.nju.edu.cn/deb-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;南大&lt;/a&gt;等站点都是有&lt;code&gt;deb-multimedia&lt;/code&gt;仓库的，改成你下载最快的镜像站点即可。&lt;/p&gt;
-&lt;h2 id=&#34;设置开机启动&#34;&gt;设置开机启动&lt;/h2&gt;
-&lt;p&gt;新建&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：&lt;/p&gt;
+&lt;h2 id=&#34;设置开机启动&#34;&gt;设置开机启动
+&lt;/h2&gt;&lt;p&gt;新建&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1743,8 +1743,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;如何以非root用户运行kodi&#34;&gt;如何以非root用户运行Kodi&lt;/h2&gt;
-&lt;p&gt;如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。&lt;/p&gt;
+&lt;h2 id=&#34;如何以非root用户运行kodi&#34;&gt;如何以非root用户运行Kodi
+&lt;/h2&gt;&lt;p&gt;如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;下文均以用户名&lt;code&gt;evine&lt;/code&gt;举例。你可以直接建立一个kodi专用账户，用户名可以就叫&lt;code&gt;kodi&lt;/code&gt;。&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1861,8 +1861,8 @@
 &lt;/div&gt;&lt;p&gt;&lt;em&gt;注：如Kodi使用smb共享来访问媒体资源，或者是其他服务，可以在启动Koid前判断启动条件是否具备，详见本文最上方的相关教程。&lt;/em&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;相关命令&#34;&gt;相关命令&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h2 id=&#34;相关命令&#34;&gt;相关命令
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -1902,8 +1902,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt upgrade
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;关于音频直通&#34;&gt;关于音频直通&lt;/h2&gt;
-&lt;p&gt;如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置&lt;code&gt;系统 -&amp;gt; 音频&lt;/code&gt;中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;关于音频直通&#34;&gt;关于音频直通
+&lt;/h2&gt;&lt;p&gt;如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置&lt;code&gt;系统 -&amp;gt; 音频&lt;/code&gt;中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。&lt;/p&gt;
 &lt;p&gt;音频直通最高可以支持7.1全景声，而如果你用Kodi解码后再传递给HDMI/DP，有可能只能支持2.0或2.1声道（对，管你几声道通通转成二声道），这大大降低了视听感受。直通显卡和声卡给虚拟机LibreELEC的，我不确定是否可以实现音频直通，这至少在我的环境中无法实现。&lt;/p&gt;
 &lt;p&gt;通过HDMI/DP直通的音频，在播放时无法在Kodi中控制音量，只能通过接收方控制。而某些不支持直通的音频，则是通过Kodi解码的，既可以通过Kodi控制音量，也可以通过接收方控制音量。&lt;/p&gt;
 &lt;p&gt;通过HDMI/DP直通的音频，在&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Player_process_info#Player_Process_Info&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1951,8 +1951,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;关于硬解&#34;&gt;关于硬解&lt;/h2&gt;
-&lt;p&gt;如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：&lt;/p&gt;
+&lt;h2 id=&#34;关于硬解&#34;&gt;关于硬解
+&lt;/h2&gt;&lt;p&gt;如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1998,8 +1998,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;pve安装kodi系列文章&#34;&gt;《PVE安装Kodi》系列文章&lt;/h2&gt;
-&lt;p&gt;如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。&lt;/p&gt;
+&lt;h2 id=&#34;pve安装kodi系列文章&#34;&gt;《PVE安装Kodi》系列文章
+&lt;/h2&gt;&lt;p&gt;如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -2011,8 +2011,8 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
-&lt;p&gt;按上述流程，只主动安装了很少的软件包，根据&lt;code&gt;dpkg-query -L kodi&lt;/code&gt;的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;按上述流程，只主动安装了很少的软件包，根据&lt;code&gt;dpkg-query -L kodi&lt;/code&gt;的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1

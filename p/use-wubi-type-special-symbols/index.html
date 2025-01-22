@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本项目利用参考一节列出的三个网址提供的信息，把常见的包括Emoji在内的特殊符号和词组关联起来，然后将词组转换为五笔编码，同时将其对应的特殊符号也转换为对应的五笔编码，实现简单快捷高效的用五笔打出特殊符号。'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本项目利用参考一节列出的三个网址提供的信息，把常见的包括Emoji在内的特殊符号和词组关联起来，然后将词组转换为五笔编码，同时将其对应的特殊符号也转换为对应的五笔编码，实现简单快捷高效的用五笔打出特殊符号。">
 <title>Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）</title>
 
 <link rel='canonical' href='https://evine.win/p/use-wubi-type-special-symbols/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）'>
-<meta property='og:description' content='本项目利用参考一节列出的三个网址提供的信息，把常见的包括Emoji在内的特殊符号和词组关联起来，然后将词组转换为五笔编码，同时将其对应的特殊符号也转换为对应的五笔编码，实现简单快捷高效的用五笔打出特殊符号。'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）">
+<meta property='og:description' content="本项目利用参考一节列出的三个网址提供的信息，把常见的包括Emoji在内的特殊符号和词组关联起来，然后将词组转换为五笔编码，同时将其对应的特殊符号也转换为对应的五笔编码，实现简单快捷高效的用五笔打出特殊符号。">
 <meta property='og:url' content='https://evine.win/p/use-wubi-type-special-symbols/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='fcitx5' /><meta property='article:tag' content='五笔' /><meta property='article:tag' content='词库' /><meta property='article:tag' content='特殊符号' /><meta property='article:tag' content='emoji' /><meta property='article:published_time' content='2024-08-02T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-08-03T20:00:52&#43;08:00'/><meta property='og:image' content='https://evine.win/p/use-wubi-type-special-symbols/assets/image-003.png' />
@@ -89,7 +89,7 @@
             <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -192,31 +192,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://evine.win/" selected></option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -224,7 +205,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,10 +213,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -374,11 +356,11 @@
 <p>本文只是对 <a class="link" href="https://github.com/devome/wubi-symbols"  target="_blank" rel="noopener"
     >wubi-symbols</a> 项目的引用，也可以直接去看该项目。</p>
 </blockquote>
-<h2 id="这是什么">这是什么</h2>
-<p>虽然在Fcitx5中可以使用 <code>Ctrl+Shift+Alt+U</code> 来调出Unicode特殊字符输入，但对多数人来说，这仍然不太方便，因此有了本项目。</p>
+<h2 id="这是什么">这是什么
+</h2><p>虽然在Fcitx5中可以使用 <code>Ctrl+Shift+Alt+U</code> 来调出Unicode特殊字符输入，但对多数人来说，这仍然不太方便，因此有了本项目。</p>
 <p>本项目利用 <a class="link" href="#%e5%8f%82%e8%80%83" >参考</a> 一节列出的三个网址提供的信息，把常见的包括Emoji在内的特殊符号和词组关联起来，然后将词组转换为五笔编码，同时将其对应的特殊符号也转换为对应的五笔编码，实现简单快捷高效的用五笔打出特殊符号。</p>
-<h2 id="示例">示例</h2>
-<p>比如在 <a class="link" href="https://github.com/devome/wubi-symbols/tree/main/symbols/emoji.tsv"  target="_blank" rel="noopener"
+<h2 id="示例">示例
+</h2><p>比如在 <a class="link" href="https://github.com/devome/wubi-symbols/tree/main/symbols/emoji.tsv"  target="_blank" rel="noopener"
     >symbold/emoji.tsv</a> 中定义了这样一行数据：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -451,18 +433,18 @@
 		data-flex-basis="600px"
 	
 ></p>
-<h2 id="注意事项">注意事项</h2>
-<ol>
+<h2 id="注意事项">注意事项
+</h2><ol>
 <li>自动生成的五笔码是按照五笔规则的最长最完整的键码，如果有些符号对应的词组的五笔码不足4码，你如果想打出来，需要尽可能的按照五笔组字规则打到最长最完整。有时候需要打到补码为止；有的要按照五笔规则补到4位，比如 <code>一</code> 的完整五笔码为 <code>ggll</code>，完整打出 <code>ggll</code> 才会显示和 <code>一</code> 相关联的特殊字符。</li>
 <li>部分特殊符号还与英文相关联了，这时只要打出英文即可（超过4位的只打前4位，只有1个键将其重复到4个键，只有2个键的也需要再重复一次到共4个键，如果原本就有三个字母的则不作调整），详细的你可以浏览 <a class="link" href="symbols" >symbols</a> 下面的每个文件。</li>
 <li><strong>如果上一条规则中关联的英文中含有字母 <code>z</code>，则用 <code>x</code> 代替，比如示例图中的 <code>㎑</code> 关联的是 <code>khx</code>。</strong></li>
 </ol>
-<h2 id="如何使用">如何使用</h2>
-<blockquote>
+<h2 id="如何使用">如何使用
+</h2><blockquote>
 <p><strong>以Fcitx5为例。</strong></p>
 </blockquote>
-<h3 id="1-下载特殊符号库">1. 下载特殊符号库</h3>
-<p>下载 <a class="link" href="https://github.com/devome/wubi-symbols/tree/main/output"  target="_blank" rel="noopener"
+<h3 id="1-下载特殊符号库">1. 下载特殊符号库
+</h3><p>下载 <a class="link" href="https://github.com/devome/wubi-symbols/tree/main/output"  target="_blank" rel="noopener"
     >output</a> 下面的文件，或者直接从 <a class="link" href="https://github.com/devome/wubi-symbols/releases"  target="_blank" rel="noopener"
     >release</a> 中下载后解压，对应关系如下：</p>
 <ul>
@@ -470,8 +452,8 @@
 <li><code>wb98.txt</code>: 对应五笔98版</li>
 <li><code>wbnewage.txt</code>: 对应五笔新世纪版</li>
 </ul>
-<h3 id="2-备份原有自造词">2. 备份原有自造词</h3>
-<p>备份原有自造词（不同五笔版本的用户词库有不同的名字）：</p>
+<h3 id="2-备份原有自造词">2. 备份原有自造词
+</h3><p>备份原有自造词（不同五笔版本的用户词库有不同的名字）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -480,10 +462,10 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">libime_tabledict -d -u ~/.local/share/fcitx5/table/&lt;你的词库名&gt;.user.dict ime-dump.txt
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3-合并词库">3. 合并词库</h3>
-<p>针对之前有导入过个人词库的情况：如果你要保留Fcitx5自动造的词，那么则将从本仓库下载的词库内容粘贴到 <code>ime-dump.txt</code> 中 <code>[Auto]</code> 这一行之前；如果不保留Fcitx5自动造的词，那么就将 <code>ime-dump.txt</code> 中 <code>[Auto]</code> 之后的内容删除后，将从本仓库下载的词库内容粘贴到 <code>ime-dump.txt</code> 后面。</p>
-<h3 id="4-导入词库">4. 导入词库</h3>
-<p><strong>退出Fcitx5</strong>，然后将合并后的词库导入用户词库：</p>
+</div><h3 id="3-合并词库">3. 合并词库
+</h3><p>针对之前有导入过个人词库的情况：如果你要保留Fcitx5自动造的词，那么则将从本仓库下载的词库内容粘贴到 <code>ime-dump.txt</code> 中 <code>[Auto]</code> 这一行之前；如果不保留Fcitx5自动造的词，那么就将 <code>ime-dump.txt</code> 中 <code>[Auto]</code> 之后的内容删除后，将从本仓库下载的词库内容粘贴到 <code>ime-dump.txt</code> 后面。</p>
+<h3 id="4-导入词库">4. 导入词库
+</h3><p><strong>退出Fcitx5</strong>，然后将合并后的词库导入用户词库：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -493,8 +475,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后再重启Fcitx5即可使用。</p>
-<h2 id="自己生成">自己生成</h2>
-<p>如果觉得特殊符号太多了，可以自己自己将 <a class="link" href="https://github.com/devome/wubi-symbols/tree/main/symbols"  target="_blank" rel="noopener"
+<h2 id="自己生成">自己生成
+</h2><p>如果觉得特殊符号太多了，可以自己自己将 <a class="link" href="https://github.com/devome/wubi-symbols/tree/main/symbols"  target="_blank" rel="noopener"
     >symbols</a> 下面的文件按照 <a class="link" href="#%e5%a6%82%e4%bd%95%e8%b4%a1%e7%8c%ae" >如何贡献</a> 中列出的数据规则调整后，自己生成，在仓库中运行以下脚本即可：</p>
 <blockquote>
 <p><em>需要安装 <a class="link" href="https://github.com/studyzy/imewlconverter"  target="_blank" rel="noopener"
@@ -508,8 +490,8 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./convert.sh
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="如何贡献">如何贡献</h2>
-<p>本仓库内容并不包含全部的特殊字符，如果你希望添加，可以向本仓库PR，提交到 <a class="link" href="https://github.com/devome/wubi-symbols/tree/main/symbols"  target="_blank" rel="noopener"
+</div><h2 id="如何贡献">如何贡献
+</h2><p>本仓库内容并不包含全部的特殊字符，如果你希望添加，可以向本仓库PR，提交到 <a class="link" href="https://github.com/devome/wubi-symbols/tree/main/symbols"  target="_blank" rel="noopener"
     >symbols</a> 文件夹即可。数据规则：</p>
 <ul>
 <li>每个 <code>tsv</code> 文件分为3列，每列间以制表符分隔；</li>
@@ -517,8 +499,8 @@
 <li>第2列为该特殊字符本身；</li>
 <li>第3列为要与该字符关联的词组，多个词组之间使用半角空格分开，如果想直接与英文字母相关联，则直接输入英文字母，限定3位或4位，过少的重复字母到4位，如出现 <code>z</code> 则用 <code>x</code> 代替。</li>
 </ul>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://www.emojiall.com"  target="_blank" rel="noopener"
     >emojiall</a></li>
 <li><a class="link" href="https://github.com/fcitx/fcitx5-chinese-addons/blob/master/im/pinyin/symbols"  target="_blank" rel="noopener"
@@ -647,6 +629,7 @@
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
+        proxy: null ,
     });
     (function () {
         if (
@@ -674,8 +657,8 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -764,7 +747,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

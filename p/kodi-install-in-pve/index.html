@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。
-按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。
-'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。\n按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。\n">
 <title>PVE 直接安装最新版 Kodi</title>
 
 <link rel='canonical' href='https://evine.win/p/kodi-install-in-pve/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='PVE 直接安装最新版 Kodi'>
-<meta property='og:description' content=' 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。
-按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。
-'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="PVE 直接安装最新版 Kodi">
+<meta property='og:description' content=" 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。\n按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。\n">
 <meta property='og:url' content='https://evine.win/p/kodi-install-in-pve/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='gbm' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:published_time' content='2022-07-12T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2025-01-22T12:31:48&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-install-in-pve/pic5.png' />
 <meta name="twitter:title" content="PVE 直接安装最新版 Kodi">
-<meta name="twitter:description" content=" 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。
-按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。
-"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content=" 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。\n按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/kodi-install-in-pve/pic5.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -95,7 +89,7 @@
             <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -198,31 +192,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://evine.win/" selected></option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -230,7 +205,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,10 +213,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -382,8 +358,8 @@
 <li>音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道；</li>
 <li>另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。</li>
 </ul>
-<h2 id="安装最新版kodi">安装最新版Kodi</h2>
-<blockquote>
+<h2 id="安装最新版kodi">安装最新版Kodi
+</h2><blockquote>
 <p>注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。</p>
 </blockquote>
 <p>不需要如同网上其他教程一般，安装<code>xinit</code>、<code>xfce</code>、<code>lightdm</code>、<code>gnome</code>等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。</p>
@@ -482,8 +458,8 @@
     >国家互联网络信息中心</a>、<a class="link" href="https://mirror.bjtu.edu.cn/debian-multimedia/"  target="_blank" rel="noopener"
     >北交</a>、<a class="link" href="http://mirrors.nju.edu.cn/deb-multimedia/"  target="_blank" rel="noopener"
     >南大</a>等站点都是有<code>deb-multimedia</code>仓库的，改成你下载最快的镜像站点即可。</p>
-<h2 id="设置开机启动">设置开机启动</h2>
-<p>新建<code>/etc/systemd/system/kodi.service</code>，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：</p>
+<h2 id="设置开机启动">设置开机启动
+</h2><p>新建<code>/etc/systemd/system/kodi.service</code>，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -559,8 +535,8 @@
 		data-flex-basis="426px"
 	
 ></p>
-<h2 id="如何以非root用户运行kodi">如何以非root用户运行Kodi</h2>
-<p>如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。</p>
+<h2 id="如何以非root用户运行kodi">如何以非root用户运行Kodi
+</h2><p>如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。</p>
 <p><strong>下文均以用户名<code>evine</code>举例。你可以直接建立一个kodi专用账户，用户名可以就叫<code>kodi</code>。</strong></p>
 <ol>
 <li>
@@ -677,8 +653,8 @@
 </div><p><em>注：如Kodi使用smb共享来访问媒体资源，或者是其他服务，可以在启动Koid前判断启动条件是否具备，详见本文最上方的相关教程。</em></p>
 </li>
 </ol>
-<h2 id="相关命令">相关命令</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="相关命令">相关命令
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -718,8 +694,8 @@
 </span></span><span class="line"><span class="cl">apt update <span class="o">&amp;&amp;</span> apt upgrade
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="关于音频直通">关于音频直通</h2>
-<p>如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置<code>系统 -&gt; 音频</code>中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。</p>
+</div><h2 id="关于音频直通">关于音频直通
+</h2><p>如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置<code>系统 -&gt; 音频</code>中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。</p>
 <p>音频直通最高可以支持7.1全景声，而如果你用Kodi解码后再传递给HDMI/DP，有可能只能支持2.0或2.1声道（对，管你几声道通通转成二声道），这大大降低了视听感受。直通显卡和声卡给虚拟机LibreELEC的，我不确定是否可以实现音频直通，这至少在我的环境中无法实现。</p>
 <p>通过HDMI/DP直通的音频，在播放时无法在Kodi中控制音量，只能通过接收方控制。而某些不支持直通的音频，则是通过Kodi解码的，既可以通过Kodi控制音量，也可以通过接收方控制音量。</p>
 <p>通过HDMI/DP直通的音频，在<a class="link" href="https://kodi.wiki/view/Player_process_info#Player_Process_Info"  target="_blank" rel="noopener"
@@ -767,8 +743,8 @@
 		data-flex-basis="426px"
 	
 ></p>
-<h2 id="关于硬解">关于硬解</h2>
-<p>如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：</p>
+<h2 id="关于硬解">关于硬解
+</h2><p>如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -814,8 +790,8 @@
 		data-flex-basis="426px"
 	
 ></p>
-<h2 id="pve安装kodi系列文章">《PVE安装Kodi》系列文章</h2>
-<p>如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。</p>
+<h2 id="pve安装kodi系列文章">《PVE安装Kodi》系列文章
+</h2><p>如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。</p>
 <ul>
 <li><a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a></li>
 <li><a class="link" href="../kodi-use-remote-controller" >为Kodi适配遥控器</a></li>
@@ -827,8 +803,8 @@
 <li><a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a></li>
 <li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
 </ul>
-<h2 id="总结">总结</h2>
-<p>按上述流程，只主动安装了很少的软件包，根据<code>dpkg-query -L kodi</code>的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：</p>
+<h2 id="总结">总结
+</h2><p>按上述流程，只主动安装了很少的软件包，根据<code>dpkg-query -L kodi</code>的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1049,6 +1025,7 @@
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
+        proxy: null ,
     });
     (function () {
         if (
@@ -1076,8 +1053,8 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1166,7 +1143,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

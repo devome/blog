@@ -6,7 +6,7 @@
         <description>Recent content in 特殊符号 on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 02 Aug 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 03 Aug 2024 20:00:52 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）</title>
         <link>https://evine.win/p/use-wubi-type-special-symbols/</link>
         <pubDate>Fri, 02 Aug 2024 00:00:00 +0800</pubDate>
@@ -16,11 +16,11 @@
 &lt;p&gt;本文只是对 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;wubi-symbols&lt;/a&gt; 项目的引用，也可以直接去看该项目。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;这是什么&#34;&gt;这是什么&lt;/h2&gt;
-&lt;p&gt;虽然在Fcitx5中可以使用 &lt;code&gt;Ctrl+Shift+Alt+U&lt;/code&gt; 来调出Unicode特殊字符输入，但对多数人来说，这仍然不太方便，因此有了本项目。&lt;/p&gt;
+&lt;h2 id=&#34;这是什么&#34;&gt;这是什么
+&lt;/h2&gt;&lt;p&gt;虽然在Fcitx5中可以使用 &lt;code&gt;Ctrl+Shift+Alt+U&lt;/code&gt; 来调出Unicode特殊字符输入，但对多数人来说，这仍然不太方便，因此有了本项目。&lt;/p&gt;
 &lt;p&gt;本项目利用 &lt;a class=&#34;link&#34; href=&#34;#%e5%8f%82%e8%80%83&#34; &gt;参考&lt;/a&gt; 一节列出的三个网址提供的信息，把常见的包括Emoji在内的特殊符号和词组关联起来，然后将词组转换为五笔编码，同时将其对应的特殊符号也转换为对应的五笔编码，实现简单快捷高效的用五笔打出特殊符号。&lt;/p&gt;
-&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
-&lt;p&gt;比如在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/symbols/emoji.tsv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;示例&#34;&gt;示例
+&lt;/h2&gt;&lt;p&gt;比如在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/symbols/emoji.tsv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;symbold/emoji.tsv&lt;/a&gt; 中定义了这样一行数据：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -93,18 +93,18 @@
 		data-flex-basis=&#34;600px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;注意事项&#34;&gt;注意事项&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;注意事项&#34;&gt;注意事项
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;自动生成的五笔码是按照五笔规则的最长最完整的键码，如果有些符号对应的词组的五笔码不足4码，你如果想打出来，需要尽可能的按照五笔组字规则打到最长最完整。有时候需要打到补码为止；有的要按照五笔规则补到4位，比如 &lt;code&gt;一&lt;/code&gt; 的完整五笔码为 &lt;code&gt;ggll&lt;/code&gt;，完整打出 &lt;code&gt;ggll&lt;/code&gt; 才会显示和 &lt;code&gt;一&lt;/code&gt; 相关联的特殊字符。&lt;/li&gt;
 &lt;li&gt;部分特殊符号还与英文相关联了，这时只要打出英文即可（超过4位的只打前4位，只有1个键将其重复到4个键，只有2个键的也需要再重复一次到共4个键，如果原本就有三个字母的则不作调整），详细的你可以浏览 &lt;a class=&#34;link&#34; href=&#34;symbols&#34; &gt;symbols&lt;/a&gt; 下面的每个文件。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;如果上一条规则中关联的英文中含有字母 &lt;code&gt;z&lt;/code&gt;，则用 &lt;code&gt;x&lt;/code&gt; 代替，比如示例图中的 &lt;code&gt;㎑&lt;/code&gt; 关联的是 &lt;code&gt;khx&lt;/code&gt;。&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;如何使用&#34;&gt;如何使用&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;如何使用&#34;&gt;如何使用
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;以Fcitx5为例。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;1-下载特殊符号库&#34;&gt;1. 下载特殊符号库&lt;/h3&gt;
-&lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/output&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;1-下载特殊符号库&#34;&gt;1. 下载特殊符号库
+&lt;/h3&gt;&lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/output&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;output&lt;/a&gt; 下面的文件，或者直接从 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;release&lt;/a&gt; 中下载后解压，对应关系如下：&lt;/p&gt;
 &lt;ul&gt;
@@ -112,8 +112,8 @@
 &lt;li&gt;&lt;code&gt;wb98.txt&lt;/code&gt;: 对应五笔98版&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;wbnewage.txt&lt;/code&gt;: 对应五笔新世纪版&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;2-备份原有自造词&#34;&gt;2. 备份原有自造词&lt;/h3&gt;
-&lt;p&gt;备份原有自造词（不同五笔版本的用户词库有不同的名字）：&lt;/p&gt;
+&lt;h3 id=&#34;2-备份原有自造词&#34;&gt;2. 备份原有自造词
+&lt;/h3&gt;&lt;p&gt;备份原有自造词（不同五笔版本的用户词库有不同的名字）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -122,10 +122,10 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;libime_tabledict -d -u ~/.local/share/fcitx5/table/&amp;lt;你的词库名&amp;gt;.user.dict ime-dump.txt
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;3-合并词库&#34;&gt;3. 合并词库&lt;/h3&gt;
-&lt;p&gt;针对之前有导入过个人词库的情况：如果你要保留Fcitx5自动造的词，那么则将从本仓库下载的词库内容粘贴到 &lt;code&gt;ime-dump.txt&lt;/code&gt; 中 &lt;code&gt;[Auto]&lt;/code&gt; 这一行之前；如果不保留Fcitx5自动造的词，那么就将 &lt;code&gt;ime-dump.txt&lt;/code&gt; 中 &lt;code&gt;[Auto]&lt;/code&gt; 之后的内容删除后，将从本仓库下载的词库内容粘贴到 &lt;code&gt;ime-dump.txt&lt;/code&gt; 后面。&lt;/p&gt;
-&lt;h3 id=&#34;4-导入词库&#34;&gt;4. 导入词库&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;退出Fcitx5&lt;/strong&gt;，然后将合并后的词库导入用户词库：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;3-合并词库&#34;&gt;3. 合并词库
+&lt;/h3&gt;&lt;p&gt;针对之前有导入过个人词库的情况：如果你要保留Fcitx5自动造的词，那么则将从本仓库下载的词库内容粘贴到 &lt;code&gt;ime-dump.txt&lt;/code&gt; 中 &lt;code&gt;[Auto]&lt;/code&gt; 这一行之前；如果不保留Fcitx5自动造的词，那么就将 &lt;code&gt;ime-dump.txt&lt;/code&gt; 中 &lt;code&gt;[Auto]&lt;/code&gt; 之后的内容删除后，将从本仓库下载的词库内容粘贴到 &lt;code&gt;ime-dump.txt&lt;/code&gt; 后面。&lt;/p&gt;
+&lt;h3 id=&#34;4-导入词库&#34;&gt;4. 导入词库
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;退出Fcitx5&lt;/strong&gt;，然后将合并后的词库导入用户词库：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -135,8 +135,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;然后再重启Fcitx5即可使用。&lt;/p&gt;
-&lt;h2 id=&#34;自己生成&#34;&gt;自己生成&lt;/h2&gt;
-&lt;p&gt;如果觉得特殊符号太多了，可以自己自己将 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/symbols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;自己生成&#34;&gt;自己生成
+&lt;/h2&gt;&lt;p&gt;如果觉得特殊符号太多了，可以自己自己将 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/symbols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;symbols&lt;/a&gt; 下面的文件按照 &lt;a class=&#34;link&#34; href=&#34;#%e5%a6%82%e4%bd%95%e8%b4%a1%e7%8c%ae&#34; &gt;如何贡献&lt;/a&gt; 中列出的数据规则调整后，自己生成，在仓库中运行以下脚本即可：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;需要安装 &lt;a class=&#34;link&#34; href=&#34;https://github.com/studyzy/imewlconverter&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -150,8 +150,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./convert.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;如何贡献&#34;&gt;如何贡献&lt;/h2&gt;
-&lt;p&gt;本仓库内容并不包含全部的特殊字符，如果你希望添加，可以向本仓库PR，提交到 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/symbols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;h2 id=&#34;如何贡献&#34;&gt;如何贡献
+&lt;/h2&gt;&lt;p&gt;本仓库内容并不包含全部的特殊字符，如果你希望添加，可以向本仓库PR，提交到 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/symbols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;symbols&lt;/a&gt; 文件夹即可。数据规则：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;每个 &lt;code&gt;tsv&lt;/code&gt; 文件分为3列，每列间以制表符分隔；&lt;/li&gt;
@@ -159,8 +159,8 @@
 &lt;li&gt;第2列为该特殊字符本身；&lt;/li&gt;
 &lt;li&gt;第3列为要与该字符关联的词组，多个词组之间使用半角空格分开，如果想直接与英文字母相关联，则直接输入英文字母，限定3位或4位，过少的重复字母到4位，如出现 &lt;code&gt;z&lt;/code&gt; 则用 &lt;code&gt;x&lt;/code&gt; 代替。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.emojiall.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;emojiall&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/fcitx/fcitx5-chinese-addons/blob/master/im/pinyin/symbols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本篇主要讲解clash透明代理(Tproxy)的安装和配置，以及涉及到的IP规则和nftables规则。'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本篇主要讲解clash透明代理(Tproxy)的安装和配置，以及涉及到的IP规则和nftables规则。">
 <title>我的家庭网络设计思路，开启debian的旁路由之路（四）</title>
 
 <link rel='canonical' href='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='我的家庭网络设计思路，开启debian的旁路由之路（四）'>
-<meta property='og:description' content='本篇主要讲解clash透明代理(Tproxy)的安装和配置，以及涉及到的IP规则和nftables规则。'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="我的家庭网络设计思路，开启debian的旁路由之路（四）">
+<meta property='og:description' content="本篇主要讲解clash透明代理(Tproxy)的安装和配置，以及涉及到的IP规则和nftables规则。">
 <meta property='og:url' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='network' /><meta property='article:tag' content='旁路由' /><meta property='article:tag' content='adguradhome' /><meta property='article:tag' content='mosdns' /><meta property='article:tag' content='clash' /><meta property='article:tag' content='subconverter' /><meta property='article:tag' content='nftables' /><meta property='article:tag' content='shell' /><meta property='article:published_time' content='2023-10-21T14:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-24T12:29:43&#43;08:00'/><meta property='og:image' content='https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png' />
@@ -89,7 +89,7 @@
             <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -192,31 +192,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://evine.win/" selected></option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -224,7 +205,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,10 +213,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -371,10 +353,10 @@
     <section class="article-content">
     
     
-    <h2 id="前言">前言</h2>
-<p>使用clash实现透明代理有两种方式，一种是 <code>redirect</code>，仅支持TCP流量，另一种是 <code>tproxy</code>，支持TCP和UDP流量。为了能代理UDP流量，所以我们选用 <code>tproxy</code> 的方式来实现。</p>
-<h2 id="工作流">工作流</h2>
-<p><code>nftables</code> 的工作流详见 <a class="link" href="https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks"  target="_blank" rel="noopener"
+    <h2 id="前言">前言
+</h2><p>使用clash实现透明代理有两种方式，一种是 <code>redirect</code>，仅支持TCP流量，另一种是 <code>tproxy</code>，支持TCP和UDP流量。为了能代理UDP流量，所以我们选用 <code>tproxy</code> 的方式来实现。</p>
+<h2 id="工作流">工作流
+</h2><p><code>nftables</code> 的工作流详见 <a class="link" href="https://wiki.nftables.org/wiki-nftables/index.php/Netfilter_hooks"  target="_blank" rel="noopener"
     >Netfilter hooks</a>。具体Netfilter的五个链 <code>prerouting</code> <code>input</code> <code>forward</code> <code>output</code> <code>postrouting</code> 是什么关系，以及流向，请参考该链接来加深理解。全部的文档可以查阅本文下方 <a class="link" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" >参考资料</a> 的1和2。</p>
 <p>注意，在旁路由自身中运行的程序都工作在应用层，而 <code>tproxy</code> 只能工作在 <code>prerouting</code> 链，所以如果我们要想透明代理旁路由自己产生的流量，要通过设置IP规则让这部分流量在进入 <code>output</code> 链时，将需要代理的流量转回到 <code>prerouting</code> 链。这就需要靠IP规则来实现。</p>
 <p><img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png"
@@ -391,8 +373,8 @@
 		data-flex-basis="457px"
 	
 ></p>
-<h2 id="下载与安装">下载与安装</h2>
-<p>在 <a class="link" href="https://github.com/Dreamacro/clash"  target="_blank" rel="noopener"
+<h2 id="下载与安装">下载与安装
+</h2><p>在 <a class="link" href="https://github.com/Dreamacro/clash"  target="_blank" rel="noopener"
     >clash</a> 和 <a class="link" href="https://github.com/MetaCubeX/mihomo"  target="_blank" rel="noopener"
     >clash-meta</a> (现在叫mihomo)中，我选用后者来使用（前者已经删库了）。我默认你已经按照 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%ba%8c" >前文（二）</a> 安装好了必要的软件了。以下为root用户运行的命令。</p>
 <div class="highlight"><div class="chroma">
@@ -452,9 +434,9 @@
 </span></span><span class="line"><span class="cl">  x86_64 (supported, searched)
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="创建服务">创建服务</h2>
-<h3 id="clashservice">clash.service</h3>
-<p>创建工作目录<code>/var/lib/clash</code>。</p>
+</div><h2 id="创建服务">创建服务
+</h2><h3 id="clashservice">clash.service
+</h3><p>创建工作目录<code>/var/lib/clash</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -530,8 +512,8 @@
 </span></span><span class="line"><span class="cl"><span class="na">AmbientCapabilities   </span><span class="o">=</span><span class="s"> CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BIND_SERVICE</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="mynftablesnft">mynftables.nft</h3>
-<p>注意到我们在 <code>/etc/systemd/system/clash.service</code> 的 <code>ExecStartPost</code> 行有执行 <code>mynftables.nft</code>。现在，新建 <code>/usr/local/bin/mynftables.nft</code>，内容如下。请注意按照注释修改，创建好后以命令 <code>chmod +x /usr/local/bin/mynftables.nft</code> 为它增加可执行权限。该文件会引用到另外一个文件 <code>/var/lib/clash/geoip4_cn.nft</code>，你可以先下载这并非是最新的文件，先保存到该位置：<a class="link" href="geoip4_cn.nft" >geoip4_cn.nft</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新。</p>
+</div><h3 id="mynftablesnft">mynftables.nft
+</h3><p>注意到我们在 <code>/etc/systemd/system/clash.service</code> 的 <code>ExecStartPost</code> 行有执行 <code>mynftables.nft</code>。现在，新建 <code>/usr/local/bin/mynftables.nft</code>，内容如下。请注意按照注释修改，创建好后以命令 <code>chmod +x /usr/local/bin/mynftables.nft</code> 为它增加可执行权限。该文件会引用到另外一个文件 <code>/var/lib/clash/geoip4_cn.nft</code>，你可以先下载这并非是最新的文件，先保存到该位置：<a class="link" href="geoip4_cn.nft" >geoip4_cn.nft</a>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新。</p>
 <p>如果你的代理不支持代理 <code>UDP</code> 流量，可以选择解除 <code>ip protocol udp accept</code> 行的注释。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -733,8 +715,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="clash配置文件">clash配置文件</h3>
-<p>暂时先按照下面的形式形成 <code>clash</code> 的配置文件 <code>/var/lib/clash/config.yaml</code> 或者 <code>/etc/clash/config.yaml</code>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新订阅。我只对关键信息进行了注释，未注释的内容你都可以自行按照 <a class="link" href="https://wiki.metacubex.one/config/general/"  target="_blank" rel="noopener"
+</div><h3 id="clash配置文件">clash配置文件
+</h3><p>暂时先按照下面的形式形成 <code>clash</code> 的配置文件 <code>/var/lib/clash/config.yaml</code> 或者 <code>/etc/clash/config.yaml</code>，我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新订阅。我只对关键信息进行了注释，未注释的内容你都可以自行按照 <a class="link" href="https://wiki.metacubex.one/config/general/"  target="_blank" rel="noopener"
     >官方WIKI</a> 进行设置。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -928,8 +910,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="clash其他相关文件">clash其他相关文件</h3>
-<p><code>clash</code> 还需要一些配套文件，在启动前先下载下来。我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新这些文件。</p>
+</div><h3 id="clash其他相关文件">clash其他相关文件
+</h3><p><code>clash</code> 还需要一些配套文件，在启动前先下载下来。我们将在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%83" >本系列第（七）篇</a> 用定时任务来自动更新这些文件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -956,8 +938,8 @@
 </span></span><span class="line"><span class="cl">mv metacubexd-gh-pages xd
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="启用服务">启用服务</h3>
-<p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/clash.service</code> 为开启自动启动，并立即启动起来。</p>
+</div><h3 id="启用服务">启用服务
+</h3><p>完全配置好以后，我们可以设置 <code>/etc/systemd/system/clash.service</code> 为开启自动启动，并立即启动起来。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1003,14 +985,14 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>访问webui：<code>http://&lt;IP&gt;:9090/ui/xd</code>，其中 <code>9090</code> <code>ui</code> <code>xd</code> 均在配置文件中由你定义，分别对应 <code>external-controller</code> <code>external-ui</code> <code>external-ui-name</code>。</p>
-<h2 id="执行逻辑">执行逻辑</h2>
-<p>大致在 <a class="link" href="#mynftablesnft" >mynftables.nft</a> 这个文件的注释也解释过每句的作用了，这里再捊一下。</p>
+<h2 id="执行逻辑">执行逻辑
+</h2><p>大致在 <a class="link" href="#mynftablesnft" >mynftables.nft</a> 这个文件的注释也解释过每句的作用了，这里再捊一下。</p>
 <p>对照着题图，局域网中的其他客户端的流量在通过旁路由时，进入 <code>nftables</code> 的 <code>prerouting</code> 链，然后判断第69-76行的规则，如果规则匹配就以 <code>accept</code> 直接收受并发往目的地，不会再转到 <code>clash</code>；如果全都不匹配，会在最后匹配上 <code>goto clash_tproxy</code>，也就是进入 <code>ip protocol { tcp, udp } tproxy to :$tproxy_port meta mark set $default_mark</code> 这句，这句将会把流量转到 <code>clash</code>。需要提一句的是第70行的规则是针对从本机 <code>output</code> 链发过来的流量的，没有第70行，这部分流量同样会在最后匹配到第77行的 <code>goto clash_tproxy</code>。</p>
 <p>经过 <code>clash</code> 代理后，流量会被打上标记 <code>clash_mark</code>，也就是第13行定义的 <code>666</code>，<code>clash</code> 工作在题图中的应用层，经过 <code>clash</code> 处理过的流量会在 <code>output</code> 链中被第89行直接接收并发往目的地，不会再一次进行代理，这样就防止了流量一直在走环路的问题。</p>
 <p>本机产生的流量类似，它们会在 <code>output</code> 链中先匹配第88-94行，如果匹配就直接接收并发往目的地了，而剩余没有匹配到的会在第95行被打上 <code>$default_mark</code>，也就是在第16行定义的 <code>1</code>，这个标记和上方创建的 <code>clash.service</code> 中 <code>fwmark 1</code> 的 <code>1</code> 一致。被打上这个标记的流量会按照 <code>clash.service</code> 定义的 <code>ip route</code> 和 <code>ip rule</code>，重路由进入 <code>prerouting</code> 链，然后根据规则确定是直接接收还是转向 <code>clash</code>。</p>
 <p>至于 <code>forward</code> 转发链，我们并没有设置它，那么转发的默认 <code>policy</code> 就是 <code>accept</code>，将直接全部接受。我已经在 <a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >前文（一）</a> 中提及了我只在主路由爱快上设置防火墙：<a class="link" href="../ikuai-set-ipv4-acl" >IPv4</a>、<a class="link" href="../ikuai-set-ipv6-acl-2" >IPv6</a>，旁路由对这类流量直接转发，不再过滤。所以，针对运行在我NAS <code>10.0.0.11</code> 上的服务以及其他众多运行在 Docker MacVLAN 网络上的容器，我直接从主路由爱快转发端口到它们即可，无需再经过旁路由额外中转。</p>
-<h2 id="参考资料">参考资料</h2>
-<ol>
+<h2 id="参考资料">参考资料
+</h2><ol>
 <li>
 <p><a class="link" href="https://wiki.nftables.org/wiki-nftables/index.php/Main_Page"  target="_blank" rel="noopener"
     >nftables wiki</a></p>
@@ -1028,8 +1010,8 @@
     >Project X 透明代理（TProxy）配置教程</a></p>
 </li>
 </ol>
-<h2 id="系列">系列</h2>
-<ul>
+<h2 id="系列">系列
+</h2><ul>
 <li>
 <p><a class="link" href="../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80" >一、子网划分及网络拓扑设计、爱快上的设置</a></p>
 </li>
@@ -1265,6 +1247,7 @@
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
+        proxy: null ,
     });
     (function () {
         if (
@@ -1292,8 +1275,8 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1382,7 +1365,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

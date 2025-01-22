@@ -6,16 +6,16 @@
         <description>Recent content in Subnet on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 19 Oct 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/subnet/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 20 Dec 2023 15:45:10 +0800</lastBuildDate><atom:link href="https://evine.win/tags/subnet/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>我的家庭网络设计思路，开启debian的旁路由之路（一）</title>
         <link>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/</link>
         <pubDate>Thu, 19 Oct 2023 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/</guid>
-        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;之前我用的是爱快作为主路由，OpenWRT作为旁路由，旁路由上会跑一些只有它能跑而主路由上不能跑的服务。尽管OpenWRT还是我自己定制化编译的，抛弃了许多我不使用的功能，但可能因为要用的服务仍然有些多，并且它们之间都会操作netfilter，导致网络经常出问题。所以，用OpenWRT作为旁路由的时候，我从来不敢在爱快上直接指定全部设备的网关和DNS为OpenWRT（网关和DNS仍然是爱快自己），只敢在我自己的设备上手动指定网关和DNS为OpenWRT。但这长久用起来不是个办法，所以干脆下定决心，抛弃OpenWRT，完全启用Debian来作为旁路由。&lt;/p&gt;
-&lt;h2 id=&#34;网络设计思路&#34;&gt;网络设计思路&lt;/h2&gt;
-&lt;p&gt;为什么不直接采用Debian作为主路由呢，毕竟爱快作为专业的路由系统，还是有其便利性的，查看相关数据也比较容易，如果直接采用Debian作为主路由的话，将会有大量的配置工作，并且想要便捷的查看各项数据也不是很方便。&lt;/p&gt;
+        <description>&lt;img src="https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg" alt="Featured image of post 我的家庭网络设计思路，开启debian的旁路由之路（一）" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;之前我用的是爱快作为主路由，OpenWRT作为旁路由，旁路由上会跑一些只有它能跑而主路由上不能跑的服务。尽管OpenWRT还是我自己定制化编译的，抛弃了许多我不使用的功能，但可能因为要用的服务仍然有些多，并且它们之间都会操作netfilter，导致网络经常出问题。所以，用OpenWRT作为旁路由的时候，我从来不敢在爱快上直接指定全部设备的网关和DNS为OpenWRT（网关和DNS仍然是爱快自己），只敢在我自己的设备上手动指定网关和DNS为OpenWRT。但这长久用起来不是个办法，所以干脆下定决心，抛弃OpenWRT，完全启用Debian来作为旁路由。&lt;/p&gt;
+&lt;h2 id=&#34;网络设计思路&#34;&gt;网络设计思路
+&lt;/h2&gt;&lt;p&gt;为什么不直接采用Debian作为主路由呢，毕竟爱快作为专业的路由系统，还是有其便利性的，查看相关数据也比较容易，如果直接采用Debian作为主路由的话，将会有大量的配置工作，并且想要便捷的查看各项数据也不是很方便。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;并且，我还需要旁路由的存在不能影响端口转发，必须由主路由爱快直接将端口转发到NAS及其他服务，不能先转发到旁路由再经旁路由再转发一次。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;那么，基于爱快作为主路由，Debian作为旁路由，我将以下面的拓扑图开展。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg&#34;
@@ -33,11 +33,11 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;上图中仅涉及了爱快中&lt;code&gt;lan1&lt;/code&gt;的设置，如果需要使用IPTV，还可以参考&lt;a class=&#34;link&#34; href=&#34;../ikuai-how-use-iptv-in-shanghai&#34; &gt;我的这篇文章&lt;/a&gt;来设置一下&lt;code&gt;lan2&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;关于ipv6&#34;&gt;关于IPv6&lt;/h2&gt;
-&lt;p&gt;IPv6是未来的趋势，我的ISP也已经支持IPv6了，并且不管是DDNS还是PT，有IPv6的双栈总归是好的。但又同时，我所使用的科学上网服务并不支持IPv6，所以，我需要在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个科学上网的网段保留国内网站的IPv6解析，屏蔽掉国外网站IPv6的解析。这就得靠我在旁路由&lt;code&gt;10.0.0.2&lt;/code&gt;上自建DNS服务了，与此同时，如果不关闭爱快IPv6的DNS服务，由于我并没有设置旁路由作为IPv6网关，仍然使用主路由作为IPv6网关，这样的话，终端就不仅仅从我的自建DNS服务来获取解析了，也会从IPv6 DNS服务器来获取，所以还需要关闭爱快IPv6的DNS。自建DNS服务一样可以解析IPv6地址，以IPv6访问国内网站不是问题。&lt;/p&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;h3 id=&#34;网段的划分&#34;&gt;网段的划分&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;关于ipv6&#34;&gt;关于IPv6
+&lt;/h2&gt;&lt;p&gt;IPv6是未来的趋势，我的ISP也已经支持IPv6了，并且不管是DDNS还是PT，有IPv6的双栈总归是好的。但又同时，我所使用的科学上网服务并不支持IPv6，所以，我需要在&lt;code&gt;10.0.0.0/24&lt;/code&gt;这个科学上网的网段保留国内网站的IPv6解析，屏蔽掉国外网站IPv6的解析。这就得靠我在旁路由&lt;code&gt;10.0.0.2&lt;/code&gt;上自建DNS服务了，与此同时，如果不关闭爱快IPv6的DNS服务，由于我并没有设置旁路由作为IPv6网关，仍然使用主路由作为IPv6网关，这样的话，终端就不仅仅从我的自建DNS服务来获取解析了，也会从IPv6 DNS服务器来获取，所以还需要关闭爱快IPv6的DNS。自建DNS服务一样可以解析IPv6地址，以IPv6访问国内网站不是问题。&lt;/p&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;h3 id=&#34;网段的划分&#34;&gt;网段的划分
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;10.0.0.0/24&lt;/code&gt;作为科学上网的子网，该子网下全部设备默认直接可以科学上网。注意其中旁路由的IP是&lt;code&gt;10.0.0.2/24&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -45,8 +45,8 @@
 &lt;p&gt;&lt;code&gt;10.0.1.0/24&lt;/code&gt;作为无需科学上网的子网，该子网下全部设备默认不可以科学上网。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;爱快中的设置&#34;&gt;爱快中的设置&lt;/h3&gt;
-&lt;ol&gt;
+&lt;h3 id=&#34;爱快中的设置&#34;&gt;爱快中的设置
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;lan1&lt;/code&gt;设置&lt;code&gt;10.0.0.1&lt;/code&gt;为主IP，子网掩码为&lt;code&gt;/24&lt;/code&gt;，同时设置&lt;code&gt;10.0.1.1&lt;/code&gt;为扩展IP，子网掩码同样为&lt;code&gt;/24&lt;/code&gt;，详见下图。你也可以设置更多的扩展IP来分别管理不同的网段及设备（比如再单独设置一个子网为访客网络）。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE.png&#34;
@@ -111,18 +111,18 @@
 &lt;p&gt;网关为旁路由的设备在爱快的终端监控中，全部显示为旁路由的信息，所以我们还需要设置爱快的“高级应用-&amp;gt;跨三层应用”，具体如何设置因为还涉及到旁路由中的设置，我将在接下来的 &lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e5%85%ab&#34; &gt;本系列第（八）篇&lt;/a&gt; 中详细讲解。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;交换机&#34;&gt;交换机&lt;/h3&gt;
-&lt;p&gt;如果主路由有足够的网口，交换机可以省略，全部设备都直接接入主路由。有交换机时，即使交换机本身的管理IP处于&lt;code&gt;10.0.0.3/24&lt;/code&gt;，但接入的处于&lt;code&gt;10.0.1.0/24&lt;/code&gt;网段的设备一样是可以正常上网的，毕竟它是交换机。&lt;/p&gt;
-&lt;h3 id=&#34;ap&#34;&gt;AP&lt;/h3&gt;
-&lt;p&gt;如果主路由或者旁路由有无线功能，AP也可以省略，直接以主路由或者旁路由作为AP即可。&lt;/p&gt;
-&lt;h3 id=&#34;旁路由&#34;&gt;旁路由&lt;/h3&gt;
-&lt;p&gt;旁路由是不是虚拟机都没有关系。我的主路由是物理机，旁路由是虚拟机。其实我的很多设备都是通过虚拟机或者Docker的MacVLAN接入网络中，它们既有&lt;code&gt;10.0.0.0/24&lt;/code&gt;的，也有&lt;code&gt;10.0.1.0/24&lt;/code&gt;的，都按照我上面设置的DHCP服务正常工作着。&lt;/p&gt;
-&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
-&lt;p&gt;通过分离为两个子网，将需要科学上网的设备和不需要科学上网的设置分开，同时在前者所在子网下自建DNS服务器，达到国内支持IPv4/IPv6双栈，国外仅通过IPv4科学上网的目的。而在不需要科学上网的子网下，设备都是直接采用公共DNS服务器。&lt;/p&gt;
+&lt;h3 id=&#34;交换机&#34;&gt;交换机
+&lt;/h3&gt;&lt;p&gt;如果主路由有足够的网口，交换机可以省略，全部设备都直接接入主路由。有交换机时，即使交换机本身的管理IP处于&lt;code&gt;10.0.0.3/24&lt;/code&gt;，但接入的处于&lt;code&gt;10.0.1.0/24&lt;/code&gt;网段的设备一样是可以正常上网的，毕竟它是交换机。&lt;/p&gt;
+&lt;h3 id=&#34;ap&#34;&gt;AP
+&lt;/h3&gt;&lt;p&gt;如果主路由或者旁路由有无线功能，AP也可以省略，直接以主路由或者旁路由作为AP即可。&lt;/p&gt;
+&lt;h3 id=&#34;旁路由&#34;&gt;旁路由
+&lt;/h3&gt;&lt;p&gt;旁路由是不是虚拟机都没有关系。我的主路由是物理机，旁路由是虚拟机。其实我的很多设备都是通过虚拟机或者Docker的MacVLAN接入网络中，它们既有&lt;code&gt;10.0.0.0/24&lt;/code&gt;的，也有&lt;code&gt;10.0.1.0/24&lt;/code&gt;的，都按照我上面设置的DHCP服务正常工作着。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;通过分离为两个子网，将需要科学上网的设备和不需要科学上网的设置分开，同时在前者所在子网下自建DNS服务器，达到国内支持IPv4/IPv6双栈，国外仅通过IPv4科学上网的目的。而在不需要科学上网的子网下，设备都是直接采用公共DNS服务器。&lt;/p&gt;
 &lt;p&gt;不同的服务可以放在不同的子网下分别进行管理，比如我的许多Docker容器就通过创建在两个子网下的MacVLAN网络分别走不同的路线，一块网卡也可以创建多个MacVLAN网络以进行分流，详见我的 &lt;a class=&#34;link&#34; href=&#34;../docker-create-macvlan-with-multi-subnet&#34; &gt;这篇文章&lt;/a&gt;，比如 &lt;a class=&#34;link&#34; href=&#34;../docker-install-qbittorrent&#34; &gt;我的qBittorrent容器&lt;/a&gt; 就放在&lt;code&gt;10.0.1.0/24&lt;/code&gt;下，完全不用担心流量走了代理（我甚至在Clash中开启了代理PT网站，但这只影响我用PC访问PT网站，对 &lt;a class=&#34;link&#34; href=&#34;../docker-install-qbittorrent&#34; &gt;我的qBittorrent容器&lt;/a&gt; 毫无影响）。至于虚拟机也是一样，可以将其放入不同的子网来走不同的路线。&lt;/p&gt;
 &lt;p&gt;接下来，我们将继续设置Debian为旁路由，真正的开启Debian的旁路由之路，这将在我的 &lt;a class=&#34;link&#34; href=&#34;../../categories/gateway/&#34; &gt;软路由系列文章&lt;/a&gt; 中逐渐地一篇一篇发出来。这个系列虽然比较长，看起来比较复杂，但你可以根据你的需要进行选择性的使用，并且，配置好后是一劳永逸的，不用担心刷机，不用担心哪天服务故障，这套配置比OpenWRT稳定多了，即使未来升级系统也是分分钟的事。&lt;/p&gt;
-&lt;h2 id=&#34;系列&#34;&gt;系列&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;系列&#34;&gt;系列
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../%e6%88%91%e7%9a%84%e5%ae%b6%e5%ba%ad%e7%bd%91%e7%bb%9c%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%e5%bc%80%e5%90%afdebian%e7%9a%84%e6%97%81%e8%b7%af%e7%94%b1%e4%b9%8b%e8%b7%af%e4%b8%80&#34; &gt;一、子网划分及网络拓扑设计、爱快上的设置&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;

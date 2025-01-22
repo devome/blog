@@ -11,8 +11,8 @@
         <pubDate>Wed, 28 Dec 2022 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/jellyfin-webhook-to-dingtalk/</guid>
-        <description>&lt;img src="https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1.png" alt="Featured image of post Jellyfin使用Webhook发送通知到钉钉" /&gt;&lt;h2 id=&#34;效果图&#34;&gt;效果图&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1.png&#34;
+        <description>&lt;img src="https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1.png" alt="Featured image of post Jellyfin使用Webhook发送通知到钉钉" /&gt;&lt;h2 id=&#34;效果图&#34;&gt;效果图
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1.png&#34;
 	width=&#34;1080&#34;
 	height=&#34;2255&#34;
 	srcset=&#34;https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1_hu12450839052823691081.png 480w, https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1_hu15014245416922780779.png 1024w&#34;
@@ -26,8 +26,8 @@
 		data-flex-basis=&#34;114px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;通过手机版钉钉-&amp;gt;面对面建群，建立一个一人群。&lt;/p&gt;
 &lt;/li&gt;
@@ -240,8 +240,8 @@
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;保存好配置，接下来，只要Jellyfin中有新的媒体添加进来，或者选定用户开始/停止播放媒体，你则会收到通知。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/jellyfin/jellyfin-plugin-webhook&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/jellyfin/jellyfin-plugin-webhook&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;jellyfin-plugin-webhook&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://github.com/jellyfin/jellyfin-plugin-webhook/tree/master/Jellyfin.Plugin.Webhook/Templates&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;templates&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://handlebarsjs.com/guide/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;handlebars&lt;/a&gt;.&lt;/p&gt;

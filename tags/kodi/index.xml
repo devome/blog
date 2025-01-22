@@ -6,7 +6,7 @@
         <description>Recent content in Kodi on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sun, 06 Aug 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/kodi/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 22 Jan 2025 12:31:48 +0800</lastBuildDate><atom:link href="https://evine.win/tags/kodi/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>转换遥控器的退出键为返回键</title>
         <link>https://evine.win/p/kodi-change-exit-to-backspace/</link>
         <pubDate>Sun, 06 Aug 2023 00:00:00 +0800</pubDate>
@@ -26,10 +26,10 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;在上文 《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（&lt;code&gt;backspace&lt;/code&gt;键），而是退出键（&lt;code&gt;esc&lt;/code&gt;键），导致短按它的效果是直接退出到上一级菜单（&lt;code&gt;PreviousMenu&lt;/code&gt;），而不是返回到上一个界面（&lt;code&gt;Back&lt;/code&gt;）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。&lt;/p&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;p&gt;看到本篇教程这里，我默认你已经按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》《&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。&lt;/p&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;在上文 《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（&lt;code&gt;backspace&lt;/code&gt;键），而是退出键（&lt;code&gt;esc&lt;/code&gt;键），导致短按它的效果是直接退出到上一级菜单（&lt;code&gt;PreviousMenu&lt;/code&gt;），而不是返回到上一个界面（&lt;code&gt;Back&lt;/code&gt;）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。&lt;/p&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;p&gt;看到本篇教程这里，我默认你已经按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》《&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。&lt;/p&gt;
 &lt;p&gt;2.4G无线遥控器一般被Linux系统识别为键盘设备，所以这种遥控器的按键实际上就是普通键盘上的常规按键，它的按键的作用是通过&lt;code&gt;/usr/share/kodi/system/keymaps/keyboard.xml&lt;/code&gt;来处理的（在未被&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Add-on:Keymap_Editor&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Keymap Editor&lt;/a&gt;映射的前提下）。打开该&lt;code&gt;xml&lt;/code&gt;文件内容可知（见下），大部分界面中&lt;strong&gt;长按&lt;code&gt;esc&lt;/code&gt;键&lt;/strong&gt;的效果等同于&lt;strong&gt;短按&lt;code&gt;backspace&lt;/code&gt;键&lt;/strong&gt;（然而似乎遥控器并不支持长按&amp;hellip;普通键盘才支持&amp;hellip;），如果你习惯短按是&lt;code&gt;PreviousMenu&lt;/code&gt;，也可以不再往下看了。不过对我来说，短按&lt;code&gt;Back&lt;/code&gt;才更符合我的习惯，所以我需要将这个遥控器的&lt;code&gt;esc&lt;/code&gt;键转换为&lt;code&gt;backspace&lt;/code&gt;键。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -92,8 +92,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;上面的示例就是把短按&lt;code&gt;esc&lt;/code&gt;和长按&lt;code&gt;esc&lt;/code&gt;的作用交换了一下（尽管遥控器可能并不支持长按）。虽然上述配置并未列全，但基本上可以应付大部分情况了，你也可以自行参考&lt;code&gt;/usr/share/kodi/system/keymaps/keyboard.xml&lt;/code&gt;中的&lt;code&gt;escape&lt;/code&gt;所在的全部模块进行自定义覆盖。&lt;/p&gt;
 &lt;p&gt;既然我已经在使用&lt;code&gt;evsieve&lt;/code&gt;来胁持电源键了，那么再用它来胁持&lt;code&gt;esc&lt;/code&gt;键也是个不错的办法，所以就有了另外第二种办法，流程如下。&lt;/p&gt;
-&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;测试遥控器的返回键到底是个什么按键，不出意外，出现一点返回结果返回了很远的一个界面这种情况下，返回键应该就是&lt;code&gt;esc&lt;/code&gt;键。&lt;strong&gt;注：在测试前请先退出Kodi，保证画面处于控制台界面。&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -348,12 +348,12 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令是Kodi自带命令行工具，可以安全的操控Kodi，除了下文使用的&lt;code&gt;Quit&lt;/code&gt;指令，还有很多指令可以使用，方便想要自动化操作的人来使用，具体可用的指令见：&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Action_IDs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;说明&#34;&gt;说明
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令是Kodi自带命令行工具，可以安全的操控Kodi，除了下文使用的&lt;code&gt;Quit&lt;/code&gt;指令，还有很多指令可以使用，方便想要自动化操作的人来使用，具体可用的指令见：&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Action_IDs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Action_IDs&lt;/a&gt; 及 &lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/List_of_built-in_functions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;List_of_built-in_functions&lt;/a&gt; 。&lt;/p&gt;
-&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;请先按照 &lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt; 教程添加好&lt;code&gt;deb-multimedia&lt;/code&gt;软件源。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令需要安装&lt;code&gt;kodi-eventclients-common&lt;/code&gt;（如果未启用&lt;code&gt;deb-multimedia&lt;/code&gt;源，则需要安装debian官方源中的&lt;code&gt;kodi-eventclients-kodi-send&lt;/code&gt;）：&lt;/p&gt;
@@ -374,8 +374,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install -t bullseye-backports kodi-eventclients-common
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;设置&#34;&gt;设置&lt;/h2&gt;
-&lt;p&gt;如需要使用&lt;code&gt;kodi-send&lt;/code&gt;命令，需要在“Kodi设置-&amp;gt;服务-&amp;gt;控制”处勾选“允许通过本机应用远程控制”。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;设置&#34;&gt;设置
+&lt;/h2&gt;&lt;p&gt;如需要使用&lt;code&gt;kodi-send&lt;/code&gt;命令，需要在“Kodi设置-&amp;gt;服务-&amp;gt;控制”处勾选“允许通过本机应用远程控制”。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-send-help/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
@@ -390,8 +390,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
-&lt;p&gt;输入&lt;code&gt;kodi-send --help&lt;/code&gt;即可查看。&lt;/p&gt;
+&lt;h2 id=&#34;使用&#34;&gt;使用
+&lt;/h2&gt;&lt;p&gt;输入&lt;code&gt;kodi-send --help&lt;/code&gt;即可查看。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -468,8 +468,8 @@
     &gt;Action_IDs&lt;/a&gt; 及 &lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/List_of_built-in_functions&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;List_of_built-in_functions&lt;/a&gt;，全部按键见：&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Keyboard_controls&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Keyboard_controls&lt;/a&gt; 。&lt;/p&gt;
-&lt;h2 id=&#34;其他应用场景&#34;&gt;其他应用场景&lt;/h2&gt;
-&lt;p&gt;针对《&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》中的&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;服务，可以修改&lt;code&gt;ExecStop&lt;/code&gt;这一行为：&lt;/p&gt;
+&lt;h2 id=&#34;其他应用场景&#34;&gt;其他应用场景
+&lt;/h2&gt;&lt;p&gt;针对《&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》中的&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;服务，可以修改&lt;code&gt;ExecStop&lt;/code&gt;这一行为：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -593,22 +593,22 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;在《&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》一文的评论中，有网友提出能不能像操控电视盒子/LibreELEC/CoreELCE一样用遥控器操控PVE中直装的Kodi，实现打开和关闭Kodi，这是个好想法，我也认为这样会大方便PVE中直装的Kodi的使用，所以学习了相关udev、udevadm、evtest、input、input remap相关知识，终于实现了这个非常便于使用的功能。&lt;/p&gt;
-&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.man7.org/linux/man-pages/man7/udev.7.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;在《&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;》一文的评论中，有网友提出能不能像操控电视盒子/LibreELEC/CoreELCE一样用遥控器操控PVE中直装的Kodi，实现打开和关闭Kodi，这是个好想法，我也认为这样会大方便PVE中直装的Kodi的使用，所以学习了相关udev、udevadm、evtest、input、input remap相关知识，终于实现了这个非常便于使用的功能。&lt;/p&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.man7.org/linux/man-pages/man7/udev.7.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;udev&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://www.man7.org/linux/man-pages/man8/udevadm.8.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;udevadm&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/evtest.1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;evtest&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://wiki.archlinux.org/title/Input_remap_utilities&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;input_remap_utilities&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://github.com/KarsMulder/evsieve&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;evsieve&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
-&lt;p&gt;用遥控器操控PVE中直装的Kodi，实现打开和关闭Kodi，这个场景需要在无桌面环境下，胁持遥控器的电源键，让它的作用变更为打开/关闭Kodi，所以只是将电源键映射为其他键是不行的，而是需要胁持遥控器的电源键，让它变更为运行某个脚本，然后由脚本实现打开/关闭Kodi。&lt;/p&gt;
+&lt;h2 id=&#34;思路&#34;&gt;思路
+&lt;/h2&gt;&lt;p&gt;用遥控器操控PVE中直装的Kodi，实现打开和关闭Kodi，这个场景需要在无桌面环境下，胁持遥控器的电源键，让它的作用变更为打开/关闭Kodi，所以只是将电源键映射为其他键是不行的，而是需要胁持遥控器的电源键，让它变更为运行某个脚本，然后由脚本实现打开/关闭Kodi。&lt;/p&gt;
 &lt;p&gt;根据 &lt;a class=&#34;link&#34; href=&#34;https://wiki.archlinux.org/title/Input_remap_utilities&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;input_remap_utilities&lt;/a&gt; 列出的几个按键映射工具，只有 &lt;a class=&#34;link&#34; href=&#34;https://github.com/KarsMulder/evsieve&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;evsieve&lt;/a&gt; 可以在无桌面环境下胁持按键并运行指定脚本，实现上述场景。&lt;/p&gt;
-&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;准备工作&#34;&gt;准备工作
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
@@ -879,8 +879,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lrwxrwxrwx &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; root root &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt; Nov &lt;span class=&#34;m&#34;&gt;23&lt;/span&gt; 22:40 usb-QEMU_QEMU_USB_Tablet_28754-0000:00:01.2-1-mouse -&amp;gt; ../mouse2
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;设置按键胁持&#34;&gt;设置按键胁持&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;/div&gt;&lt;h2 id=&#34;设置按键胁持&#34;&gt;设置按键胁持
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
@@ -1113,8 +1113,8 @@
 &lt;p&gt;有些遥控器的返回键不是真正的返回键，而是退出键，会直接退出到主菜单，而不是返回到上一层。如果不习惯这样的操作方式，那么我们可以仍然借助evsieve这个工具来实现按键的转换。详见 &lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
-&lt;p&gt;通过本教程，PVE直接安装Kodi也变得很好用了，就像使用电视盒子/LibreELEC/CoreELEC一样，实现遥控器启动/停止。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;通过本教程，PVE直接安装Kodi也变得很好用了，就像使用电视盒子/LibreELEC/CoreELEC一样，实现遥控器启动/停止。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1138,8 +1138,8 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;如果在PVE系统中安装Kodi，并且是以root用户启动Kodi（如果是非root用户，那么可以无视本篇文章），那么Kodi具有很高的权限，可以关机、重启主机等等，这就需要防止不小心用遥控器或者键盘把PVE系统给关闭了。修改之处主要分为两部分：&lt;/p&gt;
-&lt;h2 id=&#34;1-屏蔽键盘的s键屏蔽遥控器的电源键&#34;&gt;1. 屏蔽键盘的s键、屏蔽遥控器的电源键&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1-屏蔽键盘的s键屏蔽遥控器的电源键&#34;&gt;1. 屏蔽键盘的s键、屏蔽遥控器的电源键
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;keymaps的WIKI见：https://kodi.wiki/view/Keymap ，keymaps默认文件位于：&lt;code&gt;/usr/share/kodi/system/keymaps&lt;/code&gt;，这里的文件可以被你自己的配置覆盖掉对应按键的作用。新建&lt;code&gt;~/.kodi/userdata/keymaps/disable_keyboard_shutdown.xml&lt;/code&gt;如下：&lt;/p&gt;
@@ -1189,8 +1189,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/keymap&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;2-在kodi界面中隐藏关机重启等按钮&#34;&gt;2. 在Kodi界面中隐藏关机、重启等按钮&lt;/h2&gt;
-&lt;p&gt;最后，为了保证在Kodi界面中也只能看见&lt;code&gt;退出&lt;/code&gt;，并且看不到&lt;code&gt;关机&lt;/code&gt;、&lt;code&gt;重启&lt;/code&gt;等按钮（注意：这只是在界面中隐藏掉而已，Kodi本身还是有关机、重启的权限的），可以在皮肤设置中将相关按钮隐藏掉，比如使用的&lt;code&gt;Aeon Nox: SiLVO&lt;/code&gt;皮肤的话，可以在进入&lt;code&gt;系统设置 -&amp;gt; 皮肤设置 -&amp;gt; 主菜单设置&lt;/code&gt;后这样操作：&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;2-在kodi界面中隐藏关机重启等按钮&#34;&gt;2. 在Kodi界面中隐藏关机、重启等按钮
+&lt;/h2&gt;&lt;p&gt;最后，为了保证在Kodi界面中也只能看见&lt;code&gt;退出&lt;/code&gt;，并且看不到&lt;code&gt;关机&lt;/code&gt;、&lt;code&gt;重启&lt;/code&gt;等按钮（注意：这只是在界面中隐藏掉而已，Kodi本身还是有关机、重启的权限的），可以在皮肤设置中将相关按钮隐藏掉，比如使用的&lt;code&gt;Aeon Nox: SiLVO&lt;/code&gt;皮肤的话，可以在进入&lt;code&gt;系统设置 -&amp;gt; 皮肤设置 -&amp;gt; 主菜单设置&lt;/code&gt;后这样操作：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
@@ -1285,8 +1285,8 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;操作流程&#34;&gt;操作流程&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;操作流程&#34;&gt;操作流程
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;将ttf字体文件放在下面列出的对应的皮肤目录下的&lt;code&gt;fonts&lt;/code&gt;子文件夹中：&lt;/p&gt;
 &lt;ul&gt;
@@ -1371,12 +1371,12 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。&lt;/p&gt;
-&lt;h2 id=&#34;注意事项&#34;&gt;注意事项&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;适配遥控器&#34;&gt;适配遥控器&lt;/h2&gt;
-&lt;p&gt;当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，&lt;del&gt;经过本人踩坑，我更推荐2.4G无线遥控器&lt;/del&gt;（&lt;strong&gt;2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连&lt;/strong&gt;）。总得说来，二者都可以非常舒服地使用，对比如下：&lt;/p&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。&lt;/p&gt;
+&lt;h2 id=&#34;注意事项&#34;&gt;注意事项
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;适配遥控器&#34;&gt;适配遥控器
+&lt;/h2&gt;&lt;p&gt;当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，&lt;del&gt;经过本人踩坑，我更推荐2.4G无线遥控器&lt;/del&gt;（&lt;strong&gt;2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连&lt;/strong&gt;）。总得说来，二者都可以非常舒服地使用，对比如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;del&gt;蓝牙遥控器即使设置好了永远保持连接，但毕竟需要蓝牙适配器和蓝牙遥控器两个配合，事实上在我的环境中5分钟左右遥控器没有动作二者就失联了，总是需要多按几次遥控器才会有反应。2.4G无线遥控器自带接收器，不存在断连问题。&lt;/del&gt;&lt;/p&gt;
@@ -1394,11 +1394,11 @@
 &lt;p&gt;蓝牙设备可以设置永不断连，但似乎不能劫持电源键，2.4G无线遥控器可以正常劫持。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;无线遥控器&#34;&gt;无线遥控器&lt;/h3&gt;
-&lt;p&gt;谈不上适配，如果是直接在PVE中安装Kodi，插上USB接收器就能用了。如果是直通显卡和声卡给 LibreELEC/CoreELEC 虚拟机的话，就设置下USB接口直通。其他方式安装的Kodi/LibreELEC/CoreELEC，只要该系统能访问USB接口，就可以用这种方式。&lt;/p&gt;
+&lt;h3 id=&#34;无线遥控器&#34;&gt;无线遥控器
+&lt;/h3&gt;&lt;p&gt;谈不上适配，如果是直接在PVE中安装Kodi，插上USB接收器就能用了。如果是直通显卡和声卡给 LibreELEC/CoreELEC 虚拟机的话，就设置下USB接口直通。其他方式安装的Kodi/LibreELEC/CoreELEC，只要该系统能访问USB接口，就可以用这种方式。&lt;/p&gt;
 &lt;p&gt;购买关键词：&lt;code&gt;遥控器&lt;/code&gt; &lt;code&gt;2.4G&lt;/code&gt; &lt;code&gt;飞鼠&lt;/code&gt; &lt;code&gt;空中鼠标&lt;/code&gt; &lt;code&gt;空中键鼠&lt;/code&gt; &lt;code&gt;Air Mouse&lt;/code&gt; &lt;code&gt;键鼠&lt;/code&gt;，注意要自带接收器的。&lt;/p&gt;
-&lt;h3 id=&#34;蓝牙遥控器&#34;&gt;蓝牙遥控器&lt;/h3&gt;
-&lt;p&gt;注：我购买的是胜为蓝牙适配器5.0和小米蓝牙语音遥控器这两样东西。&lt;del&gt;但我现在不推荐用这种方式，除非你需要连接多个蓝牙设备才考虑。&lt;/del&gt;（2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连。）&lt;/p&gt;
+&lt;h3 id=&#34;蓝牙遥控器&#34;&gt;蓝牙遥控器
+&lt;/h3&gt;&lt;p&gt;注：我购买的是胜为蓝牙适配器5.0和小米蓝牙语音遥控器这两样东西。&lt;del&gt;但我现在不推荐用这种方式，除非你需要连接多个蓝牙设备才考虑。&lt;/del&gt;（2023年8月补充说明：Linux内核支持关闭USB设备进入&lt;code&gt;suspend&lt;/code&gt;状态的功能，也可以实现蓝牙遥控器永不断连。）&lt;/p&gt;
 &lt;p&gt;以下为蓝牙遥控器适配流程：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;以下相关命令均为root用户执行的。
@@ -1568,10 +1568,10 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;在这里也简单的提一下 LibreELEC/CoreELEC 如何适配蓝牙遥控器，安装好适配器后，进入LibreELEC/CoreELEC系统设置菜单的蓝牙子菜单后，根据遥控器说明书使遥控器进入待配对状态，然后在LibreELEC/CoreELEC中开始扫描，扫描到后点击配对即可。&lt;/p&gt;
-&lt;h3 id=&#34;红外遥控器&#34;&gt;红外遥控器&lt;/h3&gt;
-&lt;p&gt;不好用，教程就不写了。&lt;/p&gt;
-&lt;h2 id=&#34;再次提醒&#34;&gt;再次提醒&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;红外遥控器&#34;&gt;红外遥控器
+&lt;/h3&gt;&lt;p&gt;不好用，教程就不写了。&lt;/p&gt;
+&lt;h2 id=&#34;再次提醒&#34;&gt;再次提醒
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《&lt;a class=&#34;link&#34; href=&#34;../kodi-start-stop-by-remote-controller&#34; &gt;像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停&lt;/a&gt;》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。&lt;/strong&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1592,8 +1592,8 @@
 &lt;li&gt;音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道；&lt;/li&gt;
 &lt;li&gt;另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;不需要如同网上其他教程一般，安装&lt;code&gt;xinit&lt;/code&gt;、&lt;code&gt;xfce&lt;/code&gt;、&lt;code&gt;lightdm&lt;/code&gt;、&lt;code&gt;gnome&lt;/code&gt;等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。&lt;/p&gt;
@@ -1692,8 +1692,8 @@
     &gt;国家互联网络信息中心&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirror.bjtu.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;北交&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;http://mirrors.nju.edu.cn/deb-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;南大&lt;/a&gt;等站点都是有&lt;code&gt;deb-multimedia&lt;/code&gt;仓库的，改成你下载最快的镜像站点即可。&lt;/p&gt;
-&lt;h2 id=&#34;设置开机启动&#34;&gt;设置开机启动&lt;/h2&gt;
-&lt;p&gt;新建&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：&lt;/p&gt;
+&lt;h2 id=&#34;设置开机启动&#34;&gt;设置开机启动
+&lt;/h2&gt;&lt;p&gt;新建&lt;code&gt;/etc/systemd/system/kodi.service&lt;/code&gt;，内容如下（请直接在Linux环境中创建，不要在Windows环境中创建）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1769,8 +1769,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;如何以非root用户运行kodi&#34;&gt;如何以非root用户运行Kodi&lt;/h2&gt;
-&lt;p&gt;如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。&lt;/p&gt;
+&lt;h2 id=&#34;如何以非root用户运行kodi&#34;&gt;如何以非root用户运行Kodi
+&lt;/h2&gt;&lt;p&gt;如果以root用户启动Kodi，那么Kodi具有很高的权限，可以关机、重启主机等等，而如果不赋予普通用户这些权限的话，普通用户就不能进行这些关机、重启系统的操作，所以以非root用户启动Kodi还是有必要的。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;下文均以用户名&lt;code&gt;evine&lt;/code&gt;举例。你可以直接建立一个kodi专用账户，用户名可以就叫&lt;code&gt;kodi&lt;/code&gt;。&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1887,8 +1887,8 @@
 &lt;/div&gt;&lt;p&gt;&lt;em&gt;注：如Kodi使用smb共享来访问媒体资源，或者是其他服务，可以在启动Koid前判断启动条件是否具备，详见本文最上方的相关教程。&lt;/em&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;相关命令&#34;&gt;相关命令&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h2 id=&#34;相关命令&#34;&gt;相关命令
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -1928,8 +1928,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt upgrade
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;关于音频直通&#34;&gt;关于音频直通&lt;/h2&gt;
-&lt;p&gt;如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置&lt;code&gt;系统 -&amp;gt; 音频&lt;/code&gt;中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;关于音频直通&#34;&gt;关于音频直通
+&lt;/h2&gt;&lt;p&gt;如果你的HDMI/DP接收方支持直接解码某些音频，那么可以在Kodi系统设置&lt;code&gt;系统 -&amp;gt; 音频&lt;/code&gt;中，勾选“允许直通输出”后，并在其下方继续勾选你的HDMI/DP接收方支持的音频格式（如果某个格式勾选后该格式的视频播放没有声音，那么就是你的接收方不支持直接解码该音频格式，就不要勾选该格式）。&lt;/p&gt;
 &lt;p&gt;音频直通最高可以支持7.1全景声，而如果你用Kodi解码后再传递给HDMI/DP，有可能只能支持2.0或2.1声道（对，管你几声道通通转成二声道），这大大降低了视听感受。直通显卡和声卡给虚拟机LibreELEC的，我不确定是否可以实现音频直通，这至少在我的环境中无法实现。&lt;/p&gt;
 &lt;p&gt;通过HDMI/DP直通的音频，在播放时无法在Kodi中控制音量，只能通过接收方控制。而某些不支持直通的音频，则是通过Kodi解码的，既可以通过Kodi控制音量，也可以通过接收方控制音量。&lt;/p&gt;
 &lt;p&gt;通过HDMI/DP直通的音频，在&lt;a class=&#34;link&#34; href=&#34;https://kodi.wiki/view/Player_process_info#Player_Process_Info&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1977,8 +1977,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;关于硬解&#34;&gt;关于硬解&lt;/h2&gt;
-&lt;p&gt;如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：&lt;/p&gt;
+&lt;h2 id=&#34;关于硬解&#34;&gt;关于硬解
+&lt;/h2&gt;&lt;p&gt;如果你是按照上述方式安装的Kodi，那么它将自动检测可以硬解的视频编码并自动设置好，如果你想要了解你的核显到底可以硬解什么编码，可以这样：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2024,8 +2024,8 @@
 		data-flex-basis=&#34;426px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;pve安装kodi系列文章&#34;&gt;《PVE安装Kodi》系列文章&lt;/h2&gt;
-&lt;p&gt;如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。&lt;/p&gt;
+&lt;h2 id=&#34;pve安装kodi系列文章&#34;&gt;《PVE安装Kodi》系列文章
+&lt;/h2&gt;&lt;p&gt;如果你需要为Kodi配置摇控器，并让遥控器可以控制Kodi启动和停止，那么请参考下列教程。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -2037,8 +2037,8 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
-&lt;p&gt;按上述流程，只主动安装了很少的软件包，根据&lt;code&gt;dpkg-query -L kodi&lt;/code&gt;的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;按上述流程，只主动安装了很少的软件包，根据&lt;code&gt;dpkg-query -L kodi&lt;/code&gt;的输出可知，除去Kodi的可执行程序外，Kodi安装的文件主要集中在这几个文件夹：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1

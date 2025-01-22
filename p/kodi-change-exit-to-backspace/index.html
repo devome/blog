@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 本文为《PVE安装Kodi》系列文章的一部分。
-PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 在上文 《像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（backspace键），而是退出键（esc键），导致短按它的效果是直接退出到上一级菜单（PreviousMenu），而不是返回到上一个界面（Back）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。
-'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 本文为《PVE安装Kodi》系列文章的一部分。\nPVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 在上文 《像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（backspace键），而是退出键（esc键），导致短按它的效果是直接退出到上一级菜单（PreviousMenu），而不是返回到上一个界面（Back）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。\n">
 <title>转换遥控器的退出键为返回键</title>
 
 <link rel='canonical' href='https://evine.win/p/kodi-change-exit-to-backspace/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='转换遥控器的退出键为返回键'>
-<meta property='og:description' content=' 本文为《PVE安装Kodi》系列文章的一部分。
-PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 在上文 《像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（backspace键），而是退出键（esc键），导致短按它的效果是直接退出到上一级菜单（PreviousMenu），而不是返回到上一个界面（Back）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。
-'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="转换遥控器的退出键为返回键">
+<meta property='og:description' content=" 本文为《PVE安装Kodi》系列文章的一部分。\nPVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 在上文 《像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（backspace键），而是退出键（esc键），导致短按它的效果是直接退出到上一级菜单（PreviousMenu），而不是返回到上一个界面（Back）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。\n">
 <meta property='og:url' content='https://evine.win/p/kodi-change-exit-to-backspace/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2023-08-06T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg' />
 <meta name="twitter:title" content="转换遥控器的退出键为返回键">
-<meta name="twitter:description" content=" 本文为《PVE安装Kodi》系列文章的一部分。
-PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 在上文 《像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（backspace键），而是退出键（esc键），导致短按它的效果是直接退出到上一级菜单（PreviousMenu），而不是返回到上一个界面（Back）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。
-"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content=" 本文为《PVE安装Kodi》系列文章的一部分。\nPVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 在上文 《像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（backspace键），而是退出键（esc键），导致短按它的效果是直接退出到上一级菜单（PreviousMenu），而不是返回到上一个界面（Back）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -95,7 +89,7 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
             <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -198,31 +192,12 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://evine.win/" selected></option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -230,7 +205,7 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,10 +213,11 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -375,10 +351,10 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 <li><a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a></li>
 <li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
 </ul>
-<h2 id="前言">前言</h2>
-<p>在上文 《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（<code>backspace</code>键），而是退出键（<code>esc</code>键），导致短按它的效果是直接退出到上一级菜单（<code>PreviousMenu</code>），而不是返回到上一个界面（<code>Back</code>）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。</p>
-<h2 id="说明">说明</h2>
-<p>看到本篇教程这里，我默认你已经按照《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》《<a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a>》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。</p>
+<h2 id="前言">前言
+</h2><p>在上文 《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》 中，我们把2.4G无线遥控器的电源键支持并转换为开关Kodi了。不过，有些2.4G无线遥控器的返回键不是退格键（<code>backspace</code>键），而是退出键（<code>esc</code>键），导致短按它的效果是直接退出到上一级菜单（<code>PreviousMenu</code>），而不是返回到上一个界面（<code>Back</code>）。这种情况在点的界面比较深的时候会比较明显，一点返回结果返回了很远。如果不习惯这样的操作方式，那么我们可以转换按键。</p>
+<h2 id="说明">说明
+</h2><p>看到本篇教程这里，我默认你已经按照《<a class="link" href="../kodi-install-in-pve" >PVE 直接安装最新版 Kodi</a>》《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》《<a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a>》这三篇教程安装好了必备的软件包，编辑好了必备的脚本，相关的安装过程就不再赘述了，直接进入正题。</p>
 <p>2.4G无线遥控器一般被Linux系统识别为键盘设备，所以这种遥控器的按键实际上就是普通键盘上的常规按键，它的按键的作用是通过<code>/usr/share/kodi/system/keymaps/keyboard.xml</code>来处理的（在未被<a class="link" href="https://kodi.wiki/view/Add-on:Keymap_Editor"  target="_blank" rel="noopener"
     >Keymap Editor</a>映射的前提下）。打开该<code>xml</code>文件内容可知（见下），大部分界面中<strong>长按<code>esc</code>键</strong>的效果等同于<strong>短按<code>backspace</code>键</strong>（然而似乎遥控器并不支持长按&hellip;普通键盘才支持&hellip;），如果你习惯短按是<code>PreviousMenu</code>，也可以不再往下看了。不过对我来说，短按<code>Back</code>才更符合我的习惯，所以我需要将这个遥控器的<code>esc</code>键转换为<code>backspace</code>键。</p>
 <div class="highlight"><div class="chroma">
@@ -441,8 +417,8 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 </div>
 </div><p>上面的示例就是把短按<code>esc</code>和长按<code>esc</code>的作用交换了一下（尽管遥控器可能并不支持长按）。虽然上述配置并未列全，但基本上可以应付大部分情况了，你也可以自行参考<code>/usr/share/kodi/system/keymaps/keyboard.xml</code>中的<code>escape</code>所在的全部模块进行自定义覆盖。</p>
 <p>既然我已经在使用<code>evsieve</code>来胁持电源键了，那么再用它来胁持<code>esc</code>键也是个不错的办法，所以就有了另外第二种办法，流程如下。</p>
-<h2 id="流程">流程</h2>
-<ol>
+<h2 id="流程">流程
+</h2><ol>
 <li>
 <p>测试遥控器的返回键到底是个什么按键，不出意外，出现一点返回结果返回了很远的一个界面这种情况下，返回键应该就是<code>esc</code>键。<strong>注：在测试前请先退出Kodi，保证画面处于控制台界面。</strong></p>
 <div class="highlight"><div class="chroma">
@@ -860,6 +836,7 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
+        proxy: null ,
     });
     (function () {
         if (
@@ -887,8 +864,8 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -977,7 +954,7 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

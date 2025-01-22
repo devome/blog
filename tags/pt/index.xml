@@ -6,18 +6,18 @@
         <description>Recent content in Pt on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 26 Apr 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/pt/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 29 Apr 2024 10:33:40 +0800</lastBuildDate><atom:link href="https://evine.win/tags/pt/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息</title>
         <link>https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/</link>
         <pubDate>Fri, 26 Apr 2024 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/</guid>
-        <description>&lt;img src="https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2.png" alt="Featured image of post 通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息" /&gt;&lt;h2 id=&#34;申明&#34;&gt;申明&lt;/h2&gt;
-&lt;p&gt;转载需注明本文链接及作者。&lt;/p&gt;
-&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息。IYUUPlus的用户应该知道，有部分站点需要提供Cookie才可以正常辅种，而我们又基本都会在同一个浏览器中既登陆相应的PT站，又会登陆IYUUPlus管理页面。那么我们就可以借助浏览器的一款叫Automa的插件，来完成自动提取浏览器中已经登陆的PT站的Cookie，然后按一定格式要求整理后，通过IYUUPlus的接口自动提交Cookie，以减少用户手工填写的烦恼。&lt;/p&gt;
-&lt;h2 id=&#34;前提条件&#34;&gt;前提条件&lt;/h2&gt;
-&lt;ol&gt;
+        <description>&lt;img src="https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2.png" alt="Featured image of post 通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息" /&gt;&lt;h2 id=&#34;申明&#34;&gt;申明
+&lt;/h2&gt;&lt;p&gt;转载需注明本文链接及作者。&lt;/p&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;玩PT的能自动化的就得自动化，顾名思义，看本文标题就知道：通过浏览器插件Automa自动向IYUUPlus更新PT站的Cookie信息。IYUUPlus的用户应该知道，有部分站点需要提供Cookie才可以正常辅种，而我们又基本都会在同一个浏览器中既登陆相应的PT站，又会登陆IYUUPlus管理页面。那么我们就可以借助浏览器的一款叫Automa的插件，来完成自动提取浏览器中已经登陆的PT站的Cookie，然后按一定格式要求整理后，通过IYUUPlus的接口自动提交Cookie，以减少用户手工填写的烦恼。&lt;/p&gt;
+&lt;h2 id=&#34;前提条件&#34;&gt;前提条件
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;你得自己会抓Cookie查看信息，后面会需要用到。&lt;/p&gt;
 &lt;/li&gt;
@@ -30,12 +30,12 @@
     &gt;https://github.com/ledccn/IYUUPlus&lt;/a&gt;）当然也可以实现自动化，只是不能直接使用本文提供的我编制好的工作流（需要进行一定的修改才能用）。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;实现流程&#34;&gt;实现流程&lt;/h2&gt;
-&lt;h3 id=&#34;安装automa&#34;&gt;安装Automa&lt;/h3&gt;
-&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;https://automa.wiki&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;实现流程&#34;&gt;实现流程
+&lt;/h2&gt;&lt;h3 id=&#34;安装automa&#34;&gt;安装Automa
+&lt;/h3&gt;&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;https://automa.wiki&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://automa.wiki&lt;/a&gt;。Edge和其他任何Chromium内核的浏览器也从Chrome扩展商店安装。安装好后可以在Automa的设置中修改语言为中文。&lt;/p&gt;
-&lt;h3 id=&#34;导入工作流&#34;&gt;导入工作流&lt;/h3&gt;
-&lt;ol&gt;
+&lt;h3 id=&#34;导入工作流&#34;&gt;导入工作流
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;方式1（推荐）：直接在Automa市场的这个链接点击“Add to extension”即可：&lt;a class=&#34;link&#34; href=&#34;https://www.automa.site/workflow/Hnu6QkG7-uewIAlKIFCsF&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.automa.site/workflow/Hnu6QkG7-uewIAlKIFCsF&lt;/a&gt;。通过此方式导入的工作流可以跟随我更新。&lt;/p&gt;
@@ -76,8 +76,8 @@
 		data-flex-basis=&#34;360px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;创建全局表格&#34;&gt;创建全局表格&lt;/h3&gt;
-&lt;p&gt;点击“存储 -&amp;gt; 表格 -&amp;gt; 添加表格”，创建一个名为 &lt;code&gt;cookie&lt;/code&gt; 的表格，然后给该表添加一列 &lt;code&gt;content&lt;/code&gt;，数据类型为 &lt;code&gt;Text&lt;/code&gt;，如下图所示。&lt;/p&gt;
+&lt;h3 id=&#34;创建全局表格&#34;&gt;创建全局表格
+&lt;/h3&gt;&lt;p&gt;点击“存储 -&amp;gt; 表格 -&amp;gt; 添加表格”，创建一个名为 &lt;code&gt;cookie&lt;/code&gt; 的表格，然后给该表添加一列 &lt;code&gt;content&lt;/code&gt;，数据类型为 &lt;code&gt;Text&lt;/code&gt;，如下图所示。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3.png&#34;
 	width=&#34;872&#34;
 	height=&#34;900&#34;
@@ -92,12 +92,12 @@
 		data-flex-basis=&#34;232px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;创建全局变量&#34;&gt;创建全局变量&lt;/h3&gt;
-&lt;p&gt;点击“存储 -&amp;gt; 变量 -&amp;gt; 添加变量”，创建以下两个变量。&lt;/p&gt;
-&lt;h4 id=&#34;iyuuplus_url&#34;&gt;&lt;code&gt;iyuuplus_url&lt;/code&gt;&lt;/h4&gt;
-&lt;p&gt;其值为你的iyuuplus的访问网址，比如：&lt;code&gt;http://iyuuplus.com:8787&lt;/code&gt;。&lt;/p&gt;
-&lt;h4 id=&#34;sites&#34;&gt;&lt;code&gt;sites&lt;/code&gt;&lt;/h4&gt;
-&lt;p&gt;其值的形式见下方代码块。这些内容就是IYUUPlus中需要提供Cookie的PT站的一些必要的信息，你有多少个PT站需要提供就输入多少个。编辑好后请在 &lt;a class=&#34;link&#34; href=&#34;https://www.json.cn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;创建全局变量&#34;&gt;创建全局变量
+&lt;/h3&gt;&lt;p&gt;点击“存储 -&amp;gt; 变量 -&amp;gt; 添加变量”，创建以下两个变量。&lt;/p&gt;
+&lt;h4 id=&#34;iyuuplus_url&#34;&gt;&lt;code&gt;iyuuplus_url&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;其值为你的iyuuplus的访问网址，比如：&lt;code&gt;http://iyuuplus.com:8787&lt;/code&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;sites&#34;&gt;&lt;code&gt;sites&lt;/code&gt;
+&lt;/h4&gt;&lt;p&gt;其值的形式见下方代码块。这些内容就是IYUUPlus中需要提供Cookie的PT站的一些必要的信息，你有多少个PT站需要提供就输入多少个。编辑好后请在 &lt;a class=&#34;link&#34; href=&#34;https://www.json.cn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.json.cn&lt;/a&gt; 验证一下你输入的内容是否满足json的格式要求。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -163,8 +163,8 @@
 		data-flex-basis=&#34;472px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;关连表格&#34;&gt;关连表格&lt;/h3&gt;
-&lt;p&gt;如下图所示，将上一步添加的表格与工作流关联起来。&lt;/p&gt;
+&lt;h3 id=&#34;关连表格&#34;&gt;关连表格
+&lt;/h3&gt;&lt;p&gt;如下图所示，将上一步添加的表格与工作流关联起来。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5.png&#34;
 	width=&#34;1749&#34;
 	height=&#34;1078&#34;
@@ -194,8 +194,8 @@
 		data-flex-basis=&#34;382px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;运行&#34;&gt;运行&lt;/h3&gt;
-&lt;p&gt;通过上述设置，已经可以运行这个工作流了，你可以点击“执行”按钮，然后看看结果，也可以直接去IYUUPlus的管理后台中看看Cookie是否成功更新了。我设置的触发器见下图，你也可以根据你的需要自己再添加其他触发器。如果失败了，请在“日志”中查看具体的错误信息来排故。如果需要询问，需要将工作流、执行日志，以及全局表格和全局变量发给我（注意对隐私信息打码），当然，由于工作流信息实在太多了，我并不一定能保证排查出来。&lt;/p&gt;
+&lt;h3 id=&#34;运行&#34;&gt;运行
+&lt;/h3&gt;&lt;p&gt;通过上述设置，已经可以运行这个工作流了，你可以点击“执行”按钮，然后看看结果，也可以直接去IYUUPlus的管理后台中看看Cookie是否成功更新了。我设置的触发器见下图，你也可以根据你的需要自己再添加其他触发器。如果失败了，请在“日志”中查看具体的错误信息来排故。如果需要询问，需要将工作流、执行日志，以及全局表格和全局变量发给我（注意对隐私信息打码），当然，由于工作流信息实在太多了，我并不一定能保证排查出来。&lt;/p&gt;
 &lt;p&gt;我设置了在没有登陆好PT站以及IYUUPlus时，会向系统发送通知，请注意留意相关提示信息。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7.png&#34;
 	width=&#34;1001&#34;
@@ -211,8 +211,8 @@
 		data-flex-basis=&#34;390px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;某些用户可能存在的问题&#34;&gt;某些用户可能存在的问题&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;某些用户可能存在的问题&#34;&gt;某些用户可能存在的问题
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;如果在准备工作做好以前就点击过“运行”，可能会让3个“插入数据”工作节点的表格关联信息丢失，这时，你需要编辑这3个“插入数据”工作节点，手动将要插入的数据和要插入的列关联起来，如下图所示。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8.png&#34;
@@ -237,8 +237,8 @@
 &lt;p&gt;用户需要在已经登陆了IYUUPlus和需要Cookie的网站的前提下，才能完成提交动作。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;一些说明&#34;&gt;一些说明&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;一些说明&#34;&gt;一些说明
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;如需理解工作流，请编辑各个工作节点，我在里面都写了注释。同时，也请访问 &lt;a class=&#34;link&#34; href=&#34;https://automa.wiki&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Automa官方文档&lt;/a&gt; 查阅更多信息。&lt;/p&gt;

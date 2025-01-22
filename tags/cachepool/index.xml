@@ -6,7 +6,7 @@
         <description>Recent content in Cachepool on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/cachepool/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Oct 2023 21:56:46 +0800</lastBuildDate><atom:link href="https://evine.win/tags/cachepool/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池</title>
         <link>https://evine.win/p/pve-create-lvm-thin-with-cachepool/</link>
         <pubDate>Thu, 01 Sep 2022 00:00:00 +0800</pubDate>
@@ -15,8 +15,8 @@
         <description>&lt;img src="https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
 &lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。&lt;/p&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。&lt;/p&gt;
 &lt;p&gt;作为垃圾佬，怎么舍得再额外购置硬件多花钱呢。垃圾佬当然不愿意再购买新硬盘了，掏出多年前给台式机装系统的两块SATA接口的固态硬盘，以及以前台式机用的两块机械硬盘，准备将两块SSD组raid0后作为缓存池，为两块HDD以raid0组后创建的LVM-thin提供读写缓存服务。&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -71,8 +71,8 @@
 &lt;p&gt;4块4T的HDD组raid5后再转换为LVM，然后一块256G的nvme磁盘作为其缓存池。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;有关概念&#34;&gt;有关概念&lt;/h2&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;有关概念&#34;&gt;有关概念
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
@@ -88,8 +88,8 @@
 &lt;p&gt;LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;网上有很多有关概念的详细介绍，这里不再多说。&lt;/p&gt;
-&lt;h2 id=&#34;创建具有缓存池的lvm-thin存储&#34;&gt;创建具有缓存池的LVM-thin存储&lt;/h2&gt;
-&lt;p&gt;这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：&lt;/p&gt;
+&lt;h2 id=&#34;创建具有缓存池的lvm-thin存储&#34;&gt;创建具有缓存池的LVM-thin存储
+&lt;/h2&gt;&lt;p&gt;这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;数据LV：也就是存储LVM-thin原始数据的LV，所有数据最终需要写入的地方，我将在HDD上创建它。&lt;/p&gt;
@@ -113,8 +113,8 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;如果直接在PVE的WEBUI中来创建，无法实现我所设想的思路，所以只能通过命令行来创建，然后再经过多次转换，来转换为我所需要的LVM-thin。&lt;/p&gt;
-&lt;h3 id=&#34;先看看磁盘的识别情况&#34;&gt;先看看磁盘的识别情况&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;h3 id=&#34;先看看磁盘的识别情况&#34;&gt;先看看磁盘的识别情况
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -149,8 +149,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sde            8:64   0 111.8G  0 disk
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;对磁盘初始化&#34;&gt;对磁盘初始化&lt;/h3&gt;
-&lt;p&gt;给2块SSD、2块HDD磁盘全部以GPT进行初始化，每个磁盘只分一个区，以下以&lt;code&gt;/dev/sdb&lt;/code&gt;为例（不分区直接创建整盘PV也可以）：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;对磁盘初始化&#34;&gt;对磁盘初始化
+&lt;/h3&gt;&lt;p&gt;给2块SSD、2块HDD磁盘全部以GPT进行初始化，每个磁盘只分一个区，以下以&lt;code&gt;/dev/sdb&lt;/code&gt;为例（不分区直接创建整盘PV也可以）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -193,8 +193,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Syncing disks.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;全部分好区再输入lsblk检查一下&#34;&gt;全部分好区再输入&lt;code&gt;lsblk&lt;/code&gt;检查一下：&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;全部分好区再输入lsblk检查一下&#34;&gt;全部分好区再输入&lt;code&gt;lsblk&lt;/code&gt;检查一下：
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -239,8 +239,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─sde1         8:65   0 111.8G  0 part
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建pv&#34;&gt;创建PV&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建pv&#34;&gt;创建PV
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
@@ -263,8 +263,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Physical volume &amp;#34;/dev/sde1&amp;#34; successfully created.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建vg&#34;&gt;创建VG&lt;/h3&gt;
-&lt;p&gt;采用默认的4M大小的PE，创建名叫&lt;code&gt;hybrid&lt;/code&gt;的VG：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建vg&#34;&gt;创建VG
+&lt;/h3&gt;&lt;p&gt;采用默认的4M大小的PE，创建名叫&lt;code&gt;hybrid&lt;/code&gt;的VG：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -282,8 +282,8 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Volume group &amp;#34;hybrid&amp;#34; successfully created
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建数据lv&#34;&gt;创建数据LV&lt;/h3&gt;
-&lt;p&gt;给两块HDD组raid0，用完它们的全部空间创建名叫&lt;code&gt;data&lt;/code&gt;的数据LV：&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建数据lv&#34;&gt;创建数据LV
+&lt;/h3&gt;&lt;p&gt;给两块HDD组raid0，用完它们的全部空间创建名叫&lt;code&gt;data&lt;/code&gt;的数据LV：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -306,8 +306,8 @@
 &lt;p&gt;对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;我的主要是大文件，所以我设置Stripe Size为256KiB。并且我的使用场景下，主要目的是提升IO，反而对数据损坏这个情况不关心，坏了就坏了，所以我采用的是raid0，和我使用场景不一致的不要采用raid0以及256KiB的Stripe Size。&lt;/p&gt;
-&lt;h3 id=&#34;创建元数据lv和缓存池元数据lv&#34;&gt;创建元数据LV和缓存池元数据LV&lt;/h3&gt;
-&lt;ul&gt;
+&lt;h3 id=&#34;创建元数据lv和缓存池元数据lv&#34;&gt;创建元数据LV和缓存池元数据LV
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;我最终要创建的存储类型是LVM-thin，这种薄存储类型需要另外的空间存储元数据metadata，如果直接在HDD上创建LVM-thin，系统会自动在HDD上创建其对应的元数据LV。但我们现在创建的是raid0类型的LVM，默认不带元数据LV，并且另一方面，我希望能在SSD上创建元数据所需要的LV，这样还可以提升数据索引速度，所以我需要手动在SSD上创建最终的LVM-thin存储所需要的元数据LV。&lt;/p&gt;
 &lt;/li&gt;
@@ -361,8 +361,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Logical volume &amp;#34;meta_cachepool&amp;#34; created.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建缓存池数据lv&#34;&gt;创建缓存池数据LV&lt;/h3&gt;
-&lt;p&gt;在SSD上已经创建好了两个metadata的LV，占了一点空间，为了最大化利用磁盘空间，先把两块SSD余下的空间全部分配给缓存池数据LV。不过如果后续进行lvconvert转换存储类型操作时，如未设置关闭自动创建备用池元数据LV（即命令中添加&lt;code&gt;--poolmetadataspare n&lt;/code&gt;，在PVE的WEBUI中创建LVM-thin，系统也会默认创建备用池元数据LV），在进行转换操作时就需要额外的等同于&lt;code&gt;hybrid/meta_thinpool&lt;/code&gt;大小（我这里就是11.5GiB）的空间。我打算让其自动创建备用池元数据LV，所以我需要预留11.5GiB（即2944个PE）。&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建缓存池数据lv&#34;&gt;创建缓存池数据LV
+&lt;/h3&gt;&lt;p&gt;在SSD上已经创建好了两个metadata的LV，占了一点空间，为了最大化利用磁盘空间，先把两块SSD余下的空间全部分配给缓存池数据LV。不过如果后续进行lvconvert转换存储类型操作时，如未设置关闭自动创建备用池元数据LV（即命令中添加&lt;code&gt;--poolmetadataspare n&lt;/code&gt;，在PVE的WEBUI中创建LVM-thin，系统也会默认创建备用池元数据LV），在进行转换操作时就需要额外的等同于&lt;code&gt;hybrid/meta_thinpool&lt;/code&gt;大小（我这里就是11.5GiB）的空间。我打算让其自动创建备用池元数据LV，所以我需要预留11.5GiB（即2944个PE）。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果已经在LVM-thin创建了虚拟磁盘，没有任何剩余空间的话，后续再调整就不太好调整了，所以如果不太放心的话，你多保留一些空间不完全创建LV也是可以的。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;为了最大化的提升IO性能，缓存池也采用raid0。同样采用默认的Stripe Size。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -433,8 +433,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Logical volume &lt;span class=&#34;s2&#34;&gt;&amp;#34;cache&amp;#34;&lt;/span&gt; created.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;转换存储类型&#34;&gt;转换存储类型&lt;/h3&gt;
-&lt;ol&gt;
+&lt;/div&gt;&lt;h3 id=&#34;转换存储类型&#34;&gt;转换存储类型
+&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;转换&lt;code&gt;hybrid/cache&lt;/code&gt;这个LV的类型为缓存池&lt;code&gt;cache-pool&lt;/code&gt;，设置&lt;code&gt;chunksize&lt;/code&gt;为256KiB，指定缓存池元数据LV为之前已经在SSD上以raid0创建的&lt;code&gt;hybrid/meta_cachepool&lt;/code&gt;：&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -539,8 +539,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  Converted hybrid/data and hybrid/meta_thinpool to thin pool.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;检查&#34;&gt;检查&lt;/h2&gt;
-&lt;p&gt;最后，我们来看看LV和物理磁盘的情况&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;检查&#34;&gt;检查
+&lt;/h2&gt;&lt;p&gt;最后，我们来看看LV和物理磁盘的情况&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -727,8 +727,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        └─hybrid-data                 253:15   0   3.6T  0 lvm
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;添加存储&#34;&gt;添加存储&lt;/h2&gt;
-&lt;p&gt;把创建好的LVM-thin存储添加到PVE，就大功告成了：&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;添加存储&#34;&gt;添加存储
+&lt;/h2&gt;&lt;p&gt;把创建好的LVM-thin存储添加到PVE，就大功告成了：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;686&#34;
@@ -772,8 +772,8 @@
 		data-flex-basis=&#34;569px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvm.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvm.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;lvm&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/pvcreate.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;pvcreate&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/vgcreate.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;vgcreate&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvcreate.8.en&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

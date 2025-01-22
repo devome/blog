@@ -6,7 +6,7 @@
         <description>Recent content in 字体 on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E5%AD%97%E4%BD%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Oct 2023 22:22:58 +0800</lastBuildDate><atom:link href="https://evine.win/tags/%E5%AD%97%E4%BD%93/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>屏蔽Kodi的关机、重启按钮</title>
         <link>https://evine.win/p/kodi-disable-shutdown/</link>
         <pubDate>Sat, 23 Jul 2022 00:00:00 +0800</pubDate>
@@ -27,8 +27,8 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;如果在PVE系统中安装Kodi，并且是以root用户启动Kodi（如果是非root用户，那么可以无视本篇文章），那么Kodi具有很高的权限，可以关机、重启主机等等，这就需要防止不小心用遥控器或者键盘把PVE系统给关闭了。修改之处主要分为两部分：&lt;/p&gt;
-&lt;h2 id=&#34;1-屏蔽键盘的s键屏蔽遥控器的电源键&#34;&gt;1. 屏蔽键盘的s键、屏蔽遥控器的电源键&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1-屏蔽键盘的s键屏蔽遥控器的电源键&#34;&gt;1. 屏蔽键盘的s键、屏蔽遥控器的电源键
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意，下面的方法只是屏蔽掉键盘的s键（可以呼出关机菜单），以及遥控器的电源键的功能，但实际上Kodi还有具有关闭主机的权限的，通过Yatse、Kore等手机软件直接呼出关机菜单仍然可以实现关机或重启。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;keymaps的WIKI见：https://kodi.wiki/view/Keymap ，keymaps默认文件位于：&lt;code&gt;/usr/share/kodi/system/keymaps&lt;/code&gt;，这里的文件可以被你自己的配置覆盖掉对应按键的作用。新建&lt;code&gt;~/.kodi/userdata/keymaps/disable_keyboard_shutdown.xml&lt;/code&gt;如下：&lt;/p&gt;
@@ -78,8 +78,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/keymap&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;2-在kodi界面中隐藏关机重启等按钮&#34;&gt;2. 在Kodi界面中隐藏关机、重启等按钮&lt;/h2&gt;
-&lt;p&gt;最后，为了保证在Kodi界面中也只能看见&lt;code&gt;退出&lt;/code&gt;，并且看不到&lt;code&gt;关机&lt;/code&gt;、&lt;code&gt;重启&lt;/code&gt;等按钮（注意：这只是在界面中隐藏掉而已，Kodi本身还是有关机、重启的权限的），可以在皮肤设置中将相关按钮隐藏掉，比如使用的&lt;code&gt;Aeon Nox: SiLVO&lt;/code&gt;皮肤的话，可以在进入&lt;code&gt;系统设置 -&amp;gt; 皮肤设置 -&amp;gt; 主菜单设置&lt;/code&gt;后这样操作：&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;2-在kodi界面中隐藏关机重启等按钮&#34;&gt;2. 在Kodi界面中隐藏关机、重启等按钮
+&lt;/h2&gt;&lt;p&gt;最后，为了保证在Kodi界面中也只能看见&lt;code&gt;退出&lt;/code&gt;，并且看不到&lt;code&gt;关机&lt;/code&gt;、&lt;code&gt;重启&lt;/code&gt;等按钮（注意：这只是在界面中隐藏掉而已，Kodi本身还是有关机、重启的权限的），可以在皮肤设置中将相关按钮隐藏掉，比如使用的&lt;code&gt;Aeon Nox: SiLVO&lt;/code&gt;皮肤的话，可以在进入&lt;code&gt;系统设置 -&amp;gt; 皮肤设置 -&amp;gt; 主菜单设置&lt;/code&gt;后这样操作：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
@@ -174,8 +174,8 @@
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-send-help&#34; &gt;kodi-send使用相关说明&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-change-exit-to-backspace&#34; &gt;转换遥控器的退出键为返回键&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;操作流程&#34;&gt;操作流程&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;操作流程&#34;&gt;操作流程
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;将ttf字体文件放在下面列出的对应的皮肤目录下的&lt;code&gt;fonts&lt;/code&gt;子文件夹中：&lt;/p&gt;
 &lt;ul&gt;

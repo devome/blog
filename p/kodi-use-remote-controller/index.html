@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 本文为《PVE安装Kodi》系列文章的一部分。
-PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。
-'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 本文为《PVE安装Kodi》系列文章的一部分。\nPVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。\n">
 <title>为Kodi适配遥控器</title>
 
 <link rel='canonical' href='https://evine.win/p/kodi-use-remote-controller/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='为Kodi适配遥控器'>
-<meta property='og:description' content=' 本文为《PVE安装Kodi》系列文章的一部分。
-PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。
-'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="为Kodi适配遥控器">
+<meta property='og:description' content=" 本文为《PVE安装Kodi》系列文章的一部分。\nPVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。\n">
 <meta property='og:url' content='https://evine.win/p/kodi-use-remote-controller/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='遥控器' /><meta property='article:published_time' content='2022-07-13T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-use-remote-controller/kodi-poster.jpg' />
 <meta name="twitter:title" content="为Kodi适配遥控器">
-<meta name="twitter:description" content=" 本文为《PVE安装Kodi》系列文章的一部分。
-PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。
-"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content=" 本文为《PVE安装Kodi》系列文章的一部分。\nPVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修改Kodi皮肤字体 屏蔽Kodi的关机、重启按钮 设置Kodi启动的前置条件 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停 kodi-send使用相关说明 转换遥控器的退出键为返回键 前言 虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/kodi-use-remote-controller/kodi-poster.jpg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -95,7 +89,7 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
             <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -198,31 +192,12 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://evine.win/" selected></option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -230,7 +205,7 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,10 +213,11 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -386,12 +362,12 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 <li><a class="link" href="../kodi-send-help" >kodi-send使用相关说明</a></li>
 <li><a class="link" href="../kodi-change-exit-to-backspace" >转换遥控器的退出键为返回键</a></li>
 </ul>
-<h2 id="前言">前言</h2>
-<p>虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。</p>
-<h2 id="注意事项">注意事项</h2>
-<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
-<h2 id="适配遥控器">适配遥控器</h2>
-<p>当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，<del>经过本人踩坑，我更推荐2.4G无线遥控器</del>（<strong>2023年8月补充说明：Linux内核支持关闭USB设备进入<code>suspend</code>状态的功能，也可以实现蓝牙遥控器永不断连</strong>）。总得说来，二者都可以非常舒服地使用，对比如下：</p>
+<h2 id="前言">前言
+</h2><p>虽然安装好Kodi后，可以在手机上使用Yatse、Kore等软件来遥控Kodi（当然这需要在Kodi设置中启用“允许通过 HTTP 远程控制”），但家人、朋友怎么办，难道为每个人都装一下？所以还是需要有一个实体遥控器来控制Kodi。</p>
+<h2 id="注意事项">注意事项
+</h2><p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
+<h2 id="适配遥控器">适配遥控器
+</h2><p>当然主要有两种方式（另外还有红外遥控器，这个不好用，就不写了），一是2.4G无线遥控器，一是蓝牙遥控器，<del>经过本人踩坑，我更推荐2.4G无线遥控器</del>（<strong>2023年8月补充说明：Linux内核支持关闭USB设备进入<code>suspend</code>状态的功能，也可以实现蓝牙遥控器永不断连</strong>）。总得说来，二者都可以非常舒服地使用，对比如下：</p>
 <ul>
 <li>
 <p><del>蓝牙遥控器即使设置好了永远保持连接，但毕竟需要蓝牙适配器和蓝牙遥控器两个配合，事实上在我的环境中5分钟左右遥控器没有动作二者就失联了，总是需要多按几次遥控器才会有反应。2.4G无线遥控器自带接收器，不存在断连问题。</del></p>
@@ -409,11 +385,11 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 <p>蓝牙设备可以设置永不断连，但似乎不能劫持电源键，2.4G无线遥控器可以正常劫持。</p>
 </li>
 </ul>
-<h3 id="无线遥控器">无线遥控器</h3>
-<p>谈不上适配，如果是直接在PVE中安装Kodi，插上USB接收器就能用了。如果是直通显卡和声卡给 LibreELEC/CoreELEC 虚拟机的话，就设置下USB接口直通。其他方式安装的Kodi/LibreELEC/CoreELEC，只要该系统能访问USB接口，就可以用这种方式。</p>
+<h3 id="无线遥控器">无线遥控器
+</h3><p>谈不上适配，如果是直接在PVE中安装Kodi，插上USB接收器就能用了。如果是直通显卡和声卡给 LibreELEC/CoreELEC 虚拟机的话，就设置下USB接口直通。其他方式安装的Kodi/LibreELEC/CoreELEC，只要该系统能访问USB接口，就可以用这种方式。</p>
 <p>购买关键词：<code>遥控器</code> <code>2.4G</code> <code>飞鼠</code> <code>空中鼠标</code> <code>空中键鼠</code> <code>Air Mouse</code> <code>键鼠</code>，注意要自带接收器的。</p>
-<h3 id="蓝牙遥控器">蓝牙遥控器</h3>
-<p>注：我购买的是胜为蓝牙适配器5.0和小米蓝牙语音遥控器这两样东西。<del>但我现在不推荐用这种方式，除非你需要连接多个蓝牙设备才考虑。</del>（2023年8月补充说明：Linux内核支持关闭USB设备进入<code>suspend</code>状态的功能，也可以实现蓝牙遥控器永不断连。）</p>
+<h3 id="蓝牙遥控器">蓝牙遥控器
+</h3><p>注：我购买的是胜为蓝牙适配器5.0和小米蓝牙语音遥控器这两样东西。<del>但我现在不推荐用这种方式，除非你需要连接多个蓝牙设备才考虑。</del>（2023年8月补充说明：Linux内核支持关闭USB设备进入<code>suspend</code>状态的功能，也可以实现蓝牙遥控器永不断连。）</p>
 <p>以下为蓝牙遥控器适配流程：</p>
 <blockquote>
 <p>以下相关命令均为root用户执行的。
@@ -583,10 +559,10 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
 </li>
 </ol>
 <p>在这里也简单的提一下 LibreELEC/CoreELEC 如何适配蓝牙遥控器，安装好适配器后，进入LibreELEC/CoreELEC系统设置菜单的蓝牙子菜单后，根据遥控器说明书使遥控器进入待配对状态，然后在LibreELEC/CoreELEC中开始扫描，扫描到后点击配对即可。</p>
-<h3 id="红外遥控器">红外遥控器</h3>
-<p>不好用，教程就不写了。</p>
-<h2 id="再次提醒">再次提醒</h2>
-<p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
+<h3 id="红外遥控器">红外遥控器
+</h3><p>不好用，教程就不写了。</p>
+<h2 id="再次提醒">再次提醒
+</h2><p><strong>如果没有打开Kodi，遥控器的电源键按下会关闭PVE系统，推荐适配遥控器之后按照《<a class="link" href="../kodi-start-stop-by-remote-controller" >像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停</a>》一文进行按键劫持，并可以实现遥控器来启动/关闭Kodi。</strong></p>
 
 </section>
 
@@ -776,6 +752,7 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
+        proxy: null ,
     });
     (function () {
         if (
@@ -803,8 +780,8 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -893,7 +870,7 @@ PVE 直接安装最新版 Kodi 为Kodi适配遥控器 修改Kodi字幕字体 修
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

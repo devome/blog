@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全
-相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。
-协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。
-'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全\n相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。\n协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。\n">
 <title>爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）</title>
 
 <link rel='canonical' href='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）'>
-<meta property='og:description' content=' 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全
-相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。
-协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。
-'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8+）">
+<meta property='og:description' content=" 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全\n相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。\n协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。\n">
 <meta property='og:url' content='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爱快' /><meta property='article:tag' content='防火墙' /><meta property='article:tag' content='acl' /><meta property='article:tag' content='ipv6' /><meta property='article:published_time' content='2023-11-27T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2024-01-29T13:04:28&#43;08:00'/><meta property='og:image' content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
-<meta name="twitter:title" content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）">
-<meta name="twitter:description" content=" 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全
-相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。
-协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。
-"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8+）">
+<meta name="twitter:description" content=" 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全\n相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。\n协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -98,7 +89,7 @@
             <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -201,31 +192,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://evine.win/" selected></option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -233,7 +205,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -241,10 +213,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -382,8 +355,8 @@
     <blockquote>
 <p>关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全</p>
 </blockquote>
-<h2 id="相关概念">相关概念</h2>
-<p>引用自<a class="link" href="https://www.ikuai8.com/index.php?option=com_content&amp;view=article&amp;id=192&amp;Itemid=312"  target="_blank" rel="noopener"
+<h2 id="相关概念">相关概念
+</h2><p>引用自<a class="link" href="https://www.ikuai8.com/index.php?option=com_content&amp;view=article&amp;id=192&amp;Itemid=312"  target="_blank" rel="noopener"
     >爱快帮助文档</a>，不完全理解也没有关系，可以在实践中加深概念理解。</p>
 <ul>
 <li>协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。</li>
@@ -408,28 +381,28 @@
 <li>进接口：数据来源口。</li>
 <li>出接口：目的出口。</li>
 </ul>
-<h2 id="ipv4与ipv6的不同">IPv4与IPv6的不同</h2>
-<p>IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。</p>
+<h2 id="ipv4与ipv6的不同">IPv4与IPv6的不同
+</h2><p>IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。</p>
 <p>而IPv6不存在端口转发的概念，只要在爱快系统中启用了IPv6，那么内网的设备都有全球唯一的IPv6地址，不需要什么设置就能从公网访问。而爱快默认就没有启用IPv6防火墙，意思就是有IPv6地址的设备是几乎完全暴露在公网环境中的，极不安全。</p>
 <p>当然，ISP大概率封掉了一些常见的端口。</p>
-<h2 id="ipv4的acl防火墙设置">IPv4的ACL/防火墙设置</h2>
-<p>IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考<a class="link" href="../ikuai-set-ipv4-acl" >这篇教程</a> ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。</p>
+<h2 id="ipv4的acl防火墙设置">IPv4的ACL/防火墙设置
+</h2><p>IPv4要设置ACL/防火墙，由于NAT的存在，只需要针对设置了端口转发/UPNP/DMZ的端口/设备来设置。可以参考<a class="link" href="../ikuai-set-ipv4-acl" >这篇教程</a> ，可以限制SSH/WEBUI/RDP的访问来源IP，提高安全性。</p>
 <p>注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。</p>
-<h2 id="ipv6的acl防火墙设置">IPv6的ACL/防火墙设置</h2>
-<blockquote>
+<h2 id="ipv6的acl防火墙设置">IPv6的ACL/防火墙设置
+</h2><blockquote>
 <p>ACL中<code>允许</code>的优先级高于<code>阻断</code>。</p>
 </blockquote>
 <p>爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。爱快3.7.7新增了IPv6分组和MAC分组功能，不过还有BUG，在3.7.8终于稳定了，可以导入分组了简化设置了。</p>
-<h3 id="导入ipv6分组">导入IPv6分组</h3>
-<p>下载 <a class="link" href="https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv"  target="_blank" rel="noopener"
+<h3 id="导入ipv6分组">导入IPv6分组
+</h3><p>下载 <a class="link" href="https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv"  target="_blank" rel="noopener"
     >ipv6group.csv</a> ，然后在爱快 “网络设置 -&gt; 终端分组设置 -&gt; IPv6分组” 处导入。如果下载不下来，可以前往我放在Github上的仓库 <a class="link" href="https://github.com/devome/files/tree/master/zxipv6wry"  target="_blank" rel="noopener"
     >https://github.com/devome/files/tree/master/zxipv6wry</a> clone后使用，在该仓库中，你也可以查阅中国完整的IPv6数据及分省数据。</p>
 <p>需要注意的是，由于爱快分组名称的字数有限制，所以“联通”包含“联通”和“网通”，“移动”包含“移动”和“铁通”，“鹏博士”包含“鹏博士”和“长城宽带”。还有部分IPv6数据暂不清楚其分配到什么省份，所以归类为“未知省份”，请在选择来源IPv6分组时根据你的实际需要进行选择。</p>
-<h3 id="设置mac分组">设置MAC分组</h3>
-<p>爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&gt; 终端分组设置 -&gt; MAC分组” 处设置。</p>
-<h3 id="acl规则">ACL规则</h3>
-<h4 id="默认规则">默认规则</h4>
-<p><img src="/p/ikuai-set-ipv6-acl-2/pic1.png"
+<h3 id="设置mac分组">设置MAC分组
+</h3><p>爱快3.7.7也新增了MAC分组功能，如果你想设置的设备的IPv6地址后缀部分不固定，可以通过MAC来放行IPv6流量，这时，你需要将后面需要设置的设置的MAC地址根据需要形成一个或多个分组，请自行在爱快 “网络设置 -&gt; 终端分组设置 -&gt; MAC分组” 处设置。</p>
+<h3 id="acl规则">ACL规则
+</h3><h4 id="默认规则">默认规则
+</h4><p><img src="/p/ikuai-set-ipv6-acl-2/pic1.png"
 	width="1240"
 	height="181"
 	srcset="/p/ikuai-set-ipv6-acl-2/pic1_hu10551001584828499519.png 480w, /p/ikuai-set-ipv6-acl-2/pic1_hu12598580468891151092.png 1024w"
@@ -445,8 +418,8 @@
 ></p>
 <p>注：第一条阻断规则的连接方向为<code>原始方向</code>，第二条允许规则的连接方向为<code>关闭</code>。并且由于目前爱快的IPv6 ACL还无法针对性的打开指定本地设备的ICMP协议，所以这样操作以后会默认禁止从公网ping本地的IPv6地址。爱快默认允许，所以上图中第二条规则不设置也可以。</p>
 <p>然后再对有安全性要求的端口/IP来针对性的开放权限。以下举几种情况：</p>
-<h4 id="webuihttpshttpsshrdp等">WEBUI/HTTPS/HTTP/SSH/RDP等</h4>
-<p>假如<code>8080,20000,30000-30004</code>这几个端口都是同一台设备上运行的WEBUI/SSH/RDP控制端口，只允许你所在省份电信和联通的IPv6地址访问。这个设备有两个IPv6地址（比如一个是DHCPv6分配的，一个是设备自己通过EUI-64自行设置的），分别为：</p>
+<h4 id="webuihttpshttpsshrdp等">WEBUI/HTTPS/HTTP/SSH/RDP等
+</h4><p>假如<code>8080,20000,30000-30004</code>这几个端口都是同一台设备上运行的WEBUI/SSH/RDP控制端口，只允许你所在省份电信和联通的IPv6地址访问。这个设备有两个IPv6地址（比如一个是DHCPv6分配的，一个是设备自己通过EUI-64自行设置的），分别为：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -492,8 +465,8 @@
 		data-flex-basis="293px"
 	
 ></p>
-<h4 id="btpt的监听端口">BT/PT的监听端口</h4>
-<p>假如<code>33333,44444</code>这两个端口是BT/PT下载软件的下载监听端口，由于上面最开始添加的默认规则阻断了其他公网IPv6访问本地，现在需要将<code>33333,44444</code>在IPv6上暴露出去。假如下载软件的IPv6地址是：</p>
+<h4 id="btpt的监听端口">BT/PT的监听端口
+</h4><p>假如<code>33333,44444</code>这两个端口是BT/PT下载软件的下载监听端口，由于上面最开始添加的默认规则阻断了其他公网IPv6访问本地，现在需要将<code>33333,44444</code>在IPv6上暴露出去。假如下载软件的IPv6地址是：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -517,13 +490,13 @@
 		data-flex-basis="292px"
 	
 ></p>
-<h4 id="完全暴露某台设备">完全暴露某台设备</h4>
-<p>因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。</p>
+<h4 id="完全暴露某台设备">完全暴露某台设备
+</h4><p>因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。</p>
 <blockquote>
 <p>一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： <code>nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535</code>，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。</p>
 </blockquote>
-<h2 id="规则验证">规则验证</h2>
-<p>另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 <a class="link" href="https://nmap.org/download#windows"  target="_blank" rel="noopener"
+<h2 id="规则验证">规则验证
+</h2><p>另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 <a class="link" href="https://nmap.org/download#windows"  target="_blank" rel="noopener"
     >这里</a>），比如检测IPv6的某端口开放情况运行下面命令即可：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -766,6 +739,7 @@
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
+        proxy: null ,
     });
     (function () {
         if (
@@ -793,8 +767,8 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -883,7 +857,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

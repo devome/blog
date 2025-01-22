@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD
-前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。
-'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD\n前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。\n">
 <title>PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池</title>
 
 <link rel='canonical' href='https://evine.win/p/pve-create-lvm-thin-with-cachepool/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池'>
-<meta property='og:description' content=' 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD
-前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。
-'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池">
+<meta property='og:description' content=" 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD\n前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。\n">
 <meta property='og:url' content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/'>
 <meta property='og:site_name' content='Evine的个人博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pve' /><meta property='article:tag' content='lvm-thin' /><meta property='article:tag' content='cachepool' /><meta property='article:published_time' content='2022-09-01T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-10-26T21:56:46&#43;08:00'/><meta property='og:image' content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png' />
 <meta name="twitter:title" content="PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池">
-<meta name="twitter:description" content=" 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD
-前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。
-"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content=" 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD\n前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -95,7 +89,7 @@
             <h1 class="site-name"><a href="/">Evine的个人博客</a></h1>
             <h2 class="site-description">Pain demands to be felt.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -198,31 +192,12 @@
             </a>
         </li>
         
+        <li class="menu-bottom-section">
+            <ol class="menu">
 
-        <div class="menu-bottom-section">
-                <li id="i18n-switch">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
-                        
-                            <option value="https://evine.win/" selected></option>
-                        
-                    </select>
-                </li>
-            
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -230,7 +205,7 @@
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,10 +213,11 @@
 
 
 
-                    <span>暗色模式</span>
-                </li>
-            
-        </div>
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -379,8 +355,8 @@
     <blockquote>
 <p>关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD</p>
 </blockquote>
-<h2 id="前言">前言</h2>
-<p>最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。</p>
+<h2 id="前言">前言
+</h2><p>最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。</p>
 <p>作为垃圾佬，怎么舍得再额外购置硬件多花钱呢。垃圾佬当然不愿意再购买新硬盘了，掏出多年前给台式机装系统的两块SATA接口的固态硬盘，以及以前台式机用的两块机械硬盘，准备将两块SSD组raid0后作为缓存池，为两块HDD以raid0组后创建的LVM-thin提供读写缓存服务。</p>
 <div class="table-wrapper"><table>
   <thead>
@@ -435,8 +411,8 @@
 <p>4块4T的HDD组raid5后再转换为LVM，然后一块256G的nvme磁盘作为其缓存池。</p>
 </li>
 </ul>
-<h2 id="有关概念">有关概念</h2>
-<blockquote>
+<h2 id="有关概念">有关概念
+</h2><blockquote>
 <p>PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。</p>
 </blockquote>
 <blockquote>
@@ -452,8 +428,8 @@
 <p>LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。</p>
 </blockquote>
 <p>网上有很多有关概念的详细介绍，这里不再多说。</p>
-<h2 id="创建具有缓存池的lvm-thin存储">创建具有缓存池的LVM-thin存储</h2>
-<p>这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：</p>
+<h2 id="创建具有缓存池的lvm-thin存储">创建具有缓存池的LVM-thin存储
+</h2><p>这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：</p>
 <ul>
 <li>
 <p>数据LV：也就是存储LVM-thin原始数据的LV，所有数据最终需要写入的地方，我将在HDD上创建它。</p>
@@ -477,8 +453,8 @@
 </li>
 </ul>
 <p>如果直接在PVE的WEBUI中来创建，无法实现我所设想的思路，所以只能通过命令行来创建，然后再经过多次转换，来转换为我所需要的LVM-thin。</p>
-<h3 id="先看看磁盘的识别情况">先看看磁盘的识别情况</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="先看看磁盘的识别情况">先看看磁盘的识别情况
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -513,8 +489,8 @@
 </span></span><span class="line"><span class="cl">sde            8:64   0 111.8G  0 disk
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="对磁盘初始化">对磁盘初始化</h3>
-<p>给2块SSD、2块HDD磁盘全部以GPT进行初始化，每个磁盘只分一个区，以下以<code>/dev/sdb</code>为例（不分区直接创建整盘PV也可以）：</p>
+</div><h3 id="对磁盘初始化">对磁盘初始化
+</h3><p>给2块SSD、2块HDD磁盘全部以GPT进行初始化，每个磁盘只分一个区，以下以<code>/dev/sdb</code>为例（不分区直接创建整盘PV也可以）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -557,8 +533,8 @@
 </span></span><span class="line"><span class="cl">Syncing disks.
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="全部分好区再输入lsblk检查一下">全部分好区再输入<code>lsblk</code>检查一下：</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="全部分好区再输入lsblk检查一下">全部分好区再输入<code>lsblk</code>检查一下：
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -603,8 +579,8 @@
 </span></span><span class="line"><span class="cl">└─sde1         8:65   0 111.8G  0 part
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="创建pv">创建PV</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="创建pv">创建PV
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -627,8 +603,8 @@
 </span></span><span class="line"><span class="cl">  Physical volume &#34;/dev/sde1&#34; successfully created.
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="创建vg">创建VG</h3>
-<p>采用默认的4M大小的PE，创建名叫<code>hybrid</code>的VG：</p>
+</div><h3 id="创建vg">创建VG
+</h3><p>采用默认的4M大小的PE，创建名叫<code>hybrid</code>的VG：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -646,8 +622,8 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  Volume group &#34;hybrid&#34; successfully created
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="创建数据lv">创建数据LV</h3>
-<p>给两块HDD组raid0，用完它们的全部空间创建名叫<code>data</code>的数据LV：</p>
+</div><h3 id="创建数据lv">创建数据LV
+</h3><p>给两块HDD组raid0，用完它们的全部空间创建名叫<code>data</code>的数据LV：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -670,8 +646,8 @@
 <p>对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。</p>
 </blockquote>
 <p>我的主要是大文件，所以我设置Stripe Size为256KiB。并且我的使用场景下，主要目的是提升IO，反而对数据损坏这个情况不关心，坏了就坏了，所以我采用的是raid0，和我使用场景不一致的不要采用raid0以及256KiB的Stripe Size。</p>
-<h3 id="创建元数据lv和缓存池元数据lv">创建元数据LV和缓存池元数据LV</h3>
-<ul>
+<h3 id="创建元数据lv和缓存池元数据lv">创建元数据LV和缓存池元数据LV
+</h3><ul>
 <li>
 <p>我最终要创建的存储类型是LVM-thin，这种薄存储类型需要另外的空间存储元数据metadata，如果直接在HDD上创建LVM-thin，系统会自动在HDD上创建其对应的元数据LV。但我们现在创建的是raid0类型的LVM，默认不带元数据LV，并且另一方面，我希望能在SSD上创建元数据所需要的LV，这样还可以提升数据索引速度，所以我需要手动在SSD上创建最终的LVM-thin存储所需要的元数据LV。</p>
 </li>
@@ -725,8 +701,8 @@
 </span></span><span class="line"><span class="cl">  Logical volume &#34;meta_cachepool&#34; created.
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="创建缓存池数据lv">创建缓存池数据LV</h3>
-<p>在SSD上已经创建好了两个metadata的LV，占了一点空间，为了最大化利用磁盘空间，先把两块SSD余下的空间全部分配给缓存池数据LV。不过如果后续进行lvconvert转换存储类型操作时，如未设置关闭自动创建备用池元数据LV（即命令中添加<code>--poolmetadataspare n</code>，在PVE的WEBUI中创建LVM-thin，系统也会默认创建备用池元数据LV），在进行转换操作时就需要额外的等同于<code>hybrid/meta_thinpool</code>大小（我这里就是11.5GiB）的空间。我打算让其自动创建备用池元数据LV，所以我需要预留11.5GiB（即2944个PE）。</p>
+</div><h3 id="创建缓存池数据lv">创建缓存池数据LV
+</h3><p>在SSD上已经创建好了两个metadata的LV，占了一点空间，为了最大化利用磁盘空间，先把两块SSD余下的空间全部分配给缓存池数据LV。不过如果后续进行lvconvert转换存储类型操作时，如未设置关闭自动创建备用池元数据LV（即命令中添加<code>--poolmetadataspare n</code>，在PVE的WEBUI中创建LVM-thin，系统也会默认创建备用池元数据LV），在进行转换操作时就需要额外的等同于<code>hybrid/meta_thinpool</code>大小（我这里就是11.5GiB）的空间。我打算让其自动创建备用池元数据LV，所以我需要预留11.5GiB（即2944个PE）。</p>
 <p><strong>如果已经在LVM-thin创建了虚拟磁盘，没有任何剩余空间的话，后续再调整就不太好调整了，所以如果不太放心的话，你多保留一些空间不完全创建LV也是可以的。</strong></p>
 <p>为了最大化的提升IO性能，缓存池也采用raid0。同样采用默认的Stripe Size。</p>
 <div class="highlight"><div class="chroma">
@@ -797,8 +773,8 @@
 </span></span><span class="line"><span class="cl">  Logical volume <span class="s2">&#34;cache&#34;</span> created.
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="转换存储类型">转换存储类型</h3>
-<ol>
+</div><h3 id="转换存储类型">转换存储类型
+</h3><ol>
 <li>转换<code>hybrid/cache</code>这个LV的类型为缓存池<code>cache-pool</code>，设置<code>chunksize</code>为256KiB，指定缓存池元数据LV为之前已经在SSD上以raid0创建的<code>hybrid/meta_cachepool</code>：</li>
 </ol>
 <div class="highlight"><div class="chroma">
@@ -903,8 +879,8 @@
 </span></span><span class="line"><span class="cl">  Converted hybrid/data and hybrid/meta_thinpool to thin pool.
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="检查">检查</h2>
-<p>最后，我们来看看LV和物理磁盘的情况</p>
+</div><h2 id="检查">检查
+</h2><p>最后，我们来看看LV和物理磁盘的情况</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1091,8 +1067,8 @@
 </span></span><span class="line"><span class="cl">        └─hybrid-data                 253:15   0   3.6T  0 lvm
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="添加存储">添加存储</h2>
-<p>把创建好的LVM-thin存储添加到PVE，就大功告成了：</p>
+</div><h2 id="添加存储">添加存储
+</h2><p>把创建好的LVM-thin存储添加到PVE，就大功告成了：</p>
 <p><img src="/p/pve-create-lvm-thin-with-cachepool/pic1.png"
 	width="1500"
 	height="686"
@@ -1136,8 +1112,8 @@
 		data-flex-basis="569px"
 	
 ></p>
-<h2 id="参考资料">参考资料</h2>
-<p><a class="link" href="https://man.archlinux.org/man/lvm.8.en"  target="_blank" rel="noopener"
+<h2 id="参考资料">参考资料
+</h2><p><a class="link" href="https://man.archlinux.org/man/lvm.8.en"  target="_blank" rel="noopener"
     >lvm</a>, <a class="link" href="https://man.archlinux.org/man/pvcreate.8.en"  target="_blank" rel="noopener"
     >pvcreate</a>, <a class="link" href="https://man.archlinux.org/man/vgcreate.8.en"  target="_blank" rel="noopener"
     >vgcreate</a>, <a class="link" href="https://man.archlinux.org/man/lvcreate.8.en"  target="_blank" rel="noopener"
@@ -1313,6 +1289,7 @@
         admin: ["devome"],
         distractionFreeMode: false, 
         id: md5(location.pathname), 
+        proxy: null ,
     });
     (function () {
         if (
@@ -1340,8 +1317,8 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
@@ -1430,7 +1407,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
