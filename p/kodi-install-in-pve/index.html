@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 本文为原创教程，转载请注明来源及作者。 更新于2023年8月4日，以当前最新的PVE 8为示例。
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。
 按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。
 '>
 <title>PVE 直接安装最新版 Kodi</title>
@@ -9,14 +9,14 @@
 <link rel='canonical' href='https://evine.win/p/kodi-install-in-pve/'>
 
 <link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='PVE 直接安装最新版 Kodi'>
-<meta property='og:description' content=' 本文为原创教程，转载请注明来源及作者。 更新于2023年8月4日，以当前最新的PVE 8为示例。
+<meta property='og:description' content=' 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。
 按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。
 '>
 <meta property='og:url' content='https://evine.win/p/kodi-install-in-pve/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='gbm' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:published_time' content='2022-07-12T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2023-12-14T13:12:09&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-install-in-pve/pic5.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kodi' /><meta property='article:tag' content='gbm' /><meta property='article:tag' content='debian' /><meta property='article:tag' content='pve' /><meta property='article:published_time' content='2022-07-12T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2025-01-22T12:31:48&#43;08:00'/><meta property='og:image' content='https://evine.win/p/kodi-install-in-pve/pic5.png' />
 <meta name="twitter:title" content="PVE 直接安装最新版 Kodi">
-<meta name="twitter:description" content=" 本文为原创教程，转载请注明来源及作者。 更新于2023年8月4日，以当前最新的PVE 8为示例。
+<meta name="twitter:description" content=" 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。
 按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。
 "><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/kodi-install-in-pve/pic5.png' />
@@ -372,7 +372,7 @@
     
     <blockquote>
 <p>本文为原创教程，转载请注明来源及作者。
-更新于2023年8月4日，以当前最新的PVE 8为示例。</p>
+更新于2025年1月22日，以当前最新的PVE 8为示例。</p>
 </blockquote>
 <ul>
 <li>按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi；</li>
@@ -407,8 +407,8 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 信任keyring</span>
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~
-</span></span><span class="line"><span class="cl">wget https://mirrors.bfsu.edu.cn/debian-multimedia/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
-</span></span><span class="line"><span class="cl">dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
+</span></span><span class="line"><span class="cl">wget https://mirrors.bfsu.edu.cn/debian-multimedia/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb
+</span></span><span class="line"><span class="cl">dpkg -i deb-multimedia-keyring_2024.9.1_all.deb
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 添加仓库</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;deb https://mirrors.bfsu.edu.cn/debian-multimedia bookworm main non-free&#34;</span> &gt; /etc/apt/sources.list.d/multimedia.list
@@ -427,11 +427,10 @@
 <li>PVE 6 -&gt; Debian 10 -&gt; buster</li>
 <li>PVE 7 -&gt; Debian 11 -&gt; bullseye</li>
 <li>PVE 8 -&gt; Debian 12 -&gt; bookworm</li>
-<li>PVE 9 -&gt; Debian 13 -&gt; trixie（未来的版本号）</li>
+<li>PVE 9 -&gt; Debian 13 -&gt; trixie（预计2025年年中发布）</li>
 </ul>
 <p>有的时候，在当前debian的版本中，<code>deb-multimedia</code>会将大版本升级后的Kodi放在<code>backports</code>源中，如果你发现你安装的Kodi不是当前最新版（见 <a class="link" href="https://github.com/xbmc/xbmc/releases"  target="_blank" rel="noopener"
     >官方</a>，可以先查询一下看看是不是在<code>backports</code>源中，再来指定<code>backports</code>源安装。</p>
-<p>因为PVE 8可以直接安装到Kodi 20，所以以下内容以PVE 7从<code>backports</code>源安装最新版本为例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -453,8 +452,6 @@
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看所有版本</span>
@@ -463,21 +460,19 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 输出</span>
 </span></span><span class="line"><span class="cl">kodi:
-</span></span><span class="line"><span class="cl">  Installed: 5:19.5-dmo0+deb11u2
-</span></span><span class="line"><span class="cl">  Candidate: 5:19.5-dmo0+deb11u2
+</span></span><span class="line"><span class="cl">  Installed: 5:20.5-dmo0+deb12u1
+</span></span><span class="line"><span class="cl">  Candidate: 5:20.5-dmo0+deb12u1
 </span></span><span class="line"><span class="cl">  Version table:
-</span></span><span class="line"><span class="cl">     5:20.2-dmo~bpo11+1 <span class="m">100</span>
-</span></span><span class="line"><span class="cl">        <span class="m">100</span> https://mirrors.bfsu.edu.cn/debian-multimedia bullseye-backports/main amd64 Packages
-</span></span><span class="line"><span class="cl"> *** 5:19.5-dmo0+deb11u2 <span class="m">500</span>
-</span></span><span class="line"><span class="cl">        <span class="m">500</span> https://mirrors.bfsu.edu.cn/debian-multimedia bullseye/main amd64 Packages
+</span></span><span class="line"><span class="cl">     5:21.2-dmo0~bpo12+1 <span class="m">500</span>
+</span></span><span class="line"><span class="cl">        <span class="m">100</span> https://www.deb-multimedia.org bookworm-backports/main amd64 Packages
 </span></span><span class="line"><span class="cl">        <span class="m">100</span> /var/lib/dpkg/status
-</span></span><span class="line"><span class="cl">     5:18.9-dmo0+deb10u1 <span class="m">500</span>
-</span></span><span class="line"><span class="cl">        <span class="m">500</span> https://mirrors.bfsu.edu.cn/debian-multimedia bullseye/main amd64 Packages
-</span></span><span class="line"><span class="cl">     2:19.1+dfsg2-2+deb11u1 <span class="m">500</span>
-</span></span><span class="line"><span class="cl">        <span class="m">500</span> https://mirrors.bfsu.edu.cn/debian bullseye/main amd64 Packages
+</span></span><span class="line"><span class="cl"> *** 5:20.5-dmo0+deb12u1 <span class="m">100</span>
+</span></span><span class="line"><span class="cl">        <span class="m">500</span> https://www.deb-multimedia.org bookworm/main amd64 Packages
+</span></span><span class="line"><span class="cl">     2:20.1+dfsg-1 <span class="m">500</span>
+</span></span><span class="line"><span class="cl">        <span class="m">500</span> https://deb.debian.org/debian bookworm/main amd64 Packages
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 上面的输出内容显示最新的版本位于bullseye-backports中，所以这时要安装最新版本需要指定backports源，如下</span>
-</span></span><span class="line"><span class="cl">apt install -t bullseye-backports -y kodi
+</span></span><span class="line"><span class="cl"><span class="c1"># 上面的输出内容显示最新的版本位于bookworm-backports中，所以这时要安装最新版本需要指定backports源，如下</span>
+</span></span><span class="line"><span class="cl">apt install -t bookworm-backports -y kodi
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>国内其他镜像站如<a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/"  target="_blank" rel="noopener"
@@ -894,7 +889,7 @@
 
 
         <span>
-            最后更新于 2023-12-14 13:12
+            最后更新于 2025-01-22 12:31
         </span>
     </section></footer>
 
@@ -1077,7 +1072,7 @@
         
             2020 - 
         
-        2024 Evine的个人博客
+        2025 Evine的个人博客
     </section>
     
     <section class="powerby">
