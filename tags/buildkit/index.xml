@@ -13,8 +13,7 @@
         
         <guid>https://evine.win/p/docker-buildx-set-cache-gcpolicy/</guid>
         <description>&lt;img src="https://evine.win/p/docker-buildx-set-cache-gcpolicy/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
-&lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;新建&lt;code&gt;buildkit&lt;/code&gt;配置文件&lt;code&gt;$HOME/.docker/buildx/buildkitd.default.toml&lt;/code&gt;如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

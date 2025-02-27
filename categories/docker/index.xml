@@ -12,8 +12,7 @@
         
         <guid>https://evine.win/p/docker-install-qbittorrent/</guid>
         <description>&lt;img src="https://evine.win/p/docker-install-qbittorrent/notify.png" alt="Featured image of post 一款更懂你的 qbittorrent docker 镜像" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文较长，如想略过某些内容，请直接点击右侧目录链接。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文较长，如想略过某些内容，请直接点击右侧目录链接。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;说明&#34;&gt;说明
 &lt;/h2&gt;&lt;p&gt;为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/101&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;详情&lt;/a&gt;。也因此镜像默认即安装好python，不再需要设置&lt;code&gt;INSTALL_PYTHON&lt;/code&gt;这个环境变量。&lt;/p&gt;
@@ -664,7 +663,7 @@
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic1.png&#34;
 	width=&#34;1061&#34;
 	height=&#34;571&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic1_hu9834882273691390814.png 480w, https://evine.win/p/docker-install-qbittorrent/pic1_hu17703110641140395457.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic1_hu_d42edbc552ed42c6.png 480w, https://evine.win/p/docker-install-qbittorrent/pic1_hu_6c2b06e61e365b5c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1&#34;
@@ -678,7 +677,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic2.png&#34;
 	width=&#34;1062&#34;
 	height=&#34;572&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic2_hu12200143116414481626.png 480w, https://evine.win/p/docker-install-qbittorrent/pic2_hu6851977383727704432.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic2_hu_94c4865246728559.png 480w, https://evine.win/p/docker-install-qbittorrent/pic2_hu_28719b0ea04d688c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;2&#34;
@@ -692,7 +691,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic3.png&#34;
 	width=&#34;1062&#34;
 	height=&#34;570&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic3_hu12581926651388096048.png 480w, https://evine.win/p/docker-install-qbittorrent/pic3_hu5034986416920992635.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic3_hu_a1b74054f62936c6.png 480w, https://evine.win/p/docker-install-qbittorrent/pic3_hu_72ec39be24261973.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;3&#34;
@@ -706,7 +705,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic4.png&#34;
 	width=&#34;1060&#34;
 	height=&#34;569&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic4_hu3213145635899882469.png 480w, https://evine.win/p/docker-install-qbittorrent/pic4_hu13144049045452067016.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic4_hu_ffc62ecfab931855.png 480w, https://evine.win/p/docker-install-qbittorrent/pic4_hu_80fdd8f1106354d.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;4&#34;
@@ -720,7 +719,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic5.png&#34;
 	width=&#34;1059&#34;
 	height=&#34;567&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic5_hu17521812522870001555.png 480w, https://evine.win/p/docker-install-qbittorrent/pic5_hu15123467932810597583.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic5_hu_5115374a310665d7.png 480w, https://evine.win/p/docker-install-qbittorrent/pic5_hu_24e3162a7b8903d3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;5&#34;
@@ -734,7 +733,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic6.png&#34;
 	width=&#34;1061&#34;
 	height=&#34;574&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic6_hu11985725762292767273.png 480w, https://evine.win/p/docker-install-qbittorrent/pic6_hu11993152655347463656.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic6_hu_cd275135d724a6d4.png 480w, https://evine.win/p/docker-install-qbittorrent/pic6_hu_c3d6ae9ee98bdb2b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;6&#34;
@@ -748,7 +747,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic7.png&#34;
 	width=&#34;1061&#34;
 	height=&#34;572&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic7_hu4364147260516111022.png 480w, https://evine.win/p/docker-install-qbittorrent/pic7_hu5584649358268567148.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic7_hu_258da5681673d80d.png 480w, https://evine.win/p/docker-install-qbittorrent/pic7_hu_bb8c6ecd8004efe8.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;7&#34;
@@ -762,7 +761,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic8.png&#34;
 	width=&#34;1060&#34;
 	height=&#34;570&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic8_hu6634813873573668107.png 480w, https://evine.win/p/docker-install-qbittorrent/pic8_hu7259008092116440392.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic8_hu_b9517da94dd93362.png 480w, https://evine.win/p/docker-install-qbittorrent/pic8_hu_7ba1ad833c15d5c6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;8&#34;
@@ -776,7 +775,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic9.png&#34;
 	width=&#34;1061&#34;
 	height=&#34;571&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic9_hu12108828896049016762.png 480w, https://evine.win/p/docker-install-qbittorrent/pic9_hu5044469279709068026.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic9_hu_aaebe03003c6e0a7.png 480w, https://evine.win/p/docker-install-qbittorrent/pic9_hu_3c89d73da0125591.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;9&#34;
@@ -790,7 +789,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic10.png&#34;
 	width=&#34;1060&#34;
 	height=&#34;571&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic10_hu15577895078630903605.png 480w, https://evine.win/p/docker-install-qbittorrent/pic10_hu3597270654650500129.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic10_hu_3392545570945387.png 480w, https://evine.win/p/docker-install-qbittorrent/pic10_hu_46f45ddb0842cb31.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;10&#34;
@@ -804,7 +803,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic11.png&#34;
 	width=&#34;1063&#34;
 	height=&#34;570&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic11_hu14486855578988239454.png 480w, https://evine.win/p/docker-install-qbittorrent/pic11_hu6439515227613770826.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic11_hu_2227da9dead83d12.png 480w, https://evine.win/p/docker-install-qbittorrent/pic11_hu_48226e4d490aa277.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;11&#34;
@@ -818,7 +817,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic12.png&#34;
 	width=&#34;1060&#34;
 	height=&#34;568&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic12_hu13607099307545405706.png 480w, https://evine.win/p/docker-install-qbittorrent/pic12_hu6928658504426958652.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic12_hu_25e3862fd22a4e8e.png 480w, https://evine.win/p/docker-install-qbittorrent/pic12_hu_e6e223aba2e313cc.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;12&#34;
@@ -1312,8 +1311,7 @@
 使用内存映射文件的好处主要有：
 内核（它知道机器有多少物理RAM可用）最了解何时以及以何种顺序刷新缓存。也许更重要的是，决定保留读缓存的数量和时间。
 某些类型的存储可以由CPU直接寻址，就像它是RAM一样，绕过了许多内核基础设施，并提供了非常高的性能。（linux称此DAX）
-此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。&lt;/p&gt;
-&lt;/blockquote&gt;
+此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;qb老是不监听ipv6地址怎么办&#34;&gt;qB老是不监听IPv6地址，怎么办？
 &lt;/h3&gt;&lt;p&gt;有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1553,8 +1551,7 @@
         
         <guid>https://evine.win/p/docker-buildx-set-cache-gcpolicy/</guid>
         <description>&lt;img src="https://evine.win/p/docker-buildx-set-cache-gcpolicy/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
-&lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;新建&lt;code&gt;buildkit&lt;/code&gt;配置文件&lt;code&gt;$HOME/.docker/buildx/buildkitd.default.toml&lt;/code&gt;如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

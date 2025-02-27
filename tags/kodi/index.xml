@@ -6,15 +6,14 @@
         <description>Recent content in Kodi on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 22 Jan 2025 12:31:48 +0800</lastBuildDate><atom:link href="https://evine.win/tags/kodi/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 27 Feb 2025 22:59:35 +0800</lastBuildDate><atom:link href="https://evine.win/tags/kodi/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>转换遥控器的退出键为返回键</title>
         <link>https://evine.win/p/kodi-change-exit-to-backspace/</link>
         <pubDate>Sun, 06 Aug 2023 00:00:00 +0800</pubDate>
         
         <guid>https://evine.win/p/kodi-change-exit-to-backspace/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg" alt="Featured image of post 转换遥控器的退出键为返回键" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -335,8 +334,7 @@
         
         <guid>https://evine.win/p/kodi-send-help/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-send-help/pic1.png" alt="Featured image of post kodi-send使用相关说明" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -354,8 +352,7 @@
     &gt;List_of_built-in_functions&lt;/a&gt; 。&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;请先按照 &lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt; 教程添加好&lt;code&gt;deb-multimedia&lt;/code&gt;软件源。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;请先按照 &lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt; 教程添加好&lt;code&gt;deb-multimedia&lt;/code&gt;软件源。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令需要安装&lt;code&gt;kodi-eventclients-common&lt;/code&gt;（如果未启用&lt;code&gt;deb-multimedia&lt;/code&gt;源，则需要安装debian官方源中的&lt;code&gt;kodi-eventclients-kodi-send&lt;/code&gt;）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -379,7 +376,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-send-help/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-send-help/pic1_hu13092393895266652296.png 480w, https://evine.win/p/kodi-send-help/pic1_hu9255501447866244097.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-send-help/pic1_hu_a4be17572e8c5d3.png 480w, https://evine.win/p/kodi-send-help/pic1_hu_36af6c8c3c943042.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;允许通过本机应用远程控制&#34;
@@ -512,8 +509,7 @@
         
         <guid>https://evine.win/p/kodi-set-pre-condition/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-set-pre-condition/kodi-poster.jpg" alt="Featured image of post 设置Kodi启动的前置条件" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -580,8 +576,7 @@
         
         <guid>https://evine.win/p/kodi-start-stop-by-remote-controller/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg" alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -609,11 +604,9 @@
     &gt;evsieve&lt;/a&gt; 可以在无桌面环境下胁持按键并运行指定脚本，实现上述场景。&lt;/p&gt;
 &lt;h2 id=&#34;准备工作&#34;&gt;准备工作
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;所有的输入设备都由&lt;code&gt;udev&lt;/code&gt;程序识别并保存在&lt;code&gt;/dev/input&lt;/code&gt;下，通过输入&lt;code&gt;ls -l /dev/input&lt;/code&gt;可以查看到许多&lt;code&gt;eventX&lt;/code&gt;的设备。设备的编号会随着外设的插入或卸载以及开关机的变化而变化，也就是说电源键所在的输入设备的&lt;code&gt;eventX&lt;/code&gt;中&lt;code&gt;X&lt;/code&gt;这个编号不是固定的，所以我们不能直接使用&lt;code&gt;/dev/input/eventX&lt;/code&gt;来作为后续要胁持的输入设备。运行&lt;code&gt;ls -l /dev/input/by-id&lt;/code&gt;，&lt;code&gt;udev&lt;/code&gt;会在这个目录下创建易于识别的、唯一的、不随外设的插入卸载或开关机而变化的软连接，无论&lt;code&gt;X&lt;/code&gt;如何变化，它们都将指向正确的设备。&lt;/p&gt;
 &lt;p&gt;我的遥控器是自带接收器的2.4G无线遥控器，插上接收器，通过&lt;code&gt;evtest&lt;/code&gt;程序先找出遥控器电源键在什么设备上。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -881,11 +874,9 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;设置按键胁持&#34;&gt;设置按键胁持
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;下载我为PVE 7.X预编译好的 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/evsieve/evsieve&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1124,8 +1115,7 @@
         
         <guid>https://evine.win/p/kodi-disable-shutdown/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-disable-shutdown/pic5.png" alt="Featured image of post 屏蔽Kodi的关机、重启按钮" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -1194,7 +1184,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic1_hu10209043286118618880.png 480w, https://evine.win/p/kodi-disable-shutdown/pic1_hu9890896329730866750.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic1_hu_3e3590db3ff5779e.png 480w, https://evine.win/p/kodi-disable-shutdown/pic1_hu_84b0ca88f61cab38.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094809.png&#34;
@@ -1209,7 +1199,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic2_hu10209043286118618880.png 480w, https://evine.win/p/kodi-disable-shutdown/pic2_hu9890896329730866750.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic2_hu_3e3590db3ff5779e.png 480w, https://evine.win/p/kodi-disable-shutdown/pic2_hu_84b0ca88f61cab38.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094821.png&#34;
@@ -1223,7 +1213,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic3_hu12542187147055414415.png 480w, https://evine.win/p/kodi-disable-shutdown/pic3_hu7147567169096026128.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic3_hu_75fb78f3b059d50d.png 480w, https://evine.win/p/kodi-disable-shutdown/pic3_hu_28f3065008220b9b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094832.png&#34;
@@ -1237,7 +1227,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic4.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic4_hu14252809660902204011.png 480w, https://evine.win/p/kodi-disable-shutdown/pic4_hu17439124143034683350.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic4_hu_c2073433ba0c19a6.png 480w, https://evine.win/p/kodi-disable-shutdown/pic4_hu_9eb945263416eae6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094844.png&#34;
@@ -1252,7 +1242,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic5.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic5_hu4630166356695753355.png 480w, https://evine.win/p/kodi-disable-shutdown/pic5_hu7693571001691299815.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic5_hu_28914b4390bf596e.png 480w, https://evine.win/p/kodi-disable-shutdown/pic5_hu_b144d53c37a3ca6c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094656.png&#34;
@@ -1272,8 +1262,7 @@
         
         <guid>https://evine.win/p/kodi-change-interface-font/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-change-interface-font/kodi-poster.jpg" alt="Featured image of post 修改Kodi皮肤字体" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -1335,8 +1324,7 @@
         
         <guid>https://evine.win/p/kodi-change-subtitle-font/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-change-subtitle-font/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -1358,8 +1346,7 @@
         
         <guid>https://evine.win/p/kodi-use-remote-controller/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-use-remote-controller/kodi-poster.jpg" alt="Featured image of post 为Kodi适配遥控器" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -1402,8 +1389,7 @@
 &lt;p&gt;以下为蓝牙遥控器适配流程：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;以下相关命令均为root用户执行的。
-如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
-&lt;/blockquote&gt;
+如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;在USB接口上插入蓝牙适配器，可以在PVE打开的情况下插入。插入后可以命令检测一下：&lt;/p&gt;
@@ -1582,8 +1568,7 @@
         <guid>https://evine.win/p/kodi-install-in-pve/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-install-in-pve/pic5.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为原创教程，转载请注明来源及作者。
-更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;
-&lt;/blockquote&gt;
+更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi；&lt;/li&gt;
 &lt;li&gt;没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计；&lt;/li&gt;
@@ -1594,8 +1579,9 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;不需要如同网上其他教程一般，安装&lt;code&gt;xinit&lt;/code&gt;、&lt;code&gt;xfce&lt;/code&gt;、&lt;code&gt;lightdm&lt;/code&gt;、&lt;code&gt;gnome&lt;/code&gt;等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。&lt;/p&gt;
 &lt;p&gt;并且网上的教程全是安装Debian官方仓库自带的Kodi，但因为Debian的特色，官方稳定仓库中的Kodi版本比较老。所以有的博主自作主张启用了Debian的sid不稳定仓库，以便使用新版Kodi，这对PVE环境来说是不可取的，不建议这么做。&lt;/p&gt;
 &lt;p&gt;事实上在Debian稳定版本上也是可以安装最新版的Kodi的，主要来自一个专门负责维护多媒体软件的仓库：https://www.deb-multimedia.org，国内连接较差，不用担心，有一堆镜像站可以使用。以下基于PVE 8.x（Debian bookworm）并以北外镜像站为例（&lt;strong&gt;其他版本请修改&lt;code&gt;bookworm&lt;/code&gt;为对应的版本号&lt;/strong&gt;）：&lt;/p&gt;
@@ -1630,8 +1616,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;PVE 5 -&amp;gt; Debian 9 -&amp;gt; stretch&lt;/li&gt;
 &lt;li&gt;PVE 6 -&amp;gt; Debian 10 -&amp;gt; buster&lt;/li&gt;
@@ -1685,7 +1670,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install -t bookworm-backports -y kodi
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;国内其他镜像站如&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;国内其他镜像站如&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;清华TUNA&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.ustc.edu.cn/help/deb-multimedia.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;中科大USTC&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cloud.tencent.com/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;腾讯云&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cnnic.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1744,7 +1731,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic1.png&#34;
 	width=&#34;1200&#34;
 	height=&#34;675&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic1_hu13341613101948464845.png 480w, https://evine.win/p/kodi-install-in-pve/pic1_hu2553577233690570090.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic1_hu_7808ad422df01a0a.png 480w, https://evine.win/p/kodi-install-in-pve/pic1_hu_1b194f59abe57a65.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;核心数量超过一行的宽度了，字有点重&#34;
@@ -1758,7 +1745,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic2.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;698&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic2_hu9444939529972666297.png 480w, https://evine.win/p/kodi-install-in-pve/pic2_hu7706954053077984002.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic2_hu_ad9363a206b67548.png 480w, https://evine.win/p/kodi-install-in-pve/pic2_hu_c2c3cdab67c321ea.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Kodi 20也支持开关HDR&#34;
@@ -1938,7 +1925,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic3_hu664879604991693388.png 480w, https://evine.win/p/kodi-install-in-pve/pic3_hu10736459723459708716.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic3_hu_5e95ccc74a9a13e5.png 480w, https://evine.win/p/kodi-install-in-pve/pic3_hu_f541ae1cb787112e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;AAC未直通&#34;
@@ -1952,7 +1939,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic4.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic4_hu14619772680059514558.png 480w, https://evine.win/p/kodi-install-in-pve/pic4_hu12508079360812403885.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic4_hu_80e8a7798ed80a65.png 480w, https://evine.win/p/kodi-install-in-pve/pic4_hu_bccfc1ac78acd216.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;TrueHD直通&#34;
@@ -1966,7 +1953,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic5.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic5_hu8298113823860523349.png 480w, https://evine.win/p/kodi-install-in-pve/pic5_hu4188109521088563337.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic5_hu_106622cc6ce2b95f.png 480w, https://evine.win/p/kodi-install-in-pve/pic5_hu_5335b76de0d8d58a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DTS-HD直通&#34;
@@ -1999,7 +1986,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic6.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic6_hu15695997804294824757.png 480w, https://evine.win/p/kodi-install-in-pve/pic6_hu12683687379341613976.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic6_hu_edbd92787c3fb91a.png 480w, https://evine.win/p/kodi-install-in-pve/pic6_hu_b620f506e122e9a6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;HEVC/x265硬解&#34;
@@ -2013,7 +2000,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic7.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic7_hu11842325981679854943.png 480w, https://evine.win/p/kodi-install-in-pve/pic7_hu7121205885592846330.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic7_hu_1ba806065cc07343.png 480w, https://evine.win/p/kodi-install-in-pve/pic7_hu_6145c3430e670974.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;x264硬解&#34;

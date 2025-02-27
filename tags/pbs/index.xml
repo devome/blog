@@ -37,12 +37,10 @@
 &lt;p&gt;那么有没有一种方式，能规避掉这些缺点呢，有的，那就是 Systemd Container。关于它的详细介绍，见 Arch Wiki 上的 &lt;a class=&#34;link&#34; href=&#34;https://wiki.archlinux.org/title/Systemd-nspawn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Systemd-nspawn&lt;/a&gt;，一些常用命令，以及常见问题该链接中都有，本文没有提及的内容请参考该链接。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;systemd-nspawn 跟 chroot 命令类似，是个终极版的 chroot。systemd-nspawn 可以在轻量的命名空间容器中运行命令或系统。它比 chroot 强大的地方是，它完全虚拟了文件系统层次结构、进程树、各种 IPC 子系统以及主机名。systemd-nspawn 将容器中各种内核接口的访问限制为只读，像是 /sys, /proc/sys 和 /sys/fs/selinux。网络接口和系统时钟不能从容器内更改，不能创建设备节点。不能从容器中重启宿主机，也不能加载内核模块。相比 LXC 或 Libvirt， systemd-nspawn 更容易配置。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;systemd-nspawn 跟 chroot 命令类似，是个终极版的 chroot。systemd-nspawn 可以在轻量的命名空间容器中运行命令或系统。它比 chroot 强大的地方是，它完全虚拟了文件系统层次结构、进程树、各种 IPC 子系统以及主机名。systemd-nspawn 将容器中各种内核接口的访问限制为只读，像是 /sys, /proc/sys 和 /sys/fs/selinux。网络接口和系统时钟不能从容器内更改，不能创建设备节点。不能从容器中重启宿主机，也不能加载内核模块。相比 LXC 或 Libvirt， systemd-nspawn 更容易配置。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下均为 root 用户运行的。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;以下均为 root 用户运行的。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;基础环境&#34;&gt;基础环境
 &lt;/h3&gt;&lt;p&gt;对于 Debian 和基于 Debian 的系统，需要安装 &lt;code&gt;systemd-container&lt;/code&gt; 以及 &lt;code&gt;debootstrap&lt;/code&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -422,7 +420,7 @@
 &lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png&#34;
 	width=&#34;2560&#34;
 	height=&#34;1600&#34;
-	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu3940587504822999221.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu4052557653323295602.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu_22de2d54f2f0c89d.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu_4902c92547601fcd.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;数据存储&#34;
@@ -436,7 +434,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2.png&#34;
 	width=&#34;2560&#34;
 	height=&#34;1600&#34;
-	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu7304894291735458794.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu3282289737058333386.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu_c6dfbd1a5c47d4ca.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu_d5043cc3fcc7e9b4.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;系统日志&#34;

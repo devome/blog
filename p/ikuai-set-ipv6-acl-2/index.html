@@ -73,7 +73,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu7588998244004364353.png" width="300"
+                        <img src="/img/avatar_hu_ef9958f7a0605821.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -276,8 +276,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/ikuai-set-ipv6-acl-2/">
-                <img src="/p/ikuai-set-ipv6-acl-2/pic1_hu9784072876932403609.png"
-                        srcset="/p/ikuai-set-ipv6-acl-2/pic1_hu9784072876932403609.png 800w, /p/ikuai-set-ipv6-acl-2/pic1_hu2303658113223996508.png 1600w"
+                <img src="/p/ikuai-set-ipv6-acl-2/pic1_hu_3ddd3b38d66a4b96.png"
+                        srcset="/p/ikuai-set-ipv6-acl-2/pic1_hu_3ddd3b38d66a4b96.png 800w, /p/ikuai-set-ipv6-acl-2/pic1_hu_8512cd25b4f06c65.png 1600w"
                         width="800" 
                         height="117" 
                         loading="lazy"
@@ -353,8 +353,7 @@
     
     
     <blockquote>
-<p>关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全</p>
-</blockquote>
+<p>关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全</p></blockquote>
 <h2 id="相关概念">相关概念
 </h2><p>引用自<a class="link" href="https://www.ikuai8.com/index.php?option=com_content&amp;view=article&amp;id=192&amp;Itemid=312"  target="_blank" rel="noopener"
     >爱快帮助文档</a>，不完全理解也没有关系，可以在实践中加深概念理解。</p>
@@ -390,8 +389,7 @@
 <p>注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。</p>
 <h2 id="ipv6的acl防火墙设置">IPv6的ACL/防火墙设置
 </h2><blockquote>
-<p>ACL中<code>允许</code>的优先级高于<code>阻断</code>。</p>
-</blockquote>
+<p>ACL中<code>允许</code>的优先级高于<code>阻断</code>。</p></blockquote>
 <p>爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。爱快3.7.7新增了IPv6分组和MAC分组功能，不过还有BUG，在3.7.8终于稳定了，可以导入分组了简化设置了。</p>
 <h3 id="导入ipv6分组">导入IPv6分组
 </h3><p>下载 <a class="link" href="https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv"  target="_blank" rel="noopener"
@@ -405,7 +403,7 @@
 </h4><p><img src="/p/ikuai-set-ipv6-acl-2/pic1.png"
 	width="1240"
 	height="181"
-	srcset="/p/ikuai-set-ipv6-acl-2/pic1_hu10551001584828499519.png 480w, /p/ikuai-set-ipv6-acl-2/pic1_hu12598580468891151092.png 1024w"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic1_hu_9336ea1fd04f7883.png 480w, /p/ikuai-set-ipv6-acl-2/pic1_hu_248641862e4d785.png 1024w"
 	loading="lazy"
 	
 		alt="IPv6默认ACL规则"
@@ -434,7 +432,7 @@
 <p><img src="/p/ikuai-set-ipv6-acl-2/pic2.png"
 	width="1860"
 	height="1523"
-	srcset="/p/ikuai-set-ipv6-acl-2/pic2_hu8728473954912275665.png 480w, /p/ikuai-set-ipv6-acl-2/pic2_hu13823924378914885482.png 1024w"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic2_hu_ae4910bce979219b.png 480w, /p/ikuai-set-ipv6-acl-2/pic2_hu_6a0b508ca90c0c19.png 1024w"
 	loading="lazy"
 	
 		alt="后缀匹配放行湖北电信、湖北联通的IPv6"
@@ -449,12 +447,11 @@
 <p><strong>重要提示</strong></p>
 <blockquote>
 <p>根据 <a class="link" href="https://bbs.ikuai8.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=144430&amp;pid=1244021&amp;fromuid=52325"  target="_blank" rel="noopener"
-    >爱快官方人员的说明</a>：IPv6外网主动访问内网，无法做目的mac匹配，只能做后缀匹配也就是IPv6地址匹配。因为外网主动访问的，内网的此终端IPv6地址对应的mac地址，无法立马拿到（这个就涉及内核的发包细节了）。如果是内网主动向外访问，源主机对应的mac地址路由能第一时间就能拿到。</p>
-</blockquote>
+    >爱快官方人员的说明</a>：IPv6外网主动访问内网，无法做目的mac匹配，只能做后缀匹配也就是IPv6地址匹配。因为外网主动访问的，内网的此终端IPv6地址对应的mac地址，无法立马拿到（这个就涉及内核的发包细节了）。如果是内网主动向外访问，源主机对应的mac地址路由能第一时间就能拿到。</p></blockquote>
 <p><img src="/p/ikuai-set-ipv6-acl-2/pic3.png"
 	width="1864"
 	height="1522"
-	srcset="/p/ikuai-set-ipv6-acl-2/pic3_hu9902305676680549711.png 480w, /p/ikuai-set-ipv6-acl-2/pic3_hu17949817357107243739.png 1024w"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic3_hu_e6f319e4ff238be.png 480w, /p/ikuai-set-ipv6-acl-2/pic3_hu_ec8e487b40c6c9cc.png 1024w"
 	loading="lazy"
 	
 		alt="MAC匹配放行湖北电信、湖北联通的IPv6"
@@ -479,7 +476,7 @@
 <p><img src="/p/ikuai-set-ipv6-acl-2/pic4.png"
 	width="1841"
 	height="1511"
-	srcset="/p/ikuai-set-ipv6-acl-2/pic4_hu1061974461536313034.png 480w, /p/ikuai-set-ipv6-acl-2/pic4_hu16824706189986401603.png 1024w"
+	srcset="/p/ikuai-set-ipv6-acl-2/pic4_hu_47ef1e2cccbc188.png 480w, /p/ikuai-set-ipv6-acl-2/pic4_hu_4c46cb9076116714.png 1024w"
 	loading="lazy"
 	
 		alt="后缀匹配放行BT/PT监听"
@@ -493,8 +490,7 @@
 <h4 id="完全暴露某台设备">完全暴露某台设备
 </h4><p>因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。</p>
 <blockquote>
-<p>一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： <code>nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535</code>，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。</p>
-</blockquote>
+<p>一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： <code>nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535</code>，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。</p></blockquote>
 <h2 id="规则验证">规则验证
 </h2><p>另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 <a class="link" href="https://nmap.org/download#windows"  target="_blank" rel="noopener"
     >这里</a>），比如检测IPv6的某端口开放情况运行下面命令即可：</p>
@@ -602,7 +598,7 @@
         
         
             <div class="article-image">
-                <img src="/p/ikuai-set-ipv6-acl/pic1.b59e92159012b80f8905c7b3d3190529_hu257374448424591185.png" 
+                <img src="/p/ikuai-set-ipv6-acl/pic1.b59e92159012b80f8905c7b3d3190529_hu_a03a5f0cd7de19e2.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -626,7 +622,7 @@
         
         
             <div class="article-image">
-                <img src="/p/ikuai-set-ipv4-acl/pic1.2e000d656264694e603f8140a74251c0_hu15015536817638286687.png" 
+                <img src="/p/ikuai-set-ipv4-acl/pic1.2e000d656264694e603f8140a74251c0_hu_b7de9ea8e4a46c61.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -650,7 +646,7 @@
         
         
             <div class="article-image">
-                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.863cfb7ee1ade69851b0f26f7556a9ba_hu7600147655602786893.jpg" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.863cfb7ee1ade69851b0f26f7556a9ba_hu_7a844467eb187a5b.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -674,7 +670,7 @@
         
         
             <div class="article-image">
-                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.925c5182e2c52553c625786cef22b077_hu16816030683020565423.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.925c5182e2c52553c625786cef22b077_hu_b9336426e5bc8264.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -698,7 +694,7 @@
         
         
             <div class="article-image">
-                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu10079730999031716433.png" 
+                <img src="/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81/cover.06b28ba615c117124facef8fcec711a4_hu_3b76835494705530.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"

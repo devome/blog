@@ -6,7 +6,7 @@
         <description>Recent content in Gbm on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 22 Jan 2025 12:31:48 +0800</lastBuildDate><atom:link href="https://evine.win/tags/gbm/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 27 Feb 2025 22:59:35 +0800</lastBuildDate><atom:link href="https://evine.win/tags/gbm/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PVE 直接安装最新版 Kodi</title>
         <link>https://evine.win/p/kodi-install-in-pve/</link>
         <pubDate>Tue, 12 Jul 2022 00:00:00 +0800</pubDate>
@@ -14,8 +14,7 @@
         <guid>https://evine.win/p/kodi-install-in-pve/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-install-in-pve/pic5.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为原创教程，转载请注明来源及作者。
-更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;
-&lt;/blockquote&gt;
+更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi；&lt;/li&gt;
 &lt;li&gt;没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计；&lt;/li&gt;
@@ -26,8 +25,9 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;不需要如同网上其他教程一般，安装&lt;code&gt;xinit&lt;/code&gt;、&lt;code&gt;xfce&lt;/code&gt;、&lt;code&gt;lightdm&lt;/code&gt;、&lt;code&gt;gnome&lt;/code&gt;等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。&lt;/p&gt;
 &lt;p&gt;并且网上的教程全是安装Debian官方仓库自带的Kodi，但因为Debian的特色，官方稳定仓库中的Kodi版本比较老。所以有的博主自作主张启用了Debian的sid不稳定仓库，以便使用新版Kodi，这对PVE环境来说是不可取的，不建议这么做。&lt;/p&gt;
 &lt;p&gt;事实上在Debian稳定版本上也是可以安装最新版的Kodi的，主要来自一个专门负责维护多媒体软件的仓库：https://www.deb-multimedia.org，国内连接较差，不用担心，有一堆镜像站可以使用。以下基于PVE 8.x（Debian bookworm）并以北外镜像站为例（&lt;strong&gt;其他版本请修改&lt;code&gt;bookworm&lt;/code&gt;为对应的版本号&lt;/strong&gt;）：&lt;/p&gt;
@@ -62,8 +62,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;PVE 5 -&amp;gt; Debian 9 -&amp;gt; stretch&lt;/li&gt;
 &lt;li&gt;PVE 6 -&amp;gt; Debian 10 -&amp;gt; buster&lt;/li&gt;
@@ -117,7 +116,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install -t bookworm-backports -y kodi
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;国内其他镜像站如&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;国内其他镜像站如&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;清华TUNA&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.ustc.edu.cn/help/deb-multimedia.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;中科大USTC&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cloud.tencent.com/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;腾讯云&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cnnic.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -176,7 +177,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic1.png&#34;
 	width=&#34;1200&#34;
 	height=&#34;675&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic1_hu13341613101948464845.png 480w, https://evine.win/p/kodi-install-in-pve/pic1_hu2553577233690570090.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic1_hu_7808ad422df01a0a.png 480w, https://evine.win/p/kodi-install-in-pve/pic1_hu_1b194f59abe57a65.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;核心数量超过一行的宽度了，字有点重&#34;
@@ -190,7 +191,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic2.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;698&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic2_hu9444939529972666297.png 480w, https://evine.win/p/kodi-install-in-pve/pic2_hu7706954053077984002.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic2_hu_ad9363a206b67548.png 480w, https://evine.win/p/kodi-install-in-pve/pic2_hu_c2c3cdab67c321ea.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Kodi 20也支持开关HDR&#34;
@@ -370,7 +371,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic3_hu664879604991693388.png 480w, https://evine.win/p/kodi-install-in-pve/pic3_hu10736459723459708716.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic3_hu_5e95ccc74a9a13e5.png 480w, https://evine.win/p/kodi-install-in-pve/pic3_hu_f541ae1cb787112e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;AAC未直通&#34;
@@ -384,7 +385,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic4.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic4_hu14619772680059514558.png 480w, https://evine.win/p/kodi-install-in-pve/pic4_hu12508079360812403885.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic4_hu_80e8a7798ed80a65.png 480w, https://evine.win/p/kodi-install-in-pve/pic4_hu_bccfc1ac78acd216.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;TrueHD直通&#34;
@@ -398,7 +399,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic5.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic5_hu8298113823860523349.png 480w, https://evine.win/p/kodi-install-in-pve/pic5_hu4188109521088563337.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic5_hu_106622cc6ce2b95f.png 480w, https://evine.win/p/kodi-install-in-pve/pic5_hu_5335b76de0d8d58a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DTS-HD直通&#34;
@@ -431,7 +432,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic6.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic6_hu15695997804294824757.png 480w, https://evine.win/p/kodi-install-in-pve/pic6_hu12683687379341613976.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic6_hu_edbd92787c3fb91a.png 480w, https://evine.win/p/kodi-install-in-pve/pic6_hu_b620f506e122e9a6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;HEVC/x265硬解&#34;
@@ -445,7 +446,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic7.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic7_hu11842325981679854943.png 480w, https://evine.win/p/kodi-install-in-pve/pic7_hu7121205885592846330.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic7_hu_1ba806065cc07343.png 480w, https://evine.win/p/kodi-install-in-pve/pic7_hu_6145c3430e670974.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;x264硬解&#34;

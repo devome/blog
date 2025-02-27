@@ -13,8 +13,7 @@
         <guid>https://evine.win/p/use-wubi-type-special-symbols/</guid>
         <description>&lt;img src="https://evine.win/p/use-wubi-type-special-symbols/assets/image-003.png" alt="Featured image of post Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文只是对 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;wubi-symbols&lt;/a&gt; 项目的引用，也可以直接去看该项目。&lt;/p&gt;
-&lt;/blockquote&gt;
+    &gt;wubi-symbols&lt;/a&gt; 项目的引用，也可以直接去看该项目。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;这是什么&#34;&gt;这是什么
 &lt;/h2&gt;&lt;p&gt;虽然在Fcitx5中可以使用 &lt;code&gt;Ctrl+Shift+Alt+U&lt;/code&gt; 来调出Unicode特殊字符输入，但对多数人来说，这仍然不太方便，因此有了本项目。&lt;/p&gt;
 &lt;p&gt;本项目利用 &lt;a class=&#34;link&#34; href=&#34;#%e5%8f%82%e8%80%83&#34; &gt;参考&lt;/a&gt; 一节列出的三个网址提供的信息，把常见的包括Emoji在内的特殊符号和词组关联起来，然后将词组转换为五笔编码，同时将其对应的特殊符号也转换为对应的五笔编码，实现简单快捷高效的用五笔打出特殊符号。&lt;/p&gt;
@@ -33,7 +32,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-001.png&#34;
 	width=&#34;1020&#34;
 	height=&#34;300&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-001_hu14667898819932085582.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-001_hu16647085656033632292.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-001_hu_f253cec0ce085523.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-001_hu_ca64ceafcc9113e9.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -46,7 +45,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-002.png&#34;
 	width=&#34;1000&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-002_hu3793426780770652089.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-002_hu18206938294250062526.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-002_hu_c924349e78c06c7a.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-002_hu_601a45aca2ced61f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -59,7 +58,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-003.png&#34;
 	width=&#34;1000&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-003_hu18137492573971328137.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-003_hu91047206704262423.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-003_hu_a42fec5947407ed.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-003_hu_1e3de4aa41184fd9.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -71,7 +70,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-004.png&#34;
 	width=&#34;1000&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-004_hu15737450917762088761.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-004_hu11975083270239595243.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-004_hu_fbb0e346304d5f3.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-004_hu_3afd1a4ca4374776.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -83,7 +82,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-005.png&#34;
 	width=&#34;1000&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-005_hu9445283213449602576.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-005_hu16026662512090364333.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/use-wubi-type-special-symbols/assets/image-005_hu_a0d264ca2ea0f80c.png 480w, https://evine.win/p/use-wubi-type-special-symbols/assets/image-005_hu_4daa3b40e1822cb1.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -100,8 +99,7 @@
 &lt;/ol&gt;
 &lt;h2 id=&#34;如何使用&#34;&gt;如何使用
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;以Fcitx5为例。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;以Fcitx5为例。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;1-下载特殊符号库&#34;&gt;1. 下载特殊符号库
 &lt;/h3&gt;&lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/tree/main/output&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;output&lt;/a&gt; 下面的文件，或者直接从 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/wubi-symbols/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -139,8 +137,7 @@
     &gt;symbols&lt;/a&gt; 下面的文件按照 &lt;a class=&#34;link&#34; href=&#34;#%e5%a6%82%e4%bd%95%e8%b4%a1%e7%8c%ae&#34; &gt;如何贡献&lt;/a&gt; 中列出的数据规则调整后，自己生成，在仓库中运行以下脚本即可：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;需要安装 &lt;a class=&#34;link&#34; href=&#34;https://github.com/studyzy/imewlconverter&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;imewlconverter&lt;/a&gt; 和 &lt;code&gt;dos2unix&lt;/code&gt;。&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+    &gt;imewlconverter&lt;/a&gt; 和 &lt;code&gt;dos2unix&lt;/code&gt;。&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -213,7 +210,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1.png&#34;
 	width=&#34;760&#34;
 	height=&#34;415&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu5374504077258275619.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu4562238170455602173.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu_b6f351936e0b87f2.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic1_hu_dbc725c81582a816.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;权限许可&#34;
@@ -228,7 +225,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2.png&#34;
 	width=&#34;1900&#34;
 	height=&#34;1266&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_hu7151189160821344619.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_hu13204723615385085942.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_hu_618626014018b1.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic2_hu_5171f5a288d7702c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;工作流&#34;
@@ -244,7 +241,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3.png&#34;
 	width=&#34;872&#34;
 	height=&#34;900&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_hu12529960842614890289.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_hu1336721319013435350.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_hu_527f5c7d2704413d.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic3_hu_8e171dff39536f99.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;新建一个名叫cookie的表格&#34;
@@ -315,7 +312,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4.png&#34;
 	width=&#34;1193&#34;
 	height=&#34;606&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu13116852025128831382.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu2845826161437646227.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu_c9fc4717d0872ab0.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic4_hu_b5ff4a3e04e3e261.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;设置好的最终的全局变量&#34;
@@ -331,7 +328,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5.png&#34;
 	width=&#34;1749&#34;
 	height=&#34;1078&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu15060083913749276395.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu15197112855654277952.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu_b08be1a4771bb0b8.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic5_hu_811d647c70165f55.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;关联表格&#34;
@@ -346,7 +343,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6.png&#34;
 	width=&#34;1002&#34;
 	height=&#34;629&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6_hu11078058994482601026.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6_hu14121685176520115141.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6_hu_eec57957cb4d5e8d.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic6_hu_d933e7f126c1a3b2.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;关联好之后的状态&#34;
@@ -363,7 +360,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7.png&#34;
 	width=&#34;1001&#34;
 	height=&#34;616&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7_hu15645981424442704038.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7_hu2147229024307758081.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7_hu_c7c1dd2073f9ab63.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic7_hu_8d9dd98eb13cb721.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;触发器&#34;
@@ -381,7 +378,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8.png&#34;
 	width=&#34;966&#34;
 	height=&#34;562&#34;
-	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8_hu14202320687401310123.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8_hu13110296110824543928.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8_hu_1b3ac69d9427b152.png 480w, https://evine.win/p/auto-update-pt-cookies-in-iyuuplus/pic8_hu_9161d76cec3a5df3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;手动将要插入的数据和要插入的列关联起来&#34;
@@ -449,12 +446,10 @@
 &lt;p&gt;那么有没有一种方式，能规避掉这些缺点呢，有的，那就是 Systemd Container。关于它的详细介绍，见 Arch Wiki 上的 &lt;a class=&#34;link&#34; href=&#34;https://wiki.archlinux.org/title/Systemd-nspawn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Systemd-nspawn&lt;/a&gt;，一些常用命令，以及常见问题该链接中都有，本文没有提及的内容请参考该链接。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;systemd-nspawn 跟 chroot 命令类似，是个终极版的 chroot。systemd-nspawn 可以在轻量的命名空间容器中运行命令或系统。它比 chroot 强大的地方是，它完全虚拟了文件系统层次结构、进程树、各种 IPC 子系统以及主机名。systemd-nspawn 将容器中各种内核接口的访问限制为只读，像是 /sys, /proc/sys 和 /sys/fs/selinux。网络接口和系统时钟不能从容器内更改，不能创建设备节点。不能从容器中重启宿主机，也不能加载内核模块。相比 LXC 或 Libvirt， systemd-nspawn 更容易配置。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;systemd-nspawn 跟 chroot 命令类似，是个终极版的 chroot。systemd-nspawn 可以在轻量的命名空间容器中运行命令或系统。它比 chroot 强大的地方是，它完全虚拟了文件系统层次结构、进程树、各种 IPC 子系统以及主机名。systemd-nspawn 将容器中各种内核接口的访问限制为只读，像是 /sys, /proc/sys 和 /sys/fs/selinux。网络接口和系统时钟不能从容器内更改，不能创建设备节点。不能从容器中重启宿主机，也不能加载内核模块。相比 LXC 或 Libvirt， systemd-nspawn 更容易配置。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下均为 root 用户运行的。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;以下均为 root 用户运行的。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;基础环境&#34;&gt;基础环境
 &lt;/h3&gt;&lt;p&gt;对于 Debian 和基于 Debian 的系统，需要安装 &lt;code&gt;systemd-container&lt;/code&gt; 以及 &lt;code&gt;debootstrap&lt;/code&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -834,7 +829,7 @@
 &lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1.png&#34;
 	width=&#34;2560&#34;
 	height=&#34;1600&#34;
-	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu3940587504822999221.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu4052557653323295602.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu_22de2d54f2f0c89d.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic1_hu_4902c92547601fcd.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;数据存储&#34;
@@ -848,7 +843,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2.png&#34;
 	width=&#34;2560&#34;
 	height=&#34;1600&#34;
-	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu7304894291735458794.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu3282289737058333386.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu_c6dfbd1a5c47d4ca.png 480w, https://evine.win/p/install-proxmox-backup-server-with-systemd-container/pic2_hu_d5043cc3fcc7e9b4.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;系统日志&#34;
@@ -914,8 +909,7 @@
         
         <guid>https://evine.win/p/ikuai-set-ipv6-acl-2/</guid>
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png" alt="Featured image of post 爱快 IPv6 ACL/防火墙设置（爱快 3.7.8&#43;）" /&gt;&lt;blockquote&gt;
-&lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;相关概念&#34;&gt;相关概念
 &lt;/h2&gt;&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;爱快帮助文档&lt;/a&gt;，不完全理解也没有关系，可以在实践中加深概念理解。&lt;/p&gt;
@@ -951,8 +945,7 @@
 &lt;p&gt;注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。&lt;/p&gt;
 &lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。爱快3.7.7新增了IPv6分组和MAC分组功能，不过还有BUG，在3.7.8终于稳定了，可以导入分组了简化设置了。&lt;/p&gt;
 &lt;h3 id=&#34;导入ipv6分组&#34;&gt;导入IPv6分组
 &lt;/h3&gt;&lt;p&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -966,7 +959,7 @@
 &lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;181&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1_hu10551001584828499519.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic1_hu12598580468891151092.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic1_hu_9336ea1fd04f7883.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic1_hu_248641862e4d785.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv6默认ACL规则&#34;
@@ -995,7 +988,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic2.png&#34;
 	width=&#34;1860&#34;
 	height=&#34;1523&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic2_hu8728473954912275665.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic2_hu13823924378914885482.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic2_hu_ae4910bce979219b.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic2_hu_6a0b508ca90c0c19.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;后缀匹配放行湖北电信、湖北联通的IPv6&#34;
@@ -1010,12 +1003,11 @@
 &lt;p&gt;&lt;strong&gt;重要提示&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;根据 &lt;a class=&#34;link&#34; href=&#34;https://bbs.ikuai8.com/forum.php?mod=redirect&amp;amp;goto=findpost&amp;amp;ptid=144430&amp;amp;pid=1244021&amp;amp;fromuid=52325&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;爱快官方人员的说明&lt;/a&gt;：IPv6外网主动访问内网，无法做目的mac匹配，只能做后缀匹配也就是IPv6地址匹配。因为外网主动访问的，内网的此终端IPv6地址对应的mac地址，无法立马拿到（这个就涉及内核的发包细节了）。如果是内网主动向外访问，源主机对应的mac地址路由能第一时间就能拿到。&lt;/p&gt;
-&lt;/blockquote&gt;
+    &gt;爱快官方人员的说明&lt;/a&gt;：IPv6外网主动访问内网，无法做目的mac匹配，只能做后缀匹配也就是IPv6地址匹配。因为外网主动访问的，内网的此终端IPv6地址对应的mac地址，无法立马拿到（这个就涉及内核的发包细节了）。如果是内网主动向外访问，源主机对应的mac地址路由能第一时间就能拿到。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic3.png&#34;
 	width=&#34;1864&#34;
 	height=&#34;1522&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic3_hu9902305676680549711.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic3_hu17949817357107243739.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic3_hu_e6f319e4ff238be.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic3_hu_ec8e487b40c6c9cc.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;MAC匹配放行湖北电信、湖北联通的IPv6&#34;
@@ -1040,7 +1032,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic4.png&#34;
 	width=&#34;1841&#34;
 	height=&#34;1511&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic4_hu1061974461536313034.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic4_hu16824706189986401603.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl-2/pic4_hu_47ef1e2cccbc188.png 480w, https://evine.win/p/ikuai-set-ipv6-acl-2/pic4_hu_4c46cb9076116714.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;后缀匹配放行BT/PT监听&#34;
@@ -1054,8 +1046,7 @@
 &lt;h4 id=&#34;完全暴露某台设备&#34;&gt;完全暴露某台设备
 &lt;/h4&gt;&lt;p&gt;因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： &lt;code&gt;nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535&lt;/code&gt;，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： &lt;code&gt;nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535&lt;/code&gt;，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;规则验证&#34;&gt;规则验证
 &lt;/h2&gt;&lt;p&gt;另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 &lt;a class=&#34;link&#34; href=&#34;https://nmap.org/download#windows&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这里&lt;/a&gt;），比如检测IPv6的某端口开放情况运行下面命令即可：&lt;/p&gt;
@@ -1130,7 +1121,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram.png&#34;
 	width=&#34;1151&#34;
 	height=&#34;659&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu7636947729482632556.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu5619376857399996079.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu_af67ccd1f2946df5.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%8D%81%E4%B8%80/ram_hu_27985cf376b9ffdf.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;内存使用也才340MiB&#34;
@@ -2056,7 +2047,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan.png&#34;
 	width=&#34;1151&#34;
 	height=&#34;659&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan_hu8632352900596105675.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan_hu17361675190980270864.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan_hu_cbf12bc0b38b8441.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B9%9D/arp-scan_hu_39f333cdb0f817db.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ARP扫描&#34;
@@ -2256,7 +2247,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client.png&#34;
 	width=&#34;854&#34;
 	height=&#34;486&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client_hu5279845101621104326.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client_hu14572705604312746103.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client_hu_ac7507df3ca20093.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%85%AB/snmp-client_hu_4f3cb9ff115d8606.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;跨三层应用&#34;
@@ -4516,7 +4507,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem.png&#34;
 	width=&#34;421&#34;
 	height=&#34;673&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hu168425637476890631.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hu4667555033279576687.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hu_68b995dd499934b8.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem_hu_9d2ff46b69f0ad53.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;网易云音乐&#34;
@@ -4556,7 +4547,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2.png&#34;
 	width=&#34;1156&#34;
 	height=&#34;307&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hu17966627414036445582.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hu14049553893477198450.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hu_e0b66689712e2608.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem2_hu_62e6915b0008ec4b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;clash将网易云音乐的流量透明代理到了unblocknem&#34;
@@ -4571,7 +4562,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3.png&#34;
 	width=&#34;1151&#34;
 	height=&#34;659&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu3912578603408865526.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu4886417562044467274.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu_49a26908f9dde4a7.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%94/nem3_hu_66ffcc22b9c7196f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;unblocknem的日志&#34;
@@ -4635,7 +4626,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks.png&#34;
 	width=&#34;1116&#34;
 	height=&#34;586&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu17633304806359759696.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu2454212152112688878.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu_9dd466da12624617.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/nf-hooks_hu_8664ca03226e6fb7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Netfilter hooks&#34;
@@ -5333,7 +5324,7 @@
 &lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS.jpg&#34;
 	width=&#34;1079&#34;
 	height=&#34;914&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu15230395550923775048.jpg 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu14981497889592113204.jpg 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu_450d75516ffe95d8.jpg 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS_hu_2b67bdc41e7caaab.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS逻辑&#34;
@@ -5475,7 +5466,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1.png&#34;
 	width=&#34;621&#34;
 	height=&#34;133&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu13858676014674480519.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu14165180747677559012.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu_c7662bda1b9f621f.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE1_hu_7a7ca5b74a074f3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;网页管理监听端口建议改回3000，至于80端口我们留给nginx使用&#34;
@@ -5489,7 +5480,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2.png&#34;
 	width=&#34;617&#34;
 	height=&#34;138&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hu15775629733392747246.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hu1771681087188443938.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hu_789d3fbfa49bec9e.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/ADH%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE2_hu_5192ca88cd20ad1f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS服务器就监听53端口&#34;
@@ -5506,7 +5497,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1.png&#34;
 	width=&#34;517&#34;
 	height=&#34;272&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu1368686953537966828.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu9740761751764372470.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu_11a1177d66116596.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE1_hu_19ec6d2b2428a01c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;上游DNS服务器&#34;
@@ -5521,7 +5512,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2.png&#34;
 	width=&#34;517&#34;
 	height=&#34;189&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu3633476752089601077.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu17510934502293908095.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu_319f13ea195beac9.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE2_hu_1dfc49f8600cd58a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;后备DNS服务器&#34;
@@ -5536,7 +5527,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3.png&#34;
 	width=&#34;516&#34;
 	height=&#34;180&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hu6523234211350972135.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hu10336438740928666798.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hu_29b254a4c62f2c51.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE3_hu_335094f9e63430d1.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS服务配置&#34;
@@ -5551,7 +5542,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4.png&#34;
 	width=&#34;516&#34;
 	height=&#34;482&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu18121588473045839067.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu5918707922164821370.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu_abc717dc7d0a4c01.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E8%AE%BE%E7%BD%AE4_hu_acc52afd2ed1834f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS缓存配置&#34;
@@ -5565,12 +5556,11 @@
 &lt;h4 id=&#34;dns重写&#34;&gt;DNS重写
 &lt;/h4&gt;&lt;p&gt;如果你已经使用DDNS将你的域名解析了IPv4和IPv6，则可以在AdGuardHome的DNS重写模块中按下图这样设置，设置后局域网中的设备在解析时，可以解析私网IPv4地址和公网IPv6地址，做到在局域网中照样使用和公网中一样的域名访问。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;一个良好的习惯是针对局域网中每一个运行着需要被访问的服务的IP，都通过 &lt;code&gt;adguardhome&lt;/code&gt; 劫持其域名，做到不同IP不同子域名。只要设置好DDNS的子域名以及主路由爱快的端口转发，就可以做到在局域网环境中和在公网环境中，使用相同的域名去访问同一个服务。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一个良好的习惯是针对局域网中每一个运行着需要被访问的服务的IP，都通过 &lt;code&gt;adguardhome&lt;/code&gt; 劫持其域名，做到不同IP不同子域名。只要设置好DDNS的子域名以及主路由爱快的端口转发，就可以做到在局域网环境中和在公网环境中，使用相同的域名去访问同一个服务。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99.png&#34;
 	width=&#34;517&#34;
 	height=&#34;397&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_hu10108672333797851730.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_hu2861006810063160714.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_hu_22e5c13118048321.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%89/DNS%E9%87%8D%E5%86%99_hu_c8085edc905c658c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DNS重写&#34;
@@ -5895,7 +5885,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D.png&#34;
 	width=&#34;1922&#34;
 	height=&#34;1200&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu7783658314259335791.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu3421982273972140139.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu_162b689562ee56ef.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E4%B8%BB%E6%9C%BA%E5%90%8D_hu_c4d3cb220f6fd623.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Debian主机名&#34;
@@ -5909,7 +5899,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D.png&#34;
 	width=&#34;1919&#34;
 	height=&#34;1196&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu18418150850344812439.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu8646676848422875004.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu_47f9ec5a0be6a16.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%9F%9F%E5%90%8D_hu_82866fdf0c1c518c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Debian域名&#34;
@@ -5925,7 +5915,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF.png&#34;
 	width=&#34;1922&#34;
 	height=&#34;1202&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu239508054491148004.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu16638221765963940746.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu_a1b5d8aa17b58735.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/%E4%BB%85%E5%AE%89%E8%A3%85%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F%E5%92%8CSSH%E6%9C%8D%E5%8A%A1%E7%AB%AF_hu_7620a3ee13394ab.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;仅安装核心系统和SSH服务端&#34;
@@ -5941,7 +5931,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B.png&#34;
 	width=&#34;1726&#34;
 	height=&#34;902&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hu3812411215979652593.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hu13689583000949911308.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hu_65543ad6055aad5a.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/Debian%E5%88%9A%E5%88%9A%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E8%BF%9B%E7%A8%8B_hu_ce49a2c72720c03.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Debian刚刚安装完成后的进程&#34;
@@ -6028,7 +6018,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client.png&#34;
 	width=&#34;1726&#34;
 	height=&#34;910&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu3022765349916671918.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu3967373112325421787.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu_88d2c5b281ce54f7.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%BA%8C/dhcpv6-client_hu_624d6cb12f8cc8f3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;系统启动了DHCPv6客户端&#34;
@@ -6240,7 +6230,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C.jpg&#34;
 	width=&#34;1117&#34;
 	height=&#34;739&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C_hu2701212070161255759.jpg 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C_hu11506679911648390228.jpg 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C_hu_a8c80e7222ca903f.jpg 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C_hu_ade44118412b885e.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;家庭网络&#34;
@@ -6271,7 +6261,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE.png&#34;
 	width=&#34;1153&#34;
 	height=&#34;871&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE_hu15390251021822617843.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE_hu14066322204064634110.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE_hu_8e95d9dbadc8eaa6.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABlan1%E8%AE%BE%E7%BD%AE_hu_de1df352e3b18f37.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;爱快lan1设置&#34;
@@ -6288,7 +6278,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE.png&#34;
 	width=&#34;1366&#34;
 	height=&#34;202&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE_hu8046311149704420048.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE_hu10536212622169860676.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE_hu_ddf207de7b233078.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABDHCP%E8%AE%BE%E7%BD%AE_hu_dd68ad67af3f7837.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;爱快DHCP设置&#34;
@@ -6311,7 +6301,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE.png&#34;
 	width=&#34;981&#34;
 	height=&#34;808&#34;
-	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE_hu10833974875308007846.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE_hu15532223291647534215.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE_hu_d6fb758d4df618ed.png 480w, https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E4%B8%80/%E7%88%B1%E5%BF%ABIPv6%E8%AE%BE%E7%BD%AE_hu_30ce758c8722b99e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;爱快IPv6设置&#34;
@@ -6385,8 +6375,7 @@
         
         <guid>https://evine.win/p/docker-install-qbittorrent/</guid>
         <description>&lt;img src="https://evine.win/p/docker-install-qbittorrent/notify.png" alt="Featured image of post 一款更懂你的 qbittorrent docker 镜像" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文较长，如想略过某些内容，请直接点击右侧目录链接。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文较长，如想略过某些内容，请直接点击右侧目录链接。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;说明&#34;&gt;说明
 &lt;/h2&gt;&lt;p&gt;为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/101&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;详情&lt;/a&gt;。也因此镜像默认即安装好python，不再需要设置&lt;code&gt;INSTALL_PYTHON&lt;/code&gt;这个环境变量。&lt;/p&gt;
@@ -7037,7 +7026,7 @@
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic1.png&#34;
 	width=&#34;1061&#34;
 	height=&#34;571&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic1_hu9834882273691390814.png 480w, https://evine.win/p/docker-install-qbittorrent/pic1_hu17703110641140395457.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic1_hu_d42edbc552ed42c6.png 480w, https://evine.win/p/docker-install-qbittorrent/pic1_hu_6c2b06e61e365b5c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1&#34;
@@ -7051,7 +7040,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic2.png&#34;
 	width=&#34;1062&#34;
 	height=&#34;572&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic2_hu12200143116414481626.png 480w, https://evine.win/p/docker-install-qbittorrent/pic2_hu6851977383727704432.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic2_hu_94c4865246728559.png 480w, https://evine.win/p/docker-install-qbittorrent/pic2_hu_28719b0ea04d688c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;2&#34;
@@ -7065,7 +7054,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic3.png&#34;
 	width=&#34;1062&#34;
 	height=&#34;570&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic3_hu12581926651388096048.png 480w, https://evine.win/p/docker-install-qbittorrent/pic3_hu5034986416920992635.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic3_hu_a1b74054f62936c6.png 480w, https://evine.win/p/docker-install-qbittorrent/pic3_hu_72ec39be24261973.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;3&#34;
@@ -7079,7 +7068,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic4.png&#34;
 	width=&#34;1060&#34;
 	height=&#34;569&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic4_hu3213145635899882469.png 480w, https://evine.win/p/docker-install-qbittorrent/pic4_hu13144049045452067016.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic4_hu_ffc62ecfab931855.png 480w, https://evine.win/p/docker-install-qbittorrent/pic4_hu_80fdd8f1106354d.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;4&#34;
@@ -7093,7 +7082,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic5.png&#34;
 	width=&#34;1059&#34;
 	height=&#34;567&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic5_hu17521812522870001555.png 480w, https://evine.win/p/docker-install-qbittorrent/pic5_hu15123467932810597583.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic5_hu_5115374a310665d7.png 480w, https://evine.win/p/docker-install-qbittorrent/pic5_hu_24e3162a7b8903d3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;5&#34;
@@ -7107,7 +7096,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic6.png&#34;
 	width=&#34;1061&#34;
 	height=&#34;574&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic6_hu11985725762292767273.png 480w, https://evine.win/p/docker-install-qbittorrent/pic6_hu11993152655347463656.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic6_hu_cd275135d724a6d4.png 480w, https://evine.win/p/docker-install-qbittorrent/pic6_hu_c3d6ae9ee98bdb2b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;6&#34;
@@ -7121,7 +7110,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic7.png&#34;
 	width=&#34;1061&#34;
 	height=&#34;572&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic7_hu4364147260516111022.png 480w, https://evine.win/p/docker-install-qbittorrent/pic7_hu5584649358268567148.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic7_hu_258da5681673d80d.png 480w, https://evine.win/p/docker-install-qbittorrent/pic7_hu_bb8c6ecd8004efe8.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;7&#34;
@@ -7135,7 +7124,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic8.png&#34;
 	width=&#34;1060&#34;
 	height=&#34;570&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic8_hu6634813873573668107.png 480w, https://evine.win/p/docker-install-qbittorrent/pic8_hu7259008092116440392.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic8_hu_b9517da94dd93362.png 480w, https://evine.win/p/docker-install-qbittorrent/pic8_hu_7ba1ad833c15d5c6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;8&#34;
@@ -7149,7 +7138,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic9.png&#34;
 	width=&#34;1061&#34;
 	height=&#34;571&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic9_hu12108828896049016762.png 480w, https://evine.win/p/docker-install-qbittorrent/pic9_hu5044469279709068026.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic9_hu_aaebe03003c6e0a7.png 480w, https://evine.win/p/docker-install-qbittorrent/pic9_hu_3c89d73da0125591.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;9&#34;
@@ -7163,7 +7152,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic10.png&#34;
 	width=&#34;1060&#34;
 	height=&#34;571&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic10_hu15577895078630903605.png 480w, https://evine.win/p/docker-install-qbittorrent/pic10_hu3597270654650500129.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic10_hu_3392545570945387.png 480w, https://evine.win/p/docker-install-qbittorrent/pic10_hu_46f45ddb0842cb31.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;10&#34;
@@ -7177,7 +7166,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic11.png&#34;
 	width=&#34;1063&#34;
 	height=&#34;570&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic11_hu14486855578988239454.png 480w, https://evine.win/p/docker-install-qbittorrent/pic11_hu6439515227613770826.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic11_hu_2227da9dead83d12.png 480w, https://evine.win/p/docker-install-qbittorrent/pic11_hu_48226e4d490aa277.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;11&#34;
@@ -7191,7 +7180,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic12.png&#34;
 	width=&#34;1060&#34;
 	height=&#34;568&#34;
-	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic12_hu13607099307545405706.png 480w, https://evine.win/p/docker-install-qbittorrent/pic12_hu6928658504426958652.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/docker-install-qbittorrent/pic12_hu_25e3862fd22a4e8e.png 480w, https://evine.win/p/docker-install-qbittorrent/pic12_hu_e6e223aba2e313cc.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;12&#34;
@@ -7685,8 +7674,7 @@
 使用内存映射文件的好处主要有：
 内核（它知道机器有多少物理RAM可用）最了解何时以及以何种顺序刷新缓存。也许更重要的是，决定保留读缓存的数量和时间。
 某些类型的存储可以由CPU直接寻址，就像它是RAM一样，绕过了许多内核基础设施，并提供了非常高的性能。（linux称此DAX）
-此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。&lt;/p&gt;
-&lt;/blockquote&gt;
+此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3 id=&#34;qb老是不监听ipv6地址怎么办&#34;&gt;qB老是不监听IPv6地址，怎么办？
 &lt;/h3&gt;&lt;p&gt;有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -7926,8 +7914,7 @@
         
         <guid>https://evine.win/p/docker-buildx-set-cache-gcpolicy/</guid>
         <description>&lt;img src="https://evine.win/p/docker-buildx-set-cache-gcpolicy/docker-poster.jpg" alt="Featured image of post docker buildx 设置构建缓存策略（设置缓存保存时间及大小上限）" /&gt;&lt;blockquote&gt;
-&lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;关键词：docker buildx cache gc prune 构建 缓存 策略 缓存时间 缓存大小&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;新建&lt;code&gt;buildkit&lt;/code&gt;配置文件&lt;code&gt;$HOME/.docker/buildx/buildkitd.default.toml&lt;/code&gt;如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -8558,8 +8545,7 @@
         
         <guid>https://evine.win/p/kodi-change-exit-to-backspace/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-change-exit-to-backspace/kodi-poster.jpg" alt="Featured image of post 转换遥控器的退出键为返回键" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -8880,15 +8866,14 @@
         
         <guid>https://evine.win/p/ikuai-how-use-iptv-in-shanghai/</guid>
         <description>&lt;img src="https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic1.jpg" alt="Featured image of post 光猫桥接爱快拨号时，上海电信IPTV盒子如何正常使用" /&gt;&lt;blockquote&gt;
-&lt;p&gt;关键词：上海 电信 IPTV SDN光猫 桥接 爱快 iKuai IPTV盒子&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;关键词：上海 电信 IPTV SDN光猫 桥接 爱快 iKuai IPTV盒子&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;根据 &lt;a class=&#34;link&#34; href=&#34;https://bbs.ikuai8.com/forum.php?mod=redirect&amp;amp;goto=findpost&amp;amp;ptid=133841&amp;amp;pid=1186537&amp;amp;fromuid=52325&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;这个方法&lt;/a&gt; ，可以在没有交换机时，实现光猫桥接、爱快作为主路由进行拨号的情况下，无需设置vlan tag即可让上海电信IPTV盒子正常使用。注意：此方法不是将IPTV信号流媒体化，只是让电信的IPTV盒子可以正常使用。主要适用于SDN光猫以及最新的2.5G光猫。&lt;/p&gt;
 &lt;p&gt;光猫先找电信小哥沟通好改桥接，然后按如下的网络拓扑图接线：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic1.jpg&#34;
 	width=&#34;808&#34;
 	height=&#34;686&#34;
-	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic1_hu3513939258263141396.jpg 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic1_hu6373915432730007483.jpg 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic1_hu_8cff449643ef1b.jpg 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic1_hu_8d90eec82ff0eee7.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;网络拓扑图&#34;
@@ -8905,7 +8890,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic2.png&#34;
 	width=&#34;1050&#34;
 	height=&#34;258&#34;
-	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic2_hu3852790501285353802.png 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic2_hu8320243822068591516.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic2_hu_b1678de994cc2d99.png 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic2_hu_abfd855e858c89ee.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;wan&#34;
@@ -8922,7 +8907,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic3.png&#34;
 	width=&#34;1109&#34;
 	height=&#34;362&#34;
-	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic3_hu5209955904500096165.png 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic3_hu7688546057476448528.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic3_hu_9ff3d262fcff2d8d.png 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic3_hu_56d008f4d9b40436.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;lan1&#34;
@@ -8939,7 +8924,7 @@
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic4.png&#34;
 	width=&#34;1193&#34;
 	height=&#34;1287&#34;
-	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic4_hu17878613120383055080.png 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic4_hu18261021866971854983.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic4_hu_f1b4c055c1a920d0.png 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic4_hu_954036b1c8e9d018.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;lan2要勾选两个网卡&#34;
@@ -8978,7 +8963,7 @@
 &lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic5.png&#34;
 	width=&#34;713&#34;
 	height=&#34;1409&#34;
-	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic5_hu10330460543788531060.png 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic5_hu12901937621633350250.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic5_hu_50d32d9bc0931c1e.png 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic5_hu_84154991fbcbbfdf.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;lan2的DHCP设置&#34;
@@ -8996,7 +8981,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic6.jpg&#34;
 	width=&#34;1240&#34;
 	height=&#34;930&#34;
-	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic6_hu4433723475298785366.jpg 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic6_hu262266508969015819.jpg 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic6_hu_ced96f6cc0ddcbbf.jpg 480w, https://evine.win/p/ikuai-how-use-iptv-in-shanghai/pic6_hu_74844e63ddb872dc.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPTV盒子的网络状态&#34;
@@ -9018,8 +9003,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/ikuai-set-ipv6-acl/</guid>
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv6-acl/pic1.png" alt="Featured image of post 爱快 IPv4／IPv6 ACL／防火墙设置" /&gt;&lt;blockquote&gt;
-&lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;相关概念&#34;&gt;相关概念
 &lt;/h2&gt;&lt;p&gt;引用自&lt;a class=&#34;link&#34; href=&#34;https://www.ikuai8.com/index.php?option=com_content&amp;amp;view=article&amp;amp;id=192&amp;amp;Itemid=312&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;爱快帮助文档&lt;/a&gt;，不完全理解也没有关系，可以在实践中加深概念理解。&lt;/p&gt;
@@ -9055,13 +9039,12 @@ IP。&lt;/p&gt;
 &lt;p&gt;注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。&lt;/p&gt;
 &lt;h2 id=&#34;ipv6的acl防火墙设置&#34;&gt;IPv6的ACL/防火墙设置
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;ACL中&lt;code&gt;允许&lt;/code&gt;的优先级高于&lt;code&gt;阻断&lt;/code&gt;。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。由于默认IPv6环境是几乎完全暴露在公网的。所以开启IPv6后，先加入两条规则，不允许公网通过IPv6访问本地，但允许本地通过IPv6访问公网：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;181&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic1_hu10551001584828499519.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic1_hu12598580468891151092.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic1_hu_9336ea1fd04f7883.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic1_hu_248641862e4d785.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv6默认ACL规则&#34;
@@ -9092,7 +9075,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic2.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;221&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic2_hu12117868770324843436.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic2_hu18068105280589601395.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic2_hu_6d13ac363dd24a5c.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic2_hu_6f6ad85af887a023.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;允许通过IPv6访问指定设备的指定端口&#34;
@@ -9143,7 +9126,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic3.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;182&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic3_hu17598977927733323716.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic3_hu4374099913860676526.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic3_hu_56be7ef255a4e58.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic3_hu_a6cd71935d1f16de.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;BT/PT监听不作限制&#34;
@@ -9162,7 +9145,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic4.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;105&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic4_hu1133908786676827722.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic4_hu5805174734191707660.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv6-acl/pic4_hu_f24e97a78b6f9a04.png 480w, https://evine.win/p/ikuai-set-ipv6-acl/pic4_hu_dac2800b06619539.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;完全暴露指定IPv6&#34;
@@ -9243,7 +9226,7 @@ IP。&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1.png&#34;
 	width=&#34;1080&#34;
 	height=&#34;2255&#34;
-	srcset=&#34;https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1_hu12450839052823691081.png 480w, https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1_hu15014245416922780779.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1_hu_b214c6e72c52ebf4.png 480w, https://evine.win/p/jellyfin-webhook-to-dingtalk/pic1_hu_958fb9d5c3af8164.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;效果图&#34;
@@ -9482,8 +9465,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/kodi-send-help/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-send-help/pic1.png" alt="Featured image of post kodi-send使用相关说明" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -9501,8 +9483,7 @@ IP。&lt;/p&gt;
     &gt;List_of_built-in_functions&lt;/a&gt; 。&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;请先按照 &lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt; 教程添加好&lt;code&gt;deb-multimedia&lt;/code&gt;软件源。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;请先按照 &lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt; 教程添加好&lt;code&gt;deb-multimedia&lt;/code&gt;软件源。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令需要安装&lt;code&gt;kodi-eventclients-common&lt;/code&gt;（如果未启用&lt;code&gt;deb-multimedia&lt;/code&gt;源，则需要安装debian官方源中的&lt;code&gt;kodi-eventclients-kodi-send&lt;/code&gt;）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -9526,7 +9507,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-send-help/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-send-help/pic1_hu13092393895266652296.png 480w, https://evine.win/p/kodi-send-help/pic1_hu9255501447866244097.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-send-help/pic1_hu_a4be17572e8c5d3.png 480w, https://evine.win/p/kodi-send-help/pic1_hu_36af6c8c3c943042.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;允许通过本机应用远程控制&#34;
@@ -9723,8 +9704,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/kodi-set-pre-condition/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-set-pre-condition/kodi-poster.jpg" alt="Featured image of post 设置Kodi启动的前置条件" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -9791,8 +9771,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/kodi-start-stop-by-remote-controller/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg" alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -9820,11 +9799,9 @@ IP。&lt;/p&gt;
     &gt;evsieve&lt;/a&gt; 可以在无桌面环境下胁持按键并运行指定脚本，实现上述场景。&lt;/p&gt;
 &lt;h2 id=&#34;准备工作&#34;&gt;准备工作
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;所有的输入设备都由&lt;code&gt;udev&lt;/code&gt;程序识别并保存在&lt;code&gt;/dev/input&lt;/code&gt;下，通过输入&lt;code&gt;ls -l /dev/input&lt;/code&gt;可以查看到许多&lt;code&gt;eventX&lt;/code&gt;的设备。设备的编号会随着外设的插入或卸载以及开关机的变化而变化，也就是说电源键所在的输入设备的&lt;code&gt;eventX&lt;/code&gt;中&lt;code&gt;X&lt;/code&gt;这个编号不是固定的，所以我们不能直接使用&lt;code&gt;/dev/input/eventX&lt;/code&gt;来作为后续要胁持的输入设备。运行&lt;code&gt;ls -l /dev/input/by-id&lt;/code&gt;，&lt;code&gt;udev&lt;/code&gt;会在这个目录下创建易于识别的、唯一的、不随外设的插入卸载或开关机而变化的软连接，无论&lt;code&gt;X&lt;/code&gt;如何变化，它们都将指向正确的设备。&lt;/p&gt;
 &lt;p&gt;我的遥控器是自带接收器的2.4G无线遥控器，插上接收器，通过&lt;code&gt;evtest&lt;/code&gt;程序先找出遥控器电源键在什么设备上。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -10092,11 +10069,9 @@ IP。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;设置按键胁持&#34;&gt;设置按键胁持
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;下载我为PVE 7.X预编译好的 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/evsieve/evsieve&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -10335,8 +10310,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/pve-create-lvm-thin-with-cachepool/</guid>
         <description>&lt;img src="https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
-&lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。&lt;/p&gt;
 &lt;p&gt;作为垃圾佬，怎么舍得再额外购置硬件多花钱呢。垃圾佬当然不愿意再购买新硬盘了，掏出多年前给台式机装系统的两块SATA接口的固态硬盘，以及以前台式机用的两块机械硬盘，准备将两块SSD组raid0后作为缓存池，为两块HDD以raid0组后创建的LVM-thin提供读写缓存服务。&lt;/p&gt;
@@ -10395,20 +10369,15 @@ IP。&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;有关概念&#34;&gt;有关概念
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;VG(volume group)：卷组，建立在物理卷上，一卷组中至少要包括一物理卷，卷组建立后可动态的添加卷到卷组中，一个逻辑卷管理系统工程中可有多个卷组。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;VG(volume group)：卷组，建立在物理卷上，一卷组中至少要包括一物理卷，卷组建立后可动态的添加卷到卷组中，一个逻辑卷管理系统工程中可有多个卷组。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;LV(logical volume)：逻辑卷，建立在卷组基础上，卷组中未分配空间可用于建立新的逻辑卷，逻辑卷建立后可以动态扩展和缩小空间。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;LV(logical volume)：逻辑卷，建立在卷组基础上，卷组中未分配空间可用于建立新的逻辑卷，逻辑卷建立后可以动态扩展和缩小空间。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;PE(physical extent)：物理区域，是物理卷中可用于分配的最小存储单元（本文采用默认值4MiB），物理区域大小在建立卷组时指定，一旦确定不能更改，同一卷组所有物理卷的物理区域大小需一致，新的PV加入到VG后，PE的大小自动更改为VG中定义的PE大小。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;PE(physical extent)：物理区域，是物理卷中可用于分配的最小存储单元（本文采用默认值4MiB），物理区域大小在建立卷组时指定，一旦确定不能更改，同一卷组所有物理卷的物理区域大小需一致，新的PV加入到VG后，PE的大小自动更改为VG中定义的PE大小。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;网上有很多有关概念的详细介绍，这里不再多说。&lt;/p&gt;
 &lt;h2 id=&#34;创建具有缓存池的lvm-thin存储&#34;&gt;创建具有缓存池的LVM-thin存储
 &lt;/h2&gt;&lt;p&gt;这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：&lt;/p&gt;
@@ -10625,8 +10594,7 @@ IP。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;RAID的Stripe Size大小可以设置为8KiB、16KiB、32KiB、64KiB、128KiB和256KiB，如不设置此参数则默认采用64KiB。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;我的主要是大文件，所以我设置Stripe Size为256KiB。并且我的使用场景下，主要目的是提升IO，反而对数据损坏这个情况不关心，坏了就坏了，所以我采用的是raid0，和我使用场景不一致的不要采用raid0以及256KiB的Stripe Size。&lt;/p&gt;
 &lt;h3 id=&#34;创建元数据lv和缓存池元数据lv&#34;&gt;创建元数据LV和缓存池元数据LV
 &lt;/h3&gt;&lt;ul&gt;
@@ -10787,18 +10755,15 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;The size of chunks in a snapshot, cache pool or thin pool. For snapshots, the value must be a power of 2 between 4KiB and 512KiB and the default value is 4. For a cache pool the value must be between 32KiB and 1GiB and the default value is 64. For a thin pool the value must be between 64KiB and 1GiB and the default value starts with 64 and scales up to fit the pool metadata size within 128MiB, if the pool metadata size is not specified. The value must be a multiple of 64KiB. See lvmthin(7) and lvmcache(7) for more information.&lt;/em&gt;
 机翻：快照、缓存池或精简池中的块大小。对于快照，该值必须是2的幂，介于4KB和512KB之间，默认值为4。对于缓存池，该值须介于32KiB和1GiB之间，并且默认值为64。对于精简池，该数值必须介于64KiB和1GiB之间，如果未指定池元数据大小，则默认值从64开始，并按比例放大以适应128MiB内的池元数据大小。该值必须是64KiB的倍数。有关更多信息，请参见&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvmthin.7.en#Chunk_size&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;lvmthin&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvmcache.7.en#dm-cache_chunk_size&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;lvmcache&lt;/a&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
+    &gt;lvmcache&lt;/a&gt;。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;lvmthin：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;When a thin pool is used primarily for the thin provisioning feature, a larger value is optimal. To optimize for many snapshots, a smaller value reduces copying time and consumes less space.
-机翻：当精简池主要用于精简资源调配功能时，最好使用较大的值。要优化多个快照，较小的值可以减少复制时间并消耗更少的空间。&lt;/p&gt;
-&lt;/blockquote&gt;
+机翻：当精简池主要用于精简资源调配功能时，最好使用较大的值。要优化多个快照，较小的值可以减少复制时间并消耗更少的空间。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;lvmcache：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Using a chunk size that is too large can result in wasteful use of the cache, in which small reads and writes cause large sections of an LV to be stored in the cache. It can also require increasing migration threshold which defaults to 2048 sectors (1 MiB). Lvm2 ensures migration threshold is at least 8 chunks in size. This may in some cases result in very high bandwidth load of transfering data between the cache LV and its cache origin LV. However, choosing a chunk size that is too small can result in more overhead trying to manage the numerous chunks that become mapped into the cache. Overhead can include both excessive CPU time searching for chunks, and excessive memory tracking chunks.
-机翻：使用过大的块大小可能会导致缓存的浪费使用，在这种情况下，较小的读取和写入会导致LV的较大部分存储在缓存中。它还可能需要增加迁移阈值，默认为2048个扇区（1个MiB）。Lvm2确保迁移阈值的大小至少为8个块。在某些情况下，这可能导致在高速缓存LV与其高速缓存源LV之间传输数据的非常高的带宽负载。然而，选择太小的块大小可能会导致管理映射到缓存中的大量块的更多开销。开销可能包括过多的CPU时间搜索块，以及过多的内存跟踪块。&lt;/p&gt;
-&lt;/blockquote&gt;
+机翻：使用过大的块大小可能会导致缓存的浪费使用，在这种情况下，较小的读取和写入会导致LV的较大部分存储在缓存中。它还可能需要增加迁移阈值，默认为2048个扇区（1个MiB）。Lvm2确保迁移阈值的大小至少为8个块。在某些情况下，这可能导致在高速缓存LV与其高速缓存源LV之间传输数据的非常高的带宽负载。然而，选择太小的块大小可能会导致管理映射到缓存中的大量块的更多开销。开销可能包括过多的CPU时间搜索块，以及过多的内存跟踪块。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;把之前在HDD上创建的&lt;code&gt;hybrid/data&lt;/code&gt;这个LV的类型转换为带缓存池LV（&lt;code&gt;hybrid/cache&lt;/code&gt;）的存储类型，指定缓存池为刚刚合并后的缓存池LV&lt;code&gt;hybrid/cache&lt;/code&gt;，设置缓存模式为&lt;code&gt;writeback&lt;/code&gt;：&lt;/li&gt;
 &lt;/ol&gt;
@@ -10825,14 +10790,11 @@ IP。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;缓存模式可选择如下，我都raid0了，已经无所畏惧了，所以我选择&lt;code&gt;writeback&lt;/code&gt;，数据丢了就丢了吧：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;writeback&lt;/strong&gt;: writeback considers a write complete as soon as it is stored in the cache pool.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;writeback&lt;/strong&gt;: writeback considers a write complete as soon as it is stored in the cache pool.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;writethough&lt;/strong&gt;: writethough considers a write complete only when it has been stored in both the cache pool and on the origin LV. While writethrough may be slower for writes, it is more resilient if something should happen to a device associated with the cache pool LV.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;writethough&lt;/strong&gt;: writethough considers a write complete only when it has been stored in both the cache pool and on the origin LV. While writethrough may be slower for writes, it is more resilient if something should happen to a device associated with the cache pool LV.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;passthrough&lt;/strong&gt;: With passthrough, all reads are served from the origin LV (all reads miss the cache) and all writes are forwarded to the origin LV; additionally, write hits cause cache block invalidates. See lvmcache(7) for more information.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;passthrough&lt;/strong&gt;: With passthrough, all reads are served from the origin LV (all reads miss the cache) and all writes are forwarded to the origin LV; additionally, write hits cause cache block invalidates. See lvmcache(7) for more information.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;再把刚刚合并的带缓存池的LVM存储&lt;code&gt;hybrid/data&lt;/code&gt;与之前创建的元数据LV&lt;code&gt;hybrid/meta_thinpool&lt;/code&gt;合并转换为最终需要的LVM-thin存储：&lt;/li&gt;
 &lt;/ol&gt;
@@ -11054,7 +11016,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;686&#34;
-	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1_hu5826254051936986766.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1_hu3710701140883869938.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1_hu_48a4f9ec125e707.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic1_hu_563d9e981bf9f33c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;添加LVM-thin存储，ID自己取&#34;
@@ -11068,7 +11030,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;723&#34;
-	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic2_hu15799669663233899118.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic2_hu15964767187909535048.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic2_hu_3dc5f70bd0c65f66.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic2_hu_7ed8706a0d33ace4.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1000进制看起来就是4T&#34;
@@ -11083,7 +11045,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;632&#34;
-	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3_hu875602002234483451.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3_hu10547616968352055752.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3_hu_4d4bff50ee4e27fd.png 480w, https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3_hu_229b34611cf4d167.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;4块磁盘都100%利用了&#34;
@@ -11117,8 +11079,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/kodi-disable-shutdown/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-disable-shutdown/pic5.png" alt="Featured image of post 屏蔽Kodi的关机、重启按钮" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -11187,7 +11148,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic1.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic1_hu10209043286118618880.png 480w, https://evine.win/p/kodi-disable-shutdown/pic1_hu9890896329730866750.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic1_hu_3e3590db3ff5779e.png 480w, https://evine.win/p/kodi-disable-shutdown/pic1_hu_84b0ca88f61cab38.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094809.png&#34;
@@ -11202,7 +11163,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic2_hu10209043286118618880.png 480w, https://evine.win/p/kodi-disable-shutdown/pic2_hu9890896329730866750.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic2_hu_3e3590db3ff5779e.png 480w, https://evine.win/p/kodi-disable-shutdown/pic2_hu_84b0ca88f61cab38.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094821.png&#34;
@@ -11216,7 +11177,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic3_hu12542187147055414415.png 480w, https://evine.win/p/kodi-disable-shutdown/pic3_hu7147567169096026128.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic3_hu_75fb78f3b059d50d.png 480w, https://evine.win/p/kodi-disable-shutdown/pic3_hu_28f3065008220b9b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094832.png&#34;
@@ -11230,7 +11191,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic4.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic4_hu14252809660902204011.png 480w, https://evine.win/p/kodi-disable-shutdown/pic4_hu17439124143034683350.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic4_hu_c2073433ba0c19a6.png 480w, https://evine.win/p/kodi-disable-shutdown/pic4_hu_9eb945263416eae6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094844.png&#34;
@@ -11245,7 +11206,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-disable-shutdown/pic5.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;937&#34;
-	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic5_hu4630166356695753355.png 480w, https://evine.win/p/kodi-disable-shutdown/pic5_hu7693571001691299815.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-disable-shutdown/pic5_hu_28914b4390bf596e.png 480w, https://evine.win/p/kodi-disable-shutdown/pic5_hu_b144d53c37a3ca6c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Screenshot_20220713_094656.png&#34;
@@ -11265,8 +11226,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/kodi-change-interface-font/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-change-interface-font/kodi-poster.jpg" alt="Featured image of post 修改Kodi皮肤字体" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -11328,8 +11288,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/kodi-change-subtitle-font/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-change-subtitle-font/kodi-poster.jpg" alt="Featured image of post 修改Kodi字幕字体" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -11351,8 +11310,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/kodi-use-remote-controller/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-use-remote-controller/kodi-poster.jpg" alt="Featured image of post 为Kodi适配遥控器" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -11395,8 +11353,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;以下为蓝牙遥控器适配流程：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;以下相关命令均为root用户执行的。
-如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
-&lt;/blockquote&gt;
+如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;在USB接口上插入蓝牙适配器，可以在PVE打开的情况下插入。插入后可以命令检测一下：&lt;/p&gt;
@@ -11575,8 +11532,7 @@ IP。&lt;/p&gt;
         <guid>https://evine.win/p/kodi-install-in-pve/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-install-in-pve/pic5.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为原创教程，转载请注明来源及作者。
-更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;
-&lt;/blockquote&gt;
+更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi；&lt;/li&gt;
 &lt;li&gt;没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计；&lt;/li&gt;
@@ -11587,8 +11543,9 @@ IP。&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;不需要如同网上其他教程一般，安装&lt;code&gt;xinit&lt;/code&gt;、&lt;code&gt;xfce&lt;/code&gt;、&lt;code&gt;lightdm&lt;/code&gt;、&lt;code&gt;gnome&lt;/code&gt;等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。&lt;/p&gt;
 &lt;p&gt;并且网上的教程全是安装Debian官方仓库自带的Kodi，但因为Debian的特色，官方稳定仓库中的Kodi版本比较老。所以有的博主自作主张启用了Debian的sid不稳定仓库，以便使用新版Kodi，这对PVE环境来说是不可取的，不建议这么做。&lt;/p&gt;
 &lt;p&gt;事实上在Debian稳定版本上也是可以安装最新版的Kodi的，主要来自一个专门负责维护多媒体软件的仓库：https://www.deb-multimedia.org，国内连接较差，不用担心，有一堆镜像站可以使用。以下基于PVE 8.x（Debian bookworm）并以北外镜像站为例（&lt;strong&gt;其他版本请修改&lt;code&gt;bookworm&lt;/code&gt;为对应的版本号&lt;/strong&gt;）：&lt;/p&gt;
@@ -11623,8 +11580,7 @@ IP。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;PVE 5 -&amp;gt; Debian 9 -&amp;gt; stretch&lt;/li&gt;
 &lt;li&gt;PVE 6 -&amp;gt; Debian 10 -&amp;gt; buster&lt;/li&gt;
@@ -11678,7 +11634,9 @@ IP。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install -t bookworm-backports -y kodi
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;国内其他镜像站如&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;国内其他镜像站如&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;清华TUNA&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.ustc.edu.cn/help/deb-multimedia.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;中科大USTC&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cloud.tencent.com/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;腾讯云&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cnnic.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -11737,7 +11695,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic1.png&#34;
 	width=&#34;1200&#34;
 	height=&#34;675&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic1_hu13341613101948464845.png 480w, https://evine.win/p/kodi-install-in-pve/pic1_hu2553577233690570090.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic1_hu_7808ad422df01a0a.png 480w, https://evine.win/p/kodi-install-in-pve/pic1_hu_1b194f59abe57a65.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;核心数量超过一行的宽度了，字有点重&#34;
@@ -11751,7 +11709,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic2.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;698&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic2_hu9444939529972666297.png 480w, https://evine.win/p/kodi-install-in-pve/pic2_hu7706954053077984002.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic2_hu_ad9363a206b67548.png 480w, https://evine.win/p/kodi-install-in-pve/pic2_hu_c2c3cdab67c321ea.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Kodi 20也支持开关HDR&#34;
@@ -11931,7 +11889,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic3.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic3_hu664879604991693388.png 480w, https://evine.win/p/kodi-install-in-pve/pic3_hu10736459723459708716.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic3_hu_5e95ccc74a9a13e5.png 480w, https://evine.win/p/kodi-install-in-pve/pic3_hu_f541ae1cb787112e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;AAC未直通&#34;
@@ -11945,7 +11903,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic4.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic4_hu14619772680059514558.png 480w, https://evine.win/p/kodi-install-in-pve/pic4_hu12508079360812403885.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic4_hu_80e8a7798ed80a65.png 480w, https://evine.win/p/kodi-install-in-pve/pic4_hu_bccfc1ac78acd216.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;TrueHD直通&#34;
@@ -11959,7 +11917,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic5.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic5_hu8298113823860523349.png 480w, https://evine.win/p/kodi-install-in-pve/pic5_hu4188109521088563337.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic5_hu_106622cc6ce2b95f.png 480w, https://evine.win/p/kodi-install-in-pve/pic5_hu_5335b76de0d8d58a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;DTS-HD直通&#34;
@@ -11992,7 +11950,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic6.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic6_hu15695997804294824757.png 480w, https://evine.win/p/kodi-install-in-pve/pic6_hu12683687379341613976.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic6_hu_edbd92787c3fb91a.png 480w, https://evine.win/p/kodi-install-in-pve/pic6_hu_b620f506e122e9a6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;HEVC/x265硬解&#34;
@@ -12006,7 +11964,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/kodi-install-in-pve/pic7.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;844&#34;
-	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic7_hu11842325981679854943.png 480w, https://evine.win/p/kodi-install-in-pve/pic7_hu7121205885592846330.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/kodi-install-in-pve/pic7_hu_1ba806065cc07343.png 480w, https://evine.win/p/kodi-install-in-pve/pic7_hu_6145c3430e670974.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;x264硬解&#34;
@@ -12072,8 +12030,7 @@ IP。&lt;/p&gt;
         
         <guid>https://evine.win/p/ikuai-set-ipv4-acl/</guid>
         <description>&lt;img src="https://evine.win/p/ikuai-set-ipv4-acl/pic1.png" alt="Featured image of post 使用爱快来限制SSH／WEBUI／RDP的访问来源IP，保护内网设备不被攻击" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本教程为原创教程，转载需注明来源及作者。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;本教程为原创教程，转载需注明来源及作者。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;关键词&#34;&gt;关键词
 &lt;/h2&gt;&lt;p&gt;爱快 IKUAI 防火墙 ACL 封禁 恶意IP 限制 来源IP 访问IP SSH WEBUI 远程控制 RDP Fail2BAN&lt;/p&gt;
 &lt;h2 id=&#34;背景&#34;&gt;背景
@@ -12092,7 +12049,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic1.png&#34;
 	width=&#34;1240&#34;
 	height=&#34;180&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic1_hu9988529065346093651.png 480w, https://evine.win/p/ikuai-set-ipv4-acl/pic1_hu11825405368597924236.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic1_hu_eaa098d2f0df374c.png 480w, https://evine.win/p/ikuai-set-ipv4-acl/pic1_hu_7bae2ab58f7b9a19.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv4设置ACL&#34;
@@ -12107,7 +12064,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic2.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;170&#34;
-	srcset=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic2_hu15993580109682273196.png 480w, https://evine.win/p/ikuai-set-ipv4-acl/pic2_hu681278520527305122.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/ikuai-set-ipv4-acl/pic2_hu_4f553c15509a0de2.png 480w, https://evine.win/p/ikuai-set-ipv4-acl/pic2_hu_16f13133f1daf58e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IPv4设置端口转发限制来源&#34;
@@ -12149,7 +12106,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/qbittorrent-settings/1%E8%A1%8C%E4%B8%BA.png&#34;
 	width=&#34;781&#34;
 	height=&#34;956&#34;
-	srcset=&#34;https://evine.win/p/qbittorrent-settings/1%E8%A1%8C%E4%B8%BA_hu6927785114262396275.png 480w, https://evine.win/p/qbittorrent-settings/1%E8%A1%8C%E4%B8%BA_hu11129627479881609952.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/qbittorrent-settings/1%E8%A1%8C%E4%B8%BA_hu_55a4fb1a9cf48aa5.png 480w, https://evine.win/p/qbittorrent-settings/1%E8%A1%8C%E4%B8%BA_hu_c0ae1107834910a7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;1行为.png&#34;
@@ -12165,7 +12122,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/qbittorrent-settings/2%E4%B8%8B%E8%BD%BD.png&#34;
 	width=&#34;1120&#34;
 	height=&#34;1328&#34;
-	srcset=&#34;https://evine.win/p/qbittorrent-settings/2%E4%B8%8B%E8%BD%BD_hu8291980221641514985.png 480w, https://evine.win/p/qbittorrent-settings/2%E4%B8%8B%E8%BD%BD_hu14940755056774993984.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/qbittorrent-settings/2%E4%B8%8B%E8%BD%BD_hu_aa07f142cf5ba452.png 480w, https://evine.win/p/qbittorrent-settings/2%E4%B8%8B%E8%BD%BD_hu_93b1c43294d13d64.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;2下载.png&#34;
@@ -12182,7 +12139,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/qbittorrent-settings/3%E8%BF%9E%E6%8E%A5.png&#34;
 	width=&#34;899&#34;
 	height=&#34;1070&#34;
-	srcset=&#34;https://evine.win/p/qbittorrent-settings/3%E8%BF%9E%E6%8E%A5_hu17476883647420961838.png 480w, https://evine.win/p/qbittorrent-settings/3%E8%BF%9E%E6%8E%A5_hu3251020014786801889.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/qbittorrent-settings/3%E8%BF%9E%E6%8E%A5_hu_8b989ce6876f70e2.png 480w, https://evine.win/p/qbittorrent-settings/3%E8%BF%9E%E6%8E%A5_hu_51c949f84de6953.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;3连接.png&#34;
@@ -12196,7 +12153,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/qbittorrent-settings/4%E9%80%9F%E5%BA%A6.png&#34;
 	width=&#34;780&#34;
 	height=&#34;600&#34;
-	srcset=&#34;https://evine.win/p/qbittorrent-settings/4%E9%80%9F%E5%BA%A6_hu9009531428212942239.png 480w, https://evine.win/p/qbittorrent-settings/4%E9%80%9F%E5%BA%A6_hu16881246789227372977.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/qbittorrent-settings/4%E9%80%9F%E5%BA%A6_hu_b1f272af9fa9b464.png 480w, https://evine.win/p/qbittorrent-settings/4%E9%80%9F%E5%BA%A6_hu_f6777cec74d2dc92.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;4速度.png&#34;
@@ -12210,7 +12167,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/qbittorrent-settings/5BitTorrent.png&#34;
 	width=&#34;899&#34;
 	height=&#34;696&#34;
-	srcset=&#34;https://evine.win/p/qbittorrent-settings/5BitTorrent_hu8283009914903222063.png 480w, https://evine.win/p/qbittorrent-settings/5BitTorrent_hu16681591693173362599.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/qbittorrent-settings/5BitTorrent_hu_3f3a9f2667ed14f6.png 480w, https://evine.win/p/qbittorrent-settings/5BitTorrent_hu_68f512f7cfc09988.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;5BitTorrent.png&#34;
@@ -12226,7 +12183,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/qbittorrent-settings/6RSS.png&#34;
 	width=&#34;950&#34;
 	height=&#34;1080&#34;
-	srcset=&#34;https://evine.win/p/qbittorrent-settings/6RSS_hu11768451589932597233.png 480w, https://evine.win/p/qbittorrent-settings/6RSS_hu9146695419336625597.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/qbittorrent-settings/6RSS_hu_862532422ca7d600.png 480w, https://evine.win/p/qbittorrent-settings/6RSS_hu_c808f8f5ea82299.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;6RSS.png&#34;
@@ -12242,7 +12199,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/qbittorrent-settings/7WebUI.png&#34;
 	width=&#34;781&#34;
 	height=&#34;998&#34;
-	srcset=&#34;https://evine.win/p/qbittorrent-settings/7WebUI_hu10227565993141743371.png 480w, https://evine.win/p/qbittorrent-settings/7WebUI_hu18068217047956291969.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/qbittorrent-settings/7WebUI_hu_a8ca22d4746a18f6.png 480w, https://evine.win/p/qbittorrent-settings/7WebUI_hu_67bb23ae5d474b87.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;7WebUI.png&#34;
@@ -12258,7 +12215,7 @@ IP。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://evine.win/p/qbittorrent-settings/8%E9%AB%98%E7%BA%A7.png&#34;
 	width=&#34;1080&#34;
 	height=&#34;1960&#34;
-	srcset=&#34;https://evine.win/p/qbittorrent-settings/8%E9%AB%98%E7%BA%A7_hu18275969455763007746.png 480w, https://evine.win/p/qbittorrent-settings/8%E9%AB%98%E7%BA%A7_hu3653872195752825884.png 1024w&#34;
+	srcset=&#34;https://evine.win/p/qbittorrent-settings/8%E9%AB%98%E7%BA%A7_hu_24e6b10fc5ea6ec9.png 480w, https://evine.win/p/qbittorrent-settings/8%E9%AB%98%E7%BA%A7_hu_4e760e3fb2a8188c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;8高级.png&#34;
