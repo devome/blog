@@ -6,7 +6,7 @@
         <description>Recent content in Qbittorrent on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 18 Dec 2024 19:30:17 +0800</lastBuildDate><atom:link href="https://evine.win/tags/qbittorrent/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 21 Apr 2025 13:34:57 +0800</lastBuildDate><atom:link href="https://evine.win/tags/qbittorrent/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>一款更懂你的 qbittorrent docker 镜像</title>
         <link>https://evine.win/p/docker-install-qbittorrent/</link>
         <pubDate>Wed, 18 Oct 2023 00:00:00 +0800</pubDate>
@@ -411,6 +411,20 @@
           &lt;td style=&#34;text-align: center&#34;&gt;5.0.3&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;2.0.10&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;3.21.0&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2025-03-01&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;5.0.4&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2.0.11&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3.21.3&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2025-04-14&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;5.0.5&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2.0.11&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3.21.3&lt;/td&gt;
           &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
