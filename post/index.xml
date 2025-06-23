@@ -6,7 +6,7 @@
         <description>Recent content in Posts on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 21 Apr 2025 13:34:57 +0800</lastBuildDate><atom:link href="https://evine.win/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 23 Jun 2025 12:27:22 +0800</lastBuildDate><atom:link href="https://evine.win/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）</title>
         <link>https://evine.win/p/use-wubi-type-special-symbols/</link>
         <pubDate>Fri, 02 Aug 2024 00:00:00 +0800</pubDate>
@@ -6788,6 +6788,20 @@
           &lt;td style=&#34;text-align: center&#34;&gt;5.0.5&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;2.0.11&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;3.21.3&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2025-04-28&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;5.1.0&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2.0.11&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3.21.3&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2025-06-23&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;5.1.1&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2.0.11&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3.22.0&lt;/td&gt;
           &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
