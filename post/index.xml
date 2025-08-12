@@ -6,7 +6,7 @@
         <description>Recent content in Posts on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 08 Aug 2025 20:23:29 +0800</lastBuildDate><atom:link href="https://evine.win/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 12 Aug 2025 14:12:45 +0800</lastBuildDate><atom:link href="https://evine.win/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Linux下简单快捷高效的用五笔打出特殊符号（含Emoji）</title>
         <link>https://evine.win/p/use-wubi-type-special-symbols/</link>
         <pubDate>Fri, 02 Aug 2024 00:00:00 +0800</pubDate>
@@ -6106,7 +6106,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.core.default_qdisc = fq_codel&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.d/90-override.conf
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 用于控制反向路径过滤（Reverse Path Filtering）的一个内核参数，它决定了系统如何处理进入的数据包的源地址校验。&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 如果命令 `sysctl -a | grep &amp;#39;\.rp_filter&amp;#39;` 输出中你的网卡对应的值是 2 ，则需要重新覆盖设置为 0。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 如果命令 sysctl -a | grep &amp;#39;\.rp_filter&amp;#39; 输出中你的网卡对应的值是 2 ，则需要重新覆盖设置为 0。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 0：表示不开启源地址校验。系统不会检查进入的数据包的源地址，即使数据包的源地址不可达，也不会被系统丢弃。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1：表示开启严格的反向路径校验。系统会检查每个进入的数据包，确保其反向路径是最佳路径。如果不是，数据包将被丢弃。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 2：表示开启松散的反向路径校验。系统会检查进入的数据包的源地址是否可达，即反向路径是否能通（通过任意网络接口）。如果反向路径不通，数据包将被丢弃。&lt;/span&gt;
