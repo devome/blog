@@ -13,7 +13,8 @@
         
         <guid>https://evine.win/p/kodi-send-help/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-send-help/pic1.png" alt="Featured image of post kodi-send使用相关说明" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -31,7 +32,8 @@
     &gt;List_of_built-in_functions&lt;/a&gt; 。&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;请先按照 &lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt; 教程添加好&lt;code&gt;deb-multimedia&lt;/code&gt;软件源。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;请先按照 &lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt; 教程添加好&lt;code&gt;deb-multimedia&lt;/code&gt;软件源。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;kodi-send&lt;/code&gt;命令需要安装&lt;code&gt;kodi-eventclients-common&lt;/code&gt;（如果未启用&lt;code&gt;deb-multimedia&lt;/code&gt;源，则需要安装debian官方源中的&lt;code&gt;kodi-eventclients-kodi-send&lt;/code&gt;）：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

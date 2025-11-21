@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://evine.win/p/pve-create-lvm-thin-with-cachepool/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池">
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池">
 <meta property='og:description' content=" 关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD\n前言 最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。\n">
 <meta property='og:url' content='https://evine.win/p/pve-create-lvm-thin-with-cachepool/'>
 <meta property='og:site_name' content='Evine的个人博客'>
@@ -353,7 +353,8 @@
     
     
     <blockquote>
-<p>关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD</p></blockquote>
+<p>关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD</p>
+</blockquote>
 <h2 id="前言">前言
 </h2><p>最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。</p>
 <p>作为垃圾佬，怎么舍得再额外购置硬件多花钱呢。垃圾佬当然不愿意再购买新硬盘了，掏出多年前给台式机装系统的两块SATA接口的固态硬盘，以及以前台式机用的两块机械硬盘，准备将两块SSD组raid0后作为缓存池，为两块HDD以raid0组后创建的LVM-thin提供读写缓存服务。</p>
@@ -412,15 +413,20 @@
 </ul>
 <h2 id="有关概念">有关概念
 </h2><blockquote>
-<p>PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。</p></blockquote>
+<p>PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。</p>
+</blockquote>
 <blockquote>
-<p>VG(volume group)：卷组，建立在物理卷上，一卷组中至少要包括一物理卷，卷组建立后可动态的添加卷到卷组中，一个逻辑卷管理系统工程中可有多个卷组。</p></blockquote>
+<p>VG(volume group)：卷组，建立在物理卷上，一卷组中至少要包括一物理卷，卷组建立后可动态的添加卷到卷组中，一个逻辑卷管理系统工程中可有多个卷组。</p>
+</blockquote>
 <blockquote>
-<p>LV(logical volume)：逻辑卷，建立在卷组基础上，卷组中未分配空间可用于建立新的逻辑卷，逻辑卷建立后可以动态扩展和缩小空间。</p></blockquote>
+<p>LV(logical volume)：逻辑卷，建立在卷组基础上，卷组中未分配空间可用于建立新的逻辑卷，逻辑卷建立后可以动态扩展和缩小空间。</p>
+</blockquote>
 <blockquote>
-<p>PE(physical extent)：物理区域，是物理卷中可用于分配的最小存储单元（本文采用默认值4MiB），物理区域大小在建立卷组时指定，一旦确定不能更改，同一卷组所有物理卷的物理区域大小需一致，新的PV加入到VG后，PE的大小自动更改为VG中定义的PE大小。</p></blockquote>
+<p>PE(physical extent)：物理区域，是物理卷中可用于分配的最小存储单元（本文采用默认值4MiB），物理区域大小在建立卷组时指定，一旦确定不能更改，同一卷组所有物理卷的物理区域大小需一致，新的PV加入到VG后，PE的大小自动更改为VG中定义的PE大小。</p>
+</blockquote>
 <blockquote>
-<p>LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。</p></blockquote>
+<p>LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。</p>
+</blockquote>
 <p>网上有很多有关概念的详细介绍，这里不再多说。</p>
 <h2 id="创建具有缓存池的lvm-thin存储">创建具有缓存池的LVM-thin存储
 </h2><p>这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：</p>
@@ -637,7 +643,8 @@
 </div>
 </div><p>RAID的Stripe Size大小可以设置为8KiB、16KiB、32KiB、64KiB、128KiB和256KiB，如不设置此参数则默认采用64KiB。</p>
 <blockquote>
-<p>对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。</p></blockquote>
+<p>对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。</p>
+</blockquote>
 <p>我的主要是大文件，所以我设置Stripe Size为256KiB。并且我的使用场景下，主要目的是提升IO，反而对数据损坏这个情况不关心，坏了就坏了，所以我采用的是raid0，和我使用场景不一致的不要采用raid0以及256KiB的Stripe Size。</p>
 <h3 id="创建元数据lv和缓存池元数据lv">创建元数据LV和缓存池元数据LV
 </h3><ul>
@@ -798,15 +805,18 @@
 <p><em>The size of chunks in a snapshot, cache pool or thin pool. For snapshots, the value must be a power of 2 between 4KiB and 512KiB and the default value is 4. For a cache pool the value must be between 32KiB and 1GiB and the default value is 64. For a thin pool the value must be between 64KiB and 1GiB and the default value starts with 64 and scales up to fit the pool metadata size within 128MiB, if the pool metadata size is not specified. The value must be a multiple of 64KiB. See lvmthin(7) and lvmcache(7) for more information.</em>
 机翻：快照、缓存池或精简池中的块大小。对于快照，该值必须是2的幂，介于4KB和512KB之间，默认值为4。对于缓存池，该值须介于32KiB和1GiB之间，并且默认值为64。对于精简池，该数值必须介于64KiB和1GiB之间，如果未指定池元数据大小，则默认值从64开始，并按比例放大以适应128MiB内的池元数据大小。该值必须是64KiB的倍数。有关更多信息，请参见<a class="link" href="https://man.archlinux.org/man/lvmthin.7.en#Chunk_size"  target="_blank" rel="noopener"
     >lvmthin</a>和<a class="link" href="https://man.archlinux.org/man/lvmcache.7.en#dm-cache_chunk_size"  target="_blank" rel="noopener"
-    >lvmcache</a>。</p></blockquote>
+    >lvmcache</a>。</p>
+</blockquote>
 <p>lvmthin：</p>
 <blockquote>
 <p>When a thin pool is used primarily for the thin provisioning feature, a larger value is optimal. To optimize for many snapshots, a smaller value reduces copying time and consumes less space.
-机翻：当精简池主要用于精简资源调配功能时，最好使用较大的值。要优化多个快照，较小的值可以减少复制时间并消耗更少的空间。</p></blockquote>
+机翻：当精简池主要用于精简资源调配功能时，最好使用较大的值。要优化多个快照，较小的值可以减少复制时间并消耗更少的空间。</p>
+</blockquote>
 <p>lvmcache：</p>
 <blockquote>
 <p>Using a chunk size that is too large can result in wasteful use of the cache, in which small reads and writes cause large sections of an LV to be stored in the cache. It can also require increasing migration threshold which defaults to 2048 sectors (1 MiB). Lvm2 ensures migration threshold is at least 8 chunks in size. This may in some cases result in very high bandwidth load of transfering data between the cache LV and its cache origin LV. However, choosing a chunk size that is too small can result in more overhead trying to manage the numerous chunks that become mapped into the cache. Overhead can include both excessive CPU time searching for chunks, and excessive memory tracking chunks.
-机翻：使用过大的块大小可能会导致缓存的浪费使用，在这种情况下，较小的读取和写入会导致LV的较大部分存储在缓存中。它还可能需要增加迁移阈值，默认为2048个扇区（1个MiB）。Lvm2确保迁移阈值的大小至少为8个块。在某些情况下，这可能导致在高速缓存LV与其高速缓存源LV之间传输数据的非常高的带宽负载。然而，选择太小的块大小可能会导致管理映射到缓存中的大量块的更多开销。开销可能包括过多的CPU时间搜索块，以及过多的内存跟踪块。</p></blockquote>
+机翻：使用过大的块大小可能会导致缓存的浪费使用，在这种情况下，较小的读取和写入会导致LV的较大部分存储在缓存中。它还可能需要增加迁移阈值，默认为2048个扇区（1个MiB）。Lvm2确保迁移阈值的大小至少为8个块。在某些情况下，这可能导致在高速缓存LV与其高速缓存源LV之间传输数据的非常高的带宽负载。然而，选择太小的块大小可能会导致管理映射到缓存中的大量块的更多开销。开销可能包括过多的CPU时间搜索块，以及过多的内存跟踪块。</p>
+</blockquote>
 <ol start="2">
 <li>把之前在HDD上创建的<code>hybrid/data</code>这个LV的类型转换为带缓存池LV（<code>hybrid/cache</code>）的存储类型，指定缓存池为刚刚合并后的缓存池LV<code>hybrid/cache</code>，设置缓存模式为<code>writeback</code>：</li>
 </ol>
@@ -833,11 +843,14 @@
 </div>
 </div><p>缓存模式可选择如下，我都raid0了，已经无所畏惧了，所以我选择<code>writeback</code>，数据丢了就丢了吧：</p>
 <blockquote>
-<p><strong>writeback</strong>: writeback considers a write complete as soon as it is stored in the cache pool.</p></blockquote>
+<p><strong>writeback</strong>: writeback considers a write complete as soon as it is stored in the cache pool.</p>
+</blockquote>
 <blockquote>
-<p><strong>writethough</strong>: writethough considers a write complete only when it has been stored in both the cache pool and on the origin LV. While writethrough may be slower for writes, it is more resilient if something should happen to a device associated with the cache pool LV.</p></blockquote>
+<p><strong>writethough</strong>: writethough considers a write complete only when it has been stored in both the cache pool and on the origin LV. While writethrough may be slower for writes, it is more resilient if something should happen to a device associated with the cache pool LV.</p>
+</blockquote>
 <blockquote>
-<p><strong>passthrough</strong>: With passthrough, all reads are served from the origin LV (all reads miss the cache) and all writes are forwarded to the origin LV; additionally, write hits cause cache block invalidates. See lvmcache(7) for more information.</p></blockquote>
+<p><strong>passthrough</strong>: With passthrough, all reads are served from the origin LV (all reads miss the cache) and all writes are forwarded to the origin LV; additionally, write hits cause cache block invalidates. See lvmcache(7) for more information.</p>
+</blockquote>
 <ol start="3">
 <li>再把刚刚合并的带缓存池的LVM存储<code>hybrid/data</code>与之前创建的元数据LV<code>hybrid/meta_thinpool</code>合并转换为最终需要的LVM-thin存储：</li>
 </ol>

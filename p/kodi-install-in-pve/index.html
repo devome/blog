@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://evine.win/p/kodi-install-in-pve/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="PVE 直接安装最新版 Kodi">
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="PVE 直接安装最新版 Kodi">
 <meta property='og:description' content=" 本文为原创教程，转载请注明来源及作者。 更新于2025年1月22日，以当前最新的PVE 8为示例。\n按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi； 没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计； 不用直通显卡，退出Kodi就是PVE的控制台，在出现故障时排故更容易，要是把显卡给直通给虚拟机了，PVE控制台上啥也看不到，如果这时ssh还出问题了的话，你根本就无法排故； 少了虚拟机这一层，减少了资源损耗，Kodi在PVE中运行初始只需要200M左右内存； 音频可以在Kodi中设置通过HDMI直通，支持7.1声道无压力，而如果采用直通核显及声卡给LibreELEC虚拟机的话，在LibreELEC中音频可能就无法通过HDMI直通，只能委屈巴巴的用2.0声道； 另外，如果使用蓝牙遥控器的话，反应速度比在虚拟机中直通蓝牙适配器要快，体验要好很多。 安装最新版Kodi 注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。\n">
 <meta property='og:url' content='https://evine.win/p/kodi-install-in-pve/'>
 <meta property='og:site_name' content='Evine的个人博客'>
@@ -348,7 +348,8 @@
     
     <blockquote>
 <p>本文为原创教程，转载请注明来源及作者。
-更新于2025年1月22日，以当前最新的PVE 8为示例。</p></blockquote>
+更新于2025年1月22日，以当前最新的PVE 8为示例。</p>
+</blockquote>
 <ul>
 <li>按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi；</li>
 <li>没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计；</li>
@@ -359,9 +360,11 @@
 </ul>
 <h2 id="安装最新版kodi">安装最新版Kodi
 </h2><blockquote>
-<p>注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。</p></blockquote>
+<p>注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。</p>
+</blockquote>
 <blockquote>
-<p><strong>请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。</strong></p></blockquote>
+<p><strong>请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。</strong></p>
+</blockquote>
 <p>不需要如同网上其他教程一般，安装<code>xinit</code>、<code>xfce</code>、<code>lightdm</code>、<code>gnome</code>等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。</p>
 <p>并且网上的教程全是安装Debian官方仓库自带的Kodi，但因为Debian的特色，官方稳定仓库中的Kodi版本比较老。所以有的博主自作主张启用了Debian的sid不稳定仓库，以便使用新版Kodi，这对PVE环境来说是不可取的，不建议这么做。</p>
 <p>事实上在Debian稳定版本上也是可以安装最新版的Kodi的，主要来自一个专门负责维护多媒体软件的仓库：https://www.deb-multimedia.org，国内连接较差，不用担心，有一堆镜像站可以使用。以下基于PVE 8.x（Debian bookworm）并以北外镜像站为例（<strong>其他版本请修改<code>bookworm</code>为对应的版本号</strong>）：</p>
@@ -396,7 +399,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p><em>注：各PVE对应的Debian版本号如下：</em></p></blockquote>
+<p><em>注：各PVE对应的Debian版本号如下：</em></p>
+</blockquote>
 <ul>
 <li>PVE 5 -&gt; Debian 9 -&gt; stretch</li>
 <li>PVE 6 -&gt; Debian 10 -&gt; buster</li>
@@ -451,7 +455,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p><strong>请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。</strong></p></blockquote>
+<p><strong>请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。</strong></p>
+</blockquote>
 <p>国内其他镜像站如<a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/"  target="_blank" rel="noopener"
     >清华TUNA</a>、<a class="link" href="https://mirrors.ustc.edu.cn/help/deb-multimedia.html"  target="_blank" rel="noopener"
     >中科大USTC</a>、<a class="link" href="https://mirrors.cloud.tencent.com/debian-multimedia/"  target="_blank" rel="noopener"

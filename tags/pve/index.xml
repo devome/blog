@@ -6,7 +6,7 @@
         <description>Recent content in Pve on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 27 Feb 2025 23:04:14 +0800</lastBuildDate><atom:link href="https://evine.win/tags/pve/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 21 Nov 2025 15:20:44 +0800</lastBuildDate><atom:link href="https://evine.win/tags/pve/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>安装Proxmox Backup Server新姿势，Systemd Container！</title>
         <link>https://evine.win/p/install-proxmox-backup-server-with-systemd-container/</link>
         <pubDate>Tue, 23 Jan 2024 00:00:00 +0800</pubDate>
@@ -37,10 +37,12 @@
 &lt;p&gt;那么有没有一种方式，能规避掉这些缺点呢，有的，那就是 Systemd Container。关于它的详细介绍，见 Arch Wiki 上的 &lt;a class=&#34;link&#34; href=&#34;https://wiki.archlinux.org/title/Systemd-nspawn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Systemd-nspawn&lt;/a&gt;，一些常用命令，以及常见问题该链接中都有，本文没有提及的内容请参考该链接。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;systemd-nspawn 跟 chroot 命令类似，是个终极版的 chroot。systemd-nspawn 可以在轻量的命名空间容器中运行命令或系统。它比 chroot 强大的地方是，它完全虚拟了文件系统层次结构、进程树、各种 IPC 子系统以及主机名。systemd-nspawn 将容器中各种内核接口的访问限制为只读，像是 /sys, /proc/sys 和 /sys/fs/selinux。网络接口和系统时钟不能从容器内更改，不能创建设备节点。不能从容器中重启宿主机，也不能加载内核模块。相比 LXC 或 Libvirt， systemd-nspawn 更容易配置。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;systemd-nspawn 跟 chroot 命令类似，是个终极版的 chroot。systemd-nspawn 可以在轻量的命名空间容器中运行命令或系统。它比 chroot 强大的地方是，它完全虚拟了文件系统层次结构、进程树、各种 IPC 子系统以及主机名。systemd-nspawn 将容器中各种内核接口的访问限制为只读，像是 /sys, /proc/sys 和 /sys/fs/selinux。网络接口和系统时钟不能从容器内更改，不能创建设备节点。不能从容器中重启宿主机，也不能加载内核模块。相比 LXC 或 Libvirt， systemd-nspawn 更容易配置。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下均为 root 用户运行的。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;以下均为 root 用户运行的。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;基础环境&#34;&gt;基础环境
 &lt;/h3&gt;&lt;p&gt;对于 Debian 和基于 Debian 的系统，需要安装 &lt;code&gt;systemd-container&lt;/code&gt; 以及 &lt;code&gt;debootstrap&lt;/code&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -654,7 +656,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;如何更新驱动&#34;&gt;如何更新驱动
-&lt;/h2&gt;&lt;p&gt;如果已经安装好了 &lt;code&gt;r8125-dkms&lt;/code&gt; 驱动，未来升级时可以无需重启PVE。&lt;strong&gt;如需要不重启PVE来更新驱动，并且你的 RTL8125B 网口作为了管理口，那么建议直接物理操作PVE（也就是不要通过ssh）来达到更新驱动的目标。&lt;/strong&gt;&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;正常来说，肯定是更新 &lt;code&gt;r8125-dkms&lt;/code&gt; 驱动后重启PVE系统是最好的方式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;但也可以不重启PVE来更新驱动，如果你的 RTL8125B 网口作为了管理口，那么建议直接物理操作PVE（也就是不要通过ssh）来达到更新驱动的目标。&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -992,7 +995,8 @@
         
         <guid>https://evine.win/p/kodi-start-stop-by-remote-controller/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-start-stop-by-remote-controller/kodi-poster.jpg" alt="Featured image of post 像使用盒子／LibreELEC一样使用PVE直装的Kodi，实现遥控器启停" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -1020,9 +1024,11 @@
     &gt;evsieve&lt;/a&gt; 可以在无桌面环境下胁持按键并运行指定脚本，实现上述场景。&lt;/p&gt;
 &lt;h2 id=&#34;准备工作&#34;&gt;准备工作
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;所有的输入设备都由&lt;code&gt;udev&lt;/code&gt;程序识别并保存在&lt;code&gt;/dev/input&lt;/code&gt;下，通过输入&lt;code&gt;ls -l /dev/input&lt;/code&gt;可以查看到许多&lt;code&gt;eventX&lt;/code&gt;的设备。设备的编号会随着外设的插入或卸载以及开关机的变化而变化，也就是说电源键所在的输入设备的&lt;code&gt;eventX&lt;/code&gt;中&lt;code&gt;X&lt;/code&gt;这个编号不是固定的，所以我们不能直接使用&lt;code&gt;/dev/input/eventX&lt;/code&gt;来作为后续要胁持的输入设备。运行&lt;code&gt;ls -l /dev/input/by-id&lt;/code&gt;，&lt;code&gt;udev&lt;/code&gt;会在这个目录下创建易于识别的、唯一的、不随外设的插入卸载或开关机而变化的软连接，无论&lt;code&gt;X&lt;/code&gt;如何变化，它们都将指向正确的设备。&lt;/p&gt;
 &lt;p&gt;我的遥控器是自带接收器的2.4G无线遥控器，插上接收器，通过&lt;code&gt;evtest&lt;/code&gt;程序先找出遥控器电源键在什么设备上。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1290,9 +1296,11 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;设置按键胁持&#34;&gt;设置按键胁持
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;以下相关命令均为root用户执行的。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;下载我为PVE 7.X预编译好的 &lt;a class=&#34;link&#34; href=&#34;https://raw.githubusercontent.com/devome/files/master/evsieve/evsieve&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1531,7 +1539,8 @@
         
         <guid>https://evine.win/p/pve-create-lvm-thin-with-cachepool/</guid>
         <description>&lt;img src="https://evine.win/p/pve-create-lvm-thin-with-cachepool/pic3.png" alt="Featured image of post PVE基于raid0创建LVM-thin并添加固态磁盘作为缓存池" /&gt;&lt;blockquote&gt;
-&lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;关键词：PVE | Proxmox VE | RAID | RAID0 | LVM | LVM-thin | 缓存 | cache | HDD | SSD&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;最近在查阅资料各种资料，看看PVE单服务器系统中，能用什么样的方式，提升LVM-thin存储的IO性能。有多服务器条件的当然是上CEPH了，没有多服务器的条件而内存又比较充足的情况下使用ZFS也不错。但我两种条件都不具备。&lt;/p&gt;
 &lt;p&gt;作为垃圾佬，怎么舍得再额外购置硬件多花钱呢。垃圾佬当然不愿意再购买新硬盘了，掏出多年前给台式机装系统的两块SATA接口的固态硬盘，以及以前台式机用的两块机械硬盘，准备将两块SSD组raid0后作为缓存池，为两块HDD以raid0组后创建的LVM-thin提供读写缓存服务。&lt;/p&gt;
@@ -1590,15 +1599,20 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;有关概念&#34;&gt;有关概念
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;PV(physical volume)：物理卷，在逻辑卷管理系统最底层，可为整个物理硬盘或实际物理硬盘上的分区。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;VG(volume group)：卷组，建立在物理卷上，一卷组中至少要包括一物理卷，卷组建立后可动态的添加卷到卷组中，一个逻辑卷管理系统工程中可有多个卷组。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;VG(volume group)：卷组，建立在物理卷上，一卷组中至少要包括一物理卷，卷组建立后可动态的添加卷到卷组中，一个逻辑卷管理系统工程中可有多个卷组。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;LV(logical volume)：逻辑卷，建立在卷组基础上，卷组中未分配空间可用于建立新的逻辑卷，逻辑卷建立后可以动态扩展和缩小空间。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;LV(logical volume)：逻辑卷，建立在卷组基础上，卷组中未分配空间可用于建立新的逻辑卷，逻辑卷建立后可以动态扩展和缩小空间。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;PE(physical extent)：物理区域，是物理卷中可用于分配的最小存储单元（本文采用默认值4MiB），物理区域大小在建立卷组时指定，一旦确定不能更改，同一卷组所有物理卷的物理区域大小需一致，新的PV加入到VG后，PE的大小自动更改为VG中定义的PE大小。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;PE(physical extent)：物理区域，是物理卷中可用于分配的最小存储单元（本文采用默认值4MiB），物理区域大小在建立卷组时指定，一旦确定不能更改，同一卷组所有物理卷的物理区域大小需一致，新的PV加入到VG后，PE的大小自动更改为VG中定义的PE大小。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;LE(logical extent)：逻辑区域，是逻辑卷中可用于分配的最小存储单元，逻辑区域的大小取决于逻辑卷所在卷组中的物理区域的大小。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;网上有很多有关概念的详细介绍，这里不再多说。&lt;/p&gt;
 &lt;h2 id=&#34;创建具有缓存池的lvm-thin存储&#34;&gt;创建具有缓存池的LVM-thin存储
 &lt;/h2&gt;&lt;p&gt;这里需要大致先说明一下我的思路，我打算将HDD全部空间组raid0，然后用作数据LV；将SSD全部空间组raid0，然后用作元数据LV和缓存池LV，最终的存储类型是LVM-thin。分别如下：&lt;/p&gt;
@@ -1815,7 +1829,8 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;RAID的Stripe Size大小可以设置为8KiB、16KiB、32KiB、64KiB、128KiB和256KiB，如不设置此参数则默认采用64KiB。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;对于数据库应用，Stripe Size在4-16KiB之间被证明效果比较好；对于Web服务器以及文件打印服务器，建议Stripe Size设置为16-64KiB；对于大文件环境，比如流媒体，建议Stripe Size设置为128KiB以上。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;我的主要是大文件，所以我设置Stripe Size为256KiB。并且我的使用场景下，主要目的是提升IO，反而对数据损坏这个情况不关心，坏了就坏了，所以我采用的是raid0，和我使用场景不一致的不要采用raid0以及256KiB的Stripe Size。&lt;/p&gt;
 &lt;h3 id=&#34;创建元数据lv和缓存池元数据lv&#34;&gt;创建元数据LV和缓存池元数据LV
 &lt;/h3&gt;&lt;ul&gt;
@@ -1976,15 +1991,18 @@
 &lt;p&gt;&lt;em&gt;The size of chunks in a snapshot, cache pool or thin pool. For snapshots, the value must be a power of 2 between 4KiB and 512KiB and the default value is 4. For a cache pool the value must be between 32KiB and 1GiB and the default value is 64. For a thin pool the value must be between 64KiB and 1GiB and the default value starts with 64 and scales up to fit the pool metadata size within 128MiB, if the pool metadata size is not specified. The value must be a multiple of 64KiB. See lvmthin(7) and lvmcache(7) for more information.&lt;/em&gt;
 机翻：快照、缓存池或精简池中的块大小。对于快照，该值必须是2的幂，介于4KB和512KB之间，默认值为4。对于缓存池，该值须介于32KiB和1GiB之间，并且默认值为64。对于精简池，该数值必须介于64KiB和1GiB之间，如果未指定池元数据大小，则默认值从64开始，并按比例放大以适应128MiB内的池元数据大小。该值必须是64KiB的倍数。有关更多信息，请参见&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvmthin.7.en#Chunk_size&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;lvmthin&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;https://man.archlinux.org/man/lvmcache.7.en#dm-cache_chunk_size&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;lvmcache&lt;/a&gt;。&lt;/p&gt;&lt;/blockquote&gt;
+    &gt;lvmcache&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;lvmthin：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;When a thin pool is used primarily for the thin provisioning feature, a larger value is optimal. To optimize for many snapshots, a smaller value reduces copying time and consumes less space.
-机翻：当精简池主要用于精简资源调配功能时，最好使用较大的值。要优化多个快照，较小的值可以减少复制时间并消耗更少的空间。&lt;/p&gt;&lt;/blockquote&gt;
+机翻：当精简池主要用于精简资源调配功能时，最好使用较大的值。要优化多个快照，较小的值可以减少复制时间并消耗更少的空间。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;lvmcache：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Using a chunk size that is too large can result in wasteful use of the cache, in which small reads and writes cause large sections of an LV to be stored in the cache. It can also require increasing migration threshold which defaults to 2048 sectors (1 MiB). Lvm2 ensures migration threshold is at least 8 chunks in size. This may in some cases result in very high bandwidth load of transfering data between the cache LV and its cache origin LV. However, choosing a chunk size that is too small can result in more overhead trying to manage the numerous chunks that become mapped into the cache. Overhead can include both excessive CPU time searching for chunks, and excessive memory tracking chunks.
-机翻：使用过大的块大小可能会导致缓存的浪费使用，在这种情况下，较小的读取和写入会导致LV的较大部分存储在缓存中。它还可能需要增加迁移阈值，默认为2048个扇区（1个MiB）。Lvm2确保迁移阈值的大小至少为8个块。在某些情况下，这可能导致在高速缓存LV与其高速缓存源LV之间传输数据的非常高的带宽负载。然而，选择太小的块大小可能会导致管理映射到缓存中的大量块的更多开销。开销可能包括过多的CPU时间搜索块，以及过多的内存跟踪块。&lt;/p&gt;&lt;/blockquote&gt;
+机翻：使用过大的块大小可能会导致缓存的浪费使用，在这种情况下，较小的读取和写入会导致LV的较大部分存储在缓存中。它还可能需要增加迁移阈值，默认为2048个扇区（1个MiB）。Lvm2确保迁移阈值的大小至少为8个块。在某些情况下，这可能导致在高速缓存LV与其高速缓存源LV之间传输数据的非常高的带宽负载。然而，选择太小的块大小可能会导致管理映射到缓存中的大量块的更多开销。开销可能包括过多的CPU时间搜索块，以及过多的内存跟踪块。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;把之前在HDD上创建的&lt;code&gt;hybrid/data&lt;/code&gt;这个LV的类型转换为带缓存池LV（&lt;code&gt;hybrid/cache&lt;/code&gt;）的存储类型，指定缓存池为刚刚合并后的缓存池LV&lt;code&gt;hybrid/cache&lt;/code&gt;，设置缓存模式为&lt;code&gt;writeback&lt;/code&gt;：&lt;/li&gt;
 &lt;/ol&gt;
@@ -2011,11 +2029,14 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;缓存模式可选择如下，我都raid0了，已经无所畏惧了，所以我选择&lt;code&gt;writeback&lt;/code&gt;，数据丢了就丢了吧：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;writeback&lt;/strong&gt;: writeback considers a write complete as soon as it is stored in the cache pool.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;writeback&lt;/strong&gt;: writeback considers a write complete as soon as it is stored in the cache pool.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;writethough&lt;/strong&gt;: writethough considers a write complete only when it has been stored in both the cache pool and on the origin LV. While writethrough may be slower for writes, it is more resilient if something should happen to a device associated with the cache pool LV.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;writethough&lt;/strong&gt;: writethough considers a write complete only when it has been stored in both the cache pool and on the origin LV. While writethrough may be slower for writes, it is more resilient if something should happen to a device associated with the cache pool LV.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;passthrough&lt;/strong&gt;: With passthrough, all reads are served from the origin LV (all reads miss the cache) and all writes are forwarded to the origin LV; additionally, write hits cause cache block invalidates. See lvmcache(7) for more information.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;passthrough&lt;/strong&gt;: With passthrough, all reads are served from the origin LV (all reads miss the cache) and all writes are forwarded to the origin LV; additionally, write hits cause cache block invalidates. See lvmcache(7) for more information.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;再把刚刚合并的带缓存池的LVM存储&lt;code&gt;hybrid/data&lt;/code&gt;与之前创建的元数据LV&lt;code&gt;hybrid/meta_thinpool&lt;/code&gt;合并转换为最终需要的LVM-thin存储：&lt;/li&gt;
 &lt;/ol&gt;
@@ -2300,7 +2321,8 @@
         
         <guid>https://evine.win/p/kodi-use-remote-controller/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-use-remote-controller/kodi-poster.jpg" alt="Featured image of post 为Kodi适配遥控器" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本文为《PVE安装Kodi》系列文章的一部分。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-install-in-pve&#34; &gt;PVE 直接安装最新版 Kodi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;../kodi-use-remote-controller&#34; &gt;为Kodi适配遥控器&lt;/a&gt;&lt;/li&gt;
@@ -2343,7 +2365,8 @@
 &lt;p&gt;以下为蓝牙遥控器适配流程：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;以下相关命令均为root用户执行的。
-如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;&lt;/blockquote&gt;
+如果需要新建文件，请直接在Linux环境中使用&lt;code&gt;nano XXXX&lt;/code&gt;创建，请不要在Windows环境中创建后再上传。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;在USB接口上插入蓝牙适配器，可以在PVE打开的情况下插入。插入后可以命令检测一下：&lt;/p&gt;
@@ -2522,7 +2545,8 @@
         <guid>https://evine.win/p/kodi-install-in-pve/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-install-in-pve/pic5.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为原创教程，转载请注明来源及作者。
-更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;&lt;/blockquote&gt;
+更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi；&lt;/li&gt;
 &lt;li&gt;没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计；&lt;/li&gt;
@@ -2533,9 +2557,11 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;不需要如同网上其他教程一般，安装&lt;code&gt;xinit&lt;/code&gt;、&lt;code&gt;xfce&lt;/code&gt;、&lt;code&gt;lightdm&lt;/code&gt;、&lt;code&gt;gnome&lt;/code&gt;等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。&lt;/p&gt;
 &lt;p&gt;并且网上的教程全是安装Debian官方仓库自带的Kodi，但因为Debian的特色，官方稳定仓库中的Kodi版本比较老。所以有的博主自作主张启用了Debian的sid不稳定仓库，以便使用新版Kodi，这对PVE环境来说是不可取的，不建议这么做。&lt;/p&gt;
 &lt;p&gt;事实上在Debian稳定版本上也是可以安装最新版的Kodi的，主要来自一个专门负责维护多媒体软件的仓库：https://www.deb-multimedia.org，国内连接较差，不用担心，有一堆镜像站可以使用。以下基于PVE 8.x（Debian bookworm）并以北外镜像站为例（&lt;strong&gt;其他版本请修改&lt;code&gt;bookworm&lt;/code&gt;为对应的版本号&lt;/strong&gt;）：&lt;/p&gt;
@@ -2570,7 +2596,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;PVE 5 -&amp;gt; Debian 9 -&amp;gt; stretch&lt;/li&gt;
 &lt;li&gt;PVE 6 -&amp;gt; Debian 10 -&amp;gt; buster&lt;/li&gt;
@@ -2625,7 +2652,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;国内其他镜像站如&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;清华TUNA&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.ustc.edu.cn/help/deb-multimedia.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;中科大USTC&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cloud.tencent.com/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

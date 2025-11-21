@@ -13,7 +13,8 @@
         
         <guid>https://evine.win/p/docker-install-qbittorrent/</guid>
         <description>&lt;img src="https://evine.win/p/docker-install-qbittorrent/notify.png" alt="Featured image of post 一款更懂你的 qbittorrent docker 镜像" /&gt;&lt;blockquote&gt;
-&lt;p&gt;本文较长，如想略过某些内容，请直接点击右侧目录链接。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本文较长，如想略过某些内容，请直接点击右侧目录链接。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;说明&#34;&gt;说明
 &lt;/h2&gt;&lt;p&gt;为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/101&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;详情&lt;/a&gt;。也因此镜像默认即安装好python，不再需要设置&lt;code&gt;INSTALL_PYTHON&lt;/code&gt;这个环境变量。&lt;/p&gt;
@@ -1347,7 +1348,8 @@
 使用内存映射文件的好处主要有：
 内核（它知道机器有多少物理RAM可用）最了解何时以及以何种顺序刷新缓存。也许更重要的是，决定保留读缓存的数量和时间。
 某些类型的存储可以由CPU直接寻址，就像它是RAM一样，绕过了许多内核基础设施，并提供了非常高的性能。（linux称此DAX）
-此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。&lt;/p&gt;&lt;/blockquote&gt;
+此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;qb老是不监听ipv6地址怎么办&#34;&gt;qB老是不监听IPv6地址，怎么办？
 &lt;/h3&gt;&lt;p&gt;有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://evine.win/p/docker-install-qbittorrent/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="一款更懂你的 qbittorrent docker 镜像">
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="一款更懂你的 qbittorrent docker 镜像">
 <meta property='og:description' content=" 本文较长，如想略过某些内容，请直接点击右侧目录链接。\n说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。\n">
 <meta property='og:url' content='https://evine.win/p/docker-install-qbittorrent/'>
 <meta property='og:site_name' content='Evine的个人博客'>
@@ -384,7 +384,8 @@
     
     
     <blockquote>
-<p>本文较长，如想略过某些内容，请直接点击右侧目录链接。</p></blockquote>
+<p>本文较长，如想略过某些内容，请直接点击右侧目录链接。</p>
+</blockquote>
 <h2 id="说明">说明
 </h2><p>为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。<a class="link" href="https://github.com/devome/dockerfiles/issues/101"  target="_blank" rel="noopener"
     >详情</a>。也因此镜像默认即安装好python，不再需要设置<code>INSTALL_PYTHON</code>这个环境变量。</p>
@@ -1718,7 +1719,8 @@
 使用内存映射文件的好处主要有：
 内核（它知道机器有多少物理RAM可用）最了解何时以及以何种顺序刷新缓存。也许更重要的是，决定保留读缓存的数量和时间。
 某些类型的存储可以由CPU直接寻址，就像它是RAM一样，绕过了许多内核基础设施，并提供了非常高的性能。（linux称此DAX）
-此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。</p></blockquote>
+此外，当报告libtorrent（特别是mmap磁盘后端）中的问题时，仅仅指出vmstats数字表明内核决定使用大量物理内存进行磁盘缓存是不够的。这是内存映射磁盘后端的一个特性。</p>
+</blockquote>
 <h3 id="qb老是不监听ipv6地址怎么办">qB老是不监听IPv6地址，怎么办？
 </h3><p>有很多原因会导致qBittorrent没有监听IPv6，比如你的IPv6地址变了，比如启动qBittorrent时还没有获取到IPv6等等。看看有没有成功监听到IPv6，只需要在日志中查看本次启动后有没有出现这样的字样即可：</p>
 <div class="highlight"><div class="chroma">

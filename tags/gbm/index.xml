@@ -14,7 +14,8 @@
         <guid>https://evine.win/p/kodi-install-in-pve/</guid>
         <description>&lt;img src="https://evine.win/p/kodi-install-in-pve/pic5.png" alt="Featured image of post PVE 直接安装最新版 Kodi" /&gt;&lt;blockquote&gt;
 &lt;p&gt;本文为原创教程，转载请注明来源及作者。
-更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;&lt;/blockquote&gt;
+更新于2025年1月22日，以当前最新的PVE 8为示例。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;按照本教程，可以保持PVE全部套件稳定的同时，又能够使用最新版Kodi；&lt;/li&gt;
 &lt;li&gt;没有安装任何桌面系统或其他什么软件包，对PVE环境的影响可以忽略不计；&lt;/li&gt;
@@ -25,9 +26,11 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;安装最新版kodi&#34;&gt;安装最新版Kodi
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;注：本文是以GBM模式安装的Kodi，这种模式目前也已支持HDR。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：请先将PVE系统全部软件整体升级到最新版本后再安装Kodi。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;不需要如同网上其他教程一般，安装&lt;code&gt;xinit&lt;/code&gt;、&lt;code&gt;xfce&lt;/code&gt;、&lt;code&gt;lightdm&lt;/code&gt;、&lt;code&gt;gnome&lt;/code&gt;等等一系列桌面系统才需要的软件包，直接安装Kodi就好了。尽量不装无关的包，这对PVE系统比较重要。&lt;/p&gt;
 &lt;p&gt;并且网上的教程全是安装Debian官方仓库自带的Kodi，但因为Debian的特色，官方稳定仓库中的Kodi版本比较老。所以有的博主自作主张启用了Debian的sid不稳定仓库，以便使用新版Kodi，这对PVE环境来说是不可取的，不建议这么做。&lt;/p&gt;
 &lt;p&gt;事实上在Debian稳定版本上也是可以安装最新版的Kodi的，主要来自一个专门负责维护多媒体软件的仓库：https://www.deb-multimedia.org，国内连接较差，不用担心，有一堆镜像站可以使用。以下基于PVE 8.x（Debian bookworm）并以北外镜像站为例（&lt;strong&gt;其他版本请修改&lt;code&gt;bookworm&lt;/code&gt;为对应的版本号&lt;/strong&gt;）：&lt;/p&gt;
@@ -62,7 +65,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;注：各PVE对应的Debian版本号如下：&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;PVE 5 -&amp;gt; Debian 9 -&amp;gt; stretch&lt;/li&gt;
 &lt;li&gt;PVE 6 -&amp;gt; Debian 10 -&amp;gt; buster&lt;/li&gt;
@@ -117,7 +121,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请注意：当你从backports源安装kodi后，如果还需要安装依赖kodi的一些插件，也需要指定从backports源安装。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;国内其他镜像站如&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;清华TUNA&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.ustc.edu.cn/help/deb-multimedia.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;中科大USTC&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://mirrors.cloud.tencent.com/debian-multimedia/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

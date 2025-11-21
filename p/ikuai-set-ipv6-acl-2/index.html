@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8+）">
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="爱快 IPv6 ACL/防火墙设置（爱快 3.7.8+）">
 <meta property='og:description' content=" 关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全\n相关概念 引用自爱快帮助文档，不完全理解也没有关系，可以在实践中加深概念理解。\n协议栈：支持选择IPV4或IPV6，在爱快路由3.7.0及以上版本支持。 协议：这条ACL规则所走的协议的类型。 动作：允许或阻断； 方向： 进或转发； [进]：内网或外网进路由。 [转发]：路由接收到内网或外网数据然后把数据进行转发动作。 连接方向匹配: [原始方向]：匹配主动发起方发起访问时的报文。 [应答方向]：匹配被访问方应答时的报文。 源地址：转发与进动作的起始地址。 目的地址：转发与进动作的结束地址。 源端口：允许或阻断的起始端口。 目的端口：特定目标的端口。 进接口：数据来源口。 出接口：目的出口。 IPv4与IPv6的不同 IPv4在爱快系统中设置了端口转发以后，被转发的端口通过任何公网IP都能访问，不太安全，但总得来说只限制在转发的端口范围内。\n">
 <meta property='og:url' content='https://evine.win/p/ikuai-set-ipv6-acl-2/'>
 <meta property='og:site_name' content='Evine的个人博客'>
@@ -353,7 +353,8 @@
     
     
     <blockquote>
-<p>关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全</p></blockquote>
+<p>关键词：爱快 IPv4 / IPv6 ACL / 防火墙 端口转发 设置 安全</p>
+</blockquote>
 <h2 id="相关概念">相关概念
 </h2><p>引用自<a class="link" href="https://www.ikuai8.com/index.php?option=com_content&amp;view=article&amp;id=192&amp;Itemid=312"  target="_blank" rel="noopener"
     >爱快帮助文档</a>，不完全理解也没有关系，可以在实践中加深概念理解。</p>
@@ -389,7 +390,8 @@
 <p>注意，如要设置ACL，要先设置好端口转发，然后只针对需要提高安全性的转发端口来设置ACL（BT/PT软件IPv4的监听端口只转发不设置ACL）。</p>
 <h2 id="ipv6的acl防火墙设置">IPv6的ACL/防火墙设置
 </h2><blockquote>
-<p>ACL中<code>允许</code>的优先级高于<code>阻断</code>。</p></blockquote>
+<p>ACL中<code>允许</code>的优先级高于<code>阻断</code>。</p>
+</blockquote>
 <p>爱快在3.7.0新增了IPv6 ACL/防火墙的功能，由此终于可以放心的开启IPv6了。爱快3.7.7新增了IPv6分组和MAC分组功能，不过还有BUG，在3.7.8终于稳定了，可以导入分组了简化设置了。</p>
 <h3 id="导入ipv6分组">导入IPv6分组
 </h3><p>下载 <a class="link" href="https://raw.githubusercontent.com/devome/files/master/zxipv6wry/ipv6group.csv"  target="_blank" rel="noopener"
@@ -447,7 +449,8 @@
 <p><strong>重要提示</strong></p>
 <blockquote>
 <p>根据 <a class="link" href="https://bbs.ikuai8.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=144430&amp;pid=1244021&amp;fromuid=52325"  target="_blank" rel="noopener"
-    >爱快官方人员的说明</a>：IPv6外网主动访问内网，无法做目的mac匹配，只能做后缀匹配也就是IPv6地址匹配。因为外网主动访问的，内网的此终端IPv6地址对应的mac地址，无法立马拿到（这个就涉及内核的发包细节了）。如果是内网主动向外访问，源主机对应的mac地址路由能第一时间就能拿到。</p></blockquote>
+    >爱快官方人员的说明</a>：IPv6外网主动访问内网，无法做目的mac匹配，只能做后缀匹配也就是IPv6地址匹配。因为外网主动访问的，内网的此终端IPv6地址对应的mac地址，无法立马拿到（这个就涉及内核的发包细节了）。如果是内网主动向外访问，源主机对应的mac地址路由能第一时间就能拿到。</p>
+</blockquote>
 <p><img src="/p/ikuai-set-ipv6-acl-2/pic3.png"
 	width="1864"
 	height="1522"
@@ -490,7 +493,8 @@
 <h4 id="完全暴露某台设备">完全暴露某台设备
 </h4><p>因为某些原因（比如PCDN），假如需要将某些IPv6完全暴露在公网中，那么可以按照上文中 “后缀匹配” 进行设置即可，唯一的不同点是协议选择“任意“，源地址留空，表示全部允许全部源地址的全部协议。</p>
 <blockquote>
-<p>一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： <code>nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535</code>，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。</p></blockquote>
+<p>一点TIPS：可以在局域网网中通过nmap把某台机器开放的端口扫描出来，比如： <code>nmap -6 240e:1234:5678:90ab::1000 -Pn -p 1024-65535</code>，输出会将打开的端口显示出来，知道了哪些端口是打开的，就可以只开放这些端口，而无需开放全部端口。比如，有些系统有个控制台，但可能你并不想把控制台的端口转发到公网上。</p>
+</blockquote>
 <h2 id="规则验证">规则验证
 </h2><p>另外找台公网机器（不在本地网络中的，用手机蜂窝网临时开个热点也行），安装好nmap（linux直接从仓库中安装，windows的在 <a class="link" href="https://nmap.org/download#windows"  target="_blank" rel="noopener"
     >这里</a>），比如检测IPv6的某端口开放情况运行下面命令即可：</p>
