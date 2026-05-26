@@ -121,18 +121,7 @@
 &lt;p&gt;&lt;strong&gt;一些辅助功能：批量修改tracker；检测指定文件夹下未做种的子文件夹/文件；生成做种文件清单；生成未做种文件清单；配合IYUU自动重新校验和自动恢复做种；指定设备上线时自动限速；多时段限速；分析指定目录的重复做种率（辅种率）等等。&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;如需要下载完成后自动触发EMBY/JELLYFIN扫描媒体库，触发ChineseSubFinder自动为刚刚下载完成的视频自动下载字幕，请按照 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent/diy&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;这里&lt;/a&gt; 操作。&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;del&gt;&lt;code&gt;python&lt;/code&gt;为可选安装项，设置为&lt;code&gt;true&lt;/code&gt;就自动安装。&lt;/del&gt;（从2023年9月5日起，默认安装好python，不再需要设置这一项。）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
 &lt;p&gt;体积小，默认中文UI，默认东八区时区。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;iyuu&lt;/code&gt;标签集成了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ledccn/IYUUPlus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;IYUUPlus&lt;/a&gt;，自动设置好下载器，减少IYUUPlus设置复杂程度。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;标签&#34;&gt;标签
@@ -141,15 +130,7 @@
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;4.x.x&lt;/code&gt; , &lt;code&gt;latest&lt;/code&gt;&lt;/strong&gt;: 标签以纯数字版本号命名，这是qBittorrent正式发布的稳定版，其中最新的版本额外增加&lt;code&gt;latest&lt;/code&gt;标签。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;4.x.x-iyuu&lt;/code&gt; , &lt;code&gt;latest-iyuu&lt;/code&gt; , &lt;code&gt;iyuu&lt;/code&gt;&lt;/strong&gt;: 标签中带有&lt;code&gt;iyuu&lt;/code&gt;字样，基于qBittorrent稳定版集成了&lt;a class=&#34;link&#34; href=&#34;https://github.com/ledccn/IYUUPlus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;IYUUPlus&lt;/a&gt;，其中最新的版本额外增加&lt;code&gt;latest-iyuu&lt;/code&gt;和&lt;code&gt;iyuu&lt;/code&gt;标签，自动安装好&lt;a class=&#34;link&#34; href=&#34;https://github.com/ledccn/IYUUPlus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;IYUUPlus&lt;/a&gt;，自动设置好下载器，主要针对不会设置下载器的用户。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;x.x.xalphax&lt;/code&gt;, &lt;code&gt;x.x.xbetax&lt;/code&gt; , &lt;code&gt;x.x.xrcx&lt;/code&gt; , &lt;code&gt;unstable&lt;/code&gt;&lt;/strong&gt;: 标签中带有&lt;code&gt;alpha&lt;/code&gt;、&lt;code&gt;beta&lt;/code&gt;或&lt;code&gt;rc&lt;/code&gt;字样，这是qBittorrent发布的测试版，其中最新的测试版额外增加&lt;code&gt;unstable&lt;/code&gt; 标签。此标签仅供测试使用及向qBittorrent官方反馈bug使用。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;edge&lt;/code&gt;&lt;/strong&gt;: 基于&lt;code&gt;alpine:edge&lt;/code&gt;制作的镜像，体积最小，所依赖的组件版本最新，会提供&lt;code&gt;riscv64&lt;/code&gt;版本镜像。&lt;strong&gt;所有新功能或者BUG修复，或者有任何变化时，都会第一时间更新到此标签。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;edge&lt;/code&gt;&lt;/strong&gt;: 基于&lt;code&gt;alpine:edge&lt;/code&gt;制作的镜像，体积最小，所依赖的组件版本最新。&lt;strong&gt;所有新功能或者BUG修复，或者有任何变化时，都会第一时间更新到此标签。&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;更新日志仅列出稳定版&#34;&gt;更新日志（仅列出稳定版）
@@ -703,25 +684,6 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;以下是仅&lt;code&gt;iyuu&lt;/code&gt;标签额外可用的环境变量：&lt;/strong&gt;&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th style=&#34;text-align: center&#34;&gt;序号&lt;/th&gt;
-          &lt;th style=&#34;text-align: center&#34;&gt;变量名&lt;/th&gt;
-          &lt;th style=&#34;text-align: center&#34;&gt;默认值&lt;/th&gt;
-          &lt;th&gt;说明&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;1&lt;/td&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;IYUU_REPO_URL&lt;/td&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;https://gitee.com/ledc/iyuuplus.git&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;指定从哪里获取IYUUPlus的代码，默认从gitee更新，如果你想从github更新，可以设置为：&lt;code&gt;https://github.com/ledccn/IYUUPlus.git&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
 &lt;h2 id=&#34;创建&#34;&gt;创建
 &lt;/h2&gt;&lt;h3 id=&#34;群晖&#34;&gt;群晖
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://evine.win/p/docker-install-qbittorrent/pic1.png&#34;
@@ -892,7 +854,7 @@
 		data-flex-basis=&#34;447px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;安装后访问&lt;code&gt;http://ip:8080&lt;/code&gt;。如想使用集成了IYUUPlus的qBittorrent（自动设置好IYUUPlus中的下载器），请使用docker cli以命令行方式部署。&lt;/p&gt;
+&lt;p&gt;安装后访问&lt;code&gt;http://ip:8080&lt;/code&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;命令行docker-cli&#34;&gt;命令行docker cli
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -972,13 +934,12 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;version: &amp;#34;2.0&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;services:
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  qbittorrent:
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: nevinee/qbittorrent  # 如想参与测试工作可以指定nevinee/qbittorrent:unstable，如想使用集成了iyuu的版本请指定nevinee/qbittorrent:iyuu
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: nevinee/qbittorrent
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    container_name: qbittorrent
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    restart: always
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    tty: true
@@ -998,7 +959,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 8080:8080        # 冒号左右一致，必须同WEBUI_PORT一样，本文件中的3个8080要改一起改
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 34567:34567      # 冒号左右一致，必须同BT_PORT一样，本文件中的5个34567要改一起改
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      - 34567:34567/udp  # 冒号左右一致，必须同BT_PORT一样，本文件中的5个34567要改一起改
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      #- 8787:8787       # 如使用的是nevinee/qbittorrent:iyuu标签，请解除本行注释
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    #security_opt:       # armv7设备请解除本行和下一行的注释
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      #- seccomp=unconfined
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -1044,7 +1004,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;version: &amp;#34;2.0&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;services:
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  qbittorrent:
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: nevinee/qbittorrent # 如想参与测试工作可以指定nevinee/qbittorrent:unstable，如想使用集成了iyuu的版本，请指定nevinee/qbittorrent:iyuu
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: nevinee/qbittorrent
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    container_name: qbittorrent
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    restart: always
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    tty: true
@@ -1104,7 +1064,6 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;                         &lt;span class=&#34;c1&#34;&gt;# 基础路径在容器内为/data，下面所有文件夹均处于/data的下一层，基础路径在宿主机上为你创建容器时映射的&lt;/span&gt;
@@ -1123,7 +1082,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;│&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;└──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rss&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;# rss订阅下载文件保存目录&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;diy&lt;/span&gt;                       &lt;span class=&#34;c1&#34;&gt;# 存放你自己编写的脚本的目录，diy.sh需要存放在此&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;downloads&lt;/span&gt;                 &lt;span class=&#34;c1&#34;&gt;# 默认下载目录&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;iyuu_db&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;# 仅iyuu标签有此目录，用来保存IYUUPlus的配置文件，IYUUPlus用户须保留此文件夹&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;logs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logs&lt;/span&gt;         &lt;span class=&#34;c1&#34;&gt;# 只是个软连接，连接到容器内的/data/data/logs&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;                      &lt;span class=&#34;c1&#34;&gt;# 下载文件临时存放目录，默认在配置中未启用&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;├──&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;torrents&lt;/span&gt;                  &lt;span class=&#34;c1&#34;&gt;# 保存种子文件目录，默认在配置中未启用&lt;/span&gt;
@@ -1255,7 +1213,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;将qbittorrent安装在macvlan网络上时如何使用iyuuautoreseed自动辅种&#34;&gt;将qbittorrent安装在macvlan网络上时，如何使用IYUUAutoReseed自动辅种
-&lt;/h3&gt;&lt;p&gt;将两个容器都安装在同一个macvlan网络上即可，或者直接安装&lt;code&gt;nevinee/qbittorrent:iyuu&lt;/code&gt;标签。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;将两个容器都安装在同一个macvlan网络上即可。&lt;/p&gt;
 &lt;h3 id=&#34;如何使用-cron_alter_limits-这个环境变量&#34;&gt;如何使用 CRON_ALTER_LIMITS 这个环境变量
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
