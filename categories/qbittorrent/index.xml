@@ -15,8 +15,7 @@
 &lt;p&gt;本文较长，如想略过某些内容，请直接点击右侧目录链接。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;说明&#34;&gt;说明
-&lt;/h2&gt;&lt;p&gt;为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。&lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/issues/101&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;详情&lt;/a&gt;。也因此镜像默认即安装好python，不再需要设置&lt;code&gt;INSTALL_PYTHON&lt;/code&gt;这个环境变量。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;从2026年5月26日v5.2.1开始，删除环境变量&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;，不再需要设置，改用qB新支持的API KEY的方式来实现认证。不再默认安装python，如有需要请设置&lt;code&gt;EXTRA_PACKAGES&lt;/code&gt;，增加&lt;code&gt;python3&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;声明&#34;&gt;声明
 &lt;/h2&gt;&lt;p&gt;本镜像非魔改版、非快验版、非Enhanced增强版，qBittorrent自身的行为/功能全部未做任何改动（也不会考虑添加或修改官方客户端行为/功能的内容），全部属于官方客户端的默认行为/功能，在和PT站Tracker服务器交互时反馈的一切信息均是qBittorrent官方版反馈的信息。本镜像只是基于官方客户端附加了一些实用的脚本，脚本全部是合理合法使用qBittorrent官方API获取信息，脚本全部行为都集中在本地，与任何远端服务器无任何联系。增加的脚本全部代码在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/devome/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Github&lt;/a&gt; 或 &lt;a class=&#34;link&#34; href=&#34;https://gitee.com/evine/dockerfiles/tree/master/qbittorrent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
