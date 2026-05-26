@@ -470,16 +470,16 @@
           &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;2026-05-25&lt;/td&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;edge/5.2.1&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2026-05-26&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;5.2.1&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;2.0.11&lt;/td&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;edge&lt;/td&gt;
-          &lt;td&gt;1. 使用API_KEY认证，删除&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;；&lt;/br&gt;2. 优化&lt;code&gt;tracker-error&lt;/code&gt;；&lt;/br&gt;3. 修复&lt;code&gt;change-tracker&lt;/code&gt;脚本接口&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3.22.4&lt;/td&gt;
+          &lt;td&gt;1. 由于 alpine 3.23 的qt6-qtbase依赖太大，基础镜像切换为3.22.4；&lt;/br&gt;2. 使用API_KEY认证，删除环境变量&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;；&lt;/br&gt;3. 默认不再安装&lt;code&gt;python3&lt;/code&gt;，如需要安装请在环境变量&lt;code&gt;EXTRA_PACKAGES&lt;/code&gt;中添加；&lt;/br&gt;4. 优化&lt;code&gt;tracker-error&lt;/code&gt;；&lt;/br&gt;5. 修复&lt;code&gt;change-tracker&lt;/code&gt;脚本qb api接口。&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;环境变量清单&#34;&gt;环境变量清单
-&lt;/h2&gt;&lt;p&gt;在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中&lt;code&gt;WEBUI_PORT&lt;/code&gt; &lt;code&gt;BT_PORT&lt;/code&gt;的形式自行补充添加到创建命令中。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中&lt;code&gt;WEBUI_PORT&lt;/code&gt; &lt;code&gt;BT_POEXTRA_PACKAGESRT&lt;/code&gt;的形式自行补充添加到创建命令中。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;注1：默认值的含义是，你不设置这个环境变量为其他值，那么程序就自动使用默认值。&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;注2：所有定时任务cron类的环境变量（以&lt;code&gt;CRON&lt;/code&gt;这四个字母开头的）在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;注3：&lt;strong&gt;&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;必须改成非默认值，除此以外，其余所有环境变量你都可以不设置，并不影响qbittorrent的使用&lt;/strong&gt;，但如果你想用得更爽，你就根据你的需要设置。&lt;/em&gt;&lt;/p&gt;
@@ -540,7 +540,7 @@
           &lt;td style=&#34;text-align: center&#34;&gt;8&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;INSTALL_PYTHON&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;false&lt;/td&gt;
-          &lt;td&gt;&lt;strong&gt;5.2.1+起&lt;/strong&gt;默认不安装python，如需要python（qBittorrent的搜索功能必须安装python），请设置为&lt;code&gt;true&lt;/code&gt;，设置后将在首次启动容器时自动安装好。&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;（已弃用，如需安装&lt;code&gt;python3&lt;/code&gt;请在环境变量&lt;code&gt;EXTRA_PACKAGES&lt;/code&gt;中添加）&lt;/strong&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;9&lt;/td&gt;
@@ -699,7 +699,7 @@
           &lt;td style=&#34;text-align: center&#34;&gt;34&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;EXTRA_PACKAGES&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
-          &lt;td&gt;4.3.9+可用。你需要安装的其他软件包，形如&lt;code&gt;htop nano nodejs&lt;/code&gt;，多个软件包用半角空格分开，在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。&lt;/td&gt;
+          &lt;td&gt;4.3.9+可用。你需要安装的其他软件包，形如&lt;code&gt;python3 htop nano nodejs&lt;/code&gt;，多个软件包用半角空格分开，在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;

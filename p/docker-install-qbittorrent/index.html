@@ -10,7 +10,7 @@
 <meta property='og:description' content=" 本文较长，如想略过某些内容，请直接点击右侧目录链接。\n说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。\n">
 <meta property='og:url' content='https://evine.win/p/docker-install-qbittorrent/'>
 <meta property='og:site_name' content='Evine的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-05-25T22:06:50&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='qbittorrent' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-05-25T22:10:14&#43;08:00'/><meta property='og:image' content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
 <meta name="twitter:title" content="一款更懂你的 qbittorrent docker 镜像">
 <meta name="twitter:description" content=" 本文较长，如想略过某些内容，请直接点击右侧目录链接。\n说明 为保证用户安全，防止用户因使用反代并代理了127.0.0.1这种情况导致安全性降低，从2023年9月5日更新的镜像开始，创建容器需要新增设置两个环境变量：QB_USERNAME（登陆qBittorrent的用户名）和QB_PASSWORD（登陆qBittorrent的密码）。容器将在创建时使用这两个环境变量去设置（如已存在配置文件则是修改）登陆qBittorent的用户名和密码。如未设置这两个环境变量，或者保持为qBittorrent的默认值（默认用户名：admin，默认密码：adminadmin），则本容器附加的所有脚本、定时任务将无法继续使用。详情。也因此镜像默认即安装好python，不再需要设置INSTALL_PYTHON这个环境变量。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://evine.win/p/docker-install-qbittorrent/notify.png' />
@@ -841,16 +841,16 @@
           <td></td>
       </tr>
       <tr>
-          <td style="text-align: center">2026-05-25</td>
-          <td style="text-align: center">edge/5.2.1</td>
+          <td style="text-align: center">2026-05-26</td>
+          <td style="text-align: center">5.2.1</td>
           <td style="text-align: center">2.0.11</td>
-          <td style="text-align: center">edge</td>
-          <td>1. 使用API_KEY认证，删除<code>QB_USERNAME</code>和<code>QB_PASSWORD</code>；</br>2. 优化<code>tracker-error</code>；</br>3. 修复<code>change-tracker</code>脚本接口</td>
+          <td style="text-align: center">3.22.4</td>
+          <td>1. 由于 alpine 3.23 的qt6-qtbase依赖太大，基础镜像切换为3.22.4；</br>2. 使用API_KEY认证，删除环境变量<code>QB_USERNAME</code>和<code>QB_PASSWORD</code>；</br>3. 默认不再安装<code>python3</code>，如需要安装请在环境变量<code>EXTRA_PACKAGES</code>中添加；</br>4. 优化<code>tracker-error</code>；</br>5. 修复<code>change-tracker</code>脚本qb api接口。</td>
       </tr>
   </tbody>
 </table></div>
 <h2 id="环境变量清单">环境变量清单
-</h2><p>在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中<code>WEBUI_PORT</code> <code>BT_PORT</code>的形式自行补充添加到创建命令中。</p>
+</h2><p>在下一节的创建命令中，包括已经提及的变量在内，总共以下环境变量，请根据需要参考创建命令中<code>WEBUI_PORT</code> <code>BT_POEXTRA_PACKAGESRT</code>的形式自行补充添加到创建命令中。</p>
 <p><em>注1：默认值的含义是，你不设置这个环境变量为其他值，那么程序就自动使用默认值。</em></p>
 <p><em>注2：所有定时任务cron类的环境变量（以<code>CRON</code>这四个字母开头的）在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。</em></p>
 <p><em>注3：<strong><code>QB_USERNAME</code>和<code>QB_PASSWORD</code>必须改成非默认值，除此以外，其余所有环境变量你都可以不设置，并不影响qbittorrent的使用</strong>，但如果你想用得更爽，你就根据你的需要设置。</em></p>
@@ -911,7 +911,7 @@
           <td style="text-align: center">8</td>
           <td style="text-align: center">INSTALL_PYTHON</td>
           <td style="text-align: center">false</td>
-          <td><strong>5.2.1+起</strong>默认不安装python，如需要python（qBittorrent的搜索功能必须安装python），请设置为<code>true</code>，设置后将在首次启动容器时自动安装好。</td>
+          <td><strong>（已弃用，如需安装<code>python3</code>请在环境变量<code>EXTRA_PACKAGES</code>中添加）</strong></td>
       </tr>
       <tr>
           <td style="text-align: center">9</td>
@@ -1070,7 +1070,7 @@
           <td style="text-align: center">34</td>
           <td style="text-align: center">EXTRA_PACKAGES</td>
           <td style="text-align: center"></td>
-          <td>4.3.9+可用。你需要安装的其他软件包，形如<code>htop nano nodejs</code>，多个软件包用半角空格分开，在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。</td>
+          <td>4.3.9+可用。你需要安装的其他软件包，形如<code>python3 htop nano nodejs</code>，多个软件包用半角空格分开，在docker cli中请用一对双引号引起来，在docker-compose中不要增加引号。</td>
       </tr>
   </tbody>
 </table></div>
@@ -1892,7 +1892,7 @@
 
 
         <span>
-            最后更新于 2026-05-25 22:06
+            最后更新于 2026-05-25 22:10
         </span>
     </section></footer>
 
