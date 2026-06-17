@@ -6,7 +6,7 @@
         <description>Recent content in Docker on Evine的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 26 May 2026 12:27:38 +0800</lastBuildDate><atom:link href="https://evine.win/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 26 May 2026 15:47:07 +0800</lastBuildDate><atom:link href="https://evine.win/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>一款更懂你的 qbittorrent docker 镜像</title>
         <link>https://evine.win/p/docker-install-qbittorrent/</link>
         <pubDate>Wed, 18 Oct 2023 00:00:00 +0800</pubDate>
@@ -456,6 +456,13 @@
           &lt;td style=&#34;text-align: center&#34;&gt;2.0.11&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;3.22.4&lt;/td&gt;
           &lt;td&gt;1. 由于 alpine 3.23 的qt6-qtbase依赖太大，基础镜像切换为3.22.4；&lt;/br&gt;2. 使用API_KEY认证，删除环境变量&lt;code&gt;QB_USERNAME&lt;/code&gt;和&lt;code&gt;QB_PASSWORD&lt;/code&gt;；&lt;/br&gt;3. 默认不再安装&lt;code&gt;python3&lt;/code&gt;，如需要安装请在环境变量&lt;code&gt;EXTRA_PACKAGES&lt;/code&gt;中添加；&lt;/br&gt;4. 优化&lt;code&gt;tracker-error&lt;/code&gt;；&lt;/br&gt;5. 修复&lt;code&gt;change-tracker&lt;/code&gt;脚本qb api接口。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2026-06-16&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;5.2.2&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2.0.11&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3.24.1&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
